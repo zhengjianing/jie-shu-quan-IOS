@@ -27,11 +27,13 @@
             </objects>
             <point key="canvasLocation" x="239" y="248"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Navigation Controller - 我的书-->
         <scene sceneID="F4G-66-AbT">
             <objects>
                 <navigationController id="UF7-IP-xcK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="favorites" id="SJy-2N-iHZ"/>
+                    <tabBarItem key="tabBarItem" title="我的书" image="myBooks.png" id="SJy-2N-iHZ">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-3"/>
+                    </tabBarItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="480"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rJe-Wq-7uI">
@@ -89,11 +91,13 @@
             </objects>
             <point key="canvasLocation" x="-933" y="156"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Navigation Controller - 登陆-->
         <scene sceneID="hxT-iH-yHZ">
             <objects>
                 <navigationController id="26p-xW-94S" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="more" id="0WE-va-L7t"/>
+                    <tabBarItem key="tabBarItem" title="登陆" image="user.png" id="0WE-va-L7t">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-3"/>
+                    </tabBarItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="480"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="IXJ-Hx-FpZ">
@@ -109,4 +113,8 @@
             <point key="canvasLocation" x="-273" y="248"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="myBooks.png" width="20" height="20"/>
+        <image name="user.png" width="20" height="20"/>
+    </resources>
 </document>
