@@ -7,6 +7,7 @@
 //
 
 #import "BookDetailViewController.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface BookDetailViewController ()
 
@@ -14,36 +15,24 @@
 
 @implementation BookDetailViewController
 
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [_bookImageView sd_setImageWithURL:[NSURL URLWithString:_book.imageHref]];
+    _nameLabel.text = _book.name;
+    _authorsLabel.text = [_book authorsString];
+    _publisherLabel.text = _book.publisher;
+    _publishDateLabel.text = _book.publishDate;
+    _priceLabel.text = _book.price;
+    _discriptionLabel.text = _book.discription;
+    _authorInfoLabel.text = _book.authorInfo;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

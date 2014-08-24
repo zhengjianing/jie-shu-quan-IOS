@@ -11,6 +11,7 @@
 #import "BookStore.h"
 #import "Book.h"
 #import "BookTableViewCell.h"
+#import "BookDetailViewController.h"
 
 @interface MyBooksTableViewController : UITableViewController <PreLoginDelegate>
 

@@ -136,15 +136,19 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    NSIndexPath *selectIndexPath = nil;
+    Book *selectedBook = nil;
+
+    if ([[segue destinationViewController] class] == BookDetailViewController.class) {
+        selectIndexPath = [self.tableView indexPathForSelectedRow];
+        selectedBook = [_myBooks objectAtIndex:[selectIndexPath row]];
+        [[segue destinationViewController] setBook:selectedBook];
+    }
 }
-*/
 
 @end
