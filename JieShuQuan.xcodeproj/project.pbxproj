@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9412E2F519A9FAC7008D243C /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412E2F419A9FAC7008D243C /* Book.m */; };
 		9412E2F819AA0080008D243C /* BookStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412E2F719AA0080008D243C /* BookStore.m */; };
+		9412E2FB19AA0D82008D243C /* BookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412E2FA19AA0D82008D243C /* BookTableViewCell.m */; };
 		9471DBEF19A5837700F1A291 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471DBEE19A5837700F1A291 /* main.m */; };
 		9471DBF219A5837700F1A291 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471DBF119A5837700F1A291 /* AppDelegate.m */; };
 		9471DBF519A5837700F1A291 /* JieShuQuan.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9471DBF319A5837700F1A291 /* JieShuQuan.xcdatamodeld */; };
@@ -38,6 +39,8 @@
 		9412E2F419A9FAC7008D243C /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
 		9412E2F619AA0080008D243C /* BookStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookStore.h; sourceTree = "<group>"; };
 		9412E2F719AA0080008D243C /* BookStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookStore.m; sourceTree = "<group>"; };
+		9412E2F919AA0D82008D243C /* BookTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookTableViewCell.h; sourceTree = "<group>"; };
+		9412E2FA19AA0D82008D243C /* BookTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookTableViewCell.m; sourceTree = "<group>"; };
 		9471DBE919A5837700F1A291 /* JieShuQuan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JieShuQuan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9471DBED19A5837700F1A291 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9471DBEE19A5837700F1A291 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -96,6 +99,8 @@
 				9412E2F419A9FAC7008D243C /* Book.m */,
 				9412E2F619AA0080008D243C /* BookStore.h */,
 				9412E2F719AA0080008D243C /* BookStore.m */,
+				9412E2F919AA0D82008D243C /* BookTableViewCell.h */,
+				9412E2FA19AA0D82008D243C /* BookTableViewCell.m */,
 			);
 			name = myBooks;
 			sourceTree = "<group>";
@@ -281,6 +286,7 @@
 				9471DC2719A9689E00F1A291 /* MyBooksTableViewController.m in Sources */,
 				9412E2F819AA0080008D243C /* BookStore.m in Sources */,
 				9412E2F519A9FAC7008D243C /* Book.m in Sources */,
+				9412E2FB19AA0D82008D243C /* BookTableViewCell.m in Sources */,
 				9471DBEF19A5837700F1A291 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

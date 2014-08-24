@@ -10,6 +10,7 @@
 #import "PreLoginView.h"
 #import "BookStore.h"
 #import "Book.h"
+#import "BookTableViewCell.h"
 
 @interface MyBooksTableViewController : UITableViewController <PreLoginDelegate>
 

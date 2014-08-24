@@ -26,4 +26,16 @@
     return self;
 }
 
+- (NSString *)authorsString
+{
+    NSString *authorsString = @"";
+    for (NSString *author in _authors) {
+        authorsString = [authorsString stringByAppendingString:author];
+        if (![author isEqualToString:[_authors lastObject]]) {
+            authorsString = [authorsString stringByAppendingString:@", "];
+        }
+    }
+    return authorsString;
+}
+
 @end

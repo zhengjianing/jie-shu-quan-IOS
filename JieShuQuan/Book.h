@@ -21,4 +21,6 @@
 
 - (id)initWithName:(NSString *)name authors:(NSArray *)authors imageHref:(NSString *)imageHref discription:(NSString *)discription authorInfo:(NSString *)authorInfo price:(NSString *)price publisher:(NSString *)publisher publishDate:(NSString *)publishDate;
 
+- (NSString *)authorsString;
+
 @end

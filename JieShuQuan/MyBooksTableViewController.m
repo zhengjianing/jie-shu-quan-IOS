@@ -87,10 +87,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bookIdentifier" forIndexPath:indexPath];
+    BookTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bookIdentifier" forIndexPath:indexPath];
     Book *book = [_myBooks objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = book.name;
+    cell.nameLabel.text = book.name;
+    cell.authorsLabel.text = [book authorsString];
     
     return cell;
 }
