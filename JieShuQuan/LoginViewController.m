@@ -17,7 +17,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self navigationItem].title = @"Login";
+    [self navigationItem].title = @"登陆";
 }
 
 @end

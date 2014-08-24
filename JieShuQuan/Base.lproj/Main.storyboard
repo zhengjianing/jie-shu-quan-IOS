@@ -96,7 +96,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9b7-59-f11" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-933" y="156"/>
+            <point key="canvasLocation" x="-1033" y="-76"/>
         </scene>
         <!--Navigation Controller - 登陆-->
         <scene sceneID="hxT-iH-yHZ">

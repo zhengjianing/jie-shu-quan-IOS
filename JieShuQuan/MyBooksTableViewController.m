@@ -9,7 +9,9 @@
 #import "MyBooksTableViewController.h"
 
 @interface MyBooksTableViewController ()
-
+{
+    Boolean isLogin;
+}
 @end
 
 @implementation MyBooksTableViewController
@@ -19,7 +21,33 @@
 {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"My Books";
+    self.navigationItem.title = @"我的书";
+    
+    _myBooksTableView = self.tableView;
+
+    isLogin = NO;
+    if (!isLogin) {
+        [self showPreLoginView];
+    }
+}
+
+#pragma mark - PreLoginView
+
+- (void)showPreLoginView
+{
+    if (!_preLoginView) {
+        [self initPreLoginViewWithNib];
+    }
+    self.view = _preLoginView;
+}
+
+- (void)initPreLoginViewWithNib
+{
+    NSArray *topLevelObjs = [[NSBundle mainBundle] loadNibNamed:@"PreLoginNib" owner:self options:nil];
+    if ([topLevelObjs count] > 0)
+    {
+        _preLoginView = [topLevelObjs lastObject];
+    }
 }
 
 #pragma mark - Table view data source

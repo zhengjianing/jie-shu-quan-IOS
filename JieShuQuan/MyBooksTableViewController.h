@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PreLoginView.h"
 
 @interface MyBooksTableViewController : UITableViewController
+
+@property (strong, nonatomic) UITableView *myBooksTableView;
+@property (strong, nonatomic) UIView *preLoginView;
 
 @end
