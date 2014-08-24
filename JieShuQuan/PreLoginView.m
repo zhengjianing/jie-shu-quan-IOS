@@ -7,7 +7,12 @@
 //
 
 #import "PreLoginView.h"
+#import "MyBooksTableViewController.h"
 
 @implementation PreLoginView
+
+- (IBAction)login:(id)sender {
+    [_delegate login];
+}
 
 @end

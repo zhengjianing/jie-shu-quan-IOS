@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol PreLoginDelegate
+- (void)login;
+@end
+
 @interface PreLoginView : UIView
+
+@property (strong, nonatomic) id<PreLoginDelegate> delegate;
+
+- (IBAction)login:(id)sender;
 
 @end

@@ -18,22 +18,25 @@
 {
     [super viewDidLoad];
     [self navigationItem].title = @"更多";
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
     _userName = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
     if (_userName) {
-        [self initViewWithLogin];
+        [self updateViewWithLogin];
     } else {
-        [self initViewWithLogout];
+        [self updateViewWithLogout];
     }
 }
 
-- (void)initViewWithLogin
+- (void)updateViewWithLogin
 {
     _userNameLabel.text = _userName;
     [_loginButton setTitle:@"退出登陆" forState:UIControlStateNormal];
 }
 
-- (void)initViewWithLogout
+- (void)updateViewWithLogout
 {
     _userNameLabel.text = @"尚未登陆";
     [_loginButton setTitle:@"立即登陆" forState:UIControlStateNormal];
@@ -42,12 +45,24 @@
 - (IBAction)loginLogout:(id)sender {
     if (_userName) {
         [self logout];
+    } else {
+        [self login];
     }
+}
+
+- (void)login
+{
+    [[NSUserDefaults standardUserDefaults] setObject:@"ningmengjia" forKey:@"username"];
+    _userName = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
+    
+    [self updateViewWithLogin];
 }
 
 - (void)logout
 {
-    [self initViewWithLogout];
+    _userName = nil;
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"username"];
+
+    [self updateViewWithLogout];
 }
 @end

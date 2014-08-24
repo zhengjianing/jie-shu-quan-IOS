@@ -28,10 +28,16 @@
 {
     NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
     if (username) {
-        [self loadData];
+        [self showTableView];
     } else {
         [self showPreLoginView];
     }
+}
+
+- (void)showTableView
+{
+    [self loadData];
+    self.view = _myBooksTableView;
 }
 
 - (void)loadData
@@ -40,6 +46,12 @@
 }
 
 #pragma mark - PreLoginView
+
+- (void)login
+{
+    [[NSUserDefaults standardUserDefaults] setObject:@"ningmengjia" forKey:@"username"];
+    [self showTableView];
+}
 
 - (void)showPreLoginView
 {
@@ -55,6 +67,7 @@
     if ([topLevelObjs count] > 0)
     {
         _preLoginView = [topLevelObjs lastObject];
+        _preLoginView.delegate = self;
     }
 }
 

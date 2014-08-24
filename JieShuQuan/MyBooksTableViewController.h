@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "PreLoginView.h"
 
-@interface MyBooksTableViewController : UITableViewController
+@interface MyBooksTableViewController : UITableViewController <PreLoginDelegate>
 
 @property (strong, nonatomic) UITableView *myBooksTableView;
-@property (strong, nonatomic) UIView *preLoginView;
+@property (strong, nonatomic) PreLoginView *preLoginView;
 
 @property (strong, nonatomic) NSMutableArray *myBooks;
+
+- (void)showTableView;
 
 @end
