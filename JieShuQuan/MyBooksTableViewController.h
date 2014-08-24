@@ -14,4 +14,6 @@
 @property (strong, nonatomic) UITableView *myBooksTableView;
 @property (strong, nonatomic) UIView *preLoginView;
 
+@property (strong, nonatomic) NSMutableArray *myBooks;
+
 @end

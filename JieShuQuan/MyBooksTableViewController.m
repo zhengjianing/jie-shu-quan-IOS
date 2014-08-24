@@ -25,10 +25,17 @@
     
     _myBooksTableView = self.tableView;
 
-    isLogin = NO;
+    isLogin = YES;
     if (!isLogin) {
         [self showPreLoginView];
     }
+    
+    [self loadData];
+}
+
+- (void)loadData
+{
+    _myBooks = [[NSMutableArray alloc] initWithObjects:@"财务智慧", @"你的灯亮着吗？", @"IOS编程", nil];
 }
 
 #pragma mark - PreLoginView
@@ -54,24 +61,23 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return _myBooks.count;
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bookIdentifier" forIndexPath:indexPath];
+    NSString *title = [_myBooks objectAtIndex:indexPath.row];
     
-    // Configure the cell...
+    cell.textLabel.text = title;
     
     return cell;
 }
-*/
 
 /*
 // Override to support conditional editing of the table view.
