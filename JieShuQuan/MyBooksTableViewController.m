@@ -9,9 +9,7 @@
 #import "MyBooksTableViewController.h"
 
 @interface MyBooksTableViewController ()
-{
-    Boolean isLogin;
-}
+
 @end
 
 @implementation MyBooksTableViewController
@@ -25,12 +23,12 @@
     
     _myBooksTableView = self.tableView;
 
-    isLogin = YES;
-    if (!isLogin) {
+    NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
+    if (username) {
+        [self loadData];
+    } else {
         [self showPreLoginView];
     }
-    
-    [self loadData];
 }
 
 - (void)loadData

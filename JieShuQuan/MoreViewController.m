@@ -18,6 +18,27 @@
 {
     [super viewDidLoad];
     [self navigationItem].title = @"更多";
+    
+    _userName = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
+    if (_userName) {
+        [self initViewWithLogin];
+    } else {
+        [self initViewWithLogout];
+    }
 }
 
+- (void)initViewWithLogin
+{
+    _userNameLabel.text = _userName;
+    [_loginButton setTitle:@"退出登陆" forState:UIControlStateNormal];
+}
+
+- (void)initViewWithLogout
+{
+    _userNameLabel.text = @"尚未登陆";
+    [_loginButton setTitle:@"立即登陆" forState:UIControlStateNormal];
+}
+
+- (IBAction)loginLogout:(id)sender {
+}
 @end

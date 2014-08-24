@@ -20,8 +20,21 @@
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    [self saveUserInfo];
+    [self clearUserInfo];
     return YES;
+}
+
+//call this after login
+- (void)saveUserInfo
+{
+    [[NSUserDefaults standardUserDefaults] setObject:@"ningmengjia" forKey:@"username"];
+}
+
+//call this after logout
+- (void)clearUserInfo
+{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"username"];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

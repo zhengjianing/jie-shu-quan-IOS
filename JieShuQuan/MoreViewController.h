@@ -10,4 +10,11 @@
 
 @interface MoreViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
+
+@property (strong, nonatomic) NSString *userName;
+
+- (IBAction)loginLogout:(id)sender;
+
 @end
