@@ -42,10 +42,10 @@
             </objects>
             <point key="canvasLocation" x="289" y="-400"/>
         </scene>
-        <!--Login View Controller-->
+        <!--More View Controller-->
         <scene sceneID="2kx-tf-bUi">
             <objects>
-                <viewController id="8GM-sR-6Wn" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController id="8GM-sR-6Wn" customClass="MoreViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pcp-A6-NMd"/>
                         <viewControllerLayoutGuide type="bottom" id="jAi-7D-rUa"/>
@@ -106,11 +106,11 @@
             </objects>
             <point key="canvasLocation" x="-1033" y="-76"/>
         </scene>
-        <!--Navigation Controller - 登陆-->
+        <!--Navigation Controller - 更多-->
         <scene sceneID="hxT-iH-yHZ">
             <objects>
                 <navigationController id="26p-xW-94S" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="登陆" image="user.png" id="0WE-va-L7t">
+                    <tabBarItem key="tabBarItem" title="更多" image="user.png" id="0WE-va-L7t">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-3"/>
                     </tabBarItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

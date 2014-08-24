@@ -6,18 +6,18 @@
 //  Copyright (c) 2014 JNXZ. All rights reserved.
 //
 
-#import "LoginViewController.h"
+#import "MoreViewController.h"
 
-@interface LoginViewController ()
+@interface MoreViewController ()
 
 @end
 
-@implementation LoginViewController
+@implementation MoreViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self navigationItem].title = @"登陆";
+    [self navigationItem].title = @"更多";
 }
 
 @end
