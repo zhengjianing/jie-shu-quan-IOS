@@ -72,6 +72,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9412E2F019A9E4C5008D243C /* more */ = {
+			isa = PBXGroup;
+			children = (
+				9471DC1319A5A31F00F1A291 /* MoreViewController.h */,
+				9471DC1419A5A31F00F1A291 /* MoreViewController.m */,
+			);
+			name = more;
+			sourceTree = "<group>";
+		};
+		9412E2F119A9E4CD008D243C /* myBooks */ = {
+			isa = PBXGroup;
+			children = (
+				9471DC2519A9689E00F1A291 /* MyBooksTableViewController.h */,
+				9471DC2619A9689E00F1A291 /* MyBooksTableViewController.m */,
+			);
+			name = myBooks;
+			sourceTree = "<group>";
+		};
+		9412E2F219A9E4D4008D243C /* login */ = {
+			isa = PBXGroup;
+			children = (
+				9471DC2919A974AB00F1A291 /* PreLoginView.h */,
+				9471DC2A19A974AB00F1A291 /* PreLoginView.m */,
+				9471DC2E19A9895000F1A291 /* PreLoginNib.xib */,
+			);
+			name = login;
+			sourceTree = "<group>";
+		};
 		9471DBE019A5837700F1A291 = {
 			isa = PBXGroup;
 			children = (
@@ -93,10 +121,11 @@
 		9471DBEB19A5837700F1A291 /* JieShuQuan */ = {
 			isa = PBXGroup;
 			children = (
-				9471DC2819A9749400F1A291 /* views */,
-				9471DC1219A5A2F900F1A291 /* controllers */,
 				9471DBF019A5837700F1A291 /* AppDelegate.h */,
 				9471DBF119A5837700F1A291 /* AppDelegate.m */,
+				9412E2F219A9E4D4008D243C /* login */,
+				9412E2F119A9E4CD008D243C /* myBooks */,
+				9412E2F019A9E4C5008D243C /* more */,
 				9471DBF919A5837700F1A291 /* Main.storyboard */,
 				9471DBFC19A5837700F1A291 /* Images.xcassets */,
 				9471DBF319A5837700F1A291 /* JieShuQuan.xcdatamodeld */,
@@ -131,27 +160,6 @@
 				9471DC0719A5837700F1A291 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		9471DC1219A5A2F900F1A291 /* controllers */ = {
-			isa = PBXGroup;
-			children = (
-				9471DC1319A5A31F00F1A291 /* MoreViewController.h */,
-				9471DC1419A5A31F00F1A291 /* MoreViewController.m */,
-				9471DC2519A9689E00F1A291 /* MyBooksTableViewController.h */,
-				9471DC2619A9689E00F1A291 /* MyBooksTableViewController.m */,
-			);
-			name = controllers;
-			sourceTree = "<group>";
-		};
-		9471DC2819A9749400F1A291 /* views */ = {
-			isa = PBXGroup;
-			children = (
-				9471DC2919A974AB00F1A291 /* PreLoginView.h */,
-				9471DC2A19A974AB00F1A291 /* PreLoginView.m */,
-				9471DC2E19A9895000F1A291 /* PreLoginNib.xib */,
-			);
-			name = views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
