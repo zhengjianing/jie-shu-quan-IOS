@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "PreLoginView.h"
+#import "BookStore.h"
+#import "Book.h"
 
 @interface MyBooksTableViewController : UITableViewController <PreLoginDelegate>
 
@@ -15,6 +17,7 @@
 @property (strong, nonatomic) PreLoginView *preLoginView;
 
 @property (strong, nonatomic) NSMutableArray *myBooks;
+@property (strong, nonatomic) BookStore *sharedBookStore;
 
 - (void)showTableView;
 

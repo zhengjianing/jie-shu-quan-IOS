@@ -42,7 +42,9 @@
 
 - (void)loadData
 {
-    _myBooks = [[NSMutableArray alloc] initWithObjects:@"财务智慧", @"你的灯亮着吗？", @"IOS编程", nil];
+    _sharedBookStore = [BookStore sharedStore];
+    [_sharedBookStore createBooks];
+    _myBooks = [_sharedBookStore allBooks];
 }
 
 #pragma mark - PreLoginView
@@ -86,9 +88,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bookIdentifier" forIndexPath:indexPath];
-    NSString *title = [_myBooks objectAtIndex:indexPath.row];
+    Book *book = [_myBooks objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = title;
+    cell.textLabel.text = book.name;
     
     return cell;
 }
