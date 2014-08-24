@@ -14,9 +14,9 @@
 		9471DBFD19A5837700F1A291 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9471DBFC19A5837700F1A291 /* Images.xcassets */; };
 		9471DC0919A5837700F1A291 /* JieShuQuanTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471DC0819A5837700F1A291 /* JieShuQuanTests.m */; };
 		9471DC1519A5A31F00F1A291 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471DC1419A5A31F00F1A291 /* LoginViewController.m */; };
-		9471DC1819A5A49700F1A291 /* MyBooksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471DC1719A5A49700F1A291 /* MyBooksViewController.m */; };
 		9471DC2219A5B95A00F1A291 /* myBooks.png in Resources */ = {isa = PBXBuildFile; fileRef = 9471DC2119A5B95A00F1A291 /* myBooks.png */; };
 		9471DC2419A5B97800F1A291 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 9471DC2319A5B97800F1A291 /* user.png */; };
+		9471DC2719A9689E00F1A291 /* MyBooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471DC2619A9689E00F1A291 /* MyBooksTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,10 +43,10 @@
 		9471DC0819A5837700F1A291 /* JieShuQuanTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JieShuQuanTests.m; sourceTree = "<group>"; };
 		9471DC1319A5A31F00F1A291 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		9471DC1419A5A31F00F1A291 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		9471DC1619A5A49700F1A291 /* MyBooksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyBooksViewController.h; sourceTree = "<group>"; };
-		9471DC1719A5A49700F1A291 /* MyBooksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyBooksViewController.m; sourceTree = "<group>"; };
 		9471DC2119A5B95A00F1A291 /* myBooks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myBooks.png; sourceTree = "<group>"; };
 		9471DC2319A5B97800F1A291 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
+		9471DC2519A9689E00F1A291 /* MyBooksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyBooksTableViewController.h; sourceTree = "<group>"; };
+		9471DC2619A9689E00F1A291 /* MyBooksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyBooksTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,8 +132,8 @@
 			children = (
 				9471DC1319A5A31F00F1A291 /* LoginViewController.h */,
 				9471DC1419A5A31F00F1A291 /* LoginViewController.m */,
-				9471DC1619A5A49700F1A291 /* MyBooksViewController.h */,
-				9471DC1719A5A49700F1A291 /* MyBooksViewController.m */,
+				9471DC2519A9689E00F1A291 /* MyBooksTableViewController.h */,
+				9471DC2619A9689E00F1A291 /* MyBooksTableViewController.m */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -242,8 +242,8 @@
 				9471DC1519A5A31F00F1A291 /* LoginViewController.m in Sources */,
 				9471DBF519A5837700F1A291 /* JieShuQuan.xcdatamodeld in Sources */,
 				9471DBF219A5837700F1A291 /* AppDelegate.m in Sources */,
+				9471DC2719A9689E00F1A291 /* MyBooksTableViewController.m in Sources */,
 				9471DBEF19A5837700F1A291 /* main.m in Sources */,
-				9471DC1819A5A49700F1A291 /* MyBooksViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
