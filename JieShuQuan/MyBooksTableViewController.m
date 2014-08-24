@@ -7,6 +7,7 @@
 //
 
 #import "MyBooksTableViewController.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface MyBooksTableViewController ()
 
@@ -92,6 +93,7 @@
     
     cell.nameLabel.text = book.name;
     cell.authorsLabel.text = [book authorsString];
+    [cell.bookImageView sd_setImageWithURL:[NSURL URLWithString:book.imageHref]];
     
     return cell;
 }
