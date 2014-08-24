@@ -22,7 +22,10 @@
     self.navigationItem.title = @"我的书";
     
     _myBooksTableView = self.tableView;
+}
 
+- (void)viewWillAppear:(BOOL)animated
+{
     NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
     if (username) {
         [self loadData];

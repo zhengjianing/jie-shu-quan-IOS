@@ -40,5 +40,14 @@
 }
 
 - (IBAction)loginLogout:(id)sender {
+    if (_userName) {
+        [self logout];
+    }
+}
+
+- (void)logout
+{
+    [self initViewWithLogout];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"username"];
 }
 @end

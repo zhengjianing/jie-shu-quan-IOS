@@ -21,7 +21,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self saveUserInfo];
-    [self clearUserInfo];
+//    [self clearUserInfo];
     return YES;
 }
 
