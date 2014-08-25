@@ -7,43 +7,51 @@
 //
 
 #import "LoginViewController.h"
-
-@interface LoginViewController ()
-
-@end
+#import "DoubanHeaders.h"
 
 @implementation LoginViewController
-
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    _auth = [[DoubanAuthorize alloc] init];
+    _webView = [[UIWebView alloc] initWithFrame:self.view.frame];
+    _webView.delegate = self;
+    [self.view addSubview:_webView];
+    [self logIn];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)logIn
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSMutableURLRequest *request = [_auth startAuthorize];
+    [_webView loadRequest:request];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)sendTokenRequestWithCode:(NSString *)code
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    NSLog(@"code:\n%@", code);
+    [_auth requestAccessTokenWithAuthorizeCode:code];
 }
-*/
+
+#pragma mark - UIWebViewDelegate medthods
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    NSURL *url = request.URL;
+    NSString *urlString = url.absoluteString;
+    
+    if ([urlString hasPrefix:kRedirect_URL])
+    {
+        NSString *codePart = url.query;
+        NSRange range = [codePart rangeOfString:@"code="];
+        if (range.location != NSNotFound)
+        {
+            NSString *code = [codePart substringFromIndex:range.location+range.length];
+            [self sendTokenRequestWithCode:code];
+        }
+        return NO;
+    }
+    return YES;
+}
 
 @end
