@@ -62,8 +62,13 @@
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
     NSLog(@"%@", @"didReceiveData");
-    NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"dataString:\n%@", dataString);
+    id object = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+    NSLog(@"jsonObject :\n%@", object);
+
+    NSString *userName = [object valueForKey:@"douban_user_name"];
+    NSString *accessToken = [object valueForKey:@"access_token"];
+    NSString *userID = [object valueForKey:@"douban_user_id"];
+    
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
