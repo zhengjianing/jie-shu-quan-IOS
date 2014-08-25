@@ -8,6 +8,7 @@
 
 #import "MyBooksTableViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "LoginViewController.h"
 
 @interface MyBooksTableViewController ()
 
@@ -23,6 +24,9 @@
     self.navigationItem.title = @"我的书";
     
     _myBooksTableView = self.tableView;
+    
+    UIStoryboard *mainStoryboard = self.storyboard;
+    _loginController = [mainStoryboard instantiateViewControllerWithIdentifier:@"loginviewcontroller"];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -52,8 +56,9 @@
 
 - (void)login
 {
-    [[NSUserDefaults standardUserDefaults] setObject:@"ningmengjia" forKey:@"username"];
-    [self showTableView];
+//    [[NSUserDefaults standardUserDefaults] setObject:@"ningmengjia" forKey:@"username"];
+//    [self showTableView];
+    [self.navigationController pushViewController:_loginController animated:YES];
 }
 
 - (void)showPreLoginView

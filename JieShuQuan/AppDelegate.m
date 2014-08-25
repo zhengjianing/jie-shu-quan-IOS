@@ -28,7 +28,7 @@
 //call this after login
 - (void)saveUserInfo
 {
-    [[NSUserDefaults standardUserDefaults] setObject:@"ningmengjia" forKey:@"username"];
+//    [[NSUserDefaults standardUserDefaults] setObject:@"尚未登录" forKey:@"username"];
 }
 
 //call this after logout

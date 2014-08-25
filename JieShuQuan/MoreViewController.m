@@ -57,9 +57,6 @@
 
 - (void)login
 {
-//    [[NSUserDefaults standardUserDefaults] setObject:@"ningmengjia" forKey:@"username"];
-//    _userName = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
-    
     [self.navigationController pushViewController:_loginController animated:YES];
     
     [self updateViewWithLogin];
