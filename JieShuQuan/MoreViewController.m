@@ -7,6 +7,7 @@
 //
 
 #import "MoreViewController.h"
+#import "LoginViewController.h"
 
 @interface MoreViewController ()
 
@@ -18,6 +19,10 @@
 {
     [super viewDidLoad];
     [self navigationItem].title = @"更多";
+    
+    UIStoryboard *mainStoryboard = self.storyboard;
+    
+    _loginController = [mainStoryboard instantiateViewControllerWithIdentifier:@"loginviewcontroller"];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -52,8 +57,10 @@
 
 - (void)login
 {
-    [[NSUserDefaults standardUserDefaults] setObject:@"ningmengjia" forKey:@"username"];
-    _userName = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
+//    [[NSUserDefaults standardUserDefaults] setObject:@"ningmengjia" forKey:@"username"];
+//    _userName = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
+    
+    [self.navigationController pushViewController:_loginController animated:YES];
     
     [self updateViewWithLogin];
 }

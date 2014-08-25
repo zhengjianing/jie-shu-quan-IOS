@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class LoginViewController;
 
 @interface MoreViewController : UIViewController
 
@@ -14,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 
 @property (strong, nonatomic) NSString *userName;
+
+@property (strong, nonatomic) LoginViewController *loginController;
 
 - (IBAction)loginLogout:(id)sender;
 
