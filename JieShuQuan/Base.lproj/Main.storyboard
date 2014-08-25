@@ -192,7 +192,6 @@
                                 </state>
                                 <connections>
                                     <action selector="loginLogout:" destination="8GM-sR-6Wn" eventType="touchUpInside" id="2qW-p2-OfA"/>
-                                    <segue destination="6Bv-uc-dTy" kind="push" id="FAn-5E-VMa"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s5h-2K-2Ah">
