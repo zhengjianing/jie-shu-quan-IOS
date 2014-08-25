@@ -69,6 +69,10 @@
     NSString *accessToken = [object valueForKey:@"access_token"];
     NSString *userID = [object valueForKey:@"douban_user_id"];
     
+    [[NSUserDefaults standardUserDefaults] setObject:userName forKey:@"username"];
+    [[NSUserDefaults standardUserDefaults] setObject:accessToken forKey:@"accesstoken"];
+    [[NSUserDefaults standardUserDefaults] setObject:userID forKey:@"userID"];
+    
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
