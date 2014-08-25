@@ -11,7 +11,7 @@
 
 @interface LoginViewController : UIViewController <UIWebViewDelegate>
 
-@property (strong, nonatomic) UIWebView *webView;
+@property (strong, nonatomic) IBOutlet UIWebView *webView;
 @property (strong, nonatomic) DoubanAuthorize *auth;
 
 @end

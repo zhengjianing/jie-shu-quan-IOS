@@ -228,11 +228,23 @@
                     <view key="view" contentMode="scaleToFill" id="GW3-i4-BbW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P4l-Jx-nv4">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="delegate" destination="6Bv-uc-dTy" id="eVP-FN-M1B"/>
+                                </connections>
+                            </webView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="4tU-OE-YgB"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="webView" destination="P4l-Jx-nv4" id="rEz-kG-2q9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FFj-ty-3U8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -23,6 +23,9 @@
 		9471DC2719A9689E00F1A291 /* MyBooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471DC2619A9689E00F1A291 /* MyBooksTableViewController.m */; };
 		9471DC2B19A974AB00F1A291 /* PreLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471DC2A19A974AB00F1A291 /* PreLoginView.m */; };
 		9471DC2F19A9895000F1A291 /* PreLoginNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9471DC2E19A9895000F1A291 /* PreLoginNib.xib */; };
+		978CCB8819AB563C00CA8D87 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 978CCB8719AB563C00CA8D87 /* LoginViewController.m */; };
+		978CCB9019AB584400CA8D87 /* DoubanAuthorize.m in Sources */ = {isa = PBXBuildFile; fileRef = 978CCB8A19AB584400CA8D87 /* DoubanAuthorize.m */; };
+		978CCB9119AB584400CA8D87 /* DoubanRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 978CCB8D19AB584400CA8D87 /* DoubanRequest.m */; };
 		CCADB709D24545C3BEA257B4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFAC14665174BE691ED257B /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +69,13 @@
 		9471DC2919A974AB00F1A291 /* PreLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreLoginView.h; sourceTree = "<group>"; };
 		9471DC2A19A974AB00F1A291 /* PreLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreLoginView.m; sourceTree = "<group>"; };
 		9471DC2E19A9895000F1A291 /* PreLoginNib.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreLoginNib.xib; sourceTree = "<group>"; };
+		978CCB8619AB563C00CA8D87 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		978CCB8719AB563C00CA8D87 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		978CCB8919AB584400CA8D87 /* DoubanAuthorize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubanAuthorize.h; sourceTree = "<group>"; };
+		978CCB8A19AB584400CA8D87 /* DoubanAuthorize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoubanAuthorize.m; sourceTree = "<group>"; };
+		978CCB8B19AB584400CA8D87 /* DoubanHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubanHeaders.h; sourceTree = "<group>"; };
+		978CCB8C19AB584400CA8D87 /* DoubanRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubanRequest.h; sourceTree = "<group>"; };
+		978CCB8D19AB584400CA8D87 /* DoubanRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoubanRequest.m; sourceTree = "<group>"; };
 		9FFAC14665174BE691ED257B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -149,10 +159,11 @@
 			children = (
 				9471DBF019A5837700F1A291 /* AppDelegate.h */,
 				9471DBF119A5837700F1A291 /* AppDelegate.m */,
+				9471DBF919A5837700F1A291 /* Main.storyboard */,
 				9412E2F219A9E4D4008D243C /* login */,
 				9412E2F119A9E4CD008D243C /* myBooks */,
 				9412E2F019A9E4C5008D243C /* more */,
-				9471DBF919A5837700F1A291 /* Main.storyboard */,
+				978CCB8519AB55B700CA8D87 /* Login */,
 				9471DBFC19A5837700F1A291 /* Images.xcassets */,
 				9471DBF319A5837700F1A291 /* JieShuQuan.xcdatamodeld */,
 				9471DBEC19A5837700F1A291 /* Supporting Files */,
@@ -186,6 +197,28 @@
 				9471DC0719A5837700F1A291 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		978CCB8519AB55B700CA8D87 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				978CCB8619AB563C00CA8D87 /* LoginViewController.h */,
+				978CCB8719AB563C00CA8D87 /* LoginViewController.m */,
+				978CCB9319AB584B00CA8D87 /* Douban */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		978CCB9319AB584B00CA8D87 /* Douban */ = {
+			isa = PBXGroup;
+			children = (
+				978CCB8919AB584400CA8D87 /* DoubanAuthorize.h */,
+				978CCB8A19AB584400CA8D87 /* DoubanAuthorize.m */,
+				978CCB8B19AB584400CA8D87 /* DoubanHeaders.h */,
+				978CCB8C19AB584400CA8D87 /* DoubanRequest.h */,
+				978CCB8D19AB584400CA8D87 /* DoubanRequest.m */,
+			);
+			name = Douban;
 			sourceTree = "<group>";
 		};
 		A7AB360B7F99499680B8DBAC /* Frameworks */ = {
@@ -341,7 +374,10 @@
 				9412E2F819AA0080008D243C /* BookStore.m in Sources */,
 				9412E2FE19AA17FA008D243C /* BookDetailViewController.m in Sources */,
 				9412E2F519A9FAC7008D243C /* Book.m in Sources */,
+				978CCB9019AB584400CA8D87 /* DoubanAuthorize.m in Sources */,
+				978CCB9119AB584400CA8D87 /* DoubanRequest.m in Sources */,
 				9412E2FB19AA0D82008D243C /* BookTableViewCell.m in Sources */,
+				978CCB8819AB563C00CA8D87 /* LoginViewController.m in Sources */,
 				9471DBEF19A5837700F1A291 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

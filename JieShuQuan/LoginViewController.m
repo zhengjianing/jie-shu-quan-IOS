@@ -11,13 +11,10 @@
 
 @implementation LoginViewController
 
-- (void)viewDidLoad
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidLoad];
+    [super viewWillAppear:YES];
     _auth = [[DoubanAuthorize alloc] init];
-    _webView = [[UIWebView alloc] initWithFrame:self.view.frame];
-    _webView.delegate = self;
-    [self.view addSubview:_webView];
     [self logIn];
 }
 
