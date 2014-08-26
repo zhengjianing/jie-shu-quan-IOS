@@ -62,4 +62,14 @@
     return YES;
 }
 
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    NSLog(@"Load Failed with error: %@, error userInfo: %@", error, [error userInfo]);
+    NSLog(@"Localized description: %@", error.localizedDescription);
+    if ([error.localizedDescription isEqualToString:@"The Internet connection appears to be offline."]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Network connection is broken..." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [alertView show];
+    }
+}
+
 @end
