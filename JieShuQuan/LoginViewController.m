@@ -11,6 +11,12 @@
 
 @implementation LoginViewController
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(popLoginViewController) name:@"popLoginViewController" object:nil];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
@@ -28,6 +34,11 @@
 {
     NSLog(@"code:\n%@", code);
     [_auth requestAccessTokenWithAuthorizeCode:code];
+}
+
+- (void)popLoginViewController
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - UIWebViewDelegate medthods

@@ -78,11 +78,13 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     NSLog(@"%@", @"didFailWithError");
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"popLoginViewController" object:self];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     NSLog(@"%@", @"connectionDidFinishLoading");
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"popLoginViewController" object:self];
 }
 
 @end
