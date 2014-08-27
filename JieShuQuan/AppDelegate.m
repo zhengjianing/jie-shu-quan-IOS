@@ -8,11 +8,6 @@
 
 #import "AppDelegate.h"
 
-@interface AppDelegate ()
-            
-
-@end
-
 @implementation AppDelegate
             
 @synthesize managedObjectContext = _managedObjectContext;
@@ -20,7 +15,7 @@
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [self saveUserInfo];
+//    [self saveUserInfo];
 //    [self clearUserInfo];
     return YES;
 }
@@ -28,7 +23,7 @@
 //call this after login
 - (void)saveUserInfo
 {
-//    [[NSUserDefaults standardUserDefaults] setObject:@"尚未登录" forKey:@"username"];
+    [[NSUserDefaults standardUserDefaults] setObject:@"尚未登录" forKey:@"username"];
 }
 
 //call this after logout
