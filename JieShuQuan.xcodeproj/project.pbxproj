@@ -26,6 +26,7 @@
 		978CCB8819AB563C00CA8D87 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 978CCB8719AB563C00CA8D87 /* LoginViewController.m */; };
 		978CCB9019AB584400CA8D87 /* DoubanAuthorize.m in Sources */ = {isa = PBXBuildFile; fileRef = 978CCB8A19AB584400CA8D87 /* DoubanAuthorize.m */; };
 		978CCB9119AB584400CA8D87 /* DoubanRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 978CCB8D19AB584400CA8D87 /* DoubanRequest.m */; };
+		97F65ABE19AE03DA00B9DC93 /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F65ABD19AE03DA00B9DC93 /* SearchTableViewController.m */; };
 		CCADB709D24545C3BEA257B4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFAC14665174BE691ED257B /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +77,8 @@
 		978CCB8B19AB584400CA8D87 /* DoubanHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubanHeaders.h; sourceTree = "<group>"; };
 		978CCB8C19AB584400CA8D87 /* DoubanRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubanRequest.h; sourceTree = "<group>"; };
 		978CCB8D19AB584400CA8D87 /* DoubanRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoubanRequest.m; sourceTree = "<group>"; };
+		97F65ABC19AE03DA00B9DC93 /* SearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewController.h; sourceTree = "<group>"; };
+		97F65ABD19AE03DA00B9DC93 /* SearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewController.m; sourceTree = "<group>"; };
 		9FFAC14665174BE691ED257B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -162,6 +165,7 @@
 				9471DBF919A5837700F1A291 /* Main.storyboard */,
 				9412E2F219A9E4D4008D243C /* login */,
 				9412E2F119A9E4CD008D243C /* myBooks */,
+				97F65ABF19AE03E200B9DC93 /* SearchController */,
 				9412E2F019A9E4C5008D243C /* more */,
 				978CCB8519AB55B700CA8D87 /* Login */,
 				9471DBFC19A5837700F1A291 /* Images.xcassets */,
@@ -219,6 +223,15 @@
 				978CCB8D19AB584400CA8D87 /* DoubanRequest.m */,
 			);
 			name = Douban;
+			sourceTree = "<group>";
+		};
+		97F65ABF19AE03E200B9DC93 /* SearchController */ = {
+			isa = PBXGroup;
+			children = (
+				97F65ABC19AE03DA00B9DC93 /* SearchTableViewController.h */,
+				97F65ABD19AE03DA00B9DC93 /* SearchTableViewController.m */,
+			);
+			name = SearchController;
 			sourceTree = "<group>";
 		};
 		A7AB360B7F99499680B8DBAC /* Frameworks */ = {
@@ -373,6 +386,7 @@
 				9471DC2719A9689E00F1A291 /* MyBooksTableViewController.m in Sources */,
 				9412E2F819AA0080008D243C /* BookStore.m in Sources */,
 				9412E2FE19AA17FA008D243C /* BookDetailViewController.m in Sources */,
+				97F65ABE19AE03DA00B9DC93 /* SearchTableViewController.m in Sources */,
 				9412E2F519A9FAC7008D243C /* Book.m in Sources */,
 				978CCB9019AB584400CA8D87 /* DoubanAuthorize.m in Sources */,
 				978CCB9119AB584400CA8D87 /* DoubanRequest.m in Sources */,
