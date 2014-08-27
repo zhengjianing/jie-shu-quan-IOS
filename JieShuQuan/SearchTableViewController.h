@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SearchTableViewController : UITableViewController
+@interface SearchTableViewController : UITableViewController <UISearchDisplayDelegate>
+{
+    NSMutableArray *searchResults;
+}
 
 @end
