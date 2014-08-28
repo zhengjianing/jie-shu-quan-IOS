@@ -60,7 +60,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BookTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"searchIdentifier" forIndexPath:indexPath];
+    BookTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"searchIdentifier"];
 
     if (!cell) {
         cell = [[BookTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"searchIdentifier"];
