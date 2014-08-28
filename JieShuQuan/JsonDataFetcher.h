@@ -10,6 +10,6 @@
 
 @interface JsonDataFetcher : NSObject
 
-+ (void)dataFromURL:(NSString *)url withCompletion:(void (^)(NSData *jsonData))completionBlock;
++ (void)dataFromURL:(NSURL *)url withCompletion:(void (^)(NSData *jsonData))completionBlock;
 
 @end

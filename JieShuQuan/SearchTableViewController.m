@@ -9,8 +9,14 @@
 #import "SearchTableViewController.h"
 #import "BookTableViewCell.h"
 #import "DoubanHeaders.h"
+#import "JsonDataFetcher.h"
+#import "DataConverter.h"
+#import "Book.h"
 
 @interface SearchTableViewController ()
+
+- (void)searchKeywords:(NSString *)keywords;
+- (void)fetchImageFromWebWithURL:(NSString *)imageURL forCell:(BookTableViewCell *)cell;
 
 @end
 
@@ -19,12 +25,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self.tableView registerClass:[BookTableViewCell class] forCellReuseIdentifier:@"bookIdentifier"];
 }
 
 - (void)searchKeywords:(NSString *)keywords
 {
-    
+    [JsonDataFetcher dataFromURL:[NSURL URLWithString:keywords] withCompletion:^(NSData *jsonData) {
+        searchResults = [DataConverter booksArrayFromJsonData:jsonData];
+        [self.tableView reloadData];
+    }];
 }
 
 #pragma mark - Table view data source
@@ -36,26 +45,41 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (self.tableView == self.searchDisplayController.searchResultsTableView) {
+//    if (tableView == self.searchDisplayController.searchResultsTableView) {
         return searchResults.count;
-    }
-    return 0;
+//    }
+//    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"bookIdentifier";
-    BookTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    BookTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bookIdentifier" forIndexPath:indexPath];
     if (!cell) {
-        cell = [[BookTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[BookTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"bookIdentifier"];
     }
     // Configure the cell...
-    
-    if (self.tableView == self.searchDisplayController.searchResultsTableView) {
-        
-    }
-    
+//    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        Book *book = [searchResults objectAtIndex:indexPath.row];
+//        if (tableView == self.searchDisplayController.searchResultsTableView) {
+            cell.authorsLabel.text = [book authorsString];
+            cell.nameLabel.text = book.name;
+//            [self fetchImageFromWebWithURL:book.imageHref forCell:cell];
+//        }
+//    }
     return cell;
+}
+
+- (void)fetchImageFromWebWithURL:(NSString *)imageURL forCell:(BookTableViewCell *)cell
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (imageData) {
+                [cell.bookImageView setImage:[UIImage imageWithData:imageData]];
+//                [self.tableView reloadData];
+            }
+        });
+    });
 }
 
 #pragma mark - Navigation
