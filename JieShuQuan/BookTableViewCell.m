@@ -15,8 +15,10 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         _authorsLabel = [[UILabel alloc] init];
-        _nameLabel = 
+        _nameLabel = [[UILabel alloc] init];
+        _bookImageView = [[UIImageView alloc] init];
     }
+    return self;    
 }
 
 @end
