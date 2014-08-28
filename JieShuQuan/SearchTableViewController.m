@@ -34,8 +34,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
 }
 
 - (void)searchKeywords:(NSString *)keywords
@@ -60,8 +58,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BookTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"searchIdentifier"];
-
+    [self.tableView registerClass:[BookTableViewCell class] forCellReuseIdentifier:@"searchIdentifier"];
+    BookTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"searchIdentifier" forIndexPath:indexPath];
+    // different from that in 'MyBooksTableViewController.m', figure out later
     if (!cell) {
         cell = [[BookTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"searchIdentifier"];
     }
@@ -70,6 +69,7 @@
     //        cell.authorsLabel.text = [book authorsString];
     //        cell.nameLabel.text = book.name;
     cell.textLabel.text = book.name;
+    NSLog(@"%@", cell.textLabel.text);
     //        [self fetchImageFromWebWithURL:book.imageHref forCell:cell];
     return cell;
 }
