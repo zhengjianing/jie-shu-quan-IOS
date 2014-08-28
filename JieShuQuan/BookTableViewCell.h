@@ -10,8 +10,8 @@
 
 @interface BookTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *authorsLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *bookImageView;
+@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
+@property (strong, nonatomic) IBOutlet UILabel *authorsLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *bookImageView;
 
 @end

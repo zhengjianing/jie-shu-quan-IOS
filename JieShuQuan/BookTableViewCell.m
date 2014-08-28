@@ -10,4 +10,13 @@
 
 @implementation BookTableViewCell
 
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        _authorsLabel = [[UILabel alloc] init];
+        _nameLabel = 
+    }
+}
+
 @end
