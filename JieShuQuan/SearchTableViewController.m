@@ -39,9 +39,9 @@
     [tableView setTableFooterView:view];
 }
 
-- (void)searchKeywords:(NSString *)keywords
+- (void)searchByDouBanWithUrl:(NSString *)searchUrl
 {
-    [JsonDataFetcher dataFromURL:[NSURL URLWithString:keywords] withCompletion:^(NSData *jsonData) {
+    [JsonDataFetcher dataFromURL:[NSURL URLWithString:searchUrl] withCompletion:^(NSData *jsonData) {
         searchResults = [DataConverter booksArrayFromJsonData:jsonData];
         [self.searchDisplayController.searchResultsTableView reloadData];
     }];
@@ -85,7 +85,9 @@
 {
     if (![searchString isEqualToString:@""]) {
         NSString *prefix = [NSString stringWithFormat:@"%@?apikey=%@&count=10&q=", kSearchURL, kAPIKey];
-        [self searchKeywords:[prefix stringByAppendingString:searchString]];
+        NSString *searchUrl = [prefix stringByAppendingString:searchString];
+        NSString* encodedUrl = [searchUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        [self searchByDouBanWithUrl:encodedUrl];
     }
     return NO;
 }
