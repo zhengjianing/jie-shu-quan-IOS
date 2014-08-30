@@ -38,13 +38,13 @@
 - (void)updateViewWithLogin
 {
     _userNameLabel.text = _userName;
-    [_loginButton setTitle:@"退出登陆" forState:UIControlStateNormal];
+    [_loginButton setTitle:@"退出登录" forState:UIControlStateNormal];
 }
 
 - (void)updateViewWithLogout
 {
-    _userNameLabel.text = @"尚未登陆";
-    [_loginButton setTitle:@"立即登陆" forState:UIControlStateNormal];
+    _userNameLabel.text = @"请用您的豆瓣账号登录";
+    [_loginButton setTitle:@"立即登录" forState:UIControlStateNormal];
 }
 
 - (IBAction)loginLogout:(id)sender {
