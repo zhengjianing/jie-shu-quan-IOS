@@ -7,6 +7,7 @@
 //
 
 #import "SearchTableViewController.h"
+#import "BookDetailViewController.h"
 #import "BookTableViewCell.h"
 #import "DoubanHeaders.h"
 #import "JsonDataFetcher.h"
@@ -17,7 +18,6 @@
 @interface SearchTableViewController ()
 
 - (void)searchKeywords:(NSString *)keywords;
-- (void)fetchImageFromWebWithURL:(NSString *)imageURL forCell:(BookTableViewCell *)cell;
 
 @end
 
@@ -35,6 +35,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self setExtraCellLineHidden:self.searchDisplayController.searchResultsTableView];
+    [self.searchDisplayController setActive:YES animated:YES];
+}
+
+-(void)setExtraCellLineHidden: (UITableView *)tableView
+{
+    UIView *view = [UIView new];
+    view.backgroundColor = [UIColor clearColor];
+    [tableView setTableFooterView:view];
 }
 
 - (void)searchKeywords:(NSString *)keywords
@@ -55,6 +65,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return searchResults.count;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 143.0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -88,14 +103,25 @@
     [tableView registerClass:[BookTableViewCell class] forCellReuseIdentifier:@"searchIdentifier"];
 }
 
-#pragma mark - Navigation
+#pragma mark - UISearchBarDelegate
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    return YES;
 }
 
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSIndexPath *selectIndexPath = nil;
+    Book *selectedBook = nil;
+    
+    if ([[segue destinationViewController] class] == BookDetailViewController.class) {
+        selectIndexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+        selectedBook = [searchResults objectAtIndex:[selectIndexPath row]];
+        [[segue destinationViewController] setBook:selectedBook];
+    }
+}
 
 @end

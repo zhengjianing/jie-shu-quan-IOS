@@ -71,8 +71,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="Ujt-OJ-pxn">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" prompt="从豆瓣搜索" placeholder="书名，作者" id="Ujt-OJ-pxn">
+                            <rect key="frame" x="0.0" y="64" width="320" height="75"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
                             <connections>
@@ -106,6 +106,7 @@
                                     <outlet property="authorsLabel" destination="Jvn-iT-Xfj" id="Ldy-zg-bXt"/>
                                     <outlet property="bookImageView" destination="Etd-DZ-i1h" id="BWy-Bg-ocb"/>
                                     <outlet property="nameLabel" destination="3bm-Ze-npw" id="wjB-no-0ep"/>
+                                    <segue destination="GnW-5j-b0Y" kind="push" id="dYP-C2-BUp"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -229,7 +230,6 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" id="vYZ-8T-toN"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -394,4 +394,7 @@
         <image name="myBooks.png" width="20" height="20"/>
         <image name="user.png" width="20" height="20"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="dYP-C2-BUp"/>
+    </inferredMetricsTieBreakers>
 </document>
