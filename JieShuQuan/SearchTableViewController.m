@@ -23,21 +23,13 @@
 
 @implementation SearchTableViewController
 
-- (instancetype)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    self.navigationItem.title = @"搜索";
+
     [self setExtraCellLineHidden:self.searchDisplayController.searchResultsTableView];
-    [self.searchDisplayController setActive:YES animated:YES];
 }
 
 -(void)setExtraCellLineHidden: (UITableView *)tableView
@@ -47,9 +39,9 @@
     [tableView setTableFooterView:view];
 }
 
-- (void)searchKeywords:(NSString *)keywords
+- (void)searchByDouBanWithUrl:(NSString *)searchUrl
 {
-    [JsonDataFetcher dataFromURL:[NSURL URLWithString:keywords] withCompletion:^(NSData *jsonData) {
+    [JsonDataFetcher dataFromURL:[NSURL URLWithString:searchUrl] withCompletion:^(NSData *jsonData) {
         searchResults = [DataConverter booksArrayFromJsonData:jsonData];
         [self.searchDisplayController.searchResultsTableView reloadData];
     }];
@@ -93,7 +85,9 @@
 {
     if (![searchString isEqualToString:@""]) {
         NSString *prefix = [NSString stringWithFormat:@"%@?apikey=%@&count=10&q=", kSearchURL, kAPIKey];
-        [self searchKeywords:[prefix stringByAppendingString:searchString]];
+        NSString *searchUrl = [prefix stringByAppendingString:searchString];
+        NSString* encodedUrl = [searchUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        [self searchByDouBanWithUrl:encodedUrl];
     }
     return NO;
 }
