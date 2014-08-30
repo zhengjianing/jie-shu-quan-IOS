@@ -40,6 +40,7 @@
 {
     [JsonDataFetcher dataFromURL:[NSURL URLWithString:keywords] withCompletion:^(NSData *jsonData) {
         searchResults = [DataConverter booksArrayFromJsonData:jsonData];
+//        [self.searchDisplayController.searchResultsTableView reloadData];
         [self.tableView reloadData];
     }];
 }
