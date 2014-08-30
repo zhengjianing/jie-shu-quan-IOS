@@ -12,6 +12,7 @@
 #import "JsonDataFetcher.h"
 #import "DataConverter.h"
 #import "Book.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface SearchTableViewController ()
 
@@ -40,7 +41,7 @@
 {
     [JsonDataFetcher dataFromURL:[NSURL URLWithString:keywords] withCompletion:^(NSData *jsonData) {
         searchResults = [DataConverter booksArrayFromJsonData:jsonData];
-        [self.tableView reloadData];
+        [self.searchDisplayController.searchResultsTableView reloadData];
     }];
 }
 
@@ -58,42 +59,33 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.tableView registerClass:[BookTableViewCell class] forCellReuseIdentifier:@"searchIdentifier"];
-    BookTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"searchIdentifier"];
-    // different from that in 'MyBooksTableViewController.m', figure out later
+    BookTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"searchIdentifier"];
     if (!cell) {
         cell = [[BookTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"searchIdentifier"];
     }
     
     Book *book = [searchResults objectAtIndex:indexPath.row];
-    //        cell.authorsLabel.text = [book authorsString];
-    //        cell.nameLabel.text = book.name;
-    cell.textLabel.text = book.name;
-    NSLog(@"%@", cell.textLabel.text);
-    //        [self fetchImageFromWebWithURL:book.imageHref forCell:cell];
+    cell.nameLabel.text = book.name;
+    cell.authorsLabel.text = [book authorsString];
+    [cell.bookImageView sd_setImageWithURL:[NSURL URLWithString:book.imageHref]];
+    
     return cell;
-}
-
-- (void)fetchImageFromWebWithURL:(NSString *)imageURL forCell:(BookTableViewCell *)cell
-{
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (imageData) {
-                [cell.bookImageView setImage:[UIImage imageWithData:imageData]];
-                //                [self.tableView reloadData];
-            }
-        });
-    });
 }
 
 #pragma mark - UISearchDisplayDelegate
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
-    NSString *prefix = [NSString stringWithFormat:@"%@?apikey=%@&q=", kSearchURL, kAPIKey];
-    [self searchKeywords:[prefix stringByAppendingString:searchString]];
-    return YES;
+    if (![searchString isEqualToString:@""]) {
+        NSString *prefix = [NSString stringWithFormat:@"%@?apikey=%@&count=10&q=", kSearchURL, kAPIKey];
+        [self searchKeywords:[prefix stringByAppendingString:searchString]];
+    }
+    return NO;
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView
+{
+    [tableView registerClass:[BookTableViewCell class] forCellReuseIdentifier:@"searchIdentifier"];
 }
 
 #pragma mark - Navigation
