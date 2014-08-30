@@ -59,7 +59,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.tableView registerClass:[BookTableViewCell class] forCellReuseIdentifier:@"searchIdentifier"];
-    BookTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"searchIdentifier" forIndexPath:indexPath];
+    BookTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"searchIdentifier"];
     // different from that in 'MyBooksTableViewController.m', figure out later
     if (!cell) {
         cell = [[BookTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"searchIdentifier"];
