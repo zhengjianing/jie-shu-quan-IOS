@@ -23,21 +23,13 @@
 
 @implementation SearchTableViewController
 
-- (instancetype)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    self.navigationItem.title = @"搜索";
+
     [self setExtraCellLineHidden:self.searchDisplayController.searchResultsTableView];
-    [self.searchDisplayController setActive:YES animated:YES];
 }
 
 -(void)setExtraCellLineHidden: (UITableView *)tableView

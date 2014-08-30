@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pdy-qY-d6V">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
     </dependencies>
     <scenes>
@@ -50,11 +51,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="YXD-6g-JdC">
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="01Q-A2-vhB">
-                            <connections>
-                                <segue destination="eKE-Mb-fWN" kind="push" id="dqu-FE-NFH"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="01Q-A2-vhB"/>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="480"/>
@@ -62,6 +59,27 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lqV-mR-hgW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="289" y="-400"/>
+        </scene>
+        <!--Navigation Controller - 搜索-->
+        <scene sceneID="0Yj-n8-58g">
+            <objects>
+                <navigationController id="L3p-ye-rvv" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="搜索" image="search.png" id="6Tm-ba-j96">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-3"/>
+                    </tabBarItem>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="480"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="JFz-Nv-fTC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="eKE-Mb-fWN" kind="relationship" relationship="rootViewController" id="9Oq-YH-ntf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qty-DS-yFr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-281" y="-1100"/>
         </scene>
         <!--Search Table View Controller-->
         <scene sceneID="Uw2-vb-d3b">
@@ -133,7 +151,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="738" y="-716"/>
+            <point key="canvasLocation" x="289" y="-1100"/>
         </scene>
         <!--Book Detail View Controller-->
         <scene sceneID="ttc-61-WOo">
@@ -247,7 +265,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fGz-xg-ine" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1241" y="-400"/>
+            <point key="canvasLocation" x="1117" y="-772"/>
         </scene>
         <!--More View Controller-->
         <scene sceneID="2kx-tf-bUi">
@@ -361,12 +379,13 @@
                     </tabBar>
                     <connections>
                         <segue destination="UF7-IP-xcK" kind="relationship" relationship="viewControllers" id="XjN-kQ-NN8"/>
-                        <segue destination="26p-xW-94S" kind="relationship" relationship="viewControllers" id="cnL-Tx-BGu"/>
+                        <segue destination="L3p-ye-rvv" kind="relationship" relationship="viewControllers" id="sRw-wf-BAz"/>
+                        <segue destination="26p-xW-94S" kind="relationship" relationship="viewControllers" id="fbf-9l-xc9"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9b7-59-f11" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1033" y="-76"/>
+            <point key="canvasLocation" x="-883" y="-400"/>
         </scene>
         <!--Navigation Controller - 更多-->
         <scene sceneID="hxT-iH-yHZ">
@@ -392,6 +411,7 @@
     </scenes>
     <resources>
         <image name="myBooks.png" width="20" height="20"/>
+        <image name="search.png" width="20" height="20"/>
         <image name="user.png" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
