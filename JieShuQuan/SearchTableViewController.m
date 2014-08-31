@@ -17,7 +17,7 @@
 
 @interface SearchTableViewController ()
 
-- (void)searchKeywords:(NSString *)keywords;
+- (void)searchByDouBanWithUrl:(NSString *)searchUrl;
 
 @end
 
@@ -59,11 +59,6 @@
     return searchResults.count;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 143.0;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BookTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"searchIdentifier"];
@@ -79,6 +74,13 @@
     return cell;
 }
 
+#pragma mark - Table view delegate
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 143.0;
+}
+
 #pragma mark - UISearchDisplayDelegate
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
@@ -90,18 +92,6 @@
         [self searchByDouBanWithUrl:encodedUrl];
     }
     return NO;
-}
-
-- (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView
-{
-    [tableView registerClass:[BookTableViewCell class] forCellReuseIdentifier:@"searchIdentifier"];
-}
-
-#pragma mark - UISearchBarDelegate
-
-- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
-{
-    return YES;
 }
 
 #pragma mark - Navigation
