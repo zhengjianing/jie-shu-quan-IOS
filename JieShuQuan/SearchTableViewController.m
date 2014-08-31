@@ -30,6 +30,14 @@
     self.navigationItem.title = @"搜索";
 
     [self setExtraCellLineHidden:self.searchDisplayController.searchResultsTableView];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(webDataFetchFailed) name:@"webDataFetchFailed" object:nil];
+}
+
+- (void)webDataFetchFailed
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Data Fetching failed...Please check your network" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+    [alert show];
 }
 
 -(void)setExtraCellLineHidden: (UITableView *)tableView

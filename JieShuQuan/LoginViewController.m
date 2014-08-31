@@ -66,7 +66,7 @@
 {
     NSLog(@"Load Failed with error: %@, error userInfo: %@", error, [error userInfo]);
     NSLog(@"Localized description: %@", error.localizedDescription);
-    if ([error.localizedDescription isEqualToString:@"The Internet connection appears to be offline."]) {
+    if ([error.localizedDescription isEqualToString:@"The Internet appears to be disconnected."]) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Network connection is broken..." delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
         [alertView show];
     }

@@ -19,7 +19,8 @@
                 completionBlock(data);
             } else {
                 NSLog(@"Data Fetching failed...");
-                abort();
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"webDataFetchFailed" object:self];
+//                abort();
             }
         });
     });
