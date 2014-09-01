@@ -10,7 +10,7 @@
 
 @implementation Book
 
-- (id)initWithName:(NSString *)name authors:(NSArray *)authors imageHref:(NSString *)imageHref discription:(NSString *)discription authorInfo:(NSString *)authorInfo price:(NSString *)price publisher:(NSString *)publisher publishDate:(NSString *)publishDate
+- (id)initWithName:(NSString *)name authors:(NSArray *)authors imageHref:(NSString *)imageHref discription:(NSString *)discription authorInfo:(NSString *)authorInfo price:(NSString *)price publisher:(NSString *)publisher publishDate:(NSString *)publishDate bookId:(NSString *)bookId
 {
     self = [super init];
     if (self) {
@@ -22,6 +22,7 @@
         self.price = price;
         self.publisher = publisher;
         self.publishDate = publishDate;
+        self.bookId = bookId;
     }
     return self;
 }

@@ -47,6 +47,7 @@
         book.price = [item valueForKey:@"price"];
         book.publisher = [item valueForKey:@"publisher"];
         book.publishDate = [item valueForKey:@"pubdate"];
+        book.bookId = [item valueForKey:@"id"];
         
         [booksArray addObject:book];
     }
