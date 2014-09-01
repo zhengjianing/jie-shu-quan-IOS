@@ -8,6 +8,8 @@
 
 #import "BookDetailViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <CoreData/CoreData.h>
+#import "AppDelegate.h"
 
 @interface BookDetailViewController ()
 
@@ -36,5 +38,24 @@
 }
 
 - (IBAction)addBook:(id)sender {
+    
+    id delegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [delegate managedObjectContext];
+    
+    NSManagedObject *newBook = [NSEntityDescription insertNewObjectForEntityForName:@"Book" inManagedObjectContext:context];
+    [newBook setValue:_book.name forKey:@"name"];
+    [newBook setValue:_book.authors forKey:@"authors"];
+    [newBook setValue:_book.imageHref forKey:@"imageHref"];
+    [newBook setValue:_book.description forKey:@"bookDescription"];
+    [newBook setValue:_book.authorInfo forKey:@"authorInfo"];
+    [newBook setValue:_book.price forKey:@"price"];
+    [newBook setValue:_book.publisher forKey:@"publisher"];
+    [newBook setValue:_book.bookId forKey:@"bookId"];
+    [newBook setValue:_book.publishDate forKey:@"publishDate"];
+    
+    [delegate saveContext];
+    [self.navigationController popViewControllerAnimated:YES];
 }
+
+
 @end
