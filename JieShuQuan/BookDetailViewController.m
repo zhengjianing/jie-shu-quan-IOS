@@ -35,4 +35,6 @@
     _authorInfoLabel.text = _book.authorInfo;
 }
 
+- (IBAction)addBook:(id)sender {
+}
 @end

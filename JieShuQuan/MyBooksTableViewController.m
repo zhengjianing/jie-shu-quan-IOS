@@ -114,6 +114,7 @@
         selectIndexPath = [self.tableView indexPathForSelectedRow];
         selectedBook = [_myBooks objectAtIndex:[selectIndexPath row]];
         [[segue destinationViewController] setBook:selectedBook];
+        [[[segue destinationViewController] navigationItem] setRightBarButtonItem:nil];
     }
 }
 

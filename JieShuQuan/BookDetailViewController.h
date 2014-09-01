@@ -19,6 +19,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *discriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *authorInfoLabel;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *addBookButton;
+
+- (IBAction)addBook:(id)sender;
 
 @property (strong, nonatomic) Book *book;
 
