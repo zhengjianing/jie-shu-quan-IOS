@@ -10,14 +10,14 @@
 
 @implementation Book
 
-- (id)initWithName:(NSString *)name authors:(NSArray *)authors imageHref:(NSString *)imageHref discription:(NSString *)discription authorInfo:(NSString *)authorInfo price:(NSString *)price publisher:(NSString *)publisher publishDate:(NSString *)publishDate bookId:(NSString *)bookId
+- (id)initWithName:(NSString *)name authors:(NSArray *)authors imageHref:(NSString *)imageHref discription:(NSString *)description authorInfo:(NSString *)authorInfo price:(NSString *)price publisher:(NSString *)publisher publishDate:(NSString *)publishDate bookId:(NSString *)bookId
 {
     self = [super init];
     if (self) {
         self.name = name;
         self.authors = authors;
         self.imageHref = imageHref;
-        self.discription = discription;
+        self.description = description;
         self.authorInfo = authorInfo;
         self.price = price;
         self.publisher = publisher;

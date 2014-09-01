@@ -42,7 +42,7 @@
         book.name = [item valueForKey:@"title"];
         book.authors = [item valueForKey:@"author"];
         book.imageHref = [item valueForKey:@"image"];
-        book.discription = [item valueForKey:@"summary"];
+        book.description = [item valueForKey:@"summary"];
         book.authorInfo = [item valueForKey:@"author_intro"];
         book.price = [item valueForKey:@"price"];
         book.publisher = [item valueForKey:@"publisher"];

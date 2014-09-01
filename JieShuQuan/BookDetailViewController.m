@@ -31,7 +31,7 @@
     _publisherLabel.text = _book.publisher;
     _publishDateLabel.text = _book.publishDate;
     _priceLabel.text = _book.price;
-    _discriptionLabel.text = _book.discription;
+    _discriptionLabel.text = _book.description;
     _authorInfoLabel.text = _book.authorInfo;
 }
 
