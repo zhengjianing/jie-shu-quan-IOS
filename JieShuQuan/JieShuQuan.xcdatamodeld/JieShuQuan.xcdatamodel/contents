@@ -5,13 +5,13 @@
         <attribute name="authors" optional="YES" attributeType="Transformable" valueTransformerName="NSArrayTransformer" syncable="YES"/>
         <attribute name="bookDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="bookId" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="imageHref" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="price" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="publishDate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="publisher" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Book" positionX="-63" positionY="-18" width="128" height="30"/>
+        <element name="Book" positionX="-63" positionY="-18" width="128" height="180"/>
     </elements>
 </model>

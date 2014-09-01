@@ -45,7 +45,7 @@
     NSManagedObject *newBook = [NSEntityDescription insertNewObjectForEntityForName:@"Book" inManagedObjectContext:context];
     [newBook setValue:_book.name forKey:@"name"];
     [newBook setValue:_book.authors forKey:@"authors"];
-    [newBook setValue:_book.imageHref forKey:@"imageHref"];
+    [newBook setValue:UIImageJPEGRepresentation(_bookImageView.image, 1.0)  forKey:@"imageData"];
     [newBook setValue:_book.description forKey:@"bookDescription"];
     [newBook setValue:_book.authorInfo forKey:@"authorInfo"];
     [newBook setValue:_book.price forKey:@"price"];
