@@ -29,6 +29,7 @@
 		97DDA8DF19AF7F430055C7E5 /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97DDA8DE19AF7F430055C7E5 /* SearchTableViewController.m */; };
 		97F65AC219AE0A7D00B9DC93 /* JsonDataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F65AC119AE0A7D00B9DC93 /* JsonDataFetcher.m */; };
 		97F65AC719AE0B1200B9DC93 /* DataConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F65AC619AE0B1200B9DC93 /* DataConverter.m */; };
+		97F973C619B5FBF4007AAD47 /* BookStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F973C519B5FBF4007AAD47 /* BookStore.m */; };
 		97FC364F19B4C1AB002D0932 /* NSArrayTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FC364E19B4C1AB002D0932 /* NSArrayTransformer.m */; };
 		CCADB709D24545C3BEA257B4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFAC14665174BE691ED257B /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -85,6 +86,8 @@
 		97F65AC119AE0A7D00B9DC93 /* JsonDataFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonDataFetcher.m; sourceTree = "<group>"; };
 		97F65AC519AE0B1200B9DC93 /* DataConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataConverter.h; sourceTree = "<group>"; };
 		97F65AC619AE0B1200B9DC93 /* DataConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataConverter.m; sourceTree = "<group>"; };
+		97F973C419B5FBF4007AAD47 /* BookStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookStore.h; sourceTree = "<group>"; };
+		97F973C519B5FBF4007AAD47 /* BookStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookStore.m; sourceTree = "<group>"; };
 		97FC364D19B4C1AB002D0932 /* NSArrayTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSArrayTransformer.h; sourceTree = "<group>"; };
 		97FC364E19B4C1AB002D0932 /* NSArrayTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayTransformer.m; sourceTree = "<group>"; };
 		9FFAC14665174BE691ED257B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,6 +130,8 @@
 				9412E2FD19AA17FA008D243C /* BookDetailViewController.m */,
 				9412E2F919AA0D82008D243C /* BookTableViewCell.h */,
 				9412E2FA19AA0D82008D243C /* BookTableViewCell.m */,
+				97F973C419B5FBF4007AAD47 /* BookStore.h */,
+				97F973C519B5FBF4007AAD47 /* BookStore.m */,
 			);
 			name = myBooks;
 			sourceTree = "<group>";
@@ -423,6 +428,7 @@
 				978CCB9119AB584400CA8D87 /* DoubanRequest.m in Sources */,
 				97F65AC719AE0B1200B9DC93 /* DataConverter.m in Sources */,
 				9412E2FB19AA0D82008D243C /* BookTableViewCell.m in Sources */,
+				97F973C619B5FBF4007AAD47 /* BookStore.m in Sources */,
 				978CCB8819AB563C00CA8D87 /* LoginViewController.m in Sources */,
 				9471DBEF19A5837700F1A291 /* main.m in Sources */,
 			);

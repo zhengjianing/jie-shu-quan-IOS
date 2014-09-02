@@ -8,17 +8,10 @@
 
 #import "MyBooksTableViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-#import <CoreData/CoreData.h>
-//#import "AppDelegate.h"
 #import "LoginViewController.h"
-
-
-@interface MyBooksTableViewController ()
-
-@end
+#import "BookStore.h"
 
 @implementation MyBooksTableViewController
-
 
 - (void)viewDidLoad
 {
@@ -51,7 +44,7 @@
 
 - (void)loadData
 {
-    _myBooks = [self fetchBooksFromStore];
+    _myBooks = [BookStore fetchBooksFromStore];
 }
 
 #pragma mark - PreLoginView
@@ -77,25 +70,6 @@
         _preLoginView = [topLevelObjs lastObject];
         _preLoginView.delegate = self;
     }
-}
-
-- (NSArray *)fetchBooksFromStore
-{
-    id delegate = [[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext *context = [delegate managedObjectContext];
-    
-    NSArray *booksArray = [NSArray array];
-    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Book"];
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-    [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
-    
-    NSError *error = nil;
-    booksArray = [context executeFetchRequest:request error:&error];
-    if (!booksArray) {
-        NSLog(@"Fetch Cache Failed: %@, %@", error, [error userInfo]);
-    }
-    return booksArray;
-
 }
 
 #pragma mark - Table view data source

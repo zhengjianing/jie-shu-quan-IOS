@@ -8,12 +8,7 @@
 
 #import "BookDetailViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-#import <CoreData/CoreData.h>
-#import "AppDelegate.h"
-
-@interface BookDetailViewController ()
-
-@end
+#import "BookStore.h"
 
 @implementation BookDetailViewController
 
@@ -38,7 +33,18 @@
 }
 
 - (IBAction)addBook:(id)sender {
+    NSArray *storedBooks = [BookStore fetchBooksFromStore];
     
+    for (NSManagedObject *book in storedBooks) {
+        if ([[book valueForKey:@"name"] isEqualToString:_book.name]
+            && [[book valueForKey:@"authors"] isEqualToArray:_book.authors]) {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Book Already Exists" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+            [alertView show];
+//            若用continue则跳出本次循环，继续下一次；若用return则直接跳出循环
+//            continue;
+            return;
+        }
+    }
     id delegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [delegate managedObjectContext];
     
@@ -56,6 +62,5 @@
     [delegate saveContext];
     [self.navigationController popViewControllerAnimated:YES];
 }
-
 
 @end
