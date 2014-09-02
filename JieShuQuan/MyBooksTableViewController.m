@@ -134,6 +134,8 @@
         selectedBook = [_myBooks objectAtIndex:[selectIndexPath row]];
         [[segue destinationViewController] setBook:selectedBook];
         [[[segue destinationViewController] navigationItem] setRightBarButtonItem:nil];
+//         Another way, make the add button disabled
+//        [[[segue destinationViewController] addBookButton] setEnabled:NO];
     }
 }
 
