@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "PreLoginView.h"
-#import "BookStore.h"
 #import "Book.h"
 #import "BookTableViewCell.h"
 #import "BookDetailViewController.h"
@@ -19,8 +18,7 @@
 @property (strong, nonatomic) UITableView *myBooksTableView;
 @property (strong, nonatomic) PreLoginView *preLoginView;
 
-@property (strong, nonatomic) NSMutableArray *myBooks;
-@property (strong, nonatomic) BookStore *sharedBookStore;
+@property (strong, nonatomic) NSArray *myBooks;
 
 @property (strong, nonatomic) LoginViewController *loginController;
 

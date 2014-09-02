@@ -8,7 +8,10 @@
 
 #import "MyBooksTableViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <CoreData/CoreData.h>
+//#import "AppDelegate.h"
 #import "LoginViewController.h"
+
 
 @interface MyBooksTableViewController ()
 
@@ -43,21 +46,18 @@
 {
     [self loadData];
     self.view = _myBooksTableView;
+    [_myBooksTableView reloadData];
 }
 
 - (void)loadData
 {
-    _sharedBookStore = [BookStore sharedStore];
-    [_sharedBookStore createBooks];
-    _myBooks = [_sharedBookStore allBooks];
+    _myBooks = [self fetchBooksFromStore];
 }
 
 #pragma mark - PreLoginView
 
 - (void)login
 {
-//    [[NSUserDefaults standardUserDefaults] setObject:@"ningmengjia" forKey:@"username"];
-//    [self showTableView];
     [self.navigationController pushViewController:_loginController animated:YES];
 }
 
@@ -79,6 +79,25 @@
     }
 }
 
+- (NSArray *)fetchBooksFromStore
+{
+    id delegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [delegate managedObjectContext];
+    
+    NSArray *booksArray = [NSArray array];
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Book"];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    
+    NSError *error = nil;
+    booksArray = [context executeFetchRequest:request error:&error];
+    if (!booksArray) {
+        NSLog(@"Fetch Cache Failed: %@, %@", error, [error userInfo]);
+    }
+    return booksArray;
+
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -94,11 +113,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BookTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bookIdentifier" forIndexPath:indexPath];
-    Book *book = [_myBooks objectAtIndex:indexPath.row];
+    id book = [_myBooks objectAtIndex:indexPath.row];
     
-    cell.nameLabel.text = book.name;
-    cell.authorsLabel.text = [book authorsString];
-    [cell.bookImageView sd_setImageWithURL:[NSURL URLWithString:book.imageHref]];
+    cell.nameLabel.text = [book valueForKey:@"name"];
+    cell.authorsLabel.text = [[book valueForKey:@"authors"] componentsJoinedByString:@", "];
+    [cell.bookImageView setImage:[UIImage imageWithData:[book valueForKey:@"imageData"]]];
     
     return cell;
 }

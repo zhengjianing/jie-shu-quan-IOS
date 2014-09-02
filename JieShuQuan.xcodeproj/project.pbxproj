@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9412E2F519A9FAC7008D243C /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412E2F419A9FAC7008D243C /* Book.m */; };
-		9412E2F819AA0080008D243C /* BookStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412E2F719AA0080008D243C /* BookStore.m */; };
 		9412E2FB19AA0D82008D243C /* BookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412E2FA19AA0D82008D243C /* BookTableViewCell.m */; };
 		9412E2FE19AA17FA008D243C /* BookDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412E2FD19AA17FA008D243C /* BookDetailViewController.m */; };
 		9471DBEF19A5837700F1A291 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471DBEE19A5837700F1A291 /* main.m */; };
@@ -48,8 +47,6 @@
 		867F1904ABF9491EBD0C1D65 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		9412E2F319A9FAC7008D243C /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
 		9412E2F419A9FAC7008D243C /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
-		9412E2F619AA0080008D243C /* BookStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookStore.h; sourceTree = "<group>"; };
-		9412E2F719AA0080008D243C /* BookStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookStore.m; sourceTree = "<group>"; };
 		9412E2F919AA0D82008D243C /* BookTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookTableViewCell.h; sourceTree = "<group>"; };
 		9412E2FA19AA0D82008D243C /* BookTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookTableViewCell.m; sourceTree = "<group>"; };
 		9412E2FC19AA17FA008D243C /* BookDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookDetailViewController.h; sourceTree = "<group>"; };
@@ -130,8 +127,6 @@
 				9412E2FD19AA17FA008D243C /* BookDetailViewController.m */,
 				9412E2F919AA0D82008D243C /* BookTableViewCell.h */,
 				9412E2FA19AA0D82008D243C /* BookTableViewCell.m */,
-				9412E2F619AA0080008D243C /* BookStore.h */,
-				9412E2F719AA0080008D243C /* BookStore.m */,
 			);
 			name = myBooks;
 			sourceTree = "<group>";
@@ -421,7 +416,6 @@
 				97DDA8DF19AF7F430055C7E5 /* SearchTableViewController.m in Sources */,
 				9471DBF219A5837700F1A291 /* AppDelegate.m in Sources */,
 				9471DC2719A9689E00F1A291 /* MyBooksTableViewController.m in Sources */,
-				9412E2F819AA0080008D243C /* BookStore.m in Sources */,
 				9412E2FE19AA17FA008D243C /* BookDetailViewController.m in Sources */,
 				97F65AC219AE0A7D00B9DC93 /* JsonDataFetcher.m in Sources */,
 				9412E2F519A9FAC7008D243C /* Book.m in Sources */,
