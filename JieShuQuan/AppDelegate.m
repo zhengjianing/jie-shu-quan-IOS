@@ -16,8 +16,6 @@
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-//    [self saveUserInfo];
-//    [self clearUserInfo];
     
     NSArrayTransformer *arrayTransformer = [[NSArrayTransformer alloc] init];
     [NSArrayTransformer setValueTransformer:arrayTransformer forName:(NSString *)@"NSArrayTransformer"];
