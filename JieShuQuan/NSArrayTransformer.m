@@ -24,13 +24,15 @@
 {
     NSArray *array = (NSArray *)value;
     NSString *tranString = [array componentsJoinedByString:@", "];
-    return [tranString dataUsingEncoding:[NSString defaultCStringEncoding]];
+    NSData *data = [tranString dataUsingEncoding:NSUTF8StringEncoding];
+    return data;
 }
 
 - (id)reverseTransformedValue:(id)value
 {
-    NSString *tranString = [[NSString alloc] initWithData:(NSData *)value encoding:[NSString defaultCStringEncoding]];
-    return [tranString componentsSeparatedByString:@", "];
+    NSString *tranString = [[NSString alloc] initWithData:(NSData *)value encoding:NSUTF8StringEncoding];
+    NSArray *array = [tranString componentsSeparatedByString:@", "];
+    return array;
 }
 
 @end

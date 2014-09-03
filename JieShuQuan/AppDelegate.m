@@ -20,7 +20,7 @@
 //    [self clearUserInfo];
     
     NSArrayTransformer *arrayTransformer = [[NSArrayTransformer alloc] init];
-    [NSArrayTransformer setValueTransformer:arrayTransformer forName:@"NSArrayTransformer"];
+    [NSArrayTransformer setValueTransformer:arrayTransformer forName:(NSString *)@"NSArrayTransformer"];
     
     return YES;
 }
@@ -148,6 +148,8 @@
 
 // Returns the URL to the application's Documents directory.
 - (NSURL *)applicationDocumentsDirectory {
+    
+    NSLog(@"%@", [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject]);
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 

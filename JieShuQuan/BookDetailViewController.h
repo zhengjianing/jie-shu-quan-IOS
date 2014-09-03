@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BookStore.h"
 #import "Book.h"
 
 @interface BookDetailViewController : UIViewController
@@ -23,6 +24,8 @@
 
 - (IBAction)addBook:(id)sender;
 
-@property (strong, nonatomic) Book *book;
+@property (strong, nonatomic) Book *searchedBook;
+@property (strong ,nonatomic) NSManagedObject *storedBook;
+@property (nonatomic, assign) BOOL isFromStore;
 
 @end

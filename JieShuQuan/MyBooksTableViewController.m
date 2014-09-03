@@ -87,7 +87,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BookTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bookIdentifier" forIndexPath:indexPath];
-    id book = [_myBooks objectAtIndex:indexPath.row];
+
+    NSManagedObject *book = [_myBooks objectAtIndex:indexPath.row];
     
     cell.nameLabel.text = [book valueForKey:@"name"];
     cell.authorsLabel.text = [[book valueForKey:@"authors"] componentsJoinedByString:@", "];
@@ -100,13 +101,11 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSIndexPath *selectIndexPath = nil;
-    Book *selectedBook = nil;
-
     if ([[segue destinationViewController] class] == BookDetailViewController.class) {
-        selectIndexPath = [self.tableView indexPathForSelectedRow];
-        selectedBook = [_myBooks objectAtIndex:[selectIndexPath row]];
-        [[segue destinationViewController] setBook:selectedBook];
+        NSIndexPath *selectIndexPath = [self.tableView indexPathForSelectedRow];
+        NSManagedObject *selectedBook = [_myBooks objectAtIndex:[selectIndexPath row]];
+        [[segue destinationViewController] setStoredBook:selectedBook];
+        [[segue destinationViewController] setIsFromStore:YES];
         [[[segue destinationViewController] navigationItem] setRightBarButtonItem:nil];
 //         Another way, make the add button disabled
 //        [[[segue destinationViewController] addBookButton] setEnabled:NO];

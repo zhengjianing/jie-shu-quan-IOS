@@ -112,7 +112,8 @@
     if ([[segue destinationViewController] class] == BookDetailViewController.class) {
         selectIndexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
         selectedBook = [searchResults objectAtIndex:[selectIndexPath row]];
-        [[segue destinationViewController] setBook:selectedBook];
+        [[segue destinationViewController] setSearchedBook:selectedBook];
+        [[segue destinationViewController] setIsFromStore:NO];
     }
 }
 
