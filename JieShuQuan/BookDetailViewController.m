@@ -8,6 +8,7 @@
 
 #import "BookDetailViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "BookStore.h"
 
 @implementation BookDetailViewController
 
@@ -43,7 +44,7 @@
 }
 
 - (IBAction)addBook:(id)sender {
-    NSArray *storedBooks = [BookStore fetchBooksFromStore];
+    NSArray *storedBooks = [[BookStore sharedStore] storedBooks];
     
     for (NSManagedObject *book in storedBooks) {
         if ([[book valueForKey:@"name"] isEqualToString:_searchedBook.name]
@@ -71,6 +72,7 @@
         [newBook setValue:_searchedBook.publishDate forKey:@"publishDate"];
         
         [delegate saveContext];
+        [[BookStore sharedStore] refreshStore];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }

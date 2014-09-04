@@ -12,6 +12,8 @@
 
 @interface BookStore : NSObject
 
-+ (NSArray *)fetchBooksFromStore;
++ (BookStore *)sharedStore;
+- (NSArray *)storedBooks;
+- (void)refreshStore;
 
 @end

@@ -8,9 +8,50 @@
 
 #import "BookStore.h"
 
+@interface BookStore ()
+{
+    NSArray *storedBooks;
+}
+- (NSArray *)fetchBooksFromStore;
+
+@end
+
 @implementation BookStore
 
-+ (NSArray *)fetchBooksFromStore
++ (BookStore *)sharedStore
+{
+    static BookStore *sharedStore = nil;
+    if (!sharedStore) {
+        sharedStore = [[super allocWithZone:nil] init];
+    }
+    return sharedStore;
+}
+
++ (id)allocWithZone:(struct _NSZone *)zone
+{
+    return [self sharedStore];
+}
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        storedBooks = [self fetchBooksFromStore];
+    }
+    return self;
+}
+
+- (NSArray *)storedBooks
+{
+    return storedBooks;
+}
+
+- (void)refreshStore
+{
+    storedBooks = [self fetchBooksFromStore];
+}
+
+- (NSArray *)fetchBooksFromStore
 {
     id delegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [delegate managedObjectContext];

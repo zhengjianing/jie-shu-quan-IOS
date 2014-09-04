@@ -44,7 +44,7 @@
 
 - (void)loadData
 {
-    _myBooks = [BookStore fetchBooksFromStore];
+    _myBooks = [[BookStore sharedStore] storedBooks];
 }
 
 #pragma mark - PreLoginView
