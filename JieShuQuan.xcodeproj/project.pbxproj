@@ -218,6 +218,8 @@
 		94E5039519BAF998004CEBC6 /* dataStore */ = {
 			isa = PBXGroup;
 			children = (
+				9412E2F319A9FAC7008D243C /* Book.h */,
+				9412E2F419A9FAC7008D243C /* Book.m */,
 				97F973C419B5FBF4007AAD47 /* BookStore.h */,
 				97F973C519B5FBF4007AAD47 /* BookStore.m */,
 				94E5039219BAF98E004CEBC6 /* UserStore.h */,
@@ -269,8 +271,6 @@
 		97F65AC419AE0A9900B9DC93 /* WebDataModel */ = {
 			isa = PBXGroup;
 			children = (
-				9412E2F319A9FAC7008D243C /* Book.h */,
-				9412E2F419A9FAC7008D243C /* Book.m */,
 				97F65AC019AE0A7D00B9DC93 /* JsonDataFetcher.h */,
 				97F65AC119AE0A7D00B9DC93 /* JsonDataFetcher.m */,
 				97F65AC519AE0B1200B9DC93 /* DataConverter.h */,

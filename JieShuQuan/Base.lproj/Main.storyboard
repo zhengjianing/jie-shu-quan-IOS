@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pdy-qY-d6V">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
     </dependencies>
     <scenes>
@@ -13,6 +12,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="bookIdentifier" rowHeight="143" id="9zF-91-sn1" customClass="BookTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -166,7 +166,7 @@
                                 <rect key="frame" x="15" y="74" width="104" height="122"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="60P-BY-kOP">
-                                <rect key="frame" x="139" y="83" width="161" height="20.5"/>
+                                <rect key="frame" x="139" y="83" width="161" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -249,6 +249,9 @@
                                 <state key="normal" title="添加到我的书库">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="addBook:" destination="GnW-5j-b0Y" eventType="touchUpInside" id="9mE-JP-tgd"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wYE-7p-xzx">
                                 <rect key="frame" x="180" y="219" width="120" height="30"/>
@@ -259,18 +262,13 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
-                    <navigationItem key="navigationItem" id="vYZ-8T-toN">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="He4-5i-fjl">
-                            <connections>
-                                <action selector="addBook:" destination="GnW-5j-b0Y" id="z3S-UO-dqE"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="vYZ-8T-toN"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="480"/>
                     <connections>
-                        <outlet property="addBookButton" destination="He4-5i-fjl" id="G4y-sT-fbU"/>
+                        <outlet property="addBookButton" destination="Mt3-Ki-ggR" id="4HC-oJ-2zq"/>
                         <outlet property="authorInfoLabel" destination="enc-RU-qDw" id="9hT-0x-vUV"/>
                         <outlet property="authorsLabel" destination="yRn-A7-fjK" id="Tln-zN-9Jx"/>
                         <outlet property="bookImageView" destination="EQh-qH-raI" id="pAo-rN-ZAg"/>
@@ -315,6 +313,7 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" id="vzs-FM-MjH"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

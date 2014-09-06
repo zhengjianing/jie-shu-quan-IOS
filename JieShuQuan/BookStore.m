@@ -13,12 +13,12 @@
 @interface BookStore ()
 {
     NSArray *storedBooks;
-    id delegate;
-    NSManagedObjectContext *context;
 }
+
+@property (nonatomic, strong) NSManagedObjectContext *managedContext;
+@property (nonatomic, weak) id appDelegate;
+
 - (NSArray *)fetchBooksFromStore;
-- (id)appDelegate;
-- (NSManagedObjectContext *)managedObjectContext;
 - (void)saveContext;
 
 @end
@@ -54,7 +54,7 @@ static const NSString *kPublishDate = @"publishDate";
 {
     self = [super init];
     if (self) {
-        [self refreshStore];
+        storedBooks = [self fetchBooksFromStore];
     }
     return self;
 }
@@ -69,6 +69,17 @@ static const NSString *kPublishDate = @"publishDate";
     storedBooks = [self fetchBooksFromStore];
 }
 
+- (BOOL)storeHasBook:(Book *)book
+{
+    for (NSManagedObject *item in storedBooks) {
+        if ([[item valueForKey:@"name"] isEqualToString:book.name]
+            && [[item valueForKey:@"authors"] isEqualToArray:book.authors]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
 - (NSArray *)fetchBooksFromStore
 {
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:(NSString *)kEntityName];
@@ -77,7 +88,7 @@ static const NSString *kPublishDate = @"publishDate";
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:(NSString *)kName ascending:YES];
     [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     
-    return [context executeFetchRequest:request error:nil];
+    return [[self managedObjectContext] executeFetchRequest:request error:nil];
 }
 
 - (void)addBookToStore:(Book *)book
@@ -105,25 +116,25 @@ static const NSString *kPublishDate = @"publishDate";
     }
 }
 
-- (id)appDelegate
-{
-    if (!delegate) {
-        delegate = [[UIApplication sharedApplication] delegate];
-    }
-    return delegate;
-}
-
 - (NSManagedObjectContext *)managedObjectContext
 {
-    if (!context) {
-        context = [[self appDelegate] managedObjectContext];
+    if (!_managedContext) {
+        _managedContext = [[self appDelegate] managedObjectContext];
     }
-    return context;
+    return _managedContext;
+}
+
+- (id)appDelegate
+{
+    if (!_appDelegate) {
+        _appDelegate = [[UIApplication sharedApplication] delegate];
+    }
+    return _appDelegate;
 }
 
 - (void)saveContext
 {
-    [[self appDelegate] saveContext];
+    [_appDelegate saveContext];
 }
 
 @end

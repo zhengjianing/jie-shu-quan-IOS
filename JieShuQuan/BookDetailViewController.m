@@ -46,21 +46,13 @@
 - (IBAction)addBook:(id)sender {
     NSArray *storedBooks = [[BookStore sharedStore] storedBooks];
     
-    for (NSManagedObject *book in storedBooks) {
-        if ([[book valueForKey:@"name"] isEqualToString:_searchedBook.name]
-            && [[book valueForKey:@"authors"] isEqualToArray:_searchedBook.authors]) {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Book Already Exists" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-            [alertView show];
-//            若用continue则跳出本次循环，继续下一次；若用return则直接跳出循环
-//            continue;
-            return;
-        }
-    }
-    if (_searchedBook) {
+    if ([[BookStore sharedStore] storeHasBook:_searchedBook]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Book Already Exists" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [alertView show];
+    } else {
         [[BookStore sharedStore] addBookToStore:_searchedBook];
-        
-        [self.navigationController popViewControllerAnimated:YES];
     }
+    
 }
 
 @end

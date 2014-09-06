@@ -18,5 +18,6 @@
 - (NSArray *)storedBooks;
 - (void)refreshStore;
 - (void)addBookToStore:(Book *)book;
+- (BOOL)storeHasBook:(Book *)book;
 
 @end
