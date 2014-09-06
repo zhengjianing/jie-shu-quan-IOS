@@ -63,17 +63,10 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-    NSLog(@"%@", @"didReceiveData");
-    id object = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-    NSLog(@"jsonObject :\n%@", object);
-
-    NSString *userName = [object valueForKey:@"douban_user_name"];
-    NSString *accessToken = [object valueForKey:@"access_token"];
-    NSString *userID = [object valueForKey:@"douban_user_id"];
+    id userObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+    [[UserStore sharedStore] saveCurrentUserToUDAndDBByUserObject:userObject];
     
-    [[UserStore sharedStore] saveCurrentUserByName:userName accessToken:accessToken userId:userID];
-    
-    [[BookStore sharedStore] refreshStore];
+    [[BookStore sharedStore] refreshStoredBooks];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error

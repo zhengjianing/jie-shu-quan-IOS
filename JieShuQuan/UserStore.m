@@ -10,14 +10,12 @@
 #import <CoreData/CoreData.h>
 #import "AppDelegate.h"
 
-@interface UserStore()
-{
-    NSManagedObjectContext *context;
-    id appDelegate;
-}
-@end
-
 @implementation UserStore
+
+// keys in DouBan API
+static const NSString *kDouUserName = @"douban_user_name";
+static const NSString *kDouAccessToken = @"access_token";
+static const NSString *kDouUserId = @"douban_user_id";
 
 // keys in NSUserDefaults
 static const NSString *kUDCurrentUserName = @"current_username";
@@ -43,8 +41,12 @@ static const NSString *kDBAccessToken = @"access_token";
     return [self sharedStore];
 }
 
-- (void)saveCurrentUserByName:(NSString *)userName accessToken:(NSString *)accessToken userId:(NSString *)userID
+- (void)saveCurrentUserToUDAndDBByUserObject:(id)userObject
 {
+    NSString *userName = [userObject valueForKey:(NSString *)kDouUserName];
+    NSString *accessToken = [userObject valueForKey:(NSString *)kDouAccessToken];
+    NSString *userID = [userObject valueForKey:(NSString *)kDouUserId];
+    
     [[NSUserDefaults standardUserDefaults] setObject:userName forKey:(NSString *)kUDCurrentUserName];
     [[NSUserDefaults standardUserDefaults] setObject:accessToken forKey:(NSString *)kUDAccessToken];
     [[NSUserDefaults standardUserDefaults] setObject:userID forKey:(NSString *)kUDUserId];
@@ -55,7 +57,7 @@ static const NSString *kDBAccessToken = @"access_token";
     [self saveContext];
 }
 
-- (NSArray *)usersByUserId:(NSString *)userId
+- (NSArray *)storedUsersByUserId:(NSString *)userId
 {
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:(NSString *)kEntityName];
     //此处不能用kDBUserId代替Format中的user_id
@@ -74,11 +76,18 @@ static const NSString *kDBAccessToken = @"access_token";
     return [[NSUserDefaults standardUserDefaults] objectForKey:(NSString *)kUDCurrentUserName];
 }
 
-- (void)removeCurrentUser
+- (void)removeCurrentUserFromUD
 {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:(NSString *)kUDCurrentUserName];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:(NSString *)kUDAccessToken];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:(NSString *)kUDUserId];
+}
+
+#pragma mark - private methods
+
+- (NSManagedObjectContext *)managedObjectContext
+{
+    return [[self appDelegate] managedObjectContext];
 }
 
 - (void)saveContext
@@ -86,20 +95,9 @@ static const NSString *kDBAccessToken = @"access_token";
     [[self appDelegate] saveContext];
 }
 
-- (NSManagedObjectContext *) managedObjectContext
-{
-    if (!context) {
-        context = [[self appDelegate] managedObjectContext];
-    }
-    return context;
-}
-
 - (id)appDelegate
 {
-    if (!appDelegate) {
-        appDelegate = [[UIApplication sharedApplication] delegate];
-    }
-    return appDelegate;
+    return [[UIApplication sharedApplication] delegate];
 }
 
 @end

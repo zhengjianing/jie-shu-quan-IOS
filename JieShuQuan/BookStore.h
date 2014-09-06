@@ -7,16 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
-#import "AppDelegate.h"
 
 @class Book;
 
 @interface BookStore : NSObject
 
 + (BookStore *)sharedStore;
+
 - (NSArray *)storedBooks;
-- (void)refreshStore;
+- (void)refreshStoredBooks;
 - (void)addBookToStore:(Book *)book;
 - (BOOL)storeHasBook:(Book *)book;
 

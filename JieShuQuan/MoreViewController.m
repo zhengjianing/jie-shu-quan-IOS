@@ -66,7 +66,7 @@
 - (void)logout
 {
     _userName = nil;
-    [[UserStore sharedStore] removeCurrentUser];
+    [[UserStore sharedStore] removeCurrentUserFromUD];
     
     [self updateViewWithLogout];
 }

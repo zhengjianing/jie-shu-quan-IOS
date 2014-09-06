@@ -9,6 +9,7 @@
 #import "BookDetailViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "BookStore.h"
+#import "Book.h"
 
 @implementation BookDetailViewController
 

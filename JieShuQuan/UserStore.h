@@ -11,10 +11,11 @@
 @interface UserStore : NSObject
 
 + (UserStore *)sharedStore;
-- (void)saveCurrentUserByName:(NSString *)userName accessToken:(NSString *)accessToken userId:(NSString *)userID;
+
+- (void)saveCurrentUserToUDAndDBByUserObject:(id)userObject;
 - (NSString *)currentUserId;
 - (NSString *)currentUserName;
-- (void)removeCurrentUser;
-- (NSArray *)usersByUserId:(NSString *)userId;
+- (void)removeCurrentUserFromUD;
+- (NSArray *)storedUsersByUserId:(NSString *)userId;
 
 @end

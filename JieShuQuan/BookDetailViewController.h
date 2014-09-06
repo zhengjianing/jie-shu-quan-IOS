@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BookStore.h"
-#import "Book.h"
+#import <CoreData/CoreData.h>
+
+@class Book;
 
 @interface BookDetailViewController : UIViewController
 
@@ -22,10 +23,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *authorInfoLabel;
 @property (strong, nonatomic) IBOutlet UIButton *addBookButton;
 
-- (IBAction)addBook:(id)sender;
-
 @property (strong, nonatomic) Book *searchedBook;
 @property (strong ,nonatomic) NSManagedObject *storedBook;
 @property (nonatomic, assign) BOOL isFromStore;
+
+- (IBAction)addBook:(id)sender;
 
 @end

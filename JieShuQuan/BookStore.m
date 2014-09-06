@@ -9,18 +9,13 @@
 #import "BookStore.h"
 #import "Book.h"
 #import "UserStore.h"
+#import <CoreData/CoreData.h>
+#import "AppDelegate.h"
 
 @interface BookStore ()
 {
     NSArray *storedBooks;
 }
-
-@property (nonatomic, strong) NSManagedObjectContext *managedContext;
-@property (nonatomic, weak) id appDelegate;
-
-- (NSArray *)fetchBooksFromStore;
-- (void)saveContext;
-
 @end
 
 @implementation BookStore
@@ -64,21 +59,38 @@ static const NSString *kPublishDate = @"publishDate";
     return storedBooks;
 }
 
-- (void)refreshStore
+- (void)refreshStoredBooks
 {
     storedBooks = [self fetchBooksFromStore];
 }
 
 - (BOOL)storeHasBook:(Book *)book
 {
-    for (NSManagedObject *item in storedBooks) {
-        if ([[item valueForKey:@"name"] isEqualToString:book.name]
-            && [[item valueForKey:@"authors"] isEqualToArray:book.authors]) {
+    for (NSManagedObject *storedBook in storedBooks) {
+        if ([self book:storedBook isSameWithBook:book]) {
             return YES;
         }
     }
     return NO;
 }
+
+- (void)addBookToStore:(Book *)book
+{
+    NSManagedObject *newBook = [NSEntityDescription insertNewObjectForEntityForName:(NSString *)kEntityName inManagedObjectContext:[self managedObjectContext]];
+    [self setBookPropertiesByBook:book forManagedBook:newBook];
+    
+    NSArray *usersArray = [[UserStore sharedStore] storedUsersByUserId:[[UserStore sharedStore] currentUserId]];
+    if ([usersArray count]) {
+        NSManagedObject *currentUser = usersArray[0];
+        NSMutableSet *booksSet = [currentUser mutableSetValueForKey:@"books"];
+        [booksSet addObject:newBook];
+    }
+    
+    [self saveContext];
+    [[BookStore sharedStore] refreshStoredBooks];
+}
+
+#pragma mark - private methods
 
 - (NSArray *)fetchBooksFromStore
 {
@@ -91,50 +103,38 @@ static const NSString *kPublishDate = @"publishDate";
     return [[self managedObjectContext] executeFetchRequest:request error:nil];
 }
 
-- (void)addBookToStore:(Book *)book
+- (void)setBookPropertiesByBook:(Book *)book forManagedBook:(NSManagedObject *)managedBook
 {
-    NSManagedObject *newBook = [NSEntityDescription insertNewObjectForEntityForName:(NSString *)kEntityName inManagedObjectContext:[self managedObjectContext]];
-    
-    [newBook setValue:book.name forKey:(NSString *)kName];
-    [newBook setValue:book.authors forKey:(NSString *)kAuthors];
-    //    [newBook setValue:UIImageJPEGRepresentation(_bookImageView.image, 1.0)  forKey:@"imageData"];
-    [newBook setValue:book.description forKey:(NSString *)kDescription];
-    [newBook setValue:book.authorInfo forKey:(NSString *)kAuthorInfo];
-    [newBook setValue:book.price forKey:(NSString *)kPrice];
-    [newBook setValue:book.publisher forKey:(NSString *)kPublisher];
-    [newBook setValue:book.bookId forKey:(NSString *)kBookId];
-    [newBook setValue:book.publishDate forKey:(NSString *)kPublishDate];
-    
-    NSArray *usersArray = [[UserStore sharedStore] usersByUserId:[[UserStore sharedStore] currentUserId]];
-    if ([usersArray count]) {
-        NSManagedObject *currentUser = usersArray[0];
-        NSMutableSet *booksSet = [currentUser mutableSetValueForKey:@"books"];
-        [booksSet addObject:newBook];
-        [self saveContext];
-        
-        [[BookStore sharedStore] refreshStore];
-    }
+    [managedBook setValue:book.name forKey:(NSString *)kName];
+    [managedBook setValue:book.authors forKey:(NSString *)kAuthors];
+    //    [managedBook setValue:UIImageJPEGRepresentation(_bookImageView.image, 1.0)  forKey:@"imageData"];
+    [managedBook setValue:book.description forKey:(NSString *)kDescription];
+    [managedBook setValue:book.authorInfo forKey:(NSString *)kAuthorInfo];
+    [managedBook setValue:book.price forKey:(NSString *)kPrice];
+    [managedBook setValue:book.publisher forKey:(NSString *)kPublisher];
+    [managedBook setValue:book.bookId forKey:(NSString *)kBookId];
+    [managedBook setValue:book.publishDate forKey:(NSString *)kPublishDate];
+}
+
+- (BOOL)book:(NSManagedObject *)storedBook isSameWithBook:(Book *)book
+{
+    return [[storedBook valueForKey:(NSString *)kName] isEqualToString:book.name]
+    && [[storedBook valueForKey:(NSString *)kAuthors] isEqualToArray:book.authors];
 }
 
 - (NSManagedObjectContext *)managedObjectContext
 {
-    if (!_managedContext) {
-        _managedContext = [[self appDelegate] managedObjectContext];
-    }
-    return _managedContext;
-}
-
-- (id)appDelegate
-{
-    if (!_appDelegate) {
-        _appDelegate = [[UIApplication sharedApplication] delegate];
-    }
-    return _appDelegate;
+    return [[self appDelegate] managedObjectContext];
 }
 
 - (void)saveContext
 {
-    [_appDelegate saveContext];
+    [[self appDelegate] saveContext];
+}
+
+- (id)appDelegate
+{
+    return [[UIApplication sharedApplication] delegate];
 }
 
 @end
