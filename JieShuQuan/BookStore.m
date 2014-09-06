@@ -90,22 +90,16 @@
     [newBook setValue:book.bookId forKey:@"bookId"];
     [newBook setValue:book.publishDate forKey:@"publishDate"];
     
-    NSArray *usersArray = [NSArray array];
-    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"User"];
-    
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user_id == %@", [[UserStore sharedStore] currentUserId]];
-    [request setPredicate:predicate];
-    NSError *error = nil;
-    usersArray = [context executeFetchRequest:request error:&error];
-    if (![usersArray count]) {
-        NSLog(@"%@, %@", error, [error userInfo]);
+    NSArray *usersArray = [[UserStore sharedStore] usersByUserId: [[UserStore sharedStore] currentUserId]];
+        
+    if ([usersArray count]) {
+        NSManagedObject *currentUser = usersArray[0];
+        NSMutableSet *set = [currentUser mutableSetValueForKey:@"books"];
+        [set addObject:newBook];
+        
+        [delegate saveContext];
+        [[BookStore sharedStore] refreshStore];
     }
-    NSManagedObject *currentUser = usersArray[0];
-    NSMutableSet *set = [currentUser mutableSetValueForKey:@"books"];
-    [set addObject:newBook];
-    
-    [delegate saveContext];
-    [[BookStore sharedStore] refreshStore];
 }
 
 @end

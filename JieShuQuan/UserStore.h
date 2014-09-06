@@ -15,5 +15,6 @@
 - (NSString *)currentUserId;
 - (NSString *)currentUserName;
 - (void)removeCurrentUser;
+- (NSArray *)usersByUserId:(NSString *)userId;
 
 @end

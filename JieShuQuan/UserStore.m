@@ -7,10 +7,21 @@
 //
 
 #import "UserStore.h"
+#import <CoreData/CoreData.h>
+#import "AppDelegate.h"
 
-static const NSString *kCurrentUserName = @"current_username";
-static const NSString *kAccessToken = @"access_token";
-static const NSString *kUserId = @"user_id";
+@interface UserStore()
+{
+    NSManagedObjectContext *context;
+    id appDelegate;
+}
+@end
+
+// keys in NSUserDefaults
+static NSString *kCurrentUserName = @"current_username";
+static NSString *kAccessToken = @"access_token";
+static NSString *kUserId = @"user_id";
+static NSString *kEntityName = @"User";
 
 @implementation UserStore
 
@@ -33,6 +44,19 @@ static const NSString *kUserId = @"user_id";
     [[NSUserDefaults standardUserDefaults] setObject:userName forKey:kCurrentUserName];
     [[NSUserDefaults standardUserDefaults] setObject:accessToken forKey:kAccessToken];
     [[NSUserDefaults standardUserDefaults] setObject:userID forKey:kUserId];
+    
+    NSManagedObject *user = [NSEntityDescription insertNewObjectForEntityForName:kEntityName inManagedObjectContext:[self managedObjectContext]];
+    [user setValue:userID forKey:@"user_id"];
+    [user setValue:accessToken forKey:@"access_token"];
+    [self saveContext];
+}
+
+- (NSArray *)usersByUserId:(NSString *)userId
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:kEntityName];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user_id == %@", [[UserStore sharedStore] currentUserId]];
+    [request setPredicate:predicate];
+    return [[self managedObjectContext] executeFetchRequest:request error:nil];
 }
 
 - (NSString *)currentUserId
@@ -50,6 +74,27 @@ static const NSString *kUserId = @"user_id";
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:kCurrentUserName];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:kAccessToken];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:kUserId];
+}
+
+- (void)saveContext
+{
+    [[self appDelegate] saveContext];
+}
+
+- (NSManagedObjectContext *) managedObjectContext
+{
+    if (!context) {
+        context = [[self appDelegate] managedObjectContext];
+    }
+    return context;
+}
+
+- (id)appDelegate
+{
+    if (!appDelegate) {
+        appDelegate = [[UIApplication sharedApplication] delegate];
+    }
+    return appDelegate;
 }
 
 @end

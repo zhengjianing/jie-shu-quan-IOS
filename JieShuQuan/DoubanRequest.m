@@ -8,8 +8,6 @@
 
 #import "DoubanRequest.h"
 #import "DoubanHeaders.h"
-#import <CoreData/CoreData.h>
-#import "AppDelegate.h"
 #import "BookStore.h"
 #import "UserStore.h"
 
@@ -75,15 +73,7 @@
     
     [[UserStore sharedStore] saveCurrentUserByName:userName accessToken:accessToken userId:userID];
     
-    id delegate = [[UIApplication sharedApplication] delegate];
-    NSManagedObjectContext *context = [delegate managedObjectContext];
-    
-    NSManagedObject *user = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
-    [user setValue:userID forKey:@"user_id"];
-    [user setValue:accessToken forKey:@"access_token"];
-    [delegate saveContext];
     [[BookStore sharedStore] refreshStore];
-    
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
