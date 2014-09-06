@@ -17,7 +17,6 @@
 + (BookStore *)sharedStore;
 - (NSArray *)storedBooks;
 - (void)refreshStore;
-
 - (void)addBookToStore:(Book *)book;
 
 @end
