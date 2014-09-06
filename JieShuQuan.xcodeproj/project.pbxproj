@@ -22,6 +22,7 @@
 		9471DC2719A9689E00F1A291 /* MyBooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471DC2619A9689E00F1A291 /* MyBooksTableViewController.m */; };
 		9471DC2B19A974AB00F1A291 /* PreLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471DC2A19A974AB00F1A291 /* PreLoginView.m */; };
 		9471DC2F19A9895000F1A291 /* PreLoginNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9471DC2E19A9895000F1A291 /* PreLoginNib.xib */; };
+		94E5039419BAF98E004CEBC6 /* UserStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E5039319BAF98E004CEBC6 /* UserStore.m */; };
 		94F2BF5619B1DE8D0053711F /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 94F2BF5519B1DE8D0053711F /* search.png */; };
 		978CCB8819AB563C00CA8D87 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 978CCB8719AB563C00CA8D87 /* LoginViewController.m */; };
 		978CCB9019AB584400CA8D87 /* DoubanAuthorize.m in Sources */ = {isa = PBXBuildFile; fileRef = 978CCB8A19AB584400CA8D87 /* DoubanAuthorize.m */; };
@@ -72,6 +73,8 @@
 		9471DC2919A974AB00F1A291 /* PreLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreLoginView.h; sourceTree = "<group>"; };
 		9471DC2A19A974AB00F1A291 /* PreLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreLoginView.m; sourceTree = "<group>"; };
 		9471DC2E19A9895000F1A291 /* PreLoginNib.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreLoginNib.xib; sourceTree = "<group>"; };
+		94E5039219BAF98E004CEBC6 /* UserStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserStore.h; sourceTree = "<group>"; };
+		94E5039319BAF98E004CEBC6 /* UserStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserStore.m; sourceTree = "<group>"; };
 		94F2BF5519B1DE8D0053711F /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		978CCB8619AB563C00CA8D87 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		978CCB8719AB563C00CA8D87 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -130,8 +133,6 @@
 				9412E2FD19AA17FA008D243C /* BookDetailViewController.m */,
 				9412E2F919AA0D82008D243C /* BookTableViewCell.h */,
 				9412E2FA19AA0D82008D243C /* BookTableViewCell.m */,
-				97F973C419B5FBF4007AAD47 /* BookStore.h */,
-				97F973C519B5FBF4007AAD47 /* BookStore.m */,
 			);
 			name = myBooks;
 			sourceTree = "<group>";
@@ -214,6 +215,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		94E5039519BAF998004CEBC6 /* dataStore */ = {
+			isa = PBXGroup;
+			children = (
+				97F973C419B5FBF4007AAD47 /* BookStore.h */,
+				97F973C519B5FBF4007AAD47 /* BookStore.m */,
+				94E5039219BAF98E004CEBC6 /* UserStore.h */,
+				94E5039319BAF98E004CEBC6 /* UserStore.m */,
+			);
+			name = dataStore;
+			sourceTree = "<group>";
+		};
 		978CCB8519AB55B700CA8D87 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -248,6 +260,7 @@
 		97F65AC319AE0A8300B9DC93 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				94E5039519BAF998004CEBC6 /* dataStore */,
 				97F65AC419AE0A9900B9DC93 /* WebDataModel */,
 			);
 			name = Model;
@@ -428,6 +441,7 @@
 				978CCB9119AB584400CA8D87 /* DoubanRequest.m in Sources */,
 				97F65AC719AE0B1200B9DC93 /* DataConverter.m in Sources */,
 				9412E2FB19AA0D82008D243C /* BookTableViewCell.m in Sources */,
+				94E5039419BAF98E004CEBC6 /* UserStore.m in Sources */,
 				97F973C619B5FBF4007AAD47 /* BookStore.m in Sources */,
 				978CCB8819AB563C00CA8D87 /* LoginViewController.m in Sources */,
 				9471DBEF19A5837700F1A291 /* main.m in Sources */,

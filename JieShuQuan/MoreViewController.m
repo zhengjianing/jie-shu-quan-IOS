@@ -8,6 +8,7 @@
 
 #import "MoreViewController.h"
 #import "LoginViewController.h"
+#import "UserStore.h"
 
 @interface MoreViewController ()
 
@@ -27,7 +28,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    _userName = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
+    _userName = [[UserStore sharedStore] currentUserName];
     if (_userName) {
         [self updateViewWithLogin];
     } else {
@@ -65,8 +66,8 @@
 - (void)logout
 {
     _userName = nil;
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"username"];
-
+    [[UserStore sharedStore] removeCurrentUser];
+    
     [self updateViewWithLogout];
 }
 @end

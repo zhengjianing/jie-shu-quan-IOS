@@ -57,36 +57,8 @@
         }
     }
     if (_searchedBook) {
-        id delegate = [[UIApplication sharedApplication] delegate];
-        NSManagedObjectContext *context = [delegate managedObjectContext];
+        [[BookStore sharedStore] addBookToStore:_searchedBook];
         
-        NSManagedObject *newBook = [NSEntityDescription insertNewObjectForEntityForName:@"Book" inManagedObjectContext:context];
-        [newBook setValue:_searchedBook.name forKey:@"name"];
-        [newBook setValue:_searchedBook.authors forKey:@"authors"];
-        [newBook setValue:UIImageJPEGRepresentation(_bookImageView.image, 1.0)  forKey:@"imageData"];
-        [newBook setValue:_searchedBook.description forKey:@"bookDescription"];
-        [newBook setValue:_searchedBook.authorInfo forKey:@"authorInfo"];
-        [newBook setValue:_searchedBook.price forKey:@"price"];
-        [newBook setValue:_searchedBook.publisher forKey:@"publisher"];
-        [newBook setValue:_searchedBook.bookId forKey:@"bookId"];
-        [newBook setValue:_searchedBook.publishDate forKey:@"publishDate"];
-        
-        NSArray *usersArray = [NSArray array];
-        NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"User"];
-        
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user_id == %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"user_id"]];
-        [request setPredicate:predicate];
-        NSError *error = nil;
-        usersArray = [context executeFetchRequest:request error:&error];
-        if (![usersArray count]) {
-            NSLog(@"%@, %@", error, [error userInfo]);
-        }
-        NSManagedObject *currentUser = usersArray[0];
-        NSMutableSet *set = [currentUser mutableSetValueForKey:@"books"];
-        [set addObject:newBook];
-        
-        [delegate saveContext];
-        [[BookStore sharedStore] refreshStore];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }

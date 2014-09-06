@@ -7,6 +7,8 @@
 //
 
 #import "BookStore.h"
+#import "Book.h"
+#import "UserStore.h"
 
 @interface BookStore ()
 {
@@ -58,7 +60,7 @@
     
     NSArray *booksArray = [NSArray array];
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Book"];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user.user_id == %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"user_id"]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user.user_id == %@", [[UserStore sharedStore] currentUserId]];
     [request setPredicate:predicate];
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
     [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
@@ -69,6 +71,41 @@
         NSLog(@"Fetch Cache Failed: %@, %@", error, [error userInfo]);
     }
     return booksArray;
+}
+
+- (void)addBookToStore:(Book *)book
+{
+    id delegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [delegate managedObjectContext];
+    
+    NSManagedObject *newBook = [NSEntityDescription insertNewObjectForEntityForName:@"Book" inManagedObjectContext:context];
+    
+    [newBook setValue:book.name forKey:@"name"];
+    [newBook setValue:book.authors forKey:@"authors"];
+//    [newBook setValue:UIImageJPEGRepresentation(_bookImageView.image, 1.0)  forKey:@"imageData"];
+    [newBook setValue:book.description forKey:@"bookDescription"];
+    [newBook setValue:book.authorInfo forKey:@"authorInfo"];
+    [newBook setValue:book.price forKey:@"price"];
+    [newBook setValue:book.publisher forKey:@"publisher"];
+    [newBook setValue:book.bookId forKey:@"bookId"];
+    [newBook setValue:book.publishDate forKey:@"publishDate"];
+    
+    NSArray *usersArray = [NSArray array];
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"User"];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user_id == %@", [[UserStore sharedStore] currentUserId]];
+    [request setPredicate:predicate];
+    NSError *error = nil;
+    usersArray = [context executeFetchRequest:request error:&error];
+    if (![usersArray count]) {
+        NSLog(@"%@, %@", error, [error userInfo]);
+    }
+    NSManagedObject *currentUser = usersArray[0];
+    NSMutableSet *set = [currentUser mutableSetValueForKey:@"books"];
+    [set addObject:newBook];
+    
+    [delegate saveContext];
+    [[BookStore sharedStore] refreshStore];
 }
 
 @end

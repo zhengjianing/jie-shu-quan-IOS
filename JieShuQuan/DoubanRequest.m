@@ -11,6 +11,7 @@
 #import <CoreData/CoreData.h>
 #import "AppDelegate.h"
 #import "BookStore.h"
+#import "UserStore.h"
 
 @implementation DoubanRequest
 
@@ -72,9 +73,7 @@
     NSString *accessToken = [object valueForKey:@"access_token"];
     NSString *userID = [object valueForKey:@"douban_user_id"];
     
-    [[NSUserDefaults standardUserDefaults] setObject:userName forKey:@"username"];
-    [[NSUserDefaults standardUserDefaults] setObject:accessToken forKey:@"accesstoken"];
-    [[NSUserDefaults standardUserDefaults] setObject:userID forKey:@"user_id"];
+    [[UserStore sharedStore] saveCurrentUserByName:userName accessToken:accessToken userId:userID];
     
     id delegate = [[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = [delegate managedObjectContext];

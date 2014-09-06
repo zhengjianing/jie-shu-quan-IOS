@@ -10,10 +10,14 @@
 #import <CoreData/CoreData.h>
 #import "AppDelegate.h"
 
+@class Book;
+
 @interface BookStore : NSObject
 
 + (BookStore *)sharedStore;
 - (NSArray *)storedBooks;
 - (void)refreshStore;
+
+- (void)addBookToStore:(Book *)book;
 
 @end
