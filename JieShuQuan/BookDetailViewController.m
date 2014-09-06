@@ -71,6 +71,20 @@
         [newBook setValue:_searchedBook.bookId forKey:@"bookId"];
         [newBook setValue:_searchedBook.publishDate forKey:@"publishDate"];
         
+        NSArray *usersArray = [NSArray array];
+        NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"User"];
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user_id == %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"user_id"]];
+        [request setPredicate:predicate];
+        NSError *error = nil;
+        usersArray = [context executeFetchRequest:request error:&error];
+        if (![usersArray count]) {
+            NSLog(@"%@, %@", error, [error userInfo]);
+        }
+        NSManagedObject *currentUser = usersArray[0];
+        NSMutableSet *set = [currentUser mutableSetValueForKey:@"books"];
+        [set addObject:newBook];
+        
         [delegate saveContext];
         [[BookStore sharedStore] refreshStore];
         [self.navigationController popViewControllerAnimated:YES];

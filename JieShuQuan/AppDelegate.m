@@ -96,6 +96,7 @@
         return _managedObjectModel;
     }
     NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"JieShuQuan" withExtension:@"momd"];
+    NSLog(@"%@", modelURL.absoluteString);
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return _managedObjectModel;
 }

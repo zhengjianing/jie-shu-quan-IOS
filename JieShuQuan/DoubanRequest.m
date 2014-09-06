@@ -8,6 +8,9 @@
 
 #import "DoubanRequest.h"
 #import "DoubanHeaders.h"
+#import <CoreData/CoreData.h>
+#import "AppDelegate.h"
+#import "BookStore.h"
 
 @implementation DoubanRequest
 
@@ -71,7 +74,16 @@
     
     [[NSUserDefaults standardUserDefaults] setObject:userName forKey:@"username"];
     [[NSUserDefaults standardUserDefaults] setObject:accessToken forKey:@"accesstoken"];
-    [[NSUserDefaults standardUserDefaults] setObject:userID forKey:@"userID"];
+    [[NSUserDefaults standardUserDefaults] setObject:userID forKey:@"user_id"];
+    
+    id delegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [delegate managedObjectContext];
+    
+    NSManagedObject *user = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
+    [user setValue:userID forKey:@"user_id"];
+    [user setValue:accessToken forKey:@"access_token"];
+    [delegate saveContext];
+    [[BookStore sharedStore] refreshStore];
     
 }
 

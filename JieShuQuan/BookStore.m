@@ -58,6 +58,8 @@
     
     NSArray *booksArray = [NSArray array];
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Book"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user.user_id == %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"user_id"]];
+    [request setPredicate:predicate];
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
     [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     
