@@ -14,6 +14,7 @@
 #import "DataConverter.h"
 #import "Book.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "AlertHelper.h"
 
 @interface SearchTableViewController ()
 
@@ -36,8 +37,7 @@
 
 - (void)webDataFetchFailed
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Data Fetching failed...Please check your network" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-    [alert show];
+    [AlertHelper showAlertWithMessage:@"数据获取失败...请检查您的网络" target:self];
 }
 
 -(void)setExtraCellLineHidden: (UITableView *)tableView
