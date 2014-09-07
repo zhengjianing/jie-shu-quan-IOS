@@ -34,6 +34,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(webDataFetchFailed) name:@"webDataFetchFailed" object:nil];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:YES];
+    [self.searchDisplayController setActive:NO];
+}
+
 - (void)webDataFetchFailed
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Data Fetching failed...Please check your network" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
