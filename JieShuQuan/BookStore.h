@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "Store.h"
-
 @class Book;
 
 @interface BookStore : Store

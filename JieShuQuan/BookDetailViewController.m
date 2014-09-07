@@ -29,34 +29,23 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    if (_searchedBook) {
-        [_bookImageView sd_setImageWithURL:[NSURL URLWithString:_searchedBook.imageHref]];
-        _nameLabel.text = _searchedBook.name;
-        _authorsLabel.text = [_searchedBook authorsString];
-        _publisherLabel.text = _searchedBook.publisher;
-        _publishDateLabel.text = _searchedBook.publishDate;
-        _priceLabel.text = _searchedBook.price;
-        _discriptionLabel.text = _searchedBook.description;
-        _authorInfoLabel.text = _searchedBook.authorInfo;
-    } else {
-        [_bookImageView sd_setImageWithURL:[NSURL URLWithString:[_storedBook valueForKey:@"imageHref"]]];
-        _nameLabel.text = [_storedBook valueForKey:@"name"];
-        _authorsLabel.text = [[_storedBook valueForKey:@"authors"] componentsJoinedByString:@", "];
-        _publisherLabel.text = [_storedBook valueForKey:@"publisher"];
-        _publishDateLabel.text = [_storedBook valueForKey:@"publishDate"];
-        _priceLabel.text = [_storedBook valueForKey:@"price"];
-        _discriptionLabel.text = [_storedBook valueForKey:@"bookDescription"];
-        _authorInfoLabel.text = [_storedBook valueForKey:@"authorInfo"];
-    }
+    [_bookImageView sd_setImageWithURL:[NSURL URLWithString:_book.imageHref]];
+    _nameLabel.text = _book.name;
+    _authorsLabel.text = [_book authorsString];
+    _publisherLabel.text = _book.publisher;
+    _publishDateLabel.text = _book.publishDate;
+    _priceLabel.text = _book.price;
+    _discriptionLabel.text = _book.description;
+    _authorInfoLabel.text = _book.authorInfo;
+   
 }
 
 - (IBAction)addBook:(id)sender {
-    if (!_searchedBook || [[BookStore sharedStore] storeHasBook:_searchedBook]) {
+    if ([[BookStore sharedStore] storeHasBook:_book]) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Book Already Exists" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
         [alertView show];
     } else {
-        [[BookStore sharedStore] addBookToStore:_searchedBook];
+        [[BookStore sharedStore] addBookToStore:_book];
     }
 }
 

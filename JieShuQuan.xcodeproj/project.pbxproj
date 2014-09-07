@@ -224,6 +224,8 @@
 			children = (
 				97F65AC519AE0B1200B9DC93 /* DataConverter.h */,
 				97F65AC619AE0B1200B9DC93 /* DataConverter.m */,
+				97FC364D19B4C1AB002D0932 /* NSArrayTransformer.h */,
+				97FC364E19B4C1AB002D0932 /* NSArrayTransformer.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -288,8 +290,6 @@
 			children = (
 				97F65AC019AE0A7D00B9DC93 /* JsonDataFetcher.h */,
 				97F65AC119AE0A7D00B9DC93 /* JsonDataFetcher.m */,
-				97FC364D19B4C1AB002D0932 /* NSArrayTransformer.h */,
-				97FC364E19B4C1AB002D0932 /* NSArrayTransformer.m */,
 			);
 			name = WebDataModel;
 			sourceTree = "<group>";

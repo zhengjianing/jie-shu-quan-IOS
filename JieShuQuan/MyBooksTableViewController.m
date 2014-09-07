@@ -89,11 +89,10 @@
 {
     BookTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bookIdentifier" forIndexPath:indexPath];
 
-    NSManagedObject *book = [_myBooks objectAtIndex:indexPath.row];
-    cell.nameLabel.text = [book valueForKey:@"name"];
-    cell.authorsLabel.text = [[book valueForKey:@"authors"] componentsJoinedByString:@", "];
-    [cell.bookImageView sd_setImageWithURL:[book valueForKey:@"imageHref"]];
-    
+    Book *book = [_myBooks objectAtIndex:indexPath.row];
+    cell.nameLabel.text = book.name;
+    cell.authorsLabel.text = [book authorsString];
+    [cell.bookImageView sd_setImageWithURL:[NSURL URLWithString:book.imageHref]];
     return cell;
 }
 
@@ -103,8 +102,8 @@
 {
     if ([[segue destinationViewController] class] == BookDetailViewController.class) {
         NSIndexPath *selectIndexPath = [self.tableView indexPathForSelectedRow];
-        NSManagedObject *selectedBook = [_myBooks objectAtIndex:[selectIndexPath row]];
-        [[segue destinationViewController] setStoredBook:selectedBook];
+        Book *selectedBook = [_myBooks objectAtIndex:[selectIndexPath row]];
+        [[segue destinationViewController] setBook:selectedBook];
         [[[segue destinationViewController] addBookButton] setBackgroundColor:[UIColor grayColor]];
         [[[segue destinationViewController] addBookButton] setUserInteractionEnabled:NO];
     }

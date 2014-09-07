@@ -21,5 +21,6 @@
 @property (copy ,nonatomic) NSString *bookId;
 
 - (NSString *)authorsString;
+- (BOOL)isSameBook:(Book *)book;
 
 @end

@@ -49,7 +49,7 @@ static const NSString *kPublishDate = @"publishDate";
 {
     self = [super init];
     if (self) {
-        storedBooks = [self fetchBooksFromStore];
+        storedBooks = [self booksArrayFromStore:[self fetchBooksFromStore]];
     }
     return self;
 }
@@ -61,13 +61,13 @@ static const NSString *kPublishDate = @"publishDate";
 
 - (void)refreshStoredBooks
 {
-    storedBooks = [self fetchBooksFromStore];
+    storedBooks = [self booksArrayFromStore:[self fetchBooksFromStore]];
 }
 
 - (BOOL)storeHasBook:(Book *)book
 {
-    for (NSManagedObject *storedBook in storedBooks) {
-        if ([self book:storedBook isSameWithBook:book]) {
+    for (Book *item in storedBooks) {
+        if ([item isSameBook:book]) {
             return YES;
         }
     }
@@ -103,6 +103,27 @@ static const NSString *kPublishDate = @"publishDate";
     return [[self managedObjectContext] executeFetchRequest:request error:nil];
 }
 
+- (NSMutableArray *)booksArrayFromStore:(NSArray *)array
+{
+    NSMutableArray *booksArray = [NSMutableArray array];
+    NSArray *storedArray = [self fetchBooksFromStore];
+    for (NSManagedObject *storedBook in storedArray) {
+        Book *book = [[Book alloc] init];
+        book.name = [storedBook valueForKey:(NSString *)kName];
+        book.authors = [storedBook valueForKey:(NSString *)kAuthors];
+        book.imageHref = [storedBook valueForKey:(NSString *)kImageHref];
+        book.description = [storedBook valueForKey:(NSString *)kDescription];
+        book.authorInfo = [storedBook valueForKey:(NSString *)kAuthorInfo];
+        book.price = [storedBook valueForKey:(NSString *)kPrice];
+        book.publisher = [storedBook valueForKey:(NSString *)kPublisher];
+        book.bookId = [storedBook valueForKey:(NSString *)kBookId];
+        book.publishDate = [storedBook valueForKey:(NSString *)kPublishDate];
+        
+        [booksArray addObject:book];
+    }
+    return booksArray;
+}
+
 - (void)setBookPropertiesByBook:(Book *)book forManagedBook:(NSManagedObject *)managedBook
 {
     [managedBook setValue:book.name forKey:(NSString *)kName];
@@ -114,12 +135,6 @@ static const NSString *kPublishDate = @"publishDate";
     [managedBook setValue:book.publisher forKey:(NSString *)kPublisher];
     [managedBook setValue:book.bookId forKey:(NSString *)kBookId];
     [managedBook setValue:book.publishDate forKey:(NSString *)kPublishDate];
-}
-
-- (BOOL)book:(NSManagedObject *)storedBook isSameWithBook:(Book *)book
-{
-    return [[storedBook valueForKey:(NSString *)kName] isEqualToString:book.name]
-    && [[storedBook valueForKey:(NSString *)kAuthors] isEqualToArray:book.authors];
 }
 
 @end

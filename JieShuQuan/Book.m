@@ -22,4 +22,9 @@
     return authorsString;
 }
 
+- (BOOL)isSameBook:(Book *)book
+{
+    return [self.name isEqualToString:book.name] && [self.authors isEqualToArray:book.authors];
+}
+
 @end

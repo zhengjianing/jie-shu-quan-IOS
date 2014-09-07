@@ -24,8 +24,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *addBookButton;
 @property (strong, nonatomic) IBOutlet UIButton *borrowFromFriends;
 
-@property (strong, nonatomic) Book *searchedBook;
-@property (strong ,nonatomic) NSManagedObject *storedBook;
+@property (strong, nonatomic) Book *book;
 
 - (IBAction)addBook:(id)sender;
 
