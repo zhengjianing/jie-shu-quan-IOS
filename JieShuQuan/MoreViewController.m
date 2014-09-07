@@ -7,7 +7,7 @@
 //
 
 #import "MoreViewController.h"
-#import "LoginViewController.h"
+#import "RegisterViewController.h"
 #import "UserStore.h"
 
 @interface MoreViewController ()

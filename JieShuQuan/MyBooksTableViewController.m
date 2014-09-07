@@ -8,7 +8,7 @@
 
 #import "MyBooksTableViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-#import "LoginViewController.h"
+#import "RegisterViewController.h"
 #import "BookStore.h"
 #import "UserStore.h"
 
@@ -23,7 +23,7 @@
     _myBooksTableView = self.tableView;
     
     UIStoryboard *mainStoryboard = self.storyboard;
-    _loginController = [mainStoryboard instantiateViewControllerWithIdentifier:@"loginviewcontroller"];
+    _registerController = [mainStoryboard instantiateViewControllerWithIdentifier:@"RegisterViewController"];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -52,7 +52,7 @@
 
 - (void)login
 {
-    [self.navigationController pushViewController:_loginController animated:YES];
+    [self.navigationController pushViewController:_registerController animated:YES];
 }
 
 - (void)showPreLoginView

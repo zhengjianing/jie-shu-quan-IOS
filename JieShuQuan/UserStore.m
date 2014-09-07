@@ -11,10 +11,10 @@
 
 @implementation UserStore
 
-// keys in DouBan API
-static const NSString *kDouUserName = @"douban_user_name";
-static const NSString *kDouAccessToken = @"access_token";
-static const NSString *kDouUserId = @"douban_user_id";
+// keys in Server API
+static const NSString *kUserName = @"user_name";
+static const NSString *kAccessToken = @"access_token";
+static const NSString *kUserId = @"user_id";
 
 // keys in NSUserDefaults
 static const NSString *kUDCurrentUserName = @"current_username";
@@ -42,9 +42,9 @@ static const NSString *kDBAccessToken = @"access_token";
 
 - (void)saveCurrentUserToUDAndDBByUserObject:(id)userObject
 {
-    NSString *userName = [userObject valueForKey:(NSString *)kDouUserName];
-    NSString *accessToken = [userObject valueForKey:(NSString *)kDouAccessToken];
-    NSString *userID = [userObject valueForKey:(NSString *)kDouUserId];
+    NSString *userName = [userObject valueForKey:(NSString *)kUserName];
+    NSString *accessToken = [userObject valueForKey:(NSString *)kAccessToken];
+    NSString *userID = [userObject valueForKey:(NSString *)kUserId];
     
     [[NSUserDefaults standardUserDefaults] setObject:userName forKey:(NSString *)kUDCurrentUserName];
     [[NSUserDefaults standardUserDefaults] setObject:accessToken forKey:(NSString *)kUDAccessToken];

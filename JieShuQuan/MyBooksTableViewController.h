@@ -11,7 +11,7 @@
 #import "Book.h"
 #import "BookTableViewCell.h"
 #import "BookDetailViewController.h"
-@class LoginViewController;
+@class RegisterViewController;
 
 @interface MyBooksTableViewController : UITableViewController <PreLoginDelegate>
 
@@ -20,7 +20,7 @@
 
 @property (strong, nonatomic) NSArray *myBooks;
 
-@property (strong, nonatomic) LoginViewController *loginController;
+@property (strong, nonatomic) RegisterViewController *registerController;
 
 - (void)showTableView;
 
