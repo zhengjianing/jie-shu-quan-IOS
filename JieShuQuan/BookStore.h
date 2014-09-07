@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Store.h"
 
 @class Book;
 
-@interface BookStore : NSObject
+@interface BookStore : Store
 
 + (BookStore *)sharedStore;
 

@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Store.h"
 
-@interface UserStore : NSObject
+@interface UserStore : Store
 
 + (UserStore *)sharedStore;
 

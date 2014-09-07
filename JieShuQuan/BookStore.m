@@ -10,7 +10,6 @@
 #import "Book.h"
 #import "UserStore.h"
 #import <CoreData/CoreData.h>
-#import "AppDelegate.h"
 
 @interface BookStore ()
 {
@@ -121,21 +120,6 @@ static const NSString *kPublishDate = @"publishDate";
 {
     return [[storedBook valueForKey:(NSString *)kName] isEqualToString:book.name]
     && [[storedBook valueForKey:(NSString *)kAuthors] isEqualToArray:book.authors];
-}
-
-- (NSManagedObjectContext *)managedObjectContext
-{
-    return [[self appDelegate] managedObjectContext];
-}
-
-- (void)saveContext
-{
-    [[self appDelegate] saveContext];
-}
-
-- (id)appDelegate
-{
-    return [[UIApplication sharedApplication] delegate];
 }
 
 @end

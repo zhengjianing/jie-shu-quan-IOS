@@ -8,7 +8,6 @@
 
 #import "UserStore.h"
 #import <CoreData/CoreData.h>
-#import "AppDelegate.h"
 
 @implementation UserStore
 
@@ -81,23 +80,6 @@ static const NSString *kDBAccessToken = @"access_token";
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:(NSString *)kUDCurrentUserName];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:(NSString *)kUDAccessToken];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:(NSString *)kUDUserId];
-}
-
-#pragma mark - private methods
-
-- (NSManagedObjectContext *)managedObjectContext
-{
-    return [[self appDelegate] managedObjectContext];
-}
-
-- (void)saveContext
-{
-    [[self appDelegate] saveContext];
-}
-
-- (id)appDelegate
-{
-    return [[UIApplication sharedApplication] delegate];
 }
 
 @end
