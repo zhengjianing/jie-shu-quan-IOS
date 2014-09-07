@@ -105,12 +105,8 @@
         NSIndexPath *selectIndexPath = [self.tableView indexPathForSelectedRow];
         NSManagedObject *selectedBook = [_myBooks objectAtIndex:[selectIndexPath row]];
         [[segue destinationViewController] setStoredBook:selectedBook];
-        [[segue destinationViewController] setIsFromStore:YES];
         [[[segue destinationViewController] addBookButton] setBackgroundColor:[UIColor grayColor]];
-//        [[[segue destinationViewController] addBookButton] setEnabled:NO];
         [[[segue destinationViewController] addBookButton] setUserInteractionEnabled:NO];
-
-        
     }
 }
 

@@ -22,10 +22,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *discriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *authorInfoLabel;
 @property (strong, nonatomic) IBOutlet UIButton *addBookButton;
+@property (strong, nonatomic) IBOutlet UIButton *borrowFromFriends;
 
 @property (strong, nonatomic) Book *searchedBook;
 @property (strong ,nonatomic) NSManagedObject *storedBook;
-@property (nonatomic, assign) BOOL isFromStore;
 
 - (IBAction)addBook:(id)sender;
 

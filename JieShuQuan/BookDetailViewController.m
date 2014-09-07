@@ -16,7 +16,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    _addBookButton.layer.cornerRadius = 5.0;
+    _borrowFromFriends.layer.cornerRadius = 5.0;
     self.view.backgroundColor = [UIColor whiteColor];
 }
 
@@ -29,7 +30,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if (!_isFromStore) {
+    if (_searchedBook) {
         [_bookImageView sd_setImageWithURL:[NSURL URLWithString:_searchedBook.imageHref]];
         _nameLabel.text = _searchedBook.name;
         _authorsLabel.text = [_searchedBook authorsString];
