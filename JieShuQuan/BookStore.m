@@ -24,6 +24,7 @@
 static const NSString *kEntityName = @"Book";
 static const NSString *kName = @"name";
 static const NSString *kAuthors = @"authors";
+static const NSString *kImageHref = @"imageHref";
 static const NSString *kDescription = @"bookDescription";
 static const NSString *kAuthorInfo = @"authorInfo";
 static const NSString *kPrice = @"price";
@@ -107,7 +108,7 @@ static const NSString *kPublishDate = @"publishDate";
 {
     [managedBook setValue:book.name forKey:(NSString *)kName];
     [managedBook setValue:book.authors forKey:(NSString *)kAuthors];
-    //    [managedBook setValue:UIImageJPEGRepresentation(_bookImageView.image, 1.0)  forKey:@"imageData"];
+    [managedBook setValue:book.imageHref  forKey:(NSString *)kImageHref];
     [managedBook setValue:book.description forKey:(NSString *)kDescription];
     [managedBook setValue:book.authorInfo forKey:(NSString *)kAuthorInfo];
     [managedBook setValue:book.price forKey:(NSString *)kPrice];

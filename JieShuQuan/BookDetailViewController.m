@@ -45,8 +45,6 @@
 }
 
 - (IBAction)addBook:(id)sender {
-    NSArray *storedBooks = [[BookStore sharedStore] storedBooks];
-    
     if ([[BookStore sharedStore] storeHasBook:_searchedBook]) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Book Already Exists" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
         [alertView show];

@@ -90,10 +90,9 @@
     BookTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bookIdentifier" forIndexPath:indexPath];
 
     NSManagedObject *book = [_myBooks objectAtIndex:indexPath.row];
-    
     cell.nameLabel.text = [book valueForKey:@"name"];
     cell.authorsLabel.text = [[book valueForKey:@"authors"] componentsJoinedByString:@", "];
-    [cell.bookImageView setImage:[UIImage imageWithData:[book valueForKey:@"imageData"]]];
+    [cell.bookImageView sd_setImageWithURL:[book valueForKey:@"imageHref"]];
     
     return cell;
 }
