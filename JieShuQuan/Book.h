@@ -20,8 +20,6 @@
 @property (copy, nonatomic) NSString *publishDate;
 @property (copy ,nonatomic) NSString *bookId;
 
-- (id)initWithName:(NSString *)name authors:(NSArray *)authors imageHref:(NSString *)imageHref discription:(NSString *)description authorInfo:(NSString *)authorInfo price:(NSString *)price publisher:(NSString *)publisher publishDate:(NSString *)publishDate bookId:(NSString *)bookId;
-
 - (NSString *)authorsString;
 
 @end

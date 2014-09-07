@@ -118,16 +118,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9412E2F019A9E4C5008D243C /* more */ = {
+		9412E2F019A9E4C5008D243C /* More */ = {
 			isa = PBXGroup;
 			children = (
 				9471DC1319A5A31F00F1A291 /* MoreViewController.h */,
 				9471DC1419A5A31F00F1A291 /* MoreViewController.m */,
 			);
-			name = more;
+			name = More;
 			sourceTree = "<group>";
 		};
-		9412E2F119A9E4CD008D243C /* myBooks */ = {
+		9412E2F119A9E4CD008D243C /* MyBooks */ = {
 			isa = PBXGroup;
 			children = (
 				9471DC2519A9689E00F1A291 /* MyBooksTableViewController.h */,
@@ -137,17 +137,17 @@
 				9412E2F919AA0D82008D243C /* BookTableViewCell.h */,
 				9412E2FA19AA0D82008D243C /* BookTableViewCell.m */,
 			);
-			name = myBooks;
+			name = MyBooks;
 			sourceTree = "<group>";
 		};
-		9412E2F219A9E4D4008D243C /* login */ = {
+		9412E2F219A9E4D4008D243C /* Login */ = {
 			isa = PBXGroup;
 			children = (
 				9471DC2919A974AB00F1A291 /* PreLoginView.h */,
 				9471DC2A19A974AB00F1A291 /* PreLoginView.m */,
 				9471DC2E19A9895000F1A291 /* PreLoginNib.xib */,
 			);
-			name = login;
+			name = Login;
 			sourceTree = "<group>";
 		};
 		9471DBE019A5837700F1A291 = {
@@ -176,11 +176,12 @@
 				9471DBF019A5837700F1A291 /* AppDelegate.h */,
 				9471DBF119A5837700F1A291 /* AppDelegate.m */,
 				9471DBF919A5837700F1A291 /* Main.storyboard */,
+				948615F119BC1434001837BF /* Utils */,
 				97F65AC319AE0A8300B9DC93 /* Model */,
-				9412E2F219A9E4D4008D243C /* login */,
-				9412E2F119A9E4CD008D243C /* myBooks */,
-				97F65ABF19AE03E200B9DC93 /* SearchController */,
-				9412E2F019A9E4C5008D243C /* more */,
+				9412E2F219A9E4D4008D243C /* Login */,
+				9412E2F119A9E4CD008D243C /* MyBooks */,
+				97F65ABF19AE03E200B9DC93 /* Search */,
+				9412E2F019A9E4C5008D243C /* More */,
 				978CCB8519AB55B700CA8D87 /* Login */,
 				9471DBFC19A5837700F1A291 /* Images.xcassets */,
 				9471DBF319A5837700F1A291 /* JieShuQuan.xcdatamodeld */,
@@ -218,7 +219,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		94E5039519BAF998004CEBC6 /* dataStore */ = {
+		948615F119BC1434001837BF /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				97F65AC519AE0B1200B9DC93 /* DataConverter.h */,
+				97F65AC619AE0B1200B9DC93 /* DataConverter.m */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		94E5039519BAF998004CEBC6 /* DataStore */ = {
 			isa = PBXGroup;
 			children = (
 				9412E2F319A9FAC7008D243C /* Book.h */,
@@ -230,7 +240,7 @@
 				948615EE19BC0FD1001837BF /* Store.h */,
 				948615EF19BC0FD1001837BF /* Store.m */,
 			);
-			name = dataStore;
+			name = DataStore;
 			sourceTree = "<group>";
 		};
 		978CCB8519AB55B700CA8D87 /* Login */ = {
@@ -255,19 +265,19 @@
 			name = Douban;
 			sourceTree = "<group>";
 		};
-		97F65ABF19AE03E200B9DC93 /* SearchController */ = {
+		97F65ABF19AE03E200B9DC93 /* Search */ = {
 			isa = PBXGroup;
 			children = (
 				97DDA8DD19AF7F430055C7E5 /* SearchTableViewController.h */,
 				97DDA8DE19AF7F430055C7E5 /* SearchTableViewController.m */,
 			);
-			name = SearchController;
+			name = Search;
 			sourceTree = "<group>";
 		};
 		97F65AC319AE0A8300B9DC93 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				94E5039519BAF998004CEBC6 /* dataStore */,
+				94E5039519BAF998004CEBC6 /* DataStore */,
 				97F65AC419AE0A9900B9DC93 /* WebDataModel */,
 			);
 			name = Model;
@@ -278,8 +288,6 @@
 			children = (
 				97F65AC019AE0A7D00B9DC93 /* JsonDataFetcher.h */,
 				97F65AC119AE0A7D00B9DC93 /* JsonDataFetcher.m */,
-				97F65AC519AE0B1200B9DC93 /* DataConverter.h */,
-				97F65AC619AE0B1200B9DC93 /* DataConverter.m */,
 				97FC364D19B4C1AB002D0932 /* NSArrayTransformer.h */,
 				97FC364E19B4C1AB002D0932 /* NSArrayTransformer.m */,
 			);

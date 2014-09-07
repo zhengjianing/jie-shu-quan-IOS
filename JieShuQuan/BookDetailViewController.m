@@ -39,7 +39,7 @@
         _discriptionLabel.text = _searchedBook.description;
         _authorInfoLabel.text = _searchedBook.authorInfo;
     } else {
-        [_bookImageView setImage:[UIImage imageWithData:[_storedBook valueForKey:@"imageData"]]];
+        [_bookImageView sd_setImageWithURL:[NSURL URLWithString:[_storedBook valueForKey:@"imageHref"]]];
         _nameLabel.text = [_storedBook valueForKey:@"name"];
         _authorsLabel.text = [[_storedBook valueForKey:@"authors"] componentsJoinedByString:@", "];
         _publisherLabel.text = [_storedBook valueForKey:@"publisher"];
@@ -51,13 +51,12 @@
 }
 
 - (IBAction)addBook:(id)sender {
-    if ([[BookStore sharedStore] storeHasBook:_searchedBook]) {
+    if (!_searchedBook || [[BookStore sharedStore] storeHasBook:_searchedBook]) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Book Already Exists" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
         [alertView show];
     } else {
         [[BookStore sharedStore] addBookToStore:_searchedBook];
     }
-    
 }
 
 @end
