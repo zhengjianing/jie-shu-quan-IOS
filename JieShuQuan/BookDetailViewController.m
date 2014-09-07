@@ -42,11 +42,23 @@
 
 - (IBAction)addBook:(id)sender {
     if ([[BookStore sharedStore] storeHasBook:_book]) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Book Already Exists" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
-        [alertView show];
+        [self showAlertWithMessage:@"我的书库已有此书"];
     } else {
+        [self showAlertWithMessage:@"已添加至我的书库"];
         [[BookStore sharedStore] addBookToStore:_book];
     }
+}
+
+- (void)showAlertWithMessage:(NSString *)message
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:message delegate:self cancelButtonTitle:nil otherButtonTitles:@"好", nil];
+    [self performSelector:@selector(dismissAlert:) withObject:alertView afterDelay:2.0];
+    [alertView show];
+}
+
+- (void)dismissAlert:(UIAlertView *)alert
+{
+    [alert dismissWithClickedButtonIndex:[alert cancelButtonIndex] animated:YES];
 }
 
 @end

@@ -105,7 +105,6 @@
         Book *selectedBook = [_myBooks objectAtIndex:[selectIndexPath row]];
         [[segue destinationViewController] setBook:selectedBook];
         [[[segue destinationViewController] addBookButton] setBackgroundColor:[UIColor grayColor]];
-        [[[segue destinationViewController] addBookButton] setUserInteractionEnabled:NO];
     }
 }
 
