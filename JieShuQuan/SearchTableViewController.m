@@ -94,7 +94,7 @@
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
     if (![searchString isEqualToString:@""]) {
-        NSString *prefix = [NSString stringWithFormat:@"%@?apikey=%@&count=10&q=", kSearchURL, kAPIKey];
+        NSString *prefix = [NSString stringWithFormat:@"%@?apikey=%@&count=%@&q=", kSearchURL, kAPIKey, kMaxCount];
         NSString *searchUrl = [prefix stringByAppendingString:searchString];
         NSString* encodedUrl = [searchUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         [self searchByDouBanWithUrl:encodedUrl];

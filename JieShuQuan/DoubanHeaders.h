@@ -13,3 +13,5 @@
 #define kRedirect_URL @"http://www.douban.com"
 
 #define kSearchURL @"https://api.douban.com/v2/book/search"
+
+#define kMaxCount @10
