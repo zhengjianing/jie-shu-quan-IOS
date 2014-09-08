@@ -22,8 +22,7 @@
     [self navigationItem].title = @"更多";
     
     UIStoryboard *mainStoryboard = self.storyboard;
-    
-    _loginController = [mainStoryboard instantiateViewControllerWithIdentifier:@"loginviewcontroller"];
+    _registerController = [mainStoryboard instantiateViewControllerWithIdentifier:@"RegisterViewController"];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -58,7 +57,7 @@
 
 - (void)login
 {
-    [self.navigationController pushViewController:_loginController animated:YES];
+    [self.navigationController pushViewController:_registerController animated:YES];
     
     [self updateViewWithLogin];
 }

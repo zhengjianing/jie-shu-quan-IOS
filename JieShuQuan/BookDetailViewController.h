@@ -11,7 +11,7 @@
 
 @class Book;
 
-@interface BookDetailViewController : UIViewController
+@interface BookDetailViewController : UIViewController <NSURLConnectionDataDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *bookImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;

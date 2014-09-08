@@ -13,18 +13,21 @@
 
 // keys in Server API
 static const NSString *kUserName = @"user_name";
+static const NSString *kGroupName = @"group_name";
 static const NSString *kAccessToken = @"access_token";
 static const NSString *kUserId = @"user_id";
 
 // keys in NSUserDefaults
 static const NSString *kUDCurrentUserName = @"current_username";
+static const NSString *kUDGroupName = @"group_name";
 static const NSString *kUDAccessToken = @"access_token";
 static const NSString *kUDUserId = @"user_id";
 
 // keys in CoreData
 static const NSString *kEntityName = @"User";
 static const NSString *kDBUserId = @"user_id";
-static const NSString *kDBAccessToken = @"access_token";
+static const NSString *kDBUserName = @"user_name";
+static const NSString *kDBGroupName = @"group_name";
 
 + (UserStore *)sharedStore
 {
@@ -42,17 +45,23 @@ static const NSString *kDBAccessToken = @"access_token";
 
 - (void)saveCurrentUserToUDAndDBByUserObject:(id)userObject
 {
+    //get user from server
     NSString *userName = [userObject valueForKey:(NSString *)kUserName];
+    NSString *groupName = [userObject valueForKey:(NSString *)kGroupName];
     NSString *accessToken = [userObject valueForKey:(NSString *)kAccessToken];
     NSString *userID = [userObject valueForKey:(NSString *)kUserId];
     
+    //save user to NSUserDefaults
     [[NSUserDefaults standardUserDefaults] setObject:userName forKey:(NSString *)kUDCurrentUserName];
+    [[NSUserDefaults standardUserDefaults] setObject:groupName forKey:(NSString *)kUDCurrentUserName];
     [[NSUserDefaults standardUserDefaults] setObject:accessToken forKey:(NSString *)kUDAccessToken];
     [[NSUserDefaults standardUserDefaults] setObject:userID forKey:(NSString *)kUDUserId];
     
+    //save user to database
     NSManagedObject *user = [NSEntityDescription insertNewObjectForEntityForName:(NSString *)kEntityName inManagedObjectContext:[self managedObjectContext]];
     [user setValue:userID forKey:(NSString *)kDBUserId];
-    [user setValue:accessToken forKey:(NSString *)kDBAccessToken];
+    [user setValue:userName forKey:(NSString *)kDBUserName];
+    [user setValue:groupName forKey:(NSString *)kDBGroupName];
     [self saveContext];
 }
 

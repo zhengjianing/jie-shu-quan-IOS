@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class LoginViewController;
+@class RegisterViewController;
 
 @interface MoreViewController : UIViewController
 
@@ -16,7 +16,7 @@
 
 @property (strong, nonatomic) NSString *userName;
 
-@property (strong, nonatomic) LoginViewController *loginController;
+@property (strong, nonatomic) RegisterViewController *registerController;
 
 - (IBAction)loginLogout:(id)sender;
 

@@ -10,6 +10,7 @@
 #import "BookStore.h"
 #import "UserStore.h"
 #import "NSString+AES256.h"
+#import "AlertHelper.h"
 
 @implementation RegisterViewController
 
@@ -17,7 +18,20 @@ static const NSString *kRegisterURL = @"http://jie-shu-quan.herokuapp.com/regist
 static const NSString *kPasswordKey = @"key";
 
 - (IBAction)registerUser:(id)sender {
-    [self postRequestWithUserName:_userName.text email:_email.text password:_password.text];
+    if (_userName.text.length>0 && _userName.text.length<=20) {
+        if ([self isValidateEmail:_email.text]){
+            if (_password.text.length>=6 && _password.text.length<=20) {
+                [self postRequestWithUserName:_userName.text email:_email.text password:_password.text];
+            } else [AlertHelper showAlertWithMessage:@"密码长度错误！" target:self];
+        } else [AlertHelper showAlertWithMessage:@"邮箱格式错误！" target:self];
+    } else [AlertHelper showAlertWithMessage:@"用户名格式错误！" target:self];
+}
+
+//正则表达式本地判断email的格式是否正确
+-(BOOL)isValidateEmail:(NSString *)email {
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:email];
 }
 
 - (void)postRequestWithUserName:(NSString *)name email:(NSString *)email password:(NSString *)password
@@ -49,6 +63,7 @@ static const NSString *kPasswordKey = @"key";
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
     id userObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+    NSLog(@"%@", userObject);
     [[UserStore sharedStore] saveCurrentUserToUDAndDBByUserObject:userObject];
     [[BookStore sharedStore] refreshStoredBooks];
 }
@@ -56,13 +71,11 @@ static const NSString *kPasswordKey = @"key";
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     NSLog(@"%@", @"didFailWithError");
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"popLoginViewController" object:self];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     NSLog(@"%@", @"connectionDidFinishLoading");
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"popLoginViewController" object:self];
 }
 
 @end

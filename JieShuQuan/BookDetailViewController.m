@@ -12,6 +12,16 @@
 #import "Book.h"
 #import "AlertHelper.h"
 
+static const NSString *kAddBookURL = @"http://jie-shu-quan.herokuapp.com/add_book";
+static const NSString *kBookId = @"douban_book_id";
+static const NSString *kAvailableState = @"available";
+
+// keys in NSUserDefaults
+static const NSString *kUDCurrentUserName = @"current_username";
+static const NSString *kUDGroupName = @"group_name";
+static const NSString *kUDAccessToken = @"access_token";
+static const NSString *kUDUserId = @"user_id";
+
 @implementation BookDetailViewController
 
 - (void)viewDidLoad
@@ -46,8 +56,53 @@
         [AlertHelper showAlertWithMessage:@"我的书库已有此书" target:self];
     } else {
         [AlertHelper showAlertWithMessage:@"已添加至我的书库" target:self];
+        [self postRequestWithBookId:_book.bookId available:YES
+                             userId:[[NSUserDefaults standardUserDefaults] valueForKey:(NSString *)kUDUserId]
+                         accessToke:[[NSUserDefaults standardUserDefaults] valueForKey:(NSString *)kUDAccessToken]];
         [[BookStore sharedStore] addBookToStore:_book];
     }
 }
+
+- (void)postRequestWithBookId:(NSString *)bookId available:(BOOL)state userId:(NSString *)userId accessToke:(NSString *)accessToken
+{
+    NSDictionary *bodyDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                              bookId, kBookId,
+                              [NSNumber numberWithInteger:state], kAvailableState,
+                              userId, @"user_id",
+                              accessToken, @"access_token", nil];
+    NSURL *postURL = [NSURL URLWithString:[kAddBookURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:postURL];
+    
+    id object = [NSJSONSerialization dataWithJSONObject:bodyDict options:NSJSONWritingPrettyPrinted error:nil];
+    [request setHTTPBody:object];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPMethod:@"POST"];
+    
+    NSURLConnection *connection;
+    connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
+}
+
+#pragma mark - NSURLConnectionDataDelegate methods
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    NSLog(@"%@", response);
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    id userObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+    NSLog(@"%@", userObject);
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    NSLog(@"%@", @"didFailWithError");
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    NSLog(@"%@", @"connectionDidFinishLoading");
+}
+
 
 @end
