@@ -13,7 +13,7 @@
 
 @implementation RegisterViewController
 
-static const NSString *kPostUserURL = @"http://jie-shu-quan.herokuapp.com/users.json";
+static const NSString *kRegisterURL = @"http://jie-shu-quan.herokuapp.com/register";
 static const NSString *kPasswordKey = @"key";
 
 - (IBAction)registerUser:(id)sender {
@@ -28,7 +28,7 @@ static const NSString *kPasswordKey = @"key";
                               name, @"user_name",
                               email, @"email",
                               encrypedPassword, @"password", nil];
-    NSURL *postURL = [NSURL URLWithString:[kPostUserURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSURL *postURL = [NSURL URLWithString:[kRegisterURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:postURL];
     
     id object = [NSJSONSerialization dataWithJSONObject:bodyDict options:NSJSONWritingPrettyPrinted error:nil];
