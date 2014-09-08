@@ -9,10 +9,12 @@
 #import "RegisterViewController.h"
 #import "BookStore.h"
 #import "UserStore.h"
+#import "NSString+AES256.h"
 
 @implementation RegisterViewController
 
 static const NSString *kPostUserURL = @"http://jie-shu-quan.herokuapp.com/users.json";
+static const NSString *kPasswordKey = @"key";
 
 - (IBAction)registerUser:(id)sender {
     [self postRequestWithUserName:_userName.text email:_email.text password:_password.text];
@@ -20,10 +22,12 @@ static const NSString *kPostUserURL = @"http://jie-shu-quan.herokuapp.com/users.
 
 - (void)postRequestWithUserName:(NSString *)name email:(NSString *)email password:(NSString *)password
 {
+    NSString *encrypedPassword = [password aes256_encrypt:(NSString *)kPasswordKey];
+    
     NSDictionary *bodyDict = [NSDictionary dictionaryWithObjectsAndKeys:
                               name, @"user_name",
                               email, @"email",
-                              password, @"password", nil];
+                              encrypedPassword, @"password", nil];
     NSURL *postURL = [NSURL URLWithString:[kPostUserURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:postURL];
     

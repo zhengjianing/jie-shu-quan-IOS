@@ -28,6 +28,8 @@
 		97C528A119BC34B600388375 /* AlertHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C528A019BC34B600388375 /* AlertHelper.m */; };
 		97C528A419BC761000388375 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C528A319BC761000388375 /* RegisterViewController.m */; };
 		97DDA8DF19AF7F430055C7E5 /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97DDA8DE19AF7F430055C7E5 /* SearchTableViewController.m */; };
+		97F306B219BD45800010E91F /* NSData+AES256.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F306B119BD45800010E91F /* NSData+AES256.m */; };
+		97F306B519BD47D10010E91F /* NSString+AES256.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F306B419BD47D10010E91F /* NSString+AES256.m */; };
 		97F65AC219AE0A7D00B9DC93 /* JsonDataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F65AC119AE0A7D00B9DC93 /* JsonDataFetcher.m */; };
 		97F65AC719AE0B1200B9DC93 /* DataConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F65AC619AE0B1200B9DC93 /* DataConverter.m */; };
 		97F973C619B5FBF4007AAD47 /* BookStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F973C519B5FBF4007AAD47 /* BookStore.m */; };
@@ -85,6 +87,10 @@
 		97C528A519BC785800388375 /* DoubanHeaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DoubanHeaders.h; sourceTree = "<group>"; };
 		97DDA8DD19AF7F430055C7E5 /* SearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewController.h; sourceTree = "<group>"; };
 		97DDA8DE19AF7F430055C7E5 /* SearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewController.m; sourceTree = "<group>"; };
+		97F306B019BD45800010E91F /* NSData+AES256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AES256.h"; sourceTree = "<group>"; };
+		97F306B119BD45800010E91F /* NSData+AES256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AES256.m"; sourceTree = "<group>"; };
+		97F306B319BD47D10010E91F /* NSString+AES256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+AES256.h"; sourceTree = "<group>"; };
+		97F306B419BD47D10010E91F /* NSString+AES256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+AES256.m"; sourceTree = "<group>"; };
 		97F65AC019AE0A7D00B9DC93 /* JsonDataFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonDataFetcher.h; sourceTree = "<group>"; };
 		97F65AC119AE0A7D00B9DC93 /* JsonDataFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonDataFetcher.m; sourceTree = "<group>"; };
 		97F65AC519AE0B1200B9DC93 /* DataConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataConverter.h; sourceTree = "<group>"; };
@@ -227,6 +233,10 @@
 				97C5289F19BC34B600388375 /* AlertHelper.h */,
 				97C528A019BC34B600388375 /* AlertHelper.m */,
 				97C528A519BC785800388375 /* DoubanHeaders.h */,
+				97F306B019BD45800010E91F /* NSData+AES256.h */,
+				97F306B119BD45800010E91F /* NSData+AES256.m */,
+				97F306B319BD47D10010E91F /* NSString+AES256.h */,
+				97F306B419BD47D10010E91F /* NSString+AES256.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -421,9 +431,11 @@
 			files = (
 				97C528A119BC34B600388375 /* AlertHelper.m in Sources */,
 				97FC364F19B4C1AB002D0932 /* NSArrayTransformer.m in Sources */,
+				97F306B219BD45800010E91F /* NSData+AES256.m in Sources */,
 				9471DC1519A5A31F00F1A291 /* MoreViewController.m in Sources */,
 				9471DBF519A5837700F1A291 /* JieShuQuan.xcdatamodeld in Sources */,
 				9471DC2B19A974AB00F1A291 /* PreLoginView.m in Sources */,
+				97F306B519BD47D10010E91F /* NSString+AES256.m in Sources */,
 				948615F019BC0FD1001837BF /* Store.m in Sources */,
 				97DDA8DF19AF7F430055C7E5 /* SearchTableViewController.m in Sources */,
 				9471DBF219A5837700F1A291 /* AppDelegate.m in Sources */,
