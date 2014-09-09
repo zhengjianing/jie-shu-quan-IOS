@@ -21,7 +21,9 @@ static const NSString *kPasswordKey = @"passwordKey";
     if (_userName.text.length>0 && _userName.text.length<=20) {
         if ([self isValidateEmail:_email.text]){
             if (_password.text.length>=6 && _password.text.length<=20) {
-                [self postRequestWithUserName:_userName.text email:_email.text password:_password.text];
+                if ([_password.text isEqualToString:_confirmPassword.text]) {
+                    [self postRequestWithUserName:_userName.text email:_email.text password:_password.text];
+                } else [AlertHelper showAlertWithMessage:@"两次输入的密码不一致！" target:self];
             } else [AlertHelper showAlertWithMessage:@"密码长度错误！" target:self];
         } else [AlertHelper showAlertWithMessage:@"邮箱格式错误！" target:self];
     } else [AlertHelper showAlertWithMessage:@"用户名格式错误！" target:self];

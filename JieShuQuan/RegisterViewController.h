@@ -13,6 +13,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *userName;
 @property (strong, nonatomic) IBOutlet UITextField *email;
 @property (strong, nonatomic) IBOutlet UITextField *password;
+@property (strong, nonatomic) IBOutlet UITextField *confirmPassword;
 
 @property (strong, nonatomic) IBOutlet UIButton *registerButton;
 

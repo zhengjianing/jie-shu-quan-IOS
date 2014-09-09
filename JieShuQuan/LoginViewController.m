@@ -18,7 +18,6 @@ static const NSString *kPasswordKey = @"passwordKey";
 
 @implementation LoginViewController
 
-
 - (IBAction)recoverPassword:(id)sender {
 }
 

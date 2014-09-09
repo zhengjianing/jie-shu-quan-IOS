@@ -18,6 +18,5 @@
 @property (strong, nonatomic) IBOutlet UIButton *recoverPasswordButton;
 
 - (IBAction)loginUser:(id)sender;
-- (IBAction)registerUser:(id)sender;
 - (IBAction)recoverPassword:(id)sender;
 @end
