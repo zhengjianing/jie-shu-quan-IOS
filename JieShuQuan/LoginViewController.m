@@ -1,37 +1,34 @@
 //
-//  RegisterViewController.m
+//  LoginViewController.m
 //  JieShuQuan
 //
-//  Created by Yang Xiaozhu on 14-9-7.
+//  Created by Yang Xiaozhu on 14-9-9.
 //  Copyright (c) 2014年 JNXZ. All rights reserved.
 //
 
-#import "RegisterViewController.h"
+#import "LoginViewController.h"
 #import "BookStore.h"
 #import "UserStore.h"
 #import "NSString+AES256.h"
 #import "AlertHelper.h"
 
-@implementation RegisterViewController
-
-static const NSString *kRegisterURL = @"http://jie-shu-quan.herokuapp.com/register";
+static const NSString *kLoginURL = @"http://jie-shu-quan.herokuapp.com/login";
 static const NSString *kPasswordKey = @"passwordKey";
 
+@implementation LoginViewController
+
 - (IBAction)registerUser:(id)sender {
-    if (_userName.text.length>0 && _userName.text.length<=20) {
-        if ([self isValidateEmail:_email.text]){
-            if (_password.text.length>=6 && _password.text.length<=20) {
-                [self postRequestWithUserName:_userName.text email:_email.text password:_password.text];
-            } else [AlertHelper showAlertWithMessage:@"密码长度错误！" target:self];
-        } else [AlertHelper showAlertWithMessage:@"邮箱格式错误！" target:self];
-    } else [AlertHelper showAlertWithMessage:@"用户名格式错误！" target:self];
 }
 
 - (IBAction)recoverPassword:(id)sender {
 }
 
 - (IBAction)loginUser:(id)sender {
-    
+    if ([self isValidateEmail:_email.text]){
+        if (_password.text.length>=6 && _password.text.length<=20) {
+            [self postRequestWithEmail:_email.text password:_password.text];
+        } else [AlertHelper showAlertWithMessage:@"密码长度错误！" target:self];
+    } else [AlertHelper showAlertWithMessage:@"邮箱格式错误！" target:self];
 }
 
 
@@ -42,15 +39,14 @@ static const NSString *kPasswordKey = @"passwordKey";
     return [emailTest evaluateWithObject:email];
 }
 
-- (void)postRequestWithUserName:(NSString *)name email:(NSString *)email password:(NSString *)password
+- (void)postRequestWithEmail:(NSString *)email password:(NSString *)password
 {
     NSString *encrypedPassword = [password aes256_encrypt:(NSString *)kPasswordKey];
     
     NSDictionary *bodyDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                              name, @"user_name",
                               email, @"email",
                               encrypedPassword, @"password", nil];
-    NSURL *postURL = [NSURL URLWithString:[kRegisterURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSURL *postURL = [NSURL URLWithString:[kLoginURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:postURL];
     
     id object = [NSJSONSerialization dataWithJSONObject:bodyDict options:NSJSONWritingPrettyPrinted error:nil];
@@ -84,6 +80,19 @@ static const NSString *kPasswordKey = @"passwordKey";
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     NSLog(@"%@", @"connectionDidFinishLoading");
+    [self.navigationController popViewControllerAnimated:YES];
 }
+
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
 
 @end

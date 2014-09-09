@@ -304,7 +304,7 @@
                                 </state>
                                 <connections>
                                     <action selector="loginLogout:" destination="8GM-sR-6Wn" eventType="touchUpInside" id="2qW-p2-OfA"/>
-                                    <segue destination="LVk-ys-koe" kind="push" id="55U-Y2-kiO"/>
+                                    <segue destination="EyL-5w-TnI" kind="push" id="Q9M-Bc-jl3"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s5h-2K-2Ah">
@@ -328,6 +328,76 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BVa-K5-x9w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="239" y="248"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="KYg-zg-ec5">
+            <objects>
+                <viewController storyboardIdentifier="LoginViewController" id="EyL-5w-TnI" customClass="LoginViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ydV-CC-ADq"/>
+                        <viewControllerLayoutGuide type="bottom" id="kBg-5J-P6A"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5ae-wu-Vqy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码：请输入6~20位的数字或字母" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rAs-86-xMO">
+                                <rect key="frame" x="60" y="194" width="201" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="企业邮箱：XX@XX.com" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Za-Ma-iak">
+                                <rect key="frame" x="60" y="140" width="201" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JnB-kR-WlL">
+                                <rect key="frame" x="164" y="381" width="77" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="注册账号">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="registerUser:" destination="EyL-5w-TnI" eventType="touchUpInside" id="AUv-g6-jgw"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fU7-20-asu">
+                                <rect key="frame" x="79" y="381" width="77" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="找回密码">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="recoverPassword:" destination="EyL-5w-TnI" eventType="touchUpInside" id="7oL-ot-6Bw"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vMo-4X-5Ro">
+                                <rect key="frame" x="122" y="249" width="77" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="登陆">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginUser:" destination="EyL-5w-TnI" eventType="touchUpInside" id="Dub-2E-bad"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="qZn-AN-OLd"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="email" destination="1Za-Ma-iak" id="F3Y-gT-cae"/>
+                        <outlet property="loginButton" destination="vMo-4X-5Ro" id="K1A-8C-FLU"/>
+                        <outlet property="password" destination="rAs-86-xMO" id="Mrh-SU-GNB"/>
+                        <outlet property="recoverPasswordButton" destination="fU7-20-asu" id="wuw-bT-mJz"/>
+                        <outlet property="registerButton" destination="JnB-kR-WlL" id="RW5-Wb-jSw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6xh-8B-yPm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="657" y="239"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="KQk-2R-RN6">
@@ -359,12 +429,26 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Wy-Sg-IFD">
                                 <rect key="frame" x="122" y="320" width="77" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="注册">
+                                <state key="normal" title="登陆">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="registerUser:" destination="LVk-ys-koe" eventType="touchUpInside" id="1S8-id-M2R"/>
+                                    <action selector="loginUser:" destination="LVk-ys-koe" eventType="touchUpInside" id="sk6-Lu-IUW"/>
                                 </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xQS-iF-asO">
+                                <rect key="frame" x="171" y="382" width="77" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="注册账号">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XA0-MK-waq">
+                                <rect key="frame" x="86" y="382" width="77" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="找回密码">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -374,13 +458,15 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="email" destination="PLP-XK-ShE" id="qKY-ml-lR4"/>
+                        <outlet property="loginButton" destination="9Wy-Sg-IFD" id="ABu-6f-I3M"/>
                         <outlet property="password" destination="i9v-w6-ogF" id="nyr-5i-aMG"/>
+                        <outlet property="register_login_Button" destination="9Wy-Sg-IFD" id="GGP-fh-1rh"/>
                         <outlet property="userName" destination="lY7-12-kFf" id="QX5-Kq-QC4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8UL-yS-Nuv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="921" y="157"/>
+            <point key="canvasLocation" x="1008" y="106"/>
         </scene>
         <!--Navigation Controller - 我的书-->
         <scene sceneID="F4G-66-AbT">

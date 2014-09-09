@@ -25,6 +25,7 @@
 		948615F019BC0FD1001837BF /* Store.m in Sources */ = {isa = PBXBuildFile; fileRef = 948615EF19BC0FD1001837BF /* Store.m */; };
 		94E5039419BAF98E004CEBC6 /* UserStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E5039319BAF98E004CEBC6 /* UserStore.m */; };
 		94F2BF5619B1DE8D0053711F /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 94F2BF5519B1DE8D0053711F /* search.png */; };
+		9766FC9B19BF30980089C89B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9766FC9A19BF30980089C89B /* LoginViewController.m */; };
 		97C528A119BC34B600388375 /* AlertHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C528A019BC34B600388375 /* AlertHelper.m */; };
 		97C528A419BC761000388375 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C528A319BC761000388375 /* RegisterViewController.m */; };
 		97DDA8DF19AF7F430055C7E5 /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97DDA8DE19AF7F430055C7E5 /* SearchTableViewController.m */; };
@@ -80,6 +81,8 @@
 		94E5039219BAF98E004CEBC6 /* UserStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserStore.h; sourceTree = "<group>"; };
 		94E5039319BAF98E004CEBC6 /* UserStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserStore.m; sourceTree = "<group>"; };
 		94F2BF5519B1DE8D0053711F /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
+		9766FC9919BF30980089C89B /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		9766FC9A19BF30980089C89B /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		97C5289F19BC34B600388375 /* AlertHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertHelper.h; sourceTree = "<group>"; };
 		97C528A019BC34B600388375 /* AlertHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertHelper.m; sourceTree = "<group>"; };
 		97C528A219BC761000388375 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
@@ -149,6 +152,8 @@
 				9471DC2919A974AB00F1A291 /* PreLoginView.h */,
 				9471DC2A19A974AB00F1A291 /* PreLoginView.m */,
 				9471DC2E19A9895000F1A291 /* PreLoginNib.xib */,
+				9766FC9919BF30980089C89B /* LoginViewController.h */,
+				9766FC9A19BF30980089C89B /* LoginViewController.m */,
 				97C528A219BC761000388375 /* RegisterViewController.h */,
 				97C528A319BC761000388375 /* RegisterViewController.m */,
 			);
@@ -440,6 +445,7 @@
 				97DDA8DF19AF7F430055C7E5 /* SearchTableViewController.m in Sources */,
 				9471DBF219A5837700F1A291 /* AppDelegate.m in Sources */,
 				9471DC2719A9689E00F1A291 /* MyBooksTableViewController.m in Sources */,
+				9766FC9B19BF30980089C89B /* LoginViewController.m in Sources */,
 				9412E2FE19AA17FA008D243C /* BookDetailViewController.m in Sources */,
 				97F65AC219AE0A7D00B9DC93 /* JsonDataFetcher.m in Sources */,
 				9412E2F519A9FAC7008D243C /* Book.m in Sources */,

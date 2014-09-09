@@ -7,7 +7,7 @@
 //
 
 #import "MoreViewController.h"
-#import "RegisterViewController.h"
+#import "LoginViewController.h"
 #import "UserStore.h"
 
 @interface MoreViewController ()
@@ -22,7 +22,7 @@
     [self navigationItem].title = @"更多";
     
     UIStoryboard *mainStoryboard = self.storyboard;
-    _registerController = [mainStoryboard instantiateViewControllerWithIdentifier:@"RegisterViewController"];
+    _loginController = [mainStoryboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -43,7 +43,7 @@
 
 - (void)updateViewWithLogout
 {
-    _userNameLabel.text = @"请用您的豆瓣账号登录";
+    _userNameLabel.text = @"请登录";
     [_loginButton setTitle:@"立即登录" forState:UIControlStateNormal];
 }
 
@@ -57,7 +57,7 @@
 
 - (void)login
 {
-    [self.navigationController pushViewController:_registerController animated:YES];
+    [self.navigationController pushViewController:_loginController animated:YES];
     
     [self updateViewWithLogin];
 }
