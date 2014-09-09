@@ -18,6 +18,5 @@
 
 @property (strong, nonatomic) LoginViewController *loginController;
 
-- (IBAction)loginLogout:(id)sender;
 
 @end

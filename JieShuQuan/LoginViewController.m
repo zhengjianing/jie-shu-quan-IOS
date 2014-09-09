@@ -11,14 +11,13 @@
 #import "UserStore.h"
 #import "NSString+AES256.h"
 #import "AlertHelper.h"
+#import "RegisterViewController.h"
 
 static const NSString *kLoginURL = @"http://jie-shu-quan.herokuapp.com/login";
 static const NSString *kPasswordKey = @"passwordKey";
 
 @implementation LoginViewController
 
-- (IBAction)registerUser:(id)sender {
-}
 
 - (IBAction)recoverPassword:(id)sender {
 }
@@ -80,19 +79,8 @@ static const NSString *kPasswordKey = @"passwordKey";
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     NSLog(@"%@", @"connectionDidFinishLoading");
-    [self.navigationController popViewControllerAnimated:YES];
+    [AlertHelper showAlertWithMessage:@"登陆成功，返回我的书" target:self];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

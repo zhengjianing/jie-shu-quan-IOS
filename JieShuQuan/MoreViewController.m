@@ -10,10 +10,6 @@
 #import "LoginViewController.h"
 #import "UserStore.h"
 
-@interface MoreViewController ()
-
-@end
-
 @implementation MoreViewController
 
 - (void)viewDidLoad
@@ -47,26 +43,15 @@
     [_loginButton setTitle:@"立即登录" forState:UIControlStateNormal];
 }
 
-- (IBAction)loginLogout:(id)sender {
-    if (_userName) {
-        [self logout];
-    } else {
-        [self login];
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([_loginButton.titleLabel.text isEqualToString:@"退出登录"]) {
+        _userName = nil;
+        [[UserStore sharedStore] removeCurrentUserFromUD];
     }
 }
 
-- (void)login
-{
-    [self.navigationController pushViewController:_loginController animated:YES];
-    
-    [self updateViewWithLogin];
-}
-
-- (void)logout
-{
-    _userName = nil;
-    [[UserStore sharedStore] removeCurrentUserFromUD];
-    
-    [self updateViewWithLogout];
-}
 @end

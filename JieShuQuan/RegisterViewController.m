@@ -27,14 +27,6 @@ static const NSString *kPasswordKey = @"passwordKey";
     } else [AlertHelper showAlertWithMessage:@"用户名格式错误！" target:self];
 }
 
-- (IBAction)recoverPassword:(id)sender {
-}
-
-- (IBAction)loginUser:(id)sender {
-    
-}
-
-
 //正则表达式本地判断email的格式是否正确
 -(BOOL)isValidateEmail:(NSString *)email {
     NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
@@ -84,6 +76,8 @@ static const NSString *kPasswordKey = @"passwordKey";
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     NSLog(@"%@", @"connectionDidFinishLoading");
+    [AlertHelper showAlertWithMessage:@"注册成功，返回我的书" target:self];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end

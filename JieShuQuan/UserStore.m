@@ -53,7 +53,7 @@ static const NSString *kDBGroupName = @"group_name";
     
     //save user to NSUserDefaults
     [[NSUserDefaults standardUserDefaults] setObject:userName forKey:(NSString *)kUDCurrentUserName];
-    [[NSUserDefaults standardUserDefaults] setObject:groupName forKey:(NSString *)kUDCurrentUserName];
+    [[NSUserDefaults standardUserDefaults] setObject:groupName forKey:(NSString *)kUDGroupName];
     [[NSUserDefaults standardUserDefaults] setObject:accessToken forKey:(NSString *)kUDAccessToken];
     [[NSUserDefaults standardUserDefaults] setObject:userID forKey:(NSString *)kUDUserId];
     
