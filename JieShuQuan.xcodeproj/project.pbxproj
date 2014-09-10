@@ -28,6 +28,7 @@
 		94E5039419BAF98E004CEBC6 /* UserStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E5039319BAF98E004CEBC6 /* UserStore.m */; };
 		94F2BF5619B1DE8D0053711F /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 94F2BF5519B1DE8D0053711F /* search.png */; };
 		97553C3D19C090DE0034B446 /* AuthenticationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 97553C3C19C090DE0034B446 /* AuthenticationDelegate.m */; };
+		97553C3F19C0A5610034B446 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 97553C3E19C0A5610034B446 /* info.png */; };
 		9766FC9B19BF30980089C89B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9766FC9A19BF30980089C89B /* LoginViewController.m */; };
 		97C528A119BC34B600388375 /* AlertHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C528A019BC34B600388375 /* AlertHelper.m */; };
 		97C528A419BC761000388375 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C528A319BC761000388375 /* RegisterViewController.m */; };
@@ -91,6 +92,7 @@
 		94F2BF5519B1DE8D0053711F /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		97553C3B19C090DE0034B446 /* AuthenticationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationDelegate.h; sourceTree = "<group>"; };
 		97553C3C19C090DE0034B446 /* AuthenticationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticationDelegate.m; sourceTree = "<group>"; };
+		97553C3E19C0A5610034B446 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
 		9766FC9919BF30980089C89B /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		9766FC9A19BF30980089C89B /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		97C5289F19BC34B600388375 /* AlertHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertHelper.h; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 				94F2BF5519B1DE8D0053711F /* search.png */,
 				9471DC2319A5B97800F1A291 /* user.png */,
 				9471DC2119A5B95A00F1A291 /* myBooks.png */,
+				97553C3E19C0A5610034B446 /* info.png */,
 				9471DBED19A5837700F1A291 /* Info.plist */,
 				9471DBEE19A5837700F1A291 /* main.m */,
 			);
@@ -396,6 +399,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9471DBFB19A5837700F1A291 /* Main.storyboard in Resources */,
+				97553C3F19C0A5610034B446 /* info.png in Resources */,
 				94F2BF5619B1DE8D0053711F /* search.png in Resources */,
 				9471DC2219A5B95A00F1A291 /* myBooks.png in Resources */,
 				9471DC2419A5B97800F1A291 /* user.png in Resources */,

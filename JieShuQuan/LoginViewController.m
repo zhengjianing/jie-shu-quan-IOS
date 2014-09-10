@@ -38,7 +38,6 @@
     }
     
     [_activityIndicator startAnimating];
-    [self.view setUserInteractionEnabled:NO];
     [self startingLoginWithEmail:_email.text password:_password.text];
 }
 
@@ -53,7 +52,6 @@
 - (void)loginSuccess
 {
     [_activityIndicator stopAnimating];
-    [self.view setUserInteractionEnabled:YES];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 

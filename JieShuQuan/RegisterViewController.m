@@ -44,8 +44,11 @@
     }
     
     [_activityIndicatior startAnimating];
-    [self.view setUserInteractionEnabled:NO];
     [self startingRegisterWithUserName:_userName.text email:_email.text password:_password.text];
+}
+
+- (IBAction)emailHint:(id)sender {
+    [AlertHelper showAlertWithMessage:@"请使用企业邮箱！\n若使用个人邮箱，则无法添加到分组" target:self];
 }
 
 - (void)startingRegisterWithUserName:(NSString *)name email:(NSString *)email password:(NSString *)password
@@ -59,7 +62,6 @@
 - (void)registerSuccess
 {
     [_activityIndicatior stopAnimating];
-    [self.view setUserInteractionEnabled:YES];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 

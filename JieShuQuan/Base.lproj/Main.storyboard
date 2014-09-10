@@ -380,7 +380,7 @@
                                     <action selector="loginUser:" destination="EyL-5w-TnI" eventType="touchUpInside" id="Dub-2E-bad"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="mnb-1O-vaJ">
+                            <activityIndicatorView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="mnb-1O-vaJ">
                                 <rect key="frame" x="150" y="171" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
@@ -444,9 +444,18 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="P90-GT-2QM">
+                            <activityIndicatorView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="P90-GT-2QM">
                                 <rect key="frame" x="150" y="216" width="20" height="20"/>
                             </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tfz-Qz-HeX">
+                                <rect key="frame" x="276" y="191" width="15" height="15"/>
+                                <state key="normal" title="Button" image="info.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="emailHint:" destination="LVk-ys-koe" eventType="touchUpInside" id="kf6-bo-N2o"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -532,6 +541,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="info.png" width="30" height="30"/>
         <image name="myBooks.png" width="20" height="20"/>
         <image name="search.png" width="20" height="20"/>
         <image name="user.png" width="20" height="20"/>

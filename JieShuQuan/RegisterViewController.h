@@ -19,6 +19,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *registerButton;
 
 - (IBAction)registerUser:(id)sender;
+- (IBAction)emailHint:(id)sender;
 
 @property (strong ,nonatomic) AuthenticationDelegate *authDelegate;
 
