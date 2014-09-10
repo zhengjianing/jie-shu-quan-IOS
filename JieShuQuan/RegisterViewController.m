@@ -74,14 +74,7 @@
     NSLog(@"%@", @"connectionDidFinishLoading");
     [_activityIndicatior stopAnimating];
     [self.view setUserInteractionEnabled:YES];
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"注册成功" delegate:self cancelButtonTitle:nil otherButtonTitles:@"好", nil];
-    [alertView show];
-    [self performSelector:@selector(dismissAlert:) withObject:alertView afterDelay:2.0];
-}
-
-- (void)dismissAlert:(UIAlertView *)alert
-{
-    [alert dismissAlertWithObject:self];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end

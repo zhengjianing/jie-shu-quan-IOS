@@ -21,14 +21,3 @@
     [alert dismissWithClickedButtonIndex:[alert cancelButtonIndex] animated:YES];
 }
 @end
-
-
-@implementation UIAlertView (alertViewHelper)
-- (void)dismissAlertWithObject:(UIViewController *)controller
-{
-    [self dismissWithClickedButtonIndex:[self cancelButtonIndex] animated:YES];
-    if (controller) {
-        [controller.navigationController popToRootViewControllerAnimated:YES];
-    }
-}
-@end
