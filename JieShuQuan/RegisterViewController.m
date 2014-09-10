@@ -9,14 +9,11 @@
 #import "RegisterViewController.h"
 #import "BookStore.h"
 #import "UserStore.h"
-#import "NSString+AES256.h"
 #import "AlertHelper.h"
 #import "Validator.h"
-#import "ServerHeaders.h"
+#import "RequestBuilder.h"
 
 @implementation RegisterViewController
-
-static const NSString *kPasswordKey = @"passwordKey";
 
 - (IBAction)registerUser:(id)sender {
     Validator *validator = [[Validator alloc] init];
@@ -47,21 +44,10 @@ static const NSString *kPasswordKey = @"passwordKey";
 }
 
 - (void)startingRegisterWithUserName:(NSString *)name email:(NSString *)email password:(NSString *)password
-{
-    NSString *encrypedPassword = [password aes256_encrypt:(NSString *)kPasswordKey];
-    
-    NSDictionary *bodyDict = @{@"user_name": name, @"email": email, @"password": encrypedPassword};
-
-    NSURL *registerURL = [NSURL URLWithString:[kRegisterURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:registerURL];
-    
-    id object = [NSJSONSerialization dataWithJSONObject:bodyDict options:NSJSONWritingPrettyPrinted error:nil];
-    [request setHTTPBody:object];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPMethod:@"POST"];
-    
+{    
+    NSMutableURLRequest *registerRequest = [RequestBuilder buildRegisterRequestWithUserName:name email:email password:password];
     NSURLConnection *connection;
-    connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
+    connection = [[NSURLConnection alloc] initWithRequest:registerRequest delegate:self startImmediately:YES];
 }
 
 #pragma mark - NSURLConnectionDataDelegate methods
@@ -97,7 +83,5 @@ static const NSString *kPasswordKey = @"passwordKey";
 {
     [alert dismissAlertWithObject:self];
 }
-
-
 
 @end
