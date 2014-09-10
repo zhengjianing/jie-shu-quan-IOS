@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+@class AuthenticationDelegate;
 
-@interface LoginViewController : UIViewController <NSURLConnectionDataDelegate>
+@interface LoginViewController : UIViewController
 
 @property (strong, nonatomic) IBOutlet UITextField *email;
 @property (strong, nonatomic) IBOutlet UITextField *password;
-
 @property (strong, nonatomic) IBOutlet UIButton *loginButton;
 @property (strong, nonatomic) IBOutlet UIButton *registerButton;
 @property (strong, nonatomic) IBOutlet UIButton *recoverPasswordButton;
@@ -20,4 +20,7 @@
 
 - (IBAction)loginUser:(id)sender;
 - (IBAction)recoverPassword:(id)sender;
+
+@property (strong ,nonatomic) AuthenticationDelegate *authDelegate;
+
 @end

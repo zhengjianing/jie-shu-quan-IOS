@@ -7,13 +7,18 @@
 //
 
 #import "RegisterViewController.h"
-#import "BookStore.h"
-#import "UserStore.h"
 #import "AlertHelper.h"
 #import "Validator.h"
 #import "RequestBuilder.h"
+#import "AuthenticationDelegate.h"
 
 @implementation RegisterViewController
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(registerSuccess) name:@"registerSuccess" object:nil];
+}
 
 - (IBAction)registerUser:(id)sender {
     Validator *validator = [[Validator alloc] init];
@@ -45,33 +50,14 @@
 
 - (void)startingRegisterWithUserName:(NSString *)name email:(NSString *)email password:(NSString *)password
 {    
+    _authDelegate = [[AuthenticationDelegate alloc] init];
     NSMutableURLRequest *registerRequest = [RequestBuilder buildRegisterRequestWithUserName:name email:email password:password];
     NSURLConnection *connection;
-    connection = [[NSURLConnection alloc] initWithRequest:registerRequest delegate:self startImmediately:YES];
+    connection = [[NSURLConnection alloc] initWithRequest:registerRequest delegate:_authDelegate startImmediately:YES];
 }
 
-#pragma mark - NSURLConnectionDataDelegate methods
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+- (void)registerSuccess
 {
-    NSLog(@"%@", response);
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    id userObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-    NSLog(@"%@", userObject);
-    [[UserStore sharedStore] saveCurrentUserToUDAndDBByUserObject:userObject];
-    [[BookStore sharedStore] refreshStoredBooks];
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    NSLog(@"%@", @"didFailWithError");
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    NSLog(@"%@", @"connectionDidFinishLoading");
     [_activityIndicatior stopAnimating];
     [self.view setUserInteractionEnabled:YES];
     [self.navigationController popToRootViewControllerAnimated:YES];

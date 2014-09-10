@@ -7,16 +7,19 @@
 //
 
 #import "LoginViewController.h"
-#import "BookStore.h"
-#import "UserStore.h"
 #import "AlertHelper.h"
 #import "RegisterViewController.h"
 #import "Validator.h"
 #import "RequestBuilder.h"
-
-static const NSString *kPasswordKey = @"passwordKey";
+#import "AuthenticationDelegate.h"
 
 @implementation LoginViewController
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSuccess) name:@"loginSuccess" object:nil];
+}
 
 - (IBAction)recoverPassword:(id)sender {
 }
@@ -41,36 +44,18 @@ static const NSString *kPasswordKey = @"passwordKey";
 
 - (void)startingLoginWithEmail:(NSString *)email password:(NSString *)password
 {
+    _authDelegate = [[AuthenticationDelegate alloc] init];
     NSMutableURLRequest *loginRequest = [RequestBuilder buildLoginRequestWithEmail:email password:password];
     NSURLConnection *connection;
-    connection = [[NSURLConnection alloc] initWithRequest:loginRequest delegate:self startImmediately:YES];
+    connection = [[NSURLConnection alloc] initWithRequest:loginRequest delegate:_authDelegate startImmediately:YES];
 }
 
-#pragma mark - NSURLConnectionDataDelegate methods
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+- (void)loginSuccess
 {
-    NSLog(@"%@", response);
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    id userObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-    NSLog(@"%@", userObject);
-    [[UserStore sharedStore] saveCurrentUserToUDAndDBByUserObject:userObject];
-    [[BookStore sharedStore] refreshStoredBooks];
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    NSLog(@"%@", @"didFailWithError");
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    NSLog(@"%@", @"connectionDidFinishLoading");
     [_activityIndicator stopAnimating];
     [self.view setUserInteractionEnabled:YES];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
+
 
 @end
