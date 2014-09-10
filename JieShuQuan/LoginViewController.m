@@ -25,6 +25,7 @@ static const NSString *kPasswordKey = @"passwordKey";
     if ([self isValidateEmail:_email.text]){
         if (_password.text.length>=6 && _password.text.length<=20) {
             [_activityIndicator startAnimating];
+            [self.view setUserInteractionEnabled:NO];
             [self postRequestWithEmail:_email.text password:_password.text];
         } else [AlertHelper showAlertWithMessage:@"密码长度错误！" target:self];
     } else [AlertHelper showAlertWithMessage:@"邮箱格式错误！" target:self];
@@ -80,6 +81,7 @@ static const NSString *kPasswordKey = @"passwordKey";
 {
     NSLog(@"%@", @"connectionDidFinishLoading");
     [_activityIndicator stopAnimating];
+    [self.view setUserInteractionEnabled:YES];
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"登陆成功" delegate:self cancelButtonTitle:nil otherButtonTitles:@"好", nil];
     [alertView show];
     [self performSelector:@selector(dismissAlert:) withObject:alertView afterDelay:2.0];

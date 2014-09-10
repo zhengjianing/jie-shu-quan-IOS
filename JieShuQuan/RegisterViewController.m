@@ -23,6 +23,7 @@ static const NSString *kPasswordKey = @"passwordKey";
             if (_password.text.length>=6 && _password.text.length<=20) {
                 if ([_password.text isEqualToString:_confirmPassword.text]) {
                     [_activityIndicatior startAnimating];
+                    [self.view setUserInteractionEnabled:NO];
                     [self postRequestWithUserName:_userName.text email:_email.text password:_password.text];
                 } else [AlertHelper showAlertWithMessage:@"两次输入的密码不一致！" target:self];
             } else [AlertHelper showAlertWithMessage:@"密码长度错误！" target:self];
@@ -80,6 +81,7 @@ static const NSString *kPasswordKey = @"passwordKey";
 {
     NSLog(@"%@", @"connectionDidFinishLoading");
     [_activityIndicatior stopAnimating];
+    [self.view setUserInteractionEnabled:YES];
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"注册成功" delegate:self cancelButtonTitle:nil otherButtonTitles:@"好", nil];
     [alertView show];
     [self performSelector:@selector(dismissAlert:) withObject:alertView afterDelay:2.0];
@@ -89,5 +91,7 @@ static const NSString *kPasswordKey = @"passwordKey";
 {
     [alert dismissAlertWithObject:self];
 }
+
+
 
 @end
