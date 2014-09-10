@@ -11,8 +11,8 @@
 #import "BookStore.h"
 #import "Book.h"
 #import "AlertHelper.h"
+#import "ServerHeaders.h"
 
-static const NSString *kAddBookURL = @"http://jie-shu-quan.herokuapp.com/add_book";
 static const NSString *kBookId = @"douban_book_id";
 static const NSString *kAvailableState = @"available";
 

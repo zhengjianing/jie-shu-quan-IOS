@@ -12,8 +12,8 @@
 #import "NSString+AES256.h"
 #import "AlertHelper.h"
 #import "RegisterViewController.h"
+#import "ServerHeaders.h"
 
-static const NSString *kLoginURL = @"http://jie-shu-quan.herokuapp.com/login";
 static const NSString *kPasswordKey = @"passwordKey";
 
 @implementation LoginViewController

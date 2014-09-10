@@ -79,6 +79,7 @@
 		9471DC2E19A9895000F1A291 /* PreLoginNib.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreLoginNib.xib; sourceTree = "<group>"; };
 		9476057719C06AC700FA8E74 /* Validator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Validator.h; sourceTree = "<group>"; };
 		9476057819C06AC700FA8E74 /* Validator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Validator.m; sourceTree = "<group>"; };
+		9476057A19C074D800FA8E74 /* ServerHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerHeaders.h; sourceTree = "<group>"; };
 		948615EE19BC0FD1001837BF /* Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Store.h; sourceTree = "<group>"; };
 		948615EF19BC0FD1001837BF /* Store.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Store.m; sourceTree = "<group>"; };
 		94E5039219BAF98E004CEBC6 /* UserStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserStore.h; sourceTree = "<group>"; };
@@ -234,13 +235,14 @@
 		948615F119BC1434001837BF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				97C528A519BC785800388375 /* DoubanHeaders.h */,
+				9476057A19C074D800FA8E74 /* ServerHeaders.h */,
 				97F65AC519AE0B1200B9DC93 /* DataConverter.h */,
 				97F65AC619AE0B1200B9DC93 /* DataConverter.m */,
 				97FC364D19B4C1AB002D0932 /* NSArrayTransformer.h */,
 				97FC364E19B4C1AB002D0932 /* NSArrayTransformer.m */,
 				97C5289F19BC34B600388375 /* AlertHelper.h */,
 				97C528A019BC34B600388375 /* AlertHelper.m */,
-				97C528A519BC785800388375 /* DoubanHeaders.h */,
 				97F306B019BD45800010E91F /* NSData+AES256.h */,
 				97F306B119BD45800010E91F /* NSData+AES256.m */,
 				97F306B319BD47D10010E91F /* NSString+AES256.h */,

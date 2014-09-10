@@ -12,10 +12,10 @@
 #import "NSString+AES256.h"
 #import "AlertHelper.h"
 #import "Validator.h"
+#import "ServerHeaders.h"
 
 @implementation RegisterViewController
 
-static const NSString *kRegisterURL = @"http://jie-shu-quan.herokuapp.com/register";
 static const NSString *kPasswordKey = @"passwordKey";
 
 - (IBAction)registerUser:(id)sender {
@@ -43,19 +43,17 @@ static const NSString *kPasswordKey = @"passwordKey";
     
     [_activityIndicatior startAnimating];
     [self.view setUserInteractionEnabled:NO];
-    [self postRequestWithUserName:_userName.text email:_email.text password:_password.text];
+    [self startingRegisterWithUserName:_userName.text email:_email.text password:_password.text];
 }
 
-- (void)postRequestWithUserName:(NSString *)name email:(NSString *)email password:(NSString *)password
+- (void)startingRegisterWithUserName:(NSString *)name email:(NSString *)email password:(NSString *)password
 {
     NSString *encrypedPassword = [password aes256_encrypt:(NSString *)kPasswordKey];
     
-    NSDictionary *bodyDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                              name, @"user_name",
-                              email, @"email",
-                              encrypedPassword, @"password", nil];
-    NSURL *postURL = [NSURL URLWithString:[kRegisterURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:postURL];
+    NSDictionary *bodyDict = @{@"user_name": name, @"email": email, @"password": encrypedPassword};
+
+    NSURL *registerURL = [NSURL URLWithString:[kRegisterURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:registerURL];
     
     id object = [NSJSONSerialization dataWithJSONObject:bodyDict options:NSJSONWritingPrettyPrinted error:nil];
     [request setHTTPBody:object];
