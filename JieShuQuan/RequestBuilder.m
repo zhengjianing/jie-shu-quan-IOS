@@ -16,19 +16,33 @@ static const NSString *kPasswordKey = @"passwordKey";
 
 + (NSMutableURLRequest *)buildRegisterRequestWithUserName:(NSString *)userName email:(NSString *)email password:(NSString *)password
 {
-    NSString *encrypedPassword = [password aes256_encrypt:(NSString *)kPasswordKey];
+    NSDictionary *registerBody = @{@"user_name": userName, @"email": email, @"password": [self encrypePassword:password]};
     
-    NSDictionary *bodyDict = @{@"user_name": userName, @"email": email, @"password": encrypedPassword};
+    return [self buildRequestWithURLString:kRegisterURL bodyDict:registerBody];
+}
+
++ (NSMutableURLRequest *)buildLoginRequestWithEmail:(NSString *)email password:(NSString *)password
+{
+    NSDictionary *loginBody = @{@"email": email, @"password": [self encrypePassword:password]};
     
-    NSURL *registerURL = [NSURL URLWithString:[kRegisterURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:registerURL];
+    return [self buildRequestWithURLString:kLoginURL bodyDict:loginBody];
+}
+
++ (NSMutableURLRequest *)buildRequestWithURLString:(NSString *)urlString bodyDict:(NSDictionary *)bodyDict
+{
+    NSURL *postURL = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:postURL];
     
     id object = [NSJSONSerialization dataWithJSONObject:bodyDict options:NSJSONWritingPrettyPrinted error:nil];
     [request setHTTPBody:object];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPMethod:@"POST"];
-
+    
     return request;
 }
 
++ (NSString *)encrypePassword:(NSString *)password
+{
+    return [password aes256_encrypt:(NSString *)kPasswordKey];
+}
 @end

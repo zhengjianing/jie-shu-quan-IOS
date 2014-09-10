@@ -9,10 +9,10 @@
 #import "LoginViewController.h"
 #import "BookStore.h"
 #import "UserStore.h"
-#import "NSString+AES256.h"
 #import "AlertHelper.h"
 #import "RegisterViewController.h"
-#import "ServerHeaders.h"
+#import "Validator.h"
+#import "RequestBuilder.h"
 
 static const NSString *kPasswordKey = @"passwordKey";
 
@@ -22,40 +22,28 @@ static const NSString *kPasswordKey = @"passwordKey";
 }
 
 - (IBAction)loginUser:(id)sender {
-    if ([self isValidateEmail:_email.text]){
-        if (_password.text.length>=6 && _password.text.length<=20) {
-            [_activityIndicator startAnimating];
-            [self.view setUserInteractionEnabled:NO];
-            [self postRequestWithEmail:_email.text password:_password.text];
-        } else [AlertHelper showAlertWithMessage:@"密码长度错误！" target:self];
-    } else [AlertHelper showAlertWithMessage:@"邮箱格式错误！" target:self];
+    Validator *validator = [[Validator alloc] init];
+
+    if (![validator isValidEmail:_email.text]) {
+        [AlertHelper showAlertWithMessage:@"邮箱格式错误！" target:self];
+        return;
+    }
+    
+    if (![validator isValidPassword:_password.text]) {
+        [AlertHelper showAlertWithMessage:@"密码长度错误！" target:self];
+        return;
+    }
+    
+    [_activityIndicator startAnimating];
+    [self.view setUserInteractionEnabled:NO];
+    [self startingLoginWithEmail:_email.text password:_password.text];
 }
 
-
-//正则表达式本地判断email的格式是否正确
--(BOOL)isValidateEmail:(NSString *)email {
-    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
-    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
-    return [emailTest evaluateWithObject:email];
-}
-
-- (void)postRequestWithEmail:(NSString *)email password:(NSString *)password
+- (void)startingLoginWithEmail:(NSString *)email password:(NSString *)password
 {
-    NSString *encrypedPassword = [password aes256_encrypt:(NSString *)kPasswordKey];
-    
-    NSDictionary *bodyDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                              email, @"email",
-                              encrypedPassword, @"password", nil];
-    NSURL *postURL = [NSURL URLWithString:[kLoginURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:postURL];
-    
-    id object = [NSJSONSerialization dataWithJSONObject:bodyDict options:NSJSONWritingPrettyPrinted error:nil];
-    [request setHTTPBody:object];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPMethod:@"POST"];
-    
+    NSMutableURLRequest *loginRequest = [RequestBuilder buildLoginRequestWithEmail:email password:password];
     NSURLConnection *connection;
-    connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
+    connection = [[NSURLConnection alloc] initWithRequest:loginRequest delegate:self startImmediately:YES];
 }
 
 #pragma mark - NSURLConnectionDataDelegate methods

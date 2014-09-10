@@ -11,5 +11,6 @@
 @interface RequestBuilder : NSObject
 
 + (NSMutableURLRequest *)buildRegisterRequestWithUserName:(NSString *)userName email:(NSString *)email password:(NSString *)password;
++ (NSMutableURLRequest *)buildLoginRequestWithEmail:(NSString *)email password:(NSString *)password;
 
 @end
