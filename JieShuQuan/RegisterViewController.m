@@ -11,6 +11,7 @@
 #import "UserStore.h"
 #import "NSString+AES256.h"
 #import "AlertHelper.h"
+#import "Validator.h"
 
 @implementation RegisterViewController
 
@@ -18,24 +19,31 @@ static const NSString *kRegisterURL = @"http://jie-shu-quan.herokuapp.com/regist
 static const NSString *kPasswordKey = @"passwordKey";
 
 - (IBAction)registerUser:(id)sender {
-    if (_userName.text.length>0 && _userName.text.length<=20) {
-        if ([self isValidateEmail:_email.text]){
-            if (_password.text.length>=6 && _password.text.length<=20) {
-                if ([_password.text isEqualToString:_confirmPassword.text]) {
-                    [_activityIndicatior startAnimating];
-                    [self.view setUserInteractionEnabled:NO];
-                    [self postRequestWithUserName:_userName.text email:_email.text password:_password.text];
-                } else [AlertHelper showAlertWithMessage:@"两次输入的密码不一致！" target:self];
-            } else [AlertHelper showAlertWithMessage:@"密码长度错误！" target:self];
-        } else [AlertHelper showAlertWithMessage:@"邮箱格式错误！" target:self];
-    } else [AlertHelper showAlertWithMessage:@"用户名格式错误！" target:self];
-}
-
-//正则表达式本地判断email的格式是否正确
--(BOOL)isValidateEmail:(NSString *)email {
-    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
-    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
-    return [emailTest evaluateWithObject:email];
+    Validator *validator = [[Validator alloc] init];
+    
+    if (![validator isValidUserName:_userName.text]) {
+        [AlertHelper showAlertWithMessage:@"用户名格式错误！" target:self];
+        return;
+    }
+    
+    if (![validator isValidEmail:_email.text]) {
+        [AlertHelper showAlertWithMessage:@"邮箱格式错误！" target:self];
+        return;
+    }
+    
+    if (![validator isValidPassword:_password.text]) {
+        [AlertHelper showAlertWithMessage:@"密码长度错误！" target:self];
+        return;
+    }
+    
+    if (![_password.text isEqualToString:_confirmPassword.text]) {
+        [AlertHelper showAlertWithMessage:@"两次输入的密码不一致！" target:self];
+        return;
+    }
+    
+    [_activityIndicatior startAnimating];
+    [self.view setUserInteractionEnabled:NO];
+    [self postRequestWithUserName:_userName.text email:_email.text password:_password.text];
 }
 
 - (void)postRequestWithUserName:(NSString *)name email:(NSString *)email password:(NSString *)password
