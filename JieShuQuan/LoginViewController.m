@@ -19,6 +19,8 @@
 {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSuccess) name:@"loginSuccess" object:nil];
+    
+    _loginButton.layer.cornerRadius = 5.0;
 }
 
 - (IBAction)recoverPassword:(id)sender {

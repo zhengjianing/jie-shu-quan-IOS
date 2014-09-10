@@ -18,6 +18,8 @@
 {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(registerSuccess) name:@"registerSuccess" object:nil];
+    
+    _registerButton.layer.cornerRadius = 5.0;
 }
 
 - (IBAction)registerUser:(id)sender {
@@ -48,7 +50,7 @@
 }
 
 - (IBAction)emailHint:(id)sender {
-    [AlertHelper showAlertWithMessage:@"请使用企业邮箱！\n若使用个人邮箱，则无法添加到分组" target:self];
+    [AlertHelper showAlertWithMessage:@"请使用企业邮箱，便于我们帮您找到您的朋友们" target:self];
 }
 
 - (void)startingRegisterWithUserName:(NSString *)name email:(NSString *)email password:(NSString *)password
