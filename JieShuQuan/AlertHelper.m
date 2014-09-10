@@ -9,7 +9,6 @@
 #import "AlertHelper.h"
 
 @implementation AlertHelper
-
 + (void)showAlertWithMessage:(NSString *)message target:(id)target
 {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:message delegate:target cancelButtonTitle:nil otherButtonTitles:@"好", nil];
@@ -21,6 +20,15 @@
 {
     [alert dismissWithClickedButtonIndex:[alert cancelButtonIndex] animated:YES];
 }
+@end
 
 
+@implementation UIAlertView (alertViewHelper)
+- (void)dismissAlertWithObject:(UIViewController *)controller
+{
+    [self dismissWithClickedButtonIndex:[self cancelButtonIndex] animated:YES];
+    if (controller) {
+        [controller.navigationController popToRootViewControllerAnimated:YES];
+    }
+}
 @end

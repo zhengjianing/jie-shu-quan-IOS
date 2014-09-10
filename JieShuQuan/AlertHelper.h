@@ -11,5 +11,8 @@
 
 @interface AlertHelper : NSObject
 + (void)showAlertWithMessage:(NSString *)message target:(id)target;
+@end
 
+@interface UIAlertView (alertViewHelper)
+- (void)dismissAlertWithObject:(UIViewController *)controller;
 @end

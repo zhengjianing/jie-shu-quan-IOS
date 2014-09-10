@@ -14,6 +14,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *email;
 @property (strong, nonatomic) IBOutlet UITextField *password;
 @property (strong, nonatomic) IBOutlet UITextField *confirmPassword;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatior;
 
 @property (strong, nonatomic) IBOutlet UIButton *registerButton;
 

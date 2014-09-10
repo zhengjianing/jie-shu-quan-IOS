@@ -16,6 +16,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *loginButton;
 @property (strong, nonatomic) IBOutlet UIButton *registerButton;
 @property (strong, nonatomic) IBOutlet UIButton *recoverPasswordButton;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 - (IBAction)loginUser:(id)sender;
 - (IBAction)recoverPassword:(id)sender;

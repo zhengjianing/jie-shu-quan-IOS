@@ -380,6 +380,9 @@
                                     <action selector="loginUser:" destination="EyL-5w-TnI" eventType="touchUpInside" id="Dub-2E-bad"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="mnb-1O-vaJ">
+                                <rect key="frame" x="150" y="171" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -387,6 +390,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="mnb-1O-vaJ" id="c9i-Uz-WF3"/>
                         <outlet property="email" destination="1Za-Ma-iak" id="F3Y-gT-cae"/>
                         <outlet property="loginButton" destination="vMo-4X-5Ro" id="K1A-8C-FLU"/>
                         <outlet property="password" destination="rAs-86-xMO" id="Mrh-SU-GNB"/>
@@ -440,6 +444,9 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="P90-GT-2QM">
+                                <rect key="frame" x="150" y="216" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -447,6 +454,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="activityIndicatior" destination="P90-GT-2QM" id="FGN-vU-6cy"/>
                         <outlet property="confirmPassword" destination="GR4-5A-wCp" id="6pu-tf-p5g"/>
                         <outlet property="email" destination="PLP-XK-ShE" id="qKY-ml-lR4"/>
                         <outlet property="password" destination="i9v-w6-ogF" id="nyr-5i-aMG"/>
