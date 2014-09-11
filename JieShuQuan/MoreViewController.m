@@ -8,7 +8,8 @@
 
 #import "MoreViewController.h"
 #import "LoginViewController.h"
-#import "UserStore.h"
+#import "UserManager.h"
+#import "User.h"
 
 @implementation MoreViewController
 
@@ -22,8 +23,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    _userName = [[UserStore sharedStore] currentUserName];
-    if (_userName) {
+    if ([UserManager isLogin]) {
         [self updateViewWithLogin];
     } else {
         [self updateViewWithLogout];
@@ -32,7 +32,7 @@
 
 - (void)updateViewWithLogin
 {
-    _userNameLabel.text = _userName;
+    _userNameLabel.text = [[UserManager currentUser] name];
     [_loginButton setTitle:@"退出登录" forState:UIControlStateNormal];
 }
 
@@ -48,8 +48,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([_loginButton.titleLabel.text isEqualToString:@"退出登录"]) {
-        _userName = nil;
-        [[UserStore sharedStore] removeCurrentUserFromUD];
+        [UserManager removeUserFromUserDefaults];
     }
 }
 

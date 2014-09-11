@@ -12,15 +12,11 @@
 #import "Book.h"
 #import "AlertHelper.h"
 #import "ServerHeaders.h"
+#import "UserManager.h"
+#import "User.h"
 
 static const NSString *kBookId = @"douban_book_id";
 static const NSString *kAvailableState = @"available";
-
-// keys in NSUserDefaults
-static const NSString *kUDCurrentUserName = @"current_username";
-static const NSString *kUDGroupName = @"group_name";
-static const NSString *kUDAccessToken = @"access_token";
-static const NSString *kUDUserId = @"user_id";
 
 @implementation BookDetailViewController
 
@@ -56,8 +52,8 @@ static const NSString *kUDUserId = @"user_id";
     } else {
         [AlertHelper showAlertWithMessage:@"已添加至我的书库" target:self];
         [self postRequestWithBookId:_book.bookId available:YES
-                             userId:[[NSUserDefaults standardUserDefaults] valueForKey:(NSString *)kUDUserId]
-                         accessToke:[[NSUserDefaults standardUserDefaults] valueForKey:(NSString *)kUDAccessToken]];
+                             userId:[[UserManager currentUser] userId]
+                         accessToke:[[UserManager currentUser] accessToken]];
         [[BookStore sharedStore] addBookToStore:_book];
     }
 }

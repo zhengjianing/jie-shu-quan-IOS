@@ -8,15 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "Store.h"
-
+@class User;
 @interface UserStore : Store
 
 + (UserStore *)sharedStore;
 
-- (void)saveUserWithObject:(id)userObject;
-- (NSString *)currentUserId;
-- (NSString *)currentUserName;
-- (void)removeCurrentUserFromUD;
+- (void)saveUserToCoreData:(User *)user;
 - (NSArray *)storedUsersWithUserId:(NSString *)userId;
 
 @end

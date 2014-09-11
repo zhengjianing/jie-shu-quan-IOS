@@ -9,6 +9,9 @@
 #import "AuthenticationDelegate.h"
 #import "BookStore.h"
 #import "UserStore.h"
+#import "DataConverter.h"
+#import "User.h"
+#import "UserManager.h"
 
 @interface AuthenticationDelegate ()
 {
@@ -28,8 +31,11 @@
 {
     id userObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
     authMethod = [userObject valueForKey:@"auth_method"];
-    NSLog(@"%@", userObject);
-    [[UserStore sharedStore] saveUserWithObject:userObject];
+    
+    User *user = [DataConverter userFromObject:userObject];
+    [[UserStore sharedStore] saveUserToCoreData:user];
+    [UserManager saveUserToUserDefaults:user];
+    
     [[BookStore sharedStore] refreshStoredBooks];
 }
 

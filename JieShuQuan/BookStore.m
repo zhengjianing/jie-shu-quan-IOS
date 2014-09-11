@@ -10,6 +10,8 @@
 #import "Book.h"
 #import "UserStore.h"
 #import <CoreData/CoreData.h>
+#import "UserManager.h"
+#import "User.h"
 
 @interface BookStore ()
 {
@@ -79,7 +81,8 @@ static const NSString *kPublishDate = @"publishDate";
     NSManagedObject *newBook = [NSEntityDescription insertNewObjectForEntityForName:(NSString *)kEntityName inManagedObjectContext:[self managedObjectContext]];
     [self setBookPropertiesByBook:book forManagedBook:newBook];
     
-    NSArray *usersArray = [[UserStore sharedStore] storedUsersWithUserId:[[UserStore sharedStore] currentUserId]];
+    User *user = [UserManager currentUser];
+    NSArray *usersArray = [[UserStore sharedStore] storedUsersWithUserId:[user userId]];
     if ([usersArray count]) {
         NSManagedObject *currentUser = usersArray[0];
         NSMutableSet *booksSet = [currentUser mutableSetValueForKey:@"books"];
@@ -95,7 +98,7 @@ static const NSString *kPublishDate = @"publishDate";
 - (NSArray *)fetchBooksFromStore
 {
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:(NSString *)kEntityName];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user.user_id == %@", [[UserStore sharedStore] currentUserId]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user.user_id == %@", [[UserManager currentUser] userId]];
     [request setPredicate:predicate];
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:(NSString *)kName ascending:YES];
     [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];

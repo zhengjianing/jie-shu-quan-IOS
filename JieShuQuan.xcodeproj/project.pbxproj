@@ -38,6 +38,7 @@
 		97553C3F19C0A5610034B446 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 97553C3E19C0A5610034B446 /* info.png */; };
 		9759AFF019C184BD008EFCC2 /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 9759AFEF19C184BD008EFCC2 /* Friend.m */; };
 		9759AFF319C18B11008EFCC2 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9759AFF219C18B11008EFCC2 /* User.m */; };
+		9759AFFA19C19976008EFCC2 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9759AFF919C19976008EFCC2 /* UserManager.m */; };
 		9766FC9B19BF30980089C89B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9766FC9A19BF30980089C89B /* LoginViewController.m */; };
 		97C528A119BC34B600388375 /* AlertHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C528A019BC34B600388375 /* AlertHelper.m */; };
 		97C528A419BC761000388375 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C528A319BC761000388375 /* RegisterViewController.m */; };
@@ -118,6 +119,8 @@
 		9759AFEF19C184BD008EFCC2 /* Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friend.m; sourceTree = "<group>"; };
 		9759AFF119C18B11008EFCC2 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		9759AFF219C18B11008EFCC2 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		9759AFF819C19976008EFCC2 /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
+		9759AFF919C19976008EFCC2 /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
 		9766FC9919BF30980089C89B /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		9766FC9A19BF30980089C89B /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		97C5289F19BC34B600388375 /* AlertHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertHelper.h; sourceTree = "<group>"; };
@@ -223,6 +226,7 @@
 				9471DBF019A5837700F1A291 /* AppDelegate.h */,
 				9471DBF119A5837700F1A291 /* AppDelegate.m */,
 				9471DBF919A5837700F1A291 /* Main.storyboard */,
+				9759AFFB19C1997D008EFCC2 /* Manager */,
 				948615F119BC1434001837BF /* Utils */,
 				97F65AC319AE0A8300B9DC93 /* Model */,
 				9759AFF419C19012008EFCC2 /* Network */,
@@ -346,6 +350,15 @@
 				97F65AC119AE0A7D00B9DC93 /* JsonDataFetcher.m */,
 			);
 			name = Network;
+			sourceTree = "<group>";
+		};
+		9759AFFB19C1997D008EFCC2 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				9759AFF819C19976008EFCC2 /* UserManager.h */,
+				9759AFF919C19976008EFCC2 /* UserManager.m */,
+			);
+			name = Manager;
 			sourceTree = "<group>";
 		};
 		97F65ABF19AE03E200B9DC93 /* Search */ = {
@@ -524,6 +537,7 @@
 			files = (
 				97C528A119BC34B600388375 /* AlertHelper.m in Sources */,
 				94BB408519C172FE005BBD8E /* FriendsTableViewController.m in Sources */,
+				9759AFFA19C19976008EFCC2 /* UserManager.m in Sources */,
 				97FC364F19B4C1AB002D0932 /* NSArrayTransformer.m in Sources */,
 				97F306B219BD45800010E91F /* NSData+AES256.m in Sources */,
 				9471DC1519A5A31F00F1A291 /* MoreViewController.m in Sources */,

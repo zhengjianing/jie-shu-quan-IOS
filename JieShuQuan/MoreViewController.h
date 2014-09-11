@@ -14,8 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 
-@property (strong, nonatomic) NSString *userName;
-
 @property (strong, nonatomic) LoginViewController *loginController;
 
 

@@ -10,7 +10,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "LoginViewController.h"
 #import "BookStore.h"
-#import "UserStore.h"
+#import "UserManager.h"
 
 @implementation MyBooksTableViewController
 
@@ -26,8 +26,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSString *username = [[UserStore sharedStore] currentUserName];
-    if (username) {
+    if ([UserManager isLogin]) {
         [self showTableView];
     } else {
         [self showPreLoginView];

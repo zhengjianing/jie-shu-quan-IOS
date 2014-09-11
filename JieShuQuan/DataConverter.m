@@ -8,6 +8,15 @@
 
 #import "DataConverter.h"
 #import "Book.h"
+#import "User.h"
+
+// keys in Server API
+static const NSString *kUserName = @"user_name";
+static const NSString *kGroupName = @"group_name";
+static const NSString *kAccessToken = @"access_token";
+static const NSString *kUserId = @"user_id";
+static const NSString *kUserEmail = @"user_email";
+
 
 @interface DataConverter ()
 + (NSMutableArray *)booksArrayFromUnserializedBooksData:(NSArray *)booksData;
@@ -53,5 +62,20 @@
     }
     return booksArray;
 }
+
+#pragma mark -- User
++ (User *)userFromObject:(id)object
+{
+    User *user = [[User alloc] init];
+    if ([object class] == [NSDictionary class]) {
+        user.name = [object valueForKey:(NSString *)kUserName];
+        user.groupName = [object valueForKey:(NSString *)kGroupName];
+        user.accessToken = [object valueForKey:(NSString *)kAccessToken];
+        user.userId = [object valueForKey:(NSString *)kUserId];
+        user.email = [object valueForKey:(NSString *)kUserEmail];
+    }
+    return user;
+}
+
 
 @end

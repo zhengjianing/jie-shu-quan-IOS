@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 @class Book;
+@class User;
 
 @interface DataConverter : NSObject
 
 + (NSMutableArray *)booksArrayFromJsonData:(NSData *)jsonData;
++ (User *)userFromObject:(id)object;
 
 @end
