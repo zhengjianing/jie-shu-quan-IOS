@@ -24,6 +24,7 @@
 		9471DC2F19A9895000F1A291 /* PreLoginNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9471DC2E19A9895000F1A291 /* PreLoginNib.xib */; };
 		9476057919C06AC700FA8E74 /* Validator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9476057819C06AC700FA8E74 /* Validator.m */; };
 		9476058019C07BC400FA8E74 /* RequestBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9476057F19C07BC400FA8E74 /* RequestBuilder.m */; };
+		9476058619C15C6900FA8E74 /* SearchResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9476058519C15C6900FA8E74 /* SearchResultTableViewCell.m */; };
 		948615F019BC0FD1001837BF /* Store.m in Sources */ = {isa = PBXBuildFile; fileRef = 948615EF19BC0FD1001837BF /* Store.m */; };
 		94E5039419BAF98E004CEBC6 /* UserStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E5039319BAF98E004CEBC6 /* UserStore.m */; };
 		94F2BF5619B1DE8D0053711F /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 94F2BF5519B1DE8D0053711F /* search.png */; };
@@ -85,6 +86,8 @@
 		9476057A19C074D800FA8E74 /* ServerHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerHeaders.h; sourceTree = "<group>"; };
 		9476057E19C07BC400FA8E74 /* RequestBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestBuilder.h; sourceTree = "<group>"; };
 		9476057F19C07BC400FA8E74 /* RequestBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestBuilder.m; sourceTree = "<group>"; };
+		9476058419C15C6900FA8E74 /* SearchResultTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultTableViewCell.h; sourceTree = "<group>"; };
+		9476058519C15C6900FA8E74 /* SearchResultTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultTableViewCell.m; sourceTree = "<group>"; };
 		948615EE19BC0FD1001837BF /* Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Store.h; sourceTree = "<group>"; };
 		948615EF19BC0FD1001837BF /* Store.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Store.m; sourceTree = "<group>"; };
 		94E5039219BAF98E004CEBC6 /* UserStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserStore.h; sourceTree = "<group>"; };
@@ -284,6 +287,8 @@
 		97F65ABF19AE03E200B9DC93 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				9476058419C15C6900FA8E74 /* SearchResultTableViewCell.h */,
+				9476058519C15C6900FA8E74 /* SearchResultTableViewCell.m */,
 				97DDA8DD19AF7F430055C7E5 /* SearchTableViewController.h */,
 				97DDA8DE19AF7F430055C7E5 /* SearchTableViewController.m */,
 			);
@@ -464,6 +469,7 @@
 				97553C3D19C090DE0034B446 /* AuthenticationDelegate.m in Sources */,
 				97F306B519BD47D10010E91F /* NSString+AES256.m in Sources */,
 				948615F019BC0FD1001837BF /* Store.m in Sources */,
+				9476058619C15C6900FA8E74 /* SearchResultTableViewCell.m in Sources */,
 				97DDA8DF19AF7F430055C7E5 /* SearchTableViewController.m in Sources */,
 				9471DBF219A5837700F1A291 /* AppDelegate.m in Sources */,
 				9476058019C07BC400FA8E74 /* RequestBuilder.m in Sources */,
