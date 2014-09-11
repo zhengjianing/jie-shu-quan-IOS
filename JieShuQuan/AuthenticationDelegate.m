@@ -32,7 +32,7 @@
     id userObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
     authMethod = [userObject valueForKey:@"auth_method"];
     
-    User *user = [DataConverter userFromObject:userObject];
+    User *user = [DataConverter userFromHTTPResponse:userObject];
     [[UserStore sharedStore] saveUserToCoreData:user];
     [UserManager saveUserToUserDefaults:user];
     

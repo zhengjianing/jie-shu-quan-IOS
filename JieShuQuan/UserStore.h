@@ -15,5 +15,7 @@
 
 - (void)saveUserToCoreData:(User *)user;
 - (NSArray *)storedUsersWithUserId:(NSString *)userId;
+- (User *)userWithUserId:(NSString *)userId;
+
 
 @end

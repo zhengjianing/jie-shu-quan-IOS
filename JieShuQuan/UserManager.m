@@ -8,25 +8,27 @@
 
 #import "UserManager.h"
 #import "User.h"
+#import "UserStore.h"
 
 // keys in NSUserDefaults
-static const NSString *kUDCurrentUser = @"current_user";
+static const NSString *kUDCurrentUserId = @"current_user_id";
 
 @implementation UserManager
 
 + (void)saveUserToUserDefaults:(User *)user
 {
-    [[NSUserDefaults standardUserDefaults] setObject:user forKey:(NSString *)kUDCurrentUser];
+    [[NSUserDefaults standardUserDefaults] setObject:user.userId forKey:(NSString *)kUDCurrentUserId];
 }
 
 + (User *)currentUser
 {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:(NSString *)kUDCurrentUser];
+    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:(NSString *)kUDCurrentUserId];
+    return [[UserStore sharedStore] userWithUserId:userId];
 }
 
 + (void)removeUserFromUserDefaults
 {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:(NSString *)kUDCurrentUser];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:(NSString *)kUDCurrentUserId];
 }
 
 + (BOOL)isLogin

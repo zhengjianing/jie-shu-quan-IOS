@@ -13,13 +13,16 @@
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="books" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="User" syncable="YES">
+        <attribute name="access_token" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="book_count" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="group_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="user_id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="user_name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="books" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Book" inverseName="user" inverseEntity="Book" syncable="YES"/>
     </entity>
     <elements>
         <element name="Book" positionX="-63" positionY="-18" width="128" height="195"/>
-        <element name="User" positionX="-63" positionY="54" width="128" height="105"/>
+        <element name="User" positionX="-63" positionY="54" width="128" height="150"/>
     </elements>
 </model>

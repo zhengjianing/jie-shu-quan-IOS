@@ -9,14 +9,11 @@
 #import "UserStore.h"
 #import <CoreData/CoreData.h>
 #import "User.h"
+#import "DataConverter.h"
+
+static const NSString *kEntityName = @"User";
 
 @implementation UserStore
-
-// keys in CoreData
-static const NSString *kEntityName = @"User";
-static const NSString *kDBUserId = @"user_id";
-static const NSString *kDBUserName = @"user_name";
-static const NSString *kDBGroupName = @"group_name";
 
 + (UserStore *)sharedStore
 {
@@ -35,9 +32,7 @@ static const NSString *kDBGroupName = @"group_name";
 - (void)saveUserToCoreData:(User *)user
 {
     NSManagedObject *managedObject = [NSEntityDescription insertNewObjectForEntityForName:(NSString *)kEntityName inManagedObjectContext:[self managedObjectContext]];
-    [managedObject setValue:user.userId forKey:(NSString *)kDBUserId];
-    [managedObject setValue:user.name forKey:(NSString *)kDBUserName];
-    [managedObject setValue:user.groupName forKey:(NSString *)kDBGroupName];
+    [DataConverter setManagedObject:managedObject forUser:user];
     [self saveContext];
 }
 
@@ -48,6 +43,15 @@ static const NSString *kDBGroupName = @"group_name";
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user_id==%@", userId];
     [request setPredicate:predicate];
     return [[self managedObjectContext] executeFetchRequest:request error:nil];
+}
+
+- (User *)userWithUserId:(NSString *)userId
+{
+    if ([[self storedUsersWithUserId:userId] count] == 0) {
+        return nil;
+    }
+    NSManagedObject *storedUser = [[self storedUsersWithUserId:userId] objectAtIndex:0];
+    return [DataConverter userFromManagedObject:storedUser];
 }
 
 @end

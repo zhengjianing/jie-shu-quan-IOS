@@ -32,7 +32,7 @@
 
 - (void)updateViewWithLogin
 {
-    _userNameLabel.text = [[UserManager currentUser] name];
+    _userNameLabel.text = [[UserManager currentUser] userName];
     [_loginButton setTitle:@"退出登录" forState:UIControlStateNormal];
 }
 

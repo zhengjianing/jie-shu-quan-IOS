@@ -17,6 +17,14 @@ static const NSString *kAccessToken = @"access_token";
 static const NSString *kUserId = @"user_id";
 static const NSString *kUserEmail = @"user_email";
 
+// keys in CoreData
+static const NSString *kDBUserId = @"user_id";
+static const NSString *kDBUserName = @"user_name";
+static const NSString *kDBUserEmail = @"user_email";
+static const NSString *kDBAccessToken = @"access_token";
+static const NSString *kDBBookCount = @"book_count";
+static const NSString *kDBGroupName = @"group_name";
+
 
 @interface DataConverter ()
 + (NSMutableArray *)booksArrayFromUnserializedBooksData:(NSArray *)booksData;
@@ -64,18 +72,39 @@ static const NSString *kUserEmail = @"user_email";
 }
 
 #pragma mark -- User
-+ (User *)userFromObject:(id)object
++ (User *)userFromHTTPResponse:(id)object
 {
     User *user = [[User alloc] init];
     if ([object class] == [NSDictionary class]) {
-        user.name = [object valueForKey:(NSString *)kUserName];
+        user.userName = [object valueForKey:(NSString *)kUserName];
         user.groupName = [object valueForKey:(NSString *)kGroupName];
         user.accessToken = [object valueForKey:(NSString *)kAccessToken];
         user.userId = [object valueForKey:(NSString *)kUserId];
-        user.email = [object valueForKey:(NSString *)kUserEmail];
+        user.userEmail = [object valueForKey:(NSString *)kUserEmail];
     }
     return user;
 }
 
++ (User *)userFromManagedObject:(id)storedUser
+{
+    User *user = [[User alloc] init];
+    user.userId = [storedUser valueForKey:(NSString *)kDBUserId];
+    user.userName = [storedUser valueForKey:(NSString *)kDBUserName];
+    user.groupName = [storedUser valueForKey:(NSString *)kDBGroupName];
+    user.bookCount = [storedUser valueForKey:(NSString *)kDBBookCount];
+    user.userEmail = [storedUser valueForKey:(NSString *)kDBUserEmail];
+    user.accessToken = [storedUser valueForKey:(NSString *)kDBAccessToken];
+    return user;
+}
+
++ (void)setManagedObject:(id)object forUser:(User *)user
+{
+    [object setValue:user.userId forKey:(NSString *)kDBUserId];
+    [object setValue:user.userName forKey:(NSString *)kDBUserName];
+    [object setValue:user.groupName forKey:(NSString *)kDBGroupName];
+    [object setValue:user.userEmail forKey:(NSString *)kDBUserEmail];
+    [object setValue:user.bookCount forKey:(NSString *)kDBBookCount];
+    [object setValue:user.accessToken forKey:(NSString *)kDBAccessToken];
+}
 
 @end
