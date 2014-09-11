@@ -7,6 +7,7 @@
 //
 
 #import "FriendsTableViewController.h"
+#import "FriendInfoTableViewCell.h"
 
 @interface FriendsTableViewController ()
 
@@ -28,18 +29,17 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return 10;
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
+    FriendInfoTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"friendInfoIdentifier"];
+    if (!cell) {
+        cell = [[FriendInfoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"friendInfoIdentifier"];
+    }
     
     return cell;
 }
-*/
 
 @end
