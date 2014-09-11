@@ -14,7 +14,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="bookIdentifier" rowHeight="116" id="9zF-91-sn1" customClass="BookTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="bookIdentifier" rowHeight="116" id="9zF-91-sn1" customClass="BookTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9zF-91-sn1" id="l6o-VX-gYy">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -23,25 +23,19 @@
                                             <rect key="frame" x="20" y="12" width="72" height="92"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="authors" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XrK-92-vqj">
-                                            <rect key="frame" x="116" y="47" width="163" height="21"/>
+                                            <rect key="frame" x="105" y="47" width="195" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x8X-zM-WtI">
-                                            <rect key="frame" x="116" y="20" width="163" height="21"/>
+                                            <rect key="frame" x="105" y="20" width="195" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="暂时不可借" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r4x-0h-s1M">
-                                            <rect key="frame" x="116" y="83" width="60" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JcW-oZ-il2">
-                                            <rect key="frame" x="192" y="84" width="87" height="20"/>
+                                            <rect key="frame" x="213" y="84" width="87" height="20"/>
                                             <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="0.48999999999999999" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <state key="normal" title="更改为随时可借">
@@ -51,6 +45,12 @@
                                                 <action selector="changeAvailability:" destination="9zF-91-sn1" eventType="touchUpInside" id="Bzx-ay-YoO"/>
                                             </connections>
                                         </button>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="暂时不可借" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r4x-0h-s1M">
+                                            <rect key="frame" x="105" y="83" width="60" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
@@ -119,21 +119,21 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6ve-CP-r5G" id="8U1-qY-kmA">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Dh-vv-LLs">
-                                            <rect key="frame" x="20" y="12" width="72" height="92"/>
-                                        </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13B-r4-0M7">
-                                            <rect key="frame" x="116" y="28" width="184" height="21"/>
+                                            <rect key="frame" x="105" y="28" width="195" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="authors" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EjC-nk-7If">
-                                            <rect key="frame" x="116" y="69" width="184" height="21"/>
+                                            <rect key="frame" x="105" y="69" width="195" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Dh-vv-LLs">
+                                            <rect key="frame" x="20" y="12" width="72" height="92"/>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
@@ -281,6 +281,7 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" id="vYZ-8T-toN"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -566,6 +567,6 @@
         <image name="user.png" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="KbE-hV-yyg"/>
+        <segue reference="pVb-gC-hK8"/>
     </inferredMetricsTieBreakers>
 </document>
