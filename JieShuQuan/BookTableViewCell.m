@@ -21,4 +21,6 @@
     return self;    
 }
 
+- (IBAction)changeAvailability:(id)sender {
+}
 @end

@@ -13,5 +13,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *authorsLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *bookImageView;
+@property (strong, nonatomic) IBOutlet UILabel *availability;
+@property (strong, nonatomic) IBOutlet UIButton *changeAvailabilityButton;
 
+- (IBAction)changeAvailability:(id)sender;
 @end
