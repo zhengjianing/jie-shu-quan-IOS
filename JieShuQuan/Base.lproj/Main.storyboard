@@ -379,6 +379,8 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="bookCountLabel" destination="qUs-LB-wgp" id="kmD-Ov-LvM"/>
+                                    <outlet property="emailLabel" destination="88o-Vn-FgO" id="eTb-SV-3PH"/>
                                     <outlet property="iconImageView" destination="O9V-mm-QCf" id="SrR-1g-KUJ"/>
                                     <outlet property="userNameLabel" destination="UKY-HH-5Tc" id="zdc-0O-ghY"/>
                                 </connections>
