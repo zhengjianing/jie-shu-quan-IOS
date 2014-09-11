@@ -28,7 +28,6 @@ static const NSString *kUDUserId = @"user_id";
 {
     [super viewDidLoad];
     _addBookButton.layer.cornerRadius = 5.0;
-    _borrowFromFriends.layer.cornerRadius = 5.0;
     self.view.backgroundColor = [UIColor whiteColor];
 }
 

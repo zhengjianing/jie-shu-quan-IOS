@@ -273,13 +273,6 @@
                                     <action selector="addBook:" destination="GnW-5j-b0Y" eventType="touchUpInside" id="9mE-JP-tgd"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wYE-7p-xzx">
-                                <rect key="frame" x="180" y="219" width="120" height="30"/>
-                                <color key="backgroundColor" red="1" green="0.62105675530000004" blue="0.51612623550000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="向朋友借">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -292,7 +285,6 @@
                         <outlet property="authorInfoLabel" destination="enc-RU-qDw" id="9hT-0x-vUV"/>
                         <outlet property="authorsLabel" destination="yRn-A7-fjK" id="Tln-zN-9Jx"/>
                         <outlet property="bookImageView" destination="EQh-qH-raI" id="pAo-rN-ZAg"/>
-                        <outlet property="borrowFromFriends" destination="wYE-7p-xzx" id="1cU-bQ-rSO"/>
                         <outlet property="discriptionLabel" destination="S4G-Wk-Wyh" id="eOK-Ec-KOw"/>
                         <outlet property="nameLabel" destination="60P-BY-kOP" id="VIs-gg-w1E"/>
                         <outlet property="priceLabel" destination="7Rh-1Q-RcI" id="AC9-FY-xgK"/>
