@@ -1,23 +1,24 @@
 //
-//  FriendsTableViewController.m
+//  FriendDetailTableViewController.m
 //  JieShuQuan
 //
 //  Created by Jianning Zheng on 9/11/14.
 //  Copyright (c) 2014 JNXZ. All rights reserved.
 //
 
-#import "FriendsTableViewController.h"
-#import "FriendInfoTableViewCell.h"
+#import "FriendDetailTableViewController.h"
 
-@interface FriendsTableViewController ()
+@interface FriendDetailTableViewController ()
 
 @end
 
-@implementation FriendsTableViewController
+@implementation FriendDetailTableViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    _friendInfoView.layer.cornerRadius = 30.0;
 }
 
 #pragma mark - Table view data source
@@ -34,10 +35,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    FriendInfoTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"friendInfoIdentifier"];
-    if (!cell) {
-        cell = [[FriendInfoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"friendInfoIdentifier"];
-    }
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"friendBookIdentifier" forIndexPath:indexPath];
+    
     
     return cell;
 }
