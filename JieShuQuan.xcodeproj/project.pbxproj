@@ -193,10 +193,6 @@
 				9766FC9A19BF30980089C89B /* LoginViewController.m */,
 				97C528A219BC761000388375 /* RegisterViewController.h */,
 				97C528A319BC761000388375 /* RegisterViewController.m */,
-				97553C3B19C090DE0034B446 /* AuthenticationDelegate.h */,
-				97553C3C19C090DE0034B446 /* AuthenticationDelegate.m */,
-				9476057E19C07BC400FA8E74 /* RequestBuilder.h */,
-				9476057F19C07BC400FA8E74 /* RequestBuilder.m */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -229,6 +225,7 @@
 				9471DBF919A5837700F1A291 /* Main.storyboard */,
 				948615F119BC1434001837BF /* Utils */,
 				97F65AC319AE0A8300B9DC93 /* Model */,
+				9759AFF419C19012008EFCC2 /* Network */,
 				9412E2F219A9E4D4008D243C /* Login */,
 				9412E2F119A9E4CD008D243C /* MyBooks */,
 				94BB408219C172E4005BBD8E /* Friends */,
@@ -328,12 +325,6 @@
 		94E5039519BAF998004CEBC6 /* DataStore */ = {
 			isa = PBXGroup;
 			children = (
-				9412E2F319A9FAC7008D243C /* Book.h */,
-				9412E2F419A9FAC7008D243C /* Book.m */,
-				9759AFF119C18B11008EFCC2 /* User.h */,
-				9759AFF219C18B11008EFCC2 /* User.m */,
-				9759AFEE19C184BD008EFCC2 /* Friend.h */,
-				9759AFEF19C184BD008EFCC2 /* Friend.m */,
 				97F973C419B5FBF4007AAD47 /* BookStore.h */,
 				97F973C519B5FBF4007AAD47 /* BookStore.m */,
 				94E5039219BAF98E004CEBC6 /* UserStore.h */,
@@ -342,6 +333,19 @@
 				948615EF19BC0FD1001837BF /* Store.m */,
 			);
 			name = DataStore;
+			sourceTree = "<group>";
+		};
+		9759AFF419C19012008EFCC2 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				97553C3B19C090DE0034B446 /* AuthenticationDelegate.h */,
+				97553C3C19C090DE0034B446 /* AuthenticationDelegate.m */,
+				9476057E19C07BC400FA8E74 /* RequestBuilder.h */,
+				9476057F19C07BC400FA8E74 /* RequestBuilder.m */,
+				97F65AC019AE0A7D00B9DC93 /* JsonDataFetcher.h */,
+				97F65AC119AE0A7D00B9DC93 /* JsonDataFetcher.m */,
+			);
+			name = Network;
 			sourceTree = "<group>";
 		};
 		97F65ABF19AE03E200B9DC93 /* Search */ = {
@@ -358,19 +362,15 @@
 		97F65AC319AE0A8300B9DC93 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9412E2F319A9FAC7008D243C /* Book.h */,
+				9412E2F419A9FAC7008D243C /* Book.m */,
+				9759AFF119C18B11008EFCC2 /* User.h */,
+				9759AFF219C18B11008EFCC2 /* User.m */,
+				9759AFEE19C184BD008EFCC2 /* Friend.h */,
+				9759AFEF19C184BD008EFCC2 /* Friend.m */,
 				94E5039519BAF998004CEBC6 /* DataStore */,
-				97F65AC419AE0A9900B9DC93 /* WebDataModel */,
 			);
 			name = Model;
-			sourceTree = "<group>";
-		};
-		97F65AC419AE0A9900B9DC93 /* WebDataModel */ = {
-			isa = PBXGroup;
-			children = (
-				97F65AC019AE0A7D00B9DC93 /* JsonDataFetcher.h */,
-				97F65AC119AE0A7D00B9DC93 /* JsonDataFetcher.m */,
-			);
-			name = WebDataModel;
 			sourceTree = "<group>";
 		};
 		A7AB360B7F99499680B8DBAC /* Frameworks */ = {

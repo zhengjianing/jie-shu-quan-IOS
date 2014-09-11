@@ -13,10 +13,10 @@
 
 + (UserStore *)sharedStore;
 
-- (void)saveCurrentUserToUDAndDBByUserObject:(id)userObject;
+- (void)saveUserWithObject:(id)userObject;
 - (NSString *)currentUserId;
 - (NSString *)currentUserName;
 - (void)removeCurrentUserFromUD;
-- (NSArray *)storedUsersByUserId:(NSString *)userId;
+- (NSArray *)storedUsersWithUserId:(NSString *)userId;
 
 @end

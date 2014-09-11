@@ -79,7 +79,7 @@ static const NSString *kPublishDate = @"publishDate";
     NSManagedObject *newBook = [NSEntityDescription insertNewObjectForEntityForName:(NSString *)kEntityName inManagedObjectContext:[self managedObjectContext]];
     [self setBookPropertiesByBook:book forManagedBook:newBook];
     
-    NSArray *usersArray = [[UserStore sharedStore] storedUsersByUserId:[[UserStore sharedStore] currentUserId]];
+    NSArray *usersArray = [[UserStore sharedStore] storedUsersWithUserId:[[UserStore sharedStore] currentUserId]];
     if ([usersArray count]) {
         NSManagedObject *currentUser = usersArray[0];
         NSMutableSet *booksSet = [currentUser mutableSetValueForKey:@"books"];

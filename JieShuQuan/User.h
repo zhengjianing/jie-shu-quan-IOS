@@ -15,6 +15,8 @@
 @property (copy, nonatomic) NSString *bookCount;
 @property (copy, nonatomic) NSString *groupName;
 @property (copy, nonatomic) NSString *userId;
+@property (copy, nonatomic) NSString *accessToken;
+
 
 
 

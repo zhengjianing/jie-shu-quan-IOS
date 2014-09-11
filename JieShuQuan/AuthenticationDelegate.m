@@ -27,10 +27,9 @@
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
     id userObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-    authMethod = [userObject valueForKey:@"authMethod"];
-    
+    authMethod = [userObject valueForKey:@"auth_method"];
     NSLog(@"%@", userObject);
-    [[UserStore sharedStore] saveCurrentUserToUDAndDBByUserObject:userObject];
+    [[UserStore sharedStore] saveUserWithObject:userObject];
     [[BookStore sharedStore] refreshStoredBooks];
 }
 
