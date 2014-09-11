@@ -75,13 +75,11 @@ static const NSString *kDBGroupName = @"group_name";
 + (User *)userFromHTTPResponse:(id)object
 {
     User *user = [[User alloc] init];
-    if ([object class] == [NSDictionary class]) {
-        user.userName = [object valueForKey:(NSString *)kUserName];
-        user.groupName = [object valueForKey:(NSString *)kGroupName];
-        user.accessToken = [object valueForKey:(NSString *)kAccessToken];
-        user.userId = [object valueForKey:(NSString *)kUserId];
-        user.userEmail = [object valueForKey:(NSString *)kUserEmail];
-    }
+    user.userName = [object valueForKey:(NSString *)kUserName];
+    user.groupName = [object valueForKey:(NSString *)kGroupName];
+    user.accessToken = [object valueForKey:(NSString *)kAccessToken];
+    user.userId = [object valueForKey:(NSString *)kUserId];
+    user.userEmail = [object valueForKey:(NSString *)kUserEmail];
     return user;
 }
 
