@@ -9,3 +9,4 @@
 #define kRegisterURL @"http://jie-shu-quan.herokuapp.com/register"
 #define kLoginURL @"http://jie-shu-quan.herokuapp.com/login"
 #define kAddBookURL @"http://jie-shu-quan.herokuapp.com/add_book"
+#define kMyFriendsURL @"http://jie-shu-quan.herokuapp.com/friends_by_user/:user_id？

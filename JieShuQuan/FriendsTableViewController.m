@@ -8,6 +8,7 @@
 
 #import "FriendsTableViewController.h"
 #import "FriendInfoTableViewCell.h"
+#import "ServerHeaders.h"
 
 @interface FriendsTableViewController ()
 
@@ -15,9 +16,10 @@
 
 @implementation FriendsTableViewController
 
-- (void)viewDidLoad
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidLoad];
+    [super viewWillAppear:YES];
+    
 }
 
 #pragma mark - Table view data source
