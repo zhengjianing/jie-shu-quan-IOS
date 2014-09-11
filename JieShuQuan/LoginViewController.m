@@ -11,15 +11,13 @@
 #import "RegisterViewController.h"
 #import "FormatValidator.h"
 #import "RequestBuilder.h"
-#import "AuthenticationDelegate.h"
+#import "AuthenticationViewController.h"
 
 @implementation LoginViewController
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSuccess) name:@"loginSuccess" object:nil];
-    
+    [super viewDidLoad];    
     _loginButton.layer.cornerRadius = 5.0;
 }
 
@@ -39,23 +37,15 @@
         return;
     }
     
-    [_activityIndicator startAnimating];
+    [self.activityIndicator startAnimating];
     [self startingLoginWithEmail:_email.text password:_password.text];
 }
 
 - (void)startingLoginWithEmail:(NSString *)email password:(NSString *)password
 {
-    _authDelegate = [[AuthenticationDelegate alloc] init];
     NSMutableURLRequest *loginRequest = [RequestBuilder buildLoginRequestWithEmail:email password:password];
     NSURLConnection *connection;
-    connection = [[NSURLConnection alloc] initWithRequest:loginRequest delegate:_authDelegate startImmediately:YES];
+    connection = [[NSURLConnection alloc] initWithRequest:loginRequest delegate:self startImmediately:YES];
 }
-
-- (void)loginSuccess
-{
-    [_activityIndicator stopAnimating];
-    [self.navigationController popToRootViewControllerAnimated:YES];
-}
-
 
 @end

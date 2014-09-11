@@ -34,7 +34,7 @@
 		94BB409019C184EC005BBD8E /* FriendBookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BB408F19C184EC005BBD8E /* FriendBookTableViewCell.m */; };
 		94E5039419BAF98E004CEBC6 /* UserStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E5039319BAF98E004CEBC6 /* UserStore.m */; };
 		94F2BF5619B1DE8D0053711F /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 94F2BF5519B1DE8D0053711F /* search.png */; };
-		97553C3D19C090DE0034B446 /* AuthenticationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 97553C3C19C090DE0034B446 /* AuthenticationDelegate.m */; };
+		97553C3D19C090DE0034B446 /* AuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97553C3C19C090DE0034B446 /* AuthenticationViewController.m */; };
 		97553C3F19C0A5610034B446 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 97553C3E19C0A5610034B446 /* info.png */; };
 		9759AFF019C184BD008EFCC2 /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 9759AFEF19C184BD008EFCC2 /* Friend.m */; };
 		9759AFF319C18B11008EFCC2 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9759AFF219C18B11008EFCC2 /* User.m */; };
@@ -112,8 +112,8 @@
 		94E5039219BAF98E004CEBC6 /* UserStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserStore.h; sourceTree = "<group>"; };
 		94E5039319BAF98E004CEBC6 /* UserStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserStore.m; sourceTree = "<group>"; };
 		94F2BF5519B1DE8D0053711F /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
-		97553C3B19C090DE0034B446 /* AuthenticationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationDelegate.h; sourceTree = "<group>"; };
-		97553C3C19C090DE0034B446 /* AuthenticationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticationDelegate.m; sourceTree = "<group>"; };
+		97553C3B19C090DE0034B446 /* AuthenticationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationViewController.h; sourceTree = "<group>"; };
+		97553C3C19C090DE0034B446 /* AuthenticationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticationViewController.m; sourceTree = "<group>"; };
 		97553C3E19C0A5610034B446 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
 		9759AFEE19C184BD008EFCC2 /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
 		9759AFEF19C184BD008EFCC2 /* Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friend.m; sourceTree = "<group>"; };
@@ -192,6 +192,8 @@
 				9471DC2919A974AB00F1A291 /* PreLoginView.h */,
 				9471DC2A19A974AB00F1A291 /* PreLoginView.m */,
 				9471DC2E19A9895000F1A291 /* PreLoginNib.xib */,
+				97553C3B19C090DE0034B446 /* AuthenticationViewController.h */,
+				97553C3C19C090DE0034B446 /* AuthenticationViewController.m */,
 				9766FC9919BF30980089C89B /* LoginViewController.h */,
 				9766FC9A19BF30980089C89B /* LoginViewController.m */,
 				97C528A219BC761000388375 /* RegisterViewController.h */,
@@ -342,8 +344,6 @@
 		9759AFF419C19012008EFCC2 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				97553C3B19C090DE0034B446 /* AuthenticationDelegate.h */,
-				97553C3C19C090DE0034B446 /* AuthenticationDelegate.m */,
 				9476057E19C07BC400FA8E74 /* RequestBuilder.h */,
 				9476057F19C07BC400FA8E74 /* RequestBuilder.m */,
 				97F65AC019AE0A7D00B9DC93 /* JsonDataFetcher.h */,
@@ -543,7 +543,7 @@
 				9471DC1519A5A31F00F1A291 /* MoreViewController.m in Sources */,
 				9471DBF519A5837700F1A291 /* JieShuQuan.xcdatamodeld in Sources */,
 				9471DC2B19A974AB00F1A291 /* PreLoginView.m in Sources */,
-				97553C3D19C090DE0034B446 /* AuthenticationDelegate.m in Sources */,
+				97553C3D19C090DE0034B446 /* AuthenticationViewController.m in Sources */,
 				97F306B519BD47D10010E91F /* NSString+AES256.m in Sources */,
 				948615F019BC0FD1001837BF /* Store.m in Sources */,
 				9476058619C15C6900FA8E74 /* SearchResultTableViewCell.m in Sources */,

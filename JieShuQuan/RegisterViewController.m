@@ -10,15 +10,13 @@
 #import "AlertHelper.h"
 #import "FormatValidator.h"
 #import "RequestBuilder.h"
-#import "AuthenticationDelegate.h"
+#import "AuthenticationViewController.h"
 
 @implementation RegisterViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(registerSuccess) name:@"registerSuccess" object:nil];
-    
     _registerButton.layer.cornerRadius = 5.0;
 }
 
@@ -45,7 +43,7 @@
         return;
     }
     
-    [_activityIndicatior startAnimating];
+    [self.activityIndicator startAnimating];
     [self startingRegisterWithUserName:_userName.text email:_email.text password:_password.text];
 }
 
@@ -55,16 +53,9 @@
 
 - (void)startingRegisterWithUserName:(NSString *)name email:(NSString *)email password:(NSString *)password
 {    
-    _authDelegate = [[AuthenticationDelegate alloc] init];
     NSMutableURLRequest *registerRequest = [RequestBuilder buildRegisterRequestWithUserName:name email:email password:password];
     NSURLConnection *connection;
-    connection = [[NSURLConnection alloc] initWithRequest:registerRequest delegate:_authDelegate startImmediately:YES];
-}
-
-- (void)registerSuccess
-{
-    [_activityIndicatior stopAnimating];
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    connection = [[NSURLConnection alloc] initWithRequest:registerRequest delegate:self startImmediately:YES];
 }
 
 @end

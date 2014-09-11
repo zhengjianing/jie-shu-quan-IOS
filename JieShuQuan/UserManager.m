@@ -23,7 +23,7 @@ static const NSString *kUDCurrentUserId = @"current_user_id";
 + (User *)currentUser
 {
     NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:(NSString *)kUDCurrentUserId];
-    return [[UserStore sharedStore] userWithUserId:userId];
+    return (userId == nil) ? nil : [[UserStore sharedStore] userWithUserId:userId];
 }
 
 + (void)removeUserFromUserDefaults
@@ -33,7 +33,7 @@ static const NSString *kUDCurrentUserId = @"current_user_id";
 
 + (BOOL)isLogin
 {
-    return [self currentUser] == nil ? NO : YES;
+    return ([self currentUser] == nil) ? NO : YES;
 }
 
 

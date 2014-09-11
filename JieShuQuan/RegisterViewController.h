@@ -8,19 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-@class AuthenticationDelegate;
+#import "AuthenticationViewController.h"
 
-@interface RegisterViewController : UIViewController
+@interface RegisterViewController : AuthenticationViewController <NSURLConnectionDataDelegate>
 @property (strong, nonatomic) IBOutlet UITextField *userName;
 @property (strong, nonatomic) IBOutlet UITextField *email;
 @property (strong, nonatomic) IBOutlet UITextField *password;
 @property (strong, nonatomic) IBOutlet UITextField *confirmPassword;
-@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatior;
 @property (strong, nonatomic) IBOutlet UIButton *registerButton;
 
 - (IBAction)registerUser:(id)sender;
 - (IBAction)emailHint:(id)sender;
-
-@property (strong ,nonatomic) AuthenticationDelegate *authDelegate;
 
 @end

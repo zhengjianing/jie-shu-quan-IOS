@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@interface AuthenticationDelegate : NSObject <NSURLConnectionDataDelegate>
+@interface AuthenticationViewController : UIViewController
+
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 
 @end
