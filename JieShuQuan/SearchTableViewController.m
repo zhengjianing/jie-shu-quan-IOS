@@ -28,8 +28,6 @@
 {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"搜索";
-
     [self setExtraCellLineHidden:self.searchDisplayController.searchResultsTableView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(webDataFetchFailed) name:@"webDataFetchFailed" object:nil];

@@ -26,6 +26,8 @@
 		9476058019C07BC400FA8E74 /* RequestBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9476057F19C07BC400FA8E74 /* RequestBuilder.m */; };
 		9476058619C15C6900FA8E74 /* SearchResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9476058519C15C6900FA8E74 /* SearchResultTableViewCell.m */; };
 		948615F019BC0FD1001837BF /* Store.m in Sources */ = {isa = PBXBuildFile; fileRef = 948615EF19BC0FD1001837BF /* Store.m */; };
+		94BB408119C17215005BBD8E /* friends.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BB408019C17215005BBD8E /* friends.png */; };
+		94BB408519C172FE005BBD8E /* FriendsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BB408419C172FE005BBD8E /* FriendsTableViewController.m */; };
 		94E5039419BAF98E004CEBC6 /* UserStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E5039319BAF98E004CEBC6 /* UserStore.m */; };
 		94F2BF5619B1DE8D0053711F /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 94F2BF5519B1DE8D0053711F /* search.png */; };
 		97553C3D19C090DE0034B446 /* AuthenticationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 97553C3C19C090DE0034B446 /* AuthenticationDelegate.m */; };
@@ -90,6 +92,9 @@
 		9476058519C15C6900FA8E74 /* SearchResultTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultTableViewCell.m; sourceTree = "<group>"; };
 		948615EE19BC0FD1001837BF /* Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Store.h; sourceTree = "<group>"; };
 		948615EF19BC0FD1001837BF /* Store.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Store.m; sourceTree = "<group>"; };
+		94BB408019C17215005BBD8E /* friends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = friends.png; sourceTree = "<group>"; };
+		94BB408319C172FE005BBD8E /* FriendsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsTableViewController.h; sourceTree = "<group>"; };
+		94BB408419C172FE005BBD8E /* FriendsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsTableViewController.m; sourceTree = "<group>"; };
 		94E5039219BAF98E004CEBC6 /* UserStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserStore.h; sourceTree = "<group>"; };
 		94E5039319BAF98E004CEBC6 /* UserStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserStore.m; sourceTree = "<group>"; };
 		94F2BF5519B1DE8D0053711F /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
@@ -209,6 +214,7 @@
 				97F65AC319AE0A8300B9DC93 /* Model */,
 				9412E2F219A9E4D4008D243C /* Login */,
 				9412E2F119A9E4CD008D243C /* MyBooks */,
+				94BB408219C172E4005BBD8E /* Friends */,
 				97F65ABF19AE03E200B9DC93 /* Search */,
 				9412E2F019A9E4C5008D243C /* More */,
 				9471DBFC19A5837700F1A291 /* Images.xcassets */,
@@ -221,6 +227,7 @@
 		9471DBEC19A5837700F1A291 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				94BB408019C17215005BBD8E /* friends.png */,
 				94F2BF5519B1DE8D0053711F /* search.png */,
 				9471DC2319A5B97800F1A291 /* user.png */,
 				9471DC2119A5B95A00F1A291 /* myBooks.png */,
@@ -267,6 +274,15 @@
 				9476057819C06AC700FA8E74 /* Validator.m */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		94BB408219C172E4005BBD8E /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				94BB408319C172FE005BBD8E /* FriendsTableViewController.h */,
+				94BB408419C172FE005BBD8E /* FriendsTableViewController.m */,
+			);
+			name = Friends;
 			sourceTree = "<group>";
 		};
 		94E5039519BAF998004CEBC6 /* DataStore */ = {
@@ -404,6 +420,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9471DBFB19A5837700F1A291 /* Main.storyboard in Resources */,
+				94BB408119C17215005BBD8E /* friends.png in Resources */,
 				97553C3F19C0A5610034B446 /* info.png in Resources */,
 				94F2BF5619B1DE8D0053711F /* search.png in Resources */,
 				9471DC2219A5B95A00F1A291 /* myBooks.png in Resources */,
@@ -461,6 +478,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				97C528A119BC34B600388375 /* AlertHelper.m in Sources */,
+				94BB408519C172FE005BBD8E /* FriendsTableViewController.m in Sources */,
 				97FC364F19B4C1AB002D0932 /* NSArrayTransformer.m in Sources */,
 				97F306B219BD45800010E91F /* NSData+AES256.m in Sources */,
 				9471DC1519A5A31F00F1A291 /* MoreViewController.m in Sources */,

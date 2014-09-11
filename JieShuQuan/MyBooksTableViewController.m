@@ -17,11 +17,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.navigationItem.title = @"我的书";
-    
-//    _changeStatusButton.layer.cornerRadius = 5.0;
-    
+        
     _myBooksTableView = self.tableView;
     
     UIStoryboard *mainStoryboard = self.storyboard;

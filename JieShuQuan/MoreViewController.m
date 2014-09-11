@@ -15,7 +15,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self navigationItem].title = @"更多";
     
     UIStoryboard *mainStoryboard = self.storyboard;
     _loginController = [mainStoryboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
