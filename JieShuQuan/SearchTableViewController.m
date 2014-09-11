@@ -8,7 +8,7 @@
 
 #import "SearchTableViewController.h"
 #import "BookDetailViewController.h"
-#import "BookTableViewCell.h"
+#import "SearchResultTableViewCell.h"
 #import "DoubanHeaders.h"
 #import "JsonDataFetcher.h"
 #import "DataConverter.h"
@@ -69,9 +69,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BookTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"searchIdentifier"];
+    SearchResultTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"searchIdentifier"];
     if (!cell) {
-        cell = [[BookTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"searchIdentifier"];
+        cell = [[SearchResultTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"searchIdentifier"];
     }
     
     Book *book = [searchResults objectAtIndex:indexPath.row];
