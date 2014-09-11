@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 JNXZ. All rights reserved.
 //
 
-#import "Validator.h"
+#import "FormatValidator.h"
 
-@implementation Validator
+@implementation FormatValidator
 
 - (BOOL)isValidUserName:(NSString *)userName
 {

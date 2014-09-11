@@ -11,6 +11,18 @@
 #import "LoginViewController.h"
 #import "BookStore.h"
 #import "UserManager.h"
+#import "Book.h"
+#import "BookTableViewCell.h"
+#import "BookDetailViewController.h"
+
+@interface MyBooksTableViewController ()
+
+@property (strong, nonatomic) UITableView *myBooksTableView;
+@property (strong, nonatomic) PreLoginView *preLoginView;
+@property (strong, nonatomic) NSArray *myBooks;
+@property (strong, nonatomic) LoginViewController *loginController;
+
+@end
 
 @implementation MyBooksTableViewController
 

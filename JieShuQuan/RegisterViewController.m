@@ -8,7 +8,7 @@
 
 #import "RegisterViewController.h"
 #import "AlertHelper.h"
-#import "Validator.h"
+#import "FormatValidator.h"
 #import "RequestBuilder.h"
 #import "AuthenticationDelegate.h"
 
@@ -23,7 +23,7 @@
 }
 
 - (IBAction)registerUser:(id)sender {
-    Validator *validator = [[Validator alloc] init];
+    FormatValidator *validator = [[FormatValidator alloc] init];
     
     if (![validator isValidUserName:_userName.text]) {
         [AlertHelper showAlertWithMessage:@"用户名格式错误！" target:self];

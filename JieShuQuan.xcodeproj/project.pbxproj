@@ -22,7 +22,7 @@
 		9471DC2719A9689E00F1A291 /* MyBooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471DC2619A9689E00F1A291 /* MyBooksTableViewController.m */; };
 		9471DC2B19A974AB00F1A291 /* PreLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471DC2A19A974AB00F1A291 /* PreLoginView.m */; };
 		9471DC2F19A9895000F1A291 /* PreLoginNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9471DC2E19A9895000F1A291 /* PreLoginNib.xib */; };
-		9476057919C06AC700FA8E74 /* Validator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9476057819C06AC700FA8E74 /* Validator.m */; };
+		9476057919C06AC700FA8E74 /* FormatValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9476057819C06AC700FA8E74 /* FormatValidator.m */; };
 		9476058019C07BC400FA8E74 /* RequestBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9476057F19C07BC400FA8E74 /* RequestBuilder.m */; };
 		9476058619C15C6900FA8E74 /* SearchResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9476058519C15C6900FA8E74 /* SearchResultTableViewCell.m */; };
 		948615F019BC0FD1001837BF /* Store.m in Sources */ = {isa = PBXBuildFile; fileRef = 948615EF19BC0FD1001837BF /* Store.m */; };
@@ -90,8 +90,8 @@
 		9471DC2919A974AB00F1A291 /* PreLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreLoginView.h; sourceTree = "<group>"; };
 		9471DC2A19A974AB00F1A291 /* PreLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreLoginView.m; sourceTree = "<group>"; };
 		9471DC2E19A9895000F1A291 /* PreLoginNib.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreLoginNib.xib; sourceTree = "<group>"; };
-		9476057719C06AC700FA8E74 /* Validator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Validator.h; sourceTree = "<group>"; };
-		9476057819C06AC700FA8E74 /* Validator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Validator.m; sourceTree = "<group>"; };
+		9476057719C06AC700FA8E74 /* FormatValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormatValidator.h; sourceTree = "<group>"; };
+		9476057819C06AC700FA8E74 /* FormatValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormatValidator.m; sourceTree = "<group>"; };
 		9476057A19C074D800FA8E74 /* ServerHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerHeaders.h; sourceTree = "<group>"; };
 		9476057E19C07BC400FA8E74 /* RequestBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestBuilder.h; sourceTree = "<group>"; };
 		9476057F19C07BC400FA8E74 /* RequestBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestBuilder.m; sourceTree = "<group>"; };
@@ -289,8 +289,8 @@
 				97F306B119BD45800010E91F /* NSData+AES256.m */,
 				97F306B319BD47D10010E91F /* NSString+AES256.h */,
 				97F306B419BD47D10010E91F /* NSString+AES256.m */,
-				9476057719C06AC700FA8E74 /* Validator.h */,
-				9476057819C06AC700FA8E74 /* Validator.m */,
+				9476057719C06AC700FA8E74 /* FormatValidator.h */,
+				9476057819C06AC700FA8E74 /* FormatValidator.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -564,7 +564,7 @@
 				94E5039419BAF98E004CEBC6 /* UserStore.m in Sources */,
 				9759AFF319C18B11008EFCC2 /* User.m in Sources */,
 				97F973C619B5FBF4007AAD47 /* BookStore.m in Sources */,
-				9476057919C06AC700FA8E74 /* Validator.m in Sources */,
+				9476057919C06AC700FA8E74 /* FormatValidator.m in Sources */,
 				94BB408819C17378005BBD8E /* FriendInfoTableViewCell.m in Sources */,
 				9471DBEF19A5837700F1A291 /* main.m in Sources */,
 			);

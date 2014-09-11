@@ -9,7 +9,7 @@
 #import "LoginViewController.h"
 #import "AlertHelper.h"
 #import "RegisterViewController.h"
-#import "Validator.h"
+#import "FormatValidator.h"
 #import "RequestBuilder.h"
 #import "AuthenticationDelegate.h"
 
@@ -27,7 +27,7 @@
 }
 
 - (IBAction)loginUser:(id)sender {
-    Validator *validator = [[Validator alloc] init];
+    FormatValidator *validator = [[FormatValidator alloc] init];
 
     if (![validator isValidEmail:_email.text]) {
         [AlertHelper showAlertWithMessage:@"邮箱格式错误！" target:self];

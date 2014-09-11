@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Validator : NSObject
+@interface FormatValidator : NSObject
 
 - (BOOL)isValidUserName:(NSString *)userName;
 - (BOOL)isValidEmail:(NSString *)emailAdress;

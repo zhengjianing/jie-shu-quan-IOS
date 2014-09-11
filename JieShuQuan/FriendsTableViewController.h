@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PreLoginView.h"
 
-@interface FriendsTableViewController : UITableViewController
+@interface FriendsTableViewController : UITableViewController <PreLoginDelegate>
 
 @end
