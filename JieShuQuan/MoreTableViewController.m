@@ -63,6 +63,9 @@
 
 - (void)updateViewForLogout
 {
+    _bookCountLabel.text = @"0";
+    _friendsCountLabel.text = @"0";
+
     _userNameButton.titleLabel.text = @"立即登录";
     [_userNameButton setUserInteractionEnabled:YES];
     
