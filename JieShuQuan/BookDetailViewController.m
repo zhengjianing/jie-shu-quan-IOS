@@ -23,7 +23,6 @@ static const NSString *kAvailableState = @"available";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _addBookButton.layer.cornerRadius = 5.0;
     self.view.backgroundColor = [UIColor whiteColor];
 }
 
@@ -56,6 +55,9 @@ static const NSString *kAvailableState = @"available";
                          accessToke:[[UserManager currentUser] accessToken]];
         [[BookStore sharedStore] addBookToStore:_book];
     }
+}
+
+- (IBAction)changeAvailability:(id)sender {
 }
 
 - (void)postRequestWithBookId:(NSString *)bookId available:(BOOL)availabilityState userId:(NSString *)userId accessToke:(NSString *)accessToken
@@ -98,6 +100,5 @@ static const NSString *kAvailableState = @"available";
 {
     NSLog(@"%@", @"connectionDidFinishLoading");
 }
-
 
 @end
