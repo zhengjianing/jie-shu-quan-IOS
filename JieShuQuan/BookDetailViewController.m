@@ -51,18 +51,18 @@ static const NSString *kAvailableState = @"available";
         [AlertHelper showAlertWithMessage:@"我的书库已有此书" target:self];
     } else {
         [AlertHelper showAlertWithMessage:@"已添加至我的书库" target:self];
-        [self postRequestWithBookId:_book.bookId available:YES
+        [self postRequestWithBookId:_book.bookId available:NO
                              userId:[[UserManager currentUser] userId]
                          accessToke:[[UserManager currentUser] accessToken]];
         [[BookStore sharedStore] addBookToStore:_book];
     }
 }
 
-- (void)postRequestWithBookId:(NSString *)bookId available:(BOOL)state userId:(NSString *)userId accessToke:(NSString *)accessToken
+- (void)postRequestWithBookId:(NSString *)bookId available:(BOOL)availabilityState userId:(NSString *)userId accessToke:(NSString *)accessToken
 {
     NSDictionary *bodyDict = [NSDictionary dictionaryWithObjectsAndKeys:
                               bookId, kBookId,
-                              [NSNumber numberWithInteger:state], kAvailableState,
+                              [NSNumber numberWithInteger:availabilityState], kAvailableState,
                               userId, @"user_id",
                               accessToken, @"access_token", nil];
     NSURL *postURL = [NSURL URLWithString:[kAddBookURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
