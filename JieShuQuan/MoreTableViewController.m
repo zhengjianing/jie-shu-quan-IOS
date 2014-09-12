@@ -68,6 +68,8 @@ static const NSString *kDefaultCount = @"0";
 
 - (void)updateViewForLogin
 {
+    [_userIconImageView setImage:[UIImage imageNamed:@"log-in-user.png"]];
+    
     _bookCountLabel.text = [[UserManager currentUser] bookCount];
     _friendsCountLabel.text = [[UserManager currentUser] friendCount];
 
@@ -80,6 +82,8 @@ static const NSString *kDefaultCount = @"0";
 
 - (void)updateViewForLogout
 {
+    [_userIconImageView setImage:[UIImage imageNamed:@"log-out-user.png"]];
+    
     _bookCountLabel.text = (NSString *)kDefaultCount;
     _friendsCountLabel.text = (NSString *)kDefaultCount;
 

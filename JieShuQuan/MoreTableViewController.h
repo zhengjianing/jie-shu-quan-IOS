@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *bookCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *friendsCountLabel;
 @property (weak, nonatomic) IBOutlet UIButton *userNameButton;
+@property (weak, nonatomic) IBOutlet UIImageView *userIconImageView;
 
 @property (weak, nonatomic) IBOutlet UITableViewCell *logoutCell;
 @property (weak, nonatomic) IBOutlet UILabel *logoutLabel;
