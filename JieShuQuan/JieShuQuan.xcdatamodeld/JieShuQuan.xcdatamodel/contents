@@ -3,6 +3,7 @@
     <entity name="Book" representedClassName="" syncable="YES">
         <attribute name="authorInfo" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="authors" optional="YES" attributeType="Transformable" valueTransformerName="NSArrayTransformer" syncable="YES"/>
+        <attribute name="availability" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="bookDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="bookId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageHref" optional="YES" attributeType="String" syncable="YES"/>
@@ -22,7 +23,7 @@
         <relationship name="books" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Book" inverseName="user" inverseEntity="Book" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Book" positionX="-63" positionY="-18" width="128" height="195"/>
+        <element name="Book" positionX="-63" positionY="-18" width="128" height="210"/>
         <element name="User" positionX="-63" positionY="54" width="128" height="150"/>
     </elements>
 </model>
