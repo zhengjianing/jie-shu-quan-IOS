@@ -16,7 +16,6 @@
 		9471DBFB19A5837700F1A291 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9471DBF919A5837700F1A291 /* Main.storyboard */; };
 		9471DBFD19A5837700F1A291 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9471DBFC19A5837700F1A291 /* Images.xcassets */; };
 		9471DC0919A5837700F1A291 /* JieShuQuanTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471DC0819A5837700F1A291 /* JieShuQuanTests.m */; };
-		9471DC1519A5A31F00F1A291 /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471DC1419A5A31F00F1A291 /* MoreViewController.m */; };
 		9471DC2219A5B95A00F1A291 /* myBooks.png in Resources */ = {isa = PBXBuildFile; fileRef = 9471DC2119A5B95A00F1A291 /* myBooks.png */; };
 		9471DC2419A5B97800F1A291 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 9471DC2319A5B97800F1A291 /* user.png */; };
 		9471DC2719A9689E00F1A291 /* MyBooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471DC2619A9689E00F1A291 /* MyBooksTableViewController.m */; };
@@ -33,6 +32,7 @@
 		94BB408D19C183E1005BBD8E /* FriendDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BB408C19C183E1005BBD8E /* FriendDetailTableViewController.m */; };
 		94BB409019C184EC005BBD8E /* FriendBookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BB408F19C184EC005BBD8E /* FriendBookTableViewCell.m */; };
 		94BB409519C283CB005BBD8E /* MoreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BB409419C283CB005BBD8E /* MoreTableViewController.m */; };
+		94BB40B419C2EB93005BBD8E /* userInfoCell.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 94BB40AC19C2EB93005BBD8E /* userInfoCell.jpg */; };
 		94E5039419BAF98E004CEBC6 /* UserStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E5039319BAF98E004CEBC6 /* UserStore.m */; };
 		94F2BF5619B1DE8D0053711F /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 94F2BF5519B1DE8D0053711F /* search.png */; };
 		97553C3D19C090DE0034B446 /* AuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97553C3C19C090DE0034B446 /* AuthenticationViewController.m */; };
@@ -82,8 +82,6 @@
 		9471DC0219A5837700F1A291 /* JieShuQuanTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JieShuQuanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9471DC0719A5837700F1A291 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9471DC0819A5837700F1A291 /* JieShuQuanTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JieShuQuanTests.m; sourceTree = "<group>"; };
-		9471DC1319A5A31F00F1A291 /* MoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreViewController.h; sourceTree = "<group>"; };
-		9471DC1419A5A31F00F1A291 /* MoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreViewController.m; sourceTree = "<group>"; };
 		9471DC2119A5B95A00F1A291 /* myBooks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myBooks.png; sourceTree = "<group>"; };
 		9471DC2319A5B97800F1A291 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
 		9471DC2519A9689E00F1A291 /* MyBooksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyBooksTableViewController.h; sourceTree = "<group>"; };
@@ -112,6 +110,7 @@
 		94BB408F19C184EC005BBD8E /* FriendBookTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendBookTableViewCell.m; sourceTree = "<group>"; };
 		94BB409319C283CB005BBD8E /* MoreTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreTableViewController.h; sourceTree = "<group>"; };
 		94BB409419C283CB005BBD8E /* MoreTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreTableViewController.m; sourceTree = "<group>"; };
+		94BB40AC19C2EB93005BBD8E /* userInfoCell.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = userInfoCell.jpg; sourceTree = "<group>"; };
 		94E5039219BAF98E004CEBC6 /* UserStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserStore.h; sourceTree = "<group>"; };
 		94E5039319BAF98E004CEBC6 /* UserStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserStore.m; sourceTree = "<group>"; };
 		94F2BF5519B1DE8D0053711F /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
@@ -170,8 +169,6 @@
 		9412E2F019A9E4C5008D243C /* More */ = {
 			isa = PBXGroup;
 			children = (
-				9471DC1319A5A31F00F1A291 /* MoreViewController.h */,
-				9471DC1419A5A31F00F1A291 /* MoreViewController.m */,
 				94BB409319C283CB005BBD8E /* MoreTableViewController.h */,
 				94BB409419C283CB005BBD8E /* MoreTableViewController.m */,
 			);
@@ -252,6 +249,7 @@
 		9471DBEC19A5837700F1A291 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				94BB40AC19C2EB93005BBD8E /* userInfoCell.jpg */,
 				94BB408919C17422005BBD8E /* friend-icon.png */,
 				94BB408019C17215005BBD8E /* friends.png */,
 				94F2BF5519B1DE8D0053711F /* search.png */,
@@ -483,6 +481,7 @@
 			files = (
 				9471DBFB19A5837700F1A291 /* Main.storyboard in Resources */,
 				94BB408119C17215005BBD8E /* friends.png in Resources */,
+				94BB40B419C2EB93005BBD8E /* userInfoCell.jpg in Resources */,
 				97553C3F19C0A5610034B446 /* info.png in Resources */,
 				94F2BF5619B1DE8D0053711F /* search.png in Resources */,
 				9471DC2219A5B95A00F1A291 /* myBooks.png in Resources */,
@@ -546,7 +545,6 @@
 				97FC364F19B4C1AB002D0932 /* NSArrayTransformer.m in Sources */,
 				94BB409519C283CB005BBD8E /* MoreTableViewController.m in Sources */,
 				97F306B219BD45800010E91F /* NSData+AES256.m in Sources */,
-				9471DC1519A5A31F00F1A291 /* MoreViewController.m in Sources */,
 				9471DBF519A5837700F1A291 /* JieShuQuan.xcdatamodeld in Sources */,
 				9471DC2B19A974AB00F1A291 /* PreLoginView.m in Sources */,
 				97553C3D19C090DE0034B446 /* AuthenticationViewController.m in Sources */,
