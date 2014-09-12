@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pdy-qY-d6V">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pdy-qY-d6V">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
     </dependencies>
     <scenes>
@@ -314,15 +315,14 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fAg-0E-FFr" id="Wbk-bD-DtT">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="friend-icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="m48-Zh-vd5">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="log-out-user.png" translatesAutoresizingMaskIntoConstraints="NO" id="m48-Zh-vd5">
                                                     <rect key="frame" x="132" y="20" width="56" height="57"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pvr-4w-N3G">
                                                     <rect key="frame" x="26" y="90" width="269" height="30"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                     <state key="normal" title="立即登录">
-                                                        <color key="titleColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
                                                         <segue destination="EyL-5w-TnI" kind="push" id="Lfa-CD-Rov"/>
@@ -331,7 +331,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCountCell" rowHeight="44" id="uMo-As-8p1">
+                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCountCell" rowHeight="44" id="uMo-As-8p1">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uMo-As-8p1" id="kHz-CS-Msl">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -455,6 +455,7 @@
                         <outlet property="friendsCountLabel" destination="fby-FT-zHL" id="7VQ-iq-N9C"/>
                         <outlet property="logoutCell" destination="ClZ-pE-8bJ" id="yGh-Pb-xWo"/>
                         <outlet property="logoutLabel" destination="0Ko-gb-cfQ" id="Pdf-TN-P1Q"/>
+                        <outlet property="userIconImageView" destination="m48-Zh-vd5" id="igA-Z7-GUH"/>
                         <outlet property="userInfoCell" destination="fAg-0E-FFr" id="iEw-y3-CSc"/>
                         <outlet property="userNameButton" destination="pvr-4w-N3G" id="vrK-o9-pgM"/>
                     </connections>
@@ -478,7 +479,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DFe-61-q3S" id="7GI-aa-2bR">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="friend-icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="O9V-mm-QCf">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="log-in-user.png" translatesAutoresizingMaskIntoConstraints="NO" id="O9V-mm-QCf">
                                             <rect key="frame" x="26" y="13" width="40" height="40"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="用户名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKY-HH-5Tc">
@@ -536,7 +537,7 @@
                             <rect key="frame" x="0.0" y="64" width="320" height="90"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="friend-icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="D8p-hp-uen">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="log-in-user.png" translatesAutoresizingMaskIntoConstraints="NO" id="D8p-hp-uen">
                                     <rect key="frame" x="26" y="13" width="40" height="40"/>
                                 </imageView>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="用户名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ToU-sn-hUz">
@@ -851,8 +852,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="friend-icon.png" width="48" height="48"/>
         <image name="friends.png" width="20" height="20"/>
+        <image name="log-in-user.png" width="128" height="128"/>
+        <image name="log-out-user.png" width="128" height="128"/>
         <image name="myBooks.png" width="20" height="20"/>
         <image name="search.png" width="20" height="20"/>
         <image name="user.png" width="20" height="20"/>

@@ -10,9 +10,7 @@
 #import "UserManager.h"
 #import "User.h"
 
-@interface MoreTableViewController ()
-
-@end
+static const NSString *kDefaultCount = @"0";
 
 @implementation MoreTableViewController
 
@@ -20,9 +18,13 @@
 {
     [super viewDidLoad];
     
-    UIImage *backgroundImage = [UIImage imageNamed:@"userInfoCell.jpg"];
+    [self setUserInfoBackgroundImage];
+}
+
+- (void)setUserInfoBackgroundImage
+{
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:_userInfoCell.backgroundView.frame];
-    [imageView setImage:backgroundImage];
+    [imageView setImage:[UIImage imageNamed:@"bg.jpeg"]];
     self.userInfoCell.backgroundView = imageView;
 }
 
@@ -41,16 +43,33 @@
     }
 }
 
+#pragma mark - Logout & Login
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([indexPath section] == 2) {
-        [UserManager removeUserFromUserDefaults];
-        [self updateViewForLogout];
+        UIActionSheet *confirmLogoutActionSheet = [[UIActionSheet alloc] initWithTitle:@"确认退出吗？" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"确认" otherButtonTitles:nil, nil];
+        [confirmLogoutActionSheet showInView:self.view];
     }
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        [self confirmedLogout];
+    }
+}
+
+- (void)confirmedLogout
+{
+    [UserManager removeUserFromUserDefaults];
+    [self updateViewForLogout];
 }
 
 - (void)updateViewForLogin
 {
+    [_userIconImageView setImage:[UIImage imageNamed:@"log-in-user.png"]];
+    
     _bookCountLabel.text = [[UserManager currentUser] bookCount];
     _friendsCountLabel.text = [[UserManager currentUser] friendCount];
 
@@ -63,6 +82,11 @@
 
 - (void)updateViewForLogout
 {
+    [_userIconImageView setImage:[UIImage imageNamed:@"log-out-user.png"]];
+    
+    _bookCountLabel.text = (NSString *)kDefaultCount;
+    _friendsCountLabel.text = (NSString *)kDefaultCount;
+
     _userNameButton.titleLabel.text = @"立即登录";
     [_userNameButton setUserInteractionEnabled:YES];
     
