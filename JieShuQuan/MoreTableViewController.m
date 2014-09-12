@@ -51,6 +51,9 @@
 
 - (void)updateViewForLogin
 {
+    _bookCountLabel.text = [[UserManager currentUser] bookCount];
+    _friendsCountLabel.text = [[UserManager currentUser] friendCount];
+
     _userNameButton.titleLabel.text = [[UserManager currentUser] userName];
     [_userNameButton setUserInteractionEnabled:NO];
     

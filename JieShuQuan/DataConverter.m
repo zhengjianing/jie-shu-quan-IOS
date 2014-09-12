@@ -28,6 +28,7 @@ static const NSString *kAccessToken = @"access_token";
 static const NSString *kUserId = @"user_id";
 static const NSString *kUserEmail = @"user_email";
 static const NSString *kBookCount = @"book_count";
+static const NSString *kFriendCount = @"friend_count";
 
 // keys in CoreData
 static const NSString *kDBUserId = @"user_id";
@@ -36,7 +37,7 @@ static const NSString *kDBUserEmail = @"user_email";
 static const NSString *kDBAccessToken = @"access_token";
 static const NSString *kDBBookCount = @"book_count";
 static const NSString *kDBGroupName = @"group_name";
-
+static const NSString *kDBFriendCount = @"friend_count";
 
 @interface DataConverter ()
 + (NSMutableArray *)booksArrayFromUnserializedBooksData:(NSArray *)booksData;
@@ -88,6 +89,7 @@ static const NSString *kDBGroupName = @"group_name";
     user.userId = [object valueForKey:(NSString *)kUserId];
     user.userEmail = [object valueForKey:(NSString *)kUserEmail];
     user.bookCount = [object valueForKey:(NSString *)kBookCount];
+    user.friendCount = [object valueForKey:(NSString *)kFriendCount];
     return user;
 }
 
@@ -100,6 +102,7 @@ static const NSString *kDBGroupName = @"group_name";
     user.bookCount = [storedUser valueForKey:(NSString *)kDBBookCount];
     user.userEmail = [storedUser valueForKey:(NSString *)kDBUserEmail];
     user.accessToken = [storedUser valueForKey:(NSString *)kDBAccessToken];
+    user.friendCount = [storedUser valueForKey:(NSString *)kDBFriendCount];
     return user;
 }
 
@@ -111,6 +114,7 @@ static const NSString *kDBGroupName = @"group_name";
     [object setValue:user.userEmail forKey:(NSString *)kDBUserEmail];
     [object setValue:user.bookCount forKey:(NSString *)kDBBookCount];
     [object setValue:user.accessToken forKey:(NSString *)kDBAccessToken];
+    [object setValue:user.friendCount forKey:(NSString *)kDBFriendCount];
 }
 
 @end

@@ -16,5 +16,6 @@
 @property (copy, nonatomic) NSString *groupName;
 @property (copy, nonatomic) NSString *userId;
 @property (copy, nonatomic) NSString *accessToken;
+@property (copy, nonatomic) NSString *friendCount;
 
 @end

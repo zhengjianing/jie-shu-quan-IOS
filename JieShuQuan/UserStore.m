@@ -54,4 +54,16 @@ static const NSString *kEntityName = @"User";
     return [DataConverter userFromManagedObject:storedUser];
 }
 
+- (void)refreshBookCountForUser:(NSString *)userId
+{
+    if ([[self storedUsersWithUserId:userId] count] == 0) {
+        return;
+    }
+    NSManagedObject *storedUser = [[self storedUsersWithUserId:userId] objectAtIndex:0];
+    int previousCount = [[storedUser valueForKey:@"book_count"] intValue];
+    int currentCount = previousCount + 1;
+    [storedUser setValue:[NSString stringWithFormat:@"%d", currentCount] forKey:@"book_count"];
+    [self saveContext];
+}
+
 @end

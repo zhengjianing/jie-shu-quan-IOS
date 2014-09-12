@@ -9,6 +9,7 @@
 #import "BookDetailViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "BookStore.h"
+#import "UserStore.h"
 #import "Book.h"
 #import "AlertHelper.h"
 #import "ServerHeaders.h"
@@ -59,14 +60,18 @@ static const NSString *kAvailableState = @"available";
 }
 
 - (IBAction)addBook:(id)sender {
+    User *currentUser = [UserManager currentUser];
+    NSString *currentUserId = currentUser.userId;
+                         
     if ([[BookStore sharedStore] storeHasBook:_book]) {
         [AlertHelper showAlertWithMessage:@"我的书库已有此书" target:self];
     } else {
         [AlertHelper showAlertWithMessage:@"已添加至我的书库" target:self];
         [self postRequestWithBookId:_book.bookId available:NO
-                             userId:[[UserManager currentUser] userId]
-                         accessToke:[[UserManager currentUser] accessToken]];
+                             userId:currentUserId
+                         accessToke:[currentUser accessToken]];
         [[BookStore sharedStore] addBookToStore:_book];
+        [[UserStore sharedStore] refreshBookCountForUser:currentUserId];
     }
 }
 

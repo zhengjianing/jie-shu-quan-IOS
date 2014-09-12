@@ -16,6 +16,6 @@
 - (void)saveUserToCoreData:(User *)user;
 - (NSArray *)storedUsersWithUserId:(NSString *)userId;
 - (User *)userWithUserId:(NSString *)userId;
-
+- (void)refreshBookCountForUser:(NSString *)userId;
 
 @end
