@@ -19,7 +19,7 @@
 @property (copy, nonatomic) NSString *publisher;
 @property (copy, nonatomic) NSString *publishDate;
 @property (copy, nonatomic) NSString *bookId;
-@property (assign, nonatomic) BOOL *availability;
+@property (assign, nonatomic) BOOL availability;
 
 - (NSString *)authorsString;
 - (BOOL)isSameBook:(Book *)book;

@@ -21,6 +21,13 @@
 static const NSString *kBookId = @"douban_book_id";
 static const NSString *kAvailableState = @"available";
 
+static const NSString *kAvailableNO = @"更改为随时可借";
+static const NSString *kAvailableYES = @"更改为不可借";
+static const NSString *kStatusYES = @"可借";
+static const NSString *kStatusNO = @"暂时不可借";
+
+
+
 @implementation BookDetailViewController
 
 - (void)viewDidLoad
@@ -43,9 +50,11 @@ static const NSString *kAvailableState = @"available";
     id prevController = [navStackControllers objectAtIndex:([navStackControllers count]-2)];
     if ([prevController class] == [MyBooksTableViewController class]) {
         [self.navigationItem setRightBarButtonItem:nil];
+        _isChangingStatus = YES;
     } else if ([prevController class] == [SearchTableViewController class]) {
         [_changeAvailabilityButton setHidden:YES];
-        [_availability setHidden:YES];
+        [_availabilityLabel setHidden:YES];
+        _isChangingStatus = NO;
     }
     //set the view components.
     [_bookImageView sd_setImageWithURL:[NSURL URLWithString:_book.imageHref]];
@@ -56,7 +65,14 @@ static const NSString *kAvailableState = @"available";
     _priceLabel.text = _book.price;
     _discriptionLabel.text = _book.description;
     _authorInfoLabel.text = _book.authorInfo;
-   
+    _availabilityStatus = _book.availability;
+    [self setLabelTextWithBookAvailability:_availabilityStatus];
+}
+
+- (void)setLabelTextWithBookAvailability:(BOOL)availability
+{
+    _changeAvailabilityButton.titleLabel.text = (availability == YES)? (NSString *)kAvailableYES : (NSString *)kAvailableNO;
+    _availabilityLabel.text = (availability == YES)? (NSString *)kStatusYES : (NSString *)kStatusNO;
 }
 
 - (IBAction)addBook:(id)sender {
@@ -67,7 +83,7 @@ static const NSString *kAvailableState = @"available";
         [AlertHelper showAlertWithMessage:@"我的书库已有此书" target:self];
     } else {
         [AlertHelper showAlertWithMessage:@"已添加至我的书库" target:self];
-        [self postRequestWithBookId:_book.bookId available:NO
+        [self postAddBookRequestWithBookId:_book.bookId available:NO
                              userId:currentUserId
                          accessToke:[currentUser accessToken]];
         [[BookStore sharedStore] addBookToStore:_book];
@@ -76,9 +92,33 @@ static const NSString *kAvailableState = @"available";
 }
 
 - (IBAction)changeAvailability:(id)sender {
+    User *currentUser = [UserManager currentUser];
+    NSString *currentUserId = currentUser.userId;
+    
+    [self putChangeStatusRequestWithBookId:_book.bookId available:(!_availabilityStatus) userId:currentUserId accessToken:[currentUser accessToken]];
 }
 
-- (void)postRequestWithBookId:(NSString *)bookId available:(BOOL)availabilityState userId:(NSString *)userId accessToke:(NSString *)accessToken
+- (void)putChangeStatusRequestWithBookId:(NSString *)bookId available:(BOOL)availabilityState userId:(NSString *)userId accessToken:(NSString *)accessToken
+{
+    NSDictionary *bodyDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                              bookId, kBookId,
+                              [NSNumber numberWithInteger:availabilityState], kAvailableState,
+                              userId, @"user_id",
+                              accessToken, @"access_token", nil];
+    NSURL *postURL = [NSURL URLWithString:[kChangeBookStatusURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:postURL];
+    
+    id object = [NSJSONSerialization dataWithJSONObject:bodyDict options:NSJSONWritingPrettyPrinted error:nil];
+    [request setHTTPBody:object];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPMethod:@"PUT"];
+    
+    NSURLConnection *connection;
+    connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
+
+}
+
+- (void)postAddBookRequestWithBookId:(NSString *)bookId available:(BOOL)availabilityState userId:(NSString *)userId accessToke:(NSString *)accessToken
 {
     NSDictionary *bodyDict = [NSDictionary dictionaryWithObjectsAndKeys:
                               bookId, kBookId,
@@ -101,16 +141,25 @@ static const NSString *kAvailableState = @"available";
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     NSLog(@"%@", response);
+    if ([(NSHTTPURLResponse *)response statusCode] != 200) {
+        if (_isChangingStatus) {
+            [AlertHelper showAlertWithMessage:@"修改图书状态失败" target:self];
+        } else [AlertHelper showAlertWithMessage:@"添加图书失败" target:self];
+    } else if (_isChangingStatus) {
+        [self.navigationItem setRightBarButtonItem:nil];
+        [_changeAvailabilityButton setHidden:NO];
+        [_availabilityLabel setHidden:NO];
+    }
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
     id userObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
     NSLog(@"%@", userObject);
-    
-    //if book already added, then show the availability button and label
-    [_changeAvailabilityButton setHidden:NO];
-    [_availability setHidden:NO];
+    if (_isChangingStatus) {
+        _availabilityStatus = [[userObject valueForKey:(NSString *)kAvailableState] boolValue];
+        [self setLabelTextWithBookAvailability:_availabilityStatus];
+    }
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error

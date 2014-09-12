@@ -283,7 +283,7 @@
                     <connections>
                         <outlet property="authorInfoLabel" destination="enc-RU-qDw" id="9hT-0x-vUV"/>
                         <outlet property="authorsLabel" destination="yRn-A7-fjK" id="Tln-zN-9Jx"/>
-                        <outlet property="availability" destination="mnQ-mP-xrA" id="zPt-x9-qjQ"/>
+                        <outlet property="availabilityLabel" destination="mnQ-mP-xrA" id="baR-SD-S7i"/>
                         <outlet property="bookImageView" destination="EQh-qH-raI" id="pAo-rN-ZAg"/>
                         <outlet property="changeAvailabilityButton" destination="CvE-ub-KTB" id="hHS-oH-Rdz"/>
                         <outlet property="discriptionLabel" destination="S4G-Wk-Wyh" id="eOK-Ec-KOw"/>

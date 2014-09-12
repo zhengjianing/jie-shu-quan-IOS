@@ -21,12 +21,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *discriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *authorInfoLabel;
-@property (strong, nonatomic) IBOutlet UILabel *availability;
+@property (strong, nonatomic) IBOutlet UILabel *availabilityLabel;
 @property (strong, nonatomic) IBOutlet UIButton *changeAvailabilityButton;
 
 - (IBAction)addBook:(id)sender;
 - (IBAction)changeAvailability:(id)sender;
 
 @property (strong, nonatomic) Book *book;
+@property (assign, nonatomic) BOOL isChangingStatus;
+@property (assign, nonatomic) BOOL availabilityStatus;
 
 @end
