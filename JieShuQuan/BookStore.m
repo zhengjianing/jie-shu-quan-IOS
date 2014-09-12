@@ -32,6 +32,7 @@ static const NSString *kPrice = @"price";
 static const NSString *kPublisher = @"publisher";
 static const NSString *kBookId = @"bookId";
 static const NSString *kPublishDate = @"publishDate";
+static const NSString *kAvailability = @"availability";
 
 + (BookStore *)sharedStore
 {
@@ -93,6 +94,19 @@ static const NSString *kPublishDate = @"publishDate";
     [[BookStore sharedStore] refreshStoredBooks];
 }
 
+- (void)changeStoredBookStatusWith:(Book *)book
+{
+    NSArray *booksArray = [self fetchBooksFromStore];
+    for (id item in booksArray) {
+        if ([book.bookId isEqualToString:[item valueForKey:(NSString *)kBookId]]) {
+            [item setValue:[NSNumber numberWithBool:book.availability] forKey:(NSString *)kAvailability];
+            [self saveContext];
+            [[BookStore sharedStore] refreshStoredBooks];
+            return;
+        }
+    }
+}
+
 #pragma mark - private methods
 
 - (NSArray *)fetchBooksFromStore
@@ -121,6 +135,7 @@ static const NSString *kPublishDate = @"publishDate";
         book.publisher = [storedBook valueForKey:(NSString *)kPublisher];
         book.bookId = [storedBook valueForKey:(NSString *)kBookId];
         book.publishDate = [storedBook valueForKey:(NSString *)kPublishDate];
+        book.availability = [[storedBook valueForKey:(NSString *)kAvailability] boolValue];
         
         [booksArray addObject:book];
     }

@@ -44,7 +44,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="authorsLabel" destination="XrK-92-vqj" id="Cl7-Kr-lj7"/>
-                                    <outlet property="availability" destination="r4x-0h-s1M" id="opg-SZ-2ta"/>
+                                    <outlet property="availabilityLabel" destination="r4x-0h-s1M" id="B8u-b7-TH0"/>
                                     <outlet property="bookImageView" destination="qqU-Zu-LUZ" id="rRK-h6-CG5"/>
                                     <outlet property="nameLabel" destination="x8X-zM-WtI" id="9TS-0U-Trp"/>
                                     <segue destination="GnW-5j-b0Y" kind="push" id="pVb-gC-hK8"/>

@@ -73,6 +73,9 @@ static const NSString *kDBFriendCount = @"friend_count";
         book.publishDate = [item valueForKey:(NSString *)kDBPubdate];
         book.bookId = [item valueForKey:(NSString *)kDBBookId];
         
+        //搜索到的结果，默认availability为NO ！
+        book.availability = NO;
+        
         [booksArray addObject:book];
     }
     return booksArray;

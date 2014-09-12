@@ -15,6 +15,9 @@
 #import "BookTableViewCell.h"
 #import "BookDetailViewController.h"
 
+static const NSString *kStatusYES = @"可借";
+static const NSString *kStatusNO = @"暂时不可借";
+
 @interface MyBooksTableViewController ()
 
 @property (strong, nonatomic) UITableView *myBooksTableView;
@@ -102,6 +105,7 @@
     cell.nameLabel.text = book.name;
     cell.authorsLabel.text = [book authorsString];
     [cell.bookImageView sd_setImageWithURL:[NSURL URLWithString:book.imageHref]];
+    cell.availabilityLabel.text = (book.availability == YES) ? (NSString *)kStatusYES : (NSString *)kStatusNO;
     return cell;
 }
 

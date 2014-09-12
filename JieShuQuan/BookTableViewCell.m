@@ -16,7 +16,7 @@
         _authorsLabel = [[UILabel alloc] init];
         _nameLabel = [[UILabel alloc] init];
         _bookImageView = [[UIImageView alloc] init];
-        _availability = [[UILabel alloc] init];
+        _availabilityLabel = [[UILabel alloc] init];
     }
     return self;    
 }

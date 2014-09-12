@@ -145,11 +145,11 @@ static const NSString *kStatusNO = @"暂时不可借";
         if (_isChangingStatus) {
             [AlertHelper showAlertWithMessage:@"修改图书状态失败" target:self];
         } else [AlertHelper showAlertWithMessage:@"添加图书失败" target:self];
-    } else if (_isChangingStatus) {
-        [self.navigationItem setRightBarButtonItem:nil];
-        [_changeAvailabilityButton setHidden:NO];
-        [_availabilityLabel setHidden:NO];
+        return;
     }
+    [self.navigationItem setRightBarButtonItem:nil];
+    [_changeAvailabilityButton setHidden:NO];
+    [_availabilityLabel setHidden:NO];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
@@ -158,6 +158,8 @@ static const NSString *kStatusNO = @"暂时不可借";
     NSLog(@"%@", userObject);
     if (_isChangingStatus) {
         _availabilityStatus = [[userObject valueForKey:(NSString *)kAvailableState] boolValue];
+        _book.availability = _availabilityStatus;
+        [[BookStore sharedStore] changeStoredBookStatusWith:_book];
         [self setLabelTextWithBookAvailability:_availabilityStatus];
     }
 }
