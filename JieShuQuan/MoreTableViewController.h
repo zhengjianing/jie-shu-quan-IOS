@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MoreTableViewController : UITableViewController
+@interface MoreTableViewController : UITableViewController <UIActionSheetDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableViewCell *userInfoCell;
 @property (weak, nonatomic) IBOutlet UILabel *bookCountLabel;
