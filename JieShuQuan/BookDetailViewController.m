@@ -14,6 +14,8 @@
 #import "ServerHeaders.h"
 #import "UserManager.h"
 #import "User.h"
+#import "MyBooksTableViewController.h"
+#import "SearchTableViewController.h"
 
 static const NSString *kBookId = @"douban_book_id";
 static const NSString *kAvailableState = @"available";
@@ -34,6 +36,17 @@ static const NSString *kAvailableState = @"available";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    //find the previous controller and determine which components not to display.
+    NSArray *navStackControllers = [self.navigationController viewControllers];
+    id prevController = [navStackControllers objectAtIndex:([navStackControllers count]-2)];
+    if ([prevController class] == [MyBooksTableViewController class]) {
+        [self.navigationItem setRightBarButtonItem:nil];
+    } else if ([prevController class] == [SearchTableViewController class]) {
+        [_changeAvailabilityButton setHidden:YES];
+        [_availability setHidden:YES];
+    }
+    //set the view components.
     [_bookImageView sd_setImageWithURL:[NSURL URLWithString:_book.imageHref]];
     _nameLabel.text = _book.name;
     _authorsLabel.text = [_book authorsString];

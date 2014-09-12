@@ -111,6 +111,7 @@
         selectIndexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
         selectedBook = [searchResults objectAtIndex:[selectIndexPath row]];
         [[segue destinationViewController] setBook:selectedBook];
+        [[[segue destinationViewController] changeAvailabilityButton] removeFromSuperview];
     }
 }
 

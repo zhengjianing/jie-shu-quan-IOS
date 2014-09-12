@@ -113,7 +113,6 @@
         NSIndexPath *selectIndexPath = [self.tableView indexPathForSelectedRow];
         Book *selectedBook = [_myBooks objectAtIndex:[selectIndexPath row]];
         [[segue destinationViewController] setBook:selectedBook];
-        [[[segue destinationViewController] addBookButton] setBackgroundColor:[UIColor grayColor]];
     }
 }
 
