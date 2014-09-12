@@ -32,6 +32,7 @@
 		94BB408A19C17422005BBD8E /* friend-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BB408919C17422005BBD8E /* friend-icon.png */; };
 		94BB408D19C183E1005BBD8E /* FriendDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BB408C19C183E1005BBD8E /* FriendDetailTableViewController.m */; };
 		94BB409019C184EC005BBD8E /* FriendBookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BB408F19C184EC005BBD8E /* FriendBookTableViewCell.m */; };
+		94BB409519C283CB005BBD8E /* MoreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BB409419C283CB005BBD8E /* MoreTableViewController.m */; };
 		94E5039419BAF98E004CEBC6 /* UserStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E5039319BAF98E004CEBC6 /* UserStore.m */; };
 		94F2BF5619B1DE8D0053711F /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 94F2BF5519B1DE8D0053711F /* search.png */; };
 		97553C3D19C090DE0034B446 /* AuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97553C3C19C090DE0034B446 /* AuthenticationViewController.m */; };
@@ -109,6 +110,8 @@
 		94BB408C19C183E1005BBD8E /* FriendDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendDetailTableViewController.m; sourceTree = "<group>"; };
 		94BB408E19C184EC005BBD8E /* FriendBookTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendBookTableViewCell.h; sourceTree = "<group>"; };
 		94BB408F19C184EC005BBD8E /* FriendBookTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendBookTableViewCell.m; sourceTree = "<group>"; };
+		94BB409319C283CB005BBD8E /* MoreTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreTableViewController.h; sourceTree = "<group>"; };
+		94BB409419C283CB005BBD8E /* MoreTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreTableViewController.m; sourceTree = "<group>"; };
 		94E5039219BAF98E004CEBC6 /* UserStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserStore.h; sourceTree = "<group>"; };
 		94E5039319BAF98E004CEBC6 /* UserStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserStore.m; sourceTree = "<group>"; };
 		94F2BF5519B1DE8D0053711F /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
@@ -169,6 +172,8 @@
 			children = (
 				9471DC1319A5A31F00F1A291 /* MoreViewController.h */,
 				9471DC1419A5A31F00F1A291 /* MoreViewController.m */,
+				94BB409319C283CB005BBD8E /* MoreTableViewController.h */,
+				94BB409419C283CB005BBD8E /* MoreTableViewController.m */,
 			);
 			name = More;
 			sourceTree = "<group>";
@@ -539,6 +544,7 @@
 				94BB408519C172FE005BBD8E /* FriendsTableViewController.m in Sources */,
 				9759AFFA19C19976008EFCC2 /* UserManager.m in Sources */,
 				97FC364F19B4C1AB002D0932 /* NSArrayTransformer.m in Sources */,
+				94BB409519C283CB005BBD8E /* MoreTableViewController.m in Sources */,
 				97F306B219BD45800010E91F /* NSData+AES256.m in Sources */,
 				9471DC1519A5A31F00F1A291 /* MoreViewController.m in Sources */,
 				9471DBF519A5837700F1A291 /* JieShuQuan.xcdatamodeld in Sources */,

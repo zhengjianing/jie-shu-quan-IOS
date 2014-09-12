@@ -27,6 +27,7 @@ static const NSString *kGroupName = @"group_name";
 static const NSString *kAccessToken = @"access_token";
 static const NSString *kUserId = @"user_id";
 static const NSString *kUserEmail = @"user_email";
+static const NSString *kBookCount = @"book_count";
 
 // keys in CoreData
 static const NSString *kDBUserId = @"user_id";
@@ -86,6 +87,7 @@ static const NSString *kDBGroupName = @"group_name";
     user.accessToken = [object valueForKey:(NSString *)kAccessToken];
     user.userId = [object valueForKey:(NSString *)kUserId];
     user.userEmail = [object valueForKey:(NSString *)kUserEmail];
+    user.bookCount = [object valueForKey:(NSString *)kBookCount];
     return user;
 }
 
