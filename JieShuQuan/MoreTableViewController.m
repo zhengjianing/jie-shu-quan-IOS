@@ -24,7 +24,7 @@ static const NSString *kDefaultCount = @"0";
 - (void)setUserInfoBackgroundImage
 {
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:_userInfoCell.backgroundView.frame];
-    [imageView setImage:[UIImage imageNamed:@"userInfoCell.jpg"]];
+    [imageView setImage:[UIImage imageNamed:@"bg.jpeg"]];
     self.userInfoCell.backgroundView = imageView;
 }
 
