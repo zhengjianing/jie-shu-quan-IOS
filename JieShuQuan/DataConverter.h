@@ -17,5 +17,4 @@
 + (User *)userFromManagedObject:(id)storedUser;
 + (void)setManagedObject:(id)object forUser:(User *)user;
 
-
 @end

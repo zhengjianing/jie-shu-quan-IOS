@@ -12,7 +12,8 @@
 
 @implementation NSData(AES256)
 
-- (NSData *)aes256_encrypt:(NSString *)key   //加密
+//加密
+- (NSData *)aes256_encrypt:(NSString *)key
 {
     char keyPtr[kCCKeySizeAES256+1];
     bzero(keyPtr, sizeof(keyPtr));
@@ -35,9 +36,8 @@
     return nil;
 }
 
-
-- (NSData *)aes256_decrypt:(NSString *)key   //解密
-{
+//解密
+- (NSData *)aes256_decrypt:(NSString *)key{
     char keyPtr[kCCKeySizeAES256+1];
     bzero(keyPtr, sizeof(keyPtr));
     [key getCString:keyPtr maxLength:sizeof(keyPtr) encoding:NSUTF8StringEncoding];

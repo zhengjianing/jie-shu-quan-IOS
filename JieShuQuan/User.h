@@ -17,7 +17,4 @@
 @property (copy, nonatomic) NSString *userId;
 @property (copy, nonatomic) NSString *accessToken;
 
-
-
-
 @end

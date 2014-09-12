@@ -10,5 +10,7 @@
 #import <UIKit/UIKit.h>
 
 @interface AlertHelper : NSObject
+
 + (void)showAlertWithMessage:(NSString *)message target:(id)target;
+
 @end

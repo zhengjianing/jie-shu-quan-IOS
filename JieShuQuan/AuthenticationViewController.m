@@ -26,11 +26,10 @@
 }
 
 #pragma mark - NSURLConnectionDataDelegate methods
+
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
-    NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
-    NSLog(@"%d", statusCode);
-    if (statusCode != 200) {
+    if ([(NSHTTPURLResponse *)response statusCode] != 200) {
         [AlertHelper showAlertWithMessage:@"验证失败" target:self];
     }
     [self.activityIndicator stopAnimating];
@@ -50,8 +49,7 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    NSLog(@"%@", @"didFailWithError");
-    [AlertHelper showAlertWithMessage:@"网络请求失败...\n请检查您的网络连接是否正确" target:self];
+    [AlertHelper showAlertWithMessage:@"网络请求失败...\n请检查您的网络连接" target:self];
 }
 
 @end

@@ -10,6 +10,17 @@
 #import "Book.h"
 #import "User.h"
 
+// keys in Douban API
+static const NSString *kDBTitle = @"title";
+static const NSString *kDBAuthor = @"author";
+static const NSString *kDBImageHref = @"image";
+static const NSString *kDBSummary = @"summary";
+static const NSString *kDBAuthorIntro = @"author_intro";
+static const NSString *kDBPrice = @"price";
+static const NSString *kDBPublisher = @"publisher";
+static const NSString *kDBPubdate = @"pubdate";
+static const NSString *kDBBookId = @"id";
+
 // keys in Server API
 static const NSString *kUserName = @"user_name";
 static const NSString *kGroupName = @"group_name";
@@ -32,21 +43,15 @@ static const NSString *kDBGroupName = @"group_name";
 
 @implementation DataConverter
 
+#pragma mark -- Book
+
 + (NSMutableArray *)booksArrayFromJsonData:(NSData *)jsonData
 {
-    id object;
-    if (jsonData) {
-        NSError *error = nil;
-        object = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&error];
-        if (!object) {
-            NSLog(@"Convertion From JsonData To FoundationObject Failed: %@, %@", error, [error userInfo]);
-            abort();
-        }
+    id object = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
+    if (!object) {
+        return nil;
     }
-    else {
-        NSLog(@"Invalid Data...");
-        abort();
-    }
+
     return [self booksArrayFromUnserializedBooksData:[object valueForKey:@"books"]];
 }
 
@@ -56,15 +61,15 @@ static const NSString *kDBGroupName = @"group_name";
     
     for (id item in booksData) {
         Book *book = [[Book alloc] init];
-        book.name = [item valueForKey:@"title"];
-        book.authors = [item valueForKey:@"author"];
-        book.imageHref = [item valueForKey:@"image"];
-        book.description = [item valueForKey:@"summary"];
-        book.authorInfo = [item valueForKey:@"author_intro"];
-        book.price = [item valueForKey:@"price"];
-        book.publisher = [item valueForKey:@"publisher"];
-        book.publishDate = [item valueForKey:@"pubdate"];
-        book.bookId = [item valueForKey:@"id"];
+        book.name = [item valueForKey:(NSString *)kDBTitle];
+        book.authors = [item valueForKey:(NSString *)kDBAuthor];
+        book.imageHref = [item valueForKey:(NSString *)kDBImageHref];
+        book.description = [item valueForKey:(NSString *)kDBSummary];
+        book.authorInfo = [item valueForKey:(NSString *)kDBAuthorIntro];
+        book.price = [item valueForKey:(NSString *)kDBPrice];
+        book.publisher = [item valueForKey:(NSString *)kDBPublisher];
+        book.publishDate = [item valueForKey:(NSString *)kDBPubdate];
+        book.bookId = [item valueForKey:(NSString *)kDBBookId];
         
         [booksArray addObject:book];
     }
@@ -72,6 +77,7 @@ static const NSString *kDBGroupName = @"group_name";
 }
 
 #pragma mark -- User
+
 + (User *)userFromHTTPResponse:(id)object
 {
     User *user = [[User alloc] init];

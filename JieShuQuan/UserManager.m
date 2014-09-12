@@ -10,7 +10,6 @@
 #import "User.h"
 #import "UserStore.h"
 
-// keys in NSUserDefaults
 static const NSString *kUDCurrentUserId = @"current_user_id";
 
 @implementation UserManager

@@ -10,7 +10,6 @@
 #import "AlertHelper.h"
 #import "FormatValidator.h"
 #import "RequestBuilder.h"
-#import "AuthenticationViewController.h"
 
 @implementation RegisterViewController
 
@@ -48,7 +47,7 @@
 }
 
 - (IBAction)emailHint:(id)sender {
-    [AlertHelper showAlertWithMessage:@"请使用企业邮箱，便于我们帮您找到您的朋友们" target:self];
+    [AlertHelper showAlertWithMessage:@"使用企业邮箱，便于我们帮您找到您的朋友们" target:self];
 }
 
 - (void)startingRegisterWithUserName:(NSString *)name email:(NSString *)email password:(NSString *)password
