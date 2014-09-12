@@ -7,7 +7,6 @@
 //
 
 #import "BookTableViewCell.h"
-
 @implementation BookTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -17,10 +16,9 @@
         _authorsLabel = [[UILabel alloc] init];
         _nameLabel = [[UILabel alloc] init];
         _bookImageView = [[UIImageView alloc] init];
+        _availability = [[UILabel alloc] init];
     }
     return self;    
 }
 
-- (IBAction)changeAvailability:(id)sender {
-}
 @end

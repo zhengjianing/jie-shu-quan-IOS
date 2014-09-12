@@ -102,6 +102,10 @@ static const NSString *kAvailableState = @"available";
 {
     id userObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
     NSLog(@"%@", userObject);
+    
+    //if book already added, then show the availability button and label
+    [_changeAvailabilityButton setHidden:NO];
+    [_availability setHidden:NO];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
