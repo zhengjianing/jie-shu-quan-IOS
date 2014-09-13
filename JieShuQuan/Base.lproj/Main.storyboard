@@ -56,13 +56,7 @@
                             <outlet property="delegate" destination="n64-PA-4UG" id="Mlj-wb-6z7"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="我的书库" id="YXD-6g-JdC">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="uDt-Ez-ABq">
-                            <connections>
-                                <action selector="refreshLocalBookStore:" destination="n64-PA-4UG" id="g6w-f7-Rro"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="我的书库" id="YXD-6g-JdC"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="480"/>
                 </tableViewController>

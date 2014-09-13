@@ -11,6 +11,4 @@
 
 @interface MyBooksTableViewController : UITableViewController <PreLoginDelegate, NSURLConnectionDataDelegate>
 
-@property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;
-- (IBAction)refreshLocalBookStore:(id)sender;
 @end

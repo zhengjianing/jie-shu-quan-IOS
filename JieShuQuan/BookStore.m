@@ -103,7 +103,7 @@ static const NSString *kAvailability = @"availability";
     [self saveContext];
 }
 
-- (void)changeStoredBookStatusWith:(Book *)book
+- (void)changeStoredBookStatusWithBook:(Book *)book
 {
     NSArray *booksArray = [self fetchBooksFromStore];
     for (id item in booksArray) {

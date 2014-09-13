@@ -47,6 +47,8 @@ static const NSString *kDBBookId = @"id";
 @property (strong, nonatomic) LoginViewController *loginController;
 @property (assign, nonatomic) NSInteger bookCount;
 
+@property (strong, nonatomic) UIRefreshControl *refresh;
+
 @end
 
 @implementation MyBooksTableViewController
@@ -59,10 +61,18 @@ static const NSString *kDBBookId = @"id";
     
     UIStoryboard *mainStoryboard = self.storyboard;
     _loginController = [mainStoryboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-    _activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(150, 170, 20, 20)];
-    _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-    _activityIndicator.hidesWhenStopped = YES;
-    [self.tableView addSubview:_activityIndicator];
+    
+    _refresh = [[UIRefreshControl alloc] init];
+    _refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
+    [_refresh addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = _refresh;
+}
+
+- (void)refreshView:(UIRefreshControl *)refresh
+{
+    [_refresh beginRefreshing];
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing data..."];
+    [self fetchBooksFromServer];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -73,12 +83,6 @@ static const NSString *kDBBookId = @"id";
         [self showPreLoginView];
     }
 }
-
-- (IBAction)refreshLocalBookStore:(id)sender {
-    [_activityIndicator startAnimating];
-    [self fetchBooksFromServer];
-}
-
 
 - (void)fetchBooksFromServer
 {
@@ -216,9 +220,20 @@ static const NSString *kDBBookId = @"id";
         if (_bookCount == 0) {
             [self loadData];
             [self.tableView reloadData];
-            [_activityIndicator stopAnimating];
+            
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"MMM d, h:mm a"];
+            NSString *lastUpdated = [NSString stringWithFormat:@"Last updated on %@",
+                                     [formatter stringFromDate:[NSDate date]]];
+            _refresh.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdated];
+            [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(endRefreshing) userInfo:nil repeats:NO];
         }
     }];
+}
+
+- (void)endRefreshing
+{
+   [_refresh endRefreshing];
 }
 
 

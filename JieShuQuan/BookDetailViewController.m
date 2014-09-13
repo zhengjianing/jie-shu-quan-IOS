@@ -159,7 +159,7 @@ static const NSString *kStatusNO = @"暂时不可借";
     if (_isChangingStatus) {
         _availabilityStatus = [[userObject valueForKey:(NSString *)kAvailableState] boolValue];
         _book.availability = _availabilityStatus;
-        [[BookStore sharedStore] changeStoredBookStatusWith:_book];
+        [[BookStore sharedStore] changeStoredBookStatusWithBook:_book];
         [self setLabelTextWithBookAvailability:_availabilityStatus];
     }
 }
