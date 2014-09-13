@@ -31,13 +31,14 @@ static const NSString *kBookCount = @"book_count";
 static const NSString *kFriendCount = @"friend_count";
 
 // keys in CoreData
-static const NSString *kDBUserId = @"user_id";
-static const NSString *kDBUserName = @"user_name";
-static const NSString *kDBUserEmail = @"user_email";
-static const NSString *kDBAccessToken = @"access_token";
-static const NSString *kDBBookCount = @"book_count";
-static const NSString *kDBGroupName = @"group_name";
-static const NSString *kDBFriendCount = @"friend_count";
+static const NSString *kCDUserId = @"user_id";
+static const NSString *kCDUserName = @"user_name";
+static const NSString *kCDUserEmail = @"user_email";
+static const NSString *kCDAccessToken = @"access_token";
+static const NSString *kCDBookCount = @"book_count";
+static const NSString *kCDGroupName = @"group_name";
+static const NSString *kCDFriendCount = @"friend_count";
+static const NSString *kCDAvailability = @"availability";
 
 @interface DataConverter ()
 + (NSMutableArray *)booksArrayFromUnserializedBooksData:(NSArray *)booksData;
@@ -73,8 +74,8 @@ static const NSString *kDBFriendCount = @"friend_count";
         book.publishDate = [item valueForKey:(NSString *)kDBPubdate];
         book.bookId = [item valueForKey:(NSString *)kDBBookId];
         
-        //搜索到的结果，默认availability为NO ！
-        book.availability = NO;
+        //豆瓣搜索出来的结果，没有available这个属性
+//        book.availability = [[item valueForKey:(NSString *)kCDAvailability] boolValue];
         
         [booksArray addObject:book];
     }
@@ -99,25 +100,25 @@ static const NSString *kDBFriendCount = @"friend_count";
 + (User *)userFromManagedObject:(id)storedUser
 {
     User *user = [[User alloc] init];
-    user.userId = [storedUser valueForKey:(NSString *)kDBUserId];
-    user.userName = [storedUser valueForKey:(NSString *)kDBUserName];
-    user.groupName = [storedUser valueForKey:(NSString *)kDBGroupName];
-    user.bookCount = [storedUser valueForKey:(NSString *)kDBBookCount];
-    user.userEmail = [storedUser valueForKey:(NSString *)kDBUserEmail];
-    user.accessToken = [storedUser valueForKey:(NSString *)kDBAccessToken];
-    user.friendCount = [storedUser valueForKey:(NSString *)kDBFriendCount];
+    user.userId = [storedUser valueForKey:(NSString *)kCDUserId];
+    user.userName = [storedUser valueForKey:(NSString *)kCDUserName];
+    user.groupName = [storedUser valueForKey:(NSString *)kCDGroupName];
+    user.bookCount = [storedUser valueForKey:(NSString *)kCDBookCount];
+    user.userEmail = [storedUser valueForKey:(NSString *)kCDUserEmail];
+    user.accessToken = [storedUser valueForKey:(NSString *)kCDAccessToken];
+    user.friendCount = [storedUser valueForKey:(NSString *)kCDFriendCount];
     return user;
 }
 
 + (void)setManagedObject:(id)object forUser:(User *)user
 {
-    [object setValue:user.userId forKey:(NSString *)kDBUserId];
-    [object setValue:user.userName forKey:(NSString *)kDBUserName];
-    [object setValue:user.groupName forKey:(NSString *)kDBGroupName];
-    [object setValue:user.userEmail forKey:(NSString *)kDBUserEmail];
-    [object setValue:user.bookCount forKey:(NSString *)kDBBookCount];
-    [object setValue:user.accessToken forKey:(NSString *)kDBAccessToken];
-    [object setValue:user.friendCount forKey:(NSString *)kDBFriendCount];
+    [object setValue:user.userId forKey:(NSString *)kCDUserId];
+    [object setValue:user.userName forKey:(NSString *)kCDUserName];
+    [object setValue:user.groupName forKey:(NSString *)kCDGroupName];
+    [object setValue:user.userEmail forKey:(NSString *)kCDUserEmail];
+    [object setValue:user.bookCount forKey:(NSString *)kCDBookCount];
+    [object setValue:user.accessToken forKey:(NSString *)kCDAccessToken];
+    [object setValue:user.friendCount forKey:(NSString *)kCDFriendCount];
 }
 
 @end

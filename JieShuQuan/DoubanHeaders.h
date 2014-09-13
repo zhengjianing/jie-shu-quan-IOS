@@ -8,4 +8,5 @@
 
 #define kAPIKey @"0071e999e5b2c9100155bccdb1185b30"
 #define kSearchURL @"https://api.douban.com/v2/book/search"
+#define kSearchBookId @"https://api.douban.com/v2/book/"
 #define kMaxCount @10

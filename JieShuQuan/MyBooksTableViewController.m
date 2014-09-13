@@ -14,16 +14,37 @@
 #import "Book.h"
 #import "BookTableViewCell.h"
 #import "BookDetailTableViewController.h"
+#import "ServerHeaders.h"
+#import "AlertHelper.h"
+#import "JsonDataFetcher.h"
+#import "DoubanHeaders.h"
+#import "User.h"
+
 
 static const NSString *kStatusYES = @"可借";
 static const NSString *kStatusNO = @"暂时不可借";
+static const NSString *kBookId = @"douban_book_id";
+static const NSString *kUserId = @"user_id";
+
+// keys in Douban API
+static const NSString *kDBTitle = @"title";
+static const NSString *kDBAuthor = @"author";
+static const NSString *kDBImageHref = @"image";
+static const NSString *kDBSummary = @"summary";
+static const NSString *kDBAuthorIntro = @"author_intro";
+static const NSString *kDBPrice = @"price";
+static const NSString *kDBPublisher = @"publisher";
+static const NSString *kDBPubdate = @"pubdate";
+static const NSString *kDBBookId = @"id";
+
 
 @interface MyBooksTableViewController ()
 
 @property (strong, nonatomic) UITableView *myBooksTableView;
 @property (strong, nonatomic) PreLoginView *preLoginView;
-@property (strong, nonatomic) NSArray *myBooks;
+@property (strong, nonatomic) NSMutableArray *myBooks;
 @property (strong, nonatomic) LoginViewController *loginController;
+@property (assign, nonatomic) NSInteger bookCount;
 
 @end
 
@@ -48,16 +69,34 @@ static const NSString *kStatusNO = @"暂时不可借";
     }
 }
 
+- (void)fetchBooksFromServer
+{
+    User *currentUser = [UserManager currentUser];
+    NSString *currentUserId = currentUser.userId;
+
+    NSString *getString = [kMyBooksURL stringByAppendingString:currentUserId];
+    NSURL *getURL = [NSURL URLWithString:[getString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:getURL];
+    
+    [request setHTTPBody:[NSData data]];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPMethod:@"GET"];
+    
+    NSURLConnection *connection;
+    connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
+}
+
 - (void)showTableView
 {
     [self loadData];
     self.view = _myBooksTableView;
     [_myBooksTableView reloadData];
+    [self fetchBooksFromServer];
 }
 
 - (void)loadData
 {
-    _myBooks = [[BookStore sharedStore] storedBooks];
+    _myBooks = [[[BookStore sharedStore] storedBooks] mutableCopy];
 }
 
 #pragma mark - PreLoginView
@@ -108,6 +147,63 @@ static const NSString *kStatusNO = @"暂时不可借";
     cell.availabilityLabel.text = (book.availability == YES) ? (NSString *)kStatusYES : (NSString *)kStatusNO;
     return cell;
 }
+
+#pragma mark - NSURLConnectionDataDelegate methods
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    NSLog(@"%@", response);
+    if ([(NSHTTPURLResponse *)response statusCode] != 200) {
+        [AlertHelper showAlertWithMessage:@"验证失败" target:self];
+    }
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    id userObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+    if (userObject) {
+        [_myBooks removeAllObjects];
+        NSArray *bookIdAndStatusArray = [userObject valueForKey:@"books"];
+        _bookCount = [bookIdAndStatusArray count];
+        for (id book in bookIdAndStatusArray) {
+            
+            NSString *bookId = [book valueForKey:(NSString *)kBookId];
+            NSString *searchUrl = [NSString stringWithFormat:@"%@%@", kSearchBookId, bookId];
+            NSString* encodedUrl = [searchUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            [self bookFromDouBanWithUrl:encodedUrl];
+        }
+    }
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    [AlertHelper showAlertWithMessage:@"网络请求失败...\n请检查您的网络连接" target:self];
+}
+
+- (void)bookFromDouBanWithUrl:(NSString *)searchUrl
+{
+    [JsonDataFetcher dataFromURL:[NSURL URLWithString:searchUrl] withCompletion:^(NSData *jsonData) {
+        id item = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
+        
+        Book *book = [[Book alloc] init];
+        book.name = [item valueForKey:(NSString *)kDBTitle];
+        book.authors = [item valueForKey:(NSString *)kDBAuthor];
+        book.imageHref = [item valueForKey:(NSString *)kDBImageHref];
+        book.description = [item valueForKey:(NSString *)kDBSummary];
+        book.authorInfo = [item valueForKey:(NSString *)kDBAuthorIntro];
+        book.price = [item valueForKey:(NSString *)kDBPrice];
+        book.publisher = [item valueForKey:(NSString *)kDBPublisher];
+        book.publishDate = [item valueForKey:(NSString *)kDBPubdate];
+        book.bookId = [item valueForKey:(NSString *)kDBBookId];
+        
+        [_myBooks addObject:book];
+        _bookCount--;
+        if (_bookCount == 0) {
+            [self.tableView reloadData];
+        }
+    }];
+}
+
 
 #pragma mark - Navigation
 
