@@ -7,7 +7,7 @@
 //
 
 #import "SearchTableViewController.h"
-#import "BookDetailViewController.h"
+#import "BookDetailTableViewController.h"
 #import "SearchResultTableViewCell.h"
 #import "DoubanHeaders.h"
 #import "JsonDataFetcher.h"
@@ -107,11 +107,11 @@
     NSIndexPath *selectIndexPath = nil;
     Book *selectedBook = nil;
     
-    if ([[segue destinationViewController] class] == BookDetailViewController.class) {
+    if ([[segue destinationViewController] class] == BookDetailTableViewController.class) {
         selectIndexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
         selectedBook = [searchResults objectAtIndex:[selectIndexPath row]];
         [[segue destinationViewController] setBook:selectedBook];
-        [[[segue destinationViewController] changeAvailabilityButton] removeFromSuperview];
+//        [[[segue destinationViewController] changeAvailabilityButton] removeFromSuperview];
     }
 }
 

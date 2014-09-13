@@ -25,6 +25,7 @@
 		9476058019C07BC400FA8E74 /* RequestBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9476057F19C07BC400FA8E74 /* RequestBuilder.m */; };
 		9476058619C15C6900FA8E74 /* SearchResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9476058519C15C6900FA8E74 /* SearchResultTableViewCell.m */; };
 		948615F019BC0FD1001837BF /* Store.m in Sources */ = {isa = PBXBuildFile; fileRef = 948615EF19BC0FD1001837BF /* Store.m */; };
+		94B23BAE19C3F61B009896BE /* BookDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B23BAD19C3F61B009896BE /* BookDetailTableViewController.m */; };
 		94BB408119C17215005BBD8E /* friends.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BB408019C17215005BBD8E /* friends.png */; };
 		94BB408519C172FE005BBD8E /* FriendsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BB408419C172FE005BBD8E /* FriendsTableViewController.m */; };
 		94BB408819C17378005BBD8E /* FriendInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BB408719C17378005BBD8E /* FriendInfoTableViewCell.m */; };
@@ -99,6 +100,8 @@
 		9476058519C15C6900FA8E74 /* SearchResultTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultTableViewCell.m; sourceTree = "<group>"; };
 		948615EE19BC0FD1001837BF /* Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Store.h; sourceTree = "<group>"; };
 		948615EF19BC0FD1001837BF /* Store.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Store.m; sourceTree = "<group>"; };
+		94B23BAC19C3F61B009896BE /* BookDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookDetailTableViewController.h; sourceTree = "<group>"; };
+		94B23BAD19C3F61B009896BE /* BookDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookDetailTableViewController.m; sourceTree = "<group>"; };
 		94BB408019C17215005BBD8E /* friends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = friends.png; sourceTree = "<group>"; };
 		94BB408319C172FE005BBD8E /* FriendsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsTableViewController.h; sourceTree = "<group>"; };
 		94BB408419C172FE005BBD8E /* FriendsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsTableViewController.m; sourceTree = "<group>"; };
@@ -182,6 +185,8 @@
 			children = (
 				9471DC2519A9689E00F1A291 /* MyBooksTableViewController.h */,
 				9471DC2619A9689E00F1A291 /* MyBooksTableViewController.m */,
+				94B23BAC19C3F61B009896BE /* BookDetailTableViewController.h */,
+				94B23BAD19C3F61B009896BE /* BookDetailTableViewController.m */,
 				9412E2FC19AA17FA008D243C /* BookDetailViewController.h */,
 				9412E2FD19AA17FA008D243C /* BookDetailViewController.m */,
 				9412E2F919AA0D82008D243C /* BookTableViewCell.h */,
@@ -561,6 +566,7 @@
 				9471DC2719A9689E00F1A291 /* MyBooksTableViewController.m in Sources */,
 				9759AFF019C184BD008EFCC2 /* Friend.m in Sources */,
 				9766FC9B19BF30980089C89B /* LoginViewController.m in Sources */,
+				94B23BAE19C3F61B009896BE /* BookDetailTableViewController.m in Sources */,
 				9412E2FE19AA17FA008D243C /* BookDetailViewController.m in Sources */,
 				97F65AC219AE0A7D00B9DC93 /* JsonDataFetcher.m in Sources */,
 				9412E2F519A9FAC7008D243C /* Book.m in Sources */,

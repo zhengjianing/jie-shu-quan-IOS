@@ -13,7 +13,7 @@
 #import "UserManager.h"
 #import "Book.h"
 #import "BookTableViewCell.h"
-#import "BookDetailViewController.h"
+#import "BookDetailTableViewController.h"
 
 static const NSString *kStatusYES = @"可借";
 static const NSString *kStatusNO = @"暂时不可借";
@@ -113,7 +113,7 @@ static const NSString *kStatusNO = @"暂时不可借";
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue destinationViewController] class] == BookDetailViewController.class) {
+    if ([[segue destinationViewController] class] == BookDetailTableViewController.class) {
         NSIndexPath *selectIndexPath = [self.tableView indexPathForSelectedRow];
         Book *selectedBook = [_myBooks objectAtIndex:[selectIndexPath row]];
         [[segue destinationViewController] setBook:selectedBook];
