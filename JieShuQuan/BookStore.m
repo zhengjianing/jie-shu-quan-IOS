@@ -94,6 +94,15 @@ static const NSString *kAvailability = @"availability";
     [[BookStore sharedStore] refreshStoredBooks];
 }
 
+- (void)emptyBookStoreForCurrentUser
+{
+    NSArray *userBooks = [self fetchBooksFromStore];
+    for (NSManagedObject *book in userBooks) {
+        [[self managedObjectContext] deleteObject:book];
+    }
+    [self saveContext];
+}
+
 - (void)changeStoredBookStatusWith:(Book *)book
 {
     NSArray *booksArray = [self fetchBooksFromStore];
@@ -153,6 +162,7 @@ static const NSString *kAvailability = @"availability";
     [managedBook setValue:book.publisher forKey:(NSString *)kPublisher];
     [managedBook setValue:book.bookId forKey:(NSString *)kBookId];
     [managedBook setValue:book.publishDate forKey:(NSString *)kPublishDate];
+    [managedBook setValue:[NSNumber numberWithBool:book.availability] forKey:(NSString *)kAvailability];
 }
 
 @end

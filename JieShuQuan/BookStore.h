@@ -19,5 +19,6 @@
 - (void)addBookToStore:(Book *)book;
 - (BOOL)storeHasBook:(Book *)book;
 - (void)changeStoredBookStatusWith:(Book *)book;
+- (void)emptyBookStoreForCurrentUser;
 
 @end

@@ -25,6 +25,7 @@ static const NSString *kStatusYES = @"可借";
 static const NSString *kStatusNO = @"暂时不可借";
 static const NSString *kBookId = @"douban_book_id";
 static const NSString *kUserId = @"user_id";
+static const NSString *kAvailability = @"available";
 
 // keys in Douban API
 static const NSString *kDBTitle = @"title";
@@ -58,6 +59,10 @@ static const NSString *kDBBookId = @"id";
     
     UIStoryboard *mainStoryboard = self.storyboard;
     _loginController = [mainStoryboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    _activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(150, 170, 20, 20)];
+    _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+    _activityIndicator.hidesWhenStopped = YES;
+    [self.tableView addSubview:_activityIndicator];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -68,6 +73,12 @@ static const NSString *kDBBookId = @"id";
         [self showPreLoginView];
     }
 }
+
+- (IBAction)refreshLocalBookStore:(id)sender {
+    [_activityIndicator startAnimating];
+    [self fetchBooksFromServer];
+}
+
 
 - (void)fetchBooksFromServer
 {
@@ -91,7 +102,6 @@ static const NSString *kDBBookId = @"id";
     [self loadData];
     self.view = _myBooksTableView;
     [_myBooksTableView reloadData];
-    [self fetchBooksFromServer];
 }
 
 - (void)loadData
@@ -163,14 +173,16 @@ static const NSString *kDBBookId = @"id";
     id userObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
     if (userObject) {
         [_myBooks removeAllObjects];
+        [[BookStore sharedStore] emptyBookStoreForCurrentUser];
         NSArray *bookIdAndStatusArray = [userObject valueForKey:@"books"];
         _bookCount = [bookIdAndStatusArray count];
         for (id book in bookIdAndStatusArray) {
-            
             NSString *bookId = [book valueForKey:(NSString *)kBookId];
+            BOOL bookAvailability = [[book valueForKey:(NSString *)kAvailability] boolValue];
+            
             NSString *searchUrl = [NSString stringWithFormat:@"%@%@", kSearchBookId, bookId];
             NSString* encodedUrl = [searchUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            [self bookFromDouBanWithUrl:encodedUrl];
+            [self bookFromDouBanWithUrl:encodedUrl withAvailable:bookAvailability];
         }
     }
 }
@@ -180,7 +192,7 @@ static const NSString *kDBBookId = @"id";
     [AlertHelper showAlertWithMessage:@"网络请求失败...\n请检查您的网络连接" target:self];
 }
 
-- (void)bookFromDouBanWithUrl:(NSString *)searchUrl
+- (void)bookFromDouBanWithUrl:(NSString *)searchUrl withAvailable:(BOOL)bookAvailability
 {
     [JsonDataFetcher dataFromURL:[NSURL URLWithString:searchUrl] withCompletion:^(NSData *jsonData) {
         id item = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
@@ -196,10 +208,15 @@ static const NSString *kDBBookId = @"id";
         book.publishDate = [item valueForKey:(NSString *)kDBPubdate];
         book.bookId = [item valueForKey:(NSString *)kDBBookId];
         
-        [_myBooks addObject:book];
+        //only property "availability" is set from server !
+        book.availability = bookAvailability;
+        
+        [[BookStore sharedStore] addBookToStore:book];
         _bookCount--;
         if (_bookCount == 0) {
+            [self loadData];
             [self.tableView reloadData];
+            [_activityIndicator stopAnimating];
         }
     }];
 }
