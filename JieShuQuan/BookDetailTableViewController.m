@@ -104,10 +104,10 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     _isAdding = NO;
     _isDeleting = NO;
     
-    [_activityIndicator startAnimating];
+    UIActionSheet *confirmChangeActionSheet = [[UIActionSheet alloc] initWithTitle:@"确认修改状态吗？" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"确认" otherButtonTitles:nil, nil];
+    [confirmChangeActionSheet showInView:self.view];
     
-    // launch NSURLConnection to change availability
-    [self putChangeStatusRequestWithBookId:_book.bookId available:(!_availabilityStatus) userId:[self currentUserId] accessToken:[self currentUserAccessToken]];
+    
 }
 - (IBAction)changeExistence:(id)sender {
     _isChangingAvailability = NO;
@@ -115,6 +115,7 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     if (_existenceStatus == YES) {
         _isDeleting = YES;
         _isAdding = NO;
+        
         
         [_activityIndicator startAnimating];
         
@@ -132,6 +133,17 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
         [self postAddBookRequestWithBookId:_book.bookId available:NO
                                     userId:[self currentUserId]
                                 accessToke:[self currentUserAccessToken]];
+    }
+}
+
+#pragma mark -- UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        [_activityIndicator startAnimating];
+        
+        // launch NSURLConnection to change availability
+        [self putChangeStatusRequestWithBookId:_book.bookId available:(!_availabilityStatus) userId:[self currentUserId] accessToken:[self currentUserAccessToken]];
     }
 }
 
@@ -222,7 +234,6 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
         //async store
         _book.availability = _availabilityStatus;
         [[BookStore sharedStore] changeStoredBookStatusWithBook:_book];
-        [AlertHelper showAlertWithMessage:@"修改图书状态成功" target:self];
     } else if (_isAdding || _isDeleting) {
         _existenceStatus = !_existenceStatus;
         if (_isAdding) {

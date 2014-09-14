@@ -53,6 +53,7 @@ static const NSString *kDefaultCount = @"0";
     }
 }
 
+#pragma mark -- UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
