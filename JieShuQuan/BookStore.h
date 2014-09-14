@@ -16,9 +16,12 @@
 
 - (NSArray *)storedBooks;
 - (void)refreshStoredBooks;
+
 - (void)addBookToStore:(Book *)book;
-- (BOOL)storeHasBook:(Book *)book;
+- (void)deleteBookFromStore:(Book *)book;
 - (void)changeStoredBookStatusWithBook:(Book *)book;
+
+- (BOOL)storeHasBook:(Book *)book;
 - (void)emptyBookStoreForCurrentUser;
 
 @end

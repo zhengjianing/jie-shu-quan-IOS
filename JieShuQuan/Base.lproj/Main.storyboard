@@ -576,11 +576,14 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sbT-Lk-Gtq">
-                                                    <rect key="frame" x="191" y="32" width="90" height="25"/>
+                                                    <rect key="frame" x="176" y="33" width="120" height="25"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <state key="normal" title="标记为可借">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="changeAvailability:" destination="wYj-Ro-ejx" eventType="touchUpInside" id="bXu-ri-a8N"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7he-gX-jS2">
                                                     <rect key="frame" x="159" y="9" width="1" height="45"/>
@@ -590,11 +593,14 @@
                                                     <color key="highlightedColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Koy-Vi-iNG">
-                                                    <rect key="frame" x="32" y="32" width="90" height="25"/>
+                                                    <rect key="frame" x="21" y="33" width="112" height="25"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <state key="normal" title="从书库移除">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="changeExistence:" destination="wYj-Ro-ejx" eventType="touchUpInside" id="3vr-Wg-uxg"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -695,8 +701,12 @@
                     <connections>
                         <outlet property="authorInfoLabel" destination="FeI-c6-mDk" id="0xX-IG-JiE"/>
                         <outlet property="authorsLabel" destination="FNT-EU-qav" id="Ed3-eI-aNZ"/>
+                        <outlet property="availabilityLabel" destination="RX4-qb-8Ck" id="lFg-9R-oPN"/>
                         <outlet property="bookImageView" destination="k9j-Zq-cAl" id="oAv-ZN-31N"/>
+                        <outlet property="changeAvailabilityButton" destination="sbT-Lk-Gtq" id="vRo-hm-RLc"/>
+                        <outlet property="changeExistenceButton" destination="Koy-Vi-iNG" id="9nz-m6-fd9"/>
                         <outlet property="discriptionLabel" destination="fzp-Ao-4Mj" id="WBl-fB-rAx"/>
+                        <outlet property="existenceLabel" destination="kLg-tj-p2q" id="bMb-3Y-WYO"/>
                         <outlet property="nameLabel" destination="gQ4-n2-Aa0" id="FeY-Kd-Whf"/>
                         <outlet property="priceLabel" destination="QyR-mH-Gbu" id="AuQ-ZE-GEg"/>
                         <outlet property="publishDateLabel" destination="yDk-vH-bHk" id="wPA-nh-hca"/>
@@ -705,7 +715,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xml-O9-fLE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1103" y="-486"/>
+            <point key="canvasLocation" x="1103" y="-488"/>
         </scene>
         <!--Friends Table View Controller - 同事们-->
         <scene sceneID="baD-jZ-WMC">

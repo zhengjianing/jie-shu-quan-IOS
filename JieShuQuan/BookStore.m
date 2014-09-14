@@ -77,6 +77,17 @@ static const NSString *kAvailability = @"availability";
     return NO;
 }
 
+- (void)deleteBookFromStore:(Book *)book
+{
+    for (NSManagedObject *item in [self fetchBooksFromStore]) {
+        if ([[item valueForKey:(NSString *)kName] isEqualToString:book.name]
+            && [[item valueForKey:(NSString *)kAuthors] isEqualToArray:book.authors]) {
+            [[self managedObjectContext] deleteObject:item];
+            [self saveContext];
+        }
+    }
+}
+
 - (void)addBookToStore:(Book *)book
 {
     NSManagedObject *newBook = [NSEntityDescription insertNewObjectForEntityForName:(NSString *)kEntityName inManagedObjectContext:[self managedObjectContext]];

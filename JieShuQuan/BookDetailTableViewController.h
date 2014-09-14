@@ -11,7 +11,7 @@
 
 @class Book;
 
-@interface BookDetailTableViewController : UITableViewController
+@interface BookDetailTableViewController : UITableViewController <NSURLConnectionDataDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *bookImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -21,9 +21,22 @@
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *discriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *authorInfoLabel;
+@property (strong, nonatomic) IBOutlet UILabel *availabilityLabel;
+@property (strong, nonatomic) IBOutlet UIButton *changeAvailabilityButton;
+@property (strong, nonatomic) IBOutlet UILabel *existenceLabel;
+@property (strong, nonatomic) IBOutlet UIButton *changeExistenceButton;
 
+- (IBAction)changeAvailability:(id)sender;
+- (IBAction)changeExistence:(id)sender;
 
 @property (strong, nonatomic) Book *book;
 
+//current existence & availability state
+@property (assign, nonatomic) BOOL existenceStatus;
+@property (assign, nonatomic) BOOL availabilityStatus;
+//keep track which of the two properties above is being modified right now
+@property (assign, nonatomic) BOOL isChangingAvailability;
+@property (assign, nonatomic) BOOL isAdding;
+@property (assign, nonatomic) BOOL isDeleting;
 
 @end
