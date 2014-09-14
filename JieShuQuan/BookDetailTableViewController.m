@@ -71,20 +71,21 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
 {
     if (existence == YES) {
         _existenceLabel.text = (NSString *)kExistYES;
-        _changeExistenceButton.titleLabel.text = (NSString *)kDeleteFromMyBook;
+        [_changeExistenceButton setTitle:(NSString *)kDeleteFromMyBook forState:UIControlStateNormal];
     } else {
         _existenceLabel.text = (NSString *)kExistNO;
-        _changeExistenceButton.titleLabel.text = (NSString *)kAddToMyBook;
+        [_changeExistenceButton setTitle:(NSString *)kAddToMyBook forState:UIControlStateNormal];
+
     }
 }
 - (void)setLabelTextWithBookAvailability:(BOOL)availability
 {
     if (availability == YES) {
-        _changeAvailabilityButton.titleLabel.text = (NSString *)kAvailableYES;
         _availabilityLabel.text = (NSString *)kStatusYES;
+        [_changeAvailabilityButton setTitle:(NSString *)kAvailableYES forState:UIControlStateNormal];
     } else {
-        _changeAvailabilityButton.titleLabel.text = (NSString *)kAvailableNO;
         _availabilityLabel.text = (NSString *)kStatusNO;
+        [_changeAvailabilityButton setTitle:(NSString *)kAvailableNO forState:UIControlStateNormal];
     }
 }
 
@@ -239,8 +240,6 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
             
             // if deleted, must set _availabilityStatus to NO !!!
             _availabilityStatus = NO;
-            
-            //async _availabilityStatus label
             [self setLabelTextWithBookAvailability:_availabilityStatus];
             
             //async store
@@ -250,6 +249,7 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
         }
         [[UserStore sharedStore] refreshBookCountForUser:[self currentUserId]];
     }
+    [self.tableView reloadData];
 }
 
 @end
