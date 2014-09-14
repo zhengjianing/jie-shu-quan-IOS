@@ -84,6 +84,7 @@ static const NSString *kAvailability = @"availability";
             && [[item valueForKey:(NSString *)kAuthors] isEqualToArray:book.authors]) {
             [[self managedObjectContext] deleteObject:item];
             [self saveContext];
+            [self refreshStoredBooks];
         }
     }
 }

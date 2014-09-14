@@ -18,9 +18,8 @@
 #import "MyBooksTableViewController.h"
 #import "SearchTableViewController.h"
 #import "ActionSheetHelper.h"
+#import "RequestBuilder.h"
 
-static const NSString *kBookId = @"douban_book_id";
-static const NSString *kAvailableState = @"available";
 
 static const NSString *kAvailableNO = @"更改为随时可借";
 static const NSString *kAvailableYES = @"更改为不可借";
@@ -58,13 +57,9 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    // do this to save unnecessary coreData-searching & comparing when the prevController is MyBooksTableViewController
-    NSArray *navStack = [self.navigationController viewControllers];
-    id prevController = [navStack objectAtIndex:([navStack count]-2)];
-    if ([prevController isKindOfClass:[MyBooksTableViewController class]]
-        //implicitly change _book.availability if neccessary
-        ||[[BookStore sharedStore] storeHasBook:_book]) {
+    [self initBookDetailView];
+
+    if ([self alreadyHasBook]) {
         _existenceStatus = YES;
     } else {
         _existenceStatus = NO;
@@ -74,7 +69,10 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     // set existence & availability status
     [self setLabelWithBookExistence:_existenceStatus];
     [self setLabelTextWithBookAvailability:_book.availability];
-    
+}
+
+- (void)initBookDetailView
+{
     //set the view components.
     [_bookImageView sd_setImageWithURL:[NSURL URLWithString:_book.imageHref]];
     _nameLabel.text = _book.name;
@@ -86,21 +84,18 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     _authorInfoLabel.text = _book.authorInfo;
 }
 
-- (void)disableAvailabilityArea
+- (BOOL)alreadyHasBook
 {
-    [_changeAvailabilityButton setEnabled:NO];
-    [_changeAvailabilityButton setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
-    [_availabilityLabel setTextColor:[UIColor grayColor]];
-}
-
-- (void)enableAvailabilityArea
-{
-    [_changeAvailabilityButton setEnabled:YES];
-    [_changeAvailabilityButton setTitleColor:[UIColor blueColor] forState:UIControlStateDisabled];
-    [_availabilityLabel setTextColor:[UIColor blackColor]];
+    // do this to save unnecessary coreData-searching & comparing when the prevController is MyBooksTableViewController
+    NSArray *navStack = [self.navigationController viewControllers];
+    id prevController = [navStack objectAtIndex:([navStack count]-2)];
+    return [prevController isKindOfClass:[MyBooksTableViewController class]]
+    //implicitly change _book.availability if neccessary
+    || [[BookStore sharedStore] storeHasBook:_book];
 }
 
 #pragma mark -- change existence and availability labels
+
 - (void)setLabelWithBookExistence:(BOOL)existence
 {
     if (existence == YES) {
@@ -122,155 +117,132 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     }
 }
 
+- (void)disableAvailabilityArea
+{
+    [_changeAvailabilityButton setEnabled:NO];
+    [_changeAvailabilityButton setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
+    [_availabilityLabel setTextColor:[UIColor grayColor]];
+}
+
+- (void)enableAvailabilityArea
+{
+    [_changeAvailabilityButton setEnabled:YES];
+    [_changeAvailabilityButton setTitleColor:[UIColor blueColor] forState:UIControlStateDisabled];
+    [_availabilityLabel setTextColor:[UIColor blackColor]];
+}
+
 #pragma mark -- changed existence and availability
+
 - (IBAction)changeAvailability:(id)sender {
-    _isChangingAvailability = YES;
-    _isAdding = NO;
-    _isDeleting = NO;
-    
     availabilitySheet = [ActionSheetHelper actionSheetWithTitle:@"确认修改状态吗？" delegate:self];
     [availabilitySheet showInView:self.view];
 }
+
 - (IBAction)changeExistence:(id)sender {
-    _isChangingAvailability = NO;
-    
     if (_existenceStatus == YES) {
-        _isDeleting = YES;
-        _isAdding = NO;
-        
         deleteSheet = [ActionSheetHelper actionSheetWithTitle:@"确认删除吗？" delegate:self];
         [deleteSheet showInView:self.view];
-    } else if (_existenceStatus == NO) {
-        _isDeleting = NO;
-        _isAdding = YES;
-        
+        return;
+    }
+    
+    if (_existenceStatus == NO) {
         addSheet = [ActionSheetHelper actionSheetWithTitle:@"确认添加吗？" delegate:self];
         [addSheet showInView:self.view];
+        return;
     }
 }
 
 #pragma mark -- UIActionSheetDelegate
+
 - (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 0) {
-        [_activityIndicator startAnimating];
-        
-        if (actionSheet == deleteSheet) {
-            //post request to delete book from server side
-            [self putDeleteBookRequestWithBookId:_book.bookId
-                                          userId:[self currentUserId]
-                                      accessToke:[self currentUserAccessToken]];
-        } else if (actionSheet == availabilitySheet) {
-            // launch NSURLConnection to change availability
-            [self putChangeStatusRequestWithBookId:_book.bookId available:(!_book.availability) userId:[self currentUserId] accessToken:[self currentUserAccessToken]];
-        } else if (actionSheet == addSheet) {
-            //post request to add book to server side
-            [self postAddBookRequestWithBookId:_book.bookId available:NO
-                                        userId:[self currentUserId]
-                                    accessToke:[self currentUserAccessToken]];
-        }
+    if (buttonIndex == 1) {
+        return;
+    }
+    
+    [_activityIndicator startAnimating];
+    
+    NSString *user_id = [[UserManager currentUser] userId];
+    NSString *access_token = [[UserManager currentUser] accessToken];
+    if (actionSheet == deleteSheet) {
+        [self putDeleteBookRequestWithBookId:_book.bookId userId:user_id accessToke:access_token];
+        return;
+    }
+    
+    if (actionSheet == availabilitySheet) {
+        [self putChangeStatusRequestWithBookId:_book.bookId available:(!_book.availability) userId:user_id accessToken:access_token];
+        return;
+    }
+    
+    if (actionSheet == addSheet) {
+        [self postAddBookRequestWithBookId:_book.bookId available:NO userId:user_id accessToke:access_token];
+        return;
     }
 }
 
-#pragma mark -- current user info
-- (NSString *)currentUserId {
-    return [[UserManager currentUser] userId];
-}
-- (NSString *)currentUserAccessToken {
-    return [[UserManager currentUser] accessToken];
-}
-
 #pragma mark -- configure NSURLConnections
-// launch NSRULConnection to add book to store
+
 - (void)postAddBookRequestWithBookId:(NSString *)bookId available:(BOOL)availabilityState userId:(NSString *)userId accessToke:(NSString *)accessToken
 {
-    NSDictionary *bodyDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                              bookId, kBookId,
-                              [NSNumber numberWithInteger:availabilityState], kAvailableState,
-                              userId, @"user_id",
-                              accessToken, @"access_token", nil];
-    [self launchConnectionWithRequestURLString:kAddBookURL bodyDictionary:bodyDict HTTPMethod:@"POST"];
-}
-// launch NSRULConnection to delete book from store
-- (void)putDeleteBookRequestWithBookId:(NSString *)bookId userId:(NSString *)userId accessToke:(NSString *)accessToken
-{
-    NSDictionary *bodyDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                              bookId, kBookId,
-                              userId, @"user_id",
-                              accessToken, @"access_token", nil];
-    [self launchConnectionWithRequestURLString:kDeleteBookURL bodyDictionary:bodyDict HTTPMethod:@"PUT"];
-}
-// launch NSRULConnection to change book availabiltiy in store
-- (void)putChangeStatusRequestWithBookId:(NSString *)bookId available:(BOOL)availabilityState userId:(NSString *)userId accessToken:(NSString *)accessToken
-{
-    NSDictionary *bodyDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                              bookId, kBookId,
-                              [NSNumber numberWithInteger:availabilityState], kAvailableState,
-                              userId, @"user_id",
-                              accessToken, @"access_token", nil];
-    [self launchConnectionWithRequestURLString:kChangeBookStatusURL bodyDictionary:bodyDict HTTPMethod:@"PUT"];
-}
+    NSMutableURLRequest *addBookRequest = [RequestBuilder buildAddBookRequestWithBookId:bookId available:availabilityState userId:userId accessToke:accessToken];
+    [NSURLConnection sendAsynchronousRequest:addBookRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        
+        [_activityIndicator stopAnimating];
 
-// NSURLConnection builder
-- (void)launchConnectionWithRequestURLString:(NSString *)requestString bodyDictionary:(NSDictionary *)bodyDictionary HTTPMethod:(NSString *)HTTPMethod
-{
-    // initialize NSURLRequest
-    NSURL *postURL = [NSURL URLWithString:[requestString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:postURL];
-    
-    // configure requestBody
-    id object = [NSJSONSerialization dataWithJSONObject:bodyDictionary options:NSJSONWritingPrettyPrinted error:nil];
-    [request setHTTPBody:object];
-    
-    // configure requestMethod & header
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPMethod:HTTPMethod];
-    
-    // build NSURLConnection with request
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        NSLog(@"%@", response);
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-            [_activityIndicator stopAnimating];
-            
-            if (_isChangingAvailability) {
-                [AlertHelper showAlertWithMessage:@"修改图书状态失败" target:self];
-            } else if (_isAdding) {
-                [AlertHelper showAlertWithMessage:@"添加图书失败" target:self];
-            } else if (_isDeleting) {
-                [AlertHelper showAlertWithMessage:@"删除图书失败" target:self];
-            }
+            [AlertHelper showAlertWithMessage:@"添加图书失败" target:self];
             return;
         }
         
-        id userObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-        NSLog(@"%@", userObject);
-        if (_isChangingAvailability) {
-            //async store
-            _book.availability = !_book.availability;
-            [[BookStore sharedStore] changeStoredBookStatusWithBook:_book];
-        } else if (_isAdding || _isDeleting) {
-            _existenceStatus = !_existenceStatus;
-            if (_isAdding) {
-                //async store
-                [[BookStore sharedStore] addBookToStore:_book];
-                [[UserStore sharedStore] increseBookCountForUser:[self currentUserId]];
-                [self enableAvailabilityArea];
-            } else {
-                // if deleted, must set _book.availability to NO !!!
-                _book.availability = NO;
-                
-                //async store
-                [[BookStore sharedStore] deleteBookFromStore:_book];
-                [[UserStore sharedStore] decreseBookCountForUser:[self currentUserId]];
-                [self disableAvailabilityArea];
-            }
-        }
-        [[BookStore sharedStore] refreshStoredBooks];
-        [self setLabelWithBookExistence:_existenceStatus];
-        [self setLabelTextWithBookAvailability:_book.availability];
-        [_activityIndicator stopAnimating];
-        [self.tableView reloadData];
+        _existenceStatus = !_existenceStatus;
         
+        [[BookStore sharedStore] addBookToStore:_book];
+        [[UserStore sharedStore] increseBookCountForUser:[[UserManager currentUser] userId]];
+       
+        [self enableAvailabilityArea];
+        [self setLabelWithBookExistence:YES];
+    }];
+}
+
+- (void)putDeleteBookRequestWithBookId:(NSString *)bookId userId:(NSString *)userId accessToke:(NSString *)accessToken
+{
+    NSMutableURLRequest *deleteBookRequest = [RequestBuilder buildDeleteBookRequestWithBookId:bookId userId:userId accessToke:accessToken];
+    [NSURLConnection sendAsynchronousRequest:deleteBookRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        
+        [_activityIndicator stopAnimating];
+
+        if ([(NSHTTPURLResponse *)response statusCode] != 200) {
+            [AlertHelper showAlertWithMessage:@"删除图书失败" target:self];
+            return;
+        }
+        
+        _existenceStatus = !_existenceStatus;
+
+        [[BookStore sharedStore] deleteBookFromStore:_book];
+        [[UserStore sharedStore] decreseBookCountForUser:[[UserManager currentUser] userId]];
+        
+        [self disableAvailabilityArea];
+        [self setLabelWithBookExistence:NO];
+        [self setLabelTextWithBookAvailability:NO];
+    }];
+}
+
+- (void)putChangeStatusRequestWithBookId:(NSString *)bookId available:(BOOL)availabilityState userId:(NSString *)userId accessToken:(NSString *)accessToken
+{
+    NSMutableURLRequest *changeAvailabilityRequest = [RequestBuilder buildChangeBookAvailabilityRequestWithBookId:bookId available:availabilityState userId:userId accessToken:accessToken];
+    [NSURLConnection sendAsynchronousRequest:changeAvailabilityRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+
+        [_activityIndicator stopAnimating];
+
+        if ([(NSHTTPURLResponse *)response statusCode] != 200) {
+            [AlertHelper showAlertWithMessage:@"修改图书状态失败" target:self];
+            return;
+        }
+        
+        _book.availability = !_book.availability;
+        [[BookStore sharedStore] changeStoredBookStatusWithBook:_book];
+        
+        [self setLabelTextWithBookAvailability:_book.availability];
     }];
 }
 
