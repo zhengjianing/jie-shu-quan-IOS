@@ -249,14 +249,15 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
         if (_isAdding) {
             //async store
             [[BookStore sharedStore] addBookToStore:_book];
+            [[UserStore sharedStore] increseBookCountForUser:[self currentUserId]];
         } else {
             // if deleted, must set _availabilityStatus to NO !!!
             _availabilityStatus = NO;
             
             //async store
             [[BookStore sharedStore] deleteBookFromStore:_book];
+            [[UserStore sharedStore] decreseBookCountForUser:[self currentUserId]];
         }
-        [[UserStore sharedStore] refreshBookCountForUser:[self currentUserId]];
     }
     [self setLabelWithBookExistence:_existenceStatus];
     [self setLabelTextWithBookAvailability:_availabilityStatus];

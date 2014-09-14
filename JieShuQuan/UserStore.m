@@ -31,7 +31,13 @@ static const NSString *kEntityName = @"User";
 
 - (void)saveUserToCoreData:(User *)user
 {
-    NSManagedObject *managedObject = [NSEntityDescription insertNewObjectForEntityForName:(NSString *)kEntityName inManagedObjectContext:[self managedObjectContext]];
+    NSManagedObject *managedObject;
+    NSArray *users = [self storedUsersWithUserId:user.userId];
+    if ([users count]==0) {
+        managedObject = [NSEntityDescription insertNewObjectForEntityForName:(NSString *)kEntityName inManagedObjectContext:[self managedObjectContext]];
+    } else {
+        managedObject = [users objectAtIndex:0];
+    }
     [DataConverter setManagedObject:managedObject forUser:user];
     [self saveContext];
 }
@@ -54,14 +60,24 @@ static const NSString *kEntityName = @"User";
     return [DataConverter userFromManagedObject:storedUser];
 }
 
-- (void)refreshBookCountForUser:(NSString *)userId
+- (void)increseBookCountForUser:(NSString *)userId
+{
+    [self refreshBookCountForUser:userId withCount:1];
+}
+
+- (void)decreseBookCountForUser:(NSString *)userId
+{
+    [self refreshBookCountForUser:userId withCount:-1];
+}
+
+- (void)refreshBookCountForUser:(NSString *)userId withCount:(NSInteger)count
 {
     if ([[self storedUsersWithUserId:userId] count] == 0) {
         return;
     }
     NSManagedObject *storedUser = [[self storedUsersWithUserId:userId] objectAtIndex:0];
     int previousCount = [[storedUser valueForKey:@"book_count"] intValue];
-    int currentCount = previousCount + 1;
+    int currentCount = previousCount + count;
     [storedUser setValue:[NSString stringWithFormat:@"%d", currentCount] forKey:@"book_count"];
     [self saveContext];
 }
