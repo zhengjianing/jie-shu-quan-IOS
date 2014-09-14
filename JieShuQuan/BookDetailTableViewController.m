@@ -17,6 +17,7 @@
 #import "ServerHeaders.h"
 #import "MyBooksTableViewController.h"
 #import "SearchTableViewController.h"
+#import "ActionSheetHelper.h"
 
 static const NSString *kBookId = @"douban_book_id";
 static const NSString *kAvailableState = @"available";
@@ -112,10 +113,8 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     _isAdding = NO;
     _isDeleting = NO;
     
-    availabilitySheet = [[UIActionSheet alloc] initWithTitle:@"确认修改状态吗？" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"确认" otherButtonTitles:nil, nil];
+    availabilitySheet = [ActionSheetHelper actionSheetWithTitle:@"确认修改状态吗？" delegate:self];
     [availabilitySheet showInView:self.view];
-    
-    
 }
 - (IBAction)changeExistence:(id)sender {
     _isChangingAvailability = NO;
@@ -124,13 +123,13 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
         _isDeleting = YES;
         _isAdding = NO;
         
-        deleteSheet = [[UIActionSheet alloc] initWithTitle:@"确认删除吗？" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"确认" otherButtonTitles:nil, nil];
+        deleteSheet = [ActionSheetHelper actionSheetWithTitle:@"确认删除吗？" delegate:self];
         [deleteSheet showInView:self.view];
     } else if (_existenceStatus == NO) {
         _isDeleting = NO;
         _isAdding = YES;
         
-        addSheet = [[UIActionSheet alloc] initWithTitle:@"确认添加吗？" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"确认" otherButtonTitles:nil, nil];
+        addSheet = [ActionSheetHelper actionSheetWithTitle:@"确认添加吗？" delegate:self];
         [addSheet showInView:self.view];
     }
 }

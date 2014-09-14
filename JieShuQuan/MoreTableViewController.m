@@ -9,6 +9,7 @@
 #import "MoreTableViewController.h"
 #import "UserManager.h"
 #import "User.h"
+#import "ActionSheetHelper.h"
 
 static const NSString *kDefaultCount = @"0";
 
@@ -48,8 +49,7 @@ static const NSString *kDefaultCount = @"0";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([indexPath section] == 2) {
-        UIActionSheet *confirmLogoutActionSheet = [[UIActionSheet alloc] initWithTitle:@"确认退出吗？" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"确认" otherButtonTitles:nil, nil];
-        [confirmLogoutActionSheet showInView:self.view];
+        [[ActionSheetHelper actionSheetWithTitle:@"确认退出吗？" delegate:self] showInView:self.view];
     }
 }
 
