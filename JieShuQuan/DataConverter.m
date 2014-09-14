@@ -53,7 +53,6 @@ static const NSString *kCDAvailability = @"availability";
     id object = [NSJSONSerialization JSONObjectWithData:searchResults options:NSJSONReadingAllowFragments error:nil];
     if (!object)
         return nil;
-    
     return [self booksArrayFromUnserializedBooksData:[object valueForKey:@"books"]];
 }
 
@@ -61,7 +60,7 @@ static const NSString *kCDAvailability = @"availability";
 {
     Book *book = [[Book alloc] init];
     book.name = [object valueForKey:(NSString *)kDBTitle];
-    book.authors = [object valueForKey:(NSString *)kDBAuthor];
+    book.authors = [[object valueForKey:(NSString *)kDBAuthor] componentsJoinedByString:@","];
     book.imageHref = [object valueForKey:(NSString *)kDBImageHref];
     book.description = [object valueForKey:(NSString *)kDBSummary];
     book.authorInfo = [object valueForKey:(NSString *)kDBAuthorIntro];

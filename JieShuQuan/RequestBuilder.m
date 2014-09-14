@@ -13,8 +13,21 @@
 @implementation RequestBuilder
 
 static const NSString *kPasswordKey = @"passwordKey";
+
+static const NSString *kUserId = @"user_id";
+static const NSString *kAccessToken = @"access_token";
+
+
+static const NSString *kBookname = @"name";
+static const NSString *kBookauthors = @"authors";
+static const NSString *kBookimageHref = @"image_href";
+static const NSString *kBookdescription = @"description";
+static const NSString *kBookauthorInfo = @"author_info";
+static const NSString *kBookprice = @"price";
+static const NSString *kBookpublisher = @"publisher";
+static const NSString *kBookpublishDate = @"publish_date";
 static const NSString *kBookId = @"douban_book_id";
-static const NSString *kAvailableState = @"available";
+static const NSString *kBookAvailable = @"available";
 
 + (NSMutableURLRequest *)buildRegisterRequestWithUserName:(NSString *)userName email:(NSString *)email password:(NSString *)password
 {
@@ -48,15 +61,32 @@ static const NSString *kAvailableState = @"available";
     return [password aes256_encrypt:(NSString *)kPasswordKey];
 }
 
-+ (NSMutableURLRequest *)buildAddBookRequestWithBookId:(NSString *)bookId available:(BOOL)availabilityState userId:(NSString *)userId accessToke:(NSString *)accessToken
++ (NSMutableURLRequest *)buildAddBookRequestWithbookName:(NSString *)name
+                                                 authors:(NSString *)authors
+                                               imageHref:(NSString *)imageHref
+                                             description:(NSString *)description
+                                              authorInfo:(NSString *)authorInfo
+                                                   price:(NSString *)price
+                                               publisher:(NSString *)publisher
+                                             publishDate:(NSString *)publishDate
+                                                  bookId:(NSString *)bookId
+                                               available:(BOOL)availability
+                                                  userId:(NSString *)userId
+                                              accessToke:(NSString *)accessToken
 {
     NSDictionary *bodyDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                              name, kBookname,
+                              authors, kBookauthors,
+                              imageHref, kBookimageHref,
+                              description, kBookdescription,
+                              authorInfo, kBookauthorInfo,
+                              price, kBookprice,
+                              publisher, kBookpublisher,
+                              publishDate, kBookpublishDate,
                               bookId, kBookId,
-                              [NSNumber numberWithInteger:availabilityState], kAvailableState,
-                              userId, @"user_id",
-                              accessToken, @"access_token", nil];
-    
-    
+                              [NSNumber numberWithInteger:availability], kBookAvailable,
+                              userId, kUserId,
+                              accessToken, kAccessToken, nil];
     return [self buildRequestWithURLString:kAddBookURL bodyDictionary:bodyDict HTTPMethod:@"POST"];
 }
 
@@ -73,7 +103,7 @@ static const NSString *kAvailableState = @"available";
 {
     NSDictionary *bodyDict = [NSDictionary dictionaryWithObjectsAndKeys:
                               bookId, kBookId,
-                              [NSNumber numberWithInteger:availabilityState], kAvailableState,
+                              [NSNumber numberWithInteger:availabilityState], kBookAvailable,
                               userId, @"user_id",
                               accessToken, @"access_token", nil];
     return [self buildRequestWithURLString:kChangeBookStatusURL bodyDictionary:bodyDict HTTPMethod:@"PUT"];

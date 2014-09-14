@@ -2,7 +2,7 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6172.12" systemVersion="13D65" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Book" representedClassName="" syncable="YES">
         <attribute name="authorInfo" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="authors" optional="YES" attributeType="Transformable" valueTransformerName="NSArrayTransformer" syncable="YES"/>
+        <attribute name="authors" optional="YES" attributeType="String" valueTransformerName="NSArrayTransformer" syncable="YES"/>
         <attribute name="availability" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="bookDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="bookId" optional="YES" attributeType="String" syncable="YES"/>
@@ -24,7 +24,7 @@
         <relationship name="books" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Book" inverseName="user" inverseEntity="Book" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Book" positionX="0" positionY="0" width="128" height="28"/>
+        <element name="Book" positionX="0" positionY="0" width="128" height="210"/>
         <element name="User" positionX="0" positionY="0" width="128" height="165"/>
     </elements>
 </model>

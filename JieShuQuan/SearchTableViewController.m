@@ -74,7 +74,7 @@
     
     Book *book = [searchResults objectAtIndex:indexPath.row];
     cell.nameLabel.text = book.name;
-    cell.authorsLabel.text = [book authorsString];
+    cell.authorsLabel.text = book.authors;
     [cell.bookImageView sd_setImageWithURL:[NSURL URLWithString:book.imageHref]];
     
     return cell;

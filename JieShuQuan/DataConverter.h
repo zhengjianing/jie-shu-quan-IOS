@@ -16,6 +16,5 @@
 + (User *)userFromHTTPResponse:(id)object;
 + (User *)userFromManagedObject:(id)storedUser;
 + (void)setManagedObject:(id)object forUser:(User *)user;
-+ (Book *)bookFromDoubanBookObject:(id)object;
 
 @end

@@ -82,7 +82,7 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     //set the view components.
     [_bookImageView sd_setImageWithURL:[NSURL URLWithString:_book.imageHref]];
     _nameLabel.text = _book.name;
-    _authorsLabel.text = [_book authorsString];
+    _authorsLabel.text = _book.authors;
     _publisherLabel.text = _book.publisher;
     _publishDateLabel.text = _book.publishDate;
     _priceLabel.text = _book.price;

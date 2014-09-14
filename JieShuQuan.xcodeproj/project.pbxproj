@@ -51,7 +51,6 @@
 		97F65AC219AE0A7D00B9DC93 /* JsonDataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F65AC119AE0A7D00B9DC93 /* JsonDataFetcher.m */; };
 		97F65AC719AE0B1200B9DC93 /* DataConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F65AC619AE0B1200B9DC93 /* DataConverter.m */; };
 		97F973C619B5FBF4007AAD47 /* BookStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F973C519B5FBF4007AAD47 /* BookStore.m */; };
-		97FC364F19B4C1AB002D0932 /* NSArrayTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FC364E19B4C1AB002D0932 /* NSArrayTransformer.m */; };
 		CCADB709D24545C3BEA257B4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFAC14665174BE691ED257B /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -147,8 +146,6 @@
 		97F65AC619AE0B1200B9DC93 /* DataConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataConverter.m; sourceTree = "<group>"; };
 		97F973C419B5FBF4007AAD47 /* BookStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookStore.h; sourceTree = "<group>"; };
 		97F973C519B5FBF4007AAD47 /* BookStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookStore.m; sourceTree = "<group>"; };
-		97FC364D19B4C1AB002D0932 /* NSArrayTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSArrayTransformer.h; sourceTree = "<group>"; };
-		97FC364E19B4C1AB002D0932 /* NSArrayTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayTransformer.m; sourceTree = "<group>"; };
 		9FFAC14665174BE691ED257B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -293,8 +290,6 @@
 				9476057A19C074D800FA8E74 /* ServerHeaders.h */,
 				97F65AC519AE0B1200B9DC93 /* DataConverter.h */,
 				97F65AC619AE0B1200B9DC93 /* DataConverter.m */,
-				97FC364D19B4C1AB002D0932 /* NSArrayTransformer.h */,
-				97FC364E19B4C1AB002D0932 /* NSArrayTransformer.m */,
 				97F306B019BD45800010E91F /* NSData+AES256.h */,
 				97F306B119BD45800010E91F /* NSData+AES256.m */,
 				97F306B319BD47D10010E91F /* NSString+AES256.h */,
@@ -560,7 +555,6 @@
 				94BB408519C172FE005BBD8E /* FriendsTableViewController.m in Sources */,
 				9759AFFA19C19976008EFCC2 /* UserManager.m in Sources */,
 				9770923819C583CD001A3ED6 /* ActionSheetHelper.m in Sources */,
-				97FC364F19B4C1AB002D0932 /* NSArrayTransformer.m in Sources */,
 				94BB409519C283CB005BBD8E /* MoreTableViewController.m in Sources */,
 				97F306B219BD45800010E91F /* NSData+AES256.m in Sources */,
 				9471DBF519A5837700F1A291 /* JieShuQuan.xcdatamodeld in Sources */,

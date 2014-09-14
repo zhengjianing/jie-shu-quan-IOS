@@ -12,12 +12,7 @@
 
 - (BOOL)isSameBook:(Book *)book
 {
-    //change book.availability to make sure if searched book alreay exists, then it should have the right availability in the store!
-    if ([self.name isEqualToString:book.name] && [self.authors isEqualToString:book.authors]) {
-        book.availability = self.availability;
-        return YES;
-    } else
-        return NO;
+    return [self.name isEqualToString:book.name] && [self.authors isEqualToString:book.authors];
 }
 
 @end

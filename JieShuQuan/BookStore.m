@@ -81,7 +81,7 @@ static const NSString *kAvailability = @"availability";
 {
     for (NSManagedObject *item in [self fetchBooksFromStore]) {
         if ([[item valueForKey:(NSString *)kName] isEqualToString:book.name]
-            && [[item valueForKey:(NSString *)kAuthors] isEqualToArray:book.authors]) {
+            && [[item valueForKey:(NSString *)kAuthors] isEqualToString:book.authors]) {
             [[self managedObjectContext] deleteObject:item];
             [self saveContext];
             [self refreshStoredBooks];

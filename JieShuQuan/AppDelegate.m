@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "NSArrayTransformer.h"
 
 @implementation AppDelegate
             
@@ -16,9 +15,6 @@
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    NSArrayTransformer *arrayTransformer = [[NSArrayTransformer alloc] init];
-    [NSArrayTransformer setValueTransformer:arrayTransformer forName:(NSString *)@"NSArrayTransformer"];
     
     return YES;
 }
