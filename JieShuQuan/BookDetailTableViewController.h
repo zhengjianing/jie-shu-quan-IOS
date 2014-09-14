@@ -11,7 +11,7 @@
 
 @class Book;
 
-@interface BookDetailTableViewController : UITableViewController <NSURLConnectionDataDelegate, UIActionSheetDelegate>
+@interface BookDetailTableViewController : UITableViewController <UIActionSheetDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *bookImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;

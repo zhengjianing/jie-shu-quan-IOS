@@ -212,58 +212,51 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     [request setHTTPMethod:HTTPMethod];
     
     // build NSURLConnection with request
-    NSURLConnection *connection;
-    connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
-}
-
-#pragma mark - NSURLConnectionDataDelegate methods
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-    NSLog(@"%@", response);
-    if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-        [_activityIndicator stopAnimating];
-
-        if (_isChangingAvailability) {
-            [AlertHelper showAlertWithMessage:@"修改图书状态失败" target:self];
-        } else if (_isAdding) {
-            [AlertHelper showAlertWithMessage:@"添加图书失败" target:self];
-        } else if (_isDeleting) {
-            [AlertHelper showAlertWithMessage:@"删除图书失败" target:self];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        NSLog(@"%@", response);
+        if ([(NSHTTPURLResponse *)response statusCode] != 200) {
+            [_activityIndicator stopAnimating];
+            
+            if (_isChangingAvailability) {
+                [AlertHelper showAlertWithMessage:@"修改图书状态失败" target:self];
+            } else if (_isAdding) {
+                [AlertHelper showAlertWithMessage:@"添加图书失败" target:self];
+            } else if (_isDeleting) {
+                [AlertHelper showAlertWithMessage:@"删除图书失败" target:self];
+            }
+            return;
         }
-        return;
-    }
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    id userObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-    NSLog(@"%@", userObject);
-    if (_isChangingAvailability) {
-        _availabilityStatus = !_availabilityStatus;
         
-        //async store
-        _book.availability = _availabilityStatus;
-        [[BookStore sharedStore] changeStoredBookStatusWithBook:_book];
-    } else if (_isAdding || _isDeleting) {
-        _existenceStatus = !_existenceStatus;
-        if (_isAdding) {
-            //async store
-            [[BookStore sharedStore] addBookToStore:_book];
-            [[UserStore sharedStore] increseBookCountForUser:[self currentUserId]];
-        } else {
-            // if deleted, must set _availabilityStatus to NO !!!
-            _availabilityStatus = NO;
+        id userObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+        NSLog(@"%@", userObject);
+        if (_isChangingAvailability) {
+            _availabilityStatus = !_availabilityStatus;
             
             //async store
-            [[BookStore sharedStore] deleteBookFromStore:_book];
-            [[UserStore sharedStore] decreseBookCountForUser:[self currentUserId]];
+            _book.availability = _availabilityStatus;
+            [[BookStore sharedStore] changeStoredBookStatusWithBook:_book];
+        } else if (_isAdding || _isDeleting) {
+            _existenceStatus = !_existenceStatus;
+            if (_isAdding) {
+                //async store
+                [[BookStore sharedStore] addBookToStore:_book];
+                [[UserStore sharedStore] increseBookCountForUser:[self currentUserId]];
+            } else {
+                // if deleted, must set _availabilityStatus to NO !!!
+                _availabilityStatus = NO;
+                
+                //async store
+                [[BookStore sharedStore] deleteBookFromStore:_book];
+                [[UserStore sharedStore] decreseBookCountForUser:[self currentUserId]];
+            }
         }
-    }
-    [[BookStore sharedStore] refreshStoredBooks];
-    [self setLabelWithBookExistence:_existenceStatus];
-    [self setLabelTextWithBookAvailability:_availabilityStatus];
-    [_activityIndicator stopAnimating];
-    [self.tableView reloadData];
+        [[BookStore sharedStore] refreshStoredBooks];
+        [self setLabelWithBookExistence:_existenceStatus];
+        [self setLabelTextWithBookAvailability:_availabilityStatus];
+        [_activityIndicator stopAnimating];
+        [self.tableView reloadData];
+        
+    }];
 }
 
 @end
