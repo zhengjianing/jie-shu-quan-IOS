@@ -73,7 +73,7 @@ static const NSString *kDefaultCount = @"0";
     _bookCountLabel.text = [[UserManager currentUser] bookCount];
     _friendsCountLabel.text = [[UserManager currentUser] friendCount];
 
-    _userNameButton.titleLabel.text = [[UserManager currentUser] userName];
+    [_userNameButton setTitle:[[UserManager currentUser] userName] forState:UIControlStateNormal];
     [_userNameButton setUserInteractionEnabled:NO];
     
     [_logoutCell setUserInteractionEnabled:YES];
@@ -87,7 +87,8 @@ static const NSString *kDefaultCount = @"0";
     _bookCountLabel.text = (NSString *)kDefaultCount;
     _friendsCountLabel.text = (NSString *)kDefaultCount;
 
-    _userNameButton.titleLabel.text = @"立即登录";
+    [_userNameButton setTitle:@"立即登录" forState:UIControlStateNormal];
+
     [_userNameButton setUserInteractionEnabled:YES];
     
     [_logoutCell setUserInteractionEnabled:NO];

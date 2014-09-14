@@ -75,7 +75,6 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     } else {
         _existenceLabel.text = (NSString *)kExistNO;
         [_changeExistenceButton setTitle:(NSString *)kAddToMyBook forState:UIControlStateNormal];
-
     }
 }
 - (void)setLabelTextWithBookAvailability:(BOOL)availability
