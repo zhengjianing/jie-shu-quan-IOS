@@ -259,6 +259,7 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
             [[UserStore sharedStore] decreseBookCountForUser:[self currentUserId]];
         }
     }
+    [[BookStore sharedStore] refreshStoredBooks];
     [self setLabelWithBookExistence:_existenceStatus];
     [self setLabelTextWithBookAvailability:_availabilityStatus];
     [_activityIndicator stopAnimating];
