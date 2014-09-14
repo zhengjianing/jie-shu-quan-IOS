@@ -30,6 +30,14 @@ static const NSString *kExistNO = @"书库没有";
 static const NSString *kAddToMyBook = @"添加至书库";
 static const NSString *kDeleteFromMyBook = @"从书库移除";
 
+@interface BookDetailTableViewController ()
+{
+    UIActionSheet *availabilitySheet;
+    UIActionSheet *deleteSheet;
+    UIActionSheet *addSheet;
+}
+
+@end
 
 @implementation BookDetailTableViewController
 
@@ -104,8 +112,8 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     _isAdding = NO;
     _isDeleting = NO;
     
-    UIActionSheet *confirmChangeActionSheet = [[UIActionSheet alloc] initWithTitle:@"确认修改状态吗？" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"确认" otherButtonTitles:nil, nil];
-    [confirmChangeActionSheet showInView:self.view];
+    availabilitySheet = [[UIActionSheet alloc] initWithTitle:@"确认修改状态吗？" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"确认" otherButtonTitles:nil, nil];
+    [availabilitySheet showInView:self.view];
     
     
 }
@@ -116,23 +124,14 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
         _isDeleting = YES;
         _isAdding = NO;
         
-        
-        [_activityIndicator startAnimating];
-        
-        //post request to delete book from server side
-        [self putDeleteBookRequestWithBookId:_book.bookId
-                                      userId:[self currentUserId]
-                                  accessToke:[self currentUserAccessToken]];
+        deleteSheet = [[UIActionSheet alloc] initWithTitle:@"确认删除吗？" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"确认" otherButtonTitles:nil, nil];
+        [deleteSheet showInView:self.view];
     } else if (_existenceStatus == NO) {
         _isDeleting = NO;
         _isAdding = YES;
         
-        [_activityIndicator startAnimating];
-        
-        //post request to add book to server side
-        [self postAddBookRequestWithBookId:_book.bookId available:NO
-                                    userId:[self currentUserId]
-                                accessToke:[self currentUserAccessToken]];
+        addSheet = [[UIActionSheet alloc] initWithTitle:@"确认添加吗？" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"确认" otherButtonTitles:nil, nil];
+        [addSheet showInView:self.view];
     }
 }
 
@@ -142,8 +141,20 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     if (buttonIndex == 0) {
         [_activityIndicator startAnimating];
         
-        // launch NSURLConnection to change availability
-        [self putChangeStatusRequestWithBookId:_book.bookId available:(!_availabilityStatus) userId:[self currentUserId] accessToken:[self currentUserAccessToken]];
+        if (actionSheet == deleteSheet) {
+            //post request to delete book from server side
+            [self putDeleteBookRequestWithBookId:_book.bookId
+                                          userId:[self currentUserId]
+                                      accessToke:[self currentUserAccessToken]];
+        } else if (actionSheet == availabilitySheet) {
+            // launch NSURLConnection to change availability
+            [self putChangeStatusRequestWithBookId:_book.bookId available:(!_availabilityStatus) userId:[self currentUserId] accessToken:[self currentUserAccessToken]];
+        } else if (actionSheet == addSheet) {
+            //post request to add book to server side
+            [self postAddBookRequestWithBookId:_book.bookId available:NO
+                                        userId:[self currentUserId]
+                                    accessToke:[self currentUserAccessToken]];
+        }
     }
 }
 
@@ -239,14 +250,12 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
         if (_isAdding) {
             //async store
             [[BookStore sharedStore] addBookToStore:_book];
-            [AlertHelper showAlertWithMessage:@"添加图书成功" target:self];
         } else {
             // if deleted, must set _availabilityStatus to NO !!!
             _availabilityStatus = NO;
             
             //async store
             [[BookStore sharedStore] deleteBookFromStore:_book];
-            [AlertHelper showAlertWithMessage:@"删除图书成功" target:self];
         }
         [[UserStore sharedStore] refreshBookCountForUser:[self currentUserId]];
     }
