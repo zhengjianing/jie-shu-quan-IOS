@@ -10,22 +10,10 @@
 
 @implementation Book
 
-- (NSString *)authorsString
-{
-    NSString *authorsString = @"";
-    for (NSString *author in _authors) {
-        authorsString = [authorsString stringByAppendingString:author];
-        if (![author isEqualToString:[_authors lastObject]]) {
-            authorsString = [authorsString stringByAppendingString:@", "];
-        }
-    }
-    return authorsString;
-}
-
 - (BOOL)isSameBook:(Book *)book
 {
     //change book.availability to make sure if searched book alreay exists, then it should have the right availability in the store!
-    if ([self.name isEqualToString:book.name] && [self.authors isEqualToArray:book.authors]) {
+    if ([self.name isEqualToString:book.name] && [self.authors isEqualToString:book.authors]) {
         book.availability = self.availability;
         return YES;
     } else

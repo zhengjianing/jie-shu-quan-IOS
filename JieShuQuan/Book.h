@@ -11,7 +11,7 @@
 @interface Book : NSObject
 
 @property (copy, nonatomic) NSString *name;
-@property (copy, nonatomic) NSArray *authors;
+@property (copy, nonatomic) NSString *authors;
 @property (copy, nonatomic) NSString *imageHref;
 @property (copy, nonatomic) NSString *description;
 @property (copy, nonatomic) NSString *authorInfo;
@@ -21,7 +21,6 @@
 @property (copy, nonatomic) NSString *bookId;
 @property (assign, nonatomic) BOOL availability;
 
-- (NSString *)authorsString;
 - (BOOL)isSameBook:(Book *)book;
 
 @end
