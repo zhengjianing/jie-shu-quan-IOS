@@ -19,6 +19,8 @@
 #import "JsonDataFetcher.h"
 #import "DoubanHeaders.h"
 #import "User.h"
+#import "RequestBuilder.h"
+#import "DataConverter.h"
 
 
 static const NSString *kStatusYES = @"可借";
@@ -48,6 +50,7 @@ static const NSString *kDBBookId = @"id";
 @property (assign, nonatomic) NSInteger bookCount;
 
 @property (strong, nonatomic) UIRefreshControl *refresh;
+@property (copy, nonatomic) NSMutableArray *tempArray;
 
 @end
 
@@ -56,23 +59,12 @@ static const NSString *kDBBookId = @"id";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-        
     _myBooksTableView = self.tableView;
     
     UIStoryboard *mainStoryboard = self.storyboard;
     _loginController = [mainStoryboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-    
-    _refresh = [[UIRefreshControl alloc] init];
-    _refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
-    [_refresh addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
-    self.refreshControl = _refresh;
-}
-
-- (void)refreshView:(UIRefreshControl *)refresh
-{
-    [_refresh beginRefreshing];
-    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing data..."];
-    [self fetchBooksFromServer];
+    [self addRefreshControll];
+    _tempArray = [[NSMutableArray alloc] init];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -82,23 +74,6 @@ static const NSString *kDBBookId = @"id";
     } else {
         [self showPreLoginView];
     }
-}
-
-- (void)fetchBooksFromServer
-{
-    User *currentUser = [UserManager currentUser];
-    NSString *currentUserId = currentUser.userId;
-
-    NSString *getString = [kMyBooksURL stringByAppendingString:currentUserId];
-    NSURL *getURL = [NSURL URLWithString:[getString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:getURL];
-    
-    [request setHTTPBody:[NSData data]];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPMethod:@"GET"];
-    
-    NSURLConnection *connection;
-    connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
 }
 
 - (void)showTableView
@@ -112,6 +87,20 @@ static const NSString *kDBBookId = @"id";
 {
     _myBooks = [[[BookStore sharedStore] storedBooks] mutableCopy];
 }
+
+#pragma mark -- pull to refresh
+- (void)addRefreshControll
+{
+    _refresh = [[UIRefreshControl alloc] init];
+    [_refresh addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = _refresh;
+}
+
+- (void)refreshView:(UIRefreshControl *)refresh
+{
+    [self fetchBooksFromServer];
+}
+
 
 #pragma mark - PreLoginView
 
@@ -162,78 +151,56 @@ static const NSString *kDBBookId = @"id";
     return cell;
 }
 
-#pragma mark - NSURLConnectionDataDelegate methods
+#pragma mark -- fetch books from server
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+- (void)fetchBooksFromServer
 {
-    NSLog(@"%@", response);
-    if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-        [AlertHelper showAlertWithMessage:@"验证失败" target:self];
-    }
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    id userObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-    if (userObject) {
-        [_myBooks removeAllObjects];
-        [[BookStore sharedStore] emptyBookStoreForCurrentUser];
-        NSArray *bookIdAndStatusArray = [userObject valueForKey:@"books"];
-        _bookCount = [bookIdAndStatusArray count];
-        for (id book in bookIdAndStatusArray) {
-            NSString *bookId = [book valueForKey:(NSString *)kBookId];
-            BOOL bookAvailability = [[book valueForKey:(NSString *)kAvailability] boolValue];
-            
-            NSString *searchUrl = [NSString stringWithFormat:@"%@%@", kSearchBookId, bookId];
-            NSString* encodedUrl = [searchUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            [self bookFromDouBanWithUrl:encodedUrl withAvailable:bookAvailability];
+    NSMutableURLRequest *request = [RequestBuilder buildFetchBooksRequestForUserId:[[UserManager currentUser] userId]];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if ([(NSHTTPURLResponse *)response statusCode] != 200) {
+            [AlertHelper showAlertWithMessage:@"验证失败" target:self];
+            return ;
         }
-    }
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    [AlertHelper showAlertWithMessage:@"网络请求失败...\n请检查您的网络连接" target:self];
-}
-
-- (void)bookFromDouBanWithUrl:(NSString *)searchUrl withAvailable:(BOOL)bookAvailability
-{
-    [JsonDataFetcher dataFromURL:[NSURL URLWithString:searchUrl] withCompletion:^(NSData *jsonData) {
-        id item = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
         
-        Book *book = [[Book alloc] init];
-        book.name = [item valueForKey:(NSString *)kDBTitle];
-        book.authors = [item valueForKey:(NSString *)kDBAuthor];
-        book.imageHref = [item valueForKey:(NSString *)kDBImageHref];
-        book.description = [item valueForKey:(NSString *)kDBSummary];
-        book.authorInfo = [item valueForKey:(NSString *)kDBAuthorIntro];
-        book.price = [item valueForKey:(NSString *)kDBPrice];
-        book.publisher = [item valueForKey:(NSString *)kDBPublisher];
-        book.publishDate = [item valueForKey:(NSString *)kDBPubdate];
-        book.bookId = [item valueForKey:(NSString *)kDBBookId];
-        
-        //only property "availability" is set from server !
-        book.availability = bookAvailability;
-        
-        [[BookStore sharedStore] addBookToStore:book];
-        _bookCount--;
-        if (_bookCount == 0) {
-            [self loadData];
-            [self.tableView reloadData];
-            
-            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-            [formatter setDateFormat:@"MMM d, h:mm a"];
-            NSString *lastUpdated = [NSString stringWithFormat:@"Last updated on %@",
-                                     [formatter stringFromDate:[NSDate date]]];
-            _refresh.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdated];
-            [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(endRefreshing) userInfo:nil repeats:NO];
+        id responseObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+        if (responseObject) {
+            NSArray *booksArray = [responseObject valueForKey:@"books"];
+            _bookCount = [booksArray count];
+            for (id book in booksArray) {
+                [_tempArray addObject:book];
+                _bookCount--;
+                if (_bookCount == 0) {
+                    [self saveServerBooksToBookStore];
+                }
+            }
         }
     }];
 }
 
-- (void)endRefreshing
+- (void)saveServerBooksToBookStore
 {
-   [_refresh endRefreshing];
+    [_myBooks removeAllObjects];
+    [[BookStore sharedStore] emptyBookStoreForCurrentUser];
+    for (id book in _tempArray) {
+        [[BookStore sharedStore] addBookToStore:book];
+    }
+    [self loadData];
+    [self.tableView reloadData];
+    [self updateRefreshControll];
+}
+
+- (void)updateRefreshControll
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MMM d, h:mm a"];
+    NSString *lastUpdated = [NSString stringWithFormat:@"Last updated on %@",
+                             [formatter stringFromDate:[NSDate date]]];
+    _refresh.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdated];
+    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(endRefreshing) userInfo:nil repeats:NO];
+}
+
+- (void)endRefreshing {
+    [_refresh endRefreshing];
 }
 
 

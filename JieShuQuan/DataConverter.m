@@ -48,38 +48,28 @@ static const NSString *kCDAvailability = @"availability";
 
 #pragma mark -- Book
 
-+ (NSMutableArray *)booksArrayFromJsonData:(NSData *)jsonData
++ (NSMutableArray *)booksArrayFromDoubanSearchResults:(NSData *)searchResults
 {
-    id object = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
-    if (!object) {
+    id object = [NSJSONSerialization JSONObjectWithData:searchResults options:NSJSONReadingAllowFragments error:nil];
+    if (!object)
         return nil;
-    }
-
+    
     return [self booksArrayFromUnserializedBooksData:[object valueForKey:@"books"]];
 }
 
-+ (NSMutableArray *)booksArrayFromUnserializedBooksData:(NSArray *)booksData
++ (Book *)bookFromDoubanBookObject:(id)object
 {
-    NSMutableArray *booksArray = [NSMutableArray array];
-    
-    for (id item in booksData) {
-        Book *book = [[Book alloc] init];
-        book.name = [item valueForKey:(NSString *)kDBTitle];
-        book.authors = [item valueForKey:(NSString *)kDBAuthor];
-        book.imageHref = [item valueForKey:(NSString *)kDBImageHref];
-        book.description = [item valueForKey:(NSString *)kDBSummary];
-        book.authorInfo = [item valueForKey:(NSString *)kDBAuthorIntro];
-        book.price = [item valueForKey:(NSString *)kDBPrice];
-        book.publisher = [item valueForKey:(NSString *)kDBPublisher];
-        book.publishDate = [item valueForKey:(NSString *)kDBPubdate];
-        book.bookId = [item valueForKey:(NSString *)kDBBookId];
-        
-        //豆瓣搜索出来的结果，没有available这个属性
-//        book.availability = [[item valueForKey:(NSString *)kCDAvailability] boolValue];
-        
-        [booksArray addObject:book];
-    }
-    return booksArray;
+    Book *book = [[Book alloc] init];
+    book.name = [object valueForKey:(NSString *)kDBTitle];
+    book.authors = [object valueForKey:(NSString *)kDBAuthor];
+    book.imageHref = [object valueForKey:(NSString *)kDBImageHref];
+    book.description = [object valueForKey:(NSString *)kDBSummary];
+    book.authorInfo = [object valueForKey:(NSString *)kDBAuthorIntro];
+    book.price = [object valueForKey:(NSString *)kDBPrice];
+    book.publisher = [object valueForKey:(NSString *)kDBPublisher];
+    book.publishDate = [object valueForKey:(NSString *)kDBPubdate];
+    book.bookId = [object valueForKey:(NSString *)kDBBookId];
+    return book;
 }
 
 #pragma mark -- User
@@ -119,6 +109,18 @@ static const NSString *kCDAvailability = @"availability";
     [object setValue:user.bookCount forKey:(NSString *)kCDBookCount];
     [object setValue:user.accessToken forKey:(NSString *)kCDAccessToken];
     [object setValue:user.friendCount forKey:(NSString *)kCDFriendCount];
+}
+
+#pragma mark -- private methods
+
++ (NSMutableArray *)booksArrayFromUnserializedBooksData:(NSArray *)booksData
+{
+    NSMutableArray *booksArray = [NSMutableArray array];
+    
+    for (id item in booksData) {
+        [booksArray addObject:[self bookFromDoubanBookObject:item]];
+    }
+    return booksArray;
 }
 
 @end

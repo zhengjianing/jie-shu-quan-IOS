@@ -12,9 +12,10 @@
 
 @interface DataConverter : NSObject
 
-+ (NSMutableArray *)booksArrayFromJsonData:(NSData *)jsonData;
++ (NSMutableArray *)booksArrayFromDoubanSearchResults:(NSData *)searchResults;
 + (User *)userFromHTTPResponse:(id)object;
 + (User *)userFromManagedObject:(id)storedUser;
 + (void)setManagedObject:(id)object forUser:(User *)user;
++ (Book *)bookFromDoubanBookObject:(id)object;
 
 @end

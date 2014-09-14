@@ -15,5 +15,6 @@
 + (NSMutableURLRequest *)buildAddBookRequestWithBookId:(NSString *)bookId available:(BOOL)availabilityState userId:(NSString *)userId accessToke:(NSString *)accessToken;
 + (NSMutableURLRequest *)buildDeleteBookRequestWithBookId:(NSString *)bookId userId:(NSString *)userId accessToke:(NSString *)accessToken;
 + (NSMutableURLRequest *)buildChangeBookAvailabilityRequestWithBookId:(NSString *)bookId available:(BOOL)availabilityState userId:(NSString *)userId accessToken:(NSString *)accessToken;
++ (NSMutableURLRequest *)buildFetchBooksRequestForUserId:(NSString *)userId;
 
 @end

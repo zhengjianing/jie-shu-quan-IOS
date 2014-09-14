@@ -48,7 +48,7 @@
 - (void)searchByDouBanWithUrl:(NSString *)searchUrl
 {
     [JsonDataFetcher dataFromURL:[NSURL URLWithString:searchUrl] withCompletion:^(NSData *jsonData) {
-        searchResults = [DataConverter booksArrayFromJsonData:jsonData];
+        searchResults = [DataConverter booksArrayFromDoubanSearchResults:jsonData];
         [self.searchDisplayController.searchResultsTableView reloadData];
     }];
 }

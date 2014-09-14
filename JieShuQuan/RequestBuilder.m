@@ -79,6 +79,20 @@ static const NSString *kAvailableState = @"available";
     return [self buildRequestWithURLString:kChangeBookStatusURL bodyDictionary:bodyDict HTTPMethod:@"PUT"];
 }
 
++ (NSMutableURLRequest *)buildFetchBooksRequestForUserId:(NSString *)userId
+{
+    NSString *getString = [kMyBooksURL stringByAppendingString:userId];
+    NSURL *getURL = [NSURL URLWithString:[getString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:getURL];
+    
+    [request setHTTPBody:[NSData data]];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPMethod:@"GET"];
+    return request;
+}
+
+#pragma mark -- private methods
+
 + (NSMutableURLRequest *)buildRequestWithURLString:(NSString *)requestString bodyDictionary:(NSDictionary *)bodyDictionary HTTPMethod:(NSString *)HTTPMethod
 {
     NSURL *postURL = [NSURL URLWithString:[requestString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
@@ -89,5 +103,6 @@ static const NSString *kAvailableState = @"available";
     [request setHTTPMethod:HTTPMethod];
     return request;
 }
+
 
 @end
