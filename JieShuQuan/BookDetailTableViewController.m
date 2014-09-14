@@ -15,6 +15,8 @@
 #import "UserManager.h"
 #import "UserStore.h"
 #import "ServerHeaders.h"
+#import "MyBooksTableViewController.h"
+#import "SearchTableViewController.h"
 
 static const NSString *kBookId = @"douban_book_id";
 static const NSString *kAvailableState = @"available";
@@ -42,17 +44,21 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if (//implicitly change _book.availability if neccessary
-        [[BookStore sharedStore] storeHasBook:_book]) {
+    
+    // do this to save unnecessary coreData-searching & comparing when the prevController is MyBooksTableViewController
+    NSArray *navStack = [self.navigationController viewControllers];
+    id prevController = [navStack objectAtIndex:([navStack count]-2)];
+    if ([prevController isKindOfClass:[MyBooksTableViewController class]]
+        //implicitly change _book.availability if neccessary
+        ||[[BookStore sharedStore] storeHasBook:_book]) {
         _existenceStatus = YES;
     } else
         _existenceStatus = NO;
     
-    // set existence status
-    [self setLabelWithBookExistence:_existenceStatus];
-    
-    // set availability status
     _availabilityStatus = _book.availability;
+    
+    // set existence & availability status
+    [self setLabelWithBookExistence:_existenceStatus];
     [self setLabelTextWithBookAvailability:_availabilityStatus];
     
     //set the view components.
@@ -211,43 +217,31 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     id userObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
     NSLog(@"%@", userObject);
     if (_isChangingAvailability) {
-        
-        //change _availabilityStatus
-        _availabilityStatus = [[userObject valueForKey:(NSString *)kAvailableState] boolValue];
-        
-        //async label
-        [self setLabelTextWithBookAvailability:_availabilityStatus];
+        _availabilityStatus = !_availabilityStatus;
         
         //async store
         _book.availability = _availabilityStatus;
         [[BookStore sharedStore] changeStoredBookStatusWithBook:_book];
-        
-        [_activityIndicator stopAnimating];
         [AlertHelper showAlertWithMessage:@"修改图书状态成功" target:self];
     } else if (_isAdding || _isDeleting) {
+        _existenceStatus = !_existenceStatus;
         if (_isAdding) {
-            _existenceStatus = YES;
-            [self setLabelWithBookExistence:_existenceStatus];
-            
             //async store
             [[BookStore sharedStore] addBookToStore:_book];
-            [_activityIndicator stopAnimating];
             [AlertHelper showAlertWithMessage:@"添加图书成功" target:self];
-        } else if (_isDeleting) {
-            _existenceStatus = NO;
-            [self setLabelWithBookExistence:_existenceStatus];
-            
+        } else {
             // if deleted, must set _availabilityStatus to NO !!!
             _availabilityStatus = NO;
-            [self setLabelTextWithBookAvailability:_availabilityStatus];
             
             //async store
             [[BookStore sharedStore] deleteBookFromStore:_book];
-            [_activityIndicator stopAnimating];
             [AlertHelper showAlertWithMessage:@"删除图书成功" target:self];
         }
         [[UserStore sharedStore] refreshBookCountForUser:[self currentUserId]];
     }
+    [self setLabelWithBookExistence:_existenceStatus];
+    [self setLabelTextWithBookAvailability:_availabilityStatus];
+    [_activityIndicator stopAnimating];
     [self.tableView reloadData];
 }
 
