@@ -134,71 +134,47 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
 // for adding book to store
 - (void)postAddBookRequestWithBookId:(NSString *)bookId available:(BOOL)availabilityState userId:(NSString *)userId accessToke:(NSString *)accessToken
 {
-    // initialize NSURLRequest
-    NSURL *postURL = [NSURL URLWithString:[kAddBookURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:postURL];
-    
-    // configure requestBody
     NSDictionary *bodyDict = [NSDictionary dictionaryWithObjectsAndKeys:
                               bookId, kBookId,
                               [NSNumber numberWithInteger:availabilityState], kAvailableState,
                               userId, @"user_id",
                               accessToken, @"access_token", nil];
-    id object = [NSJSONSerialization dataWithJSONObject:bodyDict options:NSJSONWritingPrettyPrinted error:nil];
-    [request setHTTPBody:object];
-    
-    // configure requestMethod & header
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPMethod:@"POST"];
-    
-    // build NSURLConnection with request
-    NSURLConnection *connection;
-    connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
+    [self launchConnectionWithRequestURLString:kAddBookURL bodyDictionary:bodyDict HTTPMethod:@"POST"];
 }
 
 // for deleting book from store
 - (void)putDeleteBookRequestWithBookId:(NSString *)bookId userId:(NSString *)userId accessToke:(NSString *)accessToken
 {
-    // initialize NSURLRequest
-    NSURL *postURL = [NSURL URLWithString:[kDeleteBookURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:postURL];
-    
-    // configure requestBody
     NSDictionary *bodyDict = [NSDictionary dictionaryWithObjectsAndKeys:
                               bookId, kBookId,
                               userId, @"user_id",
                               accessToken, @"access_token", nil];
-    id object = [NSJSONSerialization dataWithJSONObject:bodyDict options:NSJSONWritingPrettyPrinted error:nil];
-    [request setHTTPBody:object];
-    
-    // configure requestMethod & header
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPMethod:@"PUT"];
-    
-    // build NSURLConnection with request
-    NSURLConnection *connection;
-    connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
+    [self launchConnectionWithRequestURLString:kDeleteBookURL bodyDictionary:bodyDict HTTPMethod:@"PUT"];
 }
 
 // for changing book availabiltiy
 - (void)putChangeStatusRequestWithBookId:(NSString *)bookId available:(BOOL)availabilityState userId:(NSString *)userId accessToken:(NSString *)accessToken
 {
-    // initialize NSURLRequest
-    NSURL *postURL = [NSURL URLWithString:[kChangeBookStatusURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:postURL];
-    
-    // configure requestBody
     NSDictionary *bodyDict = [NSDictionary dictionaryWithObjectsAndKeys:
                               bookId, kBookId,
                               [NSNumber numberWithInteger:availabilityState], kAvailableState,
                               userId, @"user_id",
                               accessToken, @"access_token", nil];
-    id object = [NSJSONSerialization dataWithJSONObject:bodyDict options:NSJSONWritingPrettyPrinted error:nil];
+    [self launchConnectionWithRequestURLString:kChangeBookStatusURL bodyDictionary:bodyDict HTTPMethod:@"PUT"];
+}
+
+// build different NSURLConnections
+- (void)launchConnectionWithRequestURLString:(NSString *)requestString bodyDictionary:(NSDictionary *)bodyDictionary HTTPMethod:(NSString *)HTTPMethod
+{
+    // initialize NSURLRequest
+    NSURL *postURL = [NSURL URLWithString:[requestString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:postURL];
+    // configure requestBody
+    id object = [NSJSONSerialization dataWithJSONObject:bodyDictionary options:NSJSONWritingPrettyPrinted error:nil];
     [request setHTTPBody:object];
-    
     // configure requestMethod & header
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPMethod:@"PUT"];
+    [request setHTTPMethod:HTTPMethod];
     
     // build NSURLConnection with request
     NSURLConnection *connection;
@@ -239,10 +215,8 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
         
         [AlertHelper showAlertWithMessage:@"修改图书状态成功" target:self];
     } else if (_isAdding || _isDeleting) {
-        
         //change _existenceStatus
         _existenceStatus = !_existenceStatus;
-        
         //async label
         [self setLabelWithBookExistence:_existenceStatus];
         
