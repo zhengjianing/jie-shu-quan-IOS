@@ -30,6 +30,7 @@
 - (IBAction)changeExistence:(id)sender;
 
 @property (strong, nonatomic) Book *book;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 
 //current existence & availability state
 @property (assign, nonatomic) BOOL existenceStatus;
