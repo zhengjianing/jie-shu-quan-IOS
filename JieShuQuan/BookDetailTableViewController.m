@@ -45,6 +45,11 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initActivityIndicator];
+}
+
+- (void)initActivityIndicator
+{
     _activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(150, 170, 20, 20)];
     _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
     _activityIndicator.hidesWhenStopped = YES;
@@ -61,14 +66,14 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
         //implicitly change _book.availability if neccessary
         ||[[BookStore sharedStore] storeHasBook:_book]) {
         _existenceStatus = YES;
-    } else
+    } else {
         _existenceStatus = NO;
-    
-    _availabilityStatus = _book.availability;
+        [self disableAvailabilityArea];
+    }
     
     // set existence & availability status
     [self setLabelWithBookExistence:_existenceStatus];
-    [self setLabelTextWithBookAvailability:_availabilityStatus];
+    [self setLabelTextWithBookAvailability:_book.availability];
     
     //set the view components.
     [_bookImageView sd_setImageWithURL:[NSURL URLWithString:_book.imageHref]];
@@ -79,6 +84,20 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     _priceLabel.text = _book.price;
     _discriptionLabel.text = _book.description;
     _authorInfoLabel.text = _book.authorInfo;
+}
+
+- (void)disableAvailabilityArea
+{
+    [_changeAvailabilityButton setEnabled:NO];
+    [_changeAvailabilityButton setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
+    [_availabilityLabel setTextColor:[UIColor grayColor]];
+}
+
+- (void)enableAvailabilityArea
+{
+    [_changeAvailabilityButton setEnabled:YES];
+    [_changeAvailabilityButton setTitleColor:[UIColor blueColor] forState:UIControlStateDisabled];
+    [_availabilityLabel setTextColor:[UIColor blackColor]];
 }
 
 #pragma mark -- change existence and availability labels
@@ -105,10 +124,6 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
 
 #pragma mark -- changed existence and availability
 - (IBAction)changeAvailability:(id)sender {
-    if (_existenceStatus == NO) {
-        [AlertHelper showAlertWithMessage:@"当前图书不存在，\n请添加后再设置状态" target:self];
-        return;
-    }
     _isChangingAvailability = YES;
     _isAdding = NO;
     _isDeleting = NO;
@@ -147,7 +162,7 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
                                       accessToke:[self currentUserAccessToken]];
         } else if (actionSheet == availabilitySheet) {
             // launch NSURLConnection to change availability
-            [self putChangeStatusRequestWithBookId:_book.bookId available:(!_availabilityStatus) userId:[self currentUserId] accessToken:[self currentUserAccessToken]];
+            [self putChangeStatusRequestWithBookId:_book.bookId available:(!_book.availability) userId:[self currentUserId] accessToken:[self currentUserAccessToken]];
         } else if (actionSheet == addSheet) {
             //post request to add book to server side
             [self postAddBookRequestWithBookId:_book.bookId available:NO
@@ -230,10 +245,8 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
         id userObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
         NSLog(@"%@", userObject);
         if (_isChangingAvailability) {
-            _availabilityStatus = !_availabilityStatus;
-            
             //async store
-            _book.availability = _availabilityStatus;
+            _book.availability = !_book.availability;
             [[BookStore sharedStore] changeStoredBookStatusWithBook:_book];
         } else if (_isAdding || _isDeleting) {
             _existenceStatus = !_existenceStatus;
@@ -241,18 +254,20 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
                 //async store
                 [[BookStore sharedStore] addBookToStore:_book];
                 [[UserStore sharedStore] increseBookCountForUser:[self currentUserId]];
+                [self enableAvailabilityArea];
             } else {
-                // if deleted, must set _availabilityStatus to NO !!!
-                _availabilityStatus = NO;
+                // if deleted, must set _book.availability to NO !!!
+                _book.availability = NO;
                 
                 //async store
                 [[BookStore sharedStore] deleteBookFromStore:_book];
                 [[UserStore sharedStore] decreseBookCountForUser:[self currentUserId]];
+                [self disableAvailabilityArea];
             }
         }
         [[BookStore sharedStore] refreshStoredBooks];
         [self setLabelWithBookExistence:_existenceStatus];
-        [self setLabelTextWithBookAvailability:_availabilityStatus];
+        [self setLabelTextWithBookAvailability:_book.availability];
         [_activityIndicator stopAnimating];
         [self.tableView reloadData];
         

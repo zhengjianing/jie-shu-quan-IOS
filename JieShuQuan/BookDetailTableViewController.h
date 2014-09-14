@@ -34,7 +34,6 @@
 
 //current existence & availability state
 @property (assign, nonatomic) BOOL existenceStatus;
-@property (assign, nonatomic) BOOL availabilityStatus;
 //keep track which of the two properties above is being modified right now
 @property (assign, nonatomic) BOOL isChangingAvailability;
 @property (assign, nonatomic) BOOL isAdding;
