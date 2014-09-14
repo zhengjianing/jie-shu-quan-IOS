@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		9412E2F519A9FAC7008D243C /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412E2F419A9FAC7008D243C /* Book.m */; };
 		9412E2FB19AA0D82008D243C /* BookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412E2FA19AA0D82008D243C /* BookTableViewCell.m */; };
-		9412E2FE19AA17FA008D243C /* BookDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412E2FD19AA17FA008D243C /* BookDetailViewController.m */; };
 		9471DBEF19A5837700F1A291 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471DBEE19A5837700F1A291 /* main.m */; };
 		9471DBF219A5837700F1A291 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471DBF119A5837700F1A291 /* AppDelegate.m */; };
 		9471DBF519A5837700F1A291 /* JieShuQuan.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9471DBF319A5837700F1A291 /* JieShuQuan.xcdatamodeld */; };
@@ -71,8 +70,6 @@
 		9412E2F419A9FAC7008D243C /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
 		9412E2F919AA0D82008D243C /* BookTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookTableViewCell.h; sourceTree = "<group>"; };
 		9412E2FA19AA0D82008D243C /* BookTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookTableViewCell.m; sourceTree = "<group>"; };
-		9412E2FC19AA17FA008D243C /* BookDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookDetailViewController.h; sourceTree = "<group>"; };
-		9412E2FD19AA17FA008D243C /* BookDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookDetailViewController.m; sourceTree = "<group>"; };
 		9471DBE919A5837700F1A291 /* JieShuQuan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JieShuQuan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9471DBED19A5837700F1A291 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9471DBEE19A5837700F1A291 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -187,8 +184,6 @@
 				9471DC2619A9689E00F1A291 /* MyBooksTableViewController.m */,
 				94B23BAC19C3F61B009896BE /* BookDetailTableViewController.h */,
 				94B23BAD19C3F61B009896BE /* BookDetailTableViewController.m */,
-				9412E2FC19AA17FA008D243C /* BookDetailViewController.h */,
-				9412E2FD19AA17FA008D243C /* BookDetailViewController.m */,
 				9412E2F919AA0D82008D243C /* BookTableViewCell.h */,
 				9412E2FA19AA0D82008D243C /* BookTableViewCell.m */,
 			);
@@ -567,7 +562,6 @@
 				9759AFF019C184BD008EFCC2 /* Friend.m in Sources */,
 				9766FC9B19BF30980089C89B /* LoginViewController.m in Sources */,
 				94B23BAE19C3F61B009896BE /* BookDetailTableViewController.m in Sources */,
-				9412E2FE19AA17FA008D243C /* BookDetailViewController.m in Sources */,
 				97F65AC219AE0A7D00B9DC93 /* JsonDataFetcher.m in Sources */,
 				9412E2F519A9FAC7008D243C /* Book.m in Sources */,
 				97F65AC719AE0B1200B9DC93 /* DataConverter.m in Sources */,

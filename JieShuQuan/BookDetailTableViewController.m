@@ -65,17 +65,16 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     _authorInfoLabel.text = _book.authorInfo;
 }
 
+#pragma mark -- changed existence and availability
 - (IBAction)changeAvailability:(id)sender {
+    if (_existenceStatus == NO) {
+        [AlertHelper showAlertWithMessage:@"当前图书不存在，\n请添加后再设置状态" target:self];
+        return;
+    }
     _isChangingAvailability = YES;
     _isAdding = NO;
     _isDeleting = NO;
 
-    if (_availabilityStatus == YES) {
-        // change availabilityStatus both in store and server & change labels accordingly
-    } else if (_availabilityStatus == NO) {
-        // change availabilityStatus both in store and server & change labels accordingly
-    }
-    
     [self putChangeStatusRequestWithBookId:_book.bookId available:(!_availabilityStatus) userId:[self currentUserId] accessToken:[self currentUserAccessToken]];
 }
 
@@ -90,7 +89,6 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
         [self putDeleteBookRequestWithBookId:_book.bookId
                                       userId:[self currentUserId]
                                   accessToke:[self currentUserAccessToken]];
-        [[BookStore sharedStore] deleteBookFromStore:_book];
     } else if (_existenceStatus == NO) {
         _isDeleting = NO;
         _isAdding = YES;
@@ -99,9 +97,7 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
         [self postAddBookRequestWithBookId:_book.bookId available:NO
                                     userId:[self currentUserId]
                                 accessToke:[self currentUserAccessToken]];
-        [[BookStore sharedStore] addBookToStore:_book];
     }
-    [[UserStore sharedStore] refreshBookCountForUser:[self currentUserId]];
 }
 
 #pragma mark -- current user info
@@ -161,8 +157,7 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
 }
 
 // for deleting book from store
-- (void)putDeleteBookRequestWithBookId:(NSString *)bookId
- userId:(NSString *)userId accessToke:(NSString *)accessToken
+- (void)putDeleteBookRequestWithBookId:(NSString *)bookId userId:(NSString *)userId accessToke:(NSString *)accessToken
 {
     // initialize NSURLRequest
     NSURL *postURL = [NSURL URLWithString:[kDeleteBookURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
@@ -249,16 +244,26 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
         _existenceStatus = !_existenceStatus;
         
         //async label
-        // ......
-        
-        //async store
-        // ......
+        [self setLabelWithBookExistence:_existenceStatus];
         
         if (_isAdding) {
+            //async store
+            [[BookStore sharedStore] addBookToStore:_book];
             [AlertHelper showAlertWithMessage:@"添加图书成功" target:self];
         } else if (_isDeleting) {
+            
+            // if deleted, set _availabilityStatus to NO !!!
+            _availabilityStatus = NO;
+            
+            //async _availabilityStatus label
+            [self setLabelTextWithBookAvailability:_availabilityStatus];
+            
             [AlertHelper showAlertWithMessage:@"删除图书成功" target:self];
+            
+            //async store
+            [[BookStore sharedStore] deleteBookFromStore:_book];
         }
+        [[UserStore sharedStore] refreshBookCountForUser:[self currentUserId]];
     }
 }
 
