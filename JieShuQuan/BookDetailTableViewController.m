@@ -71,6 +71,12 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     [self setLabelTextWithBookAvailability:_book.availability];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)initBookDetailView
 {
     //set the view components.
