@@ -16,5 +16,6 @@
 + (User *)userFromHTTPResponse:(id)object;
 + (User *)userFromManagedObject:(id)storedUser;
 + (void)setManagedObject:(id)object forUser:(User *)user;
++ (Book *)bookFromServerBookObject:(id)object;
 
 @end

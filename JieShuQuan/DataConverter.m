@@ -21,7 +21,7 @@ static const NSString *kDBPublisher = @"publisher";
 static const NSString *kDBPubdate = @"pubdate";
 static const NSString *kDBBookId = @"id";
 
-// keys in Server API
+// keys in Server API for User
 static const NSString *kUserName = @"user_name";
 static const NSString *kGroupName = @"group_name";
 static const NSString *kAccessToken = @"access_token";
@@ -29,6 +29,18 @@ static const NSString *kUserId = @"user_id";
 static const NSString *kUserEmail = @"user_email";
 static const NSString *kBookCount = @"book_count";
 static const NSString *kFriendCount = @"friend_count";
+
+// keys in Server for Book
+static const NSString *kBookname = @"name";
+static const NSString *kBookauthors = @"authors";
+static const NSString *kBookimageHref = @"image_href";
+static const NSString *kBookdescription = @"description";
+static const NSString *kBookauthorInfo = @"author_info";
+static const NSString *kBookprice = @"price";
+static const NSString *kBookpublisher = @"publisher";
+static const NSString *kBookpublishDate = @"publish_date";
+static const NSString *kBookId = @"douban_book_id";
+static const NSString *kBookAvailable = @"available";
 
 // keys in CoreData
 static const NSString *kCDUserId = @"user_id";
@@ -68,6 +80,23 @@ static const NSString *kCDAvailability = @"availability";
     book.publisher = [object valueForKey:(NSString *)kDBPublisher];
     book.publishDate = [object valueForKey:(NSString *)kDBPubdate];
     book.bookId = [object valueForKey:(NSString *)kDBBookId];
+    return book;
+}
+
++ (Book *)bookFromServerBookObject:(id)object
+{
+    Book *book = [[Book alloc] init];
+    
+    book.name = [object valueForKey:(NSString *)kBookname];
+    book.authors = [object valueForKey:(NSString *)kBookauthors];
+    book.imageHref = [object valueForKey:(NSString *)kBookimageHref];
+    book.description = [object valueForKey:(NSString *)kBookdescription];
+    book.authorInfo = [object valueForKey:(NSString *)kBookauthorInfo];
+    book.price = [object valueForKey:(NSString *)kBookprice];
+    book.publisher = [object valueForKey:(NSString *)kBookpublisher];
+    book.publishDate = [object valueForKey:(NSString *)kBookpublishDate];
+    book.bookId = [object valueForKey:(NSString *)kBookId];
+    book.availability = [[object valueForKey:(NSString *)kBookAvailable] boolValue];
     return book;
 }
 
