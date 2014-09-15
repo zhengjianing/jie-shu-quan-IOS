@@ -18,6 +18,7 @@
         <attribute name="friend_email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="friend_id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="friend_name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="friends" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="User" syncable="YES">
         <attribute name="access_token" optional="YES" attributeType="String" syncable="YES"/>
@@ -28,10 +29,11 @@
         <attribute name="user_id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="user_name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="books" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Book" inverseName="user" inverseEntity="Book" syncable="YES"/>
+        <relationship name="friends" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Friend" inverseName="user" inverseEntity="Friend" syncable="YES"/>
     </entity>
     <elements>
         <element name="Book" positionX="0" positionY="0" width="128" height="210"/>
-        <element name="User" positionX="0" positionY="0" width="128" height="165"/>
-        <element name="Friend" positionX="9" positionY="90" width="128" height="105"/>
+        <element name="User" positionX="0" positionY="0" width="128" height="178"/>
+        <element name="Friend" positionX="9" positionY="90" width="128" height="118"/>
     </elements>
 </model>
