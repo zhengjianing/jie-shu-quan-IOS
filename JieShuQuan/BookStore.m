@@ -12,6 +12,7 @@
 #import <CoreData/CoreData.h>
 #import "UserManager.h"
 #import "User.h"
+#import "DataConverter.h"
 
 @interface BookStore ()
 {
@@ -24,16 +25,10 @@
 // keys in CoreData
 static const NSString *kEntityName = @"Book";
 
-static const NSString *kName = @"name";
-static const NSString *kAuthors = @"authors";
-static const NSString *kImageHref = @"imageHref";
-static const NSString *kDescription = @"bookDescription";
-static const NSString *kAuthorInfo = @"authorInfo";
-static const NSString *kPrice = @"price";
-static const NSString *kPublisher = @"publisher";
-static const NSString *kBookId = @"bookId";
-static const NSString *kPublishDate = @"publishDate";
-static const NSString *kAvailability = @"availability";
+static const NSString *kCDName = @"name";
+static const NSString *kCDAuthors = @"authors";
+static const NSString *kCDBookId = @"bookId";
+static const NSString *kCDAvailability = @"availability";
 
 + (BookStore *)sharedStore
 {
@@ -81,8 +76,8 @@ static const NSString *kAvailability = @"availability";
 - (void)deleteBookFromStore:(Book *)book
 {
     for (NSManagedObject *item in [self fetchBooksFromStore]) {
-        if ([[item valueForKey:(NSString *)kName] isEqualToString:book.name]
-            && [[item valueForKey:(NSString *)kAuthors] isEqualToString:book.authors]) {
+        if ([[item valueForKey:(NSString *)kCDName] isEqualToString:book.name]
+            && [[item valueForKey:(NSString *)kCDAuthors] isEqualToString:book.authors]) {
             [[self managedObjectContext] deleteObject:item];
             [self saveContext];
             [self refreshStoredBooks];
@@ -120,8 +115,8 @@ static const NSString *kAvailability = @"availability";
 {
     NSArray *booksArray = [self fetchBooksFromStore];
     for (id item in booksArray) {
-        if ([book.bookId isEqualToString:[item valueForKey:(NSString *)kBookId]]) {
-            [item setValue:[NSNumber numberWithBool:book.availability] forKey:(NSString *)kAvailability];
+        if ([book.bookId isEqualToString:[item valueForKey:(NSString *)kCDBookId]]) {
+            [item setValue:[NSNumber numberWithBool:book.availability] forKey:(NSString *)kCDAvailability];
             [self saveContext];
             [[BookStore sharedStore] refreshStoredBooks];
             return;
@@ -136,7 +131,7 @@ static const NSString *kAvailability = @"availability";
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:(NSString *)kEntityName];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user.user_id == %@", [[UserManager currentUser] userId]];
     [request setPredicate:predicate];
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:(NSString *)kName ascending:YES];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:(NSString *)kCDName ascending:YES];
     [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     
     return [[self managedObjectContext] executeFetchRequest:request error:nil];
@@ -145,20 +140,8 @@ static const NSString *kAvailability = @"availability";
 - (NSMutableArray *)booksArrayFromStore:(NSArray *)array
 {
     NSMutableArray *booksArray = [NSMutableArray array];
-    NSArray *storedArray = [self fetchBooksFromStore];
-    for (NSManagedObject *storedBook in storedArray) {
-        Book *book = [[Book alloc] init];
-        book.name = [storedBook valueForKey:(NSString *)kName];
-        book.authors = [storedBook valueForKey:(NSString *)kAuthors];
-        book.imageHref = [storedBook valueForKey:(NSString *)kImageHref];
-        book.description = [storedBook valueForKey:(NSString *)kDescription];
-        book.authorInfo = [storedBook valueForKey:(NSString *)kAuthorInfo];
-        book.price = [storedBook valueForKey:(NSString *)kPrice];
-        book.publisher = [storedBook valueForKey:(NSString *)kPublisher];
-        book.bookId = [storedBook valueForKey:(NSString *)kBookId];
-        book.publishDate = [storedBook valueForKey:(NSString *)kPublishDate];
-        book.availability = [[storedBook valueForKey:(NSString *)kAvailability] boolValue];
-        
+    for (NSManagedObject *storedBook in array) {
+        Book *book = [DataConverter bookFromStoreObject:storedBook];
         [booksArray addObject:book];
     }
     return booksArray;
@@ -166,47 +149,7 @@ static const NSString *kAvailability = @"availability";
 
 - (void)setBookPropertiesByBook:(Book *)book forManagedBook:(NSManagedObject *)managedBook
 {
-//    if (![book.name isKindOfClass:[NSNull class]]) {
-//        [managedBook setValue:book.name forKey:(NSString *)kName];
-//    }
-//    if (![book.authors isKindOfClass:[NSNull class]]) {
-//        [managedBook setValue:book.authors forKey:(NSString *)kAuthors];
-//    }
-//    if (![book.imageHref isKindOfClass:[NSNull class]]) {
-//        [managedBook setValue:book.imageHref forKey:(NSString *)kImageHref];
-//    }
-//    if (![book.name isKindOfClass:[NSNull class]]) {
-//        [managedBook setValue:book.description forKey:(NSString *)kDescription];
-//    }
-//    if (![book.name isKindOfClass:[NSNull class]]) {
-//        [managedBook setValue:book.authorInfo forKey:(NSString *)kAuthorInfo];
-//    }
-//    if (![book.name isKindOfClass:[NSNull class]]) {
-//        [managedBook setValue:book.price forKey:(NSString *)kPrice];
-//    }
-//    if (![book.name isKindOfClass:[NSNull class]]) {
-//        [managedBook setValue:book.publisher forKey:(NSString *)kPublisher];
-//    }
-//    if (![book.name isKindOfClass:[NSNull class]]) {
-//        [managedBook setValue:book.bookId forKey:(NSString *)kBookId];
-//    }
-//    if (![book.name isKindOfClass:[NSNull class]]) {
-//        [managedBook setValue:book.publishDate forKey:(NSString *)kPublishDate];
-//    }
-//    if (![book.name isKindOfClass:[NSNull class]]) {
-//        [managedBook setValue:[NSNumber numberWithBool:book.availability] forKey:(NSString *)kAvailability];
-//    }
-
-    [managedBook setValue:book.name forKey:(NSString *)kName];
-    [managedBook setValue:book.authors forKey:(NSString *)kAuthors];
-    [managedBook setValue:book.imageHref  forKey:(NSString *)kImageHref];
-    [managedBook setValue:book.description forKey:(NSString *)kDescription];
-    [managedBook setValue:book.authorInfo forKey:(NSString *)kAuthorInfo];
-    [managedBook setValue:book.price forKey:(NSString *)kPrice];
-    [managedBook setValue:book.publisher forKey:(NSString *)kPublisher];
-    [managedBook setValue:book.bookId forKey:(NSString *)kBookId];
-    [managedBook setValue:book.publishDate forKey:(NSString *)kPublishDate];
-    [managedBook setValue:[NSNumber numberWithBool:book.availability] forKey:(NSString *)kAvailability];
+    [DataConverter setManagedObject:managedBook forBook:book];
 }
 
 @end

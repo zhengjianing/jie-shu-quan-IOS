@@ -11,13 +11,20 @@
 #import "LoginViewController.h"
 #import "ServerHeaders.h"
 #import "UserManager.h"
+#import "RequestBuilder.h"
+#import "User.h"
+#import "Friend.h"
+#import "AlertHelper.h"
+#import "FriendStore.h"
+#import "DataConverter.h"
 
 @interface FriendsTableViewController ()
 
 @property (strong, nonatomic) UITableView *myFriendsTableView;
 @property (strong, nonatomic) PreLoginView *preLoginView;
-@property (strong, nonatomic) NSArray *myFriends;
+@property (strong, nonatomic) NSMutableArray *myFriends;
 @property (strong, nonatomic) LoginViewController *loginController;
+@property (strong, nonatomic) UIRefreshControl *refresh;
 
 @end
 
@@ -30,6 +37,8 @@
     _myFriendsTableView = self.tableView;
     UIStoryboard *mainStoryboard = self.storyboard;
     _loginController = [mainStoryboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    
+    [self addRefreshControll];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -43,14 +52,14 @@
 
 - (void)showTableView
 {
-//    [self loadData];
+    [self loadFriendsFromStore];
     self.view = _myFriendsTableView;
     [_myFriendsTableView reloadData];
 }
 
-- (void)loadData
+- (void)loadFriendsFromStore
 {
-    _myFriends = nil;
+    _myFriends = [[[FriendStore sharedStore] storedFriends] mutableCopy];
 }
 
 #pragma mark - PreLoginView
@@ -88,17 +97,76 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return _myFriends.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FriendInfoTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"friendInfoIdentifier"];
-    if (!cell) {
-        cell = [[FriendInfoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"friendInfoIdentifier"];
-    }
+    Friend *friend = [_myFriends objectAtIndex:indexPath.row];
+    cell.userNameLabel.text = friend.friendName;
+    cell.bookCountLabel.text = friend.bookCount;
+    cell.emailLabel.text = friend.friendEmail;
     
     return cell;
+}
+
+#pragma mark - fetch friends from server
+
+- (void)fetchFriendsFromServer
+{
+    NSMutableURLRequest *request = [RequestBuilder buildFetchFriendsRequestForUserId:[[UserManager currentUser] userId]];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        
+        if ([(NSHTTPURLResponse *)response statusCode] != 200) {
+            [AlertHelper showAlertWithMessage:@"更新失败" target:self];
+            return ;
+        }
+        
+        id responseObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+        if (responseObject) {
+            [_myFriends removeAllObjects];
+            [[FriendStore sharedStore] emptyFriendStoreForCurrentUser];
+
+            NSArray *friendsArray = [responseObject valueForKey:@"friends"];
+            for (id item in friendsArray) {
+                Friend *friend = [DataConverter friendFromServerFriendObject:item];
+                [[FriendStore sharedStore] addFriendToStore:friend];
+            }
+
+            [self loadFriendsFromStore];
+            [self.tableView reloadData];
+            [self updateRefreshControl];
+        }
+    }];
+}
+
+#pragma mark - pull to refresh
+
+- (void)addRefreshControll
+{
+    _refresh = [[UIRefreshControl alloc] init];
+    [_refresh addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = _refresh;
+}
+
+- (void)refreshView:(UIRefreshControl *)refresh
+{
+    [self fetchFriendsFromServer];
+}
+
+- (void)updateRefreshControl
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MMM d, h:mm a"];
+    NSString *lastUpdated = [NSString stringWithFormat:@"Last updated on %@",
+                             [formatter stringFromDate:[NSDate date]]];
+    _refresh.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdated];
+    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(endRefreshing) userInfo:nil repeats:NO];
+}
+
+- (void)endRefreshing {
+    [_refresh endRefreshing];
 }
 
 @end

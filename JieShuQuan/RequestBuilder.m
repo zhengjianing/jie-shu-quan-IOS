@@ -101,14 +101,14 @@ static const NSString *kBookAvailable = @"available";
 
 + (NSMutableURLRequest *)buildFetchBooksRequestForUserId:(NSString *)userId
 {
-    NSString *getString = [kMyBooksURL stringByAppendingString:userId];
-    NSURL *getURL = [NSURL URLWithString:[getString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:getURL];
-    
-    [request setHTTPBody:[NSData data]];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPMethod:@"GET"];
-    return request;
+    NSString *urlString = [kMyBooksURL stringByAppendingString:userId];
+    return [self buildGetRequestWithRULString:urlString];
+}
+
++ (NSMutableURLRequest *)buildFetchFriendsRequestForUserId:(NSString *)userId
+{
+    NSString *urlString = [kMyFriendsURL stringByAppendingString:userId];
+    return [self buildGetRequestWithRULString:urlString];
 }
 
 #pragma mark -- private methods
@@ -124,5 +124,15 @@ static const NSString *kBookAvailable = @"available";
     return request;
 }
 
++ (NSMutableURLRequest *)buildGetRequestWithRULString:(NSString *)requestString
+{
+    NSURL *getURL = [NSURL URLWithString:[requestString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:getURL];
+    
+    [request setHTTPBody:[NSData data]];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPMethod:@"GET"];
+    return request;
+}
 
 @end

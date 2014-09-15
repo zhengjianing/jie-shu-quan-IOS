@@ -35,6 +35,7 @@
 		94BB40B919C33770005BBD8E /* log-out-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BB40B719C33770005BBD8E /* log-out-user.png */; };
 		94BB40C519C33CB3005BBD8E /* bg.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 94BB40C219C33CB3005BBD8E /* bg.jpeg */; };
 		94E3EA3919C6EBF500C38FEB /* FriendsHasBookTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E3EA3819C6EBF500C38FEB /* FriendsHasBookTableViewController.m */; };
+		94E3EA3C19C7069F00C38FEB /* FriendStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E3EA3B19C7069F00C38FEB /* FriendStore.m */; };
 		94E5039419BAF98E004CEBC6 /* UserStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E5039319BAF98E004CEBC6 /* UserStore.m */; };
 		94F2BF5619B1DE8D0053711F /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 94F2BF5519B1DE8D0053711F /* search.png */; };
 		97553C3D19C090DE0034B446 /* AuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97553C3C19C090DE0034B446 /* AuthenticationViewController.m */; };
@@ -116,6 +117,8 @@
 		94BB40C219C33CB3005BBD8E /* bg.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpeg; sourceTree = "<group>"; };
 		94E3EA3719C6EBF500C38FEB /* FriendsHasBookTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsHasBookTableViewController.h; sourceTree = "<group>"; };
 		94E3EA3819C6EBF500C38FEB /* FriendsHasBookTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsHasBookTableViewController.m; sourceTree = "<group>"; };
+		94E3EA3A19C7069F00C38FEB /* FriendStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendStore.h; sourceTree = "<group>"; };
+		94E3EA3B19C7069F00C38FEB /* FriendStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendStore.m; sourceTree = "<group>"; };
 		94E5039219BAF98E004CEBC6 /* UserStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserStore.h; sourceTree = "<group>"; };
 		94E5039319BAF98E004CEBC6 /* UserStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserStore.m; sourceTree = "<group>"; };
 		94F2BF5519B1DE8D0053711F /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
@@ -351,6 +354,8 @@
 				97F973C519B5FBF4007AAD47 /* BookStore.m */,
 				94E5039219BAF98E004CEBC6 /* UserStore.h */,
 				94E5039319BAF98E004CEBC6 /* UserStore.m */,
+				94E3EA3A19C7069F00C38FEB /* FriendStore.h */,
+				94E3EA3B19C7069F00C38FEB /* FriendStore.m */,
 				948615EE19BC0FD1001837BF /* Store.h */,
 				948615EF19BC0FD1001837BF /* Store.m */,
 			);
@@ -581,6 +586,7 @@
 				9476058019C07BC400FA8E74 /* RequestBuilder.m in Sources */,
 				9471DC2719A9689E00F1A291 /* MyBooksTableViewController.m in Sources */,
 				9759AFF019C184BD008EFCC2 /* Friend.m in Sources */,
+				94E3EA3C19C7069F00C38FEB /* FriendStore.m in Sources */,
 				9766FC9B19BF30980089C89B /* LoginViewController.m in Sources */,
 				94B23BAE19C3F61B009896BE /* BookDetailTableViewController.m in Sources */,
 				97F65AC219AE0A7D00B9DC93 /* JsonDataFetcher.m in Sources */,

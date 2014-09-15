@@ -9,6 +9,7 @@
 #import "DataConverter.h"
 #import "Book.h"
 #import "User.h"
+#import "Friend.h"
 
 // keys in Douban API
 static const NSString *kDBTitle = @"title";
@@ -42,7 +43,19 @@ static const NSString *kBookpublishDate = @"publish_date";
 static const NSString *kBookId = @"douban_book_id";
 static const NSString *kBookAvailable = @"available";
 
-// keys in CoreData
+// keys in CoreData for Book
+static const NSString *kCDName = @"name";
+static const NSString *kCDAuthors = @"authors";
+static const NSString *kCDImageHref = @"imageHref";
+static const NSString *kCDDescription = @"bookDescription";
+static const NSString *kCDAuthorInfo = @"authorInfo";
+static const NSString *kCDPrice = @"price";
+static const NSString *kCDPublisher = @"publisher";
+static const NSString *kCDBookId = @"bookId";
+static const NSString *kCDPublishDate = @"publishDate";
+static const NSString *kCDAvailability = @"availability";
+
+// keys in CoreData for User
 static const NSString *kCDUserId = @"user_id";
 static const NSString *kCDUserName = @"user_name";
 static const NSString *kCDUserEmail = @"user_email";
@@ -50,7 +63,19 @@ static const NSString *kCDAccessToken = @"access_token";
 static const NSString *kCDBookCount = @"book_count";
 static const NSString *kCDGroupName = @"group_name";
 static const NSString *kCDFriendCount = @"friend_count";
-static const NSString *kCDAvailability = @"availability";
+
+// keys in CoreData for Friend
+static const NSString *kCDFriendName = @"friend_name";
+static const NSString *kCDFriendEmail = @"friend_email";
+static const NSString *kCDFriendId = @"friend_id";
+static const NSString *kCDFriendBookCount = @"book_count";
+
+// keys in server for Friend
+static const NSString *kFriendName = @"friend_name";
+static const NSString *kFriendEmail = @"friend_email";
+static const NSString *kFriendId = @"friend_id";
+static const NSString *kFriendBookCount = @"book_count";
+
 
 @interface DataConverter ()
 + (NSMutableArray *)booksArrayFromUnserializedBooksData:(NSArray *)booksData;
@@ -58,7 +83,7 @@ static const NSString *kCDAvailability = @"availability";
 
 @implementation DataConverter
 
-#pragma mark -- Book
+#pragma mark - Book
 
 + (NSMutableArray *)booksArrayFromDoubanSearchResults:(NSData *)searchResults
 {
@@ -100,7 +125,37 @@ static const NSString *kCDAvailability = @"availability";
     return book;
 }
 
-#pragma mark -- User
++ (Book *)bookFromStoreObject:(id)storedBook
+{
+    Book *book = [[Book alloc] init];
+    book.name = [storedBook valueForKey:(NSString *)kCDName];
+    book.authors = [storedBook valueForKey:(NSString *)kCDAuthors];
+    book.imageHref = [storedBook valueForKey:(NSString *)kCDImageHref];
+    book.description = [storedBook valueForKey:(NSString *)kCDDescription];
+    book.authorInfo = [storedBook valueForKey:(NSString *)kCDAuthorInfo];
+    book.price = [storedBook valueForKey:(NSString *)kCDPrice];
+    book.publisher = [storedBook valueForKey:(NSString *)kCDPublisher];
+    book.bookId = [storedBook valueForKey:(NSString *)kCDBookId];
+    book.publishDate = [storedBook valueForKey:(NSString *)kCDPublishDate];
+    book.availability = [[storedBook valueForKey:(NSString *)kCDAvailability] boolValue];
+    return book;
+}
+
++ (void)setManagedObject:(id)managedBook forBook:(Book *)book
+{
+    [managedBook setValue:book.name forKey:(NSString *)kCDName];
+    [managedBook setValue:book.authors forKey:(NSString *)kCDAuthors];
+    [managedBook setValue:book.imageHref  forKey:(NSString *)kCDImageHref];
+    [managedBook setValue:book.description forKey:(NSString *)kCDDescription];
+    [managedBook setValue:book.authorInfo forKey:(NSString *)kCDAuthorInfo];
+    [managedBook setValue:book.price forKey:(NSString *)kCDPrice];
+    [managedBook setValue:book.publisher forKey:(NSString *)kCDPublisher];
+    [managedBook setValue:book.bookId forKey:(NSString *)kCDBookId];
+    [managedBook setValue:book.publishDate forKey:(NSString *)kCDPublishDate];
+    [managedBook setValue:[NSNumber numberWithBool:book.availability] forKey:(NSString *)kCDAvailability];
+}
+
+#pragma mark - User
 
 + (User *)userFromHTTPResponse:(id)object
 {
@@ -139,7 +194,39 @@ static const NSString *kCDAvailability = @"availability";
     [object setValue:user.friendCount forKey:(NSString *)kCDFriendCount];
 }
 
-#pragma mark -- private methods
+#pragma mark - Friend
+
++ (Friend *)friendFromStore:(id)storedFriend
+{
+    Friend *friend = [[Friend alloc] init];
+    friend.friendName = [storedFriend valueForKey:(NSString *)kCDFriendName];
+    friend.friendEmail = [storedFriend valueForKey:(NSString *)kCDFriendEmail];
+    friend.friendId = [storedFriend valueForKey:(NSString *)kCDFriendId];
+    friend.bookCount = [storedFriend valueForKey:(NSString *)kCDFriendBookCount];
+    return friend;
+}
+
++ (void)setManagedObject:(id)object forFriend:(Friend *)friend
+{
+    [object setValue:friend.friendId forKey:(NSString *)kCDFriendId];
+    [object setValue:friend.friendName forKey:(NSString *)kCDFriendName];
+    [object setValue:friend.friendEmail forKey:(NSString *)kCDFriendEmail];
+    [object setValue:friend.bookCount forKey:(NSString *)kCDFriendBookCount];
+}
+
++ (Friend *)friendFromServerFriendObject:(id)object
+{
+    Friend *friend = [[Friend alloc] init];
+    
+    friend.friendName = [object valueForKey:(NSString *)kFriendName];
+    friend.friendId = [object valueForKey:(NSString *)kFriendId];
+    friend.friendEmail = [object valueForKey:(NSString *)kFriendEmail];
+    friend.bookCount = [object valueForKey:(NSString *)kFriendBookCount];
+
+    return friend;
+}
+
+#pragma mark - private methods
 
 + (NSMutableArray *)booksArrayFromUnserializedBooksData:(NSArray *)booksData
 {
