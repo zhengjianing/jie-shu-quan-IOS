@@ -13,6 +13,7 @@
 #import "User.h"
 #import "UserManager.h"
 #import "AlertHelper.h"
+#import "FriendStore.h"
 
 @implementation AuthenticationViewController
 
@@ -43,6 +44,7 @@
         [[UserStore sharedStore] saveUserToCoreData:user];
         [UserManager saveUserToUserDefaults:user];
         [[BookStore sharedStore] refreshStoredBooks];
+        [[FriendStore sharedStore] refreshStoredFriends];
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }

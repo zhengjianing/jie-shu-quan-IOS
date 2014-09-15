@@ -60,6 +60,9 @@
 - (void)loadFriendsFromStore
 {
     _myFriends = [[[FriendStore sharedStore] storedFriends] mutableCopy];
+    if (_myFriends.count == 0) {
+        [self fetchFriendsFromServer];
+    }
 }
 
 #pragma mark - PreLoginView
