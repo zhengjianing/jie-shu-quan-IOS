@@ -63,29 +63,15 @@ static const NSString *kStatusNO = @"暂时不可借";
 
 - (void)showTableView
 {
-    [self loadData];
+    [self loadBooksFromStore];
     self.view = _myBooksTableView;
     [_myBooksTableView reloadData];
 }
 
-- (void)loadData
+- (void)loadBooksFromStore
 {
     _myBooks = [[[BookStore sharedStore] storedBooks] mutableCopy];
 }
-
-#pragma mark -- pull to refresh
-- (void)addRefreshControll
-{
-    _refresh = [[UIRefreshControl alloc] init];
-    [_refresh addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
-    self.refreshControl = _refresh;
-}
-
-- (void)refreshView:(UIRefreshControl *)refresh
-{
-    [self fetchBooksFromServer];
-}
-
 
 #pragma mark - PreLoginView
 
@@ -136,7 +122,7 @@ static const NSString *kStatusNO = @"暂时不可借";
     return cell;
 }
 
-#pragma mark -- fetch books from server
+#pragma mark - fetch books from server
 
 - (void)fetchBooksFromServer
 {
@@ -144,7 +130,7 @@ static const NSString *kStatusNO = @"暂时不可借";
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
        
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-            [AlertHelper showAlertWithMessage:@"验证失败" target:self];
+            [AlertHelper showAlertWithMessage:@"更新失败" target:self];
             return ;
         }
         
@@ -159,14 +145,28 @@ static const NSString *kStatusNO = @"暂时不可借";
                 [[BookStore sharedStore] addBookToStore:book];
             }
             
-            [self loadData];
+            [self loadBooksFromStore];
             [self.tableView reloadData];
-            [self updateRefreshControll];
+            [self updateRefreshControl];
         }
     }];
 }
 
-- (void)updateRefreshControll
+#pragma mark - pull to refresh
+
+- (void)addRefreshControll
+{
+    _refresh = [[UIRefreshControl alloc] init];
+    [_refresh addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = _refresh;
+}
+
+- (void)refreshView:(UIRefreshControl *)refresh
+{
+    [self fetchBooksFromServer];
+}
+
+- (void)updateRefreshControl
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MMM d, h:mm a"];
@@ -179,7 +179,6 @@ static const NSString *kStatusNO = @"暂时不可借";
 - (void)endRefreshing {
     [_refresh endRefreshing];
 }
-
 
 #pragma mark - Navigation
 

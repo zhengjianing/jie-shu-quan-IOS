@@ -100,7 +100,7 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     || [[BookStore sharedStore] storeHasBook:_book];
 }
 
-#pragma mark -- change existence and availability labels
+#pragma mark - change existence and availability labels
 
 - (void)setLabelWithBookExistence:(BOOL)existence
 {
@@ -137,7 +137,7 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     [_availabilityLabel setTextColor:[UIColor blackColor]];
 }
 
-#pragma mark -- changed existence and availability
+#pragma mark - changed existence and availability
 
 - (IBAction)changeAvailability:(id)sender {
     availabilitySheet = [ActionSheetHelper actionSheetWithTitle:@"确认修改状态吗？" delegate:self];
@@ -158,7 +158,7 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     }
 }
 
-#pragma mark -- UIActionSheetDelegate
+#pragma mark - UIActionSheetDelegate
 
 - (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex
 {
@@ -186,7 +186,7 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     }
 }
 
-#pragma mark -- configure NSURLConnections
+#pragma mark - configure NSURLConnections
 
 - (void)postAddBookRequestWithBook:(Book *)book available:(BOOL)available userId:(NSString *)userId accessToke:(NSString *)accessToke
 {
