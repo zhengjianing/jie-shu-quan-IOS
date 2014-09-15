@@ -23,6 +23,7 @@
 
 // keys in CoreData
 static const NSString *kEntityName = @"Book";
+
 static const NSString *kName = @"name";
 static const NSString *kAuthors = @"authors";
 static const NSString *kImageHref = @"imageHref";

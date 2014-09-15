@@ -189,37 +189,24 @@ static const NSString *kBookAvailable = @"available";
 }
 
 
-// keys in Server
-static const NSString *kBookname = @"name";
-static const NSString *kBookauthors = @"authors";
-static const NSString *kBookimageHref = @"image_href";
-static const NSString *kBookdescription = @"description";
-static const NSString *kBookauthorInfo = @"author_info";
-static const NSString *kBookprice = @"price";
-static const NSString *kBookpublisher = @"publisher";
-static const NSString *kBookpublishDate = @"publish_date";
-static const NSString *kBookId = @"douban_book_id";
-static const NSString *kBookAvailable = @"available";
-
 - (void)saveServerBooksToBookStore
 {
     [_myBooks removeAllObjects];
     [[BookStore sharedStore] emptyBookStoreForCurrentUser];
     for (id item in _tempArray) {
         Book *book = [[Book alloc] init];
+        
+        //完成后book仍是0个key/value pair，老婆我们打扫卫生上班了，你看看这吧
         book.name = [item valueForKey:(NSString *)kBookname];
         book.authors = [item valueForKey:(NSString *)kBookauthors];
         book.imageHref = [item valueForKey:(NSString *)kBookimageHref];
         book.description = [item valueForKey:(NSString *)kBookdescription];
-        book.name = [item valueForKey:(NSString *)kBookname];
-        book.name = [item valueForKey:(NSString *)kBookname];
-        book.name = [item valueForKey:(NSString *)kBookname];
-        book.name = [item valueForKey:(NSString *)kBookname];
-        book.name = [item valueForKey:(NSString *)kBookname];
-        book.name = [item valueForKey:(NSString *)kBookname];
-        book.name = [item valueForKey:(NSString *)kBookname];
-        book.name = [item valueForKey:(NSString *)kBookname];
-        book.name = [item valueForKey:(NSString *)kBookname];
+        book.authorInfo = [item valueForKey:(NSString *)kBookauthorInfo];
+        book.price = [item valueForKey:(NSString *)kBookprice];
+        book.publisher = [item valueForKey:(NSString *)kBookpublisher];
+        book.publishDate = [item valueForKey:(NSString *)kBookpublishDate];
+        book.bookId = [item valueForKey:(NSString *)kBookId];
+        book.availability = [[item valueForKey:(NSString *)kBookAvailable] boolValue];
         
         //必须要做类型转换，不然在BookStore的setPropertiesByBook:方法里面会报错，因为是NSCFDictionary类型
         
