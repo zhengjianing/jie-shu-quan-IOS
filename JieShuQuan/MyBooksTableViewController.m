@@ -196,7 +196,6 @@ static const NSString *kBookAvailable = @"available";
     for (id item in _tempArray) {
         Book *book = [[Book alloc] init];
         
-        //完成后book仍是0个key/value pair，老婆我们打扫卫生上班了，你看看这吧
         book.name = [item valueForKey:(NSString *)kBookname];
         book.authors = [item valueForKey:(NSString *)kBookauthors];
         book.imageHref = [item valueForKey:(NSString *)kBookimageHref];

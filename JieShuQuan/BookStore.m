@@ -166,6 +166,37 @@ static const NSString *kAvailability = @"availability";
 
 - (void)setBookPropertiesByBook:(Book *)book forManagedBook:(NSManagedObject *)managedBook
 {
+//    if (![book.name isKindOfClass:[NSNull class]]) {
+//        [managedBook setValue:book.name forKey:(NSString *)kName];
+//    }
+//    if (![book.authors isKindOfClass:[NSNull class]]) {
+//        [managedBook setValue:book.authors forKey:(NSString *)kAuthors];
+//    }
+//    if (![book.imageHref isKindOfClass:[NSNull class]]) {
+//        [managedBook setValue:book.imageHref forKey:(NSString *)kImageHref];
+//    }
+//    if (![book.name isKindOfClass:[NSNull class]]) {
+//        [managedBook setValue:book.description forKey:(NSString *)kDescription];
+//    }
+//    if (![book.name isKindOfClass:[NSNull class]]) {
+//        [managedBook setValue:book.authorInfo forKey:(NSString *)kAuthorInfo];
+//    }
+//    if (![book.name isKindOfClass:[NSNull class]]) {
+//        [managedBook setValue:book.price forKey:(NSString *)kPrice];
+//    }
+//    if (![book.name isKindOfClass:[NSNull class]]) {
+//        [managedBook setValue:book.publisher forKey:(NSString *)kPublisher];
+//    }
+//    if (![book.name isKindOfClass:[NSNull class]]) {
+//        [managedBook setValue:book.bookId forKey:(NSString *)kBookId];
+//    }
+//    if (![book.name isKindOfClass:[NSNull class]]) {
+//        [managedBook setValue:book.publishDate forKey:(NSString *)kPublishDate];
+//    }
+//    if (![book.name isKindOfClass:[NSNull class]]) {
+//        [managedBook setValue:[NSNumber numberWithBool:book.availability] forKey:(NSString *)kAvailability];
+//    }
+
     [managedBook setValue:book.name forKey:(NSString *)kName];
     [managedBook setValue:book.authors forKey:(NSString *)kAuthors];
     [managedBook setValue:book.imageHref  forKey:(NSString *)kImageHref];

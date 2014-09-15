@@ -213,7 +213,8 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
                             accessToke:(NSString *)accessToke
 {
     NSMutableURLRequest *addBookRequest = [RequestBuilder buildAddBookRequestWithbookName:name
-                                                                                  authors:authors imageHref:imageHref
+                                                                                  authors:authors
+                                                                                imageHref:imageHref
                                                                               description:description
                                                                                authorInfo:authorInfo
                                                                                     price:price
