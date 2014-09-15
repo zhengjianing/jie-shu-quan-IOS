@@ -17,7 +17,7 @@ static const NSString *kPasswordKey = @"passwordKey";
 static const NSString *kUserId = @"user_id";
 static const NSString *kAccessToken = @"access_token";
 
-
+// keys in Server
 static const NSString *kBookname = @"name";
 static const NSString *kBookauthors = @"authors";
 static const NSString *kBookimageHref = @"image_href";
