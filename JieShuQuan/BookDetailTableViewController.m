@@ -181,49 +181,16 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     }
     
     if (actionSheet == addSheet) {
-        [self postAddBookRequestWithbookName:_book.name
-                                     authors:_book.authors
-                                   imageHref:_book.imageHref
-                                 description:_book.description
-                                  authorInfo:_book.authorInfo
-                                       price:_book.price
-                                   publisher:_book.publisher
-                                 publishDate:_book.publishDate
-                                      bookId:_book.bookId
-                                   available:_book.availability
-                                      userId:user_id
-                                  accessToke:access_token];
+        [self postAddBookRequestWithBook:_book available:NO userId:user_id accessToke:access_token];
         return;
     }
 }
 
 #pragma mark -- configure NSURLConnections
 
-- (void)postAddBookRequestWithbookName:(NSString *)name
-                               authors:(NSString *)authors
-                             imageHref:(NSString *)imageHref
-                           description:(NSString *)description
-                            authorInfo:(NSString *)authorInfo
-                                 price:(NSString *)price
-                             publisher:(NSString *)publisher
-                           publishDate:(NSString *)publishDate
-                                bookId:(NSString *)bookId
-                             available:(BOOL)available
-                                userId:(NSString *)userId
-                            accessToke:(NSString *)accessToke
+- (void)postAddBookRequestWithBook:(Book *)book available:(BOOL)available userId:(NSString *)userId accessToke:(NSString *)accessToke
 {
-    NSMutableURLRequest *addBookRequest = [RequestBuilder buildAddBookRequestWithbookName:name
-                                                                                  authors:authors
-                                                                                imageHref:imageHref
-                                                                              description:description
-                                                                               authorInfo:authorInfo
-                                                                                    price:price
-                                                                                publisher:publisher
-                                                                              publishDate:publishDate
-                                                                                   bookId:bookId
-                                                                                available:available
-                                                                                   userId:userId
-                                                                               accessToke:accessToke];
+    NSMutableURLRequest *addBookRequest = [RequestBuilder buildAddBookRequestWithBook:book available:NO userId:userId accessToke:accessToke];
     
     [NSURLConnection sendAsynchronousRequest:addBookRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         

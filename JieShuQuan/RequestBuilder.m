@@ -9,6 +9,7 @@
 #import "RequestBuilder.h"
 #import "NSString+AES256.h"
 #import "ServerHeaders.h"
+#import "Book.h"
 
 @implementation RequestBuilder
 
@@ -61,29 +62,18 @@ static const NSString *kBookAvailable = @"available";
     return [password aes256_encrypt:(NSString *)kPasswordKey];
 }
 
-+ (NSMutableURLRequest *)buildAddBookRequestWithbookName:(NSString *)name
-                                                 authors:(NSString *)authors
-                                               imageHref:(NSString *)imageHref
-                                             description:(NSString *)description
-                                              authorInfo:(NSString *)authorInfo
-                                                   price:(NSString *)price
-                                               publisher:(NSString *)publisher
-                                             publishDate:(NSString *)publishDate
-                                                  bookId:(NSString *)bookId
-                                               available:(BOOL)availability
-                                                  userId:(NSString *)userId
-                                              accessToke:(NSString *)accessToken
++ (NSMutableURLRequest *)buildAddBookRequestWithBook:(Book *)book available:(BOOL)availability userId:(NSString *)userId accessToke:(NSString *)accessToken
 {
     NSDictionary *bodyDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                              name, kBookname,
-                              authors, kBookauthors,
-                              imageHref, kBookimageHref,
-                              description, kBookdescription,
-                              authorInfo, kBookauthorInfo,
-                              price, kBookprice,
-                              publisher, kBookpublisher,
-                              publishDate, kBookpublishDate,
-                              bookId, kBookId,
+                              book.name, kBookname,
+                              book.authors, kBookauthors,
+                              book.imageHref, kBookimageHref,
+                              book.description, kBookdescription,
+                              book.authorInfo, kBookauthorInfo,
+                              book.price, kBookprice,
+                              book.publisher, kBookpublisher,
+                              book.publishDate, kBookpublishDate,
+                              book.bookId, kBookId,
                               [NSNumber numberWithInteger:availability], kBookAvailable,
                               userId, kUserId,
                               accessToken, kAccessToken, nil];
