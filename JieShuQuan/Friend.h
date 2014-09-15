@@ -10,8 +10,9 @@
 
 @interface Friend : NSObject
 
-@property (copy, nonatomic) NSString *name;
-@property (copy, nonatomic) NSString *email;
-@property (assign, nonatomic) NSUInteger *bookCount;
+@property (copy, nonatomic) NSString *friendId;
+@property (copy, nonatomic) NSString *friendName;
+@property (copy, nonatomic) NSString *friendEmail;
+@property (copy, nonatomic) NSString *bookCount;
 
 @end

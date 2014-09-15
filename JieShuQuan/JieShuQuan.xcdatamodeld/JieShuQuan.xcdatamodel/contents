@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6172.12" systemVersion="13D65" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6172.12" systemVersion="13E28" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Book" representedClassName="" syncable="YES">
         <attribute name="authorInfo" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="authors" optional="YES" attributeType="String" valueTransformerName="NSArrayTransformer" syncable="YES"/>
@@ -12,6 +12,12 @@
         <attribute name="publishDate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="publisher" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="books" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Friend" syncable="YES">
+        <attribute name="book_count" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="friend_email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="friend_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="friend_name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="User" syncable="YES">
         <attribute name="access_token" optional="YES" attributeType="String" syncable="YES"/>
@@ -26,5 +32,6 @@
     <elements>
         <element name="Book" positionX="0" positionY="0" width="128" height="210"/>
         <element name="User" positionX="0" positionY="0" width="128" height="165"/>
+        <element name="Friend" positionX="9" positionY="90" width="128" height="105"/>
     </elements>
 </model>
