@@ -19,6 +19,7 @@
 #import "SearchTableViewController.h"
 #import "ActionSheetHelper.h"
 #import "RequestBuilder.h"
+#import "FriendsHasBookTableViewController.h"
 
 
 static const NSString *kAvailableNO = @"更改为随时可借";
@@ -252,5 +253,13 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
         [self setLabelTextWithBookAvailability:_book.availability];
     }];
 }
+
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    if ([indexPath section] == 2) {
+//        FriendsHasBookTableViewController *friendsHasBookTableViewController = [[FriendsHasBookTableViewController alloc] init];
+//        [self.navigationController pushViewController:friendsHasBookTableViewController animated:YES];
+//    }
+//}
 
 @end

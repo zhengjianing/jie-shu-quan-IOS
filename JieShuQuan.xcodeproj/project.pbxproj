@@ -34,6 +34,7 @@
 		94BB40B819C33770005BBD8E /* log-in-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BB40B619C33770005BBD8E /* log-in-user.png */; };
 		94BB40B919C33770005BBD8E /* log-out-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BB40B719C33770005BBD8E /* log-out-user.png */; };
 		94BB40C519C33CB3005BBD8E /* bg.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 94BB40C219C33CB3005BBD8E /* bg.jpeg */; };
+		94E3EA3919C6EBF500C38FEB /* FriendsHasBookTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E3EA3819C6EBF500C38FEB /* FriendsHasBookTableViewController.m */; };
 		94E5039419BAF98E004CEBC6 /* UserStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E5039319BAF98E004CEBC6 /* UserStore.m */; };
 		94F2BF5619B1DE8D0053711F /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 94F2BF5519B1DE8D0053711F /* search.png */; };
 		97553C3D19C090DE0034B446 /* AuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97553C3C19C090DE0034B446 /* AuthenticationViewController.m */; };
@@ -113,6 +114,8 @@
 		94BB40B619C33770005BBD8E /* log-in-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "log-in-user.png"; sourceTree = "<group>"; };
 		94BB40B719C33770005BBD8E /* log-out-user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "log-out-user.png"; sourceTree = "<group>"; };
 		94BB40C219C33CB3005BBD8E /* bg.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpeg; sourceTree = "<group>"; };
+		94E3EA3719C6EBF500C38FEB /* FriendsHasBookTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsHasBookTableViewController.h; sourceTree = "<group>"; };
+		94E3EA3819C6EBF500C38FEB /* FriendsHasBookTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsHasBookTableViewController.m; sourceTree = "<group>"; };
 		94E5039219BAF98E004CEBC6 /* UserStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserStore.h; sourceTree = "<group>"; };
 		94E5039319BAF98E004CEBC6 /* UserStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserStore.m; sourceTree = "<group>"; };
 		94F2BF5519B1DE8D0053711F /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
@@ -303,6 +306,7 @@
 		94BB408219C172E4005BBD8E /* Friends */ = {
 			isa = PBXGroup;
 			children = (
+				94E3EA3619C6EBA800C38FEB /* Friends_who_has_a_book */,
 				94BB409119C18BD5005BBD8E /* All_friends */,
 				94BB409219C18BE6005BBD8E /* Friend_detail */,
 			);
@@ -329,6 +333,15 @@
 				94BB408F19C184EC005BBD8E /* FriendBookTableViewCell.m */,
 			);
 			name = Friend_detail;
+			sourceTree = "<group>";
+		};
+		94E3EA3619C6EBA800C38FEB /* Friends_who_has_a_book */ = {
+			isa = PBXGroup;
+			children = (
+				94E3EA3719C6EBF500C38FEB /* FriendsHasBookTableViewController.h */,
+				94E3EA3819C6EBF500C38FEB /* FriendsHasBookTableViewController.m */,
+			);
+			name = Friends_who_has_a_book;
 			sourceTree = "<group>";
 		};
 		94E5039519BAF998004CEBC6 /* DataStore */ = {
@@ -575,6 +588,7 @@
 				97F65AC719AE0B1200B9DC93 /* DataConverter.m in Sources */,
 				97C528A419BC761000388375 /* RegisterViewController.m in Sources */,
 				94BB409019C184EC005BBD8E /* FriendBookTableViewCell.m in Sources */,
+				94E3EA3919C6EBF500C38FEB /* FriendsHasBookTableViewController.m in Sources */,
 				9412E2FB19AA0D82008D243C /* BookTableViewCell.m in Sources */,
 				94BB408D19C183E1005BBD8E /* FriendDetailTableViewController.m in Sources */,
 				94E5039419BAF98E004CEBC6 /* UserStore.m in Sources */,

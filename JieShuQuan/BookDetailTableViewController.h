@@ -35,4 +35,5 @@
 //current existence & availability state
 @property (assign, nonatomic) BOOL existenceStatus;
 
+
 @end
