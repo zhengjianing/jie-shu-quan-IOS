@@ -50,6 +50,15 @@ static const NSString *kStatusNO = @"暂时不可借";
     _loginController = [mainStoryboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
     [self addRefreshControll];
     _tempArray = [[NSMutableArray alloc] init];
+    
+    [self removeUnneccessaryCells];
+}
+
+- (void)removeUnneccessaryCells
+{
+    UIView *view = [UIView new];
+    view.backgroundColor = [UIColor clearColor];
+    [self.tableView setTableFooterView:view];
 }
 
 - (void)viewWillAppear:(BOOL)animated

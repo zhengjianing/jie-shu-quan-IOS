@@ -28,11 +28,17 @@
     [super viewDidLoad];
     [self initActivityIndicator];
     [self configureBookInfoView];
-    
-    _friendsCellObject = [[NSMutableArray alloc] init];
+    [self removeUnneccessaryCells];
     
     [self loadFriendsWithBook];
     [self.tableView reloadData];
+}
+
+- (void)removeUnneccessaryCells
+{
+    UIView *view = [UIView new];
+    view.backgroundColor = [UIColor clearColor];
+    [self.tableView setTableFooterView:view];
 }
 
 - (void)initActivityIndicator
@@ -46,6 +52,7 @@
 
 - (void)loadFriendsWithBook
 {
+    _friendsCellObject = [[NSMutableArray alloc] init];
     [self fetchFriendsWithBookFromServer];
 }
 
@@ -67,6 +74,11 @@
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
         [_activityIndicator stopAnimating];
+
+        if ([(NSHTTPURLResponse *)response statusCode] == 404) {
+            [AlertHelper showAlertWithMessage:@"暂时没有朋友拥有此书" target:self];
+            return ;
+        }
 
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
             [AlertHelper showAlertWithMessage:@"更新失败" target:self];

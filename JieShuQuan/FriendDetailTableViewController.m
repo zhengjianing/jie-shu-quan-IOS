@@ -27,13 +27,19 @@
 {
     [super viewDidLoad];
     
+    [self removeUnneccessaryCells];
     [self configureFriendInfoView];
     [self initActivityIndicator];
-
-    _books = [[NSMutableArray alloc] init];
     
     [self loadBooksForFriend];
     [self.tableView reloadData];
+}
+
+- (void)removeUnneccessaryCells
+{
+    UIView *view = [UIView new];
+    view.backgroundColor = [UIColor clearColor];
+    [self.tableView setTableFooterView:view];
 }
 
 - (void)configureFriendInfoView
@@ -54,6 +60,7 @@
 
 - (void)loadBooksForFriend
 {
+    _books = [[NSMutableArray alloc] init];
     [self fetchBooksForFriendFromServer];
 }
 

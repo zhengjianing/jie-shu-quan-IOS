@@ -40,6 +40,14 @@
     _loginController = [mainStoryboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
     
     [self addRefreshControll];
+    [self removeUnneccessaryCells];
+}
+
+- (void)removeUnneccessaryCells
+{
+    UIView *view = [UIView new];
+    view.backgroundColor = [UIColor clearColor];
+    [self.tableView setTableFooterView:view];
 }
 
 - (void)viewWillAppear:(BOOL)animated
