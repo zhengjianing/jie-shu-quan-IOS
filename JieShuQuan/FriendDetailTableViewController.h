@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+@class Friend;
 
 @interface FriendDetailTableViewController : UITableViewController
 
 @property (weak, nonatomic) IBOutlet UIView *friendInfoView;
+@property (weak, nonatomic) IBOutlet UILabel *friendNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *friendBookCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *friendEmailLabel;
 
+@property (strong, nonatomic) Friend *friend;
 @end

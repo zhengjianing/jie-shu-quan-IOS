@@ -7,6 +7,7 @@
 //
 
 #import "FriendsTableViewController.h"
+#import "FriendDetailTableViewController.h"
 #import "FriendInfoTableViewCell.h"
 #import "LoginViewController.h"
 #import "ServerHeaders.h"
@@ -170,6 +171,17 @@
 
 - (void)endRefreshing {
     [_refresh endRefreshing];
+}
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue destinationViewController] class] == FriendDetailTableViewController.class) {
+        NSIndexPath *selectIndexPath = [self.tableView indexPathForSelectedRow];
+        Friend *selectedFriend = [_myFriends objectAtIndex:[selectIndexPath row]];
+        [[segue destinationViewController] setFriend:selectedFriend];
+    }
 }
 
 @end

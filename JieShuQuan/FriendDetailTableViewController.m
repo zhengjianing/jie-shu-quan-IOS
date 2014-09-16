@@ -7,6 +7,7 @@
 //
 
 #import "FriendDetailTableViewController.h"
+#import "Friend.h"
 
 @interface FriendDetailTableViewController ()
 
@@ -18,7 +19,14 @@
 {
     [super viewDidLoad];
     
-    _friendInfoView.layer.cornerRadius = 30.0;
+    [self configureFriendInfoView];
+}
+
+- (void)configureFriendInfoView
+{
+    _friendNameLabel.text = _friend.friendName;
+    _friendBookCountLabel.text = _friend.bookCount;
+    _friendEmailLabel.text = _friend.friendEmail;
 }
 
 #pragma mark - Table view data source
