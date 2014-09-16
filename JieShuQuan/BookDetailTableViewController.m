@@ -8,6 +8,7 @@
 
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "BookDetailTableViewController.h"
+#import "FriendsHasBookTableViewController.h"
 #import "Book.h"
 #import "BookStore.h"
 #import "AlertHelper.h"
@@ -251,6 +252,16 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
         
         [self setLabelTextWithBookAvailability:_book.availability];
     }];
+}
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue destinationViewController] class] == FriendsHasBookTableViewController.class) {
+        NSIndexPath *selectIndexPath = [self.tableView indexPathForSelectedRow];
+        [[segue destinationViewController] setBook:_book];
+    }
 }
 
 @end

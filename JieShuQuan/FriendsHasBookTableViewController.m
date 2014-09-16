@@ -7,6 +7,8 @@
 //
 
 #import "FriendsHasBookTableViewController.h"
+#import "Book.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface FriendsHasBookTableViewController ()
 
@@ -18,7 +20,17 @@
 {
     [super viewDidLoad];
     
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"bookDetailCell"];
+    [self configureBookInfoView];
+}
+
+- (void)configureBookInfoView
+{
+    [_bookImageView sd_setImageWithURL:[NSURL URLWithString:_book.imageHref]];
+    _nameLabel.text = _book.name;
+    _authorsLabel.text = _book.authors;
+    _publisherLabel.text = _book.publisher;
+    _publishDateLabel.text = _book.publishDate;
+    _priceLabel.text = _book.price;
 }
 
 #pragma mark - Table view data source
