@@ -323,7 +323,7 @@
             </objects>
             <point key="canvasLocation" x="197" y="750"/>
         </scene>
-        <!--Book Detail Table View Controller-->
+        <!--Book Detail Table View Controller - 书的详情-->
         <scene sceneID="lt7-51-IUi">
             <objects>
                 <tableViewController id="wYj-Ro-ejx" customClass="BookDetailTableViewController" sceneMemberID="viewController">
@@ -557,7 +557,7 @@
                             <outlet property="delegate" destination="wYj-Ro-ejx" id="rce-1E-kdv"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="rCI-dL-W1d"/>
+                    <navigationItem key="navigationItem" title="书的详情" id="rCI-dL-W1d"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="480"/>
                     <connections>
@@ -579,11 +579,11 @@
             </objects>
             <point key="canvasLocation" x="839" y="-812"/>
         </scene>
-        <!--Friends Has Book Table View Controller-->
+        <!--Friends Has Book Table View Controller - 谁有此书-->
         <scene sceneID="DEU-IL-1uh">
             <objects>
                 <tableViewController id="hqg-H5-Ndq" customClass="FriendsHasBookTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="grl-oj-q6j">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="72" sectionHeaderHeight="22" sectionFooterHeight="22" id="grl-oj-q6j">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -652,19 +652,39 @@
                             <color key="backgroundColor" red="0.53531128579999998" green="0.57906681169999996" blue="1" alpha="0.47999999999999998" colorSpace="calibratedRGB"/>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="bookDetailCell" rowHeight="79" id="kGi-Bj-ECC">
+                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="bookDetailCell" rowHeight="72" id="kGi-Bj-ECC" customClass="FriendHasBookTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kGi-Bj-ECC" id="FU2-MU-d3P">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="book details" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oVo-g1-Wgb">
-                                            <rect key="frame" x="81" y="29" width="94" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="log-in-user.png" translatesAutoresizingMaskIntoConstraints="NO" id="zVm-ee-5gJ">
+                                            <rect key="frame" x="20" y="20" width="35" height="35"/>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9OT-vy-i6f">
+                                            <rect key="frame" x="69" y="13" width="90" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="email@email.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="spf-pQ-ivs">
+                                            <rect key="frame" x="69" y="42" width="150" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="暂时不可借" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XhX-Gg-UMQ">
+                                            <rect key="frame" x="240" y="43" width="60" height="20"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="friendBookAvailibilityLabel" destination="XhX-Gg-UMQ" id="LEz-cX-1vY"/>
+                                    <outlet property="friendEmailLabel" destination="spf-pQ-ivs" id="W6a-6N-4yP"/>
+                                    <outlet property="friendNameLabel" destination="9OT-vy-i6f" id="R3G-a4-VKe"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -673,7 +693,7 @@
                             <outlet property="delegate" destination="hqg-H5-Ndq" id="JzJ-QK-CWy"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="5K8-g1-gnV"/>
+                    <navigationItem key="navigationItem" title="谁有此书" id="5K8-g1-gnV"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="480"/>
                     <connections>

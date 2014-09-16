@@ -30,6 +30,8 @@ static const NSString *kBookpublishDate = @"publish_date";
 static const NSString *kBookId = @"douban_book_id";
 static const NSString *kBookAvailable = @"available";
 
+#pragma mark - User
+
 + (NSMutableURLRequest *)buildRegisterRequestWithUserName:(NSString *)userName email:(NSString *)email password:(NSString *)password
 {
     NSDictionary *registerBody = @{@"user_name": userName, @"email": email, @"password": [self encrypePassword:password]};
@@ -44,23 +46,7 @@ static const NSString *kBookAvailable = @"available";
     return [self buildRequestWithURLString:kLoginURL bodyDict:loginBody];
 }
 
-+ (NSMutableURLRequest *)buildRequestWithURLString:(NSString *)urlString bodyDict:(NSDictionary *)bodyDict
-{
-    NSURL *postURL = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:postURL];
-    
-    id object = [NSJSONSerialization dataWithJSONObject:bodyDict options:NSJSONWritingPrettyPrinted error:nil];
-    [request setHTTPBody:object];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPMethod:@"POST"];
-    
-    return request;
-}
-
-+ (NSString *)encrypePassword:(NSString *)password
-{
-    return [password aes256_encrypt:(NSString *)kPasswordKey];
-}
+#pragma mark - Books
 
 + (NSMutableURLRequest *)buildAddBookRequestWithBook:(Book *)book available:(BOOL)availability userId:(NSString *)userId accessToke:(NSString *)accessToken
 {
@@ -105,13 +91,39 @@ static const NSString *kBookAvailable = @"available";
     return [self buildGetRequestWithRULString:urlString];
 }
 
+#pragma mark - Friends
+
 + (NSMutableURLRequest *)buildFetchFriendsRequestForUserId:(NSString *)userId
 {
     NSString *urlString = [kMyFriendsURL stringByAppendingString:userId];
     return [self buildGetRequestWithRULString:urlString];
 }
 
-#pragma mark -- private methods
++ (NSMutableURLRequest *)buildFetchFriendsRequestForUserId:(NSString *)userId bookId:(NSString *)bookId
+{
+    NSString *urlString = [[[kMyFriendsWithBookURL stringByAppendingString:bookId] stringByAppendingString:@"/forUser/"] stringByAppendingString:userId];
+    return [self buildGetRequestWithRULString:urlString];
+}
+
+#pragma mark - private methods
+
++ (NSMutableURLRequest *)buildRequestWithURLString:(NSString *)urlString bodyDict:(NSDictionary *)bodyDict
+{
+    NSURL *postURL = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:postURL];
+    
+    id object = [NSJSONSerialization dataWithJSONObject:bodyDict options:NSJSONWritingPrettyPrinted error:nil];
+    [request setHTTPBody:object];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPMethod:@"POST"];
+    
+    return request;
+}
+
++ (NSString *)encrypePassword:(NSString *)password
+{
+    return [password aes256_encrypt:(NSString *)kPasswordKey];
+}
 
 + (NSMutableURLRequest *)buildRequestWithURLString:(NSString *)requestString bodyDictionary:(NSDictionary *)bodyDictionary HTTPMethod:(NSString *)HTTPMethod
 {

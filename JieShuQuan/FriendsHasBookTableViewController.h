@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+
 @class Book;
 
 @interface FriendsHasBookTableViewController : UITableViewController
@@ -18,6 +19,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *publishDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 
+
+
 @property (strong, nonatomic) Book *book;
+@property (strong, nonatomic) NSMutableArray *friendsCellObject;
 
 @end

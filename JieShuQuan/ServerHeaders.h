@@ -16,5 +16,6 @@
 
 #define kMyFriendsURL @"http://jie-shu-quan.herokuapp.com/friends_by_user/"
 #define kMyBooksURL @"http://jie-shu-quan.herokuapp.com/books_by_user/"
+#define kMyFriendsWithBookURL @"http://jie-shu-quan.herokuapp.com/friendsWithBook/"
 
 

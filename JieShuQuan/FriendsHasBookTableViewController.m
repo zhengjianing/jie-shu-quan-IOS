@@ -7,8 +7,15 @@
 //
 
 #import "FriendsHasBookTableViewController.h"
-#import "Book.h"
+#import "FriendHasBookTableViewCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "Book.h"
+#import "User.h"
+#import "RequestBuilder.h"
+#import "UserManager.h"
+#import "AlertHelper.h"
+#import "Friend.h"
+#import "DataConverter.h"
 
 @interface FriendsHasBookTableViewController ()
 
@@ -21,6 +28,16 @@
     [super viewDidLoad];
     
     [self configureBookInfoView];
+    
+    _friendsCellObject = [[NSMutableArray alloc] init];
+    
+    [self loadFriendsWithBook];
+    [self.tableView reloadData];
+}
+
+- (void)loadFriendsWithBook
+{
+    [self fetchFriendsWithBookFromServer];
 }
 
 - (void)configureBookInfoView
@@ -33,6 +50,34 @@
     _priceLabel.text = _book.price;
 }
 
+#pragma mark - fetch friends from server
+
+- (void)fetchFriendsWithBookFromServer
+{
+    NSMutableURLRequest *request = [RequestBuilder buildFetchFriendsRequestForUserId:[[UserManager currentUser] userId] bookId:_book.bookId];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        
+        if ([(NSHTTPURLResponse *)response statusCode] != 200) {
+            [AlertHelper showAlertWithMessage:@"更新失败" target:self];
+            return ;
+        }
+        
+        id responseObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+        if (responseObject) {
+            [_friendsCellObject removeAllObjects];
+            
+            NSArray *friendsArray = [responseObject valueForKey:@"friends"];
+            for (id item in friendsArray) {
+                Friend *friend = [DataConverter friendFromServerFriendObject:item];
+                NSDictionary *friendCellDict = @{@"friend":friend, @"availability":[item valueForKey:@"available"]};
+                [_friendsCellObject addObject:friendCellDict];
+            }
+            
+            [self.tableView reloadData];
+        }
+    }];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -42,16 +87,22 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return _friendsCellObject.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bookDetailCell" forIndexPath:indexPath];
+    FriendHasBookTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bookDetailCell" forIndexPath:indexPath];
     
-    cell.textLabel.text = @"friend";
+    NSDictionary *friendCellObject = [_friendsCellObject objectAtIndex:indexPath.row];
+    Friend *friend = friendCellObject[@"friend"];
+    NSInteger availability = [friendCellObject[@"availability"] integerValue];
     
+    cell.friendNameLabel.text = friend.friendName;
+    cell.friendEmailLabel.text = friend.friendEmail;
+    cell.friendBookAvailibilityLabel.text = (availability == 0) ? @"暂时不可借" : @"可借";
+
     return cell;
 }
 

@@ -25,6 +25,7 @@
 		9476058619C15C6900FA8E74 /* SearchResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9476058519C15C6900FA8E74 /* SearchResultTableViewCell.m */; };
 		948615F019BC0FD1001837BF /* Store.m in Sources */ = {isa = PBXBuildFile; fileRef = 948615EF19BC0FD1001837BF /* Store.m */; };
 		94B23BAE19C3F61B009896BE /* BookDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B23BAD19C3F61B009896BE /* BookDetailTableViewController.m */; };
+		94B25A8719C8457500BA93CA /* FriendHasBookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B25A8619C8457500BA93CA /* FriendHasBookTableViewCell.m */; };
 		94BB408119C17215005BBD8E /* friends.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BB408019C17215005BBD8E /* friends.png */; };
 		94BB408519C172FE005BBD8E /* FriendsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BB408419C172FE005BBD8E /* FriendsTableViewController.m */; };
 		94BB408819C17378005BBD8E /* FriendInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94BB408719C17378005BBD8E /* FriendInfoTableViewCell.m */; };
@@ -101,6 +102,8 @@
 		948615EF19BC0FD1001837BF /* Store.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Store.m; sourceTree = "<group>"; };
 		94B23BAC19C3F61B009896BE /* BookDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookDetailTableViewController.h; sourceTree = "<group>"; };
 		94B23BAD19C3F61B009896BE /* BookDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookDetailTableViewController.m; sourceTree = "<group>"; };
+		94B25A8519C8457500BA93CA /* FriendHasBookTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendHasBookTableViewCell.h; sourceTree = "<group>"; };
+		94B25A8619C8457500BA93CA /* FriendHasBookTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendHasBookTableViewCell.m; sourceTree = "<group>"; };
 		94BB408019C17215005BBD8E /* friends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = friends.png; sourceTree = "<group>"; };
 		94BB408319C172FE005BBD8E /* FriendsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsTableViewController.h; sourceTree = "<group>"; };
 		94BB408419C172FE005BBD8E /* FriendsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsTableViewController.m; sourceTree = "<group>"; };
@@ -343,6 +346,8 @@
 			children = (
 				94E3EA3719C6EBF500C38FEB /* FriendsHasBookTableViewController.h */,
 				94E3EA3819C6EBF500C38FEB /* FriendsHasBookTableViewController.m */,
+				94B25A8519C8457500BA93CA /* FriendHasBookTableViewCell.h */,
+				94B25A8619C8457500BA93CA /* FriendHasBookTableViewCell.m */,
 			);
 			name = Friends_who_has_a_book;
 			sourceTree = "<group>";
@@ -598,6 +603,7 @@
 				9412E2FB19AA0D82008D243C /* BookTableViewCell.m in Sources */,
 				94BB408D19C183E1005BBD8E /* FriendDetailTableViewController.m in Sources */,
 				94E5039419BAF98E004CEBC6 /* UserStore.m in Sources */,
+				94B25A8719C8457500BA93CA /* FriendHasBookTableViewCell.m in Sources */,
 				9759AFF319C18B11008EFCC2 /* User.m in Sources */,
 				97F973C619B5FBF4007AAD47 /* BookStore.m in Sources */,
 				9476057919C06AC700FA8E74 /* FormatValidator.m in Sources */,

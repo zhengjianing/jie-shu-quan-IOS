@@ -23,5 +23,6 @@
 
 
 + (NSMutableURLRequest *)buildFetchFriendsRequestForUserId:(NSString *)userId;
++ (NSMutableURLRequest *)buildFetchFriendsRequestForUserId:(NSString *)userId bookId:(NSString *)bookId;
 
 @end
