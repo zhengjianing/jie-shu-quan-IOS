@@ -17,4 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *friendEmailLabel;
 
 @property (strong, nonatomic) Friend *friend;
+@property (strong, nonatomic) NSMutableArray *books;
+
 @end
