@@ -42,7 +42,6 @@
     _activityIndicator.hidesWhenStopped = YES;
     [self.tableView addSubview:_activityIndicator];
     [_activityIndicator startAnimating];
-
 }
 
 - (void)loadFriendsWithBook
@@ -67,6 +66,8 @@
     NSMutableURLRequest *request = [RequestBuilder buildFetchFriendsRequestForUserId:[[UserManager currentUser] userId] bookId:_book.bookId];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
+        [_activityIndicator stopAnimating];
+
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
             [AlertHelper showAlertWithMessage:@"更新失败" target:self];
             return ;
@@ -85,7 +86,6 @@
             
             [self.tableView reloadData];
         }
-        [_activityIndicator stopAnimating];
     }];
 }
 

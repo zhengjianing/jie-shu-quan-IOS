@@ -28,7 +28,8 @@
     [super viewDidLoad];
     
     [self configureFriendInfoView];
-    
+    [self initActivityIndicator];
+
     _books = [[NSMutableArray alloc] init];
     
     [self loadBooksForFriend];
@@ -40,6 +41,15 @@
     _friendNameLabel.text = _friend.friendName;
     _friendBookCountLabel.text = _friend.bookCount;
     _friendEmailLabel.text = _friend.friendEmail;
+}
+
+- (void)initActivityIndicator
+{
+    _activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(150, 170, 20, 20)];
+    _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+    _activityIndicator.hidesWhenStopped = YES;
+    [self.tableView addSubview:_activityIndicator];
+    [_activityIndicator startAnimating];
 }
 
 - (void)loadBooksForFriend
@@ -54,6 +64,8 @@
     NSMutableURLRequest *request = [RequestBuilder buildFetchBooksRequestForUserId:_friend.friendId];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
+        [_activityIndicator stopAnimating];
+
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
             [AlertHelper showAlertWithMessage:@"更新失败" target:self];
             return ;

@@ -19,4 +19,6 @@
 @property (strong, nonatomic) Friend *friend;
 @property (strong, nonatomic) NSMutableArray *books;
 
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+
 @end
