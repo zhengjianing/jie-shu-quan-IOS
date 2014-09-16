@@ -19,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *publishDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 
-
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 
 @property (strong, nonatomic) Book *book;
 @property (strong, nonatomic) NSMutableArray *friendsCellObject;

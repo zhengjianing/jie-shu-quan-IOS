@@ -26,13 +26,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self initActivityIndicator];
     [self configureBookInfoView];
     
     _friendsCellObject = [[NSMutableArray alloc] init];
     
     [self loadFriendsWithBook];
     [self.tableView reloadData];
+}
+
+- (void)initActivityIndicator
+{
+    _activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(150, 170, 20, 20)];
+    _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+    _activityIndicator.hidesWhenStopped = YES;
+    [self.tableView addSubview:_activityIndicator];
+    [_activityIndicator startAnimating];
+
 }
 
 - (void)loadFriendsWithBook
@@ -75,6 +85,7 @@
             
             [self.tableView reloadData];
         }
+        [_activityIndicator stopAnimating];
     }];
 }
 
