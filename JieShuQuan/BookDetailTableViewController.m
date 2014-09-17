@@ -46,6 +46,7 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(popSelfWhenLoggingOut) name:@"popBookDetailInformation" object:nil];
     [self initActivityIndicator];
 }
 
@@ -57,15 +58,16 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     [self.tableView addSubview:_activityIndicator];
 }
 
+- (void)popSelfWhenLoggingOut
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self initBookDetailView];
 
-    // In case the user hasn't logged in yet
-    if (![UserManager isLogin]) {
-        _existenceStatus = NO;
-        [self disableAvailabilityArea];
-    } else if ([self alreadyHasBook]) {
+    if ([self alreadyHasBook]) {
         _existenceStatus = YES;
     } else {
         _existenceStatus = NO;
@@ -269,7 +271,6 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue destinationViewController] class] == FriendsHasBookTableViewController.class) {
-        NSIndexPath *selectIndexPath = [self.tableView indexPathForSelectedRow];
         [[segue destinationViewController] setBook:_book];
     }
 }
