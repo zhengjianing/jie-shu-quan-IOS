@@ -76,7 +76,7 @@
         [_activityIndicator stopAnimating];
 
         if ([(NSHTTPURLResponse *)response statusCode] == 404) {
-            [AlertHelper showAlertWithMessage:@"暂时没有朋友拥有此书" withAutoDismiss:NO target:self];
+            [AlertHelper showAlertWithMessage:@"没找到您的同事们，请确认您使用企业邮箱注册" withAutoDismiss:NO target:self];
             return ;
         }
 
@@ -90,6 +90,12 @@
             [_friendsCellObject removeAllObjects];
             
             NSArray *friendsArray = [responseObject valueForKey:@"friends"];
+            
+            if (friendsArray.count == 0) {
+                [AlertHelper showAlertWithMessage:@"没有找到拥有此书的同事，请向更多的同事推荐此应用" withAutoDismiss:NO target:self];
+                return;
+            }
+            
             for (id item in friendsArray) {
                 Friend *friend = [DataConverter friendFromServerFriendObject:item];
                 NSDictionary *friendCellDict = @{@"friend":friend, @"availability":[item valueForKey:@"available"]};
