@@ -27,12 +27,19 @@
 {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(popSelfWhenLoggingOut) name:@"popSubViewControllers" object:nil];
+    
     [self removeUnneccessaryCells];
     [self configureFriendInfoView];
     [self initActivityIndicator];
     
     [self loadBooksForFriend];
     [self.tableView reloadData];
+}
+
+- (void)popSelfWhenLoggingOut
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)removeUnneccessaryCells

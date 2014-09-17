@@ -73,7 +73,7 @@ static const NSString *kDefaultCount = @"0";
 {
     [UserManager removeUserFromUserDefaults];
     [self updateViewForLogout];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"popBookDetailInformation" object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"popSubViewControllers" object:self];
 }
 
 - (void)updateViewForLogin
