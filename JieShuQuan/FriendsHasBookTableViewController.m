@@ -76,12 +76,12 @@
         [_activityIndicator stopAnimating];
 
         if ([(NSHTTPURLResponse *)response statusCode] == 404) {
-            [AlertHelper showAlertWithMessage:@"暂时没有朋友拥有此书" target:self];
+            [AlertHelper showAlertWithMessage:@"暂时没有朋友拥有此书" withAutoDismiss:NO target:self];
             return ;
         }
 
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-            [AlertHelper showAlertWithMessage:@"更新失败" target:self];
+            [AlertHelper showAlertWithMessage:@"更新失败" withAutoDismiss:YES target:self];
             return ;
         }
         

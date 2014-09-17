@@ -143,7 +143,7 @@
         [_activityIndicator stopAnimating];
 
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-            [AlertHelper showAlertWithMessage:@"更新失败" target:self];
+            [AlertHelper showAlertWithMessage:@"更新失败" withAutoDismiss:YES target:self];
             return ;
         }
         
@@ -155,7 +155,7 @@
             NSArray *friendsArray = [responseObject valueForKey:@"friends"];
             
             if (friendsArray.count == 0) {
-                [AlertHelper showAlertWithMessage:@"暂时没帮您找到同事，确认您使用企业邮箱注册，并向您的同事们推荐此应用" target:self];
+                [AlertHelper showAlertWithMessage:@"暂时没帮您找到同事，确认您使用企业邮箱注册，并向您的同事们推荐此应用" withAutoDismiss:NO target:self];
                 return;
             }
             

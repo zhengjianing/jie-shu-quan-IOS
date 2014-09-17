@@ -74,7 +74,7 @@
         [_activityIndicator stopAnimating];
 
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-            [AlertHelper showAlertWithMessage:@"更新失败" target:self];
+            [AlertHelper showAlertWithMessage:@"更新失败" withAutoDismiss:YES target:self];
             return ;
         }
         

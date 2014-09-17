@@ -35,7 +35,7 @@
 
 - (void)webDataFetchFailed
 {
-    [AlertHelper showAlertWithMessage:@"数据获取失败...请检查您的网络" target:self];
+    [AlertHelper showAlertWithMessage:@"数据获取失败...请检查您的网络" withAutoDismiss:YES target:self];
 }
 
 -(void)setExtraCellLineHidden: (UITableView *)tableView

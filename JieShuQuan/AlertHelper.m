@@ -10,10 +10,12 @@
 
 @implementation AlertHelper
 
-+ (void)showAlertWithMessage:(NSString *)message target:(id)target
++ (void)showAlertWithMessage:(NSString *)message withAutoDismiss:(BOOL)autoDismiss target:(id)target
 {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:message delegate:target cancelButtonTitle:nil otherButtonTitles:@"好", nil];
-    [self performSelector:@selector(dismissAlert:) withObject:alertView afterDelay:2.0];
+    if (autoDismiss) {
+        [self performSelector:@selector(dismissAlert:) withObject:alertView afterDelay:2.0];
+    }
     [alertView show];
 }
 

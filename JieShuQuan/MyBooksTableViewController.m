@@ -153,7 +153,7 @@ static const NSString *kStatusNO = @"暂时不可借";
         [_activityIndicator stopAnimating];
 
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-            [AlertHelper showAlertWithMessage:@"更新失败" target:self];
+            [AlertHelper showAlertWithMessage:@"更新失败" withAutoDismiss:YES target:self];
             return ;
         }
         
@@ -164,7 +164,7 @@ static const NSString *kStatusNO = @"暂时不可借";
             
             NSArray *booksArray = [responseObject valueForKey:@"books"];
             if (booksArray.count == 0) {
-                [AlertHelper showAlertWithMessage:@"您的书库暂时没书，您可以通过搜索来添加图书" target:self];
+                [AlertHelper showAlertWithMessage:@"您的书库暂时没书，您可以通过搜索来添加图书" withAutoDismiss:NO target:self];
                 return;
             }
             

@@ -36,22 +36,22 @@
     FormatValidator *validator = [[FormatValidator alloc] init];
     
     if (![validator isValidUserName:_userName.text]) {
-        [AlertHelper showAlertWithMessage:@"用户名格式错误！" target:self];
+        [AlertHelper showAlertWithMessage:@"用户名格式错误！" withAutoDismiss:YES target:self];
         return;
     }
     
     if (![validator isValidEmail:_email.text]) {
-        [AlertHelper showAlertWithMessage:@"邮箱格式错误！" target:self];
+        [AlertHelper showAlertWithMessage:@"邮箱格式错误！" withAutoDismiss:YES target:self];
         return;
     }
     
     if (![validator isValidPassword:_password.text]) {
-        [AlertHelper showAlertWithMessage:@"密码长度错误！" target:self];
+        [AlertHelper showAlertWithMessage:@"密码长度错误！" withAutoDismiss:YES target:self];
         return;
     }
     
     if (![_password.text isEqualToString:_confirmPassword.text]) {
-        [AlertHelper showAlertWithMessage:@"两次输入的密码不一致！" target:self];
+        [AlertHelper showAlertWithMessage:@"两次输入的密码不一致！" withAutoDismiss:YES target:self];
         return;
     }
     
@@ -60,7 +60,7 @@
 }
 
 - (IBAction)emailHint:(id)sender {
-    [AlertHelper showAlertWithMessage:@"使用企业邮箱，便于我们帮您找到您的朋友们" target:self];
+    [AlertHelper showAlertWithMessage:@"使用企业邮箱，便于我们帮您找到您的朋友们" withAutoDismiss:NO target:self];
 }
 
 - (void)startingRegisterWithUserName:(NSString *)name email:(NSString *)email password:(NSString *)password

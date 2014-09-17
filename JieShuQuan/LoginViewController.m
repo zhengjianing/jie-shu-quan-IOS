@@ -39,12 +39,12 @@
     FormatValidator *validator = [[FormatValidator alloc] init];
 
     if (![validator isValidEmail:_email.text]) {
-        [AlertHelper showAlertWithMessage:@"邮箱格式错误！" target:self];
+        [AlertHelper showAlertWithMessage:@"邮箱格式错误！" withAutoDismiss:YES target:self];
         return;
     }
     
     if (![validator isValidPassword:_password.text]) {
-        [AlertHelper showAlertWithMessage:@"密码长度错误！" target:self];
+        [AlertHelper showAlertWithMessage:@"密码长度错误！" withAutoDismiss:YES target:self];
         return;
     }
     

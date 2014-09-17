@@ -198,7 +198,7 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
         [_activityIndicator stopAnimating];
 
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-            [AlertHelper showAlertWithMessage:@"添加图书失败" target:self];
+            [AlertHelper showAlertWithMessage:@"添加图书失败" withAutoDismiss:YES target:self];
             return;
         }
         
@@ -220,7 +220,7 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
         [_activityIndicator stopAnimating];
 
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-            [AlertHelper showAlertWithMessage:@"删除图书失败" target:self];
+            [AlertHelper showAlertWithMessage:@"删除图书失败" withAutoDismiss:YES target:self];
             return;
         }
         
@@ -243,7 +243,7 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
         [_activityIndicator stopAnimating];
 
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-            [AlertHelper showAlertWithMessage:@"修改图书状态失败" target:self];
+            [AlertHelper showAlertWithMessage:@"修改图书状态失败" withAutoDismiss:YES target:self];
             return;
         }
         
