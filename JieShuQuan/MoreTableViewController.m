@@ -20,6 +20,14 @@ static const NSString *kDefaultCount = @"0";
     [super viewDidLoad];
     
     [self setUserInfoBackgroundImage];
+    [self removeUnneccessaryCells];
+}
+
+- (void)removeUnneccessaryCells
+{
+    UIView *view = [UIView new];
+    view.backgroundColor = [UIColor clearColor];
+    [self.tableView setTableFooterView:view];
 }
 
 - (void)setUserInfoBackgroundImage
