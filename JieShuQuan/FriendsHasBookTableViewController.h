@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PreLoginView.h"
 
 @class Book;
 
-@interface FriendsHasBookTableViewController : UITableViewController
+@interface FriendsHasBookTableViewController : UITableViewController <PreLoginDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *bookImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;

@@ -19,7 +19,7 @@
 		9471DC2419A5B97800F1A291 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 9471DC2319A5B97800F1A291 /* user.png */; };
 		9471DC2719A9689E00F1A291 /* MyBooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471DC2619A9689E00F1A291 /* MyBooksTableViewController.m */; };
 		9471DC2B19A974AB00F1A291 /* PreLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471DC2A19A974AB00F1A291 /* PreLoginView.m */; };
-		9471DC2F19A9895000F1A291 /* PreLoginNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9471DC2E19A9895000F1A291 /* PreLoginNib.xib */; };
+		9471DC2F19A9895000F1A291 /* PreLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9471DC2E19A9895000F1A291 /* PreLoginView.xib */; };
 		9476057919C06AC700FA8E74 /* FormatValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9476057819C06AC700FA8E74 /* FormatValidator.m */; };
 		9476058019C07BC400FA8E74 /* RequestBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9476057F19C07BC400FA8E74 /* RequestBuilder.m */; };
 		9476058619C15C6900FA8E74 /* SearchResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9476058519C15C6900FA8E74 /* SearchResultTableViewCell.m */; };
@@ -90,7 +90,7 @@
 		9471DC2619A9689E00F1A291 /* MyBooksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyBooksTableViewController.m; sourceTree = "<group>"; };
 		9471DC2919A974AB00F1A291 /* PreLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreLoginView.h; sourceTree = "<group>"; };
 		9471DC2A19A974AB00F1A291 /* PreLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreLoginView.m; sourceTree = "<group>"; };
-		9471DC2E19A9895000F1A291 /* PreLoginNib.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreLoginNib.xib; sourceTree = "<group>"; };
+		9471DC2E19A9895000F1A291 /* PreLoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreLoginView.xib; sourceTree = "<group>"; };
 		9476057719C06AC700FA8E74 /* FormatValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormatValidator.h; sourceTree = "<group>"; };
 		9476057819C06AC700FA8E74 /* FormatValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormatValidator.m; sourceTree = "<group>"; };
 		9476057A19C074D800FA8E74 /* ServerHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerHeaders.h; sourceTree = "<group>"; };
@@ -204,7 +204,7 @@
 			children = (
 				9471DC2919A974AB00F1A291 /* PreLoginView.h */,
 				9471DC2A19A974AB00F1A291 /* PreLoginView.m */,
-				9471DC2E19A9895000F1A291 /* PreLoginNib.xib */,
+				9471DC2E19A9895000F1A291 /* PreLoginView.xib */,
 				97553C3B19C090DE0034B446 /* AuthenticationViewController.h */,
 				97553C3C19C090DE0034B446 /* AuthenticationViewController.m */,
 				9766FC9919BF30980089C89B /* LoginViewController.h */,
@@ -523,7 +523,7 @@
 				9471DC2219A5B95A00F1A291 /* myBooks.png in Resources */,
 				9471DC2419A5B97800F1A291 /* user.png in Resources */,
 				9471DBFD19A5837700F1A291 /* Images.xcassets in Resources */,
-				9471DC2F19A9895000F1A291 /* PreLoginNib.xib in Resources */,
+				9471DC2F19A9895000F1A291 /* PreLoginView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

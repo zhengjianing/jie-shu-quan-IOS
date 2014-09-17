@@ -16,8 +16,13 @@
 #import "AlertHelper.h"
 #import "Friend.h"
 #import "DataConverter.h"
+#import "LoginViewController.h"
 
 @interface FriendsHasBookTableViewController ()
+
+@property (strong, nonatomic) PreLoginView *preLoginView;
+@property (strong, nonatomic) LoginViewController *loginController;
+@property (strong, nonatomic) UITableView *myFriendsTableView;
 
 @end
 
@@ -30,8 +35,21 @@
     [self configureBookInfoView];
     [self removeUnneccessaryCells];
     
-    [self loadFriendsWithBook];
-    [self.tableView reloadData];
+    _myFriendsTableView = self.tableView;
+    
+    UIStoryboard *mainStoryboard = self.storyboard;
+    _loginController = [mainStoryboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    if ([UserManager isLogin]) {
+        [self showTableView];
+    } else {
+        [self showPreLoginView];
+    }
 }
 
 - (void)removeUnneccessaryCells
@@ -64,6 +82,31 @@
     _publisherLabel.text = _book.publisher;
     _publishDateLabel.text = _book.publishDate;
     _priceLabel.text = _book.price;
+}
+
+- (void)showTableView
+{
+    self.view = _myFriendsTableView;
+    [self loadFriendsWithBook];
+    [self.tableView reloadData];
+}
+
+#pragma mark - PreLoginDelegate
+
+- (void)login
+{
+    [self.navigationController pushViewController:_loginController animated:YES];
+}
+
+- (void)showPreLoginView
+{
+    NSArray *topLevelObjs = [[NSBundle mainBundle] loadNibNamed:@"PreLoginNib" owner:self options:nil];
+    if ([topLevelObjs count] > 0)
+    {
+        _preLoginView = [topLevelObjs lastObject];
+        _preLoginView.delegate = self;
+    }
+    self.view = _preLoginView;
 }
 
 #pragma mark - fetch friends from server
