@@ -11,4 +11,6 @@
 
 @interface FriendsTableViewController : UITableViewController <PreLoginDelegate>
 
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+
 @end

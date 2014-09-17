@@ -41,6 +41,7 @@
     
     [self addRefreshControll];
     [self removeUnneccessaryCells];
+    [self initActivityIndicator];
 }
 
 - (void)removeUnneccessaryCells
@@ -48,6 +49,14 @@
     UIView *view = [UIView new];
     view.backgroundColor = [UIColor clearColor];
     [self.tableView setTableFooterView:view];
+}
+
+- (void)initActivityIndicator
+{
+    _activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(150, 170, 20, 20)];
+    _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+    _activityIndicator.hidesWhenStopped = YES;
+    [self.tableView addSubview:_activityIndicator];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -70,6 +79,7 @@
 {
     _myFriends = [[[FriendStore sharedStore] storedFriends] mutableCopy];
     if (_myFriends.count == 0) {
+        [_activityIndicator startAnimating];
         [self fetchFriendsFromServer];
     }
 }
@@ -130,6 +140,8 @@
     NSMutableURLRequest *request = [RequestBuilder buildFetchFriendsRequestForUserId:[[UserManager currentUser] userId]];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
+        [_activityIndicator stopAnimating];
+
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
             [AlertHelper showAlertWithMessage:@"更新失败" target:self];
             return ;
@@ -141,6 +153,12 @@
             [[FriendStore sharedStore] emptyFriendStoreForCurrentUser];
 
             NSArray *friendsArray = [responseObject valueForKey:@"friends"];
+            
+            if (friendsArray.count == 0) {
+                [AlertHelper showAlertWithMessage:@"暂时没帮您找到同事，确认您使用企业邮箱注册，并向您的同事们推荐此应用" target:self];
+                return;
+            }
+            
             for (id item in friendsArray) {
                 Friend *friend = [DataConverter friendFromServerFriendObject:item];
                 [[FriendStore sharedStore] addFriendToStore:friend];

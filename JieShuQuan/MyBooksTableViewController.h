@@ -11,4 +11,6 @@
 
 @interface MyBooksTableViewController : UITableViewController <PreLoginDelegate, NSURLConnectionDataDelegate>
 
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+
 @end

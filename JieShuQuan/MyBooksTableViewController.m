@@ -52,6 +52,7 @@ static const NSString *kStatusNO = @"暂时不可借";
     _tempArray = [[NSMutableArray alloc] init];
     
     [self removeUnneccessaryCells];
+    [self initActivityIndicator];
 }
 
 - (void)removeUnneccessaryCells
@@ -59,6 +60,14 @@ static const NSString *kStatusNO = @"暂时不可借";
     UIView *view = [UIView new];
     view.backgroundColor = [UIColor clearColor];
     [self.tableView setTableFooterView:view];
+}
+
+- (void)initActivityIndicator
+{
+    _activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(150, 170, 20, 20)];
+    _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+    _activityIndicator.hidesWhenStopped = YES;
+    [self.tableView addSubview:_activityIndicator];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -80,6 +89,10 @@ static const NSString *kStatusNO = @"暂时不可借";
 - (void)loadBooksFromStore
 {
     _myBooks = [[[BookStore sharedStore] storedBooks] mutableCopy];
+    if (_myBooks.count == 0) {
+        [_activityIndicator startAnimating];
+        [self fetchBooksFromServer];
+    }
 }
 
 #pragma mark - PreLoginView
@@ -137,7 +150,8 @@ static const NSString *kStatusNO = @"暂时不可借";
 {
     NSMutableURLRequest *request = [RequestBuilder buildFetchBooksRequestForUserId:[[UserManager currentUser] userId]];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-       
+        [_activityIndicator stopAnimating];
+
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
             [AlertHelper showAlertWithMessage:@"更新失败" target:self];
             return ;
@@ -149,11 +163,16 @@ static const NSString *kStatusNO = @"暂时不可借";
             [[BookStore sharedStore] emptyBookStoreForCurrentUser];
             
             NSArray *booksArray = [responseObject valueForKey:@"books"];
+            if (booksArray.count == 0) {
+                [AlertHelper showAlertWithMessage:@"您的书库暂时没书，您可以通过搜索来添加图书" target:self];
+                return;
+            }
+            
             for (id item in booksArray) {
                 Book *book = [DataConverter bookFromServerBookObject:item];
                 [[BookStore sharedStore] addBookToStore:book];
             }
-            
+
             [self loadBooksFromStore];
             [self.tableView reloadData];
             [self updateRefreshControl];
