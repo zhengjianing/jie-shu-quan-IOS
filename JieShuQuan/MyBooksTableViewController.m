@@ -35,7 +35,6 @@ static const NSString *kStatusNO = @"暂时不可借";
 @property (assign, nonatomic) NSInteger bookCount;
 
 @property (strong, nonatomic) UIRefreshControl *refresh;
-@property (copy, nonatomic) NSMutableArray *tempArray;
 
 @end
 
@@ -44,15 +43,22 @@ static const NSString *kStatusNO = @"暂时不可借";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchBooksFromServer) name:@"RefreshMyBooks" object:nil];
+    
     _myBooksTableView = self.tableView;
     
     UIStoryboard *mainStoryboard = self.storyboard;
     _loginController = [mainStoryboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
     [self addRefreshControll];
-    _tempArray = [[NSMutableArray alloc] init];
     
     [self removeUnneccessaryCells];
     [self initActivityIndicator];
+    
+    // Since viewDidLoad will only be called at launching, so refresh books at launching
+    [_activityIndicator startAnimating];
+    [self fetchBooksFromServer];
+
 }
 
 - (void)removeUnneccessaryCells
@@ -89,10 +95,6 @@ static const NSString *kStatusNO = @"暂时不可借";
 - (void)loadBooksFromStore
 {
     _myBooks = [[[BookStore sharedStore] storedBooks] mutableCopy];
-    if (_myBooks.count == 0) {
-        [_activityIndicator startAnimating];
-        [self fetchBooksFromServer];
-    }
 }
 
 #pragma mark - PreLoginView
