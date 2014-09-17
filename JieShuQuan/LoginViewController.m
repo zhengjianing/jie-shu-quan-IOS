@@ -19,9 +19,16 @@
 {
     [super viewDidLoad];    
     _loginButton.layer.cornerRadius = 5.0;
+    _password.delegate = self;
+    _email.delegate = self;
 }
 
 - (IBAction)recoverPassword:(id)sender {
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (IBAction)loginViewTouchDown:(id)sender {

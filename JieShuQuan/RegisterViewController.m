@@ -17,6 +17,15 @@
 {
     [super viewDidLoad];
     _registerButton.layer.cornerRadius = 5.0;
+    _userName.delegate = self;
+    _email.delegate = self;
+    _password.delegate = self;
+    _confirmPassword.delegate = self;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (IBAction)registerViewTouchDown:(id)sender {

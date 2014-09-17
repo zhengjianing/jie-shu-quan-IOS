@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AuthenticationViewController.h"
 
-@interface LoginViewController : AuthenticationViewController <NSURLConnectionDataDelegate>
+@interface LoginViewController : AuthenticationViewController <NSURLConnectionDataDelegate, UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *email;
 @property (strong, nonatomic) IBOutlet UITextField *password;
