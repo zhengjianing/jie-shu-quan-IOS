@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pdy-qY-d6V">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
     </dependencies>
     <scenes>
@@ -906,7 +907,7 @@
                         <viewControllerLayoutGuide type="top" id="ydV-CC-ADq"/>
                         <viewControllerLayoutGuide type="bottom" id="kBg-5J-P6A"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="5ae-wu-Vqy">
+                    <view key="view" contentMode="scaleToFill" id="5ae-wu-Vqy" customClass="UIControl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -953,6 +954,9 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <action selector="loginViewTouchDown:" destination="EyL-5w-TnI" eventType="touchDown" id="LVk-Pd-UGP"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="qZn-AN-OLd"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
@@ -977,7 +981,7 @@
                         <viewControllerLayoutGuide type="top" id="iBA-XV-YxT"/>
                         <viewControllerLayoutGuide type="bottom" id="T9d-FU-nt4"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="BQH-uc-bJ1">
+                    <view key="view" contentMode="scaleToFill" id="BQH-uc-bJ1" customClass="UIControl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1023,6 +1027,9 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <action selector="registerViewTouchDown:" destination="LVk-ys-koe" eventType="touchDown" id="Kav-xy-jO4"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="1kG-C5-Mp6"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>

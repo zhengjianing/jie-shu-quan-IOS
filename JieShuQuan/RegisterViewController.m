@@ -19,6 +19,10 @@
     _registerButton.layer.cornerRadius = 5.0;
 }
 
+- (IBAction)registerViewTouchDown:(id)sender {
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
+}
+
 - (IBAction)registerUser:(id)sender {
     FormatValidator *validator = [[FormatValidator alloc] init];
     

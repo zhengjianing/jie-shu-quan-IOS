@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *password;
 @property (strong, nonatomic) IBOutlet UITextField *confirmPassword;
 @property (strong, nonatomic) IBOutlet UIButton *registerButton;
+- (IBAction)registerViewTouchDown:(id)sender;
 
 - (IBAction)registerUser:(id)sender;
 - (IBAction)emailHint:(id)sender;

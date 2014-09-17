@@ -24,6 +24,10 @@
 - (IBAction)recoverPassword:(id)sender {
 }
 
+- (IBAction)loginViewTouchDown:(id)sender {
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
+}
+
 - (IBAction)loginUser:(id)sender {
     FormatValidator *validator = [[FormatValidator alloc] init];
 
