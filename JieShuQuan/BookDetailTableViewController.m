@@ -61,7 +61,11 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     [super viewWillAppear:animated];
     [self initBookDetailView];
 
-    if ([self alreadyHasBook]) {
+    // In case the user hasn't logged in yet
+    if (![UserManager isLogin]) {
+        _existenceStatus = NO;
+        [self disableAvailabilityArea];
+    } else if ([self alreadyHasBook]) {
         _existenceStatus = YES;
     } else {
         _existenceStatus = NO;
@@ -146,12 +150,18 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
 }
 
 - (IBAction)changeExistence:(id)sender {
+    
+    // In case the user hasn't logged in yet
+    if (![UserManager isLogin]) {
+        [AlertHelper showAlertWithMessage:@"您尚未登录，请先登录" withAutoDismiss:NO target:self];
+        return;
+    }
+    
     if (_existenceStatus == YES) {
         deleteSheet = [ActionSheetHelper actionSheetWithTitle:@"确认删除吗？" delegate:self];
         [deleteSheet showInView:self.view];
         return;
     }
-    
     if (_existenceStatus == NO) {
         addSheet = [ActionSheetHelper actionSheetWithTitle:@"确认添加吗？" delegate:self];
         [addSheet showInView:self.view];
