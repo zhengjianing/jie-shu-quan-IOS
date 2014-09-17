@@ -156,15 +156,13 @@
             
             if (friendsArray.count == 0) {
                 [AlertHelper showAlertWithMessage:@"暂时没帮您找到同事，确认您使用企业邮箱注册，并向您的同事们推荐此应用" withAutoDismiss:NO target:self];
-                return;
+            } else {
+                for (id item in friendsArray) {
+                    Friend *friend = [DataConverter friendFromServerFriendObject:item];
+                    [[FriendStore sharedStore] addFriendToStore:friend];
+                }
+                [self loadFriendsFromStore];
             }
-            
-            for (id item in friendsArray) {
-                Friend *friend = [DataConverter friendFromServerFriendObject:item];
-                [[FriendStore sharedStore] addFriendToStore:friend];
-            }
-
-            [self loadFriendsFromStore];
             [self.tableView reloadData];
             [self updateRefreshControl];
         }
