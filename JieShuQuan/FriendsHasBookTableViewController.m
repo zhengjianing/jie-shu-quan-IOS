@@ -182,8 +182,15 @@
     cell.friendNameLabel.text = friend.friendName;
     cell.friendEmailLabel.text = friend.friendEmail;
     cell.friendBookAvailibilityLabel.text = (availability == 0) ? @"暂时不可借" : @"可借";
+    
+    if (availability ==0) {
+        [cell.borrowButton setEnabled:NO];
+    }
 
     return cell;
 }
 
+- (IBAction)borrowFromFriend:(id)sender {
+    [AlertHelper showAlertWithMessage:@"借书" withAutoDismiss:YES target:self];
+}
 @end

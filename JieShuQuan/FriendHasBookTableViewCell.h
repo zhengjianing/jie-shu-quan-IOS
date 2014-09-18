@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *friendNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *friendEmailLabel;
 @property (weak, nonatomic) IBOutlet UILabel *friendBookAvailibilityLabel;
+@property (weak, nonatomic) IBOutlet UIButton *borrowButton;
 
 @end

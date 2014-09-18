@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *publishDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 
+- (IBAction)borrowFromFriend:(id)sender;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 
 @property (strong, nonatomic) Book *book;
