@@ -34,6 +34,7 @@
 		94805C6E19CADE3000CD762A /* zbar-helpicons.png in Resources */ = {isa = PBXBuildFile; fileRef = 94805C6919CADE3000CD762A /* zbar-helpicons.png */; };
 		94805C6F19CADE3000CD762A /* zbar-samples.png in Resources */ = {isa = PBXBuildFile; fileRef = 94805C6A19CADE3000CD762A /* zbar-samples.png */; };
 		94805C7219CADE6B00CD762A /* libzbar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94805C7119CADE6B00CD762A /* libzbar.a */; };
+		94805CBE19CB1CA300CD762A /* app-icon.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 94805CBD19CB1CA300CD762A /* app-icon.jpeg */; };
 		948615F019BC0FD1001837BF /* Store.m in Sources */ = {isa = PBXBuildFile; fileRef = 948615EF19BC0FD1001837BF /* Store.m */; };
 		94B23BAE19C3F61B009896BE /* BookDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B23BAD19C3F61B009896BE /* BookDetailTableViewController.m */; };
 		94B25A8719C8457500BA93CA /* FriendHasBookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B25A8619C8457500BA93CA /* FriendHasBookTableViewCell.m */; };
@@ -140,6 +141,7 @@
 		94805C6919CADE3000CD762A /* zbar-helpicons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zbar-helpicons.png"; sourceTree = "<group>"; };
 		94805C6A19CADE3000CD762A /* zbar-samples.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zbar-samples.png"; sourceTree = "<group>"; };
 		94805C7119CADE6B00CD762A /* libzbar.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libzbar.a; path = LibzBar/libzbar.a; sourceTree = "<group>"; };
+		94805CBD19CB1CA300CD762A /* app-icon.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "app-icon.jpeg"; sourceTree = "<group>"; };
 		948615EE19BC0FD1001837BF /* Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Store.h; sourceTree = "<group>"; };
 		948615EF19BC0FD1001837BF /* Store.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Store.m; sourceTree = "<group>"; };
 		94B23BAC19C3F61B009896BE /* BookDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookDetailTableViewController.h; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 		9471DBEC19A5837700F1A291 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				94805CBD19CB1CA300CD762A /* app-icon.jpeg */,
 				94BB40C219C33CB3005BBD8E /* bg.jpeg */,
 				94BB40B619C33770005BBD8E /* log-in-user.png */,
 				94BB40B719C33770005BBD8E /* log-out-user.png */,
@@ -648,6 +651,7 @@
 				94BB40C519C33CB3005BBD8E /* bg.jpeg in Resources */,
 				94BB408119C17215005BBD8E /* friends.png in Resources */,
 				94BB40B919C33770005BBD8E /* log-out-user.png in Resources */,
+				94805CBE19CB1CA300CD762A /* app-icon.jpeg in Resources */,
 				97553C3F19C0A5610034B446 /* info.png in Resources */,
 				94805C6E19CADE3000CD762A /* zbar-helpicons.png in Resources */,
 				94F2BF5619B1DE8D0053711F /* search.png in Resources */,
