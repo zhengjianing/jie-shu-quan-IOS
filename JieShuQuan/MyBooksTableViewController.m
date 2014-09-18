@@ -56,9 +56,13 @@ static const NSString *kStatusNO = @"暂时不可借";
     [self initActivityIndicator];
     
     // Since viewDidLoad will only be called at launching, so refresh books at launching
-    [_activityIndicator startAnimating];
-    [self fetchBooksFromServer];
-
+    if ([UserManager isLogin]) {
+        [_activityIndicator startAnimating];
+        [self fetchBooksFromServer];
+        [self showTableView];
+    } else {
+        [self showPreLoginView];
+    }
 }
 
 - (void)removeUnneccessaryCells

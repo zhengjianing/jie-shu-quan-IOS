@@ -27,11 +27,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endSearching) name:@"endSearching" object:nil];
+    
     [self removeUnneccessaryCells];
     
     [self setExtraCellLineHidden:self.searchDisplayController.searchResultsTableView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(webDataFetchFailed) name:@"webDataFetchFailed" object:nil];
+}
+
+- (void)endSearching
+{
+    [self.searchDisplayController setActive:NO];
+    [self.tableView reloadData];
 }
 
 - (void)removeUnneccessaryCells
@@ -127,6 +135,7 @@
 
 - (IBAction)startScan:(id)sender
 {
+    /*
     ZBarReaderViewController *reader = [ZBarReaderViewController new];
     reader.readerDelegate = self;
     reader.supportedOrientationsMask = ZBarOrientationMaskAll;
@@ -136,10 +145,12 @@
     [scanner setSymbology: ZBAR_I25 config: ZBAR_CFG_ENABLE to: 0];
     
     [self presentViewController:reader animated:YES completion:nil];
+     */
 }
 
 - (void) imagePickerController: (UIImagePickerController*) reader didFinishPickingMediaWithInfo: (NSDictionary*) info
 {
+    /*
     id<NSFastEnumeration> results = [info objectForKey: ZBarReaderControllerResults];
     ZBarSymbol *symbol = nil;
     for(symbol in results) {
@@ -156,6 +167,7 @@
     }
     
     [reader dismissViewControllerAnimated:YES completion:nil];
+    */
 }
 
 - (void)startFetchingBookDetailFromDoubanWithIsbnCode:(NSString *)isbnCode
