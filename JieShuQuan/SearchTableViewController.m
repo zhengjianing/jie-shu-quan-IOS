@@ -27,10 +27,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self removeUnneccessaryCells];
     
     [self setExtraCellLineHidden:self.searchDisplayController.searchResultsTableView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(webDataFetchFailed) name:@"webDataFetchFailed" object:nil];
+}
+
+- (void)removeUnneccessaryCells
+{
+    UIView *view = [UIView new];
+    view.backgroundColor = [UIColor clearColor];
+    [self.tableView setTableFooterView:view];
 }
 
 - (void)webDataFetchFailed
