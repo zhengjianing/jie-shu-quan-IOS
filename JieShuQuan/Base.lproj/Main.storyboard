@@ -339,7 +339,7 @@
         <!--Book Detail Table View Controller - 书的详情-->
         <scene sceneID="lt7-51-IUi">
             <objects>
-                <tableViewController id="wYj-Ro-ejx" customClass="BookDetailTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="BookDetailViewController" id="wYj-Ro-ejx" customClass="BookDetailTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="nJM-tK-tki">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

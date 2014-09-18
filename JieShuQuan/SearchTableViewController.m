@@ -170,7 +170,11 @@
 
 - (void)showBookDetailViewControllerForBook:(Book *)book
 {
-//show detail view controller here
+    UIStoryboard *mainStoryboard = self.storyboard;
+    BookDetailTableViewController *bookDetailTableViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"BookDetailViewController"];
+
+    [bookDetailTableViewController setBook:book];
+    [self.navigationController pushViewController:bookDetailTableViewController animated:YES];
 }
 
 - (void)startActivityIndicator
