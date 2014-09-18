@@ -135,7 +135,6 @@
 
 - (IBAction)startScan:(id)sender
 {
-    /*
     ZBarReaderViewController *reader = [ZBarReaderViewController new];
     reader.readerDelegate = self;
     reader.supportedOrientationsMask = ZBarOrientationMaskAll;
@@ -145,12 +144,10 @@
     [scanner setSymbology: ZBAR_I25 config: ZBAR_CFG_ENABLE to: 0];
     
     [self presentViewController:reader animated:YES completion:nil];
-     */
 }
 
 - (void) imagePickerController: (UIImagePickerController*) reader didFinishPickingMediaWithInfo: (NSDictionary*) info
 {
-    /*
     id<NSFastEnumeration> results = [info objectForKey: ZBarReaderControllerResults];
     ZBarSymbol *symbol = nil;
     for(symbol in results) {
@@ -167,7 +164,6 @@
     }
     
     [reader dismissViewControllerAnimated:YES completion:nil];
-    */
 }
 
 - (void)startFetchingBookDetailFromDoubanWithIsbnCode:(NSString *)isbnCode

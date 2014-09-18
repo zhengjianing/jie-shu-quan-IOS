@@ -118,7 +118,7 @@ static const NSString *kStatusNO = @"暂时不可借";
 
 - (void)initPreLoginViewWithNib
 {
-    NSArray *topLevelObjs = [[NSBundle mainBundle] loadNibNamed:@"PreLoginNib" owner:self options:nil];
+    NSArray *topLevelObjs = [[NSBundle mainBundle] loadNibNamed:@"PreLoginView" owner:self options:nil];
     if ([topLevelObjs count] > 0)
     {
         _preLoginView = [topLevelObjs lastObject];

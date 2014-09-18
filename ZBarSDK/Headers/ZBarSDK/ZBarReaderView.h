@@ -36,11 +36,6 @@
      didReadSymbols: (ZBarSymbolSet*) symbols
           fromImage: (UIImage*) image;
 
-@optional
-- (void) readerViewDidStart: (ZBarReaderView*) readerView;
-- (void) readerView: (ZBarReaderView*) readerView
-   didStopWithError: (NSError*) error;
-
 @end
 
 // read barcodes from the displayed video preview.  the view maintains
@@ -67,7 +62,7 @@
     UIPinchGestureRecognizer *pinch;
     CGFloat imageScale;
     CGSize imageSize;
-    BOOL started, running, locked;
+    BOOL started, running;
 }
 
 // supply a pre-configured image scanner.
