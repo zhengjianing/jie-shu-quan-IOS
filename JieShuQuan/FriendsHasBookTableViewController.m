@@ -190,7 +190,58 @@
     return cell;
 }
 
+#pragma mark - Borrow from friend
+
 - (IBAction)borrowFromFriend:(id)sender {
-    [AlertHelper showAlertWithMessage:@"借书" withAutoDismiss:YES target:self];
+    Class mailClass = (NSClassFromString(@"MFMailComposeViewController"));
+    
+    if (mailClass != nil && [mailClass canSendMail]) {
+        [self displayComposerSheet];
+    } else {
+        [self launchMailAppOnDevice];
+    }
+}
+
+- (void)displayComposerSheet
+{
+    MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
+    mailViewController.mailComposeDelegate = self;
+    [mailViewController setSubject:@"借书圈借书需求"];
+    [mailViewController setToRecipients:@[@"zhjn861112@163.com"]];
+    [mailViewController setMessageBody:@"你好，能否将这本书借给我？" isHTML:NO];
+    
+    [self presentViewController:mailViewController animated:YES completion:nil];
+}
+
+- (void)launchMailAppOnDevice
+{
+    NSString *recipients = @"mailto:zhjn861112@163.com&subject=借书圈借书需求";
+    NSString *body = @"&body=你好，能否将这本书借给我？";
+    NSString *email = [NSString stringWithFormat:@"%@%@", recipients, body];
+    email = [email stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
+    [[UIApplication sharedApplication] openURL: [NSURL URLWithString:email]];
+}
+
+#pragma mark - MFMailComposeViewControllerDelegate
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            break;
+        case MFMailComposeResultSaved:
+            [AlertHelper showAlertWithMessage:@"邮件发送取消" withAutoDismiss:YES target:self];
+            break;
+        case MFMailComposeResultSent:
+            [AlertHelper showAlertWithMessage:@"邮件保存成功" withAutoDismiss:YES target:self];
+            break;
+        case MFMailComposeResultFailed:
+            [AlertHelper showAlertWithMessage:@"邮件发送失败" withAutoDismiss:YES target:self];
+            break;
+        default:
+            break;
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

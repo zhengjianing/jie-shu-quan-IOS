@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "PreLoginView.h"
+#import <MessageUI/MessageUI.h>
 
 @class Book;
 
-@interface FriendsHasBookTableViewController : UITableViewController <PreLoginDelegate>
+@interface FriendsHasBookTableViewController : UITableViewController <PreLoginDelegate, MFMailComposeViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *bookImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
