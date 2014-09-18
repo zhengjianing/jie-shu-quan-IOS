@@ -13,6 +13,7 @@
 {
     NSMutableArray *searchResults;
 }
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 
 - (IBAction)startScan:(id)sender;
 

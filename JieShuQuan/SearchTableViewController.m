@@ -139,10 +139,47 @@
         break;
     }
     
-    NSString *barCode = symbol.data;
-    NSLog(@"---------- barcode:%@", barCode);
+    NSString *isbnCode = symbol.data;
+    if (isbnCode) {
+        [self startFetchingBookDetailFromDoubanWithIsbnCode:isbnCode];
+        [self startActivityIndicator];
+    } else {
+        [AlertHelper showAlertWithMessage:@"获取图书信息失败" withAutoDismiss:YES target:self];
+    }
     
     [reader dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)startFetchingBookDetailFromDoubanWithIsbnCode:(NSString *)isbnCode
+{
+    NSString *isbnUrlString = [NSString stringWithFormat:@"%@?apikey=%@", [kSearchIsbnCode stringByAppendingString:isbnCode], kAPIKey];
+    NSString* encodedUrl = [isbnUrlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    [JsonDataFetcher dataFromURL:[NSURL URLWithString:encodedUrl] withCompletion:^(NSData *jsonData) {
+        [_activityIndicator stopAnimating];
+
+        id object = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
+        if (object) {
+            Book *book = [DataConverter bookFromDoubanBookObject:object];
+            [self showBookDetailViewControllerForBook:book];
+        } else {
+            [AlertHelper showAlertWithMessage:@"获取图书信息失败" withAutoDismiss:YES target:self];
+        }
+    }];
+}
+
+- (void)showBookDetailViewControllerForBook:(Book *)book
+{
+//show detail view controller here
+}
+
+- (void)startActivityIndicator
+{
+    _activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(150, 170, 20, 20)];
+    _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+    _activityIndicator.hidesWhenStopped = YES;
+    [self.tableView addSubview:_activityIndicator];
+    [_activityIndicator startAnimating];
 }
 
 @end

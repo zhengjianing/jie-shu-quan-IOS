@@ -23,6 +23,7 @@
 + (Book *)bookFromServerBookObject:(id)object;
 + (Book *)bookFromStoreObject:(id)storedBook;
 + (void)setManagedObject:(id)object forBook:(Book *)book;
++ (Book *)bookFromDoubanBookObject:(id)object;
 
 // friends
 + (Friend *)friendFromStore:(id)object;
