@@ -115,4 +115,34 @@
     }
 }
 
+#pragma mark - zBar scanner
+
+- (IBAction)startScan:(id)sender
+{
+    ZBarReaderViewController *reader = [ZBarReaderViewController new];
+    reader.readerDelegate = self;
+    reader.supportedOrientationsMask = ZBarOrientationMaskAll;
+    
+    ZBarImageScanner *scanner = reader.scanner;
+    // EXAMPLE: disable rarely used I2/5 to improve performance
+    [scanner setSymbology: ZBAR_I25 config: ZBAR_CFG_ENABLE to: 0];
+    
+    [self presentViewController:reader animated:YES completion:nil];
+}
+
+- (void) imagePickerController: (UIImagePickerController*) reader didFinishPickingMediaWithInfo: (NSDictionary*) info
+{
+    id<NSFastEnumeration> results = [info objectForKey: ZBarReaderControllerResults];
+    ZBarSymbol *symbol = nil;
+    for(symbol in results) {
+        // EXAMPLE: just grab the first barcode
+        break;
+    }
+    
+    NSString *barCode = symbol.data;
+    NSLog(@"---------- barcode:%@", barCode);
+    
+    [reader dismissViewControllerAnimated:YES completion:nil];
+}
+
 @end

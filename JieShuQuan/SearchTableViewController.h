@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZBarSDK.h"
 
-@interface SearchTableViewController : UITableViewController <UISearchDisplayDelegate>
+@interface SearchTableViewController : UITableViewController <UISearchDisplayDelegate, ZBarReaderDelegate>
 {
     NSMutableArray *searchResults;
 }
+
+- (IBAction)startScan:(id)sender;
+
 @end
