@@ -27,5 +27,6 @@
 
 @property (strong, nonatomic) Book *book;
 @property (strong, nonatomic) NSMutableArray *friendsCellObject;
+@property (strong, nonatomic) UILabel *messageLable;
 
 @end

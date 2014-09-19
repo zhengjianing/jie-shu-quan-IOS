@@ -153,20 +153,28 @@
         if (responseObject) {
             [_myFriends removeAllObjects];
             [[FriendStore sharedStore] emptyFriendStoreForCurrentUser];
+            [self updateRefreshControl];
 
             NSArray *friendsArray = [responseObject valueForKey:@"friends"];
             
             if (friendsArray.count == 0) {
-                [ViewHelper showMessage:@"暂时没帮您找到同事，确认您使用企业邮箱注册，并向您的同事们推荐此应用" onView:self.view];
-            } else {
-                for (id item in friendsArray) {
-                    Friend *friend = [DataConverter friendFromServerFriendObject:item];
-                    [[FriendStore sharedStore] addFriendToStore:friend];
+                _messageLable = [ViewHelper createMessageLableWithMessage:@"暂时没帮您找到同事，确认您使用企业邮箱注册，并向您的同事们推荐此应用"];
+                [self.view addSubview:_messageLable];
+                return;
+            }
+            
+            for (id item in friendsArray) {
+                Friend *friend = [DataConverter friendFromServerFriendObject:item];
+                [[FriendStore sharedStore] addFriendToStore:friend];
+            }
+            [self loadFriendsFromStore];
+            
+            for (UIView *subview in self.view.subviews) {
+                if (subview == _messageLable) {
+                    [subview removeFromSuperview];
                 }
-                [self loadFriendsFromStore];
             }
             [self.tableView reloadData];
-            [self updateRefreshControl];
         }
     }];
 }

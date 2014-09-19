@@ -127,12 +127,14 @@
         [_activityIndicator stopAnimating];
 
         if ([(NSHTTPURLResponse *)response statusCode] == 404) {
-            [ViewHelper showMessage:@"没找到您的同事们，请确认您使用企业邮箱注册" onView:self.view];
+            _messageLable = [ViewHelper createMessageLableWithMessage:@"没找到您的同事们，请确认您使用企业邮箱注册"];
+            [self.view addSubview:_messageLable];
             return ;
         }
 
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-            [ViewHelper showMessage:@"更新失败，请稍后重试" onView:self.view];
+            _messageLable = [ViewHelper createMessageLableWithMessage:@"更新失败，请稍后重试"];
+            [self.view addSubview:_messageLable];
             return ;
         }
         
@@ -143,7 +145,8 @@
             NSArray *friendsArray = [responseObject valueForKey:@"friends"];
             
             if (friendsArray.count == 0) {
-                [ViewHelper showMessage:@"没有找到拥有此书的同事，请向更多的同事推荐此应用" onView:self.view];
+                _messageLable = [ViewHelper createMessageLableWithMessage:@"没有找到拥有此书的同事，请向更多的同事推荐此应用"];
+                [self.view addSubview:_messageLable];
                 return;
             }
             
@@ -153,6 +156,11 @@
                 [_friendsCellObject addObject:friendCellDict];
             }
             
+            for (UIView *subview in self.view.subviews) {
+                if (subview == _messageLable) {
+                    [subview removeFromSuperview];
+                }
+            }
             [self.tableView reloadData];
         }
     }];

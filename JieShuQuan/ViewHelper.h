@@ -11,6 +11,6 @@
 
 @interface ViewHelper : NSObject
 
-+ (void)showMessage:(NSString *)message onView:(UIView *)view;
++ (UILabel *)createMessageLableWithMessage:(NSString *)message;
 
 @end

@@ -85,7 +85,8 @@
         [_activityIndicator stopAnimating];
 
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-            [ViewHelper showMessage:@"更新失败" onView:self.view];
+            _messageLable = [ViewHelper createMessageLableWithMessage:@"更新失败"];
+            [self.view addSubview:_messageLable];
             return ;
         }
         
@@ -96,7 +97,8 @@
             NSArray *booksArray = [responseObject valueForKey:@"books"];
             
             if (booksArray.count == 0) {
-                [ViewHelper showMessage:@"该同事的书库暂时是空的" onView:self.view];
+                _messageLable = [ViewHelper createMessageLableWithMessage:@"该同事的书库暂时是空的"];
+                [self.view addSubview:_messageLable];
                 return;
             }
 
@@ -105,6 +107,11 @@
                 [_books addObject:book];
             }
             
+            for (UIView *subview in self.view.subviews) {
+                if (subview == _messageLable) {
+                    [subview removeFromSuperview];
+                }
+            }
             [self.tableView reloadData];
         }
     }];
