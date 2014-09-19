@@ -190,36 +190,49 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"%@", indexPath);
+    [tableView deselectRowAtIndexPath:indexPath animated:YES]; //add this line after setting indexPath
+}
+
 #pragma mark - Borrow from friend
 
 - (IBAction)borrowFromFriend:(id)sender {
+    
+    FriendHasBookTableViewCell *selectedCell = (FriendHasBookTableViewCell *)[[[sender superview] superview] superview];
+    NSString *name = selectedCell.friendNameLabel.text;
+    NSString *email = selectedCell.friendEmailLabel.text;
+    
+    
     Class mailClass = (NSClassFromString(@"MFMailComposeViewController"));
     
     if (mailClass != nil && [mailClass canSendMail]) {
-        [self displayComposerSheet];
+        [self displayComposerSheetWithName:name email:email];
     } else {
-        [self launchMailAppOnDevice];
+        [self launchMailToFriendWithName:name email:email];
     }
 }
 
-- (void)displayComposerSheet
+- (void)displayComposerSheetWithName:(NSString *)name email:(NSString *)email
 {
     MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
+    NSString *body = [NSString stringWithFormat:@"你好%@\n，能否将《%@》借给我？", name, _book.name];
     mailViewController.mailComposeDelegate = self;
     [mailViewController setSubject:@"借书圈借书需求"];
-    [mailViewController setToRecipients:@[@"zhjn861112@163.com"]];
-    [mailViewController setMessageBody:@"你好，能否将这本书借给我？" isHTML:NO];
+    [mailViewController setToRecipients:@[email]];
+    [mailViewController setMessageBody:body isHTML:NO];
     
     [self presentViewController:mailViewController animated:YES completion:nil];
 }
 
-- (void)launchMailAppOnDevice
+- (void)launchMailToFriendWithName:(NSString *)name email:(NSString *)email
 {
-    NSString *recipients = @"mailto:zhjn861112@163.com&subject=借书圈借书需求";
-    NSString *body = @"&body=你好，能否将这本书借给我？";
-    NSString *email = [NSString stringWithFormat:@"%@%@", recipients, body];
-    email = [email stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
-    [[UIApplication sharedApplication] openURL: [NSURL URLWithString:email]];
+    NSString *recipients = [NSString stringWithFormat:@"mailto:%@&subject=借书圈借书需求", email];
+    NSString *body = [NSString stringWithFormat:@"&body=你好%@\n，能否将《%@》借给我？", name, _book.name];
+    NSString *emailContent = [NSString stringWithFormat:@"%@%@", recipients, body];
+    emailContent = [emailContent stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
+    [[UIApplication sharedApplication] openURL: [NSURL URLWithString:emailContent]];
 }
 
 #pragma mark - MFMailComposeViewControllerDelegate
