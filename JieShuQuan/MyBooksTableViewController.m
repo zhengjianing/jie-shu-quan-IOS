@@ -97,6 +97,16 @@ static const NSString *kStatusNO = @"暂时不可借";
 - (void)loadBooksFromStore
 {
     _myBooks = [[[BookStore sharedStore] storedBooks] mutableCopy];
+    if (_myBooks.count > 0) {
+        for (UIView *subview in self.view.subviews) {
+            if (subview == _messageLable) {
+                [subview removeFromSuperview];
+            }
+        }
+    } else {
+        _messageLable = [ViewHelper createMessageLableWithMessage:@"您的书库暂时没书，您可以通过搜索来添加图书"];
+        [self.view addSubview:_messageLable];
+    }
 }
 
 #pragma mark - PreLoginView

@@ -86,6 +86,16 @@
 - (void)loadFriendsFromStore
 {
     _myFriends = [[[FriendStore sharedStore] storedFriends] mutableCopy];
+    if (_myFriends.count > 0) {
+        for (UIView *subview in self.view.subviews) {
+            if (subview == _messageLable) {
+                [subview removeFromSuperview];
+            }
+        }
+    } else {
+        _messageLable = [ViewHelper createMessageLableWithMessage:@"没有找到您的同事，请确保您使用企业邮箱注册，并向更多的同事推荐此应用"];
+        [self.view addSubview:_messageLable];
+    }
 }
 
 #pragma mark - PreLoginView
