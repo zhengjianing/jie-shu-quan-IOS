@@ -40,25 +40,23 @@
     [self removeUnneccessaryCells];
     
     _myFriendsTableView = self.tableView;
+    _loginController = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
     
-    UIStoryboard *mainStoryboard = self.storyboard;
-    _loginController = [mainStoryboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-
+    [self showCorrectView];
 }
 
-- (void)popSelfWhenLoggingOut
+- (void)showCorrectView
 {
-    [self.navigationController popToRootViewControllerAnimated:YES];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:YES];
     if ([UserManager isLogin]) {
         [self showTableView];
     } else {
         [self showPreLoginView];
     }
+}
+
+- (void)popSelfWhenLoggingOut
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)removeUnneccessaryCells
@@ -189,12 +187,6 @@
     }
 
     return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"%@", indexPath);
-    [tableView deselectRowAtIndexPath:indexPath animated:YES]; //add this line after setting indexPath
 }
 
 #pragma mark - Borrow from friend
