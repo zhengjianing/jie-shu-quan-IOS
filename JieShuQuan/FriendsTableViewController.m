@@ -36,13 +36,29 @@
 {
     [super viewDidLoad];
     
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchFriendsFromServer) name:@"RefreshData" object:nil];
+    
     _myFriendsTableView = self.tableView;
     UIStoryboard *mainStoryboard = self.storyboard;
     _loginController = [mainStoryboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
     
     [self addRefreshControll];
     [self removeUnneccessaryCells];
+    
     [self initActivityIndicator];
+    if ([UserManager isLogin]) {
+        [_activityIndicator startAnimating];
+        [self fetchFriendsFromServer];
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    if ([UserManager isLogin]) {
+        [self showTableView];
+    } else {
+        [self showPreLoginView];
+    }
 }
 
 - (void)removeUnneccessaryCells
@@ -60,15 +76,6 @@
     [self.tableView addSubview:_activityIndicator];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    if ([UserManager isLogin]) {
-        [self showTableView];
-    } else {
-        [self showPreLoginView];
-    }
-}
-
 - (void)showTableView
 {
     [self loadFriendsFromStore];
@@ -79,10 +86,6 @@
 - (void)loadFriendsFromStore
 {
     _myFriends = [[[FriendStore sharedStore] storedFriends] mutableCopy];
-    if (_myFriends.count == 0) {
-        [_activityIndicator startAnimating];
-        [self fetchFriendsFromServer];
-    }
 }
 
 #pragma mark - PreLoginView
@@ -140,12 +143,17 @@
 {
     NSMutableURLRequest *request = [RequestBuilder buildFetchFriendsRequestForUserId:[[UserManager currentUser] userId]];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        
+        [_refresh endRefreshing];
         [_activityIndicator stopAnimating];
 
+        if ([(NSHTTPURLResponse *)response statusCode] == 404) {
+            _messageLable = [ViewHelper createMessageLableWithMessage:@"没有找到您的同事，请确保您使用企业邮箱注册，并向更多的同事推荐此应用"];
+            [self.view addSubview:_messageLable];
+            return ;
+        }
+        
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
             [AlertHelper showAlertWithMessage:@"更新失败" withAutoDismiss:YES target:self];
-            [self endRefreshing];
             return ;
         }
         
@@ -153,7 +161,6 @@
         if (responseObject) {
             [_myFriends removeAllObjects];
             [[FriendStore sharedStore] emptyFriendStoreForCurrentUser];
-            [self updateRefreshControl];
 
             NSArray *friendsArray = [responseObject valueForKey:@"friends"];
             
@@ -191,20 +198,6 @@
 - (void)refreshView:(UIRefreshControl *)refresh
 {
     [self fetchFriendsFromServer];
-}
-
-- (void)updateRefreshControl
-{
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MMM d, h:mm a"];
-    NSString *lastUpdated = [NSString stringWithFormat:@"Last updated on %@",
-                             [formatter stringFromDate:[NSDate date]]];
-    _refresh.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdated];
-    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(endRefreshing) userInfo:nil repeats:NO];
-}
-
-- (void)endRefreshing {
-    [_refresh endRefreshing];
 }
 
 #pragma mark - Navigation

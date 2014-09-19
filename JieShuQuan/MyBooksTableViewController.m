@@ -45,7 +45,7 @@ static const NSString *kStatusNO = @"暂时不可借";
 {
     [super viewDidLoad];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchBooksFromServer) name:@"RefreshMyBooks" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchBooksFromServer) name:@"RefreshData" object:nil];
     
     _myBooksTableView = self.tableView;
     
@@ -60,9 +60,6 @@ static const NSString *kStatusNO = @"暂时不可借";
     if ([UserManager isLogin]) {
         [_activityIndicator startAnimating];
         [self fetchBooksFromServer];
-        [self showTableView];
-    } else {
-        [self showPreLoginView];
     }
 }
 
@@ -158,6 +155,7 @@ static const NSString *kStatusNO = @"暂时不可借";
     NSMutableURLRequest *request = [RequestBuilder buildFetchBooksRequestForUserId:[[UserManager currentUser] userId]];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         [_activityIndicator stopAnimating];
+        [_refresh endRefreshing];
 
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
             [AlertHelper showAlertWithMessage:@"更新失败" withAutoDismiss:YES target:self];
@@ -168,7 +166,6 @@ static const NSString *kStatusNO = @"暂时不可借";
         if (responseObject) {
             [_myBooks removeAllObjects];
             [[BookStore sharedStore] emptyBookStoreForCurrentUser];
-            [self updateRefreshControl];
 
             NSArray *booksArray = [responseObject valueForKey:@"books"];
             if (booksArray.count == 0) {
@@ -206,20 +203,6 @@ static const NSString *kStatusNO = @"暂时不可借";
 - (void)refreshView:(UIRefreshControl *)refresh
 {
     [self fetchBooksFromServer];
-}
-
-- (void)updateRefreshControl
-{
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MMM d, h:mm a"];
-    NSString *lastUpdated = [NSString stringWithFormat:@"Last updated on %@",
-                             [formatter stringFromDate:[NSDate date]]];
-    _refresh.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdated];
-    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(endRefreshing) userInfo:nil repeats:NO];
-}
-
-- (void)endRefreshing {
-    [_refresh endRefreshing];
 }
 
 #pragma mark - Navigation

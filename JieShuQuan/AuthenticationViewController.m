@@ -48,7 +48,7 @@
         [self.navigationController popToRootViewControllerAnimated:YES];
         
         // when login/Register succeeded, send notice to MyBooksViewController to fetch books from server
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshMyBooks" object:self];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshData" object:self];
     }
 }
 
