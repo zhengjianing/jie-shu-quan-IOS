@@ -127,7 +127,7 @@
         [_activityIndicator stopAnimating];
 
         if ([(NSHTTPURLResponse *)response statusCode] == 404) {
-            _messageLable = [ViewHelper createMessageLableWithMessage:@"没找到您的同事们，请确认您使用企业邮箱注册"];
+            _messageLable = [ViewHelper createMessageLableWithMessage:@"没有找到拥有此书的同事，请确保您使用企业邮箱注册，并向更多的同事推荐此应用"];
             [self.view addSubview:_messageLable];
             return ;
         }
