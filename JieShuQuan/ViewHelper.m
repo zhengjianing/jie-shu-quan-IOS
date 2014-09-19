@@ -12,9 +12,12 @@
 
 + (void)showMessage:(NSString *)message onView:(UIView *)view
 {
-    UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, 320, 200.0)];
+    UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 100, 220, 200.0)];
     messageLabel.text = message;
     messageLabel.textAlignment = UITextAlignmentCenter;
+    messageLabel.numberOfLines = 0;
+    messageLabel.font = [UIFont fontWithName:@"Arial" size:13.0f];
+    
     [view addSubview:messageLabel];
 }
 
