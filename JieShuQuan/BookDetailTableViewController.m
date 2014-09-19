@@ -77,6 +77,7 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     // set existence & availability status
     [self setLabelWithBookExistence:_existenceStatus];
     [self setLabelTextWithBookAvailability:_book.availability];
+    (_existenceStatus) ? [self enableAvailabilityArea] : [self disableAvailabilityArea];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -95,6 +96,15 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     _priceLabel.text = _book.price;
     _discriptionLabel.text = _book.description;
     _authorInfoLabel.text = _book.authorInfo;
+    
+    _changeAvailabilityButton.layer.cornerRadius = 5.0;
+    _changeAvailabilityButton.layer.borderWidth = 0.5;
+    _changeExistenceButton.layer.cornerRadius = 5.0;
+    _changeExistenceButton.layer.borderWidth = 0.5;
+    
+    UIColor *buttonColor = [UIColor orangeColor];
+    _changeExistenceButton.layer.borderColor = buttonColor.CGColor;
+    [_changeExistenceButton setTitleColor:buttonColor forState:UIControlStateNormal];
 }
 
 - (BOOL)alreadyHasBook
@@ -119,6 +129,7 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
         [_changeExistenceButton setTitle:(NSString *)kAddToMyBook forState:UIControlStateNormal];
     }
 }
+
 - (void)setLabelTextWithBookAvailability:(BOOL)availability
 {
     if (availability == YES) {
@@ -132,16 +143,18 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
 
 - (void)disableAvailabilityArea
 {
+    UIColor *color = [UIColor lightGrayColor];
     [_changeAvailabilityButton setEnabled:NO];
-    [_changeAvailabilityButton setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
-    [_availabilityLabel setTextColor:[UIColor grayColor]];
+    _changeAvailabilityButton.layer.borderColor = color.CGColor;
+    [_changeAvailabilityButton setTitleColor:color forState:UIControlStateDisabled];
 }
 
 - (void)enableAvailabilityArea
 {
+    UIColor *color = [UIColor orangeColor];
     [_changeAvailabilityButton setEnabled:YES];
-    [_changeAvailabilityButton setTitleColor:[UIColor blueColor] forState:UIControlStateDisabled];
-    [_availabilityLabel setTextColor:[UIColor blackColor]];
+    _changeAvailabilityButton.layer.borderColor = color.CGColor;
+    [_changeAvailabilityButton setTitleColor:color forState:UIControlStateNormal];
 }
 
 #pragma mark - changed existence and availability
@@ -241,9 +254,9 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
         [[BookStore sharedStore] deleteBookFromStore:_book];
         [[UserStore sharedStore] decreseBookCountForUser:[[UserManager currentUser] userId]];
         
-        [self disableAvailabilityArea];
         [self setLabelWithBookExistence:NO];
         [self setLabelTextWithBookAvailability:NO];
+        [self disableAvailabilityArea];
     }];
 }
 

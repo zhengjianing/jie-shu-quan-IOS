@@ -17,9 +17,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
    
 //    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
-//    UIImage *image = [UIImage imageNamed:@"bg-1.jpg"];
+//    UIImage *image = [UIImage imageNamed:@"bg-pink.jpg"];
 //    [[UINavigationBar appearance] setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
-   
+//    [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
     return YES;
 }
 

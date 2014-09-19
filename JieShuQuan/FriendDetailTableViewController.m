@@ -30,19 +30,12 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(popSelfWhenLoggingOut) name:@"popSubViewControllers" object:nil];
     
-    [self setFriendInfoBackgroundImage];
     [self removeUnneccessaryCells];
     [self configureFriendInfoView];
     [self initActivityIndicator];
     
     [self loadBooksForFriend];
     [self.tableView reloadData];
-}
-
-- (void)setFriendInfoBackgroundImage
-{
-    UIColor *backgroundImage = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"bg-1.jpg"]];
-    _friendInfoView.backgroundColor = backgroundImage;
 }
 
 - (void)popSelfWhenLoggingOut
@@ -62,6 +55,8 @@
     _friendNameLabel.text = _friend.friendName;
     _friendBookCountLabel.text = _friend.bookCount;
     _friendEmailLabel.text = _friend.friendEmail;
+    
+    
 }
 
 - (void)initActivityIndicator
@@ -123,18 +118,25 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FriendBookTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"friendBookIdentifier" forIndexPath:indexPath];
-    
+       
     Book *book = [_books objectAtIndex:indexPath.row];
     
     [cell.bookImageView sd_setImageWithURL:[NSURL URLWithString:book.imageHref]];
     cell.bookNameLabel.text = book.name;
     cell.authorsLabel.text = book.authors;
+
+    cell.borrowButton.layer.cornerRadius = 5.0;
+    cell.borrowButton.layer.borderWidth = 0.5;
     
     if (book.availability == NO) {
         cell.availabilityLabel.text = @"暂时不可借";
         [cell.borrowButton setEnabled:NO];
+        cell.borrowButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        [cell.borrowButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
     } else {
         cell.availabilityLabel.text = @"可借";
+        cell.borrowButton.layer.borderColor = [UIColor orangeColor].CGColor;
+        [cell.borrowButton setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
     }
     
     return cell;

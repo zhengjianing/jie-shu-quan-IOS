@@ -38,7 +38,6 @@
     [self initActivityIndicator];
     [self configureBookInfoView];
     [self removeUnneccessaryCells];
-    [self setFriendInfoBackgroundImage];
     
     _myFriendsTableView = self.tableView;
     _loginController = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
@@ -65,12 +64,6 @@
     UIView *view = [UIView new];
     view.backgroundColor = [UIColor clearColor];
     [self.tableView setTableFooterView:view];
-}
-
-- (void)setFriendInfoBackgroundImage
-{
-    UIColor *backgroundImage = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"bg-1.jpg"]];
-    _bookDetailView.backgroundColor = backgroundImage;
 }
 
 - (void)initActivityIndicator
@@ -189,8 +182,16 @@
     cell.friendEmailLabel.text = friend.friendEmail;
     cell.friendBookAvailibilityLabel.text = (availability == 0) ? @"暂时不可借" : @"可借";
     
+    cell.borrowButton.layer.cornerRadius = 5.0;
+    cell.borrowButton.layer.borderWidth = 0.5;
+    
     if (availability ==0) {
+        cell.borrowButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        [cell.borrowButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
         [cell.borrowButton setEnabled:NO];
+    } else {
+        cell.borrowButton.layer.borderColor = [UIColor orangeColor].CGColor;
+        [cell.borrowButton setTitleColor:[UIColor orangeColor] forState:UIControlStateDisabled];
     }
 
     return cell;
