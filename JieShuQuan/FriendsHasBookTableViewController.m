@@ -218,7 +218,7 @@
             [AlertHelper showAlertWithMessage:@"邮件发送取消" withAutoDismiss:YES target:self];
             break;
         case MFMailComposeResultSent:
-            [AlertHelper showAlertWithMessage:@"邮件保存成功" withAutoDismiss:YES target:self];
+            [AlertHelper showAlertWithMessage:@"邮件发送成功" withAutoDismiss:YES target:self];
             break;
         case MFMailComposeResultFailed:
             [AlertHelper showAlertWithMessage:@"邮件发送失败" withAutoDismiss:YES target:self];
