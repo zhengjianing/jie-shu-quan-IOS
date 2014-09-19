@@ -17,6 +17,7 @@
 #import "Friend.h"
 #import "DataConverter.h"
 #import "LoginViewController.h"
+#import "MailManager.h"
 
 @interface FriendsHasBookTableViewController ()
 
@@ -201,38 +202,16 @@
 - (IBAction)borrowFromFriend:(id)sender {
     
     FriendHasBookTableViewCell *selectedCell = (FriendHasBookTableViewCell *)[[[sender superview] superview] superview];
-    NSString *name = selectedCell.friendNameLabel.text;
-    NSString *email = selectedCell.friendEmailLabel.text;
-    
+    NSString *toName = selectedCell.friendNameLabel.text;
+    NSString *toEmailAddress = selectedCell.friendEmailLabel.text;
     
     Class mailClass = (NSClassFromString(@"MFMailComposeViewController"));
     
     if (mailClass != nil && [mailClass canSendMail]) {
-        [self displayComposerSheetWithName:name email:email];
+        [MailManager displayComposerSheetToName:toName toEmailAddress:toEmailAddress forBook:_book.name delegate:self];
     } else {
-        [self launchMailToFriendWithName:name email:email];
+        [MailManager launchMailToName:toName toEmailAddress:toEmailAddress forBook:_book.name];
     }
-}
-
-- (void)displayComposerSheetWithName:(NSString *)name email:(NSString *)email
-{
-    MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
-    NSString *body = [NSString stringWithFormat:@"你好%@\n，能否将《%@》借给我？", name, _book.name];
-    mailViewController.mailComposeDelegate = self;
-    [mailViewController setSubject:@"借书圈借书需求"];
-    [mailViewController setToRecipients:@[email]];
-    [mailViewController setMessageBody:body isHTML:NO];
-    
-    [self presentViewController:mailViewController animated:YES completion:nil];
-}
-
-- (void)launchMailToFriendWithName:(NSString *)name email:(NSString *)email
-{
-    NSString *recipients = [NSString stringWithFormat:@"mailto:%@&subject=借书圈借书需求", email];
-    NSString *body = [NSString stringWithFormat:@"&body=你好%@\n，能否将《%@》借给我？", name, _book.name];
-    NSString *emailContent = [NSString stringWithFormat:@"%@%@", recipients, body];
-    emailContent = [emailContent stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
-    [[UIApplication sharedApplication] openURL: [NSURL URLWithString:emailContent]];
 }
 
 #pragma mark - MFMailComposeViewControllerDelegate
