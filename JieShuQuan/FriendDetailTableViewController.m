@@ -160,22 +160,6 @@
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
-    switch (result)
-    {
-        case MFMailComposeResultCancelled:
-            break;
-        case MFMailComposeResultSaved:
-            [AlertHelper showAlertWithMessage:@"邮件发送取消，已保存至草稿箱" withAutoDismiss:YES target:self];
-            break;
-        case MFMailComposeResultSent:
-            [AlertHelper showAlertWithMessage:@"邮件发送成功" withAutoDismiss:YES target:self];
-            break;
-        case MFMailComposeResultFailed:
-            [AlertHelper showAlertWithMessage:@"邮件发送失败" withAutoDismiss:YES target:self];
-            break;
-        default:
-            break;
-    }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
