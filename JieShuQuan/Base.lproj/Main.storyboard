@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pdy-qY-d6V">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
     </dependencies>
     <scenes>
@@ -57,7 +56,9 @@
                             <outlet property="delegate" destination="n64-PA-4UG" id="Mlj-wb-6z7"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="我的书库" id="YXD-6g-JdC"/>
+                    <navigationItem key="navigationItem" title="我的书库" id="YXD-6g-JdC">
+                        <barButtonItem key="backBarButtonItem" title=" " id="vQL-tY-OkD"/>
+                    </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="480"/>
                 </tableViewController>
@@ -139,6 +140,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="搜索" id="yOs-PC-sR5">
+                        <barButtonItem key="backBarButtonItem" title=" " id="KXU-gm-1nr"/>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="9lb-ew-Poj">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="VGL-mm-YDO">
                                 <rect key="frame" x="-23" y="-15" width="71" height="30"/>
@@ -320,7 +322,9 @@
                             <outlet property="delegate" destination="FfH-su-ht3" id="ISe-gd-J3k"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="更多" id="gdR-rV-rB5"/>
+                    <navigationItem key="navigationItem" title="更多" id="gdR-rV-rB5">
+                        <barButtonItem key="backBarButtonItem" title=" " id="VS4-iA-pC1"/>
+                    </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="480"/>
                     <connections>
@@ -570,7 +574,9 @@
                             <outlet property="delegate" destination="wYj-Ro-ejx" id="rce-1E-kdv"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="书的详情" id="rCI-dL-W1d"/>
+                    <navigationItem key="navigationItem" title="书的详情" id="rCI-dL-W1d">
+                        <barButtonItem key="backBarButtonItem" title=" " id="6oR-6J-4DU"/>
+                    </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="480"/>
                     <connections>
@@ -662,7 +668,7 @@
                                     <rect key="frame" x="20" y="20" width="70" height="95"/>
                                 </imageView>
                             </subviews>
-                            <color key="backgroundColor" red="0.53531128579999998" green="0.57906681169999996" blue="1" alpha="0.47999999999999998" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="0.64000000000000001" colorSpace="calibratedRGB"/>
                         </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="bookDetailCell" rowHeight="90" id="kGi-Bj-ECC" customClass="FriendHasBookTableViewCell">
@@ -716,11 +722,14 @@
                             <outlet property="delegate" destination="hqg-H5-Ndq" id="JzJ-QK-CWy"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="谁有此书" id="5K8-g1-gnV"/>
+                    <navigationItem key="navigationItem" title="谁有此书" id="5K8-g1-gnV">
+                        <barButtonItem key="backBarButtonItem" title=" " id="Hy8-1q-nhx"/>
+                    </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="480"/>
                     <connections>
                         <outlet property="authorsLabel" destination="jBt-u7-agG" id="pv5-zm-w49"/>
+                        <outlet property="bookDetailView" destination="mjB-N4-oR2" id="KQx-RR-0EV"/>
                         <outlet property="bookImageView" destination="vtb-qc-6IS" id="0LG-zK-cDv"/>
                         <outlet property="nameLabel" destination="kRl-Qo-8jj" id="tUY-f2-0QT"/>
                         <outlet property="priceLabel" destination="q61-Ln-MnG" id="bzY-3Z-uWg"/>
@@ -790,7 +799,9 @@
                             <outlet property="delegate" destination="9Ry-Aw-nmg" id="rTV-1o-FQb"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="同事们" id="DW3-f6-YAy"/>
+                    <navigationItem key="navigationItem" title="同事们" id="DW3-f6-YAy">
+                        <barButtonItem key="backBarButtonItem" title=" " id="Q3I-YV-Xga"/>
+                    </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="480"/>
                 </tableViewController>
@@ -817,29 +828,28 @@
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ToU-sn-hUz">
                                     <rect key="frame" x="15" y="50" width="90" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="20" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xw9-TO-m0h">
                                     <rect key="frame" x="125" y="20" width="16" height="20"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="本" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P3F-dz-xm0">
                                     <rect key="frame" x="142" y="20" width="14" height="20"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="email@email.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y2f-kg-2uG">
                                     <rect key="frame" x="125" y="52" width="150" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" red="0.53849207595119497" green="0.60000002384185791" blue="0.56196950926640221" alpha="1" colorSpace="calibratedRGB"/>
                             <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
                         <prototypes>
@@ -893,7 +903,9 @@
                             <outlet property="delegate" destination="NGy-vG-aIx" id="pnN-N3-X6X"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Ta的书" id="USB-rW-wAo"/>
+                    <navigationItem key="navigationItem" title="Ta的书" id="USB-rW-wAo">
+                        <barButtonItem key="backBarButtonItem" title=" " id="Agt-Pj-jsj"/>
+                    </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="480"/>
                     <connections>
@@ -987,7 +999,9 @@
                             <action selector="loginViewTouchDown:" destination="EyL-5w-TnI" eventType="touchDown" id="LVk-Pd-UGP"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" id="qZn-AN-OLd"/>
+                    <navigationItem key="navigationItem" id="qZn-AN-OLd">
+                        <barButtonItem key="backBarButtonItem" title=" " id="Doz-9X-RGV"/>
+                    </navigationItem>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
@@ -1060,7 +1074,9 @@
                             <action selector="registerViewTouchDown:" destination="LVk-ys-koe" eventType="touchDown" id="Kav-xy-jO4"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" id="1kG-C5-Mp6"/>
+                    <navigationItem key="navigationItem" id="1kG-C5-Mp6">
+                        <barButtonItem key="backBarButtonItem" title=" " id="o7G-aZ-GrM"/>
+                    </navigationItem>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
@@ -1084,7 +1100,7 @@
                     </tabBarItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="480"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rJe-Wq-7uI">
+                    <navigationBar key="navigationBar" alpha="0.0" contentMode="scaleToFill" id="rJe-Wq-7uI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

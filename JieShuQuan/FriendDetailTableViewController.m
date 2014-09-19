@@ -30,12 +30,19 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(popSelfWhenLoggingOut) name:@"popSubViewControllers" object:nil];
     
+    [self setFriendInfoBackgroundImage];
     [self removeUnneccessaryCells];
     [self configureFriendInfoView];
     [self initActivityIndicator];
     
     [self loadBooksForFriend];
     [self.tableView reloadData];
+}
+
+- (void)setFriendInfoBackgroundImage
+{
+    UIColor *backgroundImage = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"bg-1.jpg"]];
+    _friendInfoView.backgroundColor = backgroundImage;
 }
 
 - (void)popSelfWhenLoggingOut

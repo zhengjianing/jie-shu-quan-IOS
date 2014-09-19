@@ -46,6 +46,7 @@
 		94E3EA3C19C7069F00C38FEB /* FriendStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E3EA3B19C7069F00C38FEB /* FriendStore.m */; };
 		94E5039419BAF98E004CEBC6 /* UserStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E5039319BAF98E004CEBC6 /* UserStore.m */; };
 		94E9807E19CBE0CD00C7C1ED /* MailManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E9807D19CBE0CD00C7C1ED /* MailManager.m */; };
+		94E9809A19CC3E8600C7C1ED /* bg-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 94E9809719CC3E8600C7C1ED /* bg-1.jpg */; };
 		94F2BF5619B1DE8D0053711F /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 94F2BF5519B1DE8D0053711F /* search.png */; };
 		9737040B19CB38B0008949FB /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 973703EC19CB38B0008949FB /* .gitignore */; };
 		9737040D19CB38B0008949FB /* README in Resources */ = {isa = PBXBuildFile; fileRef = 9737040519CB38B0008949FB /* README */; };
@@ -143,6 +144,7 @@
 		94E5039319BAF98E004CEBC6 /* UserStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserStore.m; sourceTree = "<group>"; };
 		94E9807C19CBE0CD00C7C1ED /* MailManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailManager.h; sourceTree = "<group>"; };
 		94E9807D19CBE0CD00C7C1ED /* MailManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailManager.m; sourceTree = "<group>"; };
+		94E9809719CC3E8600C7C1ED /* bg-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg-1.jpg"; sourceTree = "<group>"; };
 		94F2BF5519B1DE8D0053711F /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		973703EC19CB38B0008949FB /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		973703F019CB38B0008949FB /* Decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decoder.h; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 		9471DBEC19A5837700F1A291 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				94E9809719CC3E8600C7C1ED /* bg-1.jpg */,
 				94805CBD19CB1CA300CD762A /* app-icon.jpeg */,
 				94BB40C219C33CB3005BBD8E /* bg.jpeg */,
 				94BB40B619C33770005BBD8E /* log-in-user.png */,
@@ -658,6 +661,7 @@
 				9737040D19CB38B0008949FB /* README in Resources */,
 				94F2BF5619B1DE8D0053711F /* search.png in Resources */,
 				94BB40B819C33770005BBD8E /* log-in-user.png in Resources */,
+				94E9809A19CC3E8600C7C1ED /* bg-1.jpg in Resources */,
 				9471DC2219A5B95A00F1A291 /* myBooks.png in Resources */,
 				9471DC2419A5B97800F1A291 /* user.png in Resources */,
 				9471DBFD19A5837700F1A291 /* Images.xcassets in Resources */,

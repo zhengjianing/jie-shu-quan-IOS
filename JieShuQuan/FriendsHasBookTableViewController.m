@@ -38,6 +38,7 @@
     [self initActivityIndicator];
     [self configureBookInfoView];
     [self removeUnneccessaryCells];
+    [self setFriendInfoBackgroundImage];
     
     _myFriendsTableView = self.tableView;
     _loginController = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
@@ -64,6 +65,12 @@
     UIView *view = [UIView new];
     view.backgroundColor = [UIColor clearColor];
     [self.tableView setTableFooterView:view];
+}
+
+- (void)setFriendInfoBackgroundImage
+{
+    UIColor *backgroundImage = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"bg-1.jpg"]];
+    _bookDetailView.backgroundColor = backgroundImage;
 }
 
 - (void)initActivityIndicator
