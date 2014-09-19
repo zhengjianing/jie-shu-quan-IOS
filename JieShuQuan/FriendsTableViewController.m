@@ -18,6 +18,7 @@
 #import "AlertHelper.h"
 #import "FriendStore.h"
 #import "DataConverter.h"
+#import "ViewHelper.h"
 
 @interface FriendsTableViewController ()
 
@@ -156,7 +157,7 @@
             NSArray *friendsArray = [responseObject valueForKey:@"friends"];
             
             if (friendsArray.count == 0) {
-                [AlertHelper showAlertWithMessage:@"暂时没帮您找到同事，确认您使用企业邮箱注册，并向您的同事们推荐此应用" withAutoDismiss:NO target:self];
+                [ViewHelper showMessage:@"暂时没帮您找到同事，确认您使用企业邮箱注册，并向您的同事们推荐此应用" onView:self.view];
             } else {
                 for (id item in friendsArray) {
                     Friend *friend = [DataConverter friendFromServerFriendObject:item];

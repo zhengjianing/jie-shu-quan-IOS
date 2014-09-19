@@ -18,6 +18,7 @@
 #import "DataConverter.h"
 #import "LoginViewController.h"
 #import "MailManager.h"
+#import "ViewHelper.h"
 
 @interface FriendsHasBookTableViewController ()
 
@@ -126,12 +127,12 @@
         [_activityIndicator stopAnimating];
 
         if ([(NSHTTPURLResponse *)response statusCode] == 404) {
-            [AlertHelper showAlertWithMessage:@"没找到您的同事们，请确认您使用企业邮箱注册" withAutoDismiss:NO target:self];
+            [ViewHelper showMessage:@"没找到您的同事们，请确认您使用企业邮箱注册" onView:self.view];
             return ;
         }
 
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-            [AlertHelper showAlertWithMessage:@"更新失败" withAutoDismiss:YES target:self];
+            [ViewHelper showMessage:@"更新失败，请稍后重试" onView:self.view];
             return ;
         }
         
@@ -142,7 +143,7 @@
             NSArray *friendsArray = [responseObject valueForKey:@"friends"];
             
             if (friendsArray.count == 0) {
-                [AlertHelper showAlertWithMessage:@"没有找到拥有此书的同事，请向更多的同事推荐此应用" withAutoDismiss:NO target:self];
+                [ViewHelper showMessage:@"没有找到拥有此书的同事，请向更多的同事推荐此应用" onView:self.view];
                 return;
             }
             

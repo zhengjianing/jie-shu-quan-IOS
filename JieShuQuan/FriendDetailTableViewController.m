@@ -17,6 +17,7 @@
 #import "AlertHelper.h"
 #import "DataConverter.h"
 #import "MailManager.h"
+#import "ViewHelper.h"
 
 @interface FriendDetailTableViewController ()
 
@@ -84,7 +85,7 @@
         [_activityIndicator stopAnimating];
 
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-            [AlertHelper showAlertWithMessage:@"更新失败" withAutoDismiss:YES target:self];
+            [ViewHelper showMessage:@"更新失败" onView:self.view];
             return ;
         }
         
@@ -93,6 +94,12 @@
             [_books removeAllObjects];
             
             NSArray *booksArray = [responseObject valueForKey:@"books"];
+            
+            if (booksArray.count == 0) {
+                [ViewHelper showMessage:@"该同事的书库暂时是空的" onView:self.view];
+                return;
+            }
+
             for (id bookItem in booksArray) {
                 Book *book = [DataConverter bookFromServerBookObject:bookItem];
                 [_books addObject:book];

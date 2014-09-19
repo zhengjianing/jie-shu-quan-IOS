@@ -21,6 +21,7 @@
 #import "User.h"
 #import "RequestBuilder.h"
 #import "DataConverter.h"
+#import "ViewHelper.h"
 
 
 static const NSString *kStatusYES = @"可借";
@@ -170,7 +171,7 @@ static const NSString *kStatusNO = @"暂时不可借";
             
             NSArray *booksArray = [responseObject valueForKey:@"books"];
             if (booksArray.count == 0) {
-                [AlertHelper showAlertWithMessage:@"您的书库暂时没书，您可以通过搜索来添加图书" withAutoDismiss:NO target:self];
+                [ViewHelper showMessage:@"您的书库暂时没书，您可以通过搜索来添加图书" onView:self.view];
             } else {
                 for (id item in booksArray) {
                     Book *book = [DataConverter bookFromServerBookObject:item];
