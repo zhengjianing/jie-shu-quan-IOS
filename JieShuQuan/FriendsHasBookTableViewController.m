@@ -192,7 +192,6 @@
 #pragma mark - Borrow from friend
 
 - (IBAction)borrowFromFriend:(id)sender {
-    
     FriendHasBookTableViewCell *selectedCell = (FriendHasBookTableViewCell *)[[[sender superview] superview] superview];
     NSString *toName = selectedCell.friendNameLabel.text;
     NSString *toEmailAddress = selectedCell.friendEmailLabel.text;

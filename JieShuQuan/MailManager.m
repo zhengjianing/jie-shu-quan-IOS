@@ -12,7 +12,7 @@
 #import "User.h"
 
 static const NSString *kBorrowBookSubject = @"借书圈借书需求";
-static const NSString *kBorrowBookBody = @"你好，%@\n\n能否将《%@》借给我？谢谢\n\n%@";
+static const NSString *kBorrowBookBody = @"你好，%@\n\n能否将《%@》借给我看看？谢谢\n\n%@";
 
 @implementation MailManager
 
