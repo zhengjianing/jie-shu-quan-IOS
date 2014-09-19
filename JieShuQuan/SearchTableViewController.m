@@ -135,63 +135,63 @@
 
 - (IBAction)startScan:(id)sender
 {
-    ZBarReaderViewController *reader = [ZBarReaderViewController new];
-    reader.readerDelegate = self;
-    reader.supportedOrientationsMask = ZBarOrientationMaskAll;
-    
-    ZBarImageScanner *scanner = reader.scanner;
-    // EXAMPLE: disable rarely used I2/5 to improve performance
-    [scanner setSymbology: ZBAR_I25 config: ZBAR_CFG_ENABLE to: 0];
-    
-    [self presentViewController:reader animated:YES completion:nil];
+//    ZBarReaderViewController *reader = [ZBarReaderViewController new];
+//    reader.readerDelegate = self;
+//    reader.supportedOrientationsMask = ZBarOrientationMaskAll;
+//    
+//    ZBarImageScanner *scanner = reader.scanner;
+//    // EXAMPLE: disable rarely used I2/5 to improve performance
+//    [scanner setSymbology: ZBAR_I25 config: ZBAR_CFG_ENABLE to: 0];
+//    
+//    [self presentViewController:reader animated:YES completion:nil];
 }
 
-- (void) imagePickerController: (UIImagePickerController*) reader didFinishPickingMediaWithInfo: (NSDictionary*) info
-{
-    id<NSFastEnumeration> results = [info objectForKey: ZBarReaderControllerResults];
-    ZBarSymbol *symbol = nil;
-    for(symbol in results) {
-        // EXAMPLE: just grab the first barcode
-        break;
-    }
-    
-    NSString *isbnCode = symbol.data;
-    if (isbnCode) {
-        [self startFetchingBookDetailFromDoubanWithIsbnCode:isbnCode];
-        [self startActivityIndicator];
-    } else {
-        [AlertHelper showAlertWithMessage:@"获取图书信息失败" withAutoDismiss:YES target:self];
-    }
-    
-    [reader dismissViewControllerAnimated:YES completion:nil];
-}
+//- (void) imagePickerController: (UIImagePickerController*) reader didFinishPickingMediaWithInfo: (NSDictionary*) info
+//{
+//    id<NSFastEnumeration> results = [info objectForKey: ZBarReaderControllerResults];
+//    ZBarSymbol *symbol = nil;
+//    for(symbol in results) {
+//        // EXAMPLE: just grab the first barcode
+//        break;
+//    }
+//    
+//    NSString *isbnCode = symbol.data;
+//    if (isbnCode) {
+////        [self startFetchingBookDetailFromDoubanWithIsbnCode:isbnCode];
+//        [self startActivityIndicator];
+//    } else {
+//        [AlertHelper showAlertWithMessage:@"获取图书信息失败" withAutoDismiss:YES target:self];
+//    }
+//    
+//    [reader dismissViewControllerAnimated:YES completion:nil];
+//}
 
-- (void)startFetchingBookDetailFromDoubanWithIsbnCode:(NSString *)isbnCode
-{
-    NSString *isbnUrlString = [NSString stringWithFormat:@"%@?apikey=%@", [kSearchIsbnCode stringByAppendingString:isbnCode], kAPIKey];
-    NSString* encodedUrl = [isbnUrlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
-    [JsonDataFetcher dataFromURL:[NSURL URLWithString:encodedUrl] withCompletion:^(NSData *jsonData) {
-        [_activityIndicator stopAnimating];
-
-        id object = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
-        if (object) {
-            Book *book = [DataConverter bookFromDoubanBookObject:object];
-            [self showBookDetailViewControllerForBook:book];
-        } else {
-            [AlertHelper showAlertWithMessage:@"获取图书信息失败" withAutoDismiss:YES target:self];
-        }
-    }];
-}
-
-- (void)showBookDetailViewControllerForBook:(Book *)book
-{
-    UIStoryboard *mainStoryboard = self.storyboard;
-    BookDetailTableViewController *bookDetailTableViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"BookDetailViewController"];
-
-    [bookDetailTableViewController setBook:book];
-    [self.navigationController pushViewController:bookDetailTableViewController animated:YES];
-}
+//- (void)startFetchingBookDetailFromDoubanWithIsbnCode:(NSString *)isbnCode
+//{
+//    NSString *isbnUrlString = [NSString stringWithFormat:@"%@?apikey=%@", [kSearchIsbnCode stringByAppendingString:isbnCode], kAPIKey];
+//    NSString* encodedUrl = [isbnUrlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//    
+//    [JsonDataFetcher dataFromURL:[NSURL URLWithString:encodedUrl] withCompletion:^(NSData *jsonData) {
+//        [_activityIndicator stopAnimating];
+//
+//        id object = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
+//        if (object) {
+//            Book *book = [DataConverter bookFromDoubanBookObject:object];
+//            [self showBookDetailViewControllerForBook:book];
+//        } else {
+//            [AlertHelper showAlertWithMessage:@"获取图书信息失败" withAutoDismiss:YES target:self];
+//        }
+//    }];
+//}
+//
+//- (void)showBookDetailViewControllerForBook:(Book *)book
+//{
+//    UIStoryboard *mainStoryboard = self.storyboard;
+//    BookDetailTableViewController *bookDetailTableViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"BookDetailViewController"];
+//
+//    [bookDetailTableViewController setBook:book];
+//    [self.navigationController pushViewController:bookDetailTableViewController animated:YES];
+//}
 
 - (void)startActivityIndicator
 {
