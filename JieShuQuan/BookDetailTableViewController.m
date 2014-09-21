@@ -32,13 +32,16 @@ static const NSString *kExistNO = @"书库没有";
 static const NSString *kAddToMyBook = @"添加至书库";
 static const NSString *kDeleteFromMyBook = @"从书库移除";
 
+#define kLabelFont [UIFont systemFontOfSize:12]
+#define kLabelWidth 290
+
+
 @interface BookDetailTableViewController ()
 {
     UIActionSheet *availabilitySheet;
     UIActionSheet *deleteSheet;
     UIActionSheet *addSheet;
 }
-
 @end
 
 @implementation BookDetailTableViewController
@@ -47,6 +50,7 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
 {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(popSelfWhenLoggingOut) name:@"popSubViewControllers" object:nil];
+    self.tabBarController.tabBar.hidden = YES;
     [self initActivityIndicator];
 }
 
@@ -94,8 +98,9 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     _publisherLabel.text = _book.publisher;
     _publishDateLabel.text = _book.publishDate;
     _priceLabel.text = _book.price;
-    _discriptionLabel.text = _book.description;
-    _authorInfoLabel.text = _book.authorInfo;
+    
+    _descriptionLabel.text = _book.description;
+    _authorInfoLabel.text = _book.description;
     
     _changeAvailabilityButton.layer.cornerRadius = 5.0;
     _changeAvailabilityButton.layer.borderWidth = 0.5;
@@ -105,6 +110,7 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     UIColor *buttonColor = [UIColor orangeColor];
     _changeExistenceButton.layer.borderColor = buttonColor.CGColor;
     [_changeExistenceButton setTitleColor:buttonColor forState:UIControlStateNormal];
+    
 }
 
 - (BOOL)alreadyHasBook
@@ -188,11 +194,14 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
 
 - (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex
 {
+    [_activityIndicator startAnimating];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
     if (buttonIndex == 1) {
         return;
     }
-    
-    [_activityIndicator startAnimating];
     
     NSString *user_id = [[UserManager currentUser] userId];
     NSString *access_token = [[UserManager currentUser] accessToken];
@@ -212,71 +221,73 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     }
 }
 
+- (NSData *)dataFromSynchronousRequest:(NSURLRequest *)request
+{
+    NSHTTPURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    if ([response statusCode] != 200) {
+        if ([request.URL.absoluteString isEqualToString:kAddBookURL]) {
+            [AlertHelper showAlertWithMessage:@"添加图书失败" withAutoDismiss:YES target:self];
+        }
+        if ([request.URL.absoluteString isEqualToString:kDeleteBookURL])
+        {
+            [AlertHelper showAlertWithMessage:@"删除图书失败" withAutoDismiss:YES target:self];
+        }
+        if ([request.URL.absoluteString isEqualToString:kChangeBookStatusURL])
+        {
+            [AlertHelper showAlertWithMessage:@"修改图书状态失败" withAutoDismiss:YES target:self];
+        }
+    }
+    return data;
+}
+
 #pragma mark - configure NSURLConnections
 
 - (void)postAddBookRequestWithBook:(Book *)book available:(BOOL)available userId:(NSString *)userId accessToke:(NSString *)accessToke
 {
     NSMutableURLRequest *addBookRequest = [RequestBuilder buildAddBookRequestWithBook:book available:NO userId:userId accessToke:accessToke];
-    
-    [NSURLConnection sendAsynchronousRequest:addBookRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        
-        [_activityIndicator stopAnimating];
-
-        if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-            [AlertHelper showAlertWithMessage:@"添加图书失败" withAutoDismiss:YES target:self];
-            return;
-        }
-        
+    NSData *data = [self dataFromSynchronousRequest:addBookRequest];
+    [_activityIndicator stopAnimating];
+    if (data) {
         _existenceStatus = !_existenceStatus;
         
         [[BookStore sharedStore] addBookToStore:_book];
         [[UserStore sharedStore] increseBookCountForUser:[[UserManager currentUser] userId]];
-       
+        
         [self enableAvailabilityArea];
         [self setLabelWithBookExistence:YES];
-    }];
+    }
 }
 
 - (void)putDeleteBookRequestWithBookId:(NSString *)bookId userId:(NSString *)userId accessToke:(NSString *)accessToken
 {
     NSMutableURLRequest *deleteBookRequest = [RequestBuilder buildDeleteBookRequestWithBookId:bookId userId:userId accessToke:accessToken];
-    [NSURLConnection sendAsynchronousRequest:deleteBookRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        
-        [_activityIndicator stopAnimating];
-
-        if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-            [AlertHelper showAlertWithMessage:@"删除图书失败" withAutoDismiss:YES target:self];
-            return;
-        }
-        
+    NSData *data = [self dataFromSynchronousRequest:deleteBookRequest];
+    [_activityIndicator stopAnimating];
+    if (data) {
         _existenceStatus = !_existenceStatus;
-
+        
         [[BookStore sharedStore] deleteBookFromStore:_book];
         [[UserStore sharedStore] decreseBookCountForUser:[[UserManager currentUser] userId]];
         
         [self setLabelWithBookExistence:NO];
         [self setLabelTextWithBookAvailability:NO];
         [self disableAvailabilityArea];
-    }];
+    }
 }
 
 - (void)putChangeStatusRequestWithBookId:(NSString *)bookId available:(BOOL)availabilityState userId:(NSString *)userId accessToken:(NSString *)accessToken
 {
     NSMutableURLRequest *changeAvailabilityRequest = [RequestBuilder buildChangeBookAvailabilityRequestWithBookId:bookId available:availabilityState userId:userId accessToken:accessToken];
-    [NSURLConnection sendAsynchronousRequest:changeAvailabilityRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-
-        [_activityIndicator stopAnimating];
-
-        if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-            [AlertHelper showAlertWithMessage:@"修改图书状态失败" withAutoDismiss:YES target:self];
-            return;
-        }
-        
+    NSData *data = [self dataFromSynchronousRequest:changeAvailabilityRequest];
+    [_activityIndicator stopAnimating];
+    if (data) {
         _book.availability = !_book.availability;
         [[BookStore sharedStore] changeStoredBookStatusWithBook:_book];
         
         [self setLabelTextWithBookAvailability:_book.availability];
-    }];
+    }
 }
 
 #pragma mark - Navigation

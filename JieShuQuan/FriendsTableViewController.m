@@ -201,11 +201,11 @@
 - (void)addRefreshControll
 {
     _refresh = [[UIRefreshControl alloc] init];
-    [_refresh addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
+    [_refresh addTarget:self action:@selector(pullToRefresh:) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = _refresh;
 }
 
-- (void)refreshView:(UIRefreshControl *)refresh
+- (void)pullToRefresh:(UIRefreshControl *)refresh
 {
     [self fetchFriendsFromServer];
 }

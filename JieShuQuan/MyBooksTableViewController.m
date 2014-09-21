@@ -36,6 +36,8 @@ static const NSString *kStatusNO = @"暂时不可借";
 @property (assign, nonatomic) NSInteger bookCount;
 
 @property (strong, nonatomic) UIRefreshControl *refresh;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+@property (strong, nonatomic) UILabel *messageLabel;
 
 @end
 
@@ -63,6 +65,29 @@ static const NSString *kStatusNO = @"暂时不可借";
     }
 }
 
+- (void)refreshView
+{
+    if (_myBooks.count > 0) {
+        self.view = _myBooksTableView;
+        [self removeMessageLable];
+    } else {
+        [self addMessageLabel];
+    }
+    [self.tableView reloadData];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    self.tabBarController.tabBar.hidden = NO;
+    if ([UserManager isLogin]) {
+        [self showTableView];
+    } else {
+        [self showPreLoginView];
+    }
+}
+
+#pragma mark -- initializing view
 - (void)removeUnneccessaryCells
 {
     UIView *view = [UIView new];
@@ -78,35 +103,30 @@ static const NSString *kStatusNO = @"暂时不可借";
     [self.tableView addSubview:_activityIndicator];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    if ([UserManager isLogin]) {
-        [self showTableView];
-    } else {
-        [self showPreLoginView];
-    }
-}
-
 - (void)showTableView
 {
     [self loadBooksFromStore];
-    self.view = _myBooksTableView;
-    [_myBooksTableView reloadData];
+    [self refreshView];
 }
 
 - (void)loadBooksFromStore
 {
     _myBooks = [[[BookStore sharedStore] storedBooks] mutableCopy];
-    if (_myBooks.count > 0) {
-        for (UIView *subview in self.view.subviews) {
-            if (subview == _messageLable) {
-                [subview removeFromSuperview];
-            }
+}
+
+// toggle MessageLabel
+- (void)removeMessageLable
+{
+    for (UIView *subview in self.view.subviews) {
+        if (subview == _messageLabel) {
+            [subview removeFromSuperview];
         }
-    } else {
-        _messageLable = [ViewHelper createMessageLableWithMessage:@"您的书库暂时没书，您可以通过搜索来添加图书"];
-        [self.view addSubview:_messageLable];
     }
+}
+- (void)addMessageLabel
+{
+    _messageLabel = [ViewHelper createMessageLableWithMessage:@"您的书库暂时没书，您可以通过搜索来添加图书"];
+    [self.view addSubview:_messageLabel];
 }
 
 #pragma mark - PreLoginView
@@ -178,25 +198,11 @@ static const NSString *kStatusNO = @"暂时不可借";
             [[BookStore sharedStore] emptyBookStoreForCurrentUser];
 
             NSArray *booksArray = [responseObject valueForKey:@"books"];
-            if (booksArray.count == 0) {
-                _messageLable = [ViewHelper createMessageLableWithMessage:@"您的书库暂时没书，您可以通过搜索来添加图书"];
-                [self.view addSubview:_messageLable];
-                return;
-            }
-            
             for (id item in booksArray) {
                 Book *book = [DataConverter bookFromServerBookObject:item];
                 [[BookStore sharedStore] addBookToStore:book];
             }
-            [self loadBooksFromStore];
-            
-            for (UIView *subview in self.view.subviews) {
-                if (subview == _messageLable) {
-                    [subview removeFromSuperview];
-                }
-            }
-
-            [self.tableView reloadData];
+            [self showTableView];
         }
     }];
 }
@@ -206,11 +212,11 @@ static const NSString *kStatusNO = @"暂时不可借";
 - (void)addRefreshControll
 {
     _refresh = [[UIRefreshControl alloc] init];
-    [_refresh addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
+    [_refresh addTarget:self action:@selector(pullToRefresh:) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = _refresh;
 }
 
-- (void)refreshView:(UIRefreshControl *)refresh
+- (void)pullToRefresh:(UIRefreshControl *)refresh
 {
     [self fetchBooksFromServer];
 }

@@ -36,6 +36,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(webDataFetchFailed) name:@"webDataFetchFailed" object:nil];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    self.tabBarController.tabBar.hidden = NO;
+}
+
 - (void)endSearching
 {
     [self.searchDisplayController setActive:NO];
