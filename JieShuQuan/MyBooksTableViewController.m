@@ -73,7 +73,7 @@ static const NSString *kStatusNO = @"暂时不可借";
     [self showTableView];
 }
 
-#pragma mark -- initializing tableView accessories
+#pragma mark - initializing tableView accessories
 
 - (UILabel *)messageLabel
 {

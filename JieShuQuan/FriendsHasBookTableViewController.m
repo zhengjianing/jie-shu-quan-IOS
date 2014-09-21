@@ -25,7 +25,6 @@
 
 @property (strong, nonatomic) PreLoginView *preLoginView;
 @property (strong, nonatomic) LoginViewController *loginController;
-@property (strong, nonatomic) UITableView *myFriendsTableView;
 
 @end
 
@@ -38,50 +37,27 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(popSelfWhenLoggingOut) name:@"popSubViewControllers" object:nil];
 
     [self configureBookInfoView];
-    [self removeUnneccessaryCells];
+    [self setTableFooterView];
     [self.tableView addSubview:self.activityIndicator];
+    [self.tableView addSubview:self.messageLabel];
+    [self.tableView addSubview:self.preLoginView];
 
-    _myFriendsTableView = self.tableView;
     _loginController = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
     
-    [self showCorrectView];
+    [self showTableView];
 }
 
-- (void)showCorrectView
+- (void)showTableView
 {
     if ([UserManager isLogin]) {
-        [self showTableView];
+        _preLoginView.hidden = YES;
+        [_activityIndicator startAnimating];
+        _messageLabel.hidden = YES;
+        [self loadFriendsWithBook];
+        [self.tableView reloadData];
     } else {
-        [self showPreLoginView];
+        _preLoginView.hidden = NO;
     }
-}
-
-- (void)popSelfWhenLoggingOut
-{
-    [self.navigationController popToRootViewControllerAnimated:YES];
-}
-
-- (void)removeUnneccessaryCells
-{
-    UIView *view = [UIView new];
-    view.backgroundColor = [UIColor clearColor];
-    [self.tableView setTableFooterView:view];
-}
-
-- (UIActivityIndicatorView *)activityIndicator
-{
-    if (_activityIndicator != nil) {
-        return _activityIndicator;
-    }
-    
-    _activityIndicator = [ActivityIndicatorHelper activityIndicator];
-    return _activityIndicator;
-}
-
-- (void)loadFriendsWithBook
-{
-    _friendsCellObject = [[NSMutableArray alloc] init];
-    [self fetchFriendsWithBookFromServer];
 }
 
 - (void)configureBookInfoView
@@ -94,11 +70,57 @@
     _priceLabel.text = _book.price;
 }
 
-- (void)showTableView
+- (void)setTableFooterView
 {
-    self.view = _myFriendsTableView;
-    [self loadFriendsWithBook];
-    [self.tableView reloadData];
+    UIView *view = [UIView new];
+    view.backgroundColor = [UIColor clearColor];
+    [self.tableView setTableFooterView:view];
+}
+
+#pragma mark - initializing tableView accessories
+
+- (UILabel *)messageLabel
+{
+    if (_messageLabel != nil) {
+        return _messageLabel;
+    }
+    _messageLabel = [MessageLabelHelper createMessageLabelWithMessage:@"没有找到拥有此书的同事，请向更多的同事推荐此应用"];
+    return _messageLabel;
+}
+
+- (PreLoginView *)preLoginView
+{
+    if (_preLoginView != nil) {
+        return _preLoginView;
+    }
+    NSArray *topLevelObjs = [[NSBundle mainBundle] loadNibNamed:@"PreLoginView" owner:self options:nil];
+    if ([topLevelObjs count] > 0)
+    {
+        _preLoginView = [topLevelObjs lastObject];
+        _preLoginView.delegate = self;
+    }
+    return _preLoginView;
+}
+
+- (UIActivityIndicatorView *)activityIndicator
+{
+    if (_activityIndicator != nil) {
+        return _activityIndicator;
+    }
+    
+    _activityIndicator = [ActivityIndicatorHelper activityIndicator];
+    return _activityIndicator;
+}
+
+- (void)popSelfWhenLoggingOut
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (void)loadFriendsWithBook
+{
+    _friendsCellObject = [[NSMutableArray alloc] init];
+    [self fetchFriendsWithBookFromServer];
 }
 
 #pragma mark - PreLoginDelegate
@@ -108,35 +130,22 @@
     [self.navigationController pushViewController:_loginController animated:YES];
 }
 
-- (void)showPreLoginView
-{
-    NSArray *topLevelObjs = [[NSBundle mainBundle] loadNibNamed:@"PreLoginNib" owner:self options:nil];
-    if ([topLevelObjs count] > 0)
-    {
-        _preLoginView = [topLevelObjs lastObject];
-        _preLoginView.delegate = self;
-    }
-    self.view = _preLoginView;
-}
-
 #pragma mark - fetch friends from server
 
 - (void)fetchFriendsWithBookFromServer
 {
     NSMutableURLRequest *request = [RequestBuilder buildFetchFriendsRequestForUserId:[[UserManager currentUser] userId] bookId:_book.bookId];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        
         [_activityIndicator stopAnimating];
 
         if ([(NSHTTPURLResponse *)response statusCode] == 404) {
-            _messageLable = [MessageLabelHelper createMessageLabelWithMessage:@"没有找到您的同事，请确保您使用企业邮箱注册，并向更多的同事推荐此应用"];
-            [self.view addSubview:_messageLable];
+            //没有找到同事
+            _messageLabel.hidden = NO;
             return ;
         }
 
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-            _messageLable = [MessageLabelHelper createMessageLabelWithMessage:@"更新失败，请稍后重试"];
-            [self.view addSubview:_messageLable];
+            [AlertHelper showAlertWithMessage:@"更新失败，请稍后重试" withAutoDismiss:YES target:self];
             return ;
         }
         
@@ -147,8 +156,7 @@
             NSArray *friendsArray = [responseObject valueForKey:@"friends"];
             
             if (friendsArray.count == 0) {
-                _messageLable = [MessageLabelHelper createMessageLabelWithMessage:@"没有找到拥有此书的同事，请向更多的同事推荐此应用"];
-                [self.view addSubview:_messageLable];
+                _messageLabel.hidden = NO;
                 return;
             }
             
@@ -156,12 +164,6 @@
                 Friend *friend = [DataConverter friendFromServerFriendObject:item];
                 NSDictionary *friendCellDict = @{@"friend":friend, @"availability":[item valueForKey:@"available"]};
                 [_friendsCellObject addObject:friendCellDict];
-            }
-            
-            for (UIView *subview in self.view.subviews) {
-                if (subview == _messageLable) {
-                    [subview removeFromSuperview];
-                }
             }
             [self.tableView reloadData];
         }
@@ -179,7 +181,6 @@
 {
     return _friendsCellObject.count;
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

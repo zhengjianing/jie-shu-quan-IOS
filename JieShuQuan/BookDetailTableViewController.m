@@ -103,7 +103,7 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     _priceLabel.text = _book.price;
     
     _descriptionLabel.text = _book.description;
-    _authorInfoLabel.text = _book.description;
+    _authorInfoLabel.text = _book.authorInfo;
     
     _changeAvailabilityButton.layer.cornerRadius = 5.0;
     _changeAvailabilityButton.layer.borderWidth = 0.5;
