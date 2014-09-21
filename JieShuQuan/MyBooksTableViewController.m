@@ -29,7 +29,6 @@ static const NSString *kStatusNO = @"暂时不可借";
 
 @interface MyBooksTableViewController ()
 
-@property (strong, nonatomic) UITableView *myBooksTableView;
 @property (strong, nonatomic) PreLoginView *preLoginView;
 @property (strong, nonatomic) NSMutableArray *myBooks;
 @property (strong, nonatomic) LoginViewController *loginController;
@@ -49,17 +48,15 @@ static const NSString *kStatusNO = @"暂时不可借";
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchBooksFromServer) name:@"RefreshData" object:nil];
     
-    _myBooksTableView = self.tableView;
-    
     UIStoryboard *mainStoryboard = self.storyboard;
     _loginController = [mainStoryboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
     [self addRefreshControll];
     
-    [self addMessageLabel];
-    [self initPreLoginViewWithNib];
-    
-    [self removeUnneccessaryCells];
-    [self initActivityIndicator];
+    [self.tableView addSubview:self.messageLabel];
+    [self.tableView addSubview:self.preLoginView];
+    [self.tableView addSubview:self.activityIndicator];
+
+    [self setTableFooterView];
     
     // Since viewDidLoad will only be called at launching, so refresh books at launching
     if ([UserManager isLogin]) {
@@ -68,9 +65,59 @@ static const NSString *kStatusNO = @"暂时不可借";
     }
 }
 
-- (void)refreshView
+- (void)viewWillAppear:(BOOL)animated
 {
-    self.view = _myBooksTableView;
+    [super viewWillAppear:YES];
+    self.tabBarController.tabBar.hidden = NO;
+    [self showTableView];
+}
+
+#pragma mark -- initializing tableView accessories
+
+- (UILabel *)messageLabel
+{
+    if (_messageLabel != nil) {
+        return _messageLabel;
+    }
+    _messageLabel = [ViewHelper createMessageLableWithMessage:@"您的书库暂时没书，您可以通过搜索来添加图书"];
+    return _messageLabel;
+}
+
+- (PreLoginView *)preLoginView
+{
+    if (_preLoginView != nil) {
+        return _preLoginView;
+    }
+    NSArray *topLevelObjs = [[NSBundle mainBundle] loadNibNamed:@"PreLoginView" owner:self options:nil];
+    if ([topLevelObjs count] > 0)
+    {
+            _preLoginView = [topLevelObjs lastObject];
+            _preLoginView.delegate = self;
+    }
+    return _preLoginView;
+}
+
+- (UIActivityIndicatorView *)activityIndicator
+{
+    if (_activityIndicator != nil) {
+        return _activityIndicator;
+    }
+    _activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(150, 170, 20, 20)];
+    _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+    _activityIndicator.hidesWhenStopped = YES;
+    return _activityIndicator;
+}
+
+- (void)setTableFooterView
+{
+    UIView *view = [UIView new];
+    view.backgroundColor = [UIColor clearColor];
+    [self.tableView setTableFooterView:view];
+}
+
+- (void)refreshData
+{
+    [self loadBooksFromStore];
     if (_myBooks.count > 0) {
         _messageLabel.hidden = YES;
     } else {
@@ -79,44 +126,14 @@ static const NSString *kStatusNO = @"暂时不可借";
     [self.tableView reloadData];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:YES];
-    self.tabBarController.tabBar.hidden = NO;
-    if ([UserManager isLogin]) {
-        [self showTableView];
-    } else {
-        [self showPreLoginView];
-    }
-}
-
-#pragma mark -- initializing view
-
 - (void)showTableView
 {
-    [self loadBooksFromStore];
-    [self refreshView];
-}
-
-- (void)addMessageLabel
-{
-    _messageLabel = [ViewHelper createMessageLableWithMessage:@"您的书库暂时没书，您可以通过搜索来添加图书"];
-    [self.view addSubview:_messageLabel];
-}
-
-- (void)removeUnneccessaryCells
-{
-    UIView *view = [UIView new];
-    view.backgroundColor = [UIColor clearColor];
-    [self.tableView setTableFooterView:view];
-}
-
-- (void)initActivityIndicator
-{
-    _activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(150, 170, 20, 20)];
-    _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-    _activityIndicator.hidesWhenStopped = YES;
-    [self.tableView addSubview:_activityIndicator];
+    if ([UserManager isLogin]) {
+        _preLoginView.hidden = YES;
+        [self refreshData];
+    } else {
+        _preLoginView.hidden = NO;
+    }
 }
 
 - (void)loadBooksFromStore
@@ -124,29 +141,11 @@ static const NSString *kStatusNO = @"暂时不可借";
     _myBooks = [[[BookStore sharedStore] storedBooks] mutableCopy];
 }
 
-#pragma mark - PreLoginView
+#pragma mark - PreLoginView Delegate
 
 - (void)login
 {
     [self.navigationController pushViewController:_loginController animated:YES];
-}
-
-- (void)showPreLoginView
-{
-    if (!_preLoginView) {
-        [self initPreLoginViewWithNib];
-    }
-    self.view = _preLoginView;
-}
-
-- (void)initPreLoginViewWithNib
-{
-    NSArray *topLevelObjs = [[NSBundle mainBundle] loadNibNamed:@"PreLoginView" owner:self options:nil];
-    if ([topLevelObjs count] > 0)
-    {
-        _preLoginView = [topLevelObjs lastObject];
-        _preLoginView.delegate = self;
-    }
 }
 
 #pragma mark - Table view data source
@@ -197,7 +196,7 @@ static const NSString *kStatusNO = @"暂时不可借";
                 Book *book = [DataConverter bookFromServerBookObject:item];
                 [[BookStore sharedStore] addBookToStore:book];
             }
-            [self showTableView];
+            [self refreshData];
         }
     }];
 }

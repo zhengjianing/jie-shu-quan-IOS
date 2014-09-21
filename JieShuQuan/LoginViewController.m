@@ -23,6 +23,12 @@
     _email.delegate = self;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    self.tabBarController.tabBar.hidden = YES;
+}
+
 - (IBAction)recoverPassword:(id)sender {
 }
 
