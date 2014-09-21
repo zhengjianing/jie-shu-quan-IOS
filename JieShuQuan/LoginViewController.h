@@ -15,10 +15,8 @@
 @property (strong, nonatomic) IBOutlet UITextField *password;
 @property (strong, nonatomic) IBOutlet UIButton *loginButton;
 @property (strong, nonatomic) IBOutlet UIButton *registerButton;
-@property (strong, nonatomic) IBOutlet UIButton *recoverPasswordButton;
 - (IBAction)loginViewTouchDown:(id)sender;
 
 - (IBAction)loginUser:(id)sender;
-- (IBAction)recoverPassword:(id)sender;
 
 @end

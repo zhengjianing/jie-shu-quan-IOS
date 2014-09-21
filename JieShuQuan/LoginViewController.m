@@ -28,9 +28,6 @@
     self.tabBarController.tabBar.hidden = YES;
 }
 
-- (IBAction)recoverPassword:(id)sender {
-}
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;

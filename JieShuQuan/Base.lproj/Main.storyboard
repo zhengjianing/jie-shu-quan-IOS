@@ -964,27 +964,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码：请输入6~20位的数字或字母" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rAs-86-xMO">
-                                <rect key="frame" x="50" y="194" width="220" height="30"/>
+                                <rect key="frame" x="50" y="230" width="220" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="企业邮箱：XX@XX.com" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Za-Ma-iak">
-                                <rect key="frame" x="50" y="140" width="220" height="30"/>
+                                <rect key="frame" x="50" y="176" width="220" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fU7-20-asu">
-                                <rect key="frame" x="50" y="381" width="77" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <state key="normal" title="找回密码">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="recoverPassword:" destination="EyL-5w-TnI" eventType="touchUpInside" id="7oL-ot-6Bw"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vMo-4X-5Ro">
-                                <rect key="frame" x="50" y="283" width="220" height="36"/>
+                                <rect key="frame" x="50" y="319" width="220" height="36"/>
                                 <color key="backgroundColor" red="1" green="0.62105675530000004" blue="0.51612623550000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="登  陆">
@@ -995,7 +985,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JnB-kR-WlL">
-                                <rect key="frame" x="193" y="381" width="77" height="36"/>
+                                <rect key="frame" x="223" y="82" width="77" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="注册账号">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1019,7 +1009,6 @@
                         <outlet property="email" destination="1Za-Ma-iak" id="F3Y-gT-cae"/>
                         <outlet property="loginButton" destination="vMo-4X-5Ro" id="K1A-8C-FLU"/>
                         <outlet property="password" destination="rAs-86-xMO" id="Mrh-SU-GNB"/>
-                        <outlet property="recoverPasswordButton" destination="fU7-20-asu" id="wuw-bT-mJz"/>
                         <outlet property="registerButton" destination="JnB-kR-WlL" id="RW5-Wb-jSw"/>
                     </connections>
                 </viewController>
