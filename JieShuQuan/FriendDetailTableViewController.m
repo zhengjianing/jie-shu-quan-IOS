@@ -18,6 +18,7 @@
 #import "DataConverter.h"
 #import "MailManager.h"
 #import "ViewHelper.h"
+#import "ActivityIndicatorHelper.h"
 
 @interface FriendDetailTableViewController ()
 
@@ -33,7 +34,7 @@
     
     [self removeUnneccessaryCells];
     [self configureFriendInfoView];
-    [self initActivityIndicator];
+    [self.tableView addSubview:self.activityIndicator];
     
     [self loadBooksForFriend];
     [self.tableView reloadData];
@@ -56,17 +57,16 @@
     _friendNameLabel.text = _friend.friendName;
     _friendBookCountLabel.text = _friend.bookCount;
     _friendEmailLabel.text = _friend.friendEmail;
-    
-    
 }
 
-- (void)initActivityIndicator
+- (UIActivityIndicatorView *)activityIndicator
 {
-    _activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(150, 170, 20, 20)];
-    _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-    _activityIndicator.hidesWhenStopped = YES;
-    [self.tableView addSubview:_activityIndicator];
-    [_activityIndicator startAnimating];
+    if (_activityIndicator != nil) {
+        return _activityIndicator;
+    }
+    
+    _activityIndicator = [ActivityIndicatorHelper activityIndicator];
+    return _activityIndicator;
 }
 
 - (void)loadBooksForFriend

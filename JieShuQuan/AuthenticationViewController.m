@@ -14,15 +14,14 @@
 #import "UserManager.h"
 #import "AlertHelper.h"
 #import "FriendStore.h"
+#import "ActivityIndicatorHelper.h"
 
 @implementation AuthenticationViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(150, 170, 20, 20)];
-    _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-    _activityIndicator.hidesWhenStopped = YES;
+    _activityIndicator = [ActivityIndicatorHelper activityIndicator];
     [self.view addSubview:_activityIndicator];
 }
 

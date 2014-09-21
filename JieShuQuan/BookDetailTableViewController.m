@@ -21,6 +21,7 @@
 #import "ActionSheetHelper.h"
 #import "RequestBuilder.h"
 #import "FriendsHasBookTableViewController.h"
+#import "ActivityIndicatorHelper.h"
 
 
 static const NSString *kAvailableNO = @"更改为随时可借";
@@ -51,15 +52,17 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(popSelfWhenLoggingOut) name:@"popSubViewControllers" object:nil];
     self.tabBarController.tabBar.hidden = YES;
-    [self initActivityIndicator];
+    [self.tableView addSubview:self.activityIndicator];
 }
 
-- (void)initActivityIndicator
+- (UIActivityIndicatorView *)activityIndicator
 {
-    _activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(150, 170, 20, 20)];
-    _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-    _activityIndicator.hidesWhenStopped = YES;
-    [self.tableView addSubview:_activityIndicator];
+    if (_activityIndicator != nil) {
+        return _activityIndicator;
+    }
+    
+    _activityIndicator = [ActivityIndicatorHelper activityIndicator];
+    return _activityIndicator;
 }
 
 - (void)popSelfWhenLoggingOut

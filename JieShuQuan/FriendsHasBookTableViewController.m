@@ -19,6 +19,7 @@
 #import "LoginViewController.h"
 #import "MailManager.h"
 #import "ViewHelper.h"
+#import "ActivityIndicatorHelper.h"
 
 @interface FriendsHasBookTableViewController ()
 
@@ -36,10 +37,10 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(popSelfWhenLoggingOut) name:@"popSubViewControllers" object:nil];
 
-    [self initActivityIndicator];
     [self configureBookInfoView];
     [self removeUnneccessaryCells];
-    
+    [self.tableView addSubview:self.activityIndicator];
+
     _myFriendsTableView = self.tableView;
     _loginController = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
     
@@ -67,13 +68,14 @@
     [self.tableView setTableFooterView:view];
 }
 
-- (void)initActivityIndicator
+- (UIActivityIndicatorView *)activityIndicator
 {
-    _activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(150, 170, 20, 20)];
-    _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-    _activityIndicator.hidesWhenStopped = YES;
-    [self.tableView addSubview:_activityIndicator];
-    [_activityIndicator startAnimating];
+    if (_activityIndicator != nil) {
+        return _activityIndicator;
+    }
+    
+    _activityIndicator = [ActivityIndicatorHelper activityIndicator];
+    return _activityIndicator;
 }
 
 - (void)loadFriendsWithBook

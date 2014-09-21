@@ -19,6 +19,7 @@
 #import "FriendStore.h"
 #import "DataConverter.h"
 #import "ViewHelper.h"
+#import "ActivityIndicatorHelper.h"
 
 @interface FriendsTableViewController ()
 
@@ -45,7 +46,7 @@
     [self addRefreshControll];
     [self removeUnneccessaryCells];
     
-    [self initActivityIndicator];
+    [self.tableView addSubview:self.activityIndicator];
     if ([UserManager isLogin]) {
         [_activityIndicator startAnimating];
         [self fetchFriendsFromServer];
@@ -68,12 +69,14 @@
     [self.tableView setTableFooterView:view];
 }
 
-- (void)initActivityIndicator
+- (UIActivityIndicatorView *)activityIndicator
 {
-    _activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(150, 170, 20, 20)];
-    _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-    _activityIndicator.hidesWhenStopped = YES;
-    [self.tableView addSubview:_activityIndicator];
+    if (_activityIndicator != nil) {
+        return _activityIndicator;
+    }
+    
+    _activityIndicator = [ActivityIndicatorHelper activityIndicator];
+    return _activityIndicator;
 }
 
 - (void)showTableView

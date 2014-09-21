@@ -15,6 +15,7 @@
 #import "Book.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "AlertHelper.h"
+#import "ActivityIndicatorHelper.h"
 
 @interface SearchTableViewController ()
 
@@ -30,6 +31,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endSearching) name:@"endSearching" object:nil];
     
     [self removeUnneccessaryCells];
+    [self.tableView addSubview:self.activityIndicator];
     
     [self setExtraCellLineHidden:self.searchDisplayController.searchResultsTableView];
     
@@ -40,6 +42,16 @@
 {
     [super viewWillAppear:YES];
     self.tabBarController.tabBar.hidden = NO;
+}
+
+- (UIActivityIndicatorView *)activityIndicator
+{
+    if (_activityIndicator != nil) {
+        return _activityIndicator;
+    }
+    
+    _activityIndicator = [ActivityIndicatorHelper activityIndicator];
+    return _activityIndicator;
 }
 
 - (void)endSearching
@@ -164,7 +176,7 @@
 //    NSString *isbnCode = symbol.data;
 //    if (isbnCode) {
 ////        [self startFetchingBookDetailFromDoubanWithIsbnCode:isbnCode];
-//        [self startActivityIndicator];
+//            [_activityIndicator startAnimating];
 //    } else {
 //        [AlertHelper showAlertWithMessage:@"获取图书信息失败" withAutoDismiss:YES target:self];
 //    }
@@ -198,14 +210,5 @@
 //    [bookDetailTableViewController setBook:book];
 //    [self.navigationController pushViewController:bookDetailTableViewController animated:YES];
 //}
-
-- (void)startActivityIndicator
-{
-    _activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(150, 170, 20, 20)];
-    _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-    _activityIndicator.hidesWhenStopped = YES;
-    [self.tableView addSubview:_activityIndicator];
-    [_activityIndicator startAnimating];
-}
 
 @end
