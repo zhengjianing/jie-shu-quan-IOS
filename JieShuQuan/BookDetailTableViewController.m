@@ -198,6 +198,7 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) {
+        [_activityIndicator stopAnimating];
         return;
     }
     
