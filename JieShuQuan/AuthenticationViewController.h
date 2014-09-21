@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "CustomActivityIndicator.h"
 
 @interface AuthenticationViewController : UIViewController
 
-@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
 
 @end

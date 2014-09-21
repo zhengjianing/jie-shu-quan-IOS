@@ -14,14 +14,13 @@
 #import "UserManager.h"
 #import "AlertHelper.h"
 #import "FriendStore.h"
-#import "ActivityIndicatorHelper.h"
 
 @implementation AuthenticationViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _activityIndicator = [ActivityIndicatorHelper activityIndicator];
+    _activityIndicator = [[CustomActivityIndicator alloc] init];
     [self.view addSubview:_activityIndicator];
 }
 

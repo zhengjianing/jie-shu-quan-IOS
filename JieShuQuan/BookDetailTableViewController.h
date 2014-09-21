@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+@class CustomActivityIndicator;
 
 @class Book;
 
@@ -30,7 +31,7 @@
 - (IBAction)changeExistence:(id)sender;
 
 @property (strong, nonatomic) Book *book;
-@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
 
 //current existence & availability state
 @property (assign, nonatomic) BOOL existenceStatus;

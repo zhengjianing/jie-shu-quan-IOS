@@ -22,7 +22,7 @@
 #import "RequestBuilder.h"
 #import "DataConverter.h"
 #import "MessageLabelHelper.h"
-#import "ActivityIndicatorHelper.h"
+#import "CustomActivityIndicator.h"
 
 
 static const NSString *kStatusYES = @"可借";
@@ -36,7 +36,7 @@ static const NSString *kStatusNO = @"暂时不可借";
 @property (assign, nonatomic) NSInteger bookCount;
 
 @property (strong, nonatomic) UIRefreshControl *refresh;
-@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
 @property (strong, nonatomic) UILabel *messageLabel;
 
 @end
@@ -98,13 +98,13 @@ static const NSString *kStatusNO = @"暂时不可借";
     return _preLoginView;
 }
 
-- (UIActivityIndicatorView *)activityIndicator
+- (CustomActivityIndicator *)activityIndicator
 {
     if (_activityIndicator != nil) {
         return _activityIndicator;
     }
     
-    _activityIndicator = [ActivityIndicatorHelper activityIndicator];
+    _activityIndicator = [[CustomActivityIndicator alloc] init];
     return _activityIndicator;
 }
 

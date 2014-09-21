@@ -1,5 +1,5 @@
 //
-//  ActivityIndicatorHelper.h
+//  CustomActivityIndicator.h
 //  JieShuQuan
 //
 //  Created by Yang Xiaozhu on 14-9-21.
@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface ActivityIndicatorHelper : NSObject
+@interface CustomActivityIndicator : UIView
 
-+ (UIActivityIndicatorView *)activityIndicator;
+- (void)startAnimating;
+- (void)stopAnimating;
 
 @end

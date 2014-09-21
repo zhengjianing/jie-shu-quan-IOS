@@ -15,7 +15,7 @@
 #import "Book.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "AlertHelper.h"
-#import "ActivityIndicatorHelper.h"
+#import "CustomActivityIndicator.h"
 
 @interface SearchTableViewController ()
 
@@ -47,13 +47,13 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(webDataFetchFailed) name:@"webDataFetchFailed" object:nil];
 }
 
-- (UIActivityIndicatorView *)activityIndicator
+- (CustomActivityIndicator *)activityIndicator
 {
     if (_activityIndicator != nil) {
         return _activityIndicator;
     }
     
-    _activityIndicator = [ActivityIndicatorHelper activityIndicator];
+    _activityIndicator = [[CustomActivityIndicator alloc] init];
     return _activityIndicator;
 }
 

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
 @class Friend;
+@class CustomActivityIndicator;
 
 @interface FriendDetailTableViewController : UITableViewController <MFMailComposeViewControllerDelegate>
 
@@ -23,6 +24,6 @@
 @property (strong, nonatomic) NSMutableArray *books;
 @property (strong, nonatomic) UILabel *messageLabel;
 
-@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
 
 @end

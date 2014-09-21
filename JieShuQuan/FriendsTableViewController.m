@@ -19,12 +19,12 @@
 #import "FriendStore.h"
 #import "DataConverter.h"
 #import "MessageLabelHelper.h"
-#import "ActivityIndicatorHelper.h"
+#import "CustomActivityIndicator.h"
 
 @interface FriendsTableViewController ()
 
 @property (strong, nonatomic) PreLoginView *preLoginView;
-@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
 @property (strong, nonatomic) UILabel *messageLabel;
 @property (strong, nonatomic) NSMutableArray *myFriends;
 @property (strong, nonatomic) LoginViewController *loginController;
@@ -69,13 +69,13 @@
     [self.tableView setTableFooterView:view];
 }
 
-- (UIActivityIndicatorView *)activityIndicator
+- (CustomActivityIndicator *)activityIndicator
 {
     if (_activityIndicator != nil) {
         return _activityIndicator;
     }
     
-    _activityIndicator = [ActivityIndicatorHelper activityIndicator];
+    _activityIndicator = [[CustomActivityIndicator alloc] init];
     return _activityIndicator;
 }
 

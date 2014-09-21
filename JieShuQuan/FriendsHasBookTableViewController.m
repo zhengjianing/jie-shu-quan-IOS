@@ -19,7 +19,7 @@
 #import "LoginViewController.h"
 #import "MailManager.h"
 #import "MessageLabelHelper.h"
-#import "ActivityIndicatorHelper.h"
+#import "CustomActivityIndicator.h"
 
 @interface FriendsHasBookTableViewController ()
 
@@ -101,13 +101,13 @@
     return _preLoginView;
 }
 
-- (UIActivityIndicatorView *)activityIndicator
+- (CustomActivityIndicator *)activityIndicator
 {
     if (_activityIndicator != nil) {
         return _activityIndicator;
     }
     
-    _activityIndicator = [ActivityIndicatorHelper activityIndicator];
+    _activityIndicator = [[CustomActivityIndicator alloc] init];
     return _activityIndicator;
 }
 

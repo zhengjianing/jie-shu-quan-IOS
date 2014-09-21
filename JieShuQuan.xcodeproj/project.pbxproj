@@ -63,7 +63,7 @@
 		9759AFFA19C19976008EFCC2 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9759AFF919C19976008EFCC2 /* UserManager.m */; };
 		9766FC9B19BF30980089C89B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9766FC9A19BF30980089C89B /* LoginViewController.m */; };
 		9770923819C583CD001A3ED6 /* ActionSheetHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9770923719C583CD001A3ED6 /* ActionSheetHelper.m */; };
-		977FEDB619CEA102000E0154 /* ActivityIndicatorHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 977FEDB519CEA102000E0154 /* ActivityIndicatorHelper.m */; };
+		977FEDB619CEA102000E0154 /* CustomActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 977FEDB519CEA102000E0154 /* CustomActivityIndicator.m */; };
 		97C528A119BC34B600388375 /* AlertHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C528A019BC34B600388375 /* AlertHelper.m */; };
 		97C528A419BC761000388375 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C528A319BC761000388375 /* RegisterViewController.m */; };
 		97DDA8DF19AF7F430055C7E5 /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97DDA8DE19AF7F430055C7E5 /* SearchTableViewController.m */; };
@@ -196,8 +196,8 @@
 		9766FC9A19BF30980089C89B /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		9770923619C583CD001A3ED6 /* ActionSheetHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetHelper.h; sourceTree = "<group>"; };
 		9770923719C583CD001A3ED6 /* ActionSheetHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetHelper.m; sourceTree = "<group>"; };
-		977FEDB419CEA102000E0154 /* ActivityIndicatorHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityIndicatorHelper.h; sourceTree = "<group>"; };
-		977FEDB519CEA102000E0154 /* ActivityIndicatorHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityIndicatorHelper.m; sourceTree = "<group>"; };
+		977FEDB419CEA102000E0154 /* CustomActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomActivityIndicator.h; sourceTree = "<group>"; };
+		977FEDB519CEA102000E0154 /* CustomActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomActivityIndicator.m; sourceTree = "<group>"; };
 		97C5289F19BC34B600388375 /* AlertHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertHelper.h; sourceTree = "<group>"; };
 		97C528A019BC34B600388375 /* AlertHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertHelper.m; sourceTree = "<group>"; };
 		97C528A219BC761000388375 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
@@ -534,8 +534,8 @@
 				9770923719C583CD001A3ED6 /* ActionSheetHelper.m */,
 				94E980A319CC74E100C7C1ED /* MessageLabelHelper.h */,
 				94E980A419CC74E100C7C1ED /* MessageLabelHelper.m */,
-				977FEDB419CEA102000E0154 /* ActivityIndicatorHelper.h */,
-				977FEDB519CEA102000E0154 /* ActivityIndicatorHelper.m */,
+				977FEDB419CEA102000E0154 /* CustomActivityIndicator.h */,
+				977FEDB519CEA102000E0154 /* CustomActivityIndicator.m */,
 			);
 			name = ViewHelper;
 			sourceTree = "<group>";
@@ -733,7 +733,7 @@
 			files = (
 				97C528A119BC34B600388375 /* AlertHelper.m in Sources */,
 				94BB408519C172FE005BBD8E /* FriendsTableViewController.m in Sources */,
-				977FEDB619CEA102000E0154 /* ActivityIndicatorHelper.m in Sources */,
+				977FEDB619CEA102000E0154 /* CustomActivityIndicator.m in Sources */,
 				9759AFFA19C19976008EFCC2 /* UserManager.m in Sources */,
 				9770923819C583CD001A3ED6 /* ActionSheetHelper.m in Sources */,
 				94BB409519C283CB005BBD8E /* MoreTableViewController.m in Sources */,

@@ -21,7 +21,7 @@
 #import "ActionSheetHelper.h"
 #import "RequestBuilder.h"
 #import "FriendsHasBookTableViewController.h"
-#import "ActivityIndicatorHelper.h"
+#import "CustomActivityIndicator.h"
 
 
 static const NSString *kAvailableNO = @"更改为随时可借";
@@ -54,13 +54,13 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     [self.tableView addSubview:self.activityIndicator];
 }
 
-- (UIActivityIndicatorView *)activityIndicator
+- (CustomActivityIndicator *)activityIndicator
 {
     if (_activityIndicator != nil) {
         return _activityIndicator;
     }
     
-    _activityIndicator = [ActivityIndicatorHelper activityIndicator];
+    _activityIndicator = [[CustomActivityIndicator alloc] init];
     return _activityIndicator;
 }
 

@@ -11,6 +11,7 @@
 #import <MessageUI/MessageUI.h>
 
 @class Book;
+@class CustomActivityIndicator;
 
 @interface FriendsHasBookTableViewController : UITableViewController <PreLoginDelegate, MFMailComposeViewControllerDelegate>
 
@@ -23,7 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 
 - (IBAction)borrowFromFriend:(id)sender;
-@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
 
 @property (strong, nonatomic) Book *book;
 @property (strong, nonatomic) NSMutableArray *friendsCellObject;

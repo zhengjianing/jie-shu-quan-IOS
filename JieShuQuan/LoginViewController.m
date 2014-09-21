@@ -11,7 +11,6 @@
 #import "RegisterViewController.h"
 #import "FormatValidator.h"
 #import "RequestBuilder.h"
-#import "AuthenticationViewController.h"
 
 @implementation LoginViewController
 
