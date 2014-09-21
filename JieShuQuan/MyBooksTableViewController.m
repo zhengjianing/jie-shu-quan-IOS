@@ -22,6 +22,7 @@
 #import "RequestBuilder.h"
 #import "DataConverter.h"
 #import "ViewHelper.h"
+#import "ActivityIndicatorHelper.h"
 
 
 static const NSString *kStatusYES = @"可借";
@@ -102,9 +103,8 @@ static const NSString *kStatusNO = @"暂时不可借";
     if (_activityIndicator != nil) {
         return _activityIndicator;
     }
-    _activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(150, 170, 20, 20)];
-    _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-    _activityIndicator.hidesWhenStopped = YES;
+    
+    _activityIndicator = [ActivityIndicatorHelper activityIndicator];
     return _activityIndicator;
 }
 
