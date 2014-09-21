@@ -52,9 +52,6 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     [super viewDidLoad];
     self.tabBarController.tabBar.hidden = YES;
     [self.tableView addSubview:self.activityIndicator];
-    [self.view addSubview:self.freezeLayer];
-    _freezeLayer.hidden = YES;
-    
 }
 
 - (CustomActivityIndicator *)activityIndicator
@@ -88,19 +85,6 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-}
-
-
-- (UIView *)freezeLayer
-{
-    if (_freezeLayer != nil) {
-        return _freezeLayer;
-    }
-    
-    _freezeLayer = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.x, self.view.frame.size.width, self.view.frame.size.height)];
-    _freezeLayer.backgroundColor = [UIColor darkGrayColor];
-    _freezeLayer.alpha = 0.3;
-    return _freezeLayer;
 }
 
 - (void)initBookDetailView
@@ -209,14 +193,12 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
 - (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     [_activityIndicator startAnimating];
-    _freezeLayer.hidden = NO;
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) {
         [_activityIndicator stopAnimating];
-        _freezeLayer.hidden = YES;
         return;
     }
     
@@ -266,7 +248,6 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     NSMutableURLRequest *addBookRequest = [RequestBuilder buildAddBookRequestWithBook:book available:NO userId:userId accessToke:accessToke];
     NSData *data = [self dataFromSynchronousRequest:addBookRequest];
     [_activityIndicator stopAnimating];
-    _freezeLayer.hidden = YES;
     if (data) {
         _existenceStatus = !_existenceStatus;
         
@@ -283,7 +264,6 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     NSMutableURLRequest *deleteBookRequest = [RequestBuilder buildDeleteBookRequestWithBookId:bookId userId:userId accessToke:accessToken];
     NSData *data = [self dataFromSynchronousRequest:deleteBookRequest];
     [_activityIndicator stopAnimating];
-    _freezeLayer.hidden = YES;
     
     if (data) {
         _existenceStatus = !_existenceStatus;
@@ -302,7 +282,6 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     NSMutableURLRequest *changeAvailabilityRequest = [RequestBuilder buildChangeBookAvailabilityRequestWithBookId:bookId available:availabilityState userId:userId accessToken:accessToken];
     NSData *data = [self dataFromSynchronousRequest:changeAvailabilityRequest];
     [_activityIndicator stopAnimating];
-    _freezeLayer.hidden = YES;
     if (data) {
         _book.availability = !_book.availability;
         [[BookStore sharedStore] changeStoredBookStatusWithBook:_book];

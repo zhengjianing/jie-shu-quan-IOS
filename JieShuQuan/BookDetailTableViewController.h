@@ -32,7 +32,6 @@
 
 @property (strong, nonatomic) Book *book;
 @property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
-@property (nonatomic, strong) UIView *freezeLayer;
 
 //current existence & availability state
 @property (assign, nonatomic) BOOL existenceStatus;
