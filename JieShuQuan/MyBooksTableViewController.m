@@ -55,6 +55,9 @@ static const NSString *kStatusNO = @"暂时不可借";
     _loginController = [mainStoryboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
     [self addRefreshControll];
     
+    [self addMessageLabel];
+    [self initPreLoginViewWithNib];
+    
     [self removeUnneccessaryCells];
     [self initActivityIndicator];
     
@@ -67,11 +70,11 @@ static const NSString *kStatusNO = @"暂时不可借";
 
 - (void)refreshView
 {
+    self.view = _myBooksTableView;
     if (_myBooks.count > 0) {
-        self.view = _myBooksTableView;
-        [self removeMessageLable];
+        _messageLabel.hidden = YES;
     } else {
-        [self addMessageLabel];
+        _messageLabel.hidden = NO;
     }
     [self.tableView reloadData];
 }
@@ -88,6 +91,19 @@ static const NSString *kStatusNO = @"暂时不可借";
 }
 
 #pragma mark -- initializing view
+
+- (void)showTableView
+{
+    [self loadBooksFromStore];
+    [self refreshView];
+}
+
+- (void)addMessageLabel
+{
+    _messageLabel = [ViewHelper createMessageLableWithMessage:@"您的书库暂时没书，您可以通过搜索来添加图书"];
+    [self.view addSubview:_messageLabel];
+}
+
 - (void)removeUnneccessaryCells
 {
     UIView *view = [UIView new];
@@ -103,30 +119,9 @@ static const NSString *kStatusNO = @"暂时不可借";
     [self.tableView addSubview:_activityIndicator];
 }
 
-- (void)showTableView
-{
-    [self loadBooksFromStore];
-    [self refreshView];
-}
-
 - (void)loadBooksFromStore
 {
     _myBooks = [[[BookStore sharedStore] storedBooks] mutableCopy];
-}
-
-// toggle MessageLabel
-- (void)removeMessageLable
-{
-    for (UIView *subview in self.view.subviews) {
-        if (subview == _messageLabel) {
-            [subview removeFromSuperview];
-        }
-    }
-}
-- (void)addMessageLabel
-{
-    _messageLabel = [ViewHelper createMessageLableWithMessage:@"您的书库暂时没书，您可以通过搜索来添加图书"];
-    [self.view addSubview:_messageLabel];
 }
 
 #pragma mark - PreLoginView
