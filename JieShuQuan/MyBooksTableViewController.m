@@ -212,6 +212,7 @@ static const NSString *kStatusNO = @"暂时不可借";
 
 - (void)pullToRefresh:(UIRefreshControl *)refresh
 {
+    _messageLabel.hidden = YES;
     [self fetchBooksFromServer];
 }
 

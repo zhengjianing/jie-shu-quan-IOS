@@ -23,8 +23,9 @@
 
 @interface FriendsTableViewController ()
 
-@property (strong, nonatomic) UITableView *myFriendsTableView;
 @property (strong, nonatomic) PreLoginView *preLoginView;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+@property (strong, nonatomic) UILabel *messageLabel;
 @property (strong, nonatomic) NSMutableArray *myFriends;
 @property (strong, nonatomic) LoginViewController *loginController;
 @property (strong, nonatomic) UIRefreshControl *refresh;
@@ -39,14 +40,16 @@
     
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchFriendsFromServer) name:@"RefreshData" object:nil];
     
-    _myFriendsTableView = self.tableView;
     UIStoryboard *mainStoryboard = self.storyboard;
     _loginController = [mainStoryboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
     
+    [self.tableView addSubview:self.messageLabel];
+    [self.tableView addSubview:self.preLoginView];
+    [self.tableView addSubview:self.activityIndicator];
+
     [self addRefreshControll];
     [self removeUnneccessaryCells];
     
-    [self.tableView addSubview:self.activityIndicator];
     if ([UserManager isLogin]) {
         [_activityIndicator startAnimating];
         [self fetchFriendsFromServer];
@@ -56,11 +59,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     self.tabBarController.tabBar.hidden = NO;
-    if ([UserManager isLogin]) {
-        [self showTableView];
-    } else {
-        [self showPreLoginView];
-    }
+    [self showTableView];
 }
 
 - (void)removeUnneccessaryCells
@@ -80,26 +79,48 @@
     return _activityIndicator;
 }
 
+- (UILabel *)messageLabel
+{
+    if (_messageLabel != nil) {
+        return _messageLabel;
+    }
+    _messageLabel = [MessageLabelHelper createMessageLabelWithMessage:@"没有找到您的同事，请确保您使用企业邮箱注册，并向更多的同事推荐此应用"];
+    return _messageLabel;
+}
+
+- (PreLoginView *)preLoginView
+{
+    if (_preLoginView != nil) {
+        return _preLoginView;
+    }
+    NSArray *topLevelObjs = [[NSBundle mainBundle] loadNibNamed:@"PreLoginView" owner:self options:nil];
+    if ([topLevelObjs count] > 0)
+    {
+        _preLoginView = [topLevelObjs lastObject];
+        _preLoginView.delegate = self;
+    }
+    return _preLoginView;
+}
+
 - (void)showTableView
 {
-    [self loadFriendsFromStore];
-    self.view = _myFriendsTableView;
-    [_myFriendsTableView reloadData];
+    if ([UserManager isLogin]) {
+        _preLoginView.hidden = YES;
+        [self loadFriendsFromStore];
+        if (_myFriends.count > 0) {
+            _messageLabel.hidden = YES;
+            [self.tableView reloadData];
+        } else {
+            _messageLabel.hidden = NO;
+        }
+    } else {
+        _preLoginView.hidden = NO;
+    }
 }
 
 - (void)loadFriendsFromStore
 {
     _myFriends = [[[FriendStore sharedStore] storedFriends] mutableCopy];
-    if (_myFriends.count > 0) {
-        for (UIView *subview in self.view.subviews) {
-            if (subview == _messageLable) {
-                [subview removeFromSuperview];
-            }
-        }
-    } else {
-        _messageLable = [MessageLabelHelper createMessageLabelWithMessage:@"没有找到您的同事，请确保您使用企业邮箱注册，并向更多的同事推荐此应用"];
-        [self.view addSubview:_messageLable];
-    }
 }
 
 #pragma mark - PreLoginView
@@ -108,25 +129,6 @@
 {
     [self.navigationController pushViewController:_loginController animated:YES];
 }
-
-- (void)showPreLoginView
-{
-    if (!_preLoginView) {
-        [self initPreLoginViewWithNib];
-    }
-    self.view = _preLoginView;
-}
-
-- (void)initPreLoginViewWithNib
-{
-    NSArray *topLevelObjs = [[NSBundle mainBundle] loadNibNamed:@"PreLoginView" owner:self options:nil];
-    if ([topLevelObjs count] > 0)
-    {
-        _preLoginView = [topLevelObjs lastObject];
-        _preLoginView.delegate = self;
-    }
-}
-
 
 #pragma mark - Table view data source
 
@@ -161,8 +163,7 @@
         [_activityIndicator stopAnimating];
 
         if ([(NSHTTPURLResponse *)response statusCode] == 404) {
-            _messageLable = [MessageLabelHelper createMessageLabelWithMessage:@"没有找到您的同事，请确保您使用企业邮箱注册，并向更多的同事推荐此应用"];
-            [self.view addSubview:_messageLable];
+            _messageLabel.hidden = NO;
             return ;
         }
         
@@ -177,25 +178,11 @@
             [[FriendStore sharedStore] emptyFriendStoreForCurrentUser];
 
             NSArray *friendsArray = [responseObject valueForKey:@"friends"];
-            
-            if (friendsArray.count == 0) {
-                _messageLable = [MessageLabelHelper createMessageLabelWithMessage:@"暂时没帮您找到同事，确认您使用企业邮箱注册，并向您的同事们推荐此应用"];
-                [self.view addSubview:_messageLable];
-                return;
-            }
-            
             for (id item in friendsArray) {
                 Friend *friend = [DataConverter friendFromServerFriendObject:item];
                 [[FriendStore sharedStore] addFriendToStore:friend];
             }
-            [self loadFriendsFromStore];
-            
-            for (UIView *subview in self.view.subviews) {
-                if (subview == _messageLable) {
-                    [subview removeFromSuperview];
-                }
-            }
-            [self.tableView reloadData];
+            [self showTableView];
         }
     }];
 }
@@ -211,6 +198,7 @@
 
 - (void)pullToRefresh:(UIRefreshControl *)refresh
 {
+    _messageLabel.hidden = YES;
     [self fetchFriendsFromServer];
 }
 
