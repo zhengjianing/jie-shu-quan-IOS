@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 JNXZ. All rights reserved.
 //
 
-#import "ViewHelper.h"
+#import "MessageLabelHelper.h"
 
-@implementation ViewHelper
+@implementation MessageLabelHelper
 
-+ (UILabel *)createMessageLableWithMessage:(NSString *)message
++ (UILabel *)createMessageLabelWithMessage:(NSString *)message
 {
     UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 100, 220, 200.0)];
     messageLabel.text = message;

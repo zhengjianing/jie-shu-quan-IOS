@@ -18,9 +18,15 @@ static const NSString *kDefaultCount = @"0";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     [self setUserInfoBackgroundImage];
     [self removeUnneccessaryCells];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    self.tabBarController.tabBar.hidden = NO;
+    [self configureView];
 }
 
 - (void)removeUnneccessaryCells
@@ -35,12 +41,6 @@ static const NSString *kDefaultCount = @"0";
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:_userInfoCell.backgroundView.frame];
     [imageView setImage:[UIImage imageNamed:@"bg.jpeg"]];
     self.userInfoCell.backgroundView = imageView;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self configureView];
 }
 
 - (void)configureView

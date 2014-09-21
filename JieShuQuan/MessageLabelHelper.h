@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface ViewHelper : NSObject
+@interface MessageLabelHelper : NSObject
 
-+ (UILabel *)createMessageLableWithMessage:(NSString *)message;
++ (UILabel *)createMessageLabelWithMessage:(NSString *)message;
 
 @end

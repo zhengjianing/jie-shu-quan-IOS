@@ -17,7 +17,7 @@
 #import "AlertHelper.h"
 #import "DataConverter.h"
 #import "MailManager.h"
-#import "ViewHelper.h"
+#import "MessageLabelHelper.h"
 #import "ActivityIndicatorHelper.h"
 
 @interface FriendDetailTableViewController ()
@@ -35,9 +35,20 @@
     [self removeUnneccessaryCells];
     [self configureFriendInfoView];
     [self.tableView addSubview:self.activityIndicator];
+    [self.tableView addSubview:self.messageLabel];
+    _messageLabel.hidden = YES;
     
     [self loadBooksForFriend];
     [self.tableView reloadData];
+}
+
+- (UILabel *)messageLabel
+{
+    if (_messageLabel != nil) {
+        return _messageLabel;
+    }
+    _messageLabel = [MessageLabelHelper createMessageLabelWithMessage:@"该同事的书库暂时是空的"];
+    return _messageLabel;
 }
 
 - (void)popSelfWhenLoggingOut
@@ -85,8 +96,7 @@
         [_activityIndicator stopAnimating];
 
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-            _messageLable = [ViewHelper createMessageLableWithMessage:@"更新失败"];
-            [self.view addSubview:_messageLable];
+            [AlertHelper showAlertWithMessage:@"更新失败" withAutoDismiss:YES target:self];
             return ;
         }
         
@@ -97,21 +107,16 @@
             NSArray *booksArray = [responseObject valueForKey:@"books"];
             
             if (booksArray.count == 0) {
-                _messageLable = [ViewHelper createMessageLableWithMessage:@"该同事的书库暂时是空的"];
-                [self.view addSubview:_messageLable];
+                _messageLabel.hidden = NO;
                 return;
             }
-
+            
+            _messageLabel.hidden = YES;
             for (id bookItem in booksArray) {
                 Book *book = [DataConverter bookFromServerBookObject:bookItem];
                 [_books addObject:book];
             }
             
-            for (UIView *subview in self.view.subviews) {
-                if (subview == _messageLable) {
-                    [subview removeFromSuperview];
-                }
-            }
             [self.tableView reloadData];
         }
     }];

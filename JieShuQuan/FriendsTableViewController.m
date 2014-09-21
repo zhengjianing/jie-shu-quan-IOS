@@ -18,7 +18,7 @@
 #import "AlertHelper.h"
 #import "FriendStore.h"
 #import "DataConverter.h"
-#import "ViewHelper.h"
+#import "MessageLabelHelper.h"
 #import "ActivityIndicatorHelper.h"
 
 @interface FriendsTableViewController ()
@@ -96,7 +96,7 @@
             }
         }
     } else {
-        _messageLable = [ViewHelper createMessageLableWithMessage:@"没有找到您的同事，请确保您使用企业邮箱注册，并向更多的同事推荐此应用"];
+        _messageLable = [MessageLabelHelper createMessageLabelWithMessage:@"没有找到您的同事，请确保您使用企业邮箱注册，并向更多的同事推荐此应用"];
         [self.view addSubview:_messageLable];
     }
 }
@@ -160,7 +160,7 @@
         [_activityIndicator stopAnimating];
 
         if ([(NSHTTPURLResponse *)response statusCode] == 404) {
-            _messageLable = [ViewHelper createMessageLableWithMessage:@"没有找到您的同事，请确保您使用企业邮箱注册，并向更多的同事推荐此应用"];
+            _messageLable = [MessageLabelHelper createMessageLabelWithMessage:@"没有找到您的同事，请确保您使用企业邮箱注册，并向更多的同事推荐此应用"];
             [self.view addSubview:_messageLable];
             return ;
         }
@@ -178,7 +178,7 @@
             NSArray *friendsArray = [responseObject valueForKey:@"friends"];
             
             if (friendsArray.count == 0) {
-                _messageLable = [ViewHelper createMessageLableWithMessage:@"暂时没帮您找到同事，确认您使用企业邮箱注册，并向您的同事们推荐此应用"];
+                _messageLable = [MessageLabelHelper createMessageLabelWithMessage:@"暂时没帮您找到同事，确认您使用企业邮箱注册，并向您的同事们推荐此应用"];
                 [self.view addSubview:_messageLable];
                 return;
             }

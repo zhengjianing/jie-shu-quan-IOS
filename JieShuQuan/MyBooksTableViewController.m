@@ -21,7 +21,7 @@
 #import "User.h"
 #import "RequestBuilder.h"
 #import "DataConverter.h"
-#import "ViewHelper.h"
+#import "MessageLabelHelper.h"
 #import "ActivityIndicatorHelper.h"
 
 
@@ -80,7 +80,7 @@ static const NSString *kStatusNO = @"暂时不可借";
     if (_messageLabel != nil) {
         return _messageLabel;
     }
-    _messageLabel = [ViewHelper createMessageLableWithMessage:@"您的书库暂时没书，您可以通过搜索来添加图书"];
+    _messageLabel = [MessageLabelHelper createMessageLabelWithMessage:@"您的书库暂时没书，您可以通过搜索来添加图书"];
     return _messageLabel;
 }
 

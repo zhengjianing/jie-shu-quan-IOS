@@ -21,7 +21,7 @@
 
 @property (strong, nonatomic) Friend *friend;
 @property (strong, nonatomic) NSMutableArray *books;
-@property (strong, nonatomic) UILabel *messageLable;
+@property (strong, nonatomic) UILabel *messageLabel;
 
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 
