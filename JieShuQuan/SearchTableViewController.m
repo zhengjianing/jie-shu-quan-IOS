@@ -30,7 +30,7 @@
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endSearching) name:@"endSearching" object:nil];
     
-    [self removeUnneccessaryCells];
+    [self setTableFooterView];
     [self.tableView addSubview:self.activityIndicator];
     
     [self setExtraCellLineHidden:self.searchDisplayController.searchResultsTableView];
@@ -57,10 +57,11 @@
 - (void)endSearching
 {
     [self.searchDisplayController setActive:NO];
+    searchResults = nil;
     [self.tableView reloadData];
 }
 
-- (void)removeUnneccessaryCells
+- (void)setTableFooterView
 {
     UIView *view = [UIView new];
     view.backgroundColor = [UIColor clearColor];

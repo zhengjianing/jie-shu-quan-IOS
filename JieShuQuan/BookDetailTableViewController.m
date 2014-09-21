@@ -50,7 +50,6 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(popSelfWhenLoggingOut) name:@"popSubViewControllers" object:nil];
     self.tabBarController.tabBar.hidden = YES;
     [self.tableView addSubview:self.activityIndicator];
 }
@@ -65,13 +64,9 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     return _activityIndicator;
 }
 
-- (void)popSelfWhenLoggingOut
-{
-    [self.navigationController popToRootViewControllerAnimated:YES];
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.tabBarController.tabBar.hidden = YES;
     [self initBookDetailView];
 
     if ([self alreadyHasBook]) {

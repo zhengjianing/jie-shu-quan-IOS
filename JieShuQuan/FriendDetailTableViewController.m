@@ -29,14 +29,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(popSelfWhenLoggingOut) name:@"popSubViewControllers" object:nil];
+    self.tabBarController.tabBar.hidden = YES;
     
     [self removeUnneccessaryCells];
     [self configureFriendInfoView];
     [self.tableView addSubview:self.activityIndicator];
     [self.tableView addSubview:self.messageLabel];
     _messageLabel.hidden = YES;
+    [_activityIndicator startAnimating];
     
     [self loadBooksForFriend];
     [self.tableView reloadData];
@@ -49,11 +49,6 @@
     }
     _messageLabel = [MessageLabelHelper createMessageLabelWithMessage:@"该同事的书库暂时是空的"];
     return _messageLabel;
-}
-
-- (void)popSelfWhenLoggingOut
-{
-    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)removeUnneccessaryCells

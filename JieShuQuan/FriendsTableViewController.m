@@ -55,6 +55,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    self.tabBarController.tabBar.hidden = NO;
     if ([UserManager isLogin]) {
         [self showTableView];
     } else {

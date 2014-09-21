@@ -33,9 +33,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tabBarController.tabBar.hidden = YES;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(popSelfWhenLoggingOut) name:@"popSubViewControllers" object:nil];
-
     [self configureBookInfoView];
     [self setTableFooterView];
     [self.tableView addSubview:self.activityIndicator];
@@ -110,11 +109,6 @@
     
     _activityIndicator = [ActivityIndicatorHelper activityIndicator];
     return _activityIndicator;
-}
-
-- (void)popSelfWhenLoggingOut
-{
-    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)loadFriendsWithBook
