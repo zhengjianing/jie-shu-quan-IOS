@@ -28,20 +28,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endSearching) name:@"endSearching" object:nil];
-    
+    [self registerNotifications];
     [self setTableFooterView];
     [self.tableView addSubview:self.activityIndicator];
     
     [self setExtraCellLineHidden:self.searchDisplayController.searchResultsTableView];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(webDataFetchFailed) name:@"webDataFetchFailed" object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
     self.tabBarController.tabBar.hidden = NO;
+}
+
+- (void)registerNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetSearch) name:@"resetSearch" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(webDataFetchFailed) name:@"webDataFetchFailed" object:nil];
 }
 
 - (UIActivityIndicatorView *)activityIndicator
@@ -54,7 +57,7 @@
     return _activityIndicator;
 }
 
-- (void)endSearching
+- (void)resetSearch
 {
     [self.searchDisplayController setActive:NO];
     searchResults = nil;
@@ -73,7 +76,7 @@
     [AlertHelper showAlertWithMessage:@"数据获取失败...请检查您的网络" withAutoDismiss:YES target:self];
 }
 
--(void)setExtraCellLineHidden: (UITableView *)tableView
+-(void)setExtraCellLineHidden:(UITableView *)tableView
 {
     UIView *view = [UIView new];
     view.backgroundColor = [UIColor clearColor];

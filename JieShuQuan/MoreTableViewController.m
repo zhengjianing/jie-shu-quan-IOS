@@ -73,7 +73,7 @@ static const NSString *kDefaultCount = @"0";
 {
     [UserManager removeUserFromUserDefaults];
     [self updateViewForLogout];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"endSearching" object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"resetSearch" object:self];
 }
 
 - (void)updateViewForLogin
