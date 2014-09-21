@@ -13,5 +13,6 @@
 @interface AuthenticationViewController : UIViewController
 
 @property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
+@property (nonatomic, strong) UIView *freezeLayer;
 
 @end

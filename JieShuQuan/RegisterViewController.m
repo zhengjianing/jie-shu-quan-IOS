@@ -39,6 +39,7 @@
 }
 
 - (IBAction)registerUser:(id)sender {
+    
     FormatValidator *validator = [[FormatValidator alloc] init];
     
     if (![validator isValidUserName:_userName.text]) {
@@ -62,6 +63,7 @@
     }
     
     [self.activityIndicator startAnimating];
+    self.freezeLayer.hidden = NO;
     [self startingRegisterWithUserName:_userName.text email:_email.text password:_password.text];
 }
 

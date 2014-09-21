@@ -22,7 +22,22 @@
     [super viewDidLoad];
     _activityIndicator = [[CustomActivityIndicator alloc] init];
     [self.view addSubview:_activityIndicator];
+    [self.view addSubview:self.freezeLayer];
+    _freezeLayer.hidden = YES;
 }
+
+- (UIView *)freezeLayer
+{
+    if (_freezeLayer != nil) {
+        return _freezeLayer;
+    }
+    
+    _freezeLayer = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.x, self.view.frame.size.width, self.view.frame.size.height)];
+    _freezeLayer.backgroundColor = [UIColor darkGrayColor];
+    _freezeLayer.alpha = 0.3;
+    return _freezeLayer;
+}
+
 
 #pragma mark - NSURLConnectionDataDelegate methods
 
@@ -32,6 +47,7 @@
         [AlertHelper showAlertWithMessage:@"验证失败" withAutoDismiss:YES target:self];
     }
     [self.activityIndicator stopAnimating];
+    _freezeLayer.hidden = YES;
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
