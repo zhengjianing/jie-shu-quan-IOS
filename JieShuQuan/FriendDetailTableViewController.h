@@ -13,6 +13,7 @@
 
 @interface FriendDetailTableViewController : UITableViewController <MFMailComposeViewControllerDelegate>
 
+@property (weak, nonatomic) IBOutlet UIImageView *friendAvatarImageView;
 @property (weak, nonatomic) IBOutlet UIView *friendInfoView;
 @property (weak, nonatomic) IBOutlet UILabel *friendNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *friendBookCountLabel;
