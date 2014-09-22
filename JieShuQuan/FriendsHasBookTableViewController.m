@@ -20,6 +20,7 @@
 #import "MailManager.h"
 #import "MessageLabelHelper.h"
 #import "CustomActivityIndicator.h"
+#import "AvatarManager.h"
 
 @interface FriendsHasBookTableViewController ()
 
@@ -183,6 +184,9 @@
     NSDictionary *friendCellObject = [_friendsCellObject objectAtIndex:indexPath.row];
     Friend *friend = friendCellObject[@"friend"];
     NSInteger availability = [friendCellObject[@"availability"] integerValue];
+    
+    [cell.friendAvatarImageView setImage:[AvatarManager avatarForUserId:friend.friendId]];
+    [AvatarManager setAvatarStyleForImageView:cell.friendAvatarImageView];
     
     cell.friendNameLabel.text = friend.friendName;
     cell.friendEmailLabel.text = friend.friendEmail;

@@ -10,6 +10,7 @@
 
 @interface FriendHasBookTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *friendAvatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *friendNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *friendEmailLabel;
 @property (weak, nonatomic) IBOutlet UILabel *friendBookAvailibilityLabel;
