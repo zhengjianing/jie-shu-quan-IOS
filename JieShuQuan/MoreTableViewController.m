@@ -78,6 +78,7 @@ static const NSString *kDefaultCount = @"0";
 
 - (void)updateViewForLogin
 {
+    [_settingsButton setEnabled:YES];
     [_userIconImageView setImage:[UIImage imageNamed:@"log-in-user.png"]];
     
     _bookCountLabel.text = [[UserManager currentUser] bookCount];
@@ -92,6 +93,7 @@ static const NSString *kDefaultCount = @"0";
 
 - (void)updateViewForLogout
 {
+    [_settingsButton setEnabled:NO];
     [_userIconImageView setImage:[UIImage imageNamed:@"log-out-user.png"]];
     
     _bookCountLabel.text = (NSString *)kDefaultCount;

@@ -50,6 +50,7 @@
 		94E980A219CC47EF00C7C1ED /* bg-pink.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 94E980A119CC47EF00C7C1ED /* bg-pink.jpg */; };
 		94E980A519CC74E100C7C1ED /* MessageLabelHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E980A419CC74E100C7C1ED /* MessageLabelHelper.m */; };
 		94F2BF5619B1DE8D0053711F /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 94F2BF5519B1DE8D0053711F /* search.png */; };
+		94F922B519CFAE0F00F96B09 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F922B419CFAE0F00F96B09 /* SettingsTableViewController.m */; };
 		9737040B19CB38B0008949FB /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 973703EC19CB38B0008949FB /* .gitignore */; };
 		9737040D19CB38B0008949FB /* README in Resources */ = {isa = PBXBuildFile; fileRef = 9737040519CB38B0008949FB /* README */; };
 		9737040E19CB38B0008949FB /* zbar-back.png in Resources */ = {isa = PBXBuildFile; fileRef = 9737040719CB38B0008949FB /* zbar-back.png */; };
@@ -152,6 +153,8 @@
 		94E980A319CC74E100C7C1ED /* MessageLabelHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageLabelHelper.h; sourceTree = "<group>"; };
 		94E980A419CC74E100C7C1ED /* MessageLabelHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageLabelHelper.m; sourceTree = "<group>"; };
 		94F2BF5519B1DE8D0053711F /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
+		94F922B319CFAE0F00F96B09 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
+		94F922B419CFAE0F00F96B09 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
 		973703EC19CB38B0008949FB /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		973703F019CB38B0008949FB /* Decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decoder.h; sourceTree = "<group>"; };
 		973703F119CB38B0008949FB /* Exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exception.h; sourceTree = "<group>"; };
@@ -248,6 +251,8 @@
 			children = (
 				94BB409319C283CB005BBD8E /* MoreTableViewController.h */,
 				94BB409419C283CB005BBD8E /* MoreTableViewController.m */,
+				94F922B319CFAE0F00F96B09 /* SettingsTableViewController.h */,
+				94F922B419CFAE0F00F96B09 /* SettingsTableViewController.m */,
 			);
 			name = More;
 			sourceTree = "<group>";
@@ -752,6 +757,7 @@
 				9759AFF019C184BD008EFCC2 /* Friend.m in Sources */,
 				94E3EA3C19C7069F00C38FEB /* FriendStore.m in Sources */,
 				9766FC9B19BF30980089C89B /* LoginViewController.m in Sources */,
+				94F922B519CFAE0F00F96B09 /* SettingsTableViewController.m in Sources */,
 				94B23BAE19C3F61B009896BE /* BookDetailTableViewController.m in Sources */,
 				94E980A519CC74E100C7C1ED /* MessageLabelHelper.m in Sources */,
 				97F65AC219AE0A7D00B9DC93 /* JsonDataFetcher.m in Sources */,

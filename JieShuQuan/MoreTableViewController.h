@@ -19,7 +19,6 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *logoutCell;
 @property (weak, nonatomic) IBOutlet UILabel *logoutLabel;
 
-
-
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
 
 @end
