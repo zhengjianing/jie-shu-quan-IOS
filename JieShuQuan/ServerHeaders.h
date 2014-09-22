@@ -8,7 +8,7 @@
 
 #define kRegisterURL @"http://jie-shu-quan.herokuapp.com/register"
 #define kLoginURL @"http://jie-shu-quan.herokuapp.com/login"
-#define kUploadAvatarURL @"http://jie-shu-quan.herokuapp.com/uploadAvatar"
+#define kUploadAvatarURL @"http://jie-shu-quan.herokuapp.com/upload_avatar"
 
 #define kAddBookURL @"http://jie-shu-quan.herokuapp.com/add_book"
 #define kDeleteBookURL @"http://jie-shu-quan.herokuapp.com/remove_book"
