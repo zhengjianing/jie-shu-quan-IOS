@@ -32,7 +32,7 @@
     [super viewDidLoad];
     self.tabBarController.tabBar.hidden = YES;
     
-    [self removeUnneccessaryCells];
+    [self setTableFooterView];
     [self configureFriendInfoView];
     [self.tableView addSubview:self.activityIndicator];
     [self.tableView addSubview:self.messageLabel];
@@ -52,7 +52,7 @@
     return _messageLabel;
 }
 
-- (void)removeUnneccessaryCells
+- (void)setTableFooterView
 {
     UIView *view = [UIView new];
     view.backgroundColor = [UIColor clearColor];

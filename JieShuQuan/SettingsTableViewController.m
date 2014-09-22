@@ -39,12 +39,12 @@
     [self.tableView addSubview:self.activityIndicator];
 
     [AvatarManager setAvatarStyleForImageView:_userAvatarImageView];
-    [self initViewWithCurrentUser];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
+    [self initViewWithCurrentUser];
     self.tabBarController.tabBar.hidden = YES;
 }
 
@@ -223,6 +223,5 @@
     [_activityIndicator stopAnimating];
     [AlertHelper showAlertWithMessage:@"上传头像失败" withAutoDismiss:YES target:self];
 }
-
 
 @end

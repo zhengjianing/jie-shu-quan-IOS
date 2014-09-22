@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChangeNameViewController : UIViewController
+@interface ChangeNameViewController : UIViewController 
 
 @property (strong, nonatomic) IBOutlet UITextField *nameTextField;
 - (IBAction)saveInput:(id)sender;
