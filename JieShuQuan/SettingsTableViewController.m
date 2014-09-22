@@ -10,6 +10,7 @@
 #import "UserManager.h"
 #import "User.h"
 #import "ImageHelper.h"
+#import "AvatarManager.h"
 
 @interface SettingsTableViewController ()
 
@@ -20,9 +21,6 @@
 @property (strong, nonatomic) UIImage *userAvatarImage;
 
 @end
-
-static const NSString *kUserAvatarImageName = @"userAvatar.jpg";
-static const NSString *kUserAvatarDefaulImageName = @"log-in-user.png";
 
 @implementation SettingsTableViewController
 
@@ -35,21 +33,10 @@ static const NSString *kUserAvatarDefaulImageName = @"log-in-user.png";
 
 - (void)initViewWithCurrentUser
 {
-    [self setUserAvatar];
+    [_userAvatarImageView setImage:[AvatarManager userAvatar]];
     
     User *currentUser = [UserManager currentUser];
     _userNameLabel.text = currentUser.userName;
-}
-
-- (void)setUserAvatar
-{
-    NSString *userAvatarImagePath = [ImageHelper pathForImageName:(NSString *)kUserAvatarImageName];
-    UIImage *userAvatarImage = [UIImage imageWithContentsOfFile:userAvatarImagePath];
-    if (userAvatarImage) {
-        [_userAvatarImageView setImage:userAvatarImage];
-    } else {
-        [_userAvatarImageView setImage:[UIImage imageNamed:(NSString *)kUserAvatarDefaulImageName]];
-    }
 }
 
 #pragma mark - Table view data source
@@ -149,7 +136,7 @@ static const NSString *kUserAvatarDefaulImageName = @"log-in-user.png";
     }
     
     _userAvatarImage = [ImageHelper scaleImage:image toSize:CGSizeMake(120.0, 120.0)];
-    [ImageHelper saveImage:_userAvatarImage withName:(NSString *)kUserAvatarImageName];
+    [ImageHelper saveImage:_userAvatarImage withName:[AvatarManager avatarImageName]];
     [self dismissViewControllerAnimated:YES completion:nil];
     
     [self refreshUserAvatar];

@@ -52,6 +52,7 @@
 		94F2BF5619B1DE8D0053711F /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 94F2BF5519B1DE8D0053711F /* search.png */; };
 		94F922B519CFAE0F00F96B09 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F922B419CFAE0F00F96B09 /* SettingsTableViewController.m */; };
 		94F922B819CFC28700F96B09 /* ImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F922B719CFC28700F96B09 /* ImageHelper.m */; };
+		94F922BB19CFCDA800F96B09 /* AvatarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F922BA19CFCDA800F96B09 /* AvatarManager.m */; };
 		9737040B19CB38B0008949FB /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 973703EC19CB38B0008949FB /* .gitignore */; };
 		9737040D19CB38B0008949FB /* README in Resources */ = {isa = PBXBuildFile; fileRef = 9737040519CB38B0008949FB /* README */; };
 		9737040E19CB38B0008949FB /* zbar-back.png in Resources */ = {isa = PBXBuildFile; fileRef = 9737040719CB38B0008949FB /* zbar-back.png */; };
@@ -158,6 +159,8 @@
 		94F922B419CFAE0F00F96B09 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
 		94F922B619CFC28700F96B09 /* ImageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageHelper.h; sourceTree = "<group>"; };
 		94F922B719CFC28700F96B09 /* ImageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageHelper.m; sourceTree = "<group>"; };
+		94F922B919CFCDA800F96B09 /* AvatarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatarManager.h; sourceTree = "<group>"; };
+		94F922BA19CFCDA800F96B09 /* AvatarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvatarManager.m; sourceTree = "<group>"; };
 		973703EC19CB38B0008949FB /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		973703F019CB38B0008949FB /* Decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decoder.h; sourceTree = "<group>"; };
 		973703F119CB38B0008949FB /* Exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exception.h; sourceTree = "<group>"; };
@@ -531,6 +534,8 @@
 				9759AFF919C19976008EFCC2 /* UserManager.m */,
 				94E9807C19CBE0CD00C7C1ED /* MailManager.h */,
 				94E9807D19CBE0CD00C7C1ED /* MailManager.m */,
+				94F922B919CFCDA800F96B09 /* AvatarManager.h */,
+				94F922BA19CFCDA800F96B09 /* AvatarManager.m */,
 			);
 			name = Manager;
 			sourceTree = "<group>";
@@ -750,6 +755,7 @@
 				97F306B219BD45800010E91F /* NSData+AES256.m in Sources */,
 				9471DBF519A5837700F1A291 /* JieShuQuan.xcdatamodeld in Sources */,
 				9471DC2B19A974AB00F1A291 /* PreLoginView.m in Sources */,
+				94F922BB19CFCDA800F96B09 /* AvatarManager.m in Sources */,
 				97553C3D19C090DE0034B446 /* AuthenticationViewController.m in Sources */,
 				97F306B519BD47D10010E91F /* NSString+AES256.m in Sources */,
 				94E9807E19CBE0CD00C7C1ED /* MailManager.m in Sources */,
