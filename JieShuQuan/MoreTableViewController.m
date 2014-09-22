@@ -90,7 +90,7 @@ static const NSString *kDefaultCount = @"0";
 - (void)updateViewForLogin
 {
     [_settingsButton setEnabled:YES];
-    [_userIconImageView setImage:[AvatarManager userAvatar]];
+    [_userIconImageView setImage:[AvatarManager avatarForUserId:[[UserManager currentUser] userId]]];
     
     _bookCountLabel.text = [[UserManager currentUser] bookCount];
     _friendsCountLabel.text = [[UserManager currentUser] friendCount];

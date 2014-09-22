@@ -8,8 +8,6 @@
 
 #import "AvatarManager.h"
 #import "ImageHelper.h"
-#import "UserManager.h"
-#import "User.h"
 
 @implementation AvatarManager
 
@@ -17,9 +15,9 @@ static const NSString *kUserAvatarImageName = @"userAvatar";
 static const NSString *kDefautLoginImageName = @"log-in-user.png";
 static const NSString *kDefautLogoutImageName = @"log-out-user.png";
 
-+ (UIImage *)userAvatar
++ (UIImage *)avatarForUserId:(NSString *)userId
 {
-    NSString *userAvatarImagePath = [ImageHelper pathForImageName:(NSString *)[self avatarImageName]];
+    NSString *userAvatarImagePath = [ImageHelper pathForImageName:(NSString *)[self avatarImageNameForUserId:userId]];
     UIImage *userAvatarImage = [UIImage imageWithContentsOfFile:userAvatarImagePath];
     if (userAvatarImage) {
         return userAvatarImage;
@@ -27,9 +25,9 @@ static const NSString *kDefautLogoutImageName = @"log-out-user.png";
     return [UIImage imageNamed:(NSString *)kDefautLogoutImageName];
 }
 
-+ (NSString *)avatarImageName
++ (NSString *)avatarImageNameForUserId:(NSString *)userId
 {
-    return [NSString stringWithFormat:@"%@-%@.png", (NSString *)kUserAvatarImageName, [[UserManager currentUser] userId]];
+    return [NSString stringWithFormat:@"%@-%@.png", (NSString *)kUserAvatarImageName, userId];
 }
 
 + (UIImage *)logoutAvatar

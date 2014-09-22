@@ -48,9 +48,9 @@
 
 - (void)initViewWithCurrentUser
 {
-    [_userAvatarImageView setImage:[AvatarManager userAvatar]];
-    
     User *currentUser = [UserManager currentUser];
+
+    [_userAvatarImageView setImage:[AvatarManager avatarForUserId:[currentUser userId]]];
     _userNameLabel.text = currentUser.userName;
 }
 
@@ -151,7 +151,7 @@
     }
     
     _userAvatarImage = [ImageHelper scaleImage:image toSize:CGSizeMake(120.0, 120.0)];
-    [ImageHelper saveImage:_userAvatarImage withName:[AvatarManager avatarImageName]];
+    [ImageHelper saveImage:_userAvatarImage withName:[AvatarManager avatarImageNameForUserId:[[UserManager currentUser] userId]]];
     [self dismissViewControllerAnimated:YES completion:nil];
     
     [self refreshUserAvatar];
