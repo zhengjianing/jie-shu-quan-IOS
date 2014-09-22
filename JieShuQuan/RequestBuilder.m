@@ -17,6 +17,7 @@ static const NSString *kPasswordKey = @"passwordKey";
 
 static const NSString *kUserId = @"user_id";
 static const NSString *kAccessToken = @"access_token";
+static const NSString *kAvatarData = @"avatar";
 
 // keys in Server
 static const NSString *kBookname = @"name";
@@ -44,6 +45,26 @@ static const NSString *kBookAvailable = @"available";
     NSDictionary *loginBody = @{@"email": email, @"password": [self encrypePassword:password]};
     
     return [self buildRequestWithURLString:kLoginURL bodyDict:loginBody];
+}
+
++ (NSMutableURLRequest *)buildchangeAvatarRequestWithAvatar:(UIImage *)image userId:(NSString *)userId accessToke:(NSString *)accessToken
+{
+    NSData *imageData = UIImagePNGRepresentation(image);
+    NSDictionary *bodyDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                              imageData, kAvatarData,
+                              userId, kUserId,
+                              accessToken, kAccessToken, nil];
+    
+    NSURL *postURL = [NSURL URLWithString:[kUploadAvatarURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:postURL];
+    
+//    [request setHTTPBody:bodyDict];
+
+    [request setHTTPBody:imageData];
+    [request setValue:@"image/jpeg" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPMethod:@"POST"];
+    
+    return request;
 }
 
 #pragma mark - Books

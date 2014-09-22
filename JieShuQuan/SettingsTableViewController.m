@@ -11,6 +11,9 @@
 #import "User.h"
 #import "ImageHelper.h"
 #import "AvatarManager.h"
+#import "AlertHelper.h"
+#import "RequestBuilder.h"
+#import "CustomActivityIndicator.h"
 
 @interface SettingsTableViewController ()
 
@@ -18,7 +21,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 
 @property (strong, nonatomic) UIImagePickerController *imagePicker;
-@property (strong, nonatomic) UIImage *userAvatarImage;
+@property (strong, nonatomic) UIImage *avatar;
+@property (strong, nonatomic) User *currentUser;
+
+@property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
 
 @end
 
@@ -27,6 +33,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.tableView addSubview:self.activityIndicator];
 
     [AvatarManager setAvatarStyleForImageView:_userAvatarImageView];
     [self initViewWithCurrentUser];
@@ -40,10 +48,20 @@
 
 - (void)initViewWithCurrentUser
 {
-    User *currentUser = [UserManager currentUser];
+    _currentUser = [UserManager currentUser];
 
-    [_userAvatarImageView setImage:[AvatarManager avatarForUserId:[currentUser userId]]];
-    _userNameLabel.text = currentUser.userName;
+    [_userAvatarImageView setImage:[AvatarManager avatarForUserId:[_currentUser userId]]];
+    _userNameLabel.text = _currentUser.userName;
+}
+
+- (CustomActivityIndicator *)activityIndicator
+{
+    if (_activityIndicator != nil) {
+        return _activityIndicator;
+    }
+    
+    _activityIndicator = [[CustomActivityIndicator alloc] init];
+    return _activityIndicator;
 }
 
 #pragma mark - Table view data source
@@ -111,9 +129,34 @@
     [self presentViewController:_imagePicker animated:YES completion:nil];
 }
 
+- (void)startingUploadAvatar
+{
+    NSMutableURLRequest *changeAvatarRequest = [RequestBuilder buildchangeAvatarRequestWithAvatar:_avatar userId:_currentUser.userId accessToke:_currentUser.accessToken];
+    
+    [NSURLConnection sendAsynchronousRequest:changeAvatarRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        [_activityIndicator stopAnimating];
+        
+        if ([(NSHTTPURLResponse *)response statusCode] != 200) {
+            [AlertHelper showAlertWithMessage:@"上传头像失败" withAutoDismiss:YES target:self];
+            return ;
+        }
+        
+        id responseObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+        if (responseObject) {
+            [self saveAvatarToSandbox];
+            [self refreshUserAvatar];
+        }
+    }];
+}
+
 - (void)refreshUserAvatar
 {
-    [_userAvatarImageView setImage:_userAvatarImage];
+    [_userAvatarImageView setImage:_avatar];
+}
+
+- (void)saveAvatarToSandbox
+{
+    [ImageHelper saveImage:_avatar withName:[AvatarManager avatarImageNameForUserId:[[UserManager currentUser] userId]]];
 }
 
 #pragma mark - UIActionSheetDelegate
@@ -137,16 +180,16 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    UIImage *image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+    UIImage *originalImage = [info objectForKey:@"UIImagePickerControllerEditedImage"];
     if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
-        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+        UIImageWriteToSavedPhotosAlbum(originalImage, nil, nil, nil);
     }
     
-    _userAvatarImage = [ImageHelper scaleImage:image toSize:CGSizeMake(120.0, 120.0)];
-    [ImageHelper saveImage:_userAvatarImage withName:[AvatarManager avatarImageNameForUserId:[[UserManager currentUser] userId]]];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    _avatar = [ImageHelper scaleImage:originalImage toSize:CGSizeMake(120.0, 120.0)];
+    [self startingUploadAvatar];
     
-    [self refreshUserAvatar];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [_activityIndicator startAnimating];
 }
 
 @end
