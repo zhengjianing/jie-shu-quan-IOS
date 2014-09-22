@@ -49,7 +49,7 @@
     [self.tableView addSubview:self.activityIndicator];
 
     [self addRefreshControll];
-    [self removeUnneccessaryCells];
+    [self setTableFooterView];
     
     if ([UserManager isLogin]) {
         [_activityIndicator startAnimating];
@@ -63,7 +63,7 @@
     [self showTableView];
 }
 
-- (void)removeUnneccessaryCells
+- (void)setTableFooterView
 {
     UIView *view = [UIView new];
     view.backgroundColor = [UIColor clearColor];

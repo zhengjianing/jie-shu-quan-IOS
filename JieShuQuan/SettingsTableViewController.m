@@ -35,7 +35,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self setTableFooterView];
     [self.tableView addSubview:self.activityIndicator];
 
     [AvatarManager setAvatarStyleForImageView:_userAvatarImageView];
@@ -54,6 +54,13 @@
 
     [_userAvatarImageView setImage:[AvatarManager avatarForUserId:[_currentUser userId]]];
     _userNameLabel.text = _currentUser.userName;
+}
+
+- (void)setTableFooterView
+{
+    UIView *view = [UIView new];
+    view.backgroundColor = [UIColor clearColor];
+    [self.tableView setTableFooterView:view];
 }
 
 - (CustomActivityIndicator *)activityIndicator
