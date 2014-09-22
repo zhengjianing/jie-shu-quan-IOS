@@ -20,7 +20,7 @@ static const NSString *kDefaultCount = @"0";
 {
     [super viewDidLoad];
     
-    [self setAvatarStyle];
+    [AvatarManager setAvatarStyleForImageView:_userIconImageView];
     [self setUserInfoBackgroundImage];
     [self setTableFooterView];
 }
@@ -30,14 +30,6 @@ static const NSString *kDefaultCount = @"0";
     [super viewWillAppear:YES];
     self.tabBarController.tabBar.hidden = NO;
     [self configureView];
-}
-
-- (void)setAvatarStyle
-{
-    _userIconImageView.layer.masksToBounds = YES;
-    _userIconImageView.layer.cornerRadius = 10.0;
-    _userIconImageView.layer.borderColor = [UIColor whiteColor].CGColor;
-    _userIconImageView.layer.borderWidth = 1.0;
 }
 
 - (void)setTableFooterView

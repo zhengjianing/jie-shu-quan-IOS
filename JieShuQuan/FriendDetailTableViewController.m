@@ -61,20 +61,12 @@
 
 - (void)configureFriendInfoView
 {
-    [self setAvatarStyle];
+    [AvatarManager setAvatarStyleForImageView:_friendAvatarImageView];
     
     [_friendAvatarImageView setImage:[AvatarManager avatarForUserId:_friend.friendId]];
     _friendNameLabel.text = _friend.friendName;
     _friendBookCountLabel.text = _friend.bookCount;
     _friendEmailLabel.text = _friend.friendEmail;
-}
-
-- (void)setAvatarStyle
-{
-    _friendAvatarImageView.layer.masksToBounds = YES;
-    _friendAvatarImageView.layer.cornerRadius = 10.0;
-    _friendAvatarImageView.layer.borderColor = [UIColor grayColor].CGColor;
-    _friendAvatarImageView.layer.borderWidth = 0.5;
 }
 
 - (CustomActivityIndicator *)activityIndicator

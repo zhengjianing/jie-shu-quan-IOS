@@ -35,4 +35,12 @@ static const NSString *kDefautLogoutImageName = @"log-out-user.png";
     return [UIImage imageNamed:(NSString *)kDefautLogoutImageName];
 }
 
++ (void)setAvatarStyleForImageView:(UIImageView *)imageView
+{
+    imageView.layer.masksToBounds = YES;
+    imageView.layer.cornerRadius = 10.0;
+    imageView.layer.borderColor = [UIColor grayColor].CGColor;
+    imageView.layer.borderWidth = 0.5;
+}
+
 @end

@@ -14,5 +14,6 @@
 + (UIImage *)avatarForUserId:(NSString *)userId;
 + (NSString *)avatarImageNameForUserId:(NSString *)userId;
 + (UIImage *)logoutAvatar;
++ (void)setAvatarStyleForImageView:(UIImageView *)imageView;
 
 @end

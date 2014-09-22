@@ -28,7 +28,7 @@
 {
     [super viewDidLoad];
 
-    [self setAvatarStyle];
+    [AvatarManager setAvatarStyleForImageView:_userAvatarImageView];
     [self initViewWithCurrentUser];
 }
 
@@ -36,14 +36,6 @@
 {
     [super viewWillAppear:YES];
     self.tabBarController.tabBar.hidden = YES;
-}
-
-- (void)setAvatarStyle
-{
-    _userAvatarImageView.layer.masksToBounds = YES;
-    _userAvatarImageView.layer.cornerRadius = 10.0;
-    _userAvatarImageView.layer.borderColor = [UIColor grayColor].CGColor;
-    _userAvatarImageView.layer.borderWidth = 0.5;
 }
 
 - (void)initViewWithCurrentUser
