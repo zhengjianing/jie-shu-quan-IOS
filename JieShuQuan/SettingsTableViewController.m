@@ -140,7 +140,8 @@
 
 - (void)startingUploadAvatar
 {
-    NSURL *postURL = [NSURL URLWithString:kUploadAvatarURL];
+    NSURL *postURL = [NSURL URLWithString:[kUploadAvatarURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:postURL];
 
     [request addPostValue:_currentUser.userId forKey:@"user_id"];

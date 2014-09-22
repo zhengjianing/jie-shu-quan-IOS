@@ -79,6 +79,7 @@
 		9759AFF019C184BD008EFCC2 /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 9759AFEF19C184BD008EFCC2 /* Friend.m */; };
 		9759AFF319C18B11008EFCC2 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9759AFF219C18B11008EFCC2 /* User.m */; };
 		9759AFFA19C19976008EFCC2 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9759AFF919C19976008EFCC2 /* UserManager.m */; };
+		9765EC3419D06BDE00066289 /* ChangeNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9765EC3319D06BDE00066289 /* ChangeNameViewController.m */; };
 		9766FC9B19BF30980089C89B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9766FC9A19BF30980089C89B /* LoginViewController.m */; };
 		9770923819C583CD001A3ED6 /* ActionSheetHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9770923719C583CD001A3ED6 /* ActionSheetHelper.m */; };
 		977FEDB619CEA102000E0154 /* CustomActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 977FEDB519CEA102000E0154 /* CustomActivityIndicator.m */; };
@@ -245,6 +246,8 @@
 		9759AFF219C18B11008EFCC2 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		9759AFF819C19976008EFCC2 /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
 		9759AFF919C19976008EFCC2 /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
+		9765EC3219D06BDE00066289 /* ChangeNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeNameViewController.h; sourceTree = "<group>"; };
+		9765EC3319D06BDE00066289 /* ChangeNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeNameViewController.m; sourceTree = "<group>"; };
 		9766FC9919BF30980089C89B /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		9766FC9A19BF30980089C89B /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		9770923619C583CD001A3ED6 /* ActionSheetHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetHelper.h; sourceTree = "<group>"; };
@@ -309,6 +312,8 @@
 				94BB409419C283CB005BBD8E /* MoreTableViewController.m */,
 				94F922B319CFAE0F00F96B09 /* SettingsTableViewController.h */,
 				94F922B419CFAE0F00F96B09 /* SettingsTableViewController.m */,
+				9765EC3219D06BDE00066289 /* ChangeNameViewController.h */,
+				9765EC3319D06BDE00066289 /* ChangeNameViewController.m */,
 			);
 			name = More;
 			sourceTree = "<group>";
@@ -837,6 +842,7 @@
 				94C1711619D01D3000656EDB /* ASIFormDataRequest.m in Sources */,
 				94BB408519C172FE005BBD8E /* FriendsTableViewController.m in Sources */,
 				977FEDB619CEA102000E0154 /* CustomActivityIndicator.m in Sources */,
+				9765EC3419D06BDE00066289 /* ChangeNameViewController.m in Sources */,
 				94C1712919D02B5D00656EDB /* Reachability.m in Sources */,
 				9759AFFA19C19976008EFCC2 /* UserManager.m in Sources */,
 				9770923819C583CD001A3ED6 /* ActionSheetHelper.m in Sources */,
