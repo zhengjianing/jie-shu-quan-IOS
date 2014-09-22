@@ -13,5 +13,6 @@
 
 + (UIImage *)userAvatar;
 + (NSString *)avatarImageName;
++ (UIImage *)logoutAvatar;
 
 @end

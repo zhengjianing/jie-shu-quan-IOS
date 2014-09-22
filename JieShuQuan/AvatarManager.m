@@ -12,7 +12,8 @@
 @implementation AvatarManager
 
 static const NSString *kUserAvatarImageName = @"userAvatar.jpg";
-static const NSString *kUserAvatarDefaulImageName = @"log-in-user.png";
+static const NSString *kDefautLoginImageName = @"log-in-user.png";
+static const NSString *kDefautLogoutImageName = @"log-out-user.png";
 
 + (UIImage *)userAvatar
 {
@@ -21,12 +22,17 @@ static const NSString *kUserAvatarDefaulImageName = @"log-in-user.png";
     if (userAvatarImage) {
         return userAvatarImage;
     }
-    return [UIImage imageNamed:(NSString *)kUserAvatarDefaulImageName];
+    return [UIImage imageNamed:(NSString *)kDefautLogoutImageName];
 }
 
 + (NSString *)avatarImageName
 {
     return (NSString *)kUserAvatarImageName;
+}
+
++ (UIImage *)logoutAvatar
+{
+    return [UIImage imageNamed:(NSString *)kDefautLogoutImageName];
 }
 
 @end

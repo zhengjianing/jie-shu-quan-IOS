@@ -10,6 +10,7 @@
 #import "UserManager.h"
 #import "User.h"
 #import "ActionSheetHelper.h"
+#import "AvatarManager.h"
 
 static const NSString *kDefaultCount = @"0";
 
@@ -19,7 +20,7 @@ static const NSString *kDefaultCount = @"0";
 {
     [super viewDidLoad];
     [self setUserInfoBackgroundImage];
-    [self removeUnneccessaryCells];
+    [self setTableFooterView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -29,7 +30,7 @@ static const NSString *kDefaultCount = @"0";
     [self configureView];
 }
 
-- (void)removeUnneccessaryCells
+- (void)setTableFooterView
 {
     UIView *view = [UIView new];
     view.backgroundColor = [UIColor clearColor];
@@ -79,7 +80,7 @@ static const NSString *kDefaultCount = @"0";
 - (void)updateViewForLogin
 {
     [_settingsButton setEnabled:YES];
-    [_userIconImageView setImage:[UIImage imageNamed:@"log-in-user.png"]];
+    [_userIconImageView setImage:[AvatarManager userAvatar]];
     
     _bookCountLabel.text = [[UserManager currentUser] bookCount];
     _friendsCountLabel.text = [[UserManager currentUser] friendCount];
@@ -94,7 +95,7 @@ static const NSString *kDefaultCount = @"0";
 - (void)updateViewForLogout
 {
     [_settingsButton setEnabled:NO];
-    [_userIconImageView setImage:[UIImage imageNamed:@"log-out-user.png"]];
+    [_userIconImageView setImage:[AvatarManager logoutAvatar]];
     
     _bookCountLabel.text = (NSString *)kDefaultCount;
     _friendsCountLabel.text = (NSString *)kDefaultCount;
