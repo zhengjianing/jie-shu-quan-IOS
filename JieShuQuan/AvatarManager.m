@@ -7,7 +7,6 @@
 //
 
 #import "AvatarManager.h"
-#import "ImageHelper.h"
 
 @implementation AvatarManager
 
@@ -17,17 +16,12 @@ static const NSString *kDefautLogoutImageName = @"log-out-user.png";
 
 + (UIImage *)avatarForUserId:(NSString *)userId
 {
-    NSString *userAvatarImagePath = [ImageHelper pathForImageName:(NSString *)[self avatarImageNameForUserId:userId]];
+    NSString *userAvatarImagePath = [self avatarPathForUserId:userId];
     UIImage *userAvatarImage = [UIImage imageWithContentsOfFile:userAvatarImagePath];
     if (userAvatarImage) {
         return userAvatarImage;
     }
     return [UIImage imageNamed:(NSString *)kDefautLogoutImageName];
-}
-
-+ (NSString *)avatarImageNameForUserId:(NSString *)userId
-{
-    return [NSString stringWithFormat:@"%@-%@.png", (NSString *)kUserAvatarImageName, userId];
 }
 
 + (UIImage *)logoutAvatar
@@ -41,6 +35,31 @@ static const NSString *kDefautLogoutImageName = @"log-out-user.png";
     imageView.layer.cornerRadius = 10.0;
     imageView.layer.borderColor = [UIColor grayColor].CGColor;
     imageView.layer.borderWidth = 0.5;
+}
+
++ (void)saveImage:(UIImage *)image withUserId:(NSString *)userId
+{
+    NSData *imageData = UIImagePNGRepresentation(image);
+    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *fullPathToFile = [documentsDirectory stringByAppendingPathComponent:[self avatarImageNameForUserId:userId]];
+    [imageData writeToFile:fullPathToFile atomically:NO];
+}
+
++ (NSString *)avatarPathForUserId:(NSString *)userId
+{
+    return [self pathForImageName:(NSString *)[self avatarImageNameForUserId:userId]];;
+}
+
+#pragma mark - private methods
+
++ (NSString *)avatarImageNameForUserId:(NSString *)userId
+{
+    return [NSString stringWithFormat:@"%@-%@.png", (NSString *)kUserAvatarImageName, userId];
+}
+
++ (NSString *)pathForImageName:(NSString *)imageName
+{
+    return [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:imageName];
 }
 
 @end

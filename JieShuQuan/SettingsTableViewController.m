@@ -14,6 +14,7 @@
 #import "AlertHelper.h"
 #import "RequestBuilder.h"
 #import "CustomActivityIndicator.h"
+#import "ServerHeaders.h"
 
 @interface SettingsTableViewController ()
 
@@ -131,22 +132,24 @@
 
 - (void)startingUploadAvatar
 {
-    NSMutableURLRequest *changeAvatarRequest = [RequestBuilder buildchangeAvatarRequestWithAvatar:_avatar userId:_currentUser.userId accessToke:_currentUser.accessToken];
+    NSString *avatarPath = [AvatarManager avatarPathForUserId:_currentUser.userId];
+
+    NSURL *postURL = [NSURL URLWithString:kUploadAvatarURL];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:postURL];
     
-    [NSURLConnection sendAsynchronousRequest:changeAvatarRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        [_activityIndicator stopAnimating];
-        
-        if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-            [AlertHelper showAlertWithMessage:@"上传头像失败" withAutoDismiss:YES target:self];
-            return ;
-        }
-        
-        id responseObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-        if (responseObject) {
-            [self saveAvatarToSandbox];
-            [self refreshUserAvatar];
-        }
-    }];
+    [request setPostValue:@"photo" forKey:@"type"];
+    [request setFile:avatarPath forKey:@"avatar_file"];
+    [request buildPostBody];
+    [request setDelegate:self];
+    [request setTimeOutSeconds:5];
+
+    [request setDidStartSelector:@selector(didStart:)];
+    [request setDidReceiveDataSelector:@selector(requestDidReceiveData:)];
+    [request setDidFailSelector:@selector(requestDidFail:)];
+
+    [request startSynchronous];
+    
+    NSLog(@"------startSynchronous-------");
 }
 
 - (void)refreshUserAvatar
@@ -156,7 +159,7 @@
 
 - (void)saveAvatarToSandbox
 {
-    [ImageHelper saveImage:_avatar withName:[AvatarManager avatarImageNameForUserId:[[UserManager currentUser] userId]]];
+    [AvatarManager saveImage:_avatar withUserId:_currentUser.userId];
 }
 
 #pragma mark - UIActionSheetDelegate
@@ -191,5 +194,33 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     [_activityIndicator startAnimating];
 }
+
+#pragma mark - ASIHTTPRequestDelegate
+
+- (void)didStart:(ASIHTTPRequest *)request
+{
+    NSLog(@"------didStart-------");
+}
+
+- (void)requestDidReceiveData:(ASIHTTPRequest *)request
+{
+    NSLog(@"------requestDidReceiveData-------");
+
+//    NSString *responseString = [request responseString];
+//    NSData *responseData = [request responseData];
+    
+    [_activityIndicator stopAnimating];
+    
+//    [self saveAvatarToSandbox];
+//    [self refreshUserAvatar];
+}
+
+- (void)requestDidFail:(ASIHTTPRequest *)request
+{
+    NSLog(@"------requestFailed-------");
+//    NSError *error = [request error];
+    [AlertHelper showAlertWithMessage:@"上传头像失败" withAutoDismiss:YES target:self];
+}
+
 
 @end

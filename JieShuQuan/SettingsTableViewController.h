@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ASIFormDataRequest.h"
 
-@interface SettingsTableViewController : UITableViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate>
+@interface SettingsTableViewController : UITableViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, ASIHTTPRequestDelegate>
 
 @end

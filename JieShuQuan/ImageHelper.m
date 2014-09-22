@@ -19,16 +19,4 @@
     return newImage;
 }
 
-+ (void)saveImage:(UIImage *)image withName:(NSString *)imageName
-{
-    NSData *imageData = UIImagePNGRepresentation(image);
-    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *fullPathToFile = [documentsDirectory stringByAppendingPathComponent:imageName];
-    [imageData writeToFile:fullPathToFile atomically:NO];
-}
-
-+ (NSString *)pathForImageName:(NSString *)imageName
-{
-    return [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:imageName];
-}
 @end

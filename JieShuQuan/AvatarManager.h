@@ -12,8 +12,10 @@
 @interface AvatarManager : NSObject
 
 + (UIImage *)avatarForUserId:(NSString *)userId;
-+ (NSString *)avatarImageNameForUserId:(NSString *)userId;
 + (UIImage *)logoutAvatar;
 + (void)setAvatarStyleForImageView:(UIImageView *)imageView;
+
++ (void)saveImage:(UIImage *)image withUserId:(NSString *)userId;
++ (NSString *)avatarPathForUserId:(NSString *)userId;
 
 @end

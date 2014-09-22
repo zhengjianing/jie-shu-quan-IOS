@@ -47,26 +47,6 @@ static const NSString *kBookAvailable = @"available";
     return [self buildRequestWithURLString:kLoginURL bodyDict:loginBody];
 }
 
-+ (NSMutableURLRequest *)buildchangeAvatarRequestWithAvatar:(UIImage *)image userId:(NSString *)userId accessToke:(NSString *)accessToken
-{
-    NSData *imageData = UIImagePNGRepresentation(image);
-    NSDictionary *bodyDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                              imageData, kAvatarData,
-                              userId, kUserId,
-                              accessToken, kAccessToken, nil];
-    
-    NSURL *postURL = [NSURL URLWithString:[kUploadAvatarURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:postURL];
-    
-//    [request setHTTPBody:bodyDict];
-
-    [request setHTTPBody:imageData];
-    [request setValue:@"image/jpeg" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPMethod:@"POST"];
-    
-    return request;
-}
-
 #pragma mark - Books
 
 + (NSMutableURLRequest *)buildAddBookRequestWithBook:(Book *)book available:(BOOL)availability userId:(NSString *)userId accessToke:(NSString *)accessToken
