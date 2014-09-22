@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingsTableViewController : UITableViewController <UIActionSheetDelegate>
+@interface SettingsTableViewController : UITableViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate>
 
 @end

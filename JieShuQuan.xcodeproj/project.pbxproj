@@ -51,6 +51,7 @@
 		94E980A519CC74E100C7C1ED /* MessageLabelHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E980A419CC74E100C7C1ED /* MessageLabelHelper.m */; };
 		94F2BF5619B1DE8D0053711F /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 94F2BF5519B1DE8D0053711F /* search.png */; };
 		94F922B519CFAE0F00F96B09 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F922B419CFAE0F00F96B09 /* SettingsTableViewController.m */; };
+		94F922B819CFC28700F96B09 /* ImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F922B719CFC28700F96B09 /* ImageHelper.m */; };
 		9737040B19CB38B0008949FB /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 973703EC19CB38B0008949FB /* .gitignore */; };
 		9737040D19CB38B0008949FB /* README in Resources */ = {isa = PBXBuildFile; fileRef = 9737040519CB38B0008949FB /* README */; };
 		9737040E19CB38B0008949FB /* zbar-back.png in Resources */ = {isa = PBXBuildFile; fileRef = 9737040719CB38B0008949FB /* zbar-back.png */; };
@@ -155,6 +156,8 @@
 		94F2BF5519B1DE8D0053711F /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		94F922B319CFAE0F00F96B09 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
 		94F922B419CFAE0F00F96B09 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
+		94F922B619CFC28700F96B09 /* ImageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageHelper.h; sourceTree = "<group>"; };
+		94F922B719CFC28700F96B09 /* ImageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageHelper.m; sourceTree = "<group>"; };
 		973703EC19CB38B0008949FB /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		973703F019CB38B0008949FB /* Decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decoder.h; sourceTree = "<group>"; };
 		973703F119CB38B0008949FB /* Exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exception.h; sourceTree = "<group>"; };
@@ -380,6 +383,8 @@
 				97F306B419BD47D10010E91F /* NSString+AES256.m */,
 				9476057719C06AC700FA8E74 /* FormatValidator.h */,
 				9476057819C06AC700FA8E74 /* FormatValidator.m */,
+				94F922B619CFC28700F96B09 /* ImageHelper.h */,
+				94F922B719CFC28700F96B09 /* ImageHelper.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -755,6 +760,7 @@
 				9476058019C07BC400FA8E74 /* RequestBuilder.m in Sources */,
 				9471DC2719A9689E00F1A291 /* MyBooksTableViewController.m in Sources */,
 				9759AFF019C184BD008EFCC2 /* Friend.m in Sources */,
+				94F922B819CFC28700F96B09 /* ImageHelper.m in Sources */,
 				94E3EA3C19C7069F00C38FEB /* FriendStore.m in Sources */,
 				9766FC9B19BF30980089C89B /* LoginViewController.m in Sources */,
 				94F922B519CFAE0F00F96B09 /* SettingsTableViewController.m in Sources */,

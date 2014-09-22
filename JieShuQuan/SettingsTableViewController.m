@@ -9,13 +9,19 @@
 #import "SettingsTableViewController.h"
 #import "UserManager.h"
 #import "User.h"
+#import "ImageHelper.h"
 
 @interface SettingsTableViewController ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *userIconImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *userAvatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 
+@property (strong, nonatomic) UIImagePickerController *imagePicker;
+@property (strong, nonatomic) UIImage *userAvatarImage;
+
 @end
+
+static const NSString *kUserAvatarImageName = @"userAvatar.jpg";
 
 @implementation SettingsTableViewController
 
@@ -39,8 +45,7 @@
     if (indexPath.section == 0) {
         switch (indexPath.row) {
             case 0:
-                [[[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"从相册选择", nil] showInView:self.view];
-                
+                [self changeUserAvatar];
                 break;
             case 1:
                 NSLog(@"--- 0 1 ---");
@@ -71,22 +76,69 @@
     }
 }
 
+#pragma mark - Change User Avatar
+
+- (void)changeUserAvatar
+{
+    [[[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"从相册选择", nil] showInView:self.view];
+}
+
+- (void)takePhotoFromCamera
+{
+    [self createImagePickerWithSourceType:UIImagePickerControllerSourceTypeCamera];
+}
+
+- (void)pickImageFromAlbum
+{
+    [self createImagePickerWithSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+}
+
+- (void)createImagePickerWithSourceType:(UIImagePickerControllerSourceType)sourceType
+{
+    _imagePicker = [[UIImagePickerController alloc] init];
+    _imagePicker.sourceType = sourceType;
+    _imagePicker.delegate = (id)self;
+    _imagePicker.allowsEditing = YES;
+    _imagePicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    [self presentViewController:_imagePicker animated:YES completion:nil];
+}
+
+- (void)refreshUserAvatar
+{
+    [_userAvatarImageView setImage:_userAvatarImage];
+}
+
 #pragma mark - UIActionSheetDelegate
 
 - (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     switch (buttonIndex) {
         case 0:
-            NSLog(@"拍照");
+            [self takePhotoFromCamera];
             break;
         case 1:
-            NSLog(@"相册");
+            [self pickImageFromAlbum];
             break;
-                    
+            
         default:
             break;
     }
 }
 
+#pragma mark - UIImagePickerControllerDelegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+    if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+    }
+    
+    _userAvatarImage = [ImageHelper scaleImage:image toSize:CGSizeMake(120.0, 120.0)];
+    [ImageHelper saveImage:_userAvatarImage withName:(NSString *)kUserAvatarImageName];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [self refreshUserAvatar];
+}
 
 @end

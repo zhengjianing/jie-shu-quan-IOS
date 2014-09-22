@@ -480,7 +480,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="480"/>
                     <connections>
-                        <outlet property="userIconImageView" destination="ryF-eG-gZf" id="T3R-xn-RZI"/>
+                        <outlet property="userAvatarImageView" destination="ryF-eG-gZf" id="75j-u5-53i"/>
                         <outlet property="userNameLabel" destination="L59-Z8-P5w" id="Va1-OC-zV1"/>
                     </connections>
                 </tableViewController>
