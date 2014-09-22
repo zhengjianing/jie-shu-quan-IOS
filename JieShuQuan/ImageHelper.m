@@ -24,9 +24,11 @@
     NSData *imageData = UIImagePNGRepresentation(image);
     NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *fullPathToFile = [documentsDirectory stringByAppendingPathComponent:imageName];
-    
-    NSLog(@"----------------%@", fullPathToFile);
     [imageData writeToFile:fullPathToFile atomically:NO];
 }
 
++ (NSString *)pathForImageName:(NSString *)imageName
+{
+    return [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:imageName];
+}
 @end

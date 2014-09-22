@@ -22,6 +22,7 @@
 @end
 
 static const NSString *kUserAvatarImageName = @"userAvatar.jpg";
+static const NSString *kUserAvatarDefaulImageName = @"log-in-user.png";
 
 @implementation SettingsTableViewController
 
@@ -34,8 +35,21 @@ static const NSString *kUserAvatarImageName = @"userAvatar.jpg";
 
 - (void)initViewWithCurrentUser
 {
+    [self setUserAvatar];
+    
     User *currentUser = [UserManager currentUser];
     _userNameLabel.text = currentUser.userName;
+}
+
+- (void)setUserAvatar
+{
+    NSString *userAvatarImagePath = [ImageHelper pathForImageName:(NSString *)kUserAvatarImageName];
+    UIImage *userAvatarImage = [UIImage imageWithContentsOfFile:userAvatarImagePath];
+    if (userAvatarImage) {
+        [_userAvatarImageView setImage:userAvatarImage];
+    } else {
+        [_userAvatarImageView setImage:[UIImage imageNamed:(NSString *)kUserAvatarDefaulImageName]];
+    }
 }
 
 #pragma mark - Table view data source

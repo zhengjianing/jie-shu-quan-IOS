@@ -13,5 +13,6 @@
 
 + (UIImage*)scaleImage:(UIImage*)originalImage toSize:(CGSize)newSize;
 + (void)saveImage:(UIImage *)image withName:(NSString *)imageName;
++ (NSString *)pathForImageName:(NSString *)imageName;
 
 @end
