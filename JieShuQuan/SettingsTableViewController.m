@@ -39,7 +39,8 @@
     if (indexPath.section == 0) {
         switch (indexPath.row) {
             case 0:
-                NSLog(@"--- 0 0 ---");
+                [[[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"拍照" otherButtonTitles:@"从相册选择", nil] showInView:self.view];
+                
                 break;
             case 1:
                 NSLog(@"--- 0 1 ---");
@@ -69,5 +70,23 @@
         return;
     }
 }
+
+#pragma mark - UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+            NSLog(@"拍照");
+            break;
+        case 1:
+            NSLog(@"相册");
+            break;
+                    
+        default:
+            break;
+    }
+}
+
 
 @end
