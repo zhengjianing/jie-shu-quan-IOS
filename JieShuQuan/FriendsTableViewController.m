@@ -20,6 +20,7 @@
 #import "DataConverter.h"
 #import "MessageLabelHelper.h"
 #import "CustomActivityIndicator.h"
+#import "AvatarManager.h"
 
 @interface FriendsTableViewController ()
 
@@ -149,8 +150,18 @@
     cell.userNameLabel.text = friend.friendName;
     cell.bookCountLabel.text = friend.bookCount;
     cell.emailLabel.text = friend.friendEmail;
+    [cell.iconImageView setImage:[AvatarManager avatarForUserId:friend.friendId]];
+    [self setAvatarStyleForImageView:cell.iconImageView];
     
     return cell;
+}
+
+- (void)setAvatarStyleForImageView:(UIImageView *)imageView
+{
+    imageView.layer.masksToBounds = YES;
+    imageView.layer.cornerRadius = 10.0;
+    imageView.layer.borderColor = [UIColor grayColor].CGColor;
+    imageView.layer.borderWidth = 0.5;
 }
 
 #pragma mark - fetch friends from server
