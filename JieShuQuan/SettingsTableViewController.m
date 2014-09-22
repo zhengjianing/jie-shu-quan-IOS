@@ -15,6 +15,7 @@
 #import "RequestBuilder.h"
 #import "CustomActivityIndicator.h"
 #import "ServerHeaders.h"
+#import "ASIFormDataRequest.h"
 
 @interface SettingsTableViewController ()
 
@@ -132,24 +133,23 @@
 
 - (void)startingUploadAvatar
 {
-    NSString *avatarPath = [AvatarManager avatarPathForUserId:_currentUser.userId];
-
     NSURL *postURL = [NSURL URLWithString:kUploadAvatarURL];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:postURL];
-    
-    [request setPostValue:@"photo" forKey:@"type"];
+
+    [request addPostValue:_currentUser.userId forKey:@"user_id"];
+    [request addPostValue:_currentUser.accessToken forKey:@"access_token"];
+
+    NSString *avatarPath = [AvatarManager avatarPathForUserId:_currentUser.userId];
     [request setFile:avatarPath forKey:@"avatar_file"];
+    
     [request buildPostBody];
-    [request setDelegate:self];
     [request setTimeOutSeconds:5];
 
-    [request setDidStartSelector:@selector(didStart:)];
     [request setDidReceiveDataSelector:@selector(requestDidReceiveData:)];
     [request setDidFailSelector:@selector(requestDidFail:)];
 
-    [request startSynchronous];
-    
-    NSLog(@"------startSynchronous-------");
+    [request setDelegate:self];
+    [request startAsynchronous];
 }
 
 - (void)refreshUserAvatar
@@ -197,28 +197,22 @@
 
 #pragma mark - ASIHTTPRequestDelegate
 
-- (void)didStart:(ASIHTTPRequest *)request
+- (void)requestDidReceiveData:(ASIFormDataRequest *)request
 {
-    NSLog(@"------didStart-------");
-}
-
-- (void)requestDidReceiveData:(ASIHTTPRequest *)request
-{
-    NSLog(@"------requestDidReceiveData-------");
-
-//    NSString *responseString = [request responseString];
-//    NSData *responseData = [request responseData];
-    
     [_activityIndicator stopAnimating];
+
+    if ([request responseStatusCode] != 200) {
+        [AlertHelper showAlertWithMessage:@"上传头像失败" withAutoDismiss:YES target:self];
+        return;
+    }
     
-//    [self saveAvatarToSandbox];
-//    [self refreshUserAvatar];
+    [self saveAvatarToSandbox];
+    [self refreshUserAvatar];
 }
 
 - (void)requestDidFail:(ASIHTTPRequest *)request
 {
-    NSLog(@"------requestFailed-------");
-//    NSError *error = [request error];
+    [_activityIndicator stopAnimating];
     [AlertHelper showAlertWithMessage:@"上传头像失败" withAutoDismiss:YES target:self];
 }
 
