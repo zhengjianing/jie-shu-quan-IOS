@@ -16,6 +16,7 @@
 #import "CustomActivityIndicator.h"
 #import "ServerHeaders.h"
 #import "ASIFormDataRequest.h"
+#import "ChangeNameViewController.h"
 
 @interface SettingsTableViewController ()
 
@@ -229,5 +230,15 @@
 
     [AlertHelper showAlertWithMessage:@"上传头像失败" withAutoDismiss:YES target:self];
 }
+
+#pragma mark - Navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.destinationViewController isKindOfClass:[ChangeNameViewController class]]) {
+        [segue.destinationViewController setNameString:_currentUser.userName];
+    }
+}
+
 
 @end

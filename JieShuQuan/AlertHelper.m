@@ -24,4 +24,12 @@
     [alert dismissWithClickedButtonIndex:[alert cancelButtonIndex] animated:YES];
 }
 
++ (void)showNoneButtonAlertWithMessage:(NSString *)message autoDismissIn:(NSTimeInterval)time target:(id)target
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:message delegate:target cancelButtonTitle:nil otherButtonTitles:nil];
+    if (time) {
+        [self performSelector:@selector(dismissAlert:) withObject:alertView afterDelay:time];
+    }
+    [alertView show];
+}
 @end

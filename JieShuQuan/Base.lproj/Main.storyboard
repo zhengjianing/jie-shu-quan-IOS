@@ -545,9 +545,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="修改名字" id="ley-cD-xXN">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="vlS-x4-wGS">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="DM3-Ea-pfz">
                             <connections>
-                                <action selector="cancelInput:" destination="PV3-tq-uai" id="qvz-2l-HKF"/>
+                                <action selector="cancelInput:" destination="PV3-tq-uai" id="e8a-8e-EMM"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="cRa-Nc-MgS">
@@ -559,6 +559,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="cancelButton" destination="DM3-Ea-pfz" id="p1H-F5-xEW"/>
                         <outlet property="nameTextField" destination="HN3-k4-f6m" id="DgU-P3-uvU"/>
                     </connections>
                 </viewController>

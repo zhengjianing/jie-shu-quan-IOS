@@ -18,6 +18,7 @@
 
 @interface ChangeNameViewController ()
 @property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
+@property (nonatomic, strong) User *currentUser;
 @end
 
 @implementation ChangeNameViewController
@@ -25,54 +26,65 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //不是不用activityIndicator，而是它太快了，等activityIndicator刚显示出来就瞬间没了！！！
-//    [self.view addSubview:self.activityIndicator];
-    
+    _currentUser = [UserManager currentUser];
+    [self.view addSubview:self.activityIndicator];
+    _nameTextField.text = _nameString;
 }
 
-//- (CustomActivityIndicator *)activityIndicator
-//{
-//    if (_activityIndicator != nil) {
-//        return _activityIndicator;
-//    }
-//    
-//    _activityIndicator = [[CustomActivityIndicator alloc] init];
-//    return _activityIndicator;
-//}
+- (void)disableCancelButton
+{
+    [_cancelButton setEnabled:NO];
+}
+
+- (void)enableCancelButton
+{
+    [_cancelButton setEnabled:YES];
+}
+
+- (CustomActivityIndicator *)activityIndicator
+{
+    if (_activityIndicator != nil) {
+        return _activityIndicator;
+    }
+    
+    _activityIndicator = [[CustomActivityIndicator alloc] init];
+    return _activityIndicator;
+}
 
 - (IBAction)saveInput:(id)sender {
-//    [_activityIndicator startAnimating];
+    [self disableCancelButton];
 
-    [self changeCurrentUserNameTo:_nameTextField.text];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [_activityIndicator startAnimating];
+
+    [self changeCurrentUserName];
 }
 
 - (IBAction)cancelInput:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - private method
 
-- (void)changeCurrentUserNameTo:(NSString *)newName
+- (void)changeCurrentUserName
 {
-    // Just for temporary user, delete later
-    User *user = [UserManager currentUser];
-    user.userName = newName;
-    //惊讶地发现，原来写的saveUserToCoreData方法居然可以兼容仅修改名字！！！哈哈
-    [[UserStore sharedStore] saveUserToCoreData:user];
-    
     [self startUploadingUserName];
 }
 
 - (void)startUploadingUserName
 {
-    NSURL *changeUserNameURL = [NSURL URLWithString:kChangeBookStatusURL];
+    NSURL *changeUserNameURL = [NSURL URLWithString:[kChangeUserNameURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:changeUserNameURL];
+    [request addPostValue:_currentUser.userId forKey:@"user_id"];
+    [request addPostValue:_currentUser.accessToken forKey:@"access_token"];
+    [request addPostValue:_nameTextField.text forKey:@"user_name"];
     
+    [request buildPostBody];
+    [request setTimeOutSeconds:5];
+
+    [request setDidReceiveDataSelector:@selector(requestDidReceiveData:)];
+    [request setDidFailSelector:@selector(requestDidFail:)];
+
     [request setDelegate:self];
-    //若用async，则会crash，原因可能是请求尚未完成，此viewcontroller已经将自己dismissViewControllerAnimated，故request.delegate突然变成nil了。
-    //另外就是QQ里说的，要不就不管网络是否连接，先在本地改成功，然后抽空去给服务器发数据？？
-//    [request startAsynchronous];
     [request startSynchronous];
 }
 
@@ -80,20 +92,30 @@
 
 - (void)requestDidReceiveData:(ASIFormDataRequest *)request
 {
-//    [_activityIndicator stopAnimating];
+    [_activityIndicator stopAnimating];
+
     if ([request responseStatusCode] != 200) {
-        [AlertHelper showAlertWithMessage:@"用户名修改失败" withAutoDismiss:YES target:self];
+        [AlertHelper showAlertWithMessage:@"修改用户名失败" withAutoDismiss:YES target:self];
+        [self enableCancelButton];
         return;
     }
     
-    // change UserStore and UserManager
-    // TBD...
-    
+    [self enableCancelButton];
+    //    [self performSelector:@selector(enableCancelButton) withObject:nil afterDelay:1];
+
+    [AlertHelper showNoneButtonAlertWithMessage:@"修改用户名成功" autoDismissIn:1 target:self];
+
+    // save change to UserStore
+    //惊讶地发现，原来写的saveUserToCoreData方法居然可以兼容仅修改名字！！！哈哈
+    _currentUser.userName = _nameTextField.text;
+    [[UserStore sharedStore] saveUserToCoreData:_currentUser];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)requestDidFail:(ASIHTTPRequest *)request
 {
-//    [_activityIndicator stopAnimating];
+    [_activityIndicator stopAnimating];
+    [self enableCancelButton];
     [AlertHelper showAlertWithMessage:@"用户名修改失败" withAutoDismiss:YES target:self];
 }
 

@@ -37,14 +37,14 @@
 
 - (void)startAnimating
 {
-    self.hidden = NO;
+    [self setHidden:NO];
     [_activityIndicator startAnimating];
 }
 
 - (void)stopAnimating
 {
     [_activityIndicator stopAnimating];
-    self.hidden = YES;
+    [self setHidden:YES];
 }
 
 @end

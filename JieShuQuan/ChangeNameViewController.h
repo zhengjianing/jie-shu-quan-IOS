@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChangeNameViewController : UIViewController 
+@interface ChangeNameViewController : UIViewController
 
+@property (nonatomic, copy) NSString *nameString;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
 @property (strong, nonatomic) IBOutlet UITextField *nameTextField;
+
 - (IBAction)saveInput:(id)sender;
 - (IBAction)cancelInput:(id)sender;
 @end

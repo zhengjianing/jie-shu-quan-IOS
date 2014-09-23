@@ -14,9 +14,7 @@
 #define kDeleteBookURL @"http://jie-shu-quan.herokuapp.com/remove_book"
 
 #define kChangeBookStatusURL @"http://jie-shu-quan.herokuapp.com/change_status"
-// TBD...
-#define kChangeUserNameURL @""
-
+#define kChangeUserNameURL @"http://jie-shu-quan.herokuapp.com/change_username"
 
 #define kMyFriendsURL @"http://jie-shu-quan.herokuapp.com/friends_by_user/"
 #define kMyBooksURL @"http://jie-shu-quan.herokuapp.com/books_by_user/"
