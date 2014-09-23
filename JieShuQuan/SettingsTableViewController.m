@@ -197,8 +197,11 @@
     }
     
     _avatar = [ImageHelper scaleImage:originalImage toSize:CGSizeMake(120.0, 120.0)];
+    
+    [self saveAvatarToSandbox];
     [self startingUploadAvatar];
     
+    [self refreshUserAvatar];
     [self dismissViewControllerAnimated:YES completion:nil];
     [_activityIndicator startAnimating];
 }
@@ -214,8 +217,7 @@
         return;
     }
     
-    [self saveAvatarToSandbox];
-    [self refreshUserAvatar];
+    [AlertHelper showAlertWithMessage:@"上传头像成功" withAutoDismiss:YES target:self];
 }
 
 - (void)requestDidFail:(ASIHTTPRequest *)request
