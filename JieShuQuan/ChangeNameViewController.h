@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChangeNameViewController : UIViewController
+@interface ChangeNameViewController : UIViewController <NSURLConnectionDataDelegate>
 
 @property (nonatomic, copy) NSString *nameString;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
