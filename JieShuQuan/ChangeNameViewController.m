@@ -27,6 +27,7 @@
     [super viewDidLoad];
     //不是不用activityIndicator，而是它太快了，等activityIndicator刚显示出来就瞬间没了！！！
 //    [self.view addSubview:self.activityIndicator];
+    
 }
 
 //- (CustomActivityIndicator *)activityIndicator

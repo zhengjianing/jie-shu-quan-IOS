@@ -91,6 +91,9 @@
 		97F65AC219AE0A7D00B9DC93 /* JsonDataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F65AC119AE0A7D00B9DC93 /* JsonDataFetcher.m */; };
 		97F65AC719AE0B1200B9DC93 /* DataConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F65AC619AE0B1200B9DC93 /* DataConverter.m */; };
 		97F973C619B5FBF4007AAD47 /* BookStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F973C519B5FBF4007AAD47 /* BookStore.m */; };
+		97FF912219D11EA7006944BD /* city.plist in Resources */ = {isa = PBXBuildFile; fileRef = 97FF912019D11EA7006944BD /* city.plist */; };
+		97FF912319D11EA7006944BD /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = 97FF912119D11EA7006944BD /* area.plist */; };
+		97FF912919D13475006944BD /* ProvinceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FF912819D13475006944BD /* ProvinceTableViewController.m */; };
 		CC37A0125E5B473B82F68B12 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFAC14665174BE691ED257B /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -271,6 +274,10 @@
 		97F65AC619AE0B1200B9DC93 /* DataConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataConverter.m; sourceTree = "<group>"; };
 		97F973C419B5FBF4007AAD47 /* BookStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookStore.h; sourceTree = "<group>"; };
 		97F973C519B5FBF4007AAD47 /* BookStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookStore.m; sourceTree = "<group>"; };
+		97FF912019D11EA7006944BD /* city.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = city.plist; sourceTree = "<group>"; };
+		97FF912119D11EA7006944BD /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
+		97FF912719D13475006944BD /* ProvinceTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProvinceTableViewController.h; sourceTree = "<group>"; };
+		97FF912819D13475006944BD /* ProvinceTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProvinceTableViewController.m; sourceTree = "<group>"; };
 		9FFAC14665174BE691ED257B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -314,6 +321,8 @@
 				94F922B419CFAE0F00F96B09 /* SettingsTableViewController.m */,
 				9765EC3219D06BDE00066289 /* ChangeNameViewController.h */,
 				9765EC3319D06BDE00066289 /* ChangeNameViewController.m */,
+				97FF912719D13475006944BD /* ProvinceTableViewController.h */,
+				97FF912819D13475006944BD /* ProvinceTableViewController.m */,
 			);
 			name = More;
 			sourceTree = "<group>";
@@ -406,6 +415,8 @@
 				9471DC2119A5B95A00F1A291 /* myBooks.png */,
 				97553C3E19C0A5610034B446 /* info.png */,
 				9471DBED19A5837700F1A291 /* Info.plist */,
+				97FF912019D11EA7006944BD /* city.plist */,
+				97FF912119D11EA7006944BD /* area.plist */,
 				9471DBEE19A5837700F1A291 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -769,6 +780,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9471DBFB19A5837700F1A291 /* Main.storyboard in Resources */,
+				97FF912319D11EA7006944BD /* area.plist in Resources */,
 				9737041019CB38B0008949FB /* zbar-helpicons.png in Resources */,
 				94E980A219CC47EF00C7C1ED /* bg-pink.jpg in Resources */,
 				9737041119CB38B0008949FB /* zbar-samples.png in Resources */,
@@ -777,6 +789,7 @@
 				94BB40B919C33770005BBD8E /* log-out-user.png in Resources */,
 				9737040E19CB38B0008949FB /* zbar-back.png in Resources */,
 				94805CBE19CB1CA300CD762A /* app-icon.jpeg in Resources */,
+				97FF912219D11EA7006944BD /* city.plist in Resources */,
 				9737040F19CB38B0008949FB /* zbar-help.html in Resources */,
 				97553C3F19C0A5610034B446 /* info.png in Resources */,
 				9737040D19CB38B0008949FB /* README in Resources */,
@@ -879,6 +892,7 @@
 				94C1711519D01D3000656EDB /* ASIDownloadCache.m in Sources */,
 				94E3EA3919C6EBF500C38FEB /* FriendsHasBookTableViewController.m in Sources */,
 				9412E2FB19AA0D82008D243C /* BookTableViewCell.m in Sources */,
+				97FF912919D13475006944BD /* ProvinceTableViewController.m in Sources */,
 				94BB408D19C183E1005BBD8E /* FriendDetailTableViewController.m in Sources */,
 				94E5039419BAF98E004CEBC6 /* UserStore.m in Sources */,
 				94B25A8719C8457500BA93CA /* FriendHasBookTableViewCell.m in Sources */,
