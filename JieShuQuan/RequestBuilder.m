@@ -47,6 +47,13 @@ static const NSString *kBookAvailable = @"available";
     return [self buildRequestWithURLString:kLoginURL bodyDict:loginBody];
 }
 
++ (NSMutableURLRequest *)buildChangeUserNameRequestWithUserId:(NSString *)userId accessToken:(NSString *)accessToken UserName:(NSString *)newName
+{
+    NSDictionary *bodyDict = [NSDictionary dictionaryWithObjectsAndKeys:userId, @"user_id", accessToken, @"access_token", newName, @"user_name", nil];
+    
+    return [self buildRequestWithURLString:kChangeUserNameURL bodyDict:bodyDict];
+}
+
 #pragma mark - Books
 
 + (NSMutableURLRequest *)buildAddBookRequestWithBook:(Book *)book available:(BOOL)availability userId:(NSString *)userId accessToke:(NSString *)accessToken
@@ -147,5 +154,6 @@ static const NSString *kBookAvailable = @"available";
     [request setHTTPMethod:@"GET"];
     return request;
 }
+
 
 @end
