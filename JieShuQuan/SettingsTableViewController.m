@@ -199,11 +199,12 @@
     _avatar = [ImageHelper scaleImage:originalImage toSize:CGSizeMake(120.0, 120.0)];
     
     [self saveAvatarToSandbox];
-    [self startingUploadAvatar];
-    
     [self refreshUserAvatar];
     [self dismissViewControllerAnimated:YES completion:nil];
     [_activityIndicator startAnimating];
+    [self.navigationItem setHidesBackButton:YES animated:YES];
+    
+    [self startingUploadAvatar];
 }
 
 #pragma mark - ASIHTTPRequestDelegate
@@ -211,6 +212,7 @@
 - (void)requestDidReceiveData:(ASIFormDataRequest *)request
 {
     [_activityIndicator stopAnimating];
+    [self.navigationItem setHidesBackButton:NO animated:YES];
 
     if ([request responseStatusCode] != 200) {
         [AlertHelper showAlertWithMessage:@"上传头像失败" withAutoDismiss:YES target:self];
@@ -223,6 +225,8 @@
 - (void)requestDidFail:(ASIHTTPRequest *)request
 {
     [_activityIndicator stopAnimating];
+    [self.navigationItem setHidesBackButton:NO animated:YES];
+
     [AlertHelper showAlertWithMessage:@"上传头像失败" withAutoDismiss:YES target:self];
 }
 
