@@ -405,7 +405,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="V5d-UX-m80" kind="presentation" id="o8N-nh-lOD"/>
+                                            <segue destination="PV3-tq-uai" kind="push" id="Q3L-57-nWl"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -495,24 +495,6 @@
             </objects>
             <point key="canvasLocation" x="687" y="1324"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="m5d-l2-ezU">
-            <objects>
-                <navigationController id="V5d-UX-m80" sceneMemberID="viewController">
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ysR-dw-02w">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="PV3-tq-uai" kind="relationship" relationship="rootViewController" id="rU8-So-l5C"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IZg-ia-3XM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1118" y="1324"/>
-        </scene>
         <!--Province Table View Controller-->
         <scene sceneID="wHu-Tp-sWL">
             <objects>
@@ -555,7 +537,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HN3-k4-f6m">
-                                <rect key="frame" x="44" y="105" width="232" height="30"/>
+                                <rect key="frame" x="20" y="106" width="280" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -582,7 +564,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vhY-oh-OCt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1549" y="1324"/>
+            <point key="canvasLocation" x="1234" y="1346"/>
         </scene>
         <!--Book Detail Table View Controller - 书的详情-->
         <scene sceneID="lt7-51-IUi">
