@@ -172,7 +172,7 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     
     // In case the user hasn't logged in yet
     if (![UserManager isLogin]) {
-        [AlertHelper showAlertWithMessage:@"您尚未登录，请先登录" withAutoDismiss:NO target:self];
+        [AlertHelper showAlertWithMessage:@"您尚未登录，请先登录" withAutoDismiss:NO];
         return;
     }
     
@@ -229,15 +229,15 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if ([response statusCode] != 200) {
         if ([request.URL.absoluteString isEqualToString:kAddBookURL]) {
-            [AlertHelper showAlertWithMessage:@"添加图书失败" withAutoDismiss:YES target:self];
+            [AlertHelper showAlertWithMessage:@"添加图书失败" withAutoDismiss:YES];
         }
         if ([request.URL.absoluteString isEqualToString:kDeleteBookURL])
         {
-            [AlertHelper showAlertWithMessage:@"删除图书失败" withAutoDismiss:YES target:self];
+            [AlertHelper showAlertWithMessage:@"删除图书失败" withAutoDismiss:YES];
         }
         if ([request.URL.absoluteString isEqualToString:kChangeBookStatusURL])
         {
-            [AlertHelper showAlertWithMessage:@"修改图书状态失败" withAutoDismiss:YES target:self];
+            [AlertHelper showAlertWithMessage:@"修改图书状态失败" withAutoDismiss:YES];
         }
     }
     return data;

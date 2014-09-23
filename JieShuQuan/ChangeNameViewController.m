@@ -72,11 +72,11 @@
         [self enableCancelButton];
 
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-            [AlertHelper showAlertWithMessage:@"修改用户名失败" withAutoDismiss:YES target:self];
+            [AlertHelper showAlertWithMessage:@"修改用户名失败" withAutoDismiss:YES];
             return;
         }
         if (data) {
-            [AlertHelper showNoneButtonAlertWithMessage:@"修改用户名成功" autoDismissIn:1 target:self];
+            [AlertHelper showAlertWithMessage:@"修改用户名成功" withAutoDismiss:YES];
             _currentUser.userName = _nameTextField.text;
             [[UserStore sharedStore] saveUserToCoreData:_currentUser];
             

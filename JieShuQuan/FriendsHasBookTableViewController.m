@@ -140,7 +140,7 @@
         }
 
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-            [AlertHelper showAlertWithMessage:@"更新失败，请稍后重试" withAutoDismiss:YES target:self];
+            [AlertHelper showAlertWithMessage:@"更新失败，请稍后重试" withAutoDismiss:YES];
             return ;
         }
         

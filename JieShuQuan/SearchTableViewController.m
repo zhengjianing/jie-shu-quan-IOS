@@ -73,7 +73,7 @@
 
 - (void)webDataFetchFailed
 {
-    [AlertHelper showAlertWithMessage:@"数据获取失败...请检查您的网络" withAutoDismiss:YES target:self];
+    [AlertHelper showAlertWithMessage:@"数据获取失败...请检查您的网络" withAutoDismiss:YES];
 }
 
 -(void)setExtraCellLineHidden:(UITableView *)tableView
@@ -182,7 +182,7 @@
 ////        [self startFetchingBookDetailFromDoubanWithIsbnCode:isbnCode];
 //            [_activityIndicator startAnimating];
 //    } else {
-//        [AlertHelper showAlertWithMessage:@"获取图书信息失败" withAutoDismiss:YES target:self];
+//        [AlertHelper showAlertWithMessage:@"获取图书信息失败" withAutoDismiss:YES];
 //    }
 //    
 //    [reader dismissViewControllerAnimated:YES completion:nil];
@@ -201,7 +201,7 @@
 //            Book *book = [DataConverter bookFromDoubanBookObject:object];
 //            [self showBookDetailViewControllerForBook:book];
 //        } else {
-//            [AlertHelper showAlertWithMessage:@"获取图书信息失败" withAutoDismiss:YES target:self];
+//            [AlertHelper showAlertWithMessage:@"获取图书信息失败" withAutoDismiss:YES];
 //        }
 //    }];
 //}

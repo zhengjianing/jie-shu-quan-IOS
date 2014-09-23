@@ -216,11 +216,11 @@
     [self.navigationItem setHidesBackButton:NO animated:YES];
 
     if ([request responseStatusCode] != 200) {
-        [AlertHelper showAlertWithMessage:@"上传头像失败" withAutoDismiss:YES target:self];
+        [AlertHelper showAlertWithMessage:@"上传头像失败" withAutoDismiss:YES];
         return;
     }
     
-    [AlertHelper showAlertWithMessage:@"上传头像成功" withAutoDismiss:YES target:self];
+    [AlertHelper showAlertWithMessage:@"上传头像成功" withAutoDismiss:YES];
 }
 
 - (void)requestDidFail:(ASIHTTPRequest *)request
@@ -228,7 +228,7 @@
     [_activityIndicator stopAnimating];
     [self.navigationItem setHidesBackButton:NO animated:YES];
 
-    [AlertHelper showAlertWithMessage:@"上传头像失败" withAutoDismiss:YES target:self];
+    [AlertHelper showAlertWithMessage:@"上传头像失败" withAutoDismiss:YES];
 }
 
 #pragma mark - Navigation

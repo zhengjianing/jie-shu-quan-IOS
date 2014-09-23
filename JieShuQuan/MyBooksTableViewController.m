@@ -182,7 +182,7 @@ static const NSString *kStatusNO = @"暂时不可借";
         [_refresh endRefreshing];
 
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-            [AlertHelper showAlertWithMessage:@"更新失败" withAutoDismiss:YES target:self];
+            [AlertHelper showAlertWithMessage:@"更新失败" withAutoDismiss:YES];
             return ;
         }
         

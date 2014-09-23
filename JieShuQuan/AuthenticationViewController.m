@@ -44,7 +44,7 @@
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-        [AlertHelper showAlertWithMessage:@"验证失败" withAutoDismiss:YES target:self];
+        [AlertHelper showAlertWithMessage:@"验证失败" withAutoDismiss:YES];
     }
     [self.activityIndicator stopAnimating];
     _freezeLayer.hidden = YES;
@@ -68,7 +68,7 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    [AlertHelper showAlertWithMessage:@"网络请求失败...\n请检查您的网络连接" withAutoDismiss:YES target:self];
+    [AlertHelper showAlertWithMessage:@"网络请求失败...\n请检查您的网络连接" withAutoDismiss:YES];
 }
 
 @end
