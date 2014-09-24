@@ -28,8 +28,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setTableFooterView];
     _currentUser = [UserManager currentUser];
     [self.view addSubview:self.activityIndicator];
+}
+
+- (void)setTableFooterView
+{
+    UIView *view = [UIView new];
+    view.backgroundColor = [UIColor clearColor];
+    [self.tableView setTableFooterView:view];
 }
 
 - (void)disableBackButton
