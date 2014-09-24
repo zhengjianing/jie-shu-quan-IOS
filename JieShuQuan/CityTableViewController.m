@@ -13,6 +13,7 @@
 #import "User.h"
 #import "AlertHelper.h"
 #import "CustomActivityIndicator.h"
+#import "SettingsTableViewController.h"
 
 @interface CityTableViewController ()
 
@@ -43,6 +44,12 @@
 
 - (void)popToSettingsPage
 {
+    NSArray *navStack = [self.navigationController viewControllers];
+    id settingController = [navStack objectAtIndex:navStack.count-3];
+    if ([settingController isKindOfClass:[SettingsTableViewController class]]) {
+        [self.navigationController popToViewController:settingController animated:YES];
+        return;
+    }
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
