@@ -168,7 +168,9 @@
 
 - (void)refreshUserAvatar
 {
-    [_userAvatarImageView sd_setImageWithURL:_avatarURL placeholderImage:[AvatarManager defaulFriendAvatar]];
+    [[SDImageCache sharedImageCache] clearMemory];
+    [[SDImageCache sharedImageCache] clearDisk];
+    [_userAvatarImageView sd_setImageWithURL:_avatarURL placeholderImage:_avatar];
 }
 
 - (void)saveAvatarToSandbox
@@ -223,9 +225,9 @@
         [AlertHelper showAlertWithMessage:@"上传头像失败" withAutoDismiss:YES];
         return;
     }
-
-    [self refreshUserAvatar];
+    
     [AlertHelper showAlertWithMessage:@"上传头像成功" withAutoDismiss:YES];
+    [self refreshUserAvatar];
 }
 
 - (void)requestDidFail:(ASIHTTPRequest *)request
