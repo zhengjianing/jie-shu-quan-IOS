@@ -321,14 +321,7 @@
 			children = (
 				94BB409319C283CB005BBD8E /* MoreTableViewController.h */,
 				94BB409419C283CB005BBD8E /* MoreTableViewController.m */,
-				94F922B319CFAE0F00F96B09 /* SettingsTableViewController.h */,
-				94F922B419CFAE0F00F96B09 /* SettingsTableViewController.m */,
-				9765EC3219D06BDE00066289 /* ChangeNameViewController.h */,
-				9765EC3319D06BDE00066289 /* ChangeNameViewController.m */,
-				97FF912719D13475006944BD /* ProvinceTableViewController.h */,
-				97FF912819D13475006944BD /* ProvinceTableViewController.m */,
-				97B59F3819D2560D0063CFA8 /* CityTableViewController.h */,
-				97B59F3919D2560D0063CFA8 /* CityTableViewController.m */,
+				9471D41419D2CEBD00AEBE7D /* Settings */,
 			);
 			name = More;
 			sourceTree = "<group>";
@@ -336,12 +329,9 @@
 		9412E2F119A9E4CD008D243C /* MyBooks */ = {
 			isa = PBXGroup;
 			children = (
-				9471DC2519A9689E00F1A291 /* MyBooksTableViewController.h */,
-				9471DC2619A9689E00F1A291 /* MyBooksTableViewController.m */,
-				94B23BAC19C3F61B009896BE /* BookDetailTableViewController.h */,
-				94B23BAD19C3F61B009896BE /* BookDetailTableViewController.m */,
-				9412E2F919AA0D82008D243C /* BookTableViewCell.h */,
-				9412E2FA19AA0D82008D243C /* BookTableViewCell.m */,
+				9471D41219D2CE4D00AEBE7D /* All_books */,
+				9471D41319D2CE5900AEBE7D /* Book_detail */,
+				94E3EA3619C6EBA800C38FEB /* Friends_who_has_a_book */,
 			);
 			name = MyBooks;
 			sourceTree = "<group>";
@@ -360,6 +350,41 @@
 				97C528A319BC761000388375 /* RegisterViewController.m */,
 			);
 			name = Login;
+			sourceTree = "<group>";
+		};
+		9471D41219D2CE4D00AEBE7D /* All_books */ = {
+			isa = PBXGroup;
+			children = (
+				9471DC2519A9689E00F1A291 /* MyBooksTableViewController.h */,
+				9471DC2619A9689E00F1A291 /* MyBooksTableViewController.m */,
+				9412E2F919AA0D82008D243C /* BookTableViewCell.h */,
+				9412E2FA19AA0D82008D243C /* BookTableViewCell.m */,
+			);
+			name = All_books;
+			sourceTree = "<group>";
+		};
+		9471D41319D2CE5900AEBE7D /* Book_detail */ = {
+			isa = PBXGroup;
+			children = (
+				94B23BAC19C3F61B009896BE /* BookDetailTableViewController.h */,
+				94B23BAD19C3F61B009896BE /* BookDetailTableViewController.m */,
+			);
+			name = Book_detail;
+			sourceTree = "<group>";
+		};
+		9471D41419D2CEBD00AEBE7D /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				94F922B319CFAE0F00F96B09 /* SettingsTableViewController.h */,
+				94F922B419CFAE0F00F96B09 /* SettingsTableViewController.m */,
+				9765EC3219D06BDE00066289 /* ChangeNameViewController.h */,
+				9765EC3319D06BDE00066289 /* ChangeNameViewController.m */,
+				97FF912719D13475006944BD /* ProvinceTableViewController.h */,
+				97FF912819D13475006944BD /* ProvinceTableViewController.m */,
+				97B59F3819D2560D0063CFA8 /* CityTableViewController.h */,
+				97B59F3919D2560D0063CFA8 /* CityTableViewController.m */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		9471DBE019A5837700F1A291 = {
@@ -389,9 +414,10 @@
 				9471DBF119A5837700F1A291 /* AppDelegate.m */,
 				9471DBF919A5837700F1A291 /* Main.storyboard */,
 				9759AFFB19C1997D008EFCC2 /* Manager */,
+				9770923919C5842C001A3ED6 /* ViewHelper */,
+				9759AFF419C19012008EFCC2 /* Network */,
 				948615F119BC1434001837BF /* Utils */,
 				97F65AC319AE0A8300B9DC93 /* Model */,
-				9759AFF419C19012008EFCC2 /* Network */,
 				9412E2F219A9E4D4008D243C /* Login */,
 				9412E2F119A9E4CD008D243C /* MyBooks */,
 				94BB408219C172E4005BBD8E /* Friends */,
@@ -447,7 +473,6 @@
 		948615F119BC1434001837BF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				9770923919C5842C001A3ED6 /* ViewHelper */,
 				97C528A519BC785800388375 /* DoubanHeaders.h */,
 				9476057A19C074D800FA8E74 /* ServerHeaders.h */,
 				97F65AC519AE0B1200B9DC93 /* DataConverter.h */,
@@ -467,7 +492,6 @@
 		94BB408219C172E4005BBD8E /* Friends */ = {
 			isa = PBXGroup;
 			children = (
-				94E3EA3619C6EBA800C38FEB /* Friends_who_has_a_book */,
 				94BB409119C18BD5005BBD8E /* All_friends */,
 				94BB409219C18BE6005BBD8E /* Friend_detail */,
 			);
