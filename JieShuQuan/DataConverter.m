@@ -30,6 +30,7 @@ static const NSString *kUserId = @"user_id";
 static const NSString *kUserEmail = @"user_email";
 static const NSString *kBookCount = @"book_count";
 static const NSString *kFriendCount = @"friend_count";
+static const NSString *kLocation = @"location";
 
 // keys in Server for Book
 static const NSString *kBookname = @"name";
@@ -63,6 +64,7 @@ static const NSString *kCDAccessToken = @"access_token";
 static const NSString *kCDBookCount = @"book_count";
 static const NSString *kCDGroupName = @"group_name";
 static const NSString *kCDFriendCount = @"friend_count";
+static const NSString *kCDLocation = @"location";
 
 // keys in CoreData for Friend
 static const NSString *kCDFriendName = @"friend_name";
@@ -167,6 +169,7 @@ static const NSString *kFriendBookCount = @"book_count";
     user.userEmail = [object valueForKey:(NSString *)kUserEmail];
     user.bookCount = [object valueForKey:(NSString *)kBookCount];
     user.friendCount = [object valueForKey:(NSString *)kFriendCount];
+    user.location = [object valueForKey:(NSString *)kLocation];
     return user;
 }
 
@@ -180,6 +183,7 @@ static const NSString *kFriendBookCount = @"book_count";
     user.userEmail = [storedUser valueForKey:(NSString *)kCDUserEmail];
     user.accessToken = [storedUser valueForKey:(NSString *)kCDAccessToken];
     user.friendCount = [storedUser valueForKey:(NSString *)kCDFriendCount];
+    user.location = [storedUser valueForKey:(NSString *)kCDLocation];
     return user;
 }
 
@@ -192,6 +196,7 @@ static const NSString *kFriendBookCount = @"book_count";
     [object setValue:user.bookCount forKey:(NSString *)kCDBookCount];
     [object setValue:user.accessToken forKey:(NSString *)kCDAccessToken];
     [object setValue:user.friendCount forKey:(NSString *)kCDFriendCount];
+    [object setValue:user.location forKey:(NSString *)kCDLocation];
 }
 
 #pragma mark - Friend
