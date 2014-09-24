@@ -488,6 +488,7 @@
                     <size key="freeformSize" width="320" height="480"/>
                     <connections>
                         <outlet property="userAvatarImageView" destination="ryF-eG-gZf" id="75j-u5-53i"/>
+                        <outlet property="userLocation" destination="mMv-bl-Ud9" id="4aP-nn-8nc"/>
                         <outlet property="userNameLabel" destination="L59-Z8-P5w" id="Va1-OC-zV1"/>
                     </connections>
                 </tableViewController>
