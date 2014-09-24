@@ -83,38 +83,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
-        switch (indexPath.row) {
-            case 0:
-                [self changeUserAvatar];
-                break;
-            case 1:
-                NSLog(@"--- 0 1 ---");
-                break;
-                
-            default:
-                break;
-        }
+    if ([self didSelectChangeAvatar:indexPath]) {
+        [self changeUserAvatar];
         return;
     }
-    
-    if (indexPath.section == 1) {
-        switch (indexPath.row) {
-            case 0:
-                NSLog(@"--- 1 0 ---");
-                break;
-            case 1:
-                NSLog(@"--- 1 1 ---");
-                break;
-            case 2:
-                NSLog(@"--- 1 2 ---");
-                break;
-                
-            default:
-                break;
-        }
-        return;
-    }
+}
+
+- (BOOL)didSelectChangeAvatar:(NSIndexPath *)indexPath
+{
+    return indexPath.section == 0 && indexPath.row == 0;
 }
 
 #pragma mark - Change User Avatar
@@ -188,7 +165,6 @@
         case 1:
             [self pickImageFromAlbum];
             break;
-            
         default:
             break;
     }
