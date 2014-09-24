@@ -17,5 +17,6 @@
 @property (copy, nonatomic) NSString *userId;
 @property (copy, nonatomic) NSString *accessToken;
 @property (copy, nonatomic) NSString *friendCount;
+@property (copy, nonatomic) NSString *location;
 
 @end
