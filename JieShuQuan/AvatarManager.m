@@ -7,6 +7,7 @@
 //
 
 #import "AvatarManager.h"
+#import "ServerHeaders.h"
 
 @implementation AvatarManager
 
@@ -22,6 +23,12 @@ static const NSString *kDefautLogoutImageName = @"log-out-user.png";
         return userAvatarImage;
     }
     return [UIImage imageNamed:(NSString *)kDefautLogoutImageName];
+}
+
++ (NSURL *)avatarURLForUserId:(NSString *)userId
+{
+    NSString *friendAvatarUrl = [NSString stringWithFormat:@"%@-%@.png", kAvatarURLPrefix, userId];
+    return [NSURL URLWithString:friendAvatarUrl];
 }
 
 + (UIImage *)logoutAvatar

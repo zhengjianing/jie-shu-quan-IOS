@@ -21,6 +21,7 @@
 #import "MessageLabelHelper.h"
 #import "CustomActivityIndicator.h"
 #import "AvatarManager.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface FriendsTableViewController ()
 
@@ -150,7 +151,8 @@
     cell.userNameLabel.text = friend.friendName;
     cell.bookCountLabel.text = friend.bookCount;
     cell.emailLabel.text = friend.friendEmail;
-    [cell.iconImageView setImage:[AvatarManager avatarForUserId:friend.friendId]];
+    NSURL *avatarURL = [AvatarManager avatarURLForUserId:friend.friendId];
+    [cell.iconImageView sd_setImageWithURL:avatarURL];
     [AvatarManager setAvatarStyleForImageView:cell.iconImageView];
     
     return cell;
