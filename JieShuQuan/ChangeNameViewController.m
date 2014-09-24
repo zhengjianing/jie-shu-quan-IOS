@@ -27,6 +27,14 @@
     _currentUser = [UserManager currentUser];
     [self.view addSubview:self.activityIndicator];
     _nameTextField.text = _nameString;
+    _nameTextField.delegate = self;
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (void)disableCancelButton
