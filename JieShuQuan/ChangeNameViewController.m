@@ -61,6 +61,10 @@
     return _activityIndicator;
 }
 
+- (IBAction)backgroundViewTouchDown:(id)sender {
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
+}
+
 - (IBAction)saveInput:(id)sender {
     [_activityIndicator startAnimating];
     [self disableCancelButton];

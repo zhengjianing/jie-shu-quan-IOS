@@ -14,6 +14,7 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
 @property (strong, nonatomic) IBOutlet UITextField *nameTextField;
 
+- (IBAction)backgroundViewTouchDown:(id)sender;
 - (IBAction)saveInput:(id)sender;
 - (IBAction)cancelInput:(id)sender;
 @end

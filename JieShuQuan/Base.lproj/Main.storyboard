@@ -511,7 +511,7 @@
                         <viewControllerLayoutGuide type="top" id="OB0-Aw-ANF"/>
                         <viewControllerLayoutGuide type="bottom" id="Kfm-29-lcF"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="eeU-Ws-gjC">
+                    <view key="view" contentMode="scaleToFill" id="eeU-Ws-gjC" customClass="UIControl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -522,6 +522,9 @@
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <action selector="backgroundViewTouchDown:" destination="PV3-tq-uai" eventType="touchDown" id="AoL-fu-CWQ"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="修改名字" id="ley-cD-xXN">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="DM3-Ea-pfz">
