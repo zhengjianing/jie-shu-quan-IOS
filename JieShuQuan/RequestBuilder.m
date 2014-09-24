@@ -118,7 +118,7 @@ static const NSString *kBookAvailable = @"available";
 + (NSMutableURLRequest *)buildRequestWithURLString:(NSString *)urlString bodyDict:(NSDictionary *)bodyDict
 {
     NSURL *postURL = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:postURL];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:postURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:5];
     
     id object = [NSJSONSerialization dataWithJSONObject:bodyDict options:NSJSONWritingPrettyPrinted error:nil];
     [request setHTTPBody:object];
@@ -136,7 +136,7 @@ static const NSString *kBookAvailable = @"available";
 + (NSMutableURLRequest *)buildRequestWithURLString:(NSString *)requestString bodyDictionary:(NSDictionary *)bodyDictionary HTTPMethod:(NSString *)HTTPMethod
 {
     NSURL *postURL = [NSURL URLWithString:[requestString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:postURL];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:postURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:5];
     id object = [NSJSONSerialization dataWithJSONObject:bodyDictionary options:NSJSONWritingPrettyPrinted error:nil];
     [request setHTTPBody:object];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -147,13 +147,12 @@ static const NSString *kBookAvailable = @"available";
 + (NSMutableURLRequest *)buildGetRequestWithRULString:(NSString *)requestString
 {
     NSURL *getURL = [NSURL URLWithString:[requestString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:getURL];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:getURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:5];
     
     [request setHTTPBody:[NSData data]];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPMethod:@"GET"];
     return request;
 }
-
 
 @end
