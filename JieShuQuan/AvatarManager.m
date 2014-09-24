@@ -36,6 +36,11 @@ static const NSString *kDefautLogoutImageName = @"log-out-user.png";
     return [UIImage imageNamed:(NSString *)kDefautLogoutImageName];
 }
 
++ (UIImage *)defaulFriendAvatar
+{
+    return [UIImage imageNamed:(NSString *)kDefautLoginImageName];
+}
+
 + (void)setAvatarStyleForImageView:(UIImageView *)imageView
 {
     imageView.layer.masksToBounds = YES;

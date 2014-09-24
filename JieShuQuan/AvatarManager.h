@@ -19,5 +19,6 @@
 + (NSString *)avatarPathForUserId:(NSString *)userId;
 
 + (NSURL *)avatarURLForUserId:(NSString *)userId;
++ (UIImage *)defaulFriendAvatar;
 
 @end
