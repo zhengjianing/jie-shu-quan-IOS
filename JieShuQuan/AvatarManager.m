@@ -15,20 +15,15 @@ static const NSString *kUserAvatarImageName = @"userAvatar";
 static const NSString *kDefautLoginImageName = @"log-in-user.png";
 static const NSString *kDefautLogoutImageName = @"log-out-user.png";
 
-+ (UIImage *)avatarForUserId:(NSString *)userId
-{
-    NSString *userAvatarImagePath = [self avatarPathForUserId:userId];
-    UIImage *userAvatarImage = [UIImage imageWithContentsOfFile:userAvatarImagePath];
-    if (userAvatarImage) {
-        return userAvatarImage;
-    }
-    return [UIImage imageNamed:(NSString *)kDefautLoginImageName];
-}
-
 + (NSURL *)avatarURLForUserId:(NSString *)userId
 {
     NSString *friendAvatarUrl = [NSString stringWithFormat:@"%@-%@.png", kAvatarURLPrefix, userId];
     return [NSURL URLWithString:friendAvatarUrl];
+}
+
++ (NSString *)avatarURLStringForUserId:(NSString *)userId
+{
+    return [NSString stringWithFormat:@"%@-%@.png", kAvatarURLPrefix, userId];
 }
 
 + (UIImage *)logoutAvatar

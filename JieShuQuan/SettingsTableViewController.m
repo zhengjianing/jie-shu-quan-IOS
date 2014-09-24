@@ -168,8 +168,7 @@
 
 - (void)refreshUserAvatar
 {
-    [[SDImageCache sharedImageCache] clearMemory];
-    [[SDImageCache sharedImageCache] clearDisk];
+    [[SDImageCache sharedImageCache] removeImageForKey:[AvatarManager avatarURLStringForUserId:_currentUser.userId]];
     [_userAvatarImageView sd_setImageWithURL:_avatarURL placeholderImage:_avatar];
 }
 
