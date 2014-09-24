@@ -185,7 +185,8 @@
     Friend *friend = friendCellObject[@"friend"];
     NSInteger availability = [friendCellObject[@"availability"] integerValue];
     
-    [cell.friendAvatarImageView setImage:[AvatarManager avatarForUserId:friend.friendId]];
+    NSURL *avatarURL = [AvatarManager avatarURLForUserId:friend.friendId];
+    [cell.friendAvatarImageView sd_setImageWithURL:avatarURL placeholderImage:[AvatarManager defaulFriendAvatar]];
     [AvatarManager setAvatarStyleForImageView:cell.friendAvatarImageView];
     
     cell.friendNameLabel.text = friend.friendName;
