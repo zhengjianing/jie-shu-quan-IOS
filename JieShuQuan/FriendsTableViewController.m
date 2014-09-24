@@ -152,7 +152,7 @@
     cell.bookCountLabel.text = friend.bookCount;
     cell.emailLabel.text = friend.friendEmail;
     NSURL *avatarURL = [AvatarManager avatarURLForUserId:friend.friendId];
-    [cell.iconImageView sd_setImageWithURL:avatarURL];
+    [cell.iconImageView sd_setImageWithURL:avatarURL placeholderImage:[UIImage imageNamed:@"log-in-user.png"]];
     [AvatarManager setAvatarStyleForImageView:cell.iconImageView];
     
     return cell;

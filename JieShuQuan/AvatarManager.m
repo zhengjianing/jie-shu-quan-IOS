@@ -22,7 +22,7 @@ static const NSString *kDefautLogoutImageName = @"log-out-user.png";
     if (userAvatarImage) {
         return userAvatarImage;
     }
-    return [UIImage imageNamed:(NSString *)kDefautLogoutImageName];
+    return [UIImage imageNamed:(NSString *)kDefautLoginImageName];
 }
 
 + (NSURL *)avatarURLForUserId:(NSString *)userId
