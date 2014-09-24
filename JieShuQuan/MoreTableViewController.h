@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface MoreTableViewController : UITableViewController <UIActionSheetDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *emailLabel;
+@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 
 @property (weak, nonatomic) IBOutlet UITableViewCell *userInfoCell;
 @property (weak, nonatomic) IBOutlet UILabel *bookCountLabel;

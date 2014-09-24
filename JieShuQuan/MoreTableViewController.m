@@ -22,7 +22,6 @@ static const NSString *kDefaultCount = @"0";
     [super viewDidLoad];
     
     [AvatarManager setAvatarStyleForImageView:_userIconImageView];
-    [self setUserInfoBackgroundImage];
     [self setTableFooterView];
 }
 
@@ -38,13 +37,6 @@ static const NSString *kDefaultCount = @"0";
     UIView *view = [UIView new];
     view.backgroundColor = [UIColor clearColor];
     [self.tableView setTableFooterView:view];
-}
-
-- (void)setUserInfoBackgroundImage
-{
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:_userInfoCell.backgroundView.frame];
-    [imageView setImage:[UIImage imageNamed:@"bg.jpeg"]];
-    self.userInfoCell.backgroundView = imageView;
 }
 
 - (void)configureView
@@ -82,15 +74,22 @@ static const NSString *kDefaultCount = @"0";
 
 - (void)updateViewForLogin
 {
+    User *currentUser = [UserManager currentUser];
     [_settingsButton setEnabled:YES];
-    NSURL *avatarURL = [AvatarManager avatarURLForUserId:[UserManager currentUser].userId];
+    NSURL *avatarURL = [AvatarManager avatarURLForUserId:currentUser.userId];
     [_userIconImageView sd_setImageWithURL:avatarURL placeholderImage:[AvatarManager defaulFriendAvatar]];
     
-    _bookCountLabel.text = [[UserManager currentUser] bookCount];
-    _friendsCountLabel.text = [[UserManager currentUser] friendCount];
+    _bookCountLabel.text = currentUser.bookCount;
+    _friendsCountLabel.text = currentUser.friendCount;
 
-    [_userNameButton setTitle:[[UserManager currentUser] userName] forState:UIControlStateNormal];
-    [_userNameButton setUserInteractionEnabled:NO];
+    [_userInfoCell setUserInteractionEnabled:YES];
+    [_userNameButton setHidden:YES];
+    [_userNameLabel setHidden:NO];
+    [_emailLabel setHidden:NO];
+    [_locationLabel setHidden:NO];
+    _userNameLabel.text = currentUser.userName;
+    _emailLabel.text = currentUser.userEmail;
+    _locationLabel.text = currentUser.location;
     
     [_logoutCell setUserInteractionEnabled:YES];
     _logoutLabel.textColor = [UIColor blackColor];
@@ -104,9 +103,14 @@ static const NSString *kDefaultCount = @"0";
     _bookCountLabel.text = (NSString *)kDefaultCount;
     _friendsCountLabel.text = (NSString *)kDefaultCount;
 
-    [_userNameButton setTitle:@"立即登录" forState:UIControlStateNormal];
-
+    [_userInfoCell setUserInteractionEnabled:NO];
     [_userNameButton setUserInteractionEnabled:YES];
+    [_userNameButton setEnabled:YES];
+    [_userNameButton setTitle:@"立即登录" forState:UIControlStateNormal];
+    [_userNameButton setHidden:NO];
+    [_userNameLabel setHidden:YES];
+    [_emailLabel setHidden:YES];
+    [_locationLabel setHidden:YES];
     
     [_logoutCell setUserInteractionEnabled:NO];
     _logoutLabel.textColor = [UIColor colorWithWhite:0.2 alpha:0.5];
