@@ -14,6 +14,7 @@
 #import "UserManager.h"
 #import "AlertHelper.h"
 #import "FriendStore.h"
+#import "CacheManager.h"
 
 @implementation AuthenticationViewController
 
@@ -59,6 +60,7 @@
         [UserManager saveUserToUserDefaults:user];
         [[BookStore sharedStore] refreshStoredBooks];
         [[FriendStore sharedStore] refreshStoredFriends];
+        [CacheManager clearAvatarCacheForUserId:user.userId];
         [self.navigationController popToRootViewControllerAnimated:YES];
         
         // when login/Register succeeded, send notice to MyBooksViewController to fetch books from server
