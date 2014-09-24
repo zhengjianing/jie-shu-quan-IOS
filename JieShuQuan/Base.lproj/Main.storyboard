@@ -495,7 +495,7 @@
             </objects>
             <point key="canvasLocation" x="687" y="1324"/>
         </scene>
-        <!--Province Table View Controller-->
+        <!--Province Table View Controller - 请选择省/直辖市-->
         <scene sceneID="wHu-Tp-sWL">
             <objects>
                 <tableViewController id="X64-lL-rPF" customClass="ProvinceTableViewController" sceneMemberID="viewController">
@@ -504,11 +504,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="ILf-ac-gGV">
+                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="provinceCell" id="ILf-ac-gGV">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ILf-ac-gGV" id="JaH-I2-DPc">
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="6bV-zn-Hvc" kind="push" id="bqW-8z-NJj"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -516,7 +519,7 @@
                             <outlet property="delegate" destination="X64-lL-rPF" id="9US-Ie-z4z"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="5SX-bE-JZE"/>
+                    <navigationItem key="navigationItem" title="请选择省/直辖市" id="5SX-bE-JZE"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                 </tableViewController>
@@ -1368,6 +1371,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FdJ-e0-hOf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-281" y="750"/>
+        </scene>
+        <!--City Table View Controller - 请选择城市-->
+        <scene sceneID="8nu-r2-nHJ">
+            <objects>
+                <tableViewController id="6bV-zn-Hvc" customClass="CityTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="9lQ-Ja-PcL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="blue" indentationWidth="10" reuseIdentifier="cityCell" id="HSS-iV-d8y">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HSS-iV-d8y" id="nPv-L7-YVD">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="6bV-zn-Hvc" id="jZC-ac-1TU"/>
+                            <outlet property="delegate" destination="6bV-zn-Hvc" id="jv9-HD-a9Y"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="请选择城市" id="ch1-l9-qX0"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fLO-q3-9zS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1578" y="1930"/>
         </scene>
     </scenes>
     <resources>

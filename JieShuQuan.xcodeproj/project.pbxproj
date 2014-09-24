@@ -83,6 +83,7 @@
 		9766FC9B19BF30980089C89B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9766FC9A19BF30980089C89B /* LoginViewController.m */; };
 		9770923819C583CD001A3ED6 /* ActionSheetHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9770923719C583CD001A3ED6 /* ActionSheetHelper.m */; };
 		977FEDB619CEA102000E0154 /* CustomActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 977FEDB519CEA102000E0154 /* CustomActivityIndicator.m */; };
+		97B59F3A19D2560D0063CFA8 /* CityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97B59F3919D2560D0063CFA8 /* CityTableViewController.m */; };
 		97C528A119BC34B600388375 /* AlertHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C528A019BC34B600388375 /* AlertHelper.m */; };
 		97C528A419BC761000388375 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C528A319BC761000388375 /* RegisterViewController.m */; };
 		97DDA8DF19AF7F430055C7E5 /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97DDA8DE19AF7F430055C7E5 /* SearchTableViewController.m */; };
@@ -257,6 +258,8 @@
 		9770923719C583CD001A3ED6 /* ActionSheetHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetHelper.m; sourceTree = "<group>"; };
 		977FEDB419CEA102000E0154 /* CustomActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomActivityIndicator.h; sourceTree = "<group>"; };
 		977FEDB519CEA102000E0154 /* CustomActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomActivityIndicator.m; sourceTree = "<group>"; };
+		97B59F3819D2560D0063CFA8 /* CityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityTableViewController.h; sourceTree = "<group>"; };
+		97B59F3919D2560D0063CFA8 /* CityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityTableViewController.m; sourceTree = "<group>"; };
 		97C5289F19BC34B600388375 /* AlertHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertHelper.h; sourceTree = "<group>"; };
 		97C528A019BC34B600388375 /* AlertHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertHelper.m; sourceTree = "<group>"; };
 		97C528A219BC761000388375 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
@@ -323,6 +326,8 @@
 				9765EC3319D06BDE00066289 /* ChangeNameViewController.m */,
 				97FF912719D13475006944BD /* ProvinceTableViewController.h */,
 				97FF912819D13475006944BD /* ProvinceTableViewController.m */,
+				97B59F3819D2560D0063CFA8 /* CityTableViewController.h */,
+				97B59F3919D2560D0063CFA8 /* CityTableViewController.m */,
 			);
 			name = More;
 			sourceTree = "<group>";
@@ -866,6 +871,7 @@
 				94C1711919D01D3000656EDB /* ASINetworkQueue.m in Sources */,
 				94F922BB19CFCDA800F96B09 /* AvatarManager.m in Sources */,
 				97553C3D19C090DE0034B446 /* AuthenticationViewController.m in Sources */,
+				97B59F3A19D2560D0063CFA8 /* CityTableViewController.m in Sources */,
 				97F306B519BD47D10010E91F /* NSString+AES256.m in Sources */,
 				94C1711719D01D3000656EDB /* ASIHTTPRequest.m in Sources */,
 				94E9807E19CBE0CD00C7C1ED /* MailManager.m in Sources */,
