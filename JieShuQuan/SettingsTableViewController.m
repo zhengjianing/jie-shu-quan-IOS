@@ -90,7 +90,7 @@
 
 - (BOOL)didSelectChangeAvatar:(NSIndexPath *)indexPath
 {
-    return indexPath.section == 0 && indexPath.row == 0;
+    return [indexPath section] == 0 && [indexPath row] == 0;
 }
 
 #pragma mark - Change User Avatar

@@ -12,8 +12,10 @@
 #import "ActionSheetHelper.h"
 #import "AvatarManager.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "LoginViewController.h"
+#import "SettingsTableViewController.h"
 
-static const NSString *kDefaultCount = @"0";
+static const NSString *kDefaultCount = @"--";
 
 @implementation MoreTableViewController
 
@@ -48,12 +50,61 @@ static const NSString *kDefaultCount = @"0";
     }
 }
 
-#pragma mark - Logout & Login
+- (void)updateViewForLogin
+{
+    User *currentUser = [UserManager currentUser];
+    NSURL *avatarURL = [AvatarManager avatarURLForUserId:currentUser.userId];
+    [_userIconImageView sd_setImageWithURL:avatarURL placeholderImage:[AvatarManager defaulFriendAvatar]];
+    
+    [_pleaseLoginLabel setHidden:YES];
+    [_userNameLabel setHidden:NO];
+    [_emailLabel setHidden:NO];
+    [_locationLabel setHidden:NO];
+    _userNameLabel.text = currentUser.userName;
+    _emailLabel.text = currentUser.userEmail;
+    _locationLabel.text = currentUser.location;
+    
+    _bookCountLabel.text = currentUser.bookCount;
+    _friendsCountLabel.text = currentUser.friendCount;
+    
+    [_logoutCell setUserInteractionEnabled:YES];
+    _logoutLabel.textColor = [UIColor blackColor];
+}
+
+- (void)updateViewForLogout
+{
+    [_userIconImageView setImage:[AvatarManager logoutAvatar]];
+    [_pleaseLoginLabel setHidden:NO];
+    [_userNameLabel setHidden:YES];
+    [_emailLabel setHidden:YES];
+    [_locationLabel setHidden:YES];
+
+    _bookCountLabel.text = (NSString *)kDefaultCount;
+    _friendsCountLabel.text = (NSString *)kDefaultCount;
+    
+    [_logoutCell setUserInteractionEnabled:NO];
+    _logoutLabel.textColor = [UIColor colorWithWhite:0.2 alpha:0.5];
+}
+
+#pragma mark - Table view data source
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([indexPath section] == 2) {
+    if ([indexPath section] == 0 && [indexPath row] == 0) {
+        id targetViewController;
+        if ([UserManager isLogin]) {
+            targetViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingsTableViewController"];
+        } else {
+            targetViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        }
+        
+        [self.navigationController pushViewController:targetViewController animated:YES];
+        return;
+    }
+    
+    if ([indexPath section] == 2 && [indexPath row] == 0) {
         [[ActionSheetHelper actionSheetWithTitle:@"确认退出吗？" delegate:self] showInView:self.view];
+        return;
     }
 }
 
@@ -70,50 +121,6 @@ static const NSString *kDefaultCount = @"0";
     [UserManager removeUserFromUserDefaults];
     [self updateViewForLogout];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"resetSearch" object:self];
-}
-
-- (void)updateViewForLogin
-{
-    User *currentUser = [UserManager currentUser];
-    [_settingsButton setEnabled:YES];
-    NSURL *avatarURL = [AvatarManager avatarURLForUserId:currentUser.userId];
-    [_userIconImageView sd_setImageWithURL:avatarURL placeholderImage:[AvatarManager defaulFriendAvatar]];
-    
-    _bookCountLabel.text = currentUser.bookCount;
-    _friendsCountLabel.text = currentUser.friendCount;
-
-    [_userInfoCell setUserInteractionEnabled:YES];
-    [_userNameButton setHidden:YES];
-    [_userNameLabel setHidden:NO];
-    [_emailLabel setHidden:NO];
-    [_locationLabel setHidden:NO];
-    _userNameLabel.text = currentUser.userName;
-    _emailLabel.text = currentUser.userEmail;
-    _locationLabel.text = currentUser.location;
-    
-    [_logoutCell setUserInteractionEnabled:YES];
-    _logoutLabel.textColor = [UIColor blackColor];
-}
-
-- (void)updateViewForLogout
-{
-    [_settingsButton setEnabled:NO];
-    [_userIconImageView setImage:[AvatarManager logoutAvatar]];
-    
-    _bookCountLabel.text = (NSString *)kDefaultCount;
-    _friendsCountLabel.text = (NSString *)kDefaultCount;
-
-    [_userInfoCell setUserInteractionEnabled:NO];
-    [_userNameButton setUserInteractionEnabled:YES];
-    [_userNameButton setEnabled:YES];
-    [_userNameButton setTitle:@"立即登录" forState:UIControlStateNormal];
-    [_userNameButton setHidden:NO];
-    [_userNameLabel setHidden:YES];
-    [_emailLabel setHidden:YES];
-    [_locationLabel setHidden:YES];
-    
-    [_logoutCell setUserInteractionEnabled:NO];
-    _logoutLabel.textColor = [UIColor colorWithWhite:0.2 alpha:0.5];
 }
 
 @end
