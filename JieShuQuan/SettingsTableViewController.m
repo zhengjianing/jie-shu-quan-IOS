@@ -43,9 +43,6 @@
     [self.tableView addSubview:self.activityIndicator];
 
     [AvatarManager setAvatarStyleForImageView:_userAvatarImageView];
-    
-    _currentUser = [UserManager currentUser];
-    _avatarURL = [AvatarManager avatarURLForUserId:_currentUser.userId];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -57,6 +54,8 @@
 
 - (void)initViewWithCurrentUser
 {
+    _currentUser = [UserManager currentUser];
+    _avatarURL = [AvatarManager avatarURLForUserId:_currentUser.userId];
     [_userAvatarImageView sd_setImageWithURL:_avatarURL placeholderImage:[AvatarManager defaulFriendAvatar]];
     _userNameLabel.text = _currentUser.userName;
     _userLocation.text = _currentUser.location;
