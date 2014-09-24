@@ -11,6 +11,7 @@
 #import "User.h"
 #import "ActionSheetHelper.h"
 #import "AvatarManager.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 static const NSString *kDefaultCount = @"0";
 
@@ -82,7 +83,8 @@ static const NSString *kDefaultCount = @"0";
 - (void)updateViewForLogin
 {
     [_settingsButton setEnabled:YES];
-    [_userIconImageView setImage:[AvatarManager avatarForUserId:[[UserManager currentUser] userId]]];
+    NSURL *avatarURL = [AvatarManager avatarURLForUserId:[UserManager currentUser].userId];
+    [_userIconImageView sd_setImageWithURL:avatarURL placeholderImage:[AvatarManager defaulFriendAvatar]];
     
     _bookCountLabel.text = [[UserManager currentUser] bookCount];
     _friendsCountLabel.text = [[UserManager currentUser] friendCount];

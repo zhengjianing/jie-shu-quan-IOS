@@ -17,6 +17,7 @@
 #import "ServerHeaders.h"
 #import "ASIFormDataRequest.h"
 #import "ChangeNameViewController.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface SettingsTableViewController ()
 
@@ -27,6 +28,7 @@
 @property (strong, nonatomic) UIImagePickerController *imagePicker;
 @property (strong, nonatomic) UIImage *avatar;
 @property (strong, nonatomic) User *currentUser;
+@property (strong, nonatomic) NSURL *avatarURL;
 
 @property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
 
@@ -41,6 +43,9 @@
     [self.tableView addSubview:self.activityIndicator];
 
     [AvatarManager setAvatarStyleForImageView:_userAvatarImageView];
+    
+    _currentUser = [UserManager currentUser];
+    _avatarURL = [AvatarManager avatarURLForUserId:_currentUser.userId];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -52,9 +57,7 @@
 
 - (void)initViewWithCurrentUser
 {
-    _currentUser = [UserManager currentUser];
-
-    [_userAvatarImageView setImage:[AvatarManager avatarForUserId:[_currentUser userId]]];
+    [_userAvatarImageView sd_setImageWithURL:_avatarURL placeholderImage:[AvatarManager defaulFriendAvatar]];
     _userNameLabel.text = _currentUser.userName;
     _userLocation.text = _currentUser.location;
 }
@@ -165,7 +168,7 @@
 
 - (void)refreshUserAvatar
 {
-    [_userAvatarImageView setImage:_avatar];
+    [_userAvatarImageView sd_setImageWithURL:_avatarURL placeholderImage:[AvatarManager defaulFriendAvatar]];
 }
 
 - (void)saveAvatarToSandbox
@@ -202,7 +205,6 @@
     _avatar = [ImageHelper scaleImage:originalImage toSize:CGSizeMake(120.0, 120.0)];
     
     [self saveAvatarToSandbox];
-    [self refreshUserAvatar];
     [self dismissViewControllerAnimated:YES completion:nil];
     [_activityIndicator startAnimating];
     [self.navigationItem setHidesBackButton:YES animated:YES];
@@ -221,7 +223,8 @@
         [AlertHelper showAlertWithMessage:@"上传头像失败" withAutoDismiss:YES];
         return;
     }
-    
+
+    [self refreshUserAvatar];
     [AlertHelper showAlertWithMessage:@"上传头像成功" withAutoDismiss:YES];
 }
 
