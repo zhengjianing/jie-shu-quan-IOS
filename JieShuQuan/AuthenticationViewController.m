@@ -68,6 +68,7 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
+    [self.activityIndicator stopAnimating];
     [AlertHelper showAlertWithMessage:@"网络请求失败...\n请检查您的网络连接" withAutoDismiss:YES];
 }
 
