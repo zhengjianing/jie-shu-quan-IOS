@@ -22,6 +22,7 @@
 #import "CustomActivityIndicator.h"
 #import "AvatarManager.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "CacheManager.h"
 
 @interface FriendsTableViewController ()
 
@@ -179,6 +180,7 @@
         
         id responseObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
         if (responseObject) {
+            [self clearFriendsAvatarCache];
             [_myFriends removeAllObjects];
             [[FriendStore sharedStore] emptyFriendStoreForCurrentUser];
 
@@ -190,6 +192,15 @@
             [self showTableView];
         }
     }];
+}
+
+- (void)clearFriendsAvatarCache
+{
+    NSMutableArray *friendIds = [[NSMutableArray alloc] init];
+    for (Friend *friend in _myFriends) {
+        [friendIds addObject:friend.friendId];
+    }
+    [CacheManager clearAvatarCacheForUserIds:friendIds];
 }
 
 #pragma mark - pull to refresh

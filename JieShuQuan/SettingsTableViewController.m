@@ -18,6 +18,7 @@
 #import "ASIFormDataRequest.h"
 #import "ChangeNameViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "CacheManager.h"
 
 @interface SettingsTableViewController ()
 
@@ -144,7 +145,7 @@
 
 - (void)refreshUserAvatar
 {
-    [[SDImageCache sharedImageCache] removeImageForKey:[AvatarManager avatarURLStringForUserId:_currentUser.userId]];
+    [CacheManager clearAvatarCacheForUserId:_currentUser.userId];
     [_userAvatarImageView sd_setImageWithURL:_avatarURL placeholderImage:_avatar];
 }
 
