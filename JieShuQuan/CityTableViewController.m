@@ -105,9 +105,9 @@
     [self disableBackButton];
     
     NSString *city = [_cityArray objectAtIndex:indexPath.row];
-    NSString *location = [NSString stringWithFormat:@"%@,%@", _province, city];
+    _location = [NSString stringWithFormat:@"%@,%@", _province, city];
     
-    [self changeUserLocation:location];
+    [self changeUserLocation:_location];
 }
 
 @end
