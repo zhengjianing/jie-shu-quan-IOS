@@ -20,6 +20,7 @@
     _loginButton.layer.cornerRadius = 5.0;
     _password.delegate = self;
     _email.delegate = self;
+    [_email becomeFirstResponder];
 }
 
 - (void)viewWillAppear:(BOOL)animated

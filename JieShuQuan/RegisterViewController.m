@@ -21,6 +21,7 @@
     _email.delegate = self;
     _password.delegate = self;
     _confirmPassword.delegate = self;
+    [_userName becomeFirstResponder];
 }
 
 - (void)viewWillAppear:(BOOL)animated

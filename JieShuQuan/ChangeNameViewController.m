@@ -28,6 +28,7 @@
     [self.view addSubview:self.activityIndicator];
     _nameTextField.text = _nameString;
     _nameTextField.delegate = self;
+    [_nameTextField becomeFirstResponder];
 }
 
 #pragma mark - UITextFieldDelegate
