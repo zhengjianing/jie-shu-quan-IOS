@@ -60,6 +60,7 @@
     if ([sender isKindOfClass:[UITableViewCell class]]) {
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
         if ([segue.destinationViewController isKindOfClass:[CityTableViewController class]]) {
+            [segue.destinationViewController setProvince:[_provinceArray objectAtIndex:indexPath.row]];
             [segue.destinationViewController setCityArray:[_citiesArray objectAtIndex:indexPath.row]];
         }
     }

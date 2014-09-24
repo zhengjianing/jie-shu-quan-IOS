@@ -43,6 +43,7 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 - (CustomActivityIndicator *)activityIndicator
 {
     if (_activityIndicator != nil) {

@@ -10,6 +10,7 @@
 
 @interface CityTableViewController : UITableViewController
 
+@property (nonatomic, copy) NSString *province;
 @property (nonatomic, copy) NSArray *cityArray;
 
 @end
