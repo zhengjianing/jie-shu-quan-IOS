@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "CustomActivityIndicator.h"
 
-@interface AuthenticationViewController : UIViewController
+@interface AuthenticationViewController : UIViewController <UIAlertViewDelegate>
 
 @property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
 @property (nonatomic, strong) UIView *freezeLayer;

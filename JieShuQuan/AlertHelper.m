@@ -12,7 +12,12 @@
 
 + (void)showAlertWithMessage:(NSString *)message withAutoDismiss:(BOOL)autoDismiss
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:message delegate:nil cancelButtonTitle:nil otherButtonTitles:@"好", nil];
+    [self showAlertWithMessage:message withAutoDismiss:autoDismiss delegate:nil];
+}
+
++ (void)showAlertWithMessage:(NSString *)message withAutoDismiss:(BOOL)autoDismiss delegate:(id)object
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:message delegate:object cancelButtonTitle:nil otherButtonTitles:@"好", nil];
     if (autoDismiss) {
         [self performSelector:@selector(dismissAlert:) withObject:alertView afterDelay:2.0];
     }

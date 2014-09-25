@@ -7,6 +7,8 @@
 //
 
 #import "AuthenticationViewController.h"
+#import "LoginViewController.h"
+#import "RegisterViewController.h"
 #import "BookStore.h"
 #import "UserStore.h"
 #import "DataConverter.h"
@@ -61,8 +63,10 @@
         [[BookStore sharedStore] refreshStoredBooks];
         [[FriendStore sharedStore] refreshStoredFriends];
         [CacheManager clearAvatarCacheForUserId:user.userId];
-        [self.navigationController popToRootViewControllerAnimated:YES];
         
+        if ([self isKindOfClass:[RegisterViewController class]]) {
+            [AlertHelper showAlertWithMessage:@"注册成功，\n请前往更多页面完善个人资料" withAutoDismiss:NO delegate:self];
+        }
         // when login/Register succeeded, send notice to MyBooksViewController to fetch books from server
         [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshData" object:self];
     }
@@ -72,6 +76,13 @@
 {
     [self.activityIndicator stopAnimating];
     [AlertHelper showAlertWithMessage:@"网络请求失败...\n请检查您的网络连接" withAutoDismiss:YES];
+}
+
+#pragma mark - UIAlertViewDelegate methods
+
+- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end

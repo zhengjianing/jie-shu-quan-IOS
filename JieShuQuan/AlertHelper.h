@@ -12,5 +12,6 @@
 @interface AlertHelper : NSObject
 
 + (void)showAlertWithMessage:(NSString *)message withAutoDismiss:(BOOL)autoDismiss;
++ (void)showAlertWithMessage:(NSString *)message withAutoDismiss:(BOOL)autoDismiss delegate:(id)object;
 
 @end

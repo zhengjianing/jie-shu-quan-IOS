@@ -35,7 +35,7 @@ static const NSString *kBookAvailable = @"available";
 
 + (NSMutableURLRequest *)buildRegisterRequestWithEmail:(NSString *)email password:(NSString *)password
 {
-    NSDictionary *registerBody = @{@"user_name": @"", @"email": email, @"location": @"", @"password": [self encrypePassword:password]};
+    NSDictionary *registerBody = @{@"user_name": @"XXX", @"email": email, @"location": @"", @"password": [self encrypePassword:password]};
     
     return [self buildRequestWithURLString:kRegisterURL bodyDict:registerBody];
 }
