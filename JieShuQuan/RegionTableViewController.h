@@ -17,10 +17,13 @@
 
 @property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
 @property (nonatomic, strong) User *currentUser;
-@property (nonatomic, copy) NSString *location;
+
+@property (nonatomic, copy) NSString *changedLocation;
+@property (nonatomic, copy) NSString *oldLocation;
 
 - (void)disableBackButton;
 - (void)enableBackButton;
+- (void)popToControllerWithCountDownIndex:(NSInteger)index;
 - (void)changeUserLocation:(NSString *)location andPopToControllerWithCountDownIndex:(NSInteger)index;
 
 @end

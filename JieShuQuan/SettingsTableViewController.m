@@ -19,6 +19,7 @@
 #import "ChangeNameViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "CacheManager.h"
+#import "ProvinceTableViewController.h"
 
 @interface SettingsTableViewController ()
 
@@ -219,6 +220,10 @@
 {
     if ([segue.destinationViewController isKindOfClass:[ChangeNameViewController class]]) {
         [segue.destinationViewController setNameString:_currentUser.userName];
+        return;
+    }
+    if ([segue.destinationViewController isKindOfClass:[ProvinceTableViewController class]]) {
+        [segue.destinationViewController setOldLocation:_userLocation.text];
     }
 }
 

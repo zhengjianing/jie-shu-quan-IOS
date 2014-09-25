@@ -42,9 +42,13 @@
     [self.activityIndicator startAnimating];
     [self disableBackButton];
     NSString *city = [_cityArray objectAtIndex:indexPath.row];
-    self.location = [NSString stringWithFormat:@"%@,%@", _province, city];
-    
-    [self changeUserLocation:self.location andPopToControllerWithCountDownIndex:3];
+    self.changedLocation = [NSString stringWithFormat:@"%@，%@", _province, city];
+    if ([self.changedLocation isEqualToString:self.oldLocation]) {
+        [self.activityIndicator stopAnimating];
+        [self popToControllerWithCountDownIndex:3];
+        return;
+    }
+    [self changeUserLocation:self.changedLocation andPopToControllerWithCountDownIndex:3];
 }
 
 @end

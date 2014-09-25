@@ -45,8 +45,13 @@
 {
     [self.activityIndicator startAnimating];
     [self disableBackButton];
-    self.location = [self.provinceArray objectAtIndex:indexPath.row];
-    [self changeUserLocation:self.location andPopToControllerWithCountDownIndex:2];
+    self.changedLocation = [self.provinceArray objectAtIndex:indexPath.row];
+    if ([self.changedLocation isEqualToString:self.oldLocation]) {
+        [self.activityIndicator stopAnimating];
+        [self popToControllerWithCountDownIndex:2];
+        return;
+    }
+    [self changeUserLocation:self.changedLocation andPopToControllerWithCountDownIndex:2];
 }
 
 
@@ -67,6 +72,8 @@
     if ([segue.destinationViewController isKindOfClass:[CityTableViewController class]]) {
         [segue.destinationViewController setProvince:[self.provinceArray objectAtIndex:indexPath.row]];
         [segue.destinationViewController setCityArray:[self.citiesArray objectAtIndex:indexPath.row]];
+        [segue.destinationViewController setOldLocation:self.oldLocation];
+
     }
 }
 

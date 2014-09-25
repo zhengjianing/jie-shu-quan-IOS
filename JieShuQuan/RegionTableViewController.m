@@ -61,6 +61,11 @@
     [self.navigationItem.backBarButtonItem setEnabled:YES];
 }
 
+- (void)isSameLocation
+{
+    
+}
+
 - (CustomActivityIndicator *)activityIndicator
 {
     if (_activityIndicator != nil) {
