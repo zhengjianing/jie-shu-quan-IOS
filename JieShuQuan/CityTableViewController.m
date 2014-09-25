@@ -41,7 +41,6 @@
 {
     [self.activityIndicator startAnimating];
     [self disableBackButton];
-    
     NSString *city = [_cityArray objectAtIndex:indexPath.row];
     self.location = [NSString stringWithFormat:@"%@,%@", _province, city];
     

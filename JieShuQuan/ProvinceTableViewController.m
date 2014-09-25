@@ -34,6 +34,9 @@
     cell.textLabel.text = [self.provinceArray objectAtIndex:indexPath.row];
     if ([[self.citiesArray objectAtIndex:indexPath.row] count] == 0) {
         [cell setAccessoryType:UITableViewCellAccessoryNone];
+    } else {
+        // 由于会重用cell，因此前四个直辖市设置AccessoryType为None，会导致后面重用这四个cell时，虽然不执行if中的语句，但是AccessoryType仍然是None，使得在shouldPerformSegueWithIdentifier中判断出错而不执行跳转！！！因此即使在storyboard中已经指定使用DisclosureIndicator，此处仍然需要加上下面这句
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     }
     return cell;
 }
