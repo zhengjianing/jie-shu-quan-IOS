@@ -23,7 +23,7 @@ static const int usernameWidth = 200;
     if (self) {
         _bookCommentLabel = [[UILabel alloc] init];
         _bookCommentLabel.font = [UIFont boldSystemFontOfSize:fontSize];
-        _userNameLabel.textColor = [UIColor darkGrayColor];
+        _bookCommentLabel.textColor = [UIColor darkGrayColor];
         [self.contentView addSubview:_bookCommentLabel];
         
         _userNameLabel = [[UILabel alloc] init];
