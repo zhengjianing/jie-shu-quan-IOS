@@ -1374,7 +1374,7 @@
             </objects>
             <point key="canvasLocation" x="1578" y="1930"/>
         </scene>
-        <!--Book Comment Table View Controller - 谁有此书-->
+        <!--Book Comment Table View Controller - 大家的评价-->
         <scene sceneID="1yg-8T-GUh">
             <objects>
                 <tableViewController id="94k-ix-6lU" customClass="BookCommentTableViewController" sceneMemberID="viewController">
@@ -1473,7 +1473,7 @@
                             <outlet property="delegate" destination="94k-ix-6lU" id="HVP-Yc-4mY"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="谁有此书" id="syu-VC-uma">
+                    <navigationItem key="navigationItem" title="大家的评价" id="syu-VC-uma">
                         <barButtonItem key="backBarButtonItem" title=" " id="7vA-gZ-Ugz"/>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
