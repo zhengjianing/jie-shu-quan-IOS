@@ -15,5 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *authorsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *availabilityLabel;
 @property (weak, nonatomic) IBOutlet UIButton *borrowButton;
+@property (weak, nonatomic) IBOutlet UIImageView *mailImageView;
 
 @end

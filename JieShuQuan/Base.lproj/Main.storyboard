@@ -920,9 +920,9 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KjO-oL-PxE">
-                                            <rect key="frame" x="223" y="54" width="77" height="27"/>
+                                            <rect key="frame" x="220" y="52" width="92" height="27"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <state key="normal" title="向他借书">
+                                            <state key="normal" title="      向他借书">
                                                 <color key="titleColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -930,6 +930,9 @@
                                                 <action selector="borrowFromFriend:" destination="hqg-H5-Ndq" eventType="touchUpInside" id="xSz-4T-O25"/>
                                             </connections>
                                         </button>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="email.png" translatesAutoresizingMaskIntoConstraints="NO" id="UGz-jf-SK2">
+                                            <rect key="frame" x="228" y="57" width="17" height="17"/>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
@@ -938,6 +941,7 @@
                                     <outlet property="friendBookAvailibilityLabel" destination="XhX-Gg-UMQ" id="LEz-cX-1vY"/>
                                     <outlet property="friendEmailLabel" destination="spf-pQ-ivs" id="W6a-6N-4yP"/>
                                     <outlet property="friendNameLabel" destination="9OT-vy-i6f" id="R3G-a4-VKe"/>
+                                    <outlet property="mailImageView" destination="UGz-jf-SK2" id="egX-du-JAw"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1106,9 +1110,9 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pyi-mO-WNJ">
-                                            <rect key="frame" x="220" y="68" width="77" height="27"/>
+                                            <rect key="frame" x="217" y="69" width="92" height="27"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <state key="normal" title="向他借书">
+                                            <state key="normal" title="      向他借书">
                                                 <color key="titleColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -1116,6 +1120,9 @@
                                                 <action selector="borrowFromFriend:" destination="NGy-vG-aIx" eventType="touchUpInside" id="JKc-aM-5lc"/>
                                             </connections>
                                         </button>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="email.png" translatesAutoresizingMaskIntoConstraints="NO" id="dWm-un-Dlz">
+                                            <rect key="frame" x="226" y="74" width="17" height="17"/>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
@@ -1124,6 +1131,7 @@
                                     <outlet property="bookImageView" destination="nDv-zb-EeB" id="xRt-Ig-Dzy"/>
                                     <outlet property="bookNameLabel" destination="Gwe-qD-1M8" id="5QR-dW-IYV"/>
                                     <outlet property="borrowButton" destination="pyi-mO-WNJ" id="eAB-8w-AxT"/>
+                                    <outlet property="mailImageView" destination="dWm-un-Dlz" id="Azc-GV-gMw"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1581,6 +1589,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="email.png" width="128" height="128"/>
         <image name="friends.png" width="20" height="20"/>
         <image name="go.png" width="128" height="128"/>
         <image name="log-in-user.png" width="128" height="128"/>

@@ -193,16 +193,15 @@
     cell.friendEmailLabel.text = friend.friendEmail;
     cell.friendBookAvailibilityLabel.text = (availability == 0) ? @"暂时不可借" : @"可借";
     
-    cell.borrowButton.layer.cornerRadius = 5.0;
-    cell.borrowButton.layer.borderWidth = 0.5;
-    
     if (availability ==0) {
-        cell.borrowButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
-        [cell.borrowButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
-        [cell.borrowButton setEnabled:NO];
+        cell.borrowButton.hidden = YES;
+        cell.mailImageView.hidden = YES;
     } else {
+        cell.borrowButton.layer.cornerRadius = 5.0;
+        cell.borrowButton.layer.borderWidth = 0.5;
         cell.borrowButton.layer.borderColor = [UIColor orangeColor].CGColor;
-        [cell.borrowButton setTitleColor:[UIColor orangeColor] forState:UIControlStateDisabled];
+        cell.borrowButton.hidden = NO;
+        cell.mailImageView.hidden = NO;
     }
 
     return cell;
