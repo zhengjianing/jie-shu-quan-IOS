@@ -21,7 +21,6 @@
 
 - (void)disableBackButton;
 - (void)enableBackButton;
-- (BOOL)changeUserLocation:(NSString *)location;
-- (void)popToControllerWithCountDownIndex:(NSInteger)index;
+- (void)changeUserLocation:(NSString *)location andPopToControllerWithCountDownIndex:(NSInteger)index;
 
 @end

@@ -42,12 +42,8 @@
 {
     [self.activityIndicator startAnimating];
     [self disableBackButton];
-    
     self.location = [self.provinceArray objectAtIndex:indexPath.row];
-    
-    if ([self changeUserLocation:self.location]) {
-        [self popToControllerWithCountDownIndex:2];
-    };
+    [self changeUserLocation:self.location andPopToControllerWithCountDownIndex:2];
 }
 
 

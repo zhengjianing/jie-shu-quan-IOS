@@ -77,11 +77,10 @@
     [self.navigationController popToViewController:viewController animated:YES];
 }
 
-- (BOOL)changeUserLocation:(NSString *)location
+- (void)changeUserLocation:(NSString *)location andPopToControllerWithCountDownIndex:(NSInteger)index
 {
     NSMutableURLRequest *request = [RequestBuilder buildChangeUserLocationRequestWithUserId:_currentUser.userId accessToken:_currentUser.accessToken location:location];
-    __block BOOL success;
-
+    
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
         [_activityIndicator stopAnimating];
@@ -89,16 +88,15 @@
         
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
             [AlertHelper showAlertWithMessage:@"修改位置失败" withAutoDismiss:YES];
-            success = NO;
         }
         if (data) {
             [AlertHelper showAlertWithMessage:@"修改位置成功" withAutoDismiss:YES];
             _currentUser.location = location;
             [[UserStore sharedStore] saveUserToCoreData:_currentUser];
-            success = YES;
+            
+            [self popToControllerWithCountDownIndex:index];
         }
     }];
-    return success;
 }
 
 @end

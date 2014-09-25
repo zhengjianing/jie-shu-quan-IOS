@@ -45,9 +45,7 @@
     NSString *city = [_cityArray objectAtIndex:indexPath.row];
     self.location = [NSString stringWithFormat:@"%@,%@", _province, city];
     
-    if ([self changeUserLocation:self.location]) {
-        [self popToControllerWithCountDownIndex:3];
-    };
+    [self changeUserLocation:self.location andPopToControllerWithCountDownIndex:3];
 }
 
 @end
