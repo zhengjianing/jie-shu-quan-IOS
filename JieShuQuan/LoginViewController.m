@@ -41,6 +41,8 @@
 }
 
 - (IBAction)loginUser:(id)sender {
+    [_password resignFirstResponder];
+    
     FormatValidator *validator = [[FormatValidator alloc] init];
 
     if (![validator isValidEmail:_email.text]) {
