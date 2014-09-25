@@ -67,6 +67,11 @@
     _commentTextView.text = @"";
 }
 
+- (void)popSelf
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)postBookCommentWithContent:(NSString *)contentString
 {
     NSMutableURLRequest *postRequest = [RequestBuilder buildPostBookCommentRequestWithBookId:_book.bookId userName:[[UserManager currentUser] userName] content:contentString];
@@ -83,34 +88,9 @@
         if (data) {
             [AlertHelper showAlertWithMessage:@"发表评论成功！" withAutoDismiss:YES];
             _commentTextView.text = @"";
+            [self popSelf];
         }
     }];
-    
-    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @end

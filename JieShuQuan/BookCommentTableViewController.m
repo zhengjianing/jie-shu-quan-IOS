@@ -142,7 +142,6 @@
             }
             [self.tableView reloadData];
         }
-
     }];
 }
 
@@ -169,11 +168,12 @@
 {
     BookCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bookCommentCell" forIndexPath:indexPath];
     if (!cell) {
-        cell = [[BookCommentTableViewCell alloc] init];
+        cell = [[BookCommentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"bookCommentCell"];
     }
     
-    id comment = [_CommentCellObject objectAtIndex:indexPath.row];
-    cell.bookCommentLabel.text = [comment objectForKey:@"content"];
+    Comment *comment = [_CommentCellObject objectAtIndex:indexPath.row];
+    cell.bookCommentLabel.text = comment.content;
+    cell.userNameLabel.text = comment.user_name;
     return cell;
 }
 
