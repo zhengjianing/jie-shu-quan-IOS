@@ -65,7 +65,9 @@
         [CacheManager clearAvatarCacheForUserId:user.userId];
         
         if ([self isKindOfClass:[RegisterViewController class]]) {
-            [AlertHelper showAlertWithMessage:@"注册成功，\n请前往更多页面完善个人资料" withAutoDismiss:NO delegate:self];
+            [AlertHelper showAlertWithMessage:@"注册成功，\n请前往“更多”页面完善个人资料" withAutoDismiss:NO delegate:self];
+        } else {
+            [self.navigationController popToRootViewControllerAnimated:YES];
         }
         // when login/Register succeeded, send notice to MyBooksViewController to fetch books from server
         [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshData" object:self];

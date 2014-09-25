@@ -16,6 +16,7 @@
 #import "SettingsTableViewController.h"
 
 static const NSString *kDefaultCount = @"--";
+static const NSString *kDefaultUserName = @"点击设置用户名";
 
 @implementation MoreTableViewController
 
@@ -61,6 +62,9 @@ static const NSString *kDefaultCount = @"--";
     [_emailLabel setHidden:NO];
     [_locationLabel setHidden:NO];
     _userNameLabel.text = currentUser.userName;
+    if ([_userNameLabel.text isEqualToString:@""]) {
+        _userNameLabel.text = (NSString *)kDefaultUserName;
+    }
     _emailLabel.text = currentUser.userEmail;
     _locationLabel.text = currentUser.location;
     

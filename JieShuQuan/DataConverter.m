@@ -196,9 +196,6 @@ static const NSString *kFriendBookCount = @"book_count";
     [object setValue:user.bookCount forKey:(NSString *)kCDBookCount];
     [object setValue:user.accessToken forKey:(NSString *)kCDAccessToken];
     [object setValue:user.friendCount forKey:(NSString *)kCDFriendCount];
-    if ([user.location isKindOfClass:[NSNull class]]) {
-        user.location = nil;
-    }
     [object setValue:user.location forKey:(NSString *)kCDLocation];
 }
 
