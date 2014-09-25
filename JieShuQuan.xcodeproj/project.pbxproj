@@ -70,6 +70,7 @@
 		94F922B819CFC28700F96B09 /* ImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F922B719CFC28700F96B09 /* ImageHelper.m */; };
 		94F922BB19CFCDA800F96B09 /* AvatarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F922BA19CFCDA800F96B09 /* AvatarManager.m */; };
 		972F5E5219D39F76008D0DDF /* RegionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 972F5E5119D39F76008D0DDF /* RegionTableViewController.m */; };
+		972F5E5519D410DB008D0DDF /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 972F5E5419D410DB008D0DDF /* Comment.m */; };
 		9737040B19CB38B0008949FB /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 973703EC19CB38B0008949FB /* .gitignore */; };
 		9737040D19CB38B0008949FB /* README in Resources */ = {isa = PBXBuildFile; fileRef = 9737040519CB38B0008949FB /* README */; };
 		9737040E19CB38B0008949FB /* zbar-back.png in Resources */ = {isa = PBXBuildFile; fileRef = 9737040719CB38B0008949FB /* zbar-back.png */; };
@@ -78,6 +79,8 @@
 		9737041119CB38B0008949FB /* zbar-samples.png in Resources */ = {isa = PBXBuildFile; fileRef = 9737040A19CB38B0008949FB /* zbar-samples.png */; };
 		97553C3D19C090DE0034B446 /* AuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97553C3C19C090DE0034B446 /* AuthenticationViewController.m */; };
 		97553C3F19C0A5610034B446 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 97553C3E19C0A5610034B446 /* info.png */; };
+		9758DD5619D4196E003E0A9E /* BookCommentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9758DD5519D4196E003E0A9E /* BookCommentTableViewController.m */; };
+		9758DD5919D41990003E0A9E /* BookCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9758DD5819D41990003E0A9E /* BookCommentTableViewCell.m */; };
 		9759AFF019C184BD008EFCC2 /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 9759AFEF19C184BD008EFCC2 /* Friend.m */; };
 		9759AFF319C18B11008EFCC2 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9759AFF219C18B11008EFCC2 /* User.m */; };
 		9759AFFA19C19976008EFCC2 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9759AFF919C19976008EFCC2 /* UserManager.m */; };
@@ -215,6 +218,8 @@
 		94F922BA19CFCDA800F96B09 /* AvatarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvatarManager.m; sourceTree = "<group>"; };
 		972F5E5019D39F76008D0DDF /* RegionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegionTableViewController.h; sourceTree = "<group>"; };
 		972F5E5119D39F76008D0DDF /* RegionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionTableViewController.m; sourceTree = "<group>"; };
+		972F5E5319D410DB008D0DDF /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		972F5E5419D410DB008D0DDF /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 		973703EC19CB38B0008949FB /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		973703F019CB38B0008949FB /* Decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decoder.h; sourceTree = "<group>"; };
 		973703F119CB38B0008949FB /* Exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exception.h; sourceTree = "<group>"; };
@@ -249,6 +254,10 @@
 		97553C3B19C090DE0034B446 /* AuthenticationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationViewController.h; sourceTree = "<group>"; };
 		97553C3C19C090DE0034B446 /* AuthenticationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticationViewController.m; sourceTree = "<group>"; };
 		97553C3E19C0A5610034B446 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
+		9758DD5419D4196E003E0A9E /* BookCommentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookCommentTableViewController.h; sourceTree = "<group>"; };
+		9758DD5519D4196E003E0A9E /* BookCommentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookCommentTableViewController.m; sourceTree = "<group>"; };
+		9758DD5719D41990003E0A9E /* BookCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookCommentTableViewCell.h; sourceTree = "<group>"; };
+		9758DD5819D41990003E0A9E /* BookCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookCommentTableViewCell.m; sourceTree = "<group>"; };
 		9759AFEE19C184BD008EFCC2 /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
 		9759AFEF19C184BD008EFCC2 /* Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friend.m; sourceTree = "<group>"; };
 		9759AFF119C18B11008EFCC2 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -332,6 +341,7 @@
 		9412E2F119A9E4CD008D243C /* MyBooks */ = {
 			isa = PBXGroup;
 			children = (
+				9758DD5319D41934003E0A9E /* Book_comment */,
 				9471D41219D2CE4D00AEBE7D /* All_books */,
 				9471D41319D2CE5900AEBE7D /* Book_detail */,
 				94E3EA3619C6EBA800C38FEB /* Friends_who_has_a_book */,
@@ -646,6 +656,17 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		9758DD5319D41934003E0A9E /* Book_comment */ = {
+			isa = PBXGroup;
+			children = (
+				9758DD5419D4196E003E0A9E /* BookCommentTableViewController.h */,
+				9758DD5519D4196E003E0A9E /* BookCommentTableViewController.m */,
+				9758DD5719D41990003E0A9E /* BookCommentTableViewCell.h */,
+				9758DD5819D41990003E0A9E /* BookCommentTableViewCell.m */,
+			);
+			name = Book_comment;
+			sourceTree = "<group>";
+		};
 		9759AFF419C19012008EFCC2 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -707,6 +728,8 @@
 				9759AFF219C18B11008EFCC2 /* User.m */,
 				9759AFEE19C184BD008EFCC2 /* Friend.h */,
 				9759AFEF19C184BD008EFCC2 /* Friend.m */,
+				972F5E5319D410DB008D0DDF /* Comment.h */,
+				972F5E5419D410DB008D0DDF /* Comment.m */,
 				94E5039519BAF998004CEBC6 /* DataStore */,
 			);
 			name = Model;
@@ -891,6 +914,7 @@
 				94C1711619D01D3000656EDB /* ASIFormDataRequest.m in Sources */,
 				94BB408519C172FE005BBD8E /* FriendsTableViewController.m in Sources */,
 				977FEDB619CEA102000E0154 /* CustomActivityIndicator.m in Sources */,
+				972F5E5519D410DB008D0DDF /* Comment.m in Sources */,
 				9765EC3419D06BDE00066289 /* ChangeNameViewController.m in Sources */,
 				94C1712919D02B5D00656EDB /* Reachability.m in Sources */,
 				9759AFFA19C19976008EFCC2 /* UserManager.m in Sources */,
@@ -909,6 +933,7 @@
 				948615F019BC0FD1001837BF /* Store.m in Sources */,
 				9476058619C15C6900FA8E74 /* SearchResultTableViewCell.m in Sources */,
 				97DDA8DF19AF7F430055C7E5 /* SearchTableViewController.m in Sources */,
+				9758DD5919D41990003E0A9E /* BookCommentTableViewCell.m in Sources */,
 				9471D41119D2C3DD00AEBE7D /* CacheManager.m in Sources */,
 				9471DBF219A5837700F1A291 /* AppDelegate.m in Sources */,
 				9476058019C07BC400FA8E74 /* RequestBuilder.m in Sources */,
@@ -939,6 +964,7 @@
 				9476057919C06AC700FA8E74 /* FormatValidator.m in Sources */,
 				94BB408819C17378005BBD8E /* FriendInfoTableViewCell.m in Sources */,
 				94C1711419D01D3000656EDB /* ASIDataDecompressor.m in Sources */,
+				9758DD5619D4196E003E0A9E /* BookCommentTableViewController.m in Sources */,
 				9471DBEF19A5837700F1A291 /* main.m in Sources */,
 				94C1711319D01D3000656EDB /* ASIDataCompressor.m in Sources */,
 			);
