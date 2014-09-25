@@ -13,7 +13,7 @@
 
 @interface RequestBuilder : NSObject
 
-+ (NSMutableURLRequest *)buildRegisterRequestWithUserName:(NSString *)userName email:(NSString *)email password:(NSString *)password;
++ (NSMutableURLRequest *)buildRegisterRequestWithEmail:(NSString *)email password:(NSString *)password;
 + (NSMutableURLRequest *)buildLoginRequestWithEmail:(NSString *)email password:(NSString *)password;
 + (NSMutableURLRequest *)buildChangeUserNameRequestWithUserId:(NSString *)userId accessToken:(NSString *)accessToken UserName:(NSString *)newName;
 + (NSMutableURLRequest *)buildChangeUserLocationRequestWithUserId:(NSString *)userId accessToken:(NSString *)accessToken location:(NSString *)location;

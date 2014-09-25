@@ -33,9 +33,9 @@ static const NSString *kBookAvailable = @"available";
 
 #pragma mark - User
 
-+ (NSMutableURLRequest *)buildRegisterRequestWithUserName:(NSString *)userName email:(NSString *)email password:(NSString *)password
++ (NSMutableURLRequest *)buildRegisterRequestWithEmail:(NSString *)email password:(NSString *)password
 {
-    NSDictionary *registerBody = @{@"user_name": userName, @"email": email, @"password": [self encrypePassword:password]};
+    NSDictionary *registerBody = @{@"user_name": @"", @"email": email, @"location": @"", @"password": [self encrypePassword:password]};
     
     return [self buildRequestWithURLString:kRegisterURL bodyDict:registerBody];
 }

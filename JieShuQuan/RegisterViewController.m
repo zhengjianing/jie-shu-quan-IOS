@@ -17,11 +17,10 @@
 {
     [super viewDidLoad];
     _registerButton.layer.cornerRadius = 5.0;
-    _userName.delegate = self;
     _email.delegate = self;
     _password.delegate = self;
     _confirmPassword.delegate = self;
-    [_userName becomeFirstResponder];
+    [_email becomeFirstResponder];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -42,12 +41,6 @@
 - (IBAction)registerUser:(id)sender {
     
     FormatValidator *validator = [[FormatValidator alloc] init];
-    
-    if (![validator isValidUserName:_userName.text]) {
-        [AlertHelper showAlertWithMessage:@"用户名格式错误！" withAutoDismiss:YES];
-        return;
-    }
-    
     if (![validator isValidEmail:_email.text]) {
         [AlertHelper showAlertWithMessage:@"邮箱格式错误！" withAutoDismiss:YES];
         return;
@@ -65,16 +58,16 @@
     
     [self.activityIndicator startAnimating];
     self.freezeLayer.hidden = NO;
-    [self startingRegisterWithUserName:_userName.text email:_email.text password:_password.text];
+    [self startingRegisterWithEmail:_email.text password:_password.text];
 }
 
 - (IBAction)emailHint:(id)sender {
     [AlertHelper showAlertWithMessage:@"使用企业邮箱，便于我们帮您找到您的朋友们" withAutoDismiss:NO];
 }
 
-- (void)startingRegisterWithUserName:(NSString *)name email:(NSString *)email password:(NSString *)password
+- (void)startingRegisterWithEmail:(NSString *)email password:(NSString *)password
 {    
-    NSMutableURLRequest *registerRequest = [RequestBuilder buildRegisterRequestWithUserName:name email:email password:password];
+    NSMutableURLRequest *registerRequest = [RequestBuilder buildRegisterRequestWithEmail:email password:password];
     NSURLConnection *connection;
     connection = [[NSURLConnection alloc] initWithRequest:registerRequest delegate:self startImmediately:YES];
 }
