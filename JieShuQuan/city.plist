@@ -4,124 +4,25 @@
 <array>
 	<dict>
 		<key>cities</key>
-		<array>
-			<string>通州</string>
-			<string>房山</string>
-			<string>昌平</string>
-			<string>顺义</string>
-			<string>怀柔</string>
-			<string>大兴</string>
-			<string>密云</string>
-			<string>平谷</string>
-			<string>延庆</string>
-			<string>东城</string>
-			<string>崇文</string>
-			<string>西城</string>
-			<string>朝阳</string>
-			<string>宣武</string>
-			<string>石景山</string>
-			<string>丰台</string>
-			<string>门头沟</string>
-			<string>海淀</string>
-		</array>
+		<array/>
 		<key>state</key>
 		<string>北京</string>
 	</dict>
 	<dict>
 		<key>cities</key>
-		<array>
-			<string>普陀</string>
-			<string>闸北</string>
-			<string>虹口</string>
-			<string>杨浦</string>
-			<string>卢湾</string>
-			<string>徐汇</string>
-			<string>长宁</string>
-			<string>静安</string>
-			<string>黄浦</string>
-			<string>金山</string>
-			<string>浦东新</string>
-			<string>嘉定</string>
-			<string>闵行</string>
-			<string>宝山</string>
-			<string>南汇</string>
-			<string>青浦</string>
-			<string>松江</string>
-			<string>奉贤</string>
-			<string>崇明</string>
-		</array>
+		<array/>
 		<key>state</key>
 		<string>上海</string>
 	</dict>
 	<dict>
 		<key>cities</key>
-		<array>
-			<string>武清</string>
-			<string>河东</string>
-			<string>和平</string>
-			<string>西青</string>
-			<string>津南</string>
-			<string>大港</string>
-			<string>东丽</string>
-			<string>塘沽</string>
-			<string>汉沽</string>
-			<string>河北</string>
-			<string>红桥</string>
-			<string>河西</string>
-			<string>南开</string>
-			<string>蓟县</string>
-			<string>宁河</string>
-			<string>静海</string>
-			<string>宝坻</string>
-			<string>北辰</string>
-		</array>
+		<array/>
 		<key>state</key>
 		<string>天津</string>
 	</dict>
 	<dict>
 		<key>cities</key>
-		<array>
-			<string>开县</string>
-			<string>江北</string>
-			<string>沙坪坝</string>
-			<string>九龙坡</string>
-			<string>南岸</string>
-			<string>北碚</string>
-			<string>万盛</string>
-			<string>双桥</string>
-			<string>渝北</string>
-			<string>巴南</string>
-			<string>黔江</string>
-			<string>垫江</string>
-			<string>武隆</string>
-			<string>巫山</string>
-			<string>巫溪</string>
-			<string>云阳</string>
-			<string>奉节</string>
-			<string>忠县</string>
-			<string>梁平</string>
-			<string>璧山</string>
-			<string>荣昌</string>
-			<string>大足</string>
-			<string>铜梁</string>
-			<string>潼南</string>
-			<string>綦江</string>
-			<string>长寿</string>
-			<string>彭水</string>
-			<string>酉阳</string>
-			<string>合川</string>
-			<string>江津</string>
-			<string>南川</string>
-			<string>永川</string>
-			<string>丰都</string>
-			<string>城口</string>
-			<string>大渡口</string>
-			<string>渝中</string>
-			<string>涪陵</string>
-			<string>万州</string>
-			<string>石柱</string>
-			<string>秀山</string>
-		</array>
+		<array/>
 		<key>state</key>
 		<string>重庆</string>
 	</dict>

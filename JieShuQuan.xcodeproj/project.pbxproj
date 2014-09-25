@@ -69,6 +69,7 @@
 		94F922B519CFAE0F00F96B09 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F922B419CFAE0F00F96B09 /* SettingsTableViewController.m */; };
 		94F922B819CFC28700F96B09 /* ImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F922B719CFC28700F96B09 /* ImageHelper.m */; };
 		94F922BB19CFCDA800F96B09 /* AvatarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F922BA19CFCDA800F96B09 /* AvatarManager.m */; };
+		972F5E5219D39F76008D0DDF /* RegionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 972F5E5119D39F76008D0DDF /* RegionTableViewController.m */; };
 		9737040B19CB38B0008949FB /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 973703EC19CB38B0008949FB /* .gitignore */; };
 		9737040D19CB38B0008949FB /* README in Resources */ = {isa = PBXBuildFile; fileRef = 9737040519CB38B0008949FB /* README */; };
 		9737040E19CB38B0008949FB /* zbar-back.png in Resources */ = {isa = PBXBuildFile; fileRef = 9737040719CB38B0008949FB /* zbar-back.png */; };
@@ -212,6 +213,8 @@
 		94F922B719CFC28700F96B09 /* ImageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageHelper.m; sourceTree = "<group>"; };
 		94F922B919CFCDA800F96B09 /* AvatarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatarManager.h; sourceTree = "<group>"; };
 		94F922BA19CFCDA800F96B09 /* AvatarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvatarManager.m; sourceTree = "<group>"; };
+		972F5E5019D39F76008D0DDF /* RegionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegionTableViewController.h; sourceTree = "<group>"; };
+		972F5E5119D39F76008D0DDF /* RegionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionTableViewController.m; sourceTree = "<group>"; };
 		973703EC19CB38B0008949FB /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		973703F019CB38B0008949FB /* Decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decoder.h; sourceTree = "<group>"; };
 		973703F119CB38B0008949FB /* Exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exception.h; sourceTree = "<group>"; };
@@ -379,6 +382,8 @@
 				94F922B419CFAE0F00F96B09 /* SettingsTableViewController.m */,
 				9765EC3219D06BDE00066289 /* ChangeNameViewController.h */,
 				9765EC3319D06BDE00066289 /* ChangeNameViewController.m */,
+				972F5E5019D39F76008D0DDF /* RegionTableViewController.h */,
+				972F5E5119D39F76008D0DDF /* RegionTableViewController.m */,
 				97FF912719D13475006944BD /* ProvinceTableViewController.h */,
 				97FF912819D13475006944BD /* ProvinceTableViewController.m */,
 				97B59F3819D2560D0063CFA8 /* CityTableViewController.h */,
@@ -881,6 +886,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				972F5E5219D39F76008D0DDF /* RegionTableViewController.m in Sources */,
 				97C528A119BC34B600388375 /* AlertHelper.m in Sources */,
 				94C1711619D01D3000656EDB /* ASIFormDataRequest.m in Sources */,
 				94BB408519C172FE005BBD8E /* FriendsTableViewController.m in Sources */,

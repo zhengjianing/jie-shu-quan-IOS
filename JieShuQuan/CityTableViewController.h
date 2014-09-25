@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RegionTableViewController.h"
 
-@interface CityTableViewController : UITableViewController
+@interface CityTableViewController : RegionTableViewController
 
 @property (nonatomic, copy) NSString *province;
 @property (nonatomic, copy) NSArray *cityArray;

@@ -9,35 +9,18 @@
 #import "ProvinceTableViewController.h"
 #import "CityTableViewController.h"
 
-@interface ProvinceTableViewController ()
-
-@property (nonatomic, copy) NSMutableArray *provinceArray;
-@property (nonatomic, copy) NSMutableArray *citiesArray;
-
-@end
-
 @implementation ProvinceTableViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _provinceArray = [[NSMutableArray alloc] init];
-    _citiesArray = [[NSMutableArray alloc] init];
-    NSBundle *mainBundle = [NSBundle mainBundle];
-    NSString *plistPath = [mainBundle pathForResource:@"city" ofType:@"plist"];
-    
-    NSArray *regionArray = [[NSArray alloc] initWithContentsOfFile:plistPath];
-    for (id state in regionArray) {
-        [_provinceArray addObject:[state valueForKey:@"state"]];
-        [_citiesArray addObject:[state valueForKey:@"cities"]];
-    }
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _provinceArray.count;
+    return self.provinceArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -48,21 +31,43 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-    cell.textLabel.text = [_provinceArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = [self.provinceArray objectAtIndex:indexPath.row];
+    if ([[self.citiesArray objectAtIndex:indexPath.row] count] == 0) {
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
+    }
     return cell;
 }
 
+- (void)setMunicipalityForLocationWithIndexPath:(NSIndexPath *)indexPath
+{
+    [self.activityIndicator startAnimating];
+    [self disableBackButton];
+    
+    self.location = [self.provinceArray objectAtIndex:indexPath.row];
+    
+    if ([self changeUserLocation:self.location]) {
+        [self popToControllerWithCountDownIndex:2];
+    };
+}
+
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    if ([sender accessoryType] == UITableViewCellAccessoryDisclosureIndicator) {
+        return YES;
+    }
+    [self setMunicipalityForLocationWithIndexPath:[self.tableView indexPathForCell:sender]];
+    return NO;
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([sender isKindOfClass:[UITableViewCell class]]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        if ([segue.destinationViewController isKindOfClass:[CityTableViewController class]]) {
-            [segue.destinationViewController setProvince:[_provinceArray objectAtIndex:indexPath.row]];
-            [segue.destinationViewController setCityArray:[_citiesArray objectAtIndex:indexPath.row]];
-        }
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+    if ([segue.destinationViewController isKindOfClass:[CityTableViewController class]]) {
+        [segue.destinationViewController setProvince:[self.provinceArray objectAtIndex:indexPath.row]];
+        [segue.destinationViewController setCityArray:[self.citiesArray objectAtIndex:indexPath.row]];
     }
 }
 

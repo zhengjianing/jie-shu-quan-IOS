@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RegionTableViewController.h"
 
-@interface ProvinceTableViewController : UITableViewController
+@interface ProvinceTableViewController : RegionTableViewController
 
 @end

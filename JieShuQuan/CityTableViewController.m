@@ -7,90 +7,13 @@
 //
 
 #import "CityTableViewController.h"
-#import "RequestBuilder.h"
-#import "UserManager.h"
-#import "UserStore.h"
-#import "User.h"
-#import "AlertHelper.h"
-#import "CustomActivityIndicator.h"
 #import "SettingsTableViewController.h"
-
-@interface CityTableViewController ()
-
-@property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
-@property (nonatomic, strong) User *currentUser;
-@property (nonatomic, copy) NSString *location;
-
-@end
 
 @implementation CityTableViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setTableFooterView];
-    _currentUser = [UserManager currentUser];
-    [self.view addSubview:self.activityIndicator];
-}
-
-- (void)setTableFooterView
-{
-    UIView *view = [UIView new];
-    view.backgroundColor = [UIColor clearColor];
-    [self.tableView setTableFooterView:view];
-}
-
-- (void)disableBackButton
-{
-    [self.navigationItem.backBarButtonItem setEnabled:NO];
-}
-
-- (void)enableBackButton
-{
-    [self.navigationItem.backBarButtonItem setEnabled:YES];
-}
-
-- (void)popToSettingsPage
-{
-    NSArray *navStack = [self.navigationController viewControllers];
-    id settingController = [navStack objectAtIndex:navStack.count-3];
-    if ([settingController isKindOfClass:[SettingsTableViewController class]]) {
-        [self.navigationController popToViewController:settingController animated:YES];
-        return;
-    }
-    [self.navigationController popToRootViewControllerAnimated:YES];
-}
-
-- (CustomActivityIndicator *)activityIndicator
-{
-    if (_activityIndicator != nil) {
-        return _activityIndicator;
-    }
-    _activityIndicator = [[CustomActivityIndicator alloc] init];
-    return _activityIndicator;
-}
-
-- (void)changeUserLocation:(NSString *)location
-{
-    NSMutableURLRequest *request = [RequestBuilder buildChangeUserLocationRequestWithUserId:_currentUser.userId accessToken:_currentUser.accessToken location:location];
-    
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        
-        [_activityIndicator stopAnimating];
-        [self enableBackButton];
-        
-        if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-            [AlertHelper showAlertWithMessage:@"修改位置失败" withAutoDismiss:YES];
-            return;
-        }
-        if (data) {
-            [AlertHelper showAlertWithMessage:@"修改位置成功" withAutoDismiss:YES];
-            _currentUser.location = _location;
-            [[UserStore sharedStore] saveUserToCoreData:_currentUser];
-            
-            [self popToSettingsPage];
-        }
-    }];
 }
 
 #pragma mark - Table view data source
@@ -116,13 +39,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [_activityIndicator startAnimating];
+    [self.activityIndicator startAnimating];
     [self disableBackButton];
     
     NSString *city = [_cityArray objectAtIndex:indexPath.row];
-    _location = [NSString stringWithFormat:@"%@,%@", _province, city];
+    self.location = [NSString stringWithFormat:@"%@,%@", _province, city];
     
-    [self changeUserLocation:_location];
+    if ([self changeUserLocation:self.location]) {
+        [self popToControllerWithCountDownIndex:3];
+    };
 }
 
 @end

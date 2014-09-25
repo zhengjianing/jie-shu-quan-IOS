@@ -486,7 +486,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="6bV-zn-Hvc" kind="push" id="bqW-8z-NJj"/>
+                                    <segue destination="6bV-zn-Hvc" kind="push" identifier="toCityController" id="bqW-8z-NJj"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
