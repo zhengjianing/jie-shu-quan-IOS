@@ -187,7 +187,7 @@
                         <sections>
                             <tableViewSection id="Pdv-9d-mXX">
                                 <cells>
-                                    <tableViewCell opaque="NO" contentMode="scaleToFill" ambiguous="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="userInfoCell" rowHeight="95" id="fAg-0E-FFr">
+                                    <tableViewCell opaque="NO" contentMode="scaleToFill" ambiguous="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="userInfoCell" rowHeight="95" id="fAg-0E-FFr">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fAg-0E-FFr" id="Wbk-bD-DtT">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -216,6 +216,9 @@
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="go.png" translatesAutoresizingMaskIntoConstraints="NO" id="c5p-zj-LT3">
+                                                    <rect key="frame" x="287" y="35" width="23" height="23"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.59999999999999998" green="0.80000000000000004" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -1579,6 +1582,7 @@
     </scenes>
     <resources>
         <image name="friends.png" width="20" height="20"/>
+        <image name="go.png" width="128" height="128"/>
         <image name="log-in-user.png" width="128" height="128"/>
         <image name="log-out-user.png" width="128" height="128"/>
         <image name="myBooks.png" width="20" height="20"/>
