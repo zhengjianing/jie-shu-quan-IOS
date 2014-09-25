@@ -10,6 +10,11 @@
 
 @interface BookCommentTableViewCell : UITableViewCell
 
-@property (strong, nonatomic) IBOutlet UILabel *bookCommentLabel;
-@property (strong, nonatomic) IBOutlet UILabel *userNameLabel;
+@property (strong, nonatomic) UILabel *bookCommentLabel;
+@property (strong, nonatomic) UILabel *userNameLabel;
+
+-(void)setCommentText:(NSString*)comment;
+-(void)setUserNameText:(NSString*)username;
+- (void)setCellFrame;
+
 @end

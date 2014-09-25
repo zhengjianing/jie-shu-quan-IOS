@@ -25,6 +25,7 @@
 
 @property (strong, nonatomic) PreLoginView *preLoginView;
 @property (strong, nonatomic) LoginViewController *loginController;
+@property (strong, nonatomic) NSString *cellIdentifier;
 
 @end
 
@@ -33,10 +34,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    _cellIdentifier = @"bookCommentCellIdentifier";
+    [self.tableView registerClass:[BookCommentTableViewCell class] forCellReuseIdentifier:_cellIdentifier];
+    
+    self.navigationItem.title = @"大家的评论";
+    
     self.tabBarController.tabBar.hidden = YES;
     _CommentCellObject = [[NSMutableArray alloc] init];
-    [self configureBookInfoView];
-    [self setTableFooterView];
+//    [self setTableFooterView];
+    
     [self.tableView addSubview:self.messageLabel];
     [self.tableView addSubview:self.activityIndicator];
     [self.tableView addSubview:self.preLoginView];
@@ -80,16 +87,6 @@
         _preLoginView.delegate = self;
     }
     return _preLoginView;
-}
-
-- (void)configureBookInfoView
-{
-    [_bookImageView sd_setImageWithURL:[NSURL URLWithString:_book.imageHref]];
-    _nameLabel.text = _book.name;
-    _authorsLabel.text = _book.authors;
-    _publisherLabel.text = _book.publisher;
-    _publishDateLabel.text = _book.publishDate;
-    _priceLabel.text = _book.price;
 }
 
 - (void)setTableFooterView
@@ -166,14 +163,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BookCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bookCommentCell" forIndexPath:indexPath];
-    if (!cell) {
-        cell = [[BookCommentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"bookCommentCell"];
-    }
+    BookCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:_cellIdentifier forIndexPath:indexPath];
     
     Comment *comment = [_CommentCellObject objectAtIndex:indexPath.row];
-    cell.bookCommentLabel.text = comment.content;
-    cell.userNameLabel.text = comment.user_name;
+    
+    [cell setCommentText:comment.content];
+//    [cell setUserNameText:comment.user_name];
+    [cell setCellFrame];
+    
+    NSLog(@"%@", cell);
+    
+    self.tableView.rowHeight = cell.frame.size.height;
+    
     return cell;
 }
 

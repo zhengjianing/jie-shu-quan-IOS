@@ -13,14 +13,6 @@
 
 @interface BookCommentTableViewController : UITableViewController <PreLoginDelegate>
 
-@property (weak, nonatomic) IBOutlet UIView *bookDetailView;
-@property (weak, nonatomic) IBOutlet UIImageView *bookImageView;
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *authorsLabel;
-@property (weak, nonatomic) IBOutlet UILabel *publisherLabel;
-@property (weak, nonatomic) IBOutlet UILabel *publishDateLabel;
-@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
-
 @property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
 @property (strong, nonatomic) Book *book;
 
