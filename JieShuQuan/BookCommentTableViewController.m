@@ -34,7 +34,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     _cellIdentifier = @"bookCommentCellIdentifier";
     [self.tableView registerClass:[BookCommentTableViewCell class] forCellReuseIdentifier:_cellIdentifier];
     
@@ -42,8 +42,8 @@
     
     self.tabBarController.tabBar.hidden = YES;
     _CommentCellObject = [[NSMutableArray alloc] init];
-//    [self setTableFooterView];
-    
+    [self setTableFooterView];
+
     [self.tableView addSubview:self.messageLabel];
     [self.tableView addSubview:self.activityIndicator];
     [self.tableView addSubview:self.preLoginView];
@@ -163,19 +163,21 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BookCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:_cellIdentifier forIndexPath:indexPath];
-    
     Comment *comment = [_CommentCellObject objectAtIndex:indexPath.row];
-    
+
+    BookCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:_cellIdentifier forIndexPath:indexPath];
     [cell setCommentText:comment.content];
-//    [cell setUserNameText:comment.user_name];
-    [cell setCellFrame];
-    
-    NSLog(@"%@", cell);
-    
-    self.tableView.rowHeight = cell.frame.size.height;
+    [cell setUserNameText:comment.user_name];
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+   Comment *comment = [_CommentCellObject objectAtIndex:indexPath.row];
+    CGSize commentTextSize = [comment.content sizeWithFont:[UIFont systemFontOfSize:13] constrainedToSize:CGSizeMake(self.tableView.frame.size.width, 1000) lineBreakMode:NSLineBreakByTruncatingTail];
+
+    return commentTextSize.height + 80;
 }
 
 @end
