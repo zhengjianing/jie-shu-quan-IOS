@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9412E2F519A9FAC7008D243C /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412E2F419A9FAC7008D243C /* Book.m */; };
 		9412E2FB19AA0D82008D243C /* BookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412E2FA19AA0D82008D243C /* BookTableViewCell.m */; };
+		945E933019D42065002EC733 /* CreateCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 945E932F19D42065002EC733 /* CreateCommentViewController.m */; };
 		9471D41119D2C3DD00AEBE7D /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471D41019D2C3DD00AEBE7D /* CacheManager.m */; };
 		9471DBEF19A5837700F1A291 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471DBEE19A5837700F1A291 /* main.m */; };
 		9471DBF219A5837700F1A291 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471DBF119A5837700F1A291 /* AppDelegate.m */; };
@@ -118,6 +119,8 @@
 		9412E2F419A9FAC7008D243C /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
 		9412E2F919AA0D82008D243C /* BookTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookTableViewCell.h; sourceTree = "<group>"; };
 		9412E2FA19AA0D82008D243C /* BookTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookTableViewCell.m; sourceTree = "<group>"; };
+		945E932E19D42065002EC733 /* CreateCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateCommentViewController.h; sourceTree = "<group>"; };
+		945E932F19D42065002EC733 /* CreateCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateCommentViewController.m; sourceTree = "<group>"; };
 		9471D40F19D2C3DD00AEBE7D /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
 		9471D41019D2C3DD00AEBE7D /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
 		9471DBE919A5837700F1A291 /* JieShuQuan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JieShuQuan.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -663,6 +666,8 @@
 				9758DD5519D4196E003E0A9E /* BookCommentTableViewController.m */,
 				9758DD5719D41990003E0A9E /* BookCommentTableViewCell.h */,
 				9758DD5819D41990003E0A9E /* BookCommentTableViewCell.m */,
+				945E932E19D42065002EC733 /* CreateCommentViewController.h */,
+				945E932F19D42065002EC733 /* CreateCommentViewController.m */,
 			);
 			name = Book_comment;
 			sourceTree = "<group>";
@@ -945,6 +950,7 @@
 				94E3EA3C19C7069F00C38FEB /* FriendStore.m in Sources */,
 				9766FC9B19BF30980089C89B /* LoginViewController.m in Sources */,
 				94F922B519CFAE0F00F96B09 /* SettingsTableViewController.m in Sources */,
+				945E933019D42065002EC733 /* CreateCommentViewController.m in Sources */,
 				94B23BAE19C3F61B009896BE /* BookDetailTableViewController.m in Sources */,
 				94E980A519CC74E100C7C1ED /* MessageLabelHelper.m in Sources */,
 				97F65AC219AE0A7D00B9DC93 /* JsonDataFetcher.m in Sources */,
