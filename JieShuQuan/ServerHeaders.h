@@ -13,6 +13,8 @@
 
 #define kAddBookURL @"http://jie-shu-quan.herokuapp.com/add_book"
 #define kDeleteBookURL @"http://jie-shu-quan.herokuapp.com/remove_book"
+#define kGetBookCommentsURL @"http://jie-shu-quan.herokuapp.com/comments_for_book/"
+#define kPostBookCommentURL @"http://jie-shu-quan.herokuapp.com/comments/create"
 
 #define kChangeBookStatusURL @"http://jie-shu-quan.herokuapp.com/change_status"
 #define kChangeUserNameURL @"http://jie-shu-quan.herokuapp.com/change_username"

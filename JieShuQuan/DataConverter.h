@@ -10,6 +10,7 @@
 @class Book;
 @class User;
 @class Friend;
+@class Comment;
 
 @interface DataConverter : NSObject
 
@@ -29,5 +30,8 @@
 + (Friend *)friendFromStore:(id)object;
 + (void)setManagedObject:(id)object forFriend:(Friend *)friend;
 + (Friend *)friendFromServerFriendObject:(id)object;
+
+// comments
++ (Comment *)commentFromObject:(id)object;
 
 @end

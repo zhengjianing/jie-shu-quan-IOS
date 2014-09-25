@@ -10,6 +10,7 @@
 #import "Book.h"
 #import "User.h"
 #import "Friend.h"
+#import "Comment.h"
 
 // keys in Douban API
 static const NSString *kDBTitle = @"title";
@@ -32,7 +33,7 @@ static const NSString *kBookCount = @"book_count";
 static const NSString *kFriendCount = @"friend_count";
 static const NSString *kLocation = @"location";
 
-// keys in Server for Book
+// keys in Server API for Book
 static const NSString *kBookname = @"name";
 static const NSString *kBookauthors = @"authors";
 static const NSString *kBookimageHref = @"image_href";
@@ -43,6 +44,10 @@ static const NSString *kBookpublisher = @"publisher";
 static const NSString *kBookpublishDate = @"publish_date";
 static const NSString *kBookId = @"douban_book_id";
 static const NSString *kBookAvailable = @"available";
+
+// keys in Server API for Comment
+static const NSString *kCommentUserName = @"user_name";
+static const NSString *kCommentContent = @"content";
 
 // keys in CoreData for Book
 static const NSString *kCDName = @"name";
@@ -229,6 +234,18 @@ static const NSString *kFriendBookCount = @"book_count";
     friend.bookCount = [object valueForKey:(NSString *)kFriendBookCount];
 
     return friend;
+}
+
+#pragma mark - Comments
+
++ (Comment *)commentFromObject:(id)object
+{
+    Comment *comment = [[Comment alloc] init];
+    
+    comment.user_name = [object valueForKey:(NSString *)kCommentUserName];
+    comment.content = [object valueForKey:(NSString *)kCommentContent];
+    
+    return comment;
 }
 
 #pragma mark - private methods

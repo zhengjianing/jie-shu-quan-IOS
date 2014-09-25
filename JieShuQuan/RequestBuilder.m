@@ -30,6 +30,8 @@ static const NSString *kBookpublisher = @"publisher";
 static const NSString *kBookpublishDate = @"publish_date";
 static const NSString *kBookId = @"douban_book_id";
 static const NSString *kBookAvailable = @"available";
+static const NSString *kCommentContent = @"content";
+static const NSString *kUserName = @"user_name";
 
 #pragma mark - User
 
@@ -104,6 +106,23 @@ static const NSString *kBookAvailable = @"available";
 {
     NSString *urlString = [kMyBooksURL stringByAppendingString:userId];
     return [self buildGetRequestWithRULString:urlString];
+}
+
+#pragma mark - Comments
+
++ (NSMutableURLRequest *)buildGetBookCommentsRequestWithBookId:(NSString *)bookId
+{
+    NSString *urlString = [kGetBookCommentsURL stringByAppendingString:bookId];
+    return [self buildGetRequestWithRULString:urlString];
+}
+
++ (NSMutableURLRequest *)buildPostBookCommentRequestWithBookId:(NSString *)bookId userName:(NSString *)userName content:(NSString *)content
+{
+    NSDictionary *bodyDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                              bookId, kBookId,
+                              userName, kUserName,
+                              content, kCommentContent,nil];
+    return [self buildRequestWithURLString:kPostBookCommentURL bodyDict:bodyDict];
 }
 
 #pragma mark - Friends

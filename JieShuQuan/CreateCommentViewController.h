@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+@class Book;
+@class CustomActivityIndicator;
 
 @interface CreateCommentViewController : UIViewController
+
+@property (strong, nonatomic) Book *book;
+@property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
 
 @end

@@ -28,6 +28,8 @@
 + (NSMutableURLRequest *)buildFetchFriendsRequestForUserId:(NSString *)userId;
 + (NSMutableURLRequest *)buildFetchFriendsRequestForUserId:(NSString *)userId bookId:(NSString *)bookId;
 
-
+// comment related requests
++ (NSMutableURLRequest *)buildGetBookCommentsRequestWithBookId:(NSString *)bookId;
++ (NSMutableURLRequest *)buildPostBookCommentRequestWithBookId:(NSString *)bookId userName:(NSString *)userName content:(NSString *)content;
 
 @end

@@ -20,9 +20,7 @@
 #import "SearchTableViewController.h"
 #import "ActionSheetHelper.h"
 #import "RequestBuilder.h"
-#import "FriendsHasBookTableViewController.h"
 #import "CustomActivityIndicator.h"
-
 
 static const NSString *kAvailableNO = @"更改为随时可借";
 static const NSString *kAvailableYES = @"更改为不可借";
@@ -296,9 +294,7 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue destinationViewController] class] == FriendsHasBookTableViewController.class) {
-        [[segue destinationViewController] setBook:_book];
-    }
+    [segue.destinationViewController setBook:_book];
 }
 
 @end
