@@ -29,6 +29,8 @@
 @property (strong, nonatomic) PreLoginView *preLoginView;
 @property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
 @property (strong, nonatomic) UILabel *messageLabel;
+@property (strong, nonatomic) NSMutableArray *allFriends;
+@property (strong, nonatomic) NSMutableArray *localFriends;
 @property (strong, nonatomic) NSMutableArray *myFriends;
 @property (strong, nonatomic) LoginViewController *loginController;
 @property (strong, nonatomic) UIRefreshControl *refresh;
@@ -57,6 +59,9 @@
         [_activityIndicator startAnimating];
         [self fetchFriendsFromServer];
     }
+    
+    _allFriends = [NSMutableArray array];
+    _localFriends = [NSMutableArray array];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -110,7 +115,7 @@
     if ([UserManager isLogin]) {
         _preLoginView.hidden = YES;
         [self loadFriendsFromStore];
-        if (_myFriends.count > 0) {
+        if (_allFriends.count > 0) {
             _messageLabel.hidden = YES;
             [self.tableView reloadData];
         } else {
@@ -123,7 +128,12 @@
 
 - (void)loadFriendsFromStore
 {
-    _myFriends = [[[FriendStore sharedStore] storedFriends] mutableCopy];
+    _allFriends = [[[FriendStore sharedStore] storedFriends] mutableCopy];
+    for (Friend *friend in _allFriends) {
+        if ([friend.friendLocation isEqualToString:[[UserManager currentUser] location]] ) {
+            [_localFriends addObject:friend];
+        }
+    }
 }
 
 #pragma mark - PreLoginView
@@ -181,7 +191,7 @@
         id responseObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
         if (responseObject) {
             [self clearFriendsAvatarCache];
-            [_myFriends removeAllObjects];
+            [_allFriends removeAllObjects];
             [[FriendStore sharedStore] emptyFriendStoreForCurrentUser];
 
             NSArray *friendsArray = [responseObject valueForKey:@"friends"];
@@ -197,7 +207,7 @@
 - (void)clearFriendsAvatarCache
 {
     NSMutableArray *friendIds = [[NSMutableArray alloc] init];
-    for (Friend *friend in _myFriends) {
+    for (Friend *friend in _allFriends) {
         [friendIds addObject:friend.friendId];
     }
     [CacheManager clearAvatarCacheForUserIds:friendIds];
@@ -224,9 +234,17 @@
 {
     if ([[segue destinationViewController] class] == FriendDetailTableViewController.class) {
         NSIndexPath *selectIndexPath = [self.tableView indexPathForSelectedRow];
-        Friend *selectedFriend = [_myFriends objectAtIndex:[selectIndexPath row]];
+        Friend *selectedFriend = [_allFriends objectAtIndex:[selectIndexPath row]];
         [[segue destinationViewController] setFriend:selectedFriend];
     }
 }
 
+- (IBAction)changeSegment:(id)sender {
+    if (_segmentedControll.selectedSegmentIndex == 0) {
+        _myFriends = [_localFriends mutableCopy];
+    } else {
+        _myFriends = [_allFriends mutableCopy];
+    }
+    [self.tableView reloadData];
+}
 @end

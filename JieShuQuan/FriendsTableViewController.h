@@ -11,4 +11,7 @@
 
 @interface FriendsTableViewController : UITableViewController <PreLoginDelegate>
 
+@property (strong, nonatomic) IBOutlet UISegmentedControl *segmentedControll;
+- (IBAction)changeSegment:(id)sender;
+
 @end
