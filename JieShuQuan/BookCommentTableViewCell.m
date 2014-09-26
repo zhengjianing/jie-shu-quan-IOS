@@ -10,26 +10,37 @@
 
 @implementation BookCommentTableViewCell
 
-static const int padding_l_r = 20;
-static const int padding_t_b = 5;
-static const int fontSize = 13;
-static const int usernameHeight = 20;
-static const int usernameWidth = 200;
+static const int kMarginLeftRight = 20;
+static const int kMarginTopBottom = 10;
+static const int kSubTitleHeight = 13;
+static const int kUsernameWidth = 210;
+static const int kDateWidth = 90;
 
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        UIFont *commentFont = [UIFont systemFontOfSize:13];
+        UIColor *commentColor = [UIColor darkGrayColor];
+        
+        UIFont *subTitleFont = [UIFont systemFontOfSize:11];
+        UIColor *subTitleColor = [UIColor brownColor];
+
         _bookCommentLabel = [[UILabel alloc] init];
-        _bookCommentLabel.font = [UIFont systemFontOfSize:fontSize];
-        _bookCommentLabel.textColor = [UIColor darkGrayColor];
+        _bookCommentLabel.font = commentFont;
+        _bookCommentLabel.textColor = commentColor;
         [self.contentView addSubview:_bookCommentLabel];
         
         _userNameLabel = [[UILabel alloc] init];
-        _userNameLabel.font = [UIFont boldSystemFontOfSize:fontSize];
-        _userNameLabel.textColor = [UIColor orangeColor];
+        _userNameLabel.font = subTitleFont;
+        _userNameLabel.textColor = subTitleColor;
         [self.contentView addSubview:_userNameLabel];
+        
+        _dateLabel = [[UILabel alloc] init];
+        _dateLabel.font = subTitleFont;
+        _dateLabel.textColor = subTitleColor;
+        [self.contentView addSubview:_dateLabel];
     }
     return self;
 }
@@ -38,22 +49,28 @@ static const int usernameWidth = 200;
     self.bookCommentLabel.text = text;
     self.bookCommentLabel.numberOfLines = 0;
     
-    CGSize constrainedSize = CGSizeMake(self.contentView.frame.size.width-padding_l_r*2, MAXFLOAT);
+    CGSize constrainedSize = CGSizeMake(self.contentView.frame.size.width - 2*kMarginLeftRight, MAXFLOAT);
     CGSize commentTextSize = [text sizeWithFont:self.bookCommentLabel.font constrainedToSize:constrainedSize lineBreakMode:NSLineBreakByTruncatingTail];
     
-    self.bookCommentLabel.frame = CGRectMake(padding_l_r, padding_t_b, commentTextSize.width, commentTextSize.height + padding_t_b);
+    self.bookCommentLabel.frame = CGRectMake(kMarginLeftRight, kMarginTopBottom, constrainedSize.width, commentTextSize.height);
 }
 
 -(void)setUserNameLabelWithText:(NSString*)username
 {
     self.userNameLabel.text = username;
-    self.userNameLabel.frame = CGRectMake(padding_l_r, self.bookCommentLabel.frame.size.height + padding_l_r, usernameWidth, usernameHeight);
+    self.userNameLabel.frame = CGRectMake(kMarginLeftRight, self.bookCommentLabel.frame.size.height + 2*kMarginTopBottom, kUsernameWidth, kSubTitleHeight);
+}
+
+-(void)setDateLabelWithText:(NSString *)date
+{
+    self.dateLabel.text = date;
+    self.dateLabel.frame = CGRectMake(kUsernameWidth + kMarginLeftRight, self.bookCommentLabel.frame.size.height + 2*kMarginTopBottom, kDateWidth, kSubTitleHeight);
 }
 
 - (void)setCellFrame
 {
     CGRect frame = [self frame];
-    frame.size.height = self.bookCommentLabel.frame.size.height + self.userNameLabel.frame.size.height;
+    frame.size.height = self.bookCommentLabel.frame.size.height + kSubTitleHeight + 3*kMarginTopBottom;
     self.frame = frame;
 }
 

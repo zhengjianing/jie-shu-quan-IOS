@@ -13,5 +13,6 @@
 @property (copy, nonatomic) NSString *content;
 @property (copy, nonatomic) NSString *book_id;
 @property (copy, nonatomic) NSString *user_name;
+@property (copy, nonatomic) NSString *comment_date;
 
 @end

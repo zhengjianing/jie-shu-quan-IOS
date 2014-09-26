@@ -168,6 +168,7 @@
     BookCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:_cellIdentifier];
     [cell setCommentLabelWithText:comment.content];
     [cell setUserNameLabelWithText:comment.user_name];
+    [cell setDateLabelWithText:comment.comment_date];
     [cell setCellFrame];
     
     return cell;
@@ -176,7 +177,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BookCommentTableViewCell *cell = (BookCommentTableViewCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
-    return cell.frame.size.height + 30;
+    return cell.frame.size.height;
 }
 
 @end
