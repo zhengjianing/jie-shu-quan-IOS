@@ -128,6 +128,9 @@
 
 - (void)loadFriendsFromStore
 {
+    [_allFriends removeAllObjects];
+    [_localFriends removeAllObjects];
+    
     _allFriends = [[[FriendStore sharedStore] storedFriends] mutableCopy];
     for (Friend *friend in _allFriends) {
         if ([friend.friendLocation isEqualToString:[[UserManager currentUser] location]] ) {
@@ -191,7 +194,6 @@
         id responseObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
         if (responseObject) {
             [self clearFriendsAvatarCache];
-            [_myFriends removeAllObjects];
             [[FriendStore sharedStore] emptyFriendStoreForCurrentUser];
 
             NSArray *friendsArray = [responseObject valueForKey:@"friends"];
