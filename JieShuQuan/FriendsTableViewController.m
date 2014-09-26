@@ -51,6 +51,7 @@
     [self.tableView addSubview:self.messageLabel];
     [self.tableView addSubview:self.preLoginView];
     [self.tableView addSubview:self.activityIndicator];
+    _messageLabel.hidden = YES;
 
     [self addRefreshControll];
     [self setTableFooterView];
@@ -67,7 +68,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     self.tabBarController.tabBar.hidden = NO;
-    [self showTableView];
+    if ([UserManager isLogin]) {
+        _preLoginView.hidden = YES;
+    } else {
+        _preLoginView.hidden = NO;
+    }
 }
 
 - (void)setTableFooterView
@@ -110,20 +115,15 @@
     return _preLoginView;
 }
 
-- (void)showTableView
+- (void)showTableViewWithCorrectData
 {
-    if ([UserManager isLogin]) {
-        _preLoginView.hidden = YES;
-        [self loadFriendsFromStore];
-        if (_allFriends.count > 0) {
-            _messageLabel.hidden = YES;
-            [self.tableView reloadData];
-        } else {
-            _messageLabel.hidden = NO;
-        }
+    _myFriends = [self friendsForSelectedSegmentIndex:_segmentedControll.selectedSegmentIndex];
+    if (_myFriends.count > 0) {
+        _messageLabel.hidden = YES;
     } else {
-        _preLoginView.hidden = NO;
+        _messageLabel.hidden = NO;
     }
+    [self.tableView reloadData];
 }
 
 - (void)loadFriendsFromStore
@@ -134,7 +134,6 @@
             [_localFriends addObject:friend];
         }
     }
-    _myFriends = [_allFriends mutableCopy];
 }
 
 #pragma mark - PreLoginView
@@ -192,7 +191,7 @@
         id responseObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
         if (responseObject) {
             [self clearFriendsAvatarCache];
-            [_allFriends removeAllObjects];
+            [_myFriends removeAllObjects];
             [[FriendStore sharedStore] emptyFriendStoreForCurrentUser];
 
             NSArray *friendsArray = [responseObject valueForKey:@"friends"];
@@ -200,7 +199,8 @@
                 Friend *friend = [DataConverter friendFromServerFriendObject:item];
                 [[FriendStore sharedStore] addFriendToStore:friend];
             }
-            [self showTableView];
+            [self loadFriendsFromStore];
+            [self showTableViewWithCorrectData];
         }
     }];
 }
@@ -208,7 +208,7 @@
 - (void)clearFriendsAvatarCache
 {
     NSMutableArray *friendIds = [[NSMutableArray alloc] init];
-    for (Friend *friend in _allFriends) {
+    for (Friend *friend in _myFriends) {
         [friendIds addObject:friend.friendId];
     }
     [CacheManager clearAvatarCacheForUserIds:friendIds];
@@ -235,22 +235,17 @@
 {
     if ([[segue destinationViewController] class] == FriendDetailTableViewController.class) {
         NSIndexPath *selectIndexPath = [self.tableView indexPathForSelectedRow];
-        Friend *selectedFriend = [_allFriends objectAtIndex:[selectIndexPath row]];
+        Friend *selectedFriend = [_myFriends objectAtIndex:[selectIndexPath row]];
         [[segue destinationViewController] setFriend:selectedFriend];
     }
 }
 
 - (IBAction)changeSegment:(id)sender {
-    if (_segmentedControll.selectedSegmentIndex == 0) {
-        _myFriends = [_allFriends mutableCopy];
-    } else {
-        _myFriends = [_localFriends mutableCopy];
-    }
-    if (_myFriends.count > 0) {
-        _messageLabel.hidden = YES;
-    } else {
-        _messageLabel.hidden = NO;
-    }
-    [self.tableView reloadData];
+    [self showTableViewWithCorrectData];
+}
+
+- (NSMutableArray *)friendsForSelectedSegmentIndex:(NSInteger)index
+{
+    return (index == 0) ? [_allFriends mutableCopy] : [_localFriends mutableCopy];
 }
 @end
