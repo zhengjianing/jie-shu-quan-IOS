@@ -83,6 +83,7 @@ static const NSString *kFriendName = @"friend_name";
 static const NSString *kFriendEmail = @"friend_email";
 static const NSString *kFriendId = @"friend_id";
 static const NSString *kFriendBookCount = @"book_count";
+static const NSString *kFriendLocation = @"friend_location";
 
 
 @interface DataConverter ()
@@ -233,6 +234,7 @@ static const NSString *kFriendBookCount = @"book_count";
     friend.friendId = [object valueForKey:(NSString *)kFriendId];
     friend.friendEmail = [object valueForKey:(NSString *)kFriendEmail];
     friend.bookCount = [object valueForKey:(NSString *)kFriendBookCount];
+    friend.friendLocation = [object valueForKey:(NSString *)kFriendLocation];
 
     return friend;
 }

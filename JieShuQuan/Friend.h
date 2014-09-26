@@ -13,6 +13,7 @@
 @property (copy, nonatomic) NSString *friendId;
 @property (copy, nonatomic) NSString *friendName;
 @property (copy, nonatomic) NSString *friendEmail;
+@property (copy, nonatomic) NSString *friendLocation;
 @property (copy, nonatomic) NSString *bookCount;
 
 @end

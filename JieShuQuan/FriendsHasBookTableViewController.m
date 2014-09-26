@@ -191,6 +191,8 @@
     
     cell.friendNameLabel.text = friend.friendName;
     cell.friendEmailLabel.text = friend.friendEmail;
+    cell.locationLabel.text = friend.friendLocation;
+    cell.friendEmailLabel.hidden = YES;
     cell.friendBookAvailibilityLabel.text = (availability == 0) ? @"暂时不可借" : @"可借";
     
     if (availability ==0) {
