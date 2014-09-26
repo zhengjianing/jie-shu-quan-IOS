@@ -165,19 +165,18 @@
 {
     Comment *comment = [_CommentCellObject objectAtIndex:indexPath.row];
 
-    BookCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:_cellIdentifier forIndexPath:indexPath];
+    BookCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:_cellIdentifier];
     [cell setCommentText:comment.content];
     [cell setUserNameText:comment.user_name];
+    [cell setCellFrame];
     
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-   Comment *comment = [_CommentCellObject objectAtIndex:indexPath.row];
-    CGSize commentTextSize = [comment.content sizeWithFont:[UIFont systemFontOfSize:13] constrainedToSize:CGSizeMake(self.tableView.frame.size.width, 1000) lineBreakMode:NSLineBreakByTruncatingTail];
-
-    return commentTextSize.height + 80;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    BookCommentTableViewCell *cell = (BookCommentTableViewCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
+    return cell.frame.size.height + 30;
 }
 
 @end
