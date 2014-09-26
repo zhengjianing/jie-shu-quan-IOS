@@ -92,7 +92,7 @@
     if (_messageLabel != nil) {
         return _messageLabel;
     }
-    _messageLabel = [MessageLabelHelper createMessageLabelWithMessage:@"没有找到您的同事，请确保您使用企业邮箱注册，并向更多的同事推荐此应用"];
+    _messageLabel = [MessageLabelHelper createMessageLabelWithMessage:@"抱歉，没有找到相关同事，请向更多的同事推荐此应用"];
     return _messageLabel;
 }
 
@@ -245,6 +245,11 @@
         _myFriends = [_allFriends mutableCopy];
     } else {
         _myFriends = [_localFriends mutableCopy];
+    }
+    if (_myFriends.count > 0) {
+        _messageLabel.hidden = YES;
+    } else {
+        _messageLabel.hidden = NO;
     }
     [self.tableView reloadData];
 }
