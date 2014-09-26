@@ -134,6 +134,7 @@
             [_localFriends addObject:friend];
         }
     }
+    _myFriends = [_allFriends mutableCopy];
 }
 
 #pragma mark - PreLoginView
@@ -241,9 +242,9 @@
 
 - (IBAction)changeSegment:(id)sender {
     if (_segmentedControll.selectedSegmentIndex == 0) {
-        _myFriends = [_localFriends mutableCopy];
-    } else {
         _myFriends = [_allFriends mutableCopy];
+    } else {
+        _myFriends = [_localFriends mutableCopy];
     }
     [self.tableView reloadData];
 }
