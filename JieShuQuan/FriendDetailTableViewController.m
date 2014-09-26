@@ -20,7 +20,6 @@
 #import "MessageLabelHelper.h"
 #import "CustomActivityIndicator.h"
 #import "AvatarManager.h"
-#import "BookDetailTableViewController.h"
 
 @interface FriendDetailTableViewController ()
 
@@ -180,17 +179,6 @@
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-#pragma mark - Table view data source
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([[segue destinationViewController] class] == BookDetailTableViewController.class) {
-        NSIndexPath *selectIndexPath = [self.tableView indexPathForSelectedRow];
-        Book *selectedBook = [_books objectAtIndex:[selectIndexPath row]];
-        [[segue destinationViewController] setBook:selectedBook];
-    }
 }
 
 @end

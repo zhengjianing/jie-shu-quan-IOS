@@ -1113,7 +1113,7 @@
                             <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="friendBookIdentifier" rowHeight="105" id="Kmw-cX-9Kd" customClass="FriendBookTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="friendBookIdentifier" rowHeight="105" id="Kmw-cX-9Kd" customClass="FriendBookTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kmw-cX-9Kd" id="e0W-xg-coE">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -1133,7 +1133,7 @@
                                             <rect key="frame" x="20" y="13" width="55" height="80"/>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pyi-mO-WNJ">
-                                            <rect key="frame" x="189" y="69" width="92" height="27"/>
+                                            <rect key="frame" x="217" y="69" width="92" height="27"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <state key="normal" title="      向他借书">
                                                 <color key="titleColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1144,10 +1144,10 @@
                                             </connections>
                                         </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="email.png" translatesAutoresizingMaskIntoConstraints="NO" id="dWm-un-Dlz">
-                                            <rect key="frame" x="198" y="74" width="17" height="17"/>
+                                            <rect key="frame" x="226" y="74" width="17" height="17"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="暂时不可借" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0c-sP-DTp">
-                                            <rect key="frame" x="205" y="72" width="68" height="21"/>
+                                            <rect key="frame" x="232" y="72" width="68" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -1161,7 +1161,6 @@
                                     <outlet property="bookNameLabel" destination="Gwe-qD-1M8" id="5QR-dW-IYV"/>
                                     <outlet property="borrowButton" destination="pyi-mO-WNJ" id="eAB-8w-AxT"/>
                                     <outlet property="mailImageView" destination="dWm-un-Dlz" id="Azc-GV-gMw"/>
-                                    <segue destination="wYj-Ro-ejx" kind="push" id="6Fh-37-UFP"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1185,7 +1184,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ejd-30-Hw4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="752" y="-172"/>
+            <point key="canvasLocation" x="745" y="118"/>
         </scene>
         <!--Navigation Controller - 同事们-->
         <scene sceneID="Ed7-AR-Cve">
@@ -1541,6 +1540,6 @@
         <image name="user.png" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6Fh-37-UFP"/>
+        <segue reference="UK7-cM-ngP"/>
     </inferredMetricsTieBreakers>
 </document>
