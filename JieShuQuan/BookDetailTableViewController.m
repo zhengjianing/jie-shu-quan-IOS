@@ -32,9 +32,9 @@ static const NSString *kExistNO = @"书库没有";
 static const NSString *kAddToMyBook = @"添加至书库";
 static const NSString *kDeleteFromMyBook = @"从书库移除";
 
-#define kLabelFont [UIFont systemFontOfSize:12]
-#define kLabelWidth 290
+static const NSString *kDefaultLabelText = @"暂无介绍";
 
+static const int fontSize = 13;
 
 @interface BookDetailTableViewController ()
 {
@@ -96,8 +96,8 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     _publishDateLabel.text = _book.publishDate;
     _priceLabel.text = _book.price;
     
-    _descriptionLabel.text = _book.description;
-    _authorInfoLabel.text = _book.authorInfo;
+    _descriptionLabel.text = ([_book.description isEqualToString:@""]) ? (NSString *)kDefaultLabelText : _book.description;
+    _authorInfoLabel.text = ([_book.authorInfo isEqualToString:@""]) ? (NSString *)kDefaultLabelText : _book.authorInfo;
     
     _changeAvailabilityButton.layer.cornerRadius = 5.0;
     _changeAvailabilityButton.layer.borderWidth = 0.5;
@@ -107,7 +107,16 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
     UIColor *buttonColor = [UIColor orangeColor];
     _changeExistenceButton.layer.borderColor = buttonColor.CGColor;
     [_changeExistenceButton setTitleColor:buttonColor forState:UIControlStateNormal];
+}
+
+- (CGFloat)calculatedHeightForLabel:(UILabel *)label
+{
+    label.numberOfLines = 0;
     
+    CGSize constrainedSize = CGSizeMake(self.tableView.frame.size.width, MAXFLOAT);
+    CGSize labelTextSize = [label.text sizeWithFont:[UIFont systemFontOfSize:fontSize] constrainedToSize:constrainedSize lineBreakMode:NSLineBreakByTruncatingTail];
+    
+    return labelTextSize.height;
 }
 
 - (BOOL)alreadyHasBook
@@ -301,6 +310,31 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
         
         [self setLabelTextWithBookAvailability:_book.availability];
     }
+}
+
+#pragma mark - table view delegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.section) {
+        case 0:
+            return 132;
+        case 1:
+            if (indexPath.row == 1) {
+                return 75;
+            }
+        case 4:
+            if (indexPath.row == 1) {
+                return [self calculatedHeightForLabel:_descriptionLabel];
+            }
+        case 5:
+            if (indexPath.row == 1) {
+                return [self calculatedHeightForLabel:_authorInfoLabel];
+            }
+        default:
+            return 40;
+    }
+    return 40;
 }
 
 #pragma mark - Navigation
