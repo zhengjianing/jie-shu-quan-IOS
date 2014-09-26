@@ -77,6 +77,7 @@ static const NSString *kCDFriendName = @"friend_name";
 static const NSString *kCDFriendEmail = @"friend_email";
 static const NSString *kCDFriendId = @"friend_id";
 static const NSString *kCDFriendBookCount = @"book_count";
+static const NSString *kCDFriendLocation = @"friend_location";
 
 // keys in server for Friend
 static const NSString *kFriendName = @"friend_name";
@@ -215,6 +216,7 @@ static const NSString *kFriendLocation = @"friend_location";
     friend.friendEmail = [storedFriend valueForKey:(NSString *)kCDFriendEmail];
     friend.friendId = [storedFriend valueForKey:(NSString *)kCDFriendId];
     friend.bookCount = [storedFriend valueForKey:(NSString *)kCDFriendBookCount];
+    friend.friendLocation = [storedFriend valueForKey:(NSString *)kCDFriendLocation];
     return friend;
 }
 
@@ -224,6 +226,7 @@ static const NSString *kFriendLocation = @"friend_location";
     [object setValue:friend.friendName forKey:(NSString *)kCDFriendName];
     [object setValue:friend.friendEmail forKey:(NSString *)kCDFriendEmail];
     [object setValue:friend.bookCount forKey:(NSString *)kCDFriendBookCount];
+    [object setValue:friend.friendLocation forKey:(NSString *)kCDFriendLocation];
 }
 
 + (Friend *)friendFromServerFriendObject:(id)object

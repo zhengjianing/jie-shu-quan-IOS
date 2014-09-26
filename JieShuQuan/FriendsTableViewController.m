@@ -162,7 +162,7 @@
     Friend *friend = [_myFriends objectAtIndex:indexPath.row];
     cell.userNameLabel.text = friend.friendName;
     cell.bookCountLabel.text = friend.bookCount;
-    cell.emailLabel.text = friend.friendEmail;
+    cell.locationLabel.text = friend.friendLocation;
     NSURL *avatarURL = [AvatarManager avatarURLForUserId:friend.friendId];
     [cell.iconImageView sd_setImageWithURL:avatarURL placeholderImage:[AvatarManager defaulFriendAvatar]];
     [AvatarManager setAvatarStyleForImageView:cell.iconImageView];
