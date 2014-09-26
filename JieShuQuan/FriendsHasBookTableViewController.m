@@ -190,8 +190,10 @@
     [AvatarManager setAvatarStyleForImageView:cell.friendAvatarImageView];
     
     cell.friendNameLabel.text = friend.friendName;
-    cell.friendEmailLabel.text = friend.friendEmail;
     cell.locationLabel.text = friend.friendLocation;
+
+    // always hide email label, only used when send email, will get email address from the label text
+    cell.friendEmailLabel.text = friend.friendEmail;
     cell.friendEmailLabel.hidden = YES;
     
     if (availability == 0) {
