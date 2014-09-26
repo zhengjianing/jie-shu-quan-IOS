@@ -1177,8 +1177,8 @@
                     <connections>
                         <outlet property="friendAvatarImageView" destination="D8p-hp-uen" id="Rai-CR-6xQ"/>
                         <outlet property="friendBookCountLabel" destination="xw9-TO-m0h" id="VrB-EZ-ghw"/>
-                        <outlet property="friendEmailLabel" destination="y2f-kg-2uG" id="Ggv-Xs-5bd"/>
                         <outlet property="friendInfoView" destination="RdI-8P-Y6I" id="kIq-xh-gev"/>
+                        <outlet property="friendLocationLabel" destination="y2f-kg-2uG" id="ecY-eu-I2V"/>
                         <outlet property="friendNameLabel" destination="ToU-sn-hUz" id="48r-Qg-Z74"/>
                     </connections>
                 </tableViewController>

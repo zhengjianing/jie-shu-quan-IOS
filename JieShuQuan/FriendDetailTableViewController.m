@@ -67,7 +67,7 @@
     
     _friendNameLabel.text = _friend.friendName;
     _friendBookCountLabel.text = _friend.bookCount;
-    _friendEmailLabel.text = _friend.friendEmail;
+    _friendLocationLabel.text = _friend.friendLocation;
 }
 
 - (CustomActivityIndicator *)activityIndicator
