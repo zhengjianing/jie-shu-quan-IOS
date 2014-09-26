@@ -35,6 +35,8 @@ static const NSString *kDeleteFromMyBook = @"从书库移除";
 static const NSString *kDefaultLabelText = @"暂无介绍";
 
 static const int fontSize = 13;
+static const float LINESPACE = 5;
+
 
 @interface BookDetailTableViewController ()
 {
@@ -79,11 +81,7 @@ static const int fontSize = 13;
     [self setLabelWithBookExistence:_existenceStatus];
     [self setLabelTextWithBookAvailability:_book.availability];
     (_existenceStatus) ? [self enableAvailabilityArea] : [self disableAvailabilityArea];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
+    [self.tableView reloadData];
 }
 
 - (void)initBookDetailView
@@ -108,12 +106,20 @@ static const int fontSize = 13;
     [_changeExistenceButton setTitleColor:buttonColor forState:UIControlStateNormal];
 }
 
-- (CGFloat)calculatedHeightForLabel:(UILabel *)label
+- (CGFloat)setLayoutForLabel:(UILabel *)label
 {
     label.numberOfLines = 0;
     
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:label.text];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    
+    [paragraphStyle setLineSpacing:LINESPACE];//调整行间距
+    
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [label.text length])];
+    label.attributedText = attributedString;
+    
     CGSize constrainedSize = CGSizeMake(self.tableView.frame.size.width, MAXFLOAT);
-    CGSize labelTextSize = [label.text sizeWithFont:[UIFont systemFontOfSize:fontSize] constrainedToSize:constrainedSize lineBreakMode:NSLineBreakByCharWrapping];
+    CGSize labelTextSize = [label.text sizeWithFont:[UIFont systemFontOfSize:fontSize+LINESPACE/2.0] constrainedToSize:constrainedSize lineBreakMode:NSLineBreakByCharWrapping];
     
     return labelTextSize.height + 40;
 }
@@ -312,11 +318,11 @@ static const int fontSize = 13;
             }
         case 4:
             if (indexPath.row == 1) {
-                return [self calculatedHeightForLabel:_descriptionLabel];
+                return [self setLayoutForLabel:_descriptionLabel];
             }
         case 5:
             if (indexPath.row == 1) {
-                return [self calculatedHeightForLabel:_authorInfoLabel];
+                return [self setLayoutForLabel:_authorInfoLabel];
             }
         default:
             return 40;
