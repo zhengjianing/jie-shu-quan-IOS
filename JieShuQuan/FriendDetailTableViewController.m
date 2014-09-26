@@ -145,11 +145,11 @@
     cell.authorsLabel.text = book.authors;
 
     if (book.availability == NO) {
-        cell.availabilityLabel.text = @"暂时不可借";
+        cell.availabilityLabel.hidden = NO;
         cell.borrowButton.hidden = YES;
         cell.mailImageView.hidden = YES;
     } else {
-        cell.availabilityLabel.text = @"可借";
+        cell.availabilityLabel.hidden = YES;
         cell.borrowButton.layer.borderColor = [UIColor orangeColor].CGColor;
         cell.borrowButton.layer.cornerRadius = 5.0;
         cell.borrowButton.layer.borderWidth = 0.5;
