@@ -95,10 +95,9 @@ static const int fontSize = 13;
     _publisherLabel.text = _book.publisher;
     _publishDateLabel.text = _book.publishDate;
     _priceLabel.text = _book.price;
-    
     _descriptionLabel.text = ([_book.description isEqualToString:@""]) ? (NSString *)kDefaultLabelText : _book.description;
     _authorInfoLabel.text = ([_book.authorInfo isEqualToString:@""]) ? (NSString *)kDefaultLabelText : _book.authorInfo;
-    
+
     _changeAvailabilityButton.layer.cornerRadius = 5.0;
     _changeAvailabilityButton.layer.borderWidth = 0.5;
     _changeExistenceButton.layer.cornerRadius = 5.0;
@@ -114,9 +113,9 @@ static const int fontSize = 13;
     label.numberOfLines = 0;
     
     CGSize constrainedSize = CGSizeMake(self.tableView.frame.size.width, MAXFLOAT);
-    CGSize labelTextSize = [label.text sizeWithFont:[UIFont systemFontOfSize:fontSize] constrainedToSize:constrainedSize lineBreakMode:NSLineBreakByTruncatingTail];
+    CGSize labelTextSize = [label.text sizeWithFont:[UIFont systemFontOfSize:fontSize] constrainedToSize:constrainedSize lineBreakMode:NSLineBreakByCharWrapping];
     
-    return labelTextSize.height;
+    return labelTextSize.height + 40;
 }
 
 - (BOOL)alreadyHasBook
