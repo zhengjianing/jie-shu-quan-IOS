@@ -727,6 +727,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="hJp-X1-xdq" kind="push" id="qC5-Av-GUX"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -1443,7 +1446,6 @@
                                 </state>
                                 <connections>
                                     <action selector="clearTextView:" destination="dvp-4c-Bm4" eventType="touchUpInside" id="kQ9-mm-WZp"/>
-                                    <action selector="submitComment:" destination="dvp-4c-Bm4" eventType="touchUpInside" id="Ah0-Ll-D9n"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1465,6 +1467,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pLf-mk-3Nf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1379" y="-192"/>
+        </scene>
+        <!--Book Comment Table View Controller-->
+        <scene sceneID="dur-jC-PIs">
+            <objects>
+                <tableViewController id="hJp-X1-xdq" customClass="BookCommentTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="57" sectionHeaderHeight="22" sectionFooterHeight="22" id="jgB-mc-Wck">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="bookCommentCellIdentifier" rowHeight="57" id="urk-8k-pq1" customClass="BookCommentTableViewCell">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="urk-8k-pq1" id="8Ac-1E-zHq">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="hJp-X1-xdq" id="QCl-Wf-9OI"/>
+                            <outlet property="delegate" destination="hJp-X1-xdq" id="ccp-5v-mVK"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="jmv-aq-cVx"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="480"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hep-lZ-w9Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1379" y="-732"/>
         </scene>
     </scenes>
     <resources>

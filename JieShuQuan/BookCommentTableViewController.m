@@ -166,8 +166,8 @@
     Comment *comment = [_CommentCellObject objectAtIndex:indexPath.row];
 
     BookCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:_cellIdentifier];
-    [cell setCommentText:comment.content];
-    [cell setUserNameText:comment.user_name];
+    [cell setCommentLabelWithText:comment.content];
+    [cell setUserNameLabelWithText:comment.user_name];
     [cell setCellFrame];
     
     return cell;

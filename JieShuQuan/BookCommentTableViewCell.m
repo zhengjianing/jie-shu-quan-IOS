@@ -12,7 +12,7 @@
 
 static const int padding_l_r = 20;
 static const int padding_t_b = 5;
-static const int fontSize = 14;
+static const int fontSize = 13;
 static const int usernameHeight = 20;
 static const int usernameWidth = 200;
 
@@ -22,7 +22,7 @@ static const int usernameWidth = 200;
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         _bookCommentLabel = [[UILabel alloc] init];
-        _bookCommentLabel.font = [UIFont boldSystemFontOfSize:fontSize];
+        _bookCommentLabel.font = [UIFont systemFontOfSize:fontSize];
         _bookCommentLabel.textColor = [UIColor darkGrayColor];
         [self.contentView addSubview:_bookCommentLabel];
         
@@ -34,17 +34,17 @@ static const int usernameWidth = 200;
     return self;
 }
 
--(void)setCommentText:(NSString*)text {
+-(void)setCommentLabelWithText:(NSString*)text {
     self.bookCommentLabel.text = text;
     self.bookCommentLabel.numberOfLines = 0;
     
     CGSize constrainedSize = CGSizeMake(self.contentView.frame.size.width-padding_l_r*2, MAXFLOAT);
-    CGSize commentTextSize = [self.bookCommentLabel.text sizeWithFont:self.bookCommentLabel.font constrainedToSize:constrainedSize lineBreakMode:NSLineBreakByTruncatingTail];
+    CGSize commentTextSize = [text sizeWithFont:self.bookCommentLabel.font constrainedToSize:constrainedSize lineBreakMode:NSLineBreakByTruncatingTail];
     
     self.bookCommentLabel.frame = CGRectMake(padding_l_r, padding_t_b, commentTextSize.width, commentTextSize.height + padding_t_b);
 }
 
--(void)setUserNameText:(NSString*)username
+-(void)setUserNameLabelWithText:(NSString*)username
 {
     self.userNameLabel.text = username;
     self.userNameLabel.frame = CGRectMake(padding_l_r, self.bookCommentLabel.frame.size.height + padding_l_r, usernameWidth, usernameHeight);

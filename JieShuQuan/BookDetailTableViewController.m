@@ -128,18 +128,6 @@ static const int fontSize = 13;
     || [[BookStore sharedStore] storeHasBook:_book];
 }
 
-#pragma mark - Table view data source
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if ([indexPath section] == 3 && [indexPath row] == 1) {
-        BookCommentTableViewController *bookCommentTableViewController = [[BookCommentTableViewController alloc] initWithStyle:UITableViewStylePlain];
-        [bookCommentTableViewController setBook:_book];
-        [self.navigationController pushViewController:bookCommentTableViewController animated:YES];
-        return;
-    }
-}
-
 #pragma mark - change existence and availability labels
 
 - (void)setLabelWithBookExistence:(BOOL)existence
