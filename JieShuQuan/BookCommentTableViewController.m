@@ -106,6 +106,13 @@
     return _activityIndicator;
 }
 
+- (void)sortCommentsArray
+{
+    // sort commentsArray using a date-descending descriptor
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"comment_date" ascending:NO];
+    _CommentCellObject = [[_CommentCellObject sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]] mutableCopy];
+}
+
 - (void)loadAllBookCommentsFromServer
 {
     NSMutableURLRequest *request = [RequestBuilder buildGetBookCommentsRequestWithBookId:_book.bookId];
@@ -137,6 +144,7 @@
             for (id object in commentsArray) {
                 [_CommentCellObject addObject:[DataConverter commentFromObject:object]];
             }
+            [self sortCommentsArray];
             [self.tableView reloadData];
         }
     }];
