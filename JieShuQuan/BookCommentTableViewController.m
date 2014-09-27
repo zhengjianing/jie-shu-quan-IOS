@@ -8,9 +8,7 @@
 
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "BookCommentTableViewController.h"
-#import "PreLoginView.h"
 #import "BookCommentTableViewCell.h"
-#import "LoginViewController.h"
 #import "Book.h"
 #import "User.h"
 #import "UserManager.h"
@@ -23,8 +21,6 @@
 
 @interface BookCommentTableViewController ()
 
-@property (strong, nonatomic) PreLoginView *preLoginView;
-@property (strong, nonatomic) LoginViewController *loginController;
 @property (strong, nonatomic) NSString *cellIdentifier;
 
 @end
@@ -45,23 +41,12 @@
     [self setTableFooterView];
 
     [self.tableView addSubview:self.messageLabel];
-    [self.tableView addSubview:self.activityIndicator];
-    [self.tableView addSubview:self.preLoginView];
-    
-    _loginController = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-    [self showTableView];
-}
+    _messageLabel.hidden = YES;
 
-- (void)showTableView
-{
-    if ([UserManager isLogin]) {
-        _preLoginView.hidden = YES;
-        [_activityIndicator startAnimating];
-        _messageLabel.hidden = YES;
-        [self loadAllBookCommentsFromServer];
-    } else {
-        _preLoginView.hidden = NO;
-    }
+    [self.tableView addSubview:self.activityIndicator];
+    [_activityIndicator startAnimating];
+    
+    [self loadAllBookCommentsFromServer];
 }
 
 #pragma mark - initializing tableView accessories
@@ -73,20 +58,6 @@
     }
     _messageLabel = [MessageLabelHelper createMessageLabelWithMessage:@"没有找到此书的评论"];
     return _messageLabel;
-}
-
-- (PreLoginView *)preLoginView
-{
-    if (_preLoginView != nil) {
-        return _preLoginView;
-    }
-    NSArray *topLevelObjs = [[NSBundle mainBundle] loadNibNamed:@"PreLoginView" owner:self options:nil];
-    if ([topLevelObjs count] > 0)
-    {
-        _preLoginView = [topLevelObjs lastObject];
-        _preLoginView.delegate = self;
-    }
-    return _preLoginView;
 }
 
 - (void)setTableFooterView
@@ -148,13 +119,6 @@
             [self.tableView reloadData];
         }
     }];
-}
-
-#pragma mark - PreLoginDelegate
-
-- (void)login
-{
-    [self.navigationController pushViewController:_loginController animated:YES];
 }
 
 #pragma mark - Table view data source

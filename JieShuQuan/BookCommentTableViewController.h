@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PreLoginView.h"
-@class Book;
-@class CustomActivityIndicator;
+#import "CustomActivityIndicator.h"
 
-@interface BookCommentTableViewController : UITableViewController <PreLoginDelegate>
+@class Book;
+
+@interface BookCommentTableViewController : UITableViewController
 
 @property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
 @property (strong, nonatomic) Book *book;
