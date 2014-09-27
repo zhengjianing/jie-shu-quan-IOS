@@ -49,6 +49,7 @@ static const NSString *kBookAvailable = @"available";
 static const NSString *kCommentUserName = @"user_name";
 static const NSString *kCommentContent = @"content";
 static const NSString *kCommentDate = @"comment_date";
+static const NSString *kCommentbookId = @"douban_book_id";
 
 // keys in CoreData for Book
 static const NSString *kCDName = @"name";
@@ -251,6 +252,7 @@ static const NSString *kFriendLocation = @"friend_location";
     comment.user_name = [object valueForKey:(NSString *)kCommentUserName];
     comment.content = [object valueForKey:(NSString *)kCommentContent];
     comment.comment_date = [object valueForKey:(NSString *)kCommentDate];
+    comment.book_id = [object valueForKey:(NSString *)kCommentbookId];
 
     return comment;
 }

@@ -21,6 +21,8 @@
 #import "DataConverter.h"
 #import "MessageLabelHelper.h"
 
+static const NSString *kDefaultUserName = @"匿名用户";
+
 @interface BookCommentTableViewController ()
 
 @property (strong, nonatomic) PreLoginView *preLoginView;
@@ -175,7 +177,12 @@
 
     BookCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:_cellIdentifier];
     [cell setCommentLabelWithText:comment.content];
-    [cell setUserNameLabelWithText:comment.user_name];
+    
+    NSString *commentUserName =
+    ([comment.user_name isEqualToString:@""]) ? (NSString *)kDefaultUserName : comment.user_name;
+    
+    [cell setUserNameLabelWithText:commentUserName];
+    
     [cell setDateLabelWithText:comment.comment_date];
     [cell setCellFrame];
     

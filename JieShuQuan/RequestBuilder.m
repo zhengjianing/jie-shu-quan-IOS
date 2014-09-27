@@ -118,6 +118,8 @@ static const NSString *kUserName = @"user_name";
 
 + (NSMutableURLRequest *)buildPostBookCommentRequestWithBookId:(NSString *)bookId userName:(NSString *)userName content:(NSString *)content
 {
+    // handle not login situation
+    userName = (userName == nil) ? @"" : userName;
     NSDictionary *bodyDict = [NSDictionary dictionaryWithObjectsAndKeys:
                               bookId, kBookId,
                               userName, kUserName,
