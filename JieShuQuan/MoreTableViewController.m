@@ -96,14 +96,7 @@ static const NSString *kDefaultUserName = @"点击设置用户名";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([indexPath section] == 0 && [indexPath row] == 0) {
-        id targetViewController;
-        if ([UserManager isLogin]) {
-            targetViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingsTableViewController"];
-        } else {
-            targetViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-        }
-        
-        [self.navigationController pushViewController:targetViewController animated:YES];
+        [self showSettingsOrLoginView];
         return;
     }
     
@@ -116,6 +109,18 @@ static const NSString *kDefaultUserName = @"点击设置用户名";
         [[ActionSheetHelper actionSheetWithTitle:@"确认退出吗？" delegate:self] showInView:self.view];
         return;
     }
+}
+
+- (void)showSettingsOrLoginView
+{
+    id targetViewController;
+    if ([UserManager isLogin]) {
+        targetViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingsTableViewController"];
+    } else {
+        targetViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    }
+    
+    [self.navigationController pushViewController:targetViewController animated:YES];
 }
 
 - (void)sendFeedbackWithMailView
