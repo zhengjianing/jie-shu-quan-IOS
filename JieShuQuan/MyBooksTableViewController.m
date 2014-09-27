@@ -200,22 +200,25 @@ static const NSString *kStatusNO = @"暂时不可借";
     [_activityIndicator startAnimating];
 
     NSMutableURLRequest *deleteBookRequest = [RequestBuilder buildDeleteBookRequestWithBookId:book.bookId userId:[[UserManager currentUser] userId] accessToke:[[UserManager currentUser] accessToken]];
-    NSHTTPURLResponse *response = nil;
-    NSData *data = [NSURLConnection sendSynchronousRequest:deleteBookRequest returningResponse:&response error:nil];
     
-    [_activityIndicator stopAnimating];
-    
-    if ([response statusCode] != 200) {
-        [AlertHelper showAlertWithMessage:@"删除图书失败" withAutoDismiss:YES];
-    }
-    
-    if (data) {
-        [_myBooks removeObjectAtIndex:indexPath.row];
-        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+    [NSURLConnection sendAsynchronousRequest:deleteBookRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
-        [[BookStore sharedStore] deleteBookFromStore:book];
-        [[UserStore sharedStore] decreseBookCountForUser:[[UserManager currentUser] userId]];
-    }
+        if ([(NSHTTPURLResponse *)response statusCode] != 200) {
+            [AlertHelper showAlertWithMessage:@"删除图书失败" withAutoDismiss:YES];
+            [self.tableView reloadData];
+        }
+        
+        if (data) {
+            [_myBooks removeObjectAtIndex:indexPath.row];
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+            
+            [[BookStore sharedStore] deleteBookFromStore:book];
+            [[UserStore sharedStore] decreseBookCountForUser:[[UserManager currentUser] userId]];
+        }
+        
+        [_activityIndicator stopAnimating];
+    }];
+
 }
 
 #pragma mark - fetch books from server
