@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pdy-qY-d6V">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pdy-qY-d6V">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
     </dependencies>
@@ -1479,6 +1479,18 @@
                                     <action selector="clearTextView:" destination="dvp-4c-Bm4" eventType="touchUpInside" id="kQ9-mm-WZp"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="匿名评论" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pMB-by-JoG">
+                                <rect key="frame" x="20" y="346" width="125" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1ne-jv-60n">
+                                <rect key="frame" x="251" y="341" width="51" height="31"/>
+                                <connections>
+                                    <action selector="switchAnonymity:" destination="dvp-4c-Bm4" eventType="valueChanged" id="Qbq-0X-2TZ"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -1490,6 +1502,8 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="480"/>
                     <connections>
+                        <outlet property="anonymityLabel" destination="pMB-by-JoG" id="eIK-Xb-3fg"/>
+                        <outlet property="anonymitySwitch" destination="1ne-jv-60n" id="gIn-Sd-kvk"/>
                         <outlet property="clearButton" destination="AIQ-Du-UjZ" id="xW3-aP-fhG"/>
                         <outlet property="commentTextView" destination="gHy-IV-0nn" id="Y0E-kS-lI4"/>
                         <outlet property="submitButton" destination="qrk-tk-GPV" id="Sn2-83-gKT"/>

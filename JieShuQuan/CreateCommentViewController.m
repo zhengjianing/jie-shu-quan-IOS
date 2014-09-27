@@ -14,11 +14,18 @@
 #import "AlertHelper.h"
 #import "CustomActivityIndicator.h"
 
+static const NSString *kDefaultName = @"匿名用户";
+
 @interface CreateCommentViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextView *commentTextView;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 @property (weak, nonatomic) IBOutlet UIButton *clearButton;
+
+@property (strong, nonatomic) IBOutlet UILabel *anonymityLabel;
+@property (strong, nonatomic) IBOutlet UISwitch *anonymitySwitch;
+
+- (IBAction)switchAnonymity:(id)sender;
 
 @end
 
@@ -37,6 +44,22 @@
     _submitButton.layer.cornerRadius = 5.0;
     
     [self.view addSubview:self.activityIndicator];
+    
+    if (![UserManager isLogin]) {
+        [self setAnonymityLabelAndSwichWithAnonymityState:YES];
+    } else {
+        [self setAnonymityLabelAndSwichWithAnonymityState:NO];
+    }
+}
+
+- (void)setAnonymityLabelAndSwichWithAnonymityState:(BOOL)isOn
+{
+    _anonymitySwitch.on = isOn;
+    if (isOn) {
+        _anonymityLabel.textColor = [UIColor blackColor];
+        return;
+    }
+    _anonymityLabel.textColor = [UIColor grayColor];
 }
 
 - (CustomActivityIndicator *)activityIndicator
@@ -74,7 +97,9 @@
 
 - (void)postBookCommentWithContent:(NSString *)contentString
 {
-    NSMutableURLRequest *postRequest = [RequestBuilder buildPostBookCommentRequestWithBookId:_book.bookId userName:[[UserManager currentUser] userName] content:contentString];
+    NSString *name = ([_anonymitySwitch isOn]) ? (NSString *)kDefaultName : [[UserManager currentUser] userName];
+    
+    NSMutableURLRequest *postRequest = [RequestBuilder buildPostBookCommentRequestWithBookId:_book.bookId userName:name content:contentString];
     
     [NSURLConnection sendAsynchronousRequest:postRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
@@ -93,4 +118,13 @@
     }];
 }
 
+- (IBAction)switchAnonymity:(id)sender {
+    BOOL newState = _anonymitySwitch.on;
+    if (![UserManager isLogin]) {
+        [self setAnonymityLabelAndSwichWithAnonymityState:(!newState)];
+        [AlertHelper showAlertWithMessage:@"您尚未登录,\n目前只能匿名评论" withAutoDismiss:YES];
+        return;
+    }
+    [self setAnonymityLabelAndSwichWithAnonymityState:(newState)];
+}
 @end
