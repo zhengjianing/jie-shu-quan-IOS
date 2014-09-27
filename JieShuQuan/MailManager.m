@@ -14,6 +14,8 @@
 static const NSString *kBorrowBookSubject = @"借书圈借书需求";
 static const NSString *kBorrowBookBody = @"你好，%@\n\n能否将《%@》借给我看看？谢谢\n\n%@";
 
+static const NSString *kFeedbackSubject = @"借书圈反馈";
+
 @implementation MailManager
 
 + (void)displayComposerSheetToName:(NSString *)toName toEmailAddress:(NSString *)toEmailAddress forBook:(NSString *)bookName delegate:(id)delegate
@@ -40,4 +42,21 @@ static const NSString *kBorrowBookBody = @"你好，%@\n\n能否将《%@》借�
     [[UIApplication sharedApplication] openURL: [NSURL URLWithString:emailContent]];
 }
 
++ (void)displayComposerSheetToEmailAddress:(NSString *)toEmailAddress delegate:(id)delegate
+{
+    MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
+    mailViewController.mailComposeDelegate = delegate;
+    [mailViewController setSubject:(NSString *)kFeedbackSubject];
+    [mailViewController setToRecipients:@[toEmailAddress]];
+    
+    [delegate presentViewController:mailViewController animated:YES completion:nil];
+}
+
++ (void)launchMailToEmailAddress:(NSString *)toEmailAddress
+{
+    NSString *recipients = [NSString stringWithFormat:@"mailto:%@&subject=%@", toEmailAddress, (NSString *)kFeedbackSubject];
+    NSString *emailContent = [NSString stringWithFormat:@"%@%@", recipients, @""];
+    emailContent = [emailContent stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
+    [[UIApplication sharedApplication] openURL: [NSURL URLWithString:emailContent]];
+}
 @end

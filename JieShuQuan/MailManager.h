@@ -13,4 +13,7 @@
 + (void)displayComposerSheetToName:(NSString *)toName toEmailAddress:(NSString *)toEmailAddress forBook:(NSString *)book delegate:(id)delegate;
 + (void)launchMailToName:(NSString *)toName toEmailAddress:(NSString *)toEmailAddress forBook:(NSString *)bookName;
 
++ (void)displayComposerSheetToEmailAddress:(NSString *)toEmailAddress delegate:(id)delegate;
++ (void)launchMailToEmailAddress:(NSString *)toEmailAddress;
+
 @end

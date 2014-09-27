@@ -14,6 +14,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "LoginViewController.h"
 #import "SettingsTableViewController.h"
+#import "MailManager.h"
 
 static const NSString *kDefaultCount = @"--";
 static const NSString *kDefaultUserName = @"点击设置用户名";
@@ -106,10 +107,36 @@ static const NSString *kDefaultUserName = @"点击设置用户名";
         return;
     }
     
+    if ([indexPath section] == 1 && [indexPath row] == 0) {
+        [self sendFeedbackWithMailView];
+        return;
+    }
+    
     if ([indexPath section] == 2 && [indexPath row] == 0) {
         [[ActionSheetHelper actionSheetWithTitle:@"确认退出吗？" delegate:self] showInView:self.view];
         return;
     }
+}
+
+- (void)sendFeedbackWithMailView
+{
+    NSString *toEmailAddress = @"jieshuquan@test.com";
+    
+    Class mailClass = (NSClassFromString(@"MFMailComposeViewController"));
+    
+    if (mailClass != nil) {
+        [MailManager displayComposerSheetToEmailAddress:toEmailAddress delegate:self];
+    } else {
+        [MailManager launchMailToEmailAddress:toEmailAddress];
+    }
+}
+
+
+#pragma mark - MFMailComposeViewControllerDelegate
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - UIActionSheetDelegate

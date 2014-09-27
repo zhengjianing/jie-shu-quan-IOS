@@ -302,9 +302,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="NyE-Gh-HZF" kind="push" id="YSR-Sx-TfM"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="476-TY-MQ3" rowHeight="45" style="IBUITableViewCellStyleDefault" id="dWY-Bj-sc3">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -466,28 +463,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P50-ob-JXd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="745" y="732"/>
-        </scene>
-        <!--Feedback View Controller - 意见反馈-->
-        <scene sceneID="GUP-3e-7OW">
-            <objects>
-                <viewController id="NyE-Gh-HZF" customClass="FeedbackViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="0Xh-Mh-8FL"/>
-                        <viewControllerLayoutGuide type="bottom" id="nHc-m6-kQ7"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="jku-mR-lN0">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="意见反馈" id="bZ2-us-unu"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="480"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fDh-Fe-w8t" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="745" y="1320"/>
         </scene>
         <!--Province Table View Controller - 请选择省/直辖市-->
         <scene sceneID="wHu-Tp-sWL">
