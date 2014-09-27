@@ -212,7 +212,6 @@ static const NSString *kStatusNO = @"暂时不可借";
         
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
             [AlertHelper showAlertWithMessage:@"删除图书失败" withAutoDismiss:YES];
-            [self.tableView reloadData];
         }
         
         if (data) {
@@ -224,6 +223,7 @@ static const NSString *kStatusNO = @"暂时不可借";
         }
         
         [_activityIndicator stopAnimating];
+        [self.tableView setEditing:NO];
     }];
 
 }
