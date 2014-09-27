@@ -17,6 +17,7 @@
 #import "AlertHelper.h"
 #import "FriendStore.h"
 #import "CacheManager.h"
+#import "MoreTableViewController.h"
 
 @implementation AuthenticationViewController
 
@@ -84,7 +85,14 @@
 
 - (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    // do the following in case the rootViewController is MoreTableViewController, then setSelectedViewController won't work, cuz it is already at Index 3 !
+    NSArray *viewControllers = [self.navigationController viewControllers];
+    UIViewController *rootViewController = [viewControllers objectAtIndex:0];
+    if ([rootViewController isKindOfClass:[MoreTableViewController class]]) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        return;
+    }
+    [rootViewController.tabBarController setSelectedViewController:[self.tabBarController.viewControllers objectAtIndex:3]];
 }
 
 @end
