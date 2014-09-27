@@ -24,7 +24,6 @@
         _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
         _activityIndicator.hidesWhenStopped = YES;
         
-//        self = (CustomActivityIndicator *)[[UIView alloc] initWithFrame:CGRectMake(110, 170, 100, 50.0)];
         [self setFrame:CGRectMake(135, 170, 50, 50)];
         self.backgroundColor = [UIColor darkGrayColor];
         self.layer.cornerRadius = 5.0;
