@@ -40,6 +40,7 @@ static const NSString *kStatusNO = @"暂时不可借";
 @property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
 @property (strong, nonatomic) UILabel *messageLabel;
 
+@property (assign, nonatomic) BOOL isFirstLaunch;
 @end
 
 @implementation MyBooksTableViewController
@@ -47,6 +48,8 @@ static const NSString *kStatusNO = @"暂时不可借";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    _isFirstLaunch = YES;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchBooksFromServer) name:@"RefreshData" object:nil];
     
@@ -57,6 +60,8 @@ static const NSString *kStatusNO = @"暂时不可借";
     [self.tableView addSubview:self.messageLabel];
     [self.tableView addSubview:self.preLoginView];
     [self.tableView addSubview:self.activityIndicator];
+    
+    _messageLabel.hidden = YES;
 
     [self setTableFooterView];
     
@@ -72,6 +77,29 @@ static const NSString *kStatusNO = @"暂时不可借";
     [super viewWillAppear:YES];
     self.tabBarController.tabBar.hidden = NO;
     [self showTableView];
+}
+
+- (void)showTableView
+{
+    if ([UserManager isLogin]) {
+        _preLoginView.hidden = YES;
+        if (!_isFirstLaunch) {
+            [self refreshData];
+        }
+    } else {
+        _preLoginView.hidden = NO;
+    }
+}
+
+- (void)refreshData
+{
+    [self loadBooksFromStore];
+    if (_myBooks.count > 0) {
+        _messageLabel.hidden = YES;
+    } else {
+        _messageLabel.hidden = NO;
+    }
+    [self.tableView reloadData];
 }
 
 #pragma mark - initializing tableView accessories
@@ -114,27 +142,6 @@ static const NSString *kStatusNO = @"暂时不可借";
     UIView *view = [UIView new];
     view.backgroundColor = [UIColor clearColor];
     [self.tableView setTableFooterView:view];
-}
-
-- (void)refreshData
-{
-    [self loadBooksFromStore];
-    if (_myBooks.count > 0) {
-        _messageLabel.hidden = YES;
-    } else {
-        _messageLabel.hidden = NO;
-    }
-    [self.tableView reloadData];
-}
-
-- (void)showTableView
-{
-    if ([UserManager isLogin]) {
-        _preLoginView.hidden = YES;
-        [self refreshData];
-    } else {
-        _preLoginView.hidden = NO;
-    }
 }
 
 - (void)loadBooksFromStore
@@ -246,6 +253,7 @@ static const NSString *kStatusNO = @"暂时不可借";
                 [[BookStore sharedStore] addBookToStore:book];
             }
             [self refreshData];
+            _isFirstLaunch = NO;
         }
     }];
 }
