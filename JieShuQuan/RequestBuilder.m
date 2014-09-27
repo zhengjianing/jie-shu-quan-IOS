@@ -33,6 +33,8 @@ static const NSString *kBookAvailable = @"available";
 static const NSString *kCommentContent = @"content";
 static const NSString *kUserName = @"user_name";
 
+static const NSString *kDefaultName = @"匿名用户";
+
 #pragma mark - User
 
 + (NSMutableURLRequest *)buildRegisterRequestWithEmail:(NSString *)email password:(NSString *)password
@@ -118,8 +120,9 @@ static const NSString *kUserName = @"user_name";
 
 + (NSMutableURLRequest *)buildPostBookCommentRequestWithBookId:(NSString *)bookId userName:(NSString *)userName content:(NSString *)content
 {
-//    // handle not login situation
-//    userName = (userName == nil) ? @"" : userName;
+    // handles [[UserManager currentUser] userName] == @""(即user didn't set a userName) situation
+    userName = ([userName isEqualToString:@""]) ? (NSString *)kDefaultName : userName;
+    
     NSDictionary *bodyDict = [NSDictionary dictionaryWithObjectsAndKeys:
                               bookId, kBookId,
                               userName, kUserName,
