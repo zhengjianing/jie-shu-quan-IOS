@@ -24,6 +24,7 @@
 		9471DC2719A9689E00F1A291 /* MyBooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471DC2619A9689E00F1A291 /* MyBooksTableViewController.m */; };
 		9471DC2B19A974AB00F1A291 /* PreLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471DC2A19A974AB00F1A291 /* PreLoginView.m */; };
 		9471DC2F19A9895000F1A291 /* PreLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9471DC2E19A9895000F1A291 /* PreLoginView.xib */; };
+		9471FFC419D6D9640082C2C7 /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471FFC319D6D9640082C2C7 /* FeedbackViewController.m */; };
 		9476057919C06AC700FA8E74 /* FormatValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9476057819C06AC700FA8E74 /* FormatValidator.m */; };
 		9476058019C07BC400FA8E74 /* RequestBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9476057F19C07BC400FA8E74 /* RequestBuilder.m */; };
 		9476058619C15C6900FA8E74 /* SearchResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9476058519C15C6900FA8E74 /* SearchResultTableViewCell.m */; };
@@ -142,6 +143,8 @@
 		9471DC2919A974AB00F1A291 /* PreLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreLoginView.h; sourceTree = "<group>"; };
 		9471DC2A19A974AB00F1A291 /* PreLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreLoginView.m; sourceTree = "<group>"; };
 		9471DC2E19A9895000F1A291 /* PreLoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreLoginView.xib; sourceTree = "<group>"; };
+		9471FFC219D6D9640082C2C7 /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackViewController.h; sourceTree = "<group>"; };
+		9471FFC319D6D9640082C2C7 /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackViewController.m; sourceTree = "<group>"; };
 		9476057719C06AC700FA8E74 /* FormatValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormatValidator.h; sourceTree = "<group>"; };
 		9476057819C06AC700FA8E74 /* FormatValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormatValidator.m; sourceTree = "<group>"; };
 		9476057A19C074D800FA8E74 /* ServerHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerHeaders.h; sourceTree = "<group>"; };
@@ -334,6 +337,8 @@
 			children = (
 				94BB409319C283CB005BBD8E /* MoreTableViewController.h */,
 				94BB409419C283CB005BBD8E /* MoreTableViewController.m */,
+				9471FFC219D6D9640082C2C7 /* FeedbackViewController.h */,
+				9471FFC319D6D9640082C2C7 /* FeedbackViewController.m */,
 				9471D41419D2CEBD00AEBE7D /* Settings */,
 			);
 			name = More;
@@ -957,6 +962,7 @@
 				94C1711519D01D3000656EDB /* ASIDownloadCache.m in Sources */,
 				94E3EA3919C6EBF500C38FEB /* FriendsHasBookTableViewController.m in Sources */,
 				9412E2FB19AA0D82008D243C /* BookTableViewCell.m in Sources */,
+				9471FFC419D6D9640082C2C7 /* FeedbackViewController.m in Sources */,
 				97FF912919D13475006944BD /* ProvinceTableViewController.m in Sources */,
 				94BB408D19C183E1005BBD8E /* FriendDetailTableViewController.m in Sources */,
 				94E5039419BAF98E004CEBC6 /* UserStore.m in Sources */,

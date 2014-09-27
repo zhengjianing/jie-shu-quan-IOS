@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pdy-qY-d6V">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pdy-qY-d6V">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
     </dependencies>
@@ -302,6 +302,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="NyE-Gh-HZF" kind="push" id="YSR-Sx-TfM"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="476-TY-MQ3" rowHeight="45" style="IBUITableViewCellStyleDefault" id="dWY-Bj-sc3">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -462,7 +465,29 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P50-ob-JXd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="687" y="1324"/>
+            <point key="canvasLocation" x="745" y="732"/>
+        </scene>
+        <!--Feedback View Controller - 意见反馈-->
+        <scene sceneID="GUP-3e-7OW">
+            <objects>
+                <viewController id="NyE-Gh-HZF" customClass="FeedbackViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0Xh-Mh-8FL"/>
+                        <viewControllerLayoutGuide type="bottom" id="nHc-m6-kQ7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jku-mR-lN0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="意见反馈" id="bZ2-us-unu"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="480"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fDh-Fe-w8t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="745" y="1320"/>
         </scene>
         <!--Province Table View Controller - 请选择省/直辖市-->
         <scene sceneID="wHu-Tp-sWL">
@@ -494,7 +519,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wkQ-Mx-5o6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1149" y="1930"/>
+            <point key="canvasLocation" x="1260" y="1010"/>
         </scene>
         <!--Change Name View Controller - 修改名字-->
         <scene sceneID="b0P-uN-fnU">
@@ -540,7 +565,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vhY-oh-OCt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1234" y="1346"/>
+            <point key="canvasLocation" x="1260" y="470"/>
         </scene>
         <!--Book Detail Table View Controller - 书的详情-->
         <scene sceneID="lt7-51-IUi">
@@ -1271,7 +1296,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6xh-8B-yPm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="687" y="750"/>
+            <point key="canvasLocation" x="-281" y="1394"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="KQk-2R-RN6">
@@ -1341,7 +1366,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8UL-yS-Nuv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1135" y="750"/>
+            <point key="canvasLocation" x="167" y="1394"/>
         </scene>
         <!--Navigation Controller - 我的书库-->
         <scene sceneID="F4G-66-AbT">
@@ -1435,7 +1460,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fLO-q3-9zS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1578" y="1930"/>
+            <point key="canvasLocation" x="1689" y="1010"/>
         </scene>
         <!--Create Comment View Controller - 写评论-->
         <scene sceneID="Nu9-lD-T1D">
