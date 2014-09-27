@@ -234,4 +234,10 @@
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+#pragma mark - segment control
+
+- (IBAction)changeSegmentControl:(id)sender {
+    
+}
 @end

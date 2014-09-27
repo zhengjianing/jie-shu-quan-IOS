@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pdy-qY-d6V">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pdy-qY-d6V">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
     </dependencies>
@@ -973,7 +973,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mjB-N4-oR2">
-                                    <rect key="frame" x="0.0" y="51" width="320" height="132"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="132"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="作者：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2S8-Kf-uHX">
                                             <rect key="frame" x="103" y="44" width="36" height="17"/>
@@ -1026,12 +1026,17 @@
                                     </subviews>
                                     <color key="backgroundColor" red="0.95686274510000002" green="0.94083146959999997" blue="0.90525064529999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </view>
-                                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="V6A-my-m3u">
-                                    <rect key="frame" x="107" y="15" width="123" height="29"/>
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="55n-V6-jBg">
+                                    <rect key="frame" x="14" y="140" width="293" height="29"/>
+                                    <color key="backgroundColor" red="0.95686274510000002" green="0.94083146959999997" blue="0.90525064529999999" alpha="1" colorSpace="calibratedRGB"/>
                                     <segments>
-                                        <segment title="First"/>
-                                        <segment title="Second"/>
+                                        <segment title="所有" width="145"/>
+                                        <segment title="同城" width="145"/>
                                     </segments>
+                                    <color key="tintColor" red="0.60000002379999995" green="0.40000000600000002" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <connections>
+                                        <action selector="changeSegmentControl:" destination="hqg-H5-Ndq" eventType="valueChanged" id="AcF-WZ-AhQ"/>
+                                    </connections>
                                 </segmentedControl>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1114,6 +1119,7 @@
                         <outlet property="priceLabel" destination="q61-Ln-MnG" id="bzY-3Z-uWg"/>
                         <outlet property="publishDateLabel" destination="Jsx-yG-fcc" id="sxO-f9-tXo"/>
                         <outlet property="publisherLabel" destination="OiJ-mM-SpP" id="1Rb-4s-M9T"/>
+                        <outlet property="segmentControl" destination="55n-V6-jBg" id="40s-BF-cS1"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kTw-bl-Bla" userLabel="First Responder" sceneMemberID="firstResponder"/>

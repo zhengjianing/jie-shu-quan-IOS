@@ -14,6 +14,8 @@
 @class CustomActivityIndicator;
 
 @interface FriendsHasBookTableViewController : UITableViewController <PreLoginDelegate, MFMailComposeViewControllerDelegate>
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
+- (IBAction)changeSegmentControl:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIView *bookDetailView;
 @property (weak, nonatomic) IBOutlet UIImageView *bookImageView;
