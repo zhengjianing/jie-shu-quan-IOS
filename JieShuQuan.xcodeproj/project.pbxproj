@@ -24,6 +24,7 @@
 		9471DC2719A9689E00F1A291 /* MyBooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471DC2619A9689E00F1A291 /* MyBooksTableViewController.m */; };
 		9471DC2B19A974AB00F1A291 /* PreLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471DC2A19A974AB00F1A291 /* PreLoginView.m */; };
 		9471DC2F19A9895000F1A291 /* PreLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9471DC2E19A9895000F1A291 /* PreLoginView.xib */; };
+		9471FFCA19D6E6B90082C2C7 /* AboutTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471FFC919D6E6B90082C2C7 /* AboutTableViewController.m */; };
 		9476057919C06AC700FA8E74 /* FormatValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9476057819C06AC700FA8E74 /* FormatValidator.m */; };
 		9476058019C07BC400FA8E74 /* RequestBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9476057F19C07BC400FA8E74 /* RequestBuilder.m */; };
 		9476058619C15C6900FA8E74 /* SearchResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9476058519C15C6900FA8E74 /* SearchResultTableViewCell.m */; };
@@ -142,6 +143,8 @@
 		9471DC2919A974AB00F1A291 /* PreLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreLoginView.h; sourceTree = "<group>"; };
 		9471DC2A19A974AB00F1A291 /* PreLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreLoginView.m; sourceTree = "<group>"; };
 		9471DC2E19A9895000F1A291 /* PreLoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreLoginView.xib; sourceTree = "<group>"; };
+		9471FFC819D6E6B90082C2C7 /* AboutTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutTableViewController.h; sourceTree = "<group>"; };
+		9471FFC919D6E6B90082C2C7 /* AboutTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutTableViewController.m; sourceTree = "<group>"; };
 		9476057719C06AC700FA8E74 /* FormatValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormatValidator.h; sourceTree = "<group>"; };
 		9476057819C06AC700FA8E74 /* FormatValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormatValidator.m; sourceTree = "<group>"; };
 		9476057A19C074D800FA8E74 /* ServerHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerHeaders.h; sourceTree = "<group>"; };
@@ -334,6 +337,8 @@
 			children = (
 				94BB409319C283CB005BBD8E /* MoreTableViewController.h */,
 				94BB409419C283CB005BBD8E /* MoreTableViewController.m */,
+				9471FFC819D6E6B90082C2C7 /* AboutTableViewController.h */,
+				9471FFC919D6E6B90082C2C7 /* AboutTableViewController.m */,
 				9471D41419D2CEBD00AEBE7D /* Settings */,
 			);
 			name = More;
@@ -917,6 +922,7 @@
 				977FEDB619CEA102000E0154 /* CustomActivityIndicator.m in Sources */,
 				972F5E5519D410DB008D0DDF /* Comment.m in Sources */,
 				9765EC3419D06BDE00066289 /* ChangeNameViewController.m in Sources */,
+				9471FFCA19D6E6B90082C2C7 /* AboutTableViewController.m in Sources */,
 				94C1712919D02B5D00656EDB /* Reachability.m in Sources */,
 				9759AFFA19C19976008EFCC2 /* UserManager.m in Sources */,
 				9770923819C583CD001A3ED6 /* ActionSheetHelper.m in Sources */,
