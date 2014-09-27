@@ -31,7 +31,7 @@
         
         self.hidden = YES;
     }
-        return self;
+    return self;
 }
 
 - (void)startAnimating
