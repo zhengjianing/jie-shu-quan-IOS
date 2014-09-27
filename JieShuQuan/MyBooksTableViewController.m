@@ -23,6 +23,7 @@
 #import "DataConverter.h"
 #import "MessageLabelHelper.h"
 #import "CustomActivityIndicator.h"
+#import "UserStore.h"
 
 
 static const NSString *kStatusYES = @"可借";
@@ -186,10 +187,34 @@ static const NSString *kStatusNO = @"暂时不可借";
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        if (indexPath.row < _myBooks.count) {
+            [self deleteBook:[_myBooks objectAtIndex:indexPath.row] atIndexPath:indexPath];
+        }
+    }
+}
+
+#pragma mark - delete book
+
+- (void)deleteBook:(Book *)book atIndexPath:(NSIndexPath *)indexPath
+{
+    [_activityIndicator startAnimating];
+
+    NSMutableURLRequest *deleteBookRequest = [RequestBuilder buildDeleteBookRequestWithBookId:book.bookId userId:[[UserManager currentUser] userId] accessToke:[[UserManager currentUser] accessToken]];
+    NSHTTPURLResponse *response = nil;
+    NSData *data = [NSURLConnection sendSynchronousRequest:deleteBookRequest returningResponse:&response error:nil];
+    
+    [_activityIndicator stopAnimating];
+    
+    if ([response statusCode] != 200) {
+        [AlertHelper showAlertWithMessage:@"删除图书失败" withAutoDismiss:YES];
+    }
+    
+    if (data) {
         [_myBooks removeObjectAtIndex:indexPath.row];
         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-
-        // send delete request to server
+        
+        [[BookStore sharedStore] deleteBookFromStore:book];
+        [[UserStore sharedStore] decreseBookCountForUser:[[UserManager currentUser] userId]];
     }
 }
 
