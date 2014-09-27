@@ -84,7 +84,7 @@
     if (_messageLabel != nil) {
         return _messageLabel;
     }
-    _messageLabel = [MessageLabelHelper createMessageLabelWithMessage:@"没有找到拥有此书的同事，请向更多的同事推荐此应用"];
+    _messageLabel = [MessageLabelHelper createMessageLabelWithMessage:@"抱歉，没有找到相关同事，请向更多的同事推荐此应用"];
     return _messageLabel;
 }
 
@@ -114,7 +114,10 @@
 
 - (void)loadFriendsWithBook
 {
+    _allFriendsCellObject = [[NSMutableArray alloc] init];
+    _localFriendsCellObject = [[NSMutableArray alloc] init];
     _friendsCellObject = [[NSMutableArray alloc] init];
+
     [self fetchFriendsWithBookFromServer];
 }
 
@@ -146,7 +149,7 @@
         
         id responseObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
         if (responseObject) {
-            [_friendsCellObject removeAllObjects];
+            [_allFriendsCellObject removeAllObjects];
             
             NSArray *friendsArray = [responseObject valueForKey:@"friends"];
             
@@ -158,11 +161,29 @@
             for (id item in friendsArray) {
                 Friend *friend = [DataConverter friendFromServerFriendObject:item];
                 NSDictionary *friendCellDict = @{@"friend":friend, @"availability":[item valueForKey:@"available"]};
-                [_friendsCellObject addObject:friendCellDict];
+                [_allFriendsCellObject addObject:friendCellDict];
             }
-            [self.tableView reloadData];
+            
+            for (NSMutableDictionary *friendObject in _allFriendsCellObject) {
+                if ([[friendObject[@"friend"] friendLocation] isEqualToString:[[UserManager currentUser] location]]) {
+                    [_localFriendsCellObject addObject:friendObject];
+                }
+            }
+
+            [self showTableViewWithCorrectData];
         }
     }];
+}
+
+- (void)showTableViewWithCorrectData
+{
+    _friendsCellObject = [self friendsForSelectedSegmentIndex:_segmentControl.selectedSegmentIndex];
+    if (_friendsCellObject.count > 0) {
+        _messageLabel.hidden = YES;
+    } else {
+        _messageLabel.hidden = NO;
+    }
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
@@ -238,6 +259,12 @@
 #pragma mark - segment control
 
 - (IBAction)changeSegmentControl:(id)sender {
-    
+    [self showTableViewWithCorrectData];
 }
+
+- (NSMutableArray *)friendsForSelectedSegmentIndex:(NSInteger)index
+{
+    return (index == 0) ? [_allFriendsCellObject mutableCopy] : [_localFriendsCellObject mutableCopy];
+}
+
 @end
