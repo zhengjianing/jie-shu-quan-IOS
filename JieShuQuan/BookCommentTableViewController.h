@@ -7,13 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CustomActivityIndicator.h"
 
 @class Book;
 
 @interface BookCommentTableViewController : UITableViewController
 
-@property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
 @property (strong, nonatomic) Book *book;
 
 @property (strong, nonatomic) NSMutableArray *CommentCellObject;

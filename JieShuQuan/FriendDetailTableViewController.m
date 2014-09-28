@@ -23,6 +23,8 @@
 
 @interface FriendDetailTableViewController ()
 
+@property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
+
 @end
 
 @implementation FriendDetailTableViewController
@@ -34,9 +36,9 @@
     
     [self setTableFooterView];
     [self configureFriendInfoView];
-    [self.tableView addSubview:self.activityIndicator];
     [self.tableView addSubview:self.messageLabel];
     _messageLabel.hidden = YES;
+    _activityIndicator = [CustomActivityIndicator sharedActivityIndicator];
     [_activityIndicator startAnimating];
     
     [self loadBooksForFriend];
@@ -68,16 +70,6 @@
     _friendNameLabel.text = _friend.friendName;
     _friendBookCountLabel.text = _friend.bookCount;
     _friendLocationLabel.text = _friend.friendLocation;
-}
-
-- (CustomActivityIndicator *)activityIndicator
-{
-    if (_activityIndicator != nil) {
-        return _activityIndicator;
-    }
-    
-    _activityIndicator = [[CustomActivityIndicator alloc] init];
-    return _activityIndicator;
 }
 
 - (void)loadBooksForFriend

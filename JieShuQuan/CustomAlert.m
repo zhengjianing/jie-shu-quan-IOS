@@ -13,15 +13,43 @@ static const float LINESPACE = 5;
 
 @implementation CustomAlert
 
+// singleton
++ (CustomAlert *)sharedAlert
+{
+    static CustomAlert *sharedAlert = nil;
+    if (!sharedAlert) {
+        sharedAlert = [[super allocWithZone:nil] init];
+    }
+    return sharedAlert;
+}
+
++ (id)allocWithZone:(struct _NSZone *)zone
+{
+    return [self sharedAlert];
+}
+
+- (id)initWithFrame:(CGRect)frame
+{
+    return [self init];
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    return [self init];
+}
+
 - (id)init
 {
-    self = [super init];
+    self = [super initWithFrame:CGRectZero];
     if (self) {
         [self setFrame:CGRectMake(40, 300, 240, 30)];
-        self.layer.backgroundColor = [UIColor darkGrayColor].CGColor;
 //        self.layer.cornerRadius = 5.0;
-        self.layer.borderWidth = 0.5;
+//        self.layer.borderWidth = 0.5;
 //        self.layer.borderColor = [UIColor orangeColor].CGColor;
+        
+        self.layer.backgroundColor = [UIColor darkGrayColor].CGColor;
+        self.textColor = [UIColor whiteColor];
+        self.font = [UIFont systemFontOfSize:fontSize];
         self.hidden = YES;
     }
     return self;
@@ -29,8 +57,8 @@ static const float LINESPACE = 5;
 
 - (void)showAlertWithMessage:(NSString *)message
 {
-    [self setAlertWithText:message];
     self.hidden = NO;
+    [self setAlertWithText:message];
     [self performSelector:@selector(dismissAlert) withObject:nil afterDelay:2.0];
 }
 
@@ -38,8 +66,6 @@ static const float LINESPACE = 5;
 
 - (void)setAlertWithText:(NSString*)text {
     self.text = text;
-    self.textColor = [UIColor whiteColor];
-    self.font = [UIFont systemFontOfSize:fontSize];
     self.numberOfLines = 0;
     self.textAlignment = UITextAlignmentCenter;
     
@@ -51,7 +77,7 @@ static const float LINESPACE = 5;
 
 - (void)dismissAlert
 {
-//    self.hidden = YES;
+    self.hidden = YES;
 }
 
 @end

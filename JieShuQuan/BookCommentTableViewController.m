@@ -18,10 +18,12 @@
 #import "Comment.h"
 #import "DataConverter.h"
 #import "MessageLabelHelper.h"
+#import "CustomActivityIndicator.h"
 
 @interface BookCommentTableViewController ()
 
 @property (strong, nonatomic) NSString *cellIdentifier;
+@property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
 
 @end
 
@@ -43,8 +45,7 @@
     [self.tableView addSubview:self.messageLabel];
     _messageLabel.hidden = YES;
 
-    [self.tableView addSubview:self.activityIndicator];
-    [_activityIndicator startAnimating];
+    _activityIndicator = [CustomActivityIndicator sharedActivityIndicator];
     
     [self loadAllBookCommentsFromServer];
 }
@@ -65,16 +66,6 @@
     UIView *view = [UIView new];
     view.backgroundColor = [UIColor clearColor];
     [self.tableView setTableFooterView:view];
-}
-
-- (CustomActivityIndicator *)activityIndicator
-{
-    if (_activityIndicator != nil) {
-        return _activityIndicator;
-    }
-    
-    _activityIndicator = [[CustomActivityIndicator alloc] init];
-    return _activityIndicator;
 }
 
 - (void)sortCommentsArray

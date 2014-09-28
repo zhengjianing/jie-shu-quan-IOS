@@ -19,6 +19,7 @@
 
 @interface SearchTableViewController ()
 
+@property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
 - (void)searchByDouBanWithUrl:(NSString *)searchUrl;
 
 @end
@@ -30,7 +31,7 @@
     [super viewDidLoad];
     [self registerNotifications];
     [self setTableFooterView];
-    [self.tableView addSubview:self.activityIndicator];
+    _activityIndicator = [CustomActivityIndicator sharedActivityIndicator];
     
     [self setExtraCellLineHidden:self.searchDisplayController.searchResultsTableView];
 }
@@ -45,16 +46,6 @@
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetSearch) name:@"resetSearch" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(webDataFetchFailed) name:@"webDataFetchFailed" object:nil];
-}
-
-- (CustomActivityIndicator *)activityIndicator
-{
-    if (_activityIndicator != nil) {
-        return _activityIndicator;
-    }
-    
-    _activityIndicator = [[CustomActivityIndicator alloc] init];
-    return _activityIndicator;
 }
 
 - (void)resetSearch

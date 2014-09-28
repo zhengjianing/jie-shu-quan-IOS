@@ -37,13 +37,13 @@ static const NSString *kDefaultLabelText = @"暂无介绍";
 static const int fontSize = 13;
 static const float LINESPACE = 5;
 
-
 @interface BookDetailTableViewController ()
 {
     UIActionSheet *availabilitySheet;
     UIActionSheet *deleteSheet;
     UIActionSheet *addSheet;
 }
+@property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
 @end
 
 @implementation BookDetailTableViewController
@@ -52,17 +52,7 @@ static const float LINESPACE = 5;
 {
     [super viewDidLoad];
     self.tabBarController.tabBar.hidden = YES;
-    [self.tableView addSubview:self.activityIndicator];
-}
-
-- (CustomActivityIndicator *)activityIndicator
-{
-    if (_activityIndicator != nil) {
-        return _activityIndicator;
-    }
-    
-    _activityIndicator = [[CustomActivityIndicator alloc] init];
-    return _activityIndicator;
+    _activityIndicator = [CustomActivityIndicator sharedActivityIndicator];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -262,6 +252,7 @@ static const float LINESPACE = 5;
 {
     NSMutableURLRequest *addBookRequest = [RequestBuilder buildAddBookRequestWithBook:book available:NO userId:userId accessToke:accessToke];
     NSData *data = [self dataFromSynchronousRequest:addBookRequest];
+    
     [_activityIndicator stopAnimating];
     if (data) {
         _existenceStatus = !_existenceStatus;
@@ -297,6 +288,7 @@ static const float LINESPACE = 5;
     NSMutableURLRequest *changeAvailabilityRequest = [RequestBuilder buildChangeBookAvailabilityRequestWithBookId:bookId available:availabilityState userId:userId accessToken:accessToken];
     NSData *data = [self dataFromSynchronousRequest:changeAvailabilityRequest];
     [_activityIndicator stopAnimating];
+    
     if (data) {
         _book.availability = !_book.availability;
         [[BookStore sharedStore] changeStoredBookStatusWithBook:_book];

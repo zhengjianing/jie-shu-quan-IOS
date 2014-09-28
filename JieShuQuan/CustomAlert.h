@@ -12,4 +12,6 @@
 
 - (void)showAlertWithMessage:(NSString *)message;
 
++ (CustomAlert *)sharedAlert;
+
 @end

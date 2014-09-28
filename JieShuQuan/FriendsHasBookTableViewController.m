@@ -26,6 +26,7 @@
 
 @property (strong, nonatomic) PreLoginView *preLoginView;
 @property (strong, nonatomic) LoginViewController *loginController;
+@property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
 
 @end
 
@@ -38,7 +39,7 @@
     
     [self configureBookInfoView];
     [self setTableFooterView];
-    [self.tableView addSubview:self.activityIndicator];
+    _activityIndicator = [CustomActivityIndicator sharedActivityIndicator];
     [self.tableView addSubview:self.messageLabel];
     [self.tableView addSubview:self.preLoginView];
 
@@ -100,16 +101,6 @@
         _preLoginView.delegate = self;
     }
     return _preLoginView;
-}
-
-- (CustomActivityIndicator *)activityIndicator
-{
-    if (_activityIndicator != nil) {
-        return _activityIndicator;
-    }
-    
-    _activityIndicator = [[CustomActivityIndicator alloc] init];
-    return _activityIndicator;
 }
 
 - (void)loadFriendsWithBook

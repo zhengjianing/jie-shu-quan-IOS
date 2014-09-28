@@ -25,7 +25,7 @@
 {
     [super viewDidLoad];
     _currentUser = [UserManager currentUser];
-    [self.view addSubview:self.activityIndicator];
+    _activityIndicator = [CustomActivityIndicator sharedActivityIndicator];
     _nameTextField.text = _nameString;
     _nameTextField.delegate = self;
     [_nameTextField becomeFirstResponder];
@@ -51,15 +51,6 @@
 - (void)popSelf
 {
     [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (CustomActivityIndicator *)activityIndicator
-{
-    if (_activityIndicator != nil) {
-        return _activityIndicator;
-    }
-    _activityIndicator = [[CustomActivityIndicator alloc] init];
-    return _activityIndicator;
 }
 
 - (IBAction)backgroundViewTouchDown:(id)sender {

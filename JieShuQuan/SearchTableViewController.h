@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-@class CustomActivityIndicator;
 //#import "ZBarSDK.h"
 
 //@interface SearchTableViewController : UITableViewController <UISearchDisplayDelegate, ZBarReaderDelegate>
@@ -15,7 +14,6 @@
 {
     NSMutableArray *searchResults;
 }
-@property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
 
 - (IBAction)startScan:(id)sender;
 

@@ -18,6 +18,8 @@ static const NSString *kDefaultName = @"匿名用户";
 
 @interface CreateCommentViewController ()
 
+@property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
+
 @property (weak, nonatomic) IBOutlet UITextView *commentTextView;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 @property (weak, nonatomic) IBOutlet UIButton *clearButton;
@@ -43,8 +45,8 @@ static const NSString *kDefaultName = @"匿名用户";
     _clearButton.layer.cornerRadius = 5.0;
     _submitButton.layer.cornerRadius = 5.0;
     
-    [self.view addSubview:self.activityIndicator];
-    
+    _activityIndicator = [CustomActivityIndicator sharedActivityIndicator];
+
     if (![UserManager isLogin]) {
         [self setAnonymityLabelAndSwichWithAnonymityState:YES];
     } else {
@@ -60,16 +62,6 @@ static const NSString *kDefaultName = @"匿名用户";
         return;
     }
     _anonymityLabel.textColor = [UIColor grayColor];
-}
-
-- (CustomActivityIndicator *)activityIndicator
-{
-    if (_activityIndicator != nil) {
-        return _activityIndicator;
-    }
-    
-    _activityIndicator = [[CustomActivityIndicator alloc] init];
-    return _activityIndicator;
 }
 
 - (IBAction)backgroundViewTouchDown:(id)sender {

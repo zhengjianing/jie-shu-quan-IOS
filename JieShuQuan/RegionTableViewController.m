@@ -25,7 +25,7 @@
     [super viewDidLoad];
     [self setTableFooterView];
     _currentUser = [UserManager currentUser];
-    [self.view addSubview:self.activityIndicator];
+    _activityIndicator = [CustomActivityIndicator sharedActivityIndicator];
     
     [self setRegionData];
 }
@@ -59,20 +59,6 @@
 - (void)enableBackButton
 {
     [self.navigationItem.backBarButtonItem setEnabled:YES];
-}
-
-- (void)isSameLocation
-{
-    
-}
-
-- (CustomActivityIndicator *)activityIndicator
-{
-    if (_activityIndicator != nil) {
-        return _activityIndicator;
-    }
-    _activityIndicator = [[CustomActivityIndicator alloc] init];
-    return _activityIndicator;
 }
 
 - (void)popToControllerWithCountDownIndex:(NSInteger)index

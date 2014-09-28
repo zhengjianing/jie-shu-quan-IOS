@@ -42,7 +42,7 @@
 {
     [super viewDidLoad];
     [self setTableFooterView];
-    [self.tableView addSubview:self.activityIndicator];
+    _activityIndicator = [CustomActivityIndicator sharedActivityIndicator];
 
     [AvatarManager setAvatarStyleForImageView:_userAvatarImageView];
 }
@@ -68,16 +68,6 @@
     UIView *view = [UIView new];
     view.backgroundColor = [UIColor clearColor];
     [self.tableView setTableFooterView:view];
-}
-
-- (CustomActivityIndicator *)activityIndicator
-{
-    if (_activityIndicator != nil) {
-        return _activityIndicator;
-    }
-    
-    _activityIndicator = [[CustomActivityIndicator alloc] init];
-    return _activityIndicator;
 }
 
 #pragma mark - Table view data source

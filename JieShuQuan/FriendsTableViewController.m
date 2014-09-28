@@ -50,7 +50,7 @@
     
     [self.tableView addSubview:self.messageLabel];
     [self.tableView addSubview:self.preLoginView];
-    [self.tableView addSubview:self.activityIndicator];
+    _activityIndicator = [CustomActivityIndicator sharedActivityIndicator];
     _messageLabel.hidden = YES;
 
     [self addRefreshControll];
@@ -80,16 +80,6 @@
     UIView *view = [UIView new];
     view.backgroundColor = [UIColor clearColor];
     [self.tableView setTableFooterView:view];
-}
-
-- (CustomActivityIndicator *)activityIndicator
-{
-    if (_activityIndicator != nil) {
-        return _activityIndicator;
-    }
-    
-    _activityIndicator = [[CustomActivityIndicator alloc] init];
-    return _activityIndicator;
 }
 
 - (UILabel *)messageLabel

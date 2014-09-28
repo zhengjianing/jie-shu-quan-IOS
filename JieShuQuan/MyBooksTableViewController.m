@@ -58,10 +58,9 @@ static const NSString *kStatusNO = @"暂时不可借";
     [self addRefreshControll];
     
     [self.tableView addSubview:self.messageLabel];
-    [self.tableView addSubview:self.preLoginView];
-    [self.tableView addSubview:self.activityIndicator];
-    
     _messageLabel.hidden = YES;
+    [self.tableView addSubview:self.preLoginView];
+    _activityIndicator = [CustomActivityIndicator sharedActivityIndicator];
 
     [self setTableFooterView];
     
@@ -125,16 +124,6 @@ static const NSString *kStatusNO = @"暂时不可借";
             _preLoginView.delegate = self;
     }
     return _preLoginView;
-}
-
-- (CustomActivityIndicator *)activityIndicator
-{
-    if (_activityIndicator != nil) {
-        return _activityIndicator;
-    }
-    
-    _activityIndicator = [[CustomActivityIndicator alloc] init];
-    return _activityIndicator;
 }
 
 - (void)setTableFooterView

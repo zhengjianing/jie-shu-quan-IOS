@@ -58,7 +58,6 @@
     }
     
     [self.activityIndicator startAnimating];
-    self.freezeLayer.hidden = NO;
     [self startingRegisterWithEmail:_email.text password:_password.text];
 }
 
