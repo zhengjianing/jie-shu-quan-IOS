@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "MobClick.h"
 
 @implementation AppDelegate
             
@@ -16,6 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [MobClick startWithAppkey:@"5427f7a4fd98c566c80090e6" reportPolicy:BATCH channelId:nil];
     return YES;
 }
 
