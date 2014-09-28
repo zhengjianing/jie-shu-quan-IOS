@@ -49,7 +49,6 @@ static const NSString *kStatusNO = @"暂时不可借";
 {
     [super viewDidLoad];
     
-    _isFirstLaunch = YES;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchBooksFromServer) name:@"RefreshData" object:nil];
     
@@ -82,9 +81,7 @@ static const NSString *kStatusNO = @"暂时不可借";
 {
     if ([UserManager isLogin]) {
         _preLoginView.hidden = YES;
-        if (!_isFirstLaunch) {
-            [self refreshData];
-        }
+        [self refreshData];
     } else {
         _preLoginView.hidden = NO;
     }
@@ -242,7 +239,6 @@ static const NSString *kStatusNO = @"暂时不可借";
                 [[BookStore sharedStore] addBookToStore:book];
             }
             [self refreshData];
-            _isFirstLaunch = NO;
         }
     }];
 }

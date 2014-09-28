@@ -70,6 +70,8 @@
     self.tabBarController.tabBar.hidden = NO;
     if ([UserManager isLogin]) {
         _preLoginView.hidden = YES;
+        [self loadFriendsFromStore];
+        [self showTableViewWithCorrectData];
     } else {
         _preLoginView.hidden = NO;
     }
