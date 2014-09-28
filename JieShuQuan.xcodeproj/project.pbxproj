@@ -36,6 +36,7 @@
 		9483F1CB19CB48F400316CED /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 94805C4719CADDB900CD762A /* libiconv.dylib */; };
 		9483F1CD19CB490D00316CED /* libzbar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9483F1C919CB48C500316CED /* libzbar.a */; };
 		948615F019BC0FD1001837BF /* Store.m in Sources */ = {isa = PBXBuildFile; fileRef = 948615EF19BC0FD1001837BF /* Store.m */; };
+		94895DAC19D832E20072174E /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94895DAA19D832E20072174E /* libMobClickLibrary.a */; };
 		94B23BAE19C3F61B009896BE /* BookDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B23BAD19C3F61B009896BE /* BookDetailTableViewController.m */; };
 		94B25A8719C8457500BA93CA /* FriendHasBookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B25A8619C8457500BA93CA /* FriendHasBookTableViewCell.m */; };
 		94BB408119C17215005BBD8E /* friends.png in Resources */ = {isa = PBXBuildFile; fileRef = 94BB408019C17215005BBD8E /* friends.png */; };
@@ -158,6 +159,8 @@
 		9483F1C919CB48C500316CED /* libzbar.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libzbar.a; sourceTree = "<group>"; };
 		948615EE19BC0FD1001837BF /* Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Store.h; sourceTree = "<group>"; };
 		948615EF19BC0FD1001837BF /* Store.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Store.m; sourceTree = "<group>"; };
+		94895DAA19D832E20072174E /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMobClickLibrary.a; path = ../libMobClickLibrary.a; sourceTree = "<group>"; };
+		94895DAB19D832E20072174E /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MobClick.h; path = ../MobClick.h; sourceTree = "<group>"; };
 		94B23BAC19C3F61B009896BE /* BookDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookDetailTableViewController.h; sourceTree = "<group>"; };
 		94B23BAD19C3F61B009896BE /* BookDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookDetailTableViewController.m; sourceTree = "<group>"; };
 		94B25A8519C8457500BA93CA /* FriendHasBookTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendHasBookTableViewCell.h; sourceTree = "<group>"; };
@@ -309,11 +312,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94C1712F19D0364800656EDB /* Foundation.framework in Frameworks */,
 				94C1712A19D0308100656EDB /* libz.dylib in Frameworks */,
+				94C1712F19D0364800656EDB /* Foundation.framework in Frameworks */,
 				94C1712219D01D7A00656EDB /* CFNetwork.framework in Frameworks */,
 				94C1712019D01D7300656EDB /* CoreGraphics.framework in Frameworks */,
 				94C1711E19D01D6900656EDB /* MobileCoreServices.framework in Frameworks */,
+				94895DAC19D832E20072174E /* libMobClickLibrary.a in Frameworks */,
 				94C1711C19D01D6100656EDB /* SystemConfiguration.framework in Frameworks */,
 				9483F1CD19CB490D00316CED /* libzbar.a in Frameworks */,
 				9483F1CB19CB48F400316CED /* libiconv.dylib in Frameworks */,
@@ -449,6 +453,7 @@
 				9412E2F019A9E4C5008D243C /* More */,
 				9471DBFC19A5837700F1A291 /* Images.xcassets */,
 				9471DBF319A5837700F1A291 /* JieShuQuan.xcdatamodeld */,
+				94895DAD19D832F70072174E /* MobClick */,
 				94F7709419D01C3B003FA1CD /* ASIHTTPRequest */,
 				973703EB19CB38B0008949FB /* ZBarSDK */,
 				9471DBEC19A5837700F1A291 /* Supporting Files */,
@@ -510,6 +515,15 @@
 				94F922B719CFC28700F96B09 /* ImageHelper.m */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		94895DAD19D832F70072174E /* MobClick */ = {
+			isa = PBXGroup;
+			children = (
+				94895DAA19D832E20072174E /* libMobClickLibrary.a */,
+				94895DAB19D832E20072174E /* MobClick.h */,
+			);
+			name = MobClick;
 			sourceTree = "<group>";
 		};
 		94BB408219C172E4005BBD8E /* Friends */ = {
