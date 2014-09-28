@@ -8,7 +8,7 @@
 
 #import "CustomActivityIndicator.h"
 
-#define SPINRECT CGRectMake(150, 300, 20, 20)
+#define SPINRECT CGRectMake(140, 290, 40, 40)
 
 #define SCREENRECT [[UIScreen mainScreen] bounds]
 
@@ -50,7 +50,6 @@
 {
     self = [super initWithFrame:CGRectZero];
     if (self) {
-        [self setFrame:SCREENRECT];
         self.windowLevel = UIWindowLevelAlert;
         
         [self addSubview:self.freezeLayer];
@@ -69,9 +68,9 @@
         return _activityIndicator;
     }
     
-    _activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:SPINRECT];
+    _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    [_activityIndicator setFrame:SPINRECT];
 
-    _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
     _activityIndicator.hidesWhenStopped = YES;
     return _activityIndicator;
 }
@@ -82,7 +81,7 @@
         return _freezeLayer;
     }
     
-    _freezeLayer = [[UIView alloc] initWithFrame:CGRectMake(self.frame.origin.x, self.frame.origin.x, self.frame.size.width, self.frame.size.height)];
+    _freezeLayer = [[UIView alloc] initWithFrame:SCREENRECT];
     _freezeLayer.backgroundColor = [UIColor blackColor];
     _freezeLayer.alpha = 0.3;
     return _freezeLayer;
@@ -91,9 +90,8 @@
 #pragma mark - Asynchronous -- without gray mask
 - (void)startAsynchAnimating
 {
-    [self setFrame:SPINRECT];
-    [_activityIndicator setFrame:self.window.frame];
-    _freezeLayer.hidden = YES;
+    [_freezeLayer setFrame:SPINRECT];
+    _freezeLayer.alpha = 0.8;
     
     self.hidden = NO;
     [_activityIndicator startAnimating];
@@ -103,18 +101,17 @@
 {
     [_activityIndicator stopAnimating];
     self.hidden = YES;
-    _freezeLayer.hidden = NO;
     
     [self setFrame:SCREENRECT];
-    [_activityIndicator setFrame:SPINRECT];
+    [_freezeLayer setFrame:SCREENRECT];
+    _freezeLayer.alpha = 0.3;
+
 }
 
 #pragma mark - Synchronous -- with gray mask
 
 - (void)startSynchAnimating
 {
-    _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
-    
     self.hidden = NO;
     [_activityIndicator startAnimating];
 }
@@ -123,8 +120,6 @@
 {
     [_activityIndicator stopAnimating];
     self.hidden = YES;
-    
-    _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
 }
 
 
