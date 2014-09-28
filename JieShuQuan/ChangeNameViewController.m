@@ -11,8 +11,8 @@
 #import "UserManager.h"
 #import "UserStore.h"
 #import "User.h"
-#import "AlertHelper.h"
 #import "CustomActivityIndicator.h"
+#import "CustomAlert.h"
 
 @interface ChangeNameViewController ()
 @property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
@@ -77,11 +77,11 @@
         [self enableCancelButton];
 
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-            [AlertHelper showAlertWithMessage:@"修改用户名失败" withAutoDismiss:YES];
+            [[CustomAlert sharedAlert] showAlertWithMessage:@"修改用户名失败"];
             return;
         }
         if (data) {
-            [AlertHelper showAlertWithMessage:@"修改用户名成功" withAutoDismiss:YES];
+            [[CustomAlert sharedAlert] showAlertWithMessage:@"修改用户名成功"];
             _currentUser.userName = _nameTextField.text;
             [[UserStore sharedStore] saveUserToCoreData:_currentUser];
             

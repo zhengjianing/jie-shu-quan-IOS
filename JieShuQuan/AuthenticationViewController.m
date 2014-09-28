@@ -14,10 +14,11 @@
 #import "DataConverter.h"
 #import "User.h"
 #import "UserManager.h"
-#import "AlertHelper.h"
 #import "FriendStore.h"
 #import "CacheManager.h"
 #import "MoreTableViewController.h"
+#import "AlertHelper.h"
+#import "CustomAlert.h"
 
 @implementation AuthenticationViewController
 
@@ -32,7 +33,7 @@
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-        [AlertHelper showAlertWithMessage:@"验证失败" withAutoDismiss:YES];
+        [[CustomAlert sharedAlert] showAlertWithMessage:@"验证失败"];
     }
     [self.activityIndicator stopAnimating];
 }
@@ -61,7 +62,7 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     [self.activityIndicator stopAnimating];
-    [AlertHelper showAlertWithMessage:@"网络请求失败...\n请检查您的网络连接" withAutoDismiss:YES];
+    [[CustomAlert sharedAlert] showAlertWithMessage:@"网络请求失败...\n请检查您的网络连接"];
 }
 
 #pragma mark - UIAlertViewDelegate methods

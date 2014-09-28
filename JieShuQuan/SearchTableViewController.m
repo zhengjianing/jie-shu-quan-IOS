@@ -14,8 +14,8 @@
 #import "DataConverter.h"
 #import "Book.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-#import "AlertHelper.h"
 #import "CustomActivityIndicator.h"
+#import "CustomAlert.h"
 
 @interface SearchTableViewController ()
 
@@ -64,7 +64,7 @@
 
 - (void)webDataFetchFailed
 {
-    [AlertHelper showAlertWithMessage:@"数据获取失败...请检查您的网络" withAutoDismiss:YES];
+    [[CustomAlert sharedAlert] showAlertWithMessage:@"数据获取失败...请检查您的网络"];
 }
 
 -(void)setExtraCellLineHidden:(UITableView *)tableView
@@ -173,7 +173,8 @@
 ////        [self startFetchingBookDetailFromDoubanWithIsbnCode:isbnCode];
 //            [_activityIndicator startAnimating];
 //    } else {
-//        [AlertHelper showAlertWithMessage:@"获取图书信息失败" withAutoDismiss:YES];
+//        [[CustomAlert sharedAlert] showAlertWithMessage:@"获取图书信息失败"];
+
 //    }
 //    
 //    [reader dismissViewControllerAnimated:YES completion:nil];
@@ -192,7 +193,8 @@
 //            Book *book = [DataConverter bookFromDoubanBookObject:object];
 //            [self showBookDetailViewControllerForBook:book];
 //        } else {
-//            [AlertHelper showAlertWithMessage:@"获取图书信息失败" withAutoDismiss:YES];
+//        [[CustomAlert sharedAlert] showAlertWithMessage:@"获取图书信息失败"];
+
 //        }
 //    }];
 //}

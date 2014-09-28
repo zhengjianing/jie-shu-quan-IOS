@@ -15,7 +15,6 @@
 #import "BookTableViewCell.h"
 #import "BookDetailTableViewController.h"
 #import "ServerHeaders.h"
-#import "AlertHelper.h"
 #import "JsonDataFetcher.h"
 #import "DoubanHeaders.h"
 #import "User.h"
@@ -24,6 +23,7 @@
 #import "MessageLabelHelper.h"
 #import "CustomActivityIndicator.h"
 #import "UserStore.h"
+#import "CustomAlert.h"
 
 
 static const NSString *kStatusYES = @"可借";
@@ -200,7 +200,7 @@ static const NSString *kStatusNO = @"暂时不可借";
     [NSURLConnection sendAsynchronousRequest:deleteBookRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-            [AlertHelper showAlertWithMessage:@"删除图书失败" withAutoDismiss:YES];
+            [[CustomAlert sharedAlert] showAlertWithMessage:@"删除图书失败"];
         }
         
         if (data) {
@@ -227,7 +227,7 @@ static const NSString *kStatusNO = @"暂时不可借";
         [_refresh endRefreshing];
 
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-            [AlertHelper showAlertWithMessage:@"更新失败" withAutoDismiss:YES];
+            [[CustomAlert sharedAlert] showAlertWithMessage:@"更新失败"];
             return ;
         }
         

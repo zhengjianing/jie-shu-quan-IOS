@@ -13,7 +13,6 @@
 #import "User.h"
 #import "RequestBuilder.h"
 #import "UserManager.h"
-#import "AlertHelper.h"
 #import "Friend.h"
 #import "DataConverter.h"
 #import "LoginViewController.h"
@@ -21,6 +20,7 @@
 #import "MessageLabelHelper.h"
 #import "CustomActivityIndicator.h"
 #import "AvatarManager.h"
+#import "CustomAlert.h"
 
 @interface FriendsHasBookTableViewController ()
 
@@ -134,7 +134,7 @@
         }
 
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-            [AlertHelper showAlertWithMessage:@"更新失败，请稍后重试" withAutoDismiss:YES];
+            [[CustomAlert sharedAlert] showAlertWithMessage:@"更新失败，请稍后重试"];
             return ;
         }
         

@@ -14,12 +14,12 @@
 #import "RequestBuilder.h"
 #import "UserManager.h"
 #import "User.h"
-#import "AlertHelper.h"
 #import "DataConverter.h"
 #import "MailManager.h"
 #import "MessageLabelHelper.h"
 #import "CustomActivityIndicator.h"
 #import "AvatarManager.h"
+#import "CustomAlert.h"
 
 @interface FriendDetailTableViewController ()
 
@@ -88,7 +88,7 @@
         [_activityIndicator stopAnimating];
 
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-            [AlertHelper showAlertWithMessage:@"更新失败" withAutoDismiss:YES];
+            [[CustomAlert sharedAlert] showAlertWithMessage:@"更新失败"];
             return ;
         }
         

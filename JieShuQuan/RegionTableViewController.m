@@ -11,8 +11,8 @@
 #import "UserManager.h"
 #import "UserStore.h"
 #import "User.h"
-#import "AlertHelper.h"
 #import "SettingsTableViewController.h"
+#import "CustomAlert.h"
 
 @interface RegionTableViewController ()
 
@@ -78,10 +78,10 @@
         [self enableBackButton];
         
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-            [AlertHelper showAlertWithMessage:@"修改位置失败" withAutoDismiss:YES];
+            [[CustomAlert sharedAlert] showAlertWithMessage:@"修改位置失败"];
         }
         if (data) {
-            [AlertHelper showAlertWithMessage:@"修改位置成功" withAutoDismiss:YES];
+            [[CustomAlert sharedAlert] showAlertWithMessage:@"修改位置成功"];
             _currentUser.location = location;
             [[UserStore sharedStore] saveUserToCoreData:_currentUser];
             

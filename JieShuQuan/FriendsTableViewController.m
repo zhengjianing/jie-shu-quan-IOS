@@ -15,7 +15,6 @@
 #import "RequestBuilder.h"
 #import "User.h"
 #import "Friend.h"
-#import "AlertHelper.h"
 #import "FriendStore.h"
 #import "DataConverter.h"
 #import "MessageLabelHelper.h"
@@ -23,6 +22,7 @@
 #import "AvatarManager.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "CacheManager.h"
+#import "CustomAlert.h"
 
 @interface FriendsTableViewController ()
 
@@ -177,7 +177,7 @@
         }
         
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-            [AlertHelper showAlertWithMessage:@"更新失败" withAutoDismiss:YES];
+            [[CustomAlert sharedAlert] showAlertWithMessage:@"更新失败"];
             return ;
         }
         

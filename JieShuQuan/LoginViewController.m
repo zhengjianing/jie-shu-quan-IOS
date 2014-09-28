@@ -7,10 +7,10 @@
 //
 
 #import "LoginViewController.h"
-#import "AlertHelper.h"
 #import "RegisterViewController.h"
 #import "FormatValidator.h"
 #import "RequestBuilder.h"
+#import "CustomAlert.h"
 
 @implementation LoginViewController
 
@@ -46,12 +46,12 @@
     FormatValidator *validator = [[FormatValidator alloc] init];
 
     if (![validator isValidEmail:_email.text]) {
-        [AlertHelper showAlertWithMessage:@"邮箱格式错误！" withAutoDismiss:YES];
+        [[CustomAlert sharedAlert] showAlertWithMessage:@"邮箱格式错误"];
         return;
     }
     
     if (![validator isValidPassword:_password.text]) {
-        [AlertHelper showAlertWithMessage:@"密码长度错误！" withAutoDismiss:YES];
+        [[CustomAlert sharedAlert] showAlertWithMessage:@"密码长度错误"];
         return;
     }
     

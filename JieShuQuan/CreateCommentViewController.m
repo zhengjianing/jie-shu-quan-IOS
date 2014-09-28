@@ -11,8 +11,8 @@
 #import "UserManager.h"
 #import "User.h"
 #import "Book.h"
-#import "AlertHelper.h"
 #import "CustomActivityIndicator.h"
+#import "CustomAlert.h"
 
 static const NSString *kDefaultName = @"匿名用户";
 
@@ -71,7 +71,7 @@ static const NSString *kDefaultName = @"匿名用户";
 - (IBAction)submitComment:(id)sender {
     [_commentTextView resignFirstResponder];
     if ([_commentTextView.text isEqualToString:@""]) {
-        [AlertHelper showAlertWithMessage:@"评论内容不能为空" withAutoDismiss:YES];
+        [[CustomAlert sharedAlert] showAlertWithMessage:@"评论内容不能为空"];
         return;
     }
     [_activityIndicator startAnimating];
@@ -98,12 +98,12 @@ static const NSString *kDefaultName = @"匿名用户";
         [_activityIndicator stopAnimating];
 
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-            [AlertHelper showAlertWithMessage:@"发表评论失败！" withAutoDismiss:YES];
+            [[CustomAlert sharedAlert] showAlertWithMessage:@"发表评论失败"];
             return ;
         }
         
         if (data) {
-            [AlertHelper showAlertWithMessage:@"发表评论成功！" withAutoDismiss:YES];
+            [[CustomAlert sharedAlert] showAlertWithMessage:@"发表评论成功"];
             _commentTextView.text = @"";
             [self popSelf];
         }
@@ -114,7 +114,7 @@ static const NSString *kDefaultName = @"匿名用户";
     BOOL newState = _anonymitySwitch.on;
     if (![UserManager isLogin]) {
         [self setAnonymityLabelAndSwichWithAnonymityState:(!newState)];
-        [AlertHelper showAlertWithMessage:@"您尚未登录,\n目前只能匿名评论" withAutoDismiss:YES];
+        [[CustomAlert sharedAlert] showAlertWithMessage:@"您尚未登录,只能匿名评论"];
         return;
     }
     [self setAnonymityLabelAndSwichWithAnonymityState:(newState)];

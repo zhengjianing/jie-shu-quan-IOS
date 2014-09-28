@@ -12,7 +12,6 @@
 #import "BookCommentTableViewController.h"
 #import "Book.h"
 #import "BookStore.h"
-#import "AlertHelper.h"
 #import "User.h"
 #import "UserManager.h"
 #import "UserStore.h"
@@ -179,7 +178,6 @@ static const float LINESPACE = 5;
     
     // In case the user hasn't logged in yet
     if (![UserManager isLogin]) {
-//        [AlertHelper showAlertWithMessage:@"您尚未登录，请先登录" withAutoDismiss:NO];
         [_alert showAlertWithMessage:@"您尚未登录，请先登录"];
         return;
     }
@@ -237,15 +235,15 @@ static const float LINESPACE = 5;
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if ([response statusCode] != 200) {
         if ([request.URL.absoluteString isEqualToString:kAddBookURL]) {
-            [AlertHelper showAlertWithMessage:@"添加图书失败" withAutoDismiss:YES];
+            [[CustomAlert sharedAlert] showAlertWithMessage:@"添加图书失败"];
         }
         if ([request.URL.absoluteString isEqualToString:kDeleteBookURL])
         {
-            [AlertHelper showAlertWithMessage:@"删除图书失败" withAutoDismiss:YES];
+            [[CustomAlert sharedAlert] showAlertWithMessage:@"删除图书失败"];
         }
         if ([request.URL.absoluteString isEqualToString:kChangeBookStatusURL])
         {
-            [AlertHelper showAlertWithMessage:@"修改图书状态失败" withAutoDismiss:YES];
+            [[CustomAlert sharedAlert] showAlertWithMessage:@"修改图书状态失败"];
         }
     }
     return data;

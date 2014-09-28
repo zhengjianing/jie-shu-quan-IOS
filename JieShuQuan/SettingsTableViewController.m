@@ -11,7 +11,6 @@
 #import "User.h"
 #import "ImageHelper.h"
 #import "AvatarManager.h"
-#import "AlertHelper.h"
 #import "RequestBuilder.h"
 #import "CustomActivityIndicator.h"
 #import "ServerHeaders.h"
@@ -20,6 +19,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "CacheManager.h"
 #import "ProvinceTableViewController.h"
+#import "CustomAlert.h"
 
 @interface SettingsTableViewController ()
 
@@ -188,11 +188,10 @@
     [self.navigationItem setHidesBackButton:NO animated:YES];
 
     if ([request responseStatusCode] != 200) {
-        [AlertHelper showAlertWithMessage:@"上传头像失败" withAutoDismiss:YES];
+        [[CustomAlert sharedAlert] showAlertWithMessage:@"上传头像失败"];
         return;
     }
-    
-    [AlertHelper showAlertWithMessage:@"上传头像成功" withAutoDismiss:YES];
+    [[CustomAlert sharedAlert] showAlertWithMessage:@"上传头像成功"];
     [self refreshUserAvatar];
 }
 
@@ -200,8 +199,7 @@
 {
     [_activityIndicator stopAnimating];
     [self.navigationItem setHidesBackButton:NO animated:YES];
-
-    [AlertHelper showAlertWithMessage:@"上传头像失败" withAutoDismiss:YES];
+    [[CustomAlert sharedAlert] showAlertWithMessage:@"上传头像失败"];
 }
 
 #pragma mark - Navigation

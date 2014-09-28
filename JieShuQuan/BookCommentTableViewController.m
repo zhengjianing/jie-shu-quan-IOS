@@ -14,11 +14,11 @@
 #import "UserManager.h"
 #import "RequestBuilder.h"
 #import "ServerHeaders.h"
-#import "AlertHelper.h"
 #import "Comment.h"
 #import "DataConverter.h"
 #import "MessageLabelHelper.h"
 #import "CustomActivityIndicator.h"
+#import "CustomAlert.h"
 
 @interface BookCommentTableViewController ()
 
@@ -88,7 +88,7 @@
         }
         
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-            [AlertHelper showAlertWithMessage:@"获取评论失败" withAutoDismiss:YES];
+            [[CustomAlert sharedAlert] showAlertWithMessage:@"获取评论失败"];
             return ;
         }
         
