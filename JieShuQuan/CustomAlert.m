@@ -9,7 +9,17 @@
 #import "CustomAlert.h"
 
 static const float fontSize = 12;
-static const float LINESPACE = 5;
+static const float maxLabelWidth = 300;
+static const float fixedLabelHeight = 20;
+static const float yOrigin = 400;
+static const float horizontalMargin = 20;
+
+
+@interface CustomAlert ()
+
+@property (nonatomic, strong) UILabel *textLabel;
+
+@end
 
 @implementation CustomAlert
 
@@ -42,17 +52,24 @@ static const float LINESPACE = 5;
 {
     self = [super initWithFrame:CGRectZero];
     if (self) {
-        [self setFrame:CGRectMake(40, 300, 240, 30)];
-//        self.layer.cornerRadius = 5.0;
-//        self.layer.borderWidth = 0.5;
-//        self.layer.borderColor = [UIColor orangeColor].CGColor;
-        
-        self.layer.backgroundColor = [UIColor darkGrayColor].CGColor;
-        self.textColor = [UIColor whiteColor];
-        self.font = [UIFont systemFontOfSize:fontSize];
+        self.windowLevel = UIWindowLevelAlert;
+        [self addSubview:self.textLabel];
         self.hidden = YES;
     }
     return self;
+}
+
+- (UILabel *)textLabel
+{
+    if (_textLabel != nil) {
+        return _textLabel;
+    }
+    _textLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    _textLabel.backgroundColor = [UIColor blackColor];
+    _textLabel.textColor = [UIColor whiteColor];
+    _textLabel.font = [UIFont systemFontOfSize:fontSize];
+    
+    return _textLabel;
 }
 
 - (void)showAlertWithMessage:(NSString *)message
@@ -65,14 +82,16 @@ static const float LINESPACE = 5;
 #pragma mark - private methods
 
 - (void)setAlertWithText:(NSString*)text {
-    self.text = text;
-    self.numberOfLines = 0;
-    self.textAlignment = UITextAlignmentCenter;
+    _textLabel.text = text;
+    _textLabel.numberOfLines = 0;
+    _textLabel.textAlignment = UITextAlignmentCenter;
     
-    CGSize constrainedSize = CGSizeMake(self.frame.size.width, MAXFLOAT);
-    CGSize commentTextSize = [text sizeWithFont:[UIFont systemFontOfSize:fontSize+LINESPACE/2] constrainedToSize:constrainedSize lineBreakMode:NSLineBreakByTruncatingTail];
+    CGSize constrainedSize = CGSizeMake(MAXFLOAT, fixedLabelHeight);
     
-    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, constrainedSize.width, commentTextSize.height);
+    CGSize textSize = [text sizeWithFont:[UIFont systemFontOfSize:fontSize] constrainedToSize:constrainedSize];
+    
+    self.frame = CGRectMake((320-textSize.width-2*horizontalMargin)/2, yOrigin, textSize.width+2*horizontalMargin, fixedLabelHeight);
+    _textLabel.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
 }
 
 - (void)dismissAlert

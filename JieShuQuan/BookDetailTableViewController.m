@@ -22,6 +22,7 @@
 #import "ActionSheetHelper.h"
 #import "RequestBuilder.h"
 #import "CustomActivityIndicator.h"
+#import "CustomAlert.h"
 
 static const NSString *kAvailableNO = @"更改为随时可借";
 static const NSString *kAvailableYES = @"更改为不可借";
@@ -44,6 +45,8 @@ static const float LINESPACE = 5;
     UIActionSheet *addSheet;
 }
 @property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
+@property (nonatomic, strong) CustomAlert *alert;
+
 @end
 
 @implementation BookDetailTableViewController
@@ -53,6 +56,7 @@ static const float LINESPACE = 5;
     [super viewDidLoad];
     self.tabBarController.tabBar.hidden = YES;
     _activityIndicator = [CustomActivityIndicator sharedActivityIndicator];
+    _alert = [CustomAlert sharedAlert];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -175,7 +179,8 @@ static const float LINESPACE = 5;
     
     // In case the user hasn't logged in yet
     if (![UserManager isLogin]) {
-        [AlertHelper showAlertWithMessage:@"您尚未登录，请先登录" withAutoDismiss:NO];
+//        [AlertHelper showAlertWithMessage:@"您尚未登录，请先登录" withAutoDismiss:NO];
+        [_alert showAlertWithMessage:@"您尚未登录，请先登录"];
         return;
     }
     

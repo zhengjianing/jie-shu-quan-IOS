@@ -45,16 +45,17 @@
 {
     self = [super initWithFrame:CGRectZero];
     if (self) {
-        [self setFrame:[[UIScreen mainScreen] bounds]];
-        self.windowLevel = UIWindowLevelAlert + 1;
+//        [self setFrame:[[UIScreen mainScreen] bounds]];
+        self.windowLevel = UIWindowLevelAlert;
         
-        [self addSubview:self.freezeLayer];
+//        [self addSubview:self.freezeLayer];
         [self addSubview:self.activityIndicator];
-
+        [self setFrame:CGRectMake(150, 230, 20, 20)];
         self.hidden = YES;
     }
     return self;
 }
+
 
 #pragma mark - setters
 
@@ -64,8 +65,10 @@
         return _activityIndicator;
     }
     
-    _activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(150, 230, 20, 20)];
-    _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+//    _activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(150, 230, 20, 20)];
+    _activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:self.window.frame];
+
+    _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
     _activityIndicator.hidesWhenStopped = YES;
     return _activityIndicator;
 }

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CustomAlert : UILabel
+@interface CustomAlert : UIWindow
 
 - (void)showAlertWithMessage:(NSString *)message;
 
