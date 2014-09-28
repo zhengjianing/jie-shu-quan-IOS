@@ -15,6 +15,7 @@
 #import "LoginViewController.h"
 #import "SettingsTableViewController.h"
 #import "MailManager.h"
+#import "MobClick.h"
 
 static const NSString *kDefaultCount = @"--";
 static const NSString *kDefaultUserName = @"点击设置用户名";
@@ -34,6 +35,14 @@ static const NSString *kDefaultUserName = @"点击设置用户名";
     [super viewWillAppear:YES];
     self.tabBarController.tabBar.hidden = NO;
     [self configureView];
+    
+    [MobClick beginLogPageView:@"morePage"];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"morePage"];
 }
 
 - (void)setTableFooterView

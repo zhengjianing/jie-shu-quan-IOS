@@ -16,6 +16,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "CustomActivityIndicator.h"
 #import "CustomAlert.h"
+#import "MobClick.h"
 
 @interface SearchTableViewController ()
 
@@ -40,6 +41,14 @@
 {
     [super viewWillAppear:YES];
     self.tabBarController.tabBar.hidden = NO;
+    
+    [MobClick beginLogPageView:@"searchPage"];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"searchPage"];
 }
 
 - (void)registerNotifications

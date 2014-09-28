@@ -23,6 +23,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "CacheManager.h"
 #import "CustomAlert.h"
+#import "MobClick.h"
 
 @interface FriendsTableViewController ()
 
@@ -67,6 +68,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:YES];
+
     self.tabBarController.tabBar.hidden = NO;
     if ([UserManager isLogin]) {
         _preLoginView.hidden = YES;
@@ -75,6 +78,14 @@
     } else {
         _preLoginView.hidden = NO;
     }
+    
+    [MobClick beginLogPageView:@"friendsPage"];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"friendsPage"];
 }
 
 - (void)setTableFooterView

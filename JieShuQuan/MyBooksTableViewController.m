@@ -24,6 +24,7 @@
 #import "CustomActivityIndicator.h"
 #import "UserStore.h"
 #import "CustomAlert.h"
+#import "MobClick.h"
 
 
 static const NSString *kStatusYES = @"可借";
@@ -75,6 +76,14 @@ static const NSString *kStatusNO = @"暂时不可借";
     [super viewWillAppear:YES];
     self.tabBarController.tabBar.hidden = NO;
     [self showTableView];
+    
+    [MobClick beginLogPageView:@"myBooksPage"];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"myBooksPage"];
 }
 
 - (void)showTableView
