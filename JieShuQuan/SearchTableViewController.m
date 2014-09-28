@@ -157,6 +157,8 @@
 
 - (IBAction)startScan:(id)sender
 {
+    [MobClick event:@"scan"];
+    
 //    ZBarReaderViewController *reader = [ZBarReaderViewController new];
 //    reader.readerDelegate = self;
 //    reader.supportedOrientationsMask = ZBarOrientationMaskAll;
