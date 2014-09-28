@@ -58,7 +58,7 @@
 }
 
 - (IBAction)saveInput:(id)sender {
-    [_activityIndicator startAsynchAnimating];
+    [_activityIndicator startSynchAnimating];
     [self disableCancelButton];
     [self changeCurrentUserName];
 }
@@ -73,7 +73,7 @@
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
-        [_activityIndicator stopAsynchAnimating];
+        [_activityIndicator stopSynchAnimating];
         [self enableCancelButton];
 
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {

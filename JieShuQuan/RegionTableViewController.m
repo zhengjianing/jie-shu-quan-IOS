@@ -74,7 +74,7 @@
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
-        [_activityIndicator stopAsynchAnimating];
+        [_activityIndicator stopSynchAnimating];
         [self enableBackButton];
         
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {

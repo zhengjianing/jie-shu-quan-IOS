@@ -8,8 +8,10 @@
 
 #import "CustomActivityIndicator.h"
 
-#define SPINRECT CGRectMake(150, 230, 20, 20)
+#define SPINRECT CGRectMake(150, 300, 20, 20)
+
 #define SCREENRECT [[UIScreen mainScreen] bounds]
+
 
 @interface CustomActivityIndicator ()
 
@@ -89,7 +91,7 @@
 #pragma mark - Asynchronous -- without gray mask
 - (void)startAsynchAnimating
 {
-    [self setFrame:CGRectMake(150, 230, 20, 20)];
+    [self setFrame:SPINRECT];
     [_activityIndicator setFrame:self.window.frame];
     _freezeLayer.hidden = YES;
     

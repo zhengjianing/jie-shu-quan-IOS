@@ -46,6 +46,7 @@
     _messageLabel.hidden = YES;
 
     _activityIndicator = [CustomActivityIndicator sharedActivityIndicator];
+    [_activityIndicator startAsynchAnimating];
     
     [self loadAllBookCommentsFromServer];
 }
