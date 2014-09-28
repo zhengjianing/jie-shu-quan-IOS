@@ -18,6 +18,17 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [MobClick startWithAppkey:@"5427f7a4fd98c566c80090e6" reportPolicy:BATCH channelId:nil];
+    
+//   how to get test device id
+    
+//    Class cls = NSClassFromString(@"UMANUtil");
+//    SEL deviceIDSelector = @selector(openUDIDString);
+//    NSString *deviceID = nil;
+//    if(cls && [cls respondsToSelector:deviceIDSelector]){
+//        deviceID = [cls performSelector:deviceIDSelector];
+//    }
+//    NSLog(@"{\"oid\": \"%@\"}", deviceID);
+    
     return YES;
 }
 

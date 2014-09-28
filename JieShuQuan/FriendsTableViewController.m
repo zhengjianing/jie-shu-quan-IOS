@@ -246,6 +246,8 @@
 }
 
 - (IBAction)changeSegment:(id)sender {
+    [MobClick event:@"filterFriendsSegmentControlChanged"];
+
     [self showTableViewWithCorrectData];
 }
 
