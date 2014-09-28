@@ -13,6 +13,7 @@
 #import "Book.h"
 #import "CustomActivityIndicator.h"
 #import "CustomAlert.h"
+#import "MobClick.h"
 
 static const NSString *kDefaultName = @"匿名用户";
 
@@ -52,6 +53,17 @@ static const NSString *kDefaultName = @"匿名用户";
     } else {
         [self setAnonymityLabelAndSwichWithAnonymityState:NO];
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"createCommentPage"];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"createCommentPage"];
 }
 
 - (void)setAnonymityLabelAndSwichWithAnonymityState:(BOOL)isOn

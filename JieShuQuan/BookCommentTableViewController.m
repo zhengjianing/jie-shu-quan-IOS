@@ -19,6 +19,7 @@
 #import "MessageLabelHelper.h"
 #import "CustomActivityIndicator.h"
 #import "CustomAlert.h"
+#import "MobClick.h"
 
 @interface BookCommentTableViewController ()
 
@@ -49,6 +50,17 @@
     [_activityIndicator startAsynchAnimating];
     
     [self loadAllBookCommentsFromServer];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"commentsPage"];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"commentsPage"];
 }
 
 #pragma mark - initializing tableView accessories

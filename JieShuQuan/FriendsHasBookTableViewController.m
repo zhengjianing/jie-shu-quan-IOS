@@ -21,6 +21,7 @@
 #import "CustomActivityIndicator.h"
 #import "AvatarManager.h"
 #import "CustomAlert.h"
+#import "MobClick.h"
 
 @interface FriendsHasBookTableViewController ()
 
@@ -46,6 +47,17 @@
     _loginController = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
     
     [self showTableView];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"whoHasBookPage"];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"whoHasBookPage"];
 }
 
 - (void)showTableView

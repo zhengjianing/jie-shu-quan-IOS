@@ -20,6 +20,7 @@
 #import "CacheManager.h"
 #import "ProvinceTableViewController.h"
 #import "CustomAlert.h"
+#import "MobClick.h"
 
 @interface SettingsTableViewController ()
 
@@ -52,6 +53,14 @@
     [super viewWillAppear:YES];
     [self initViewWithCurrentUser];
     self.tabBarController.tabBar.hidden = YES;
+    
+    [MobClick beginLogPageView:@"settingsPage"];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"settingsPage"];
 }
 
 - (void)initViewWithCurrentUser

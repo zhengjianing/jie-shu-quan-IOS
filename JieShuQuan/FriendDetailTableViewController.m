@@ -20,6 +20,7 @@
 #import "CustomActivityIndicator.h"
 #import "AvatarManager.h"
 #import "CustomAlert.h"
+#import "MobClick.h"
 
 @interface FriendDetailTableViewController ()
 
@@ -43,6 +44,17 @@
     
     [self loadBooksForFriend];
     [self.tableView reloadData];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"friendDetailPage"];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"friendDetailPage"];
 }
 
 - (UILabel *)messageLabel

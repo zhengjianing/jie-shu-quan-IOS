@@ -22,6 +22,7 @@
 #import "RequestBuilder.h"
 #import "CustomActivityIndicator.h"
 #import "CustomAlert.h"
+#import "MobClick.h"
 
 static const NSString *kAvailableNO = @"更改为随时可借";
 static const NSString *kAvailableYES = @"更改为不可借";
@@ -75,6 +76,14 @@ static const float LINESPACE = 5;
     [self setLabelTextWithBookAvailability:_book.availability];
     (_existenceStatus) ? [self enableAvailabilityArea] : [self disableAvailabilityArea];
     [self.tableView reloadData];
+    
+    [MobClick beginLogPageView:@"bookDetailPage"];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"bookDetailPage"];
 }
 
 - (void)initBookDetailView

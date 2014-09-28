@@ -7,6 +7,7 @@
 //
 
 #import "AboutTableViewController.h"
+#import "MobClick.h"
 
 @interface AboutTableViewController ()
 
@@ -19,6 +20,17 @@
     [super viewDidLoad];
 
     [self setTableFooterView];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"aboutPage"];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"aboutPage"];
 }
 
 - (void)setTableFooterView
