@@ -52,7 +52,7 @@
 {
     if ([UserManager isLogin]) {
         _preLoginView.hidden = YES;
-        [_activityIndicator startAnimating];
+        [_activityIndicator startAsynchAnimating];
         _messageLabel.hidden = YES;
         [self loadFriendsWithBook];
         [self.tableView reloadData];
@@ -125,7 +125,7 @@
 {
     NSMutableURLRequest *request = [RequestBuilder buildFetchFriendsRequestForUserId:[[UserManager currentUser] userId] bookId:_book.bookId];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        [_activityIndicator stopAnimating];
+        [_activityIndicator stopAsynchAnimating];
 
         if ([(NSHTTPURLResponse *)response statusCode] == 404) {
             //没有找到同事

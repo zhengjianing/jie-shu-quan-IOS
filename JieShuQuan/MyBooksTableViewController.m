@@ -65,7 +65,7 @@ static const NSString *kStatusNO = @"暂时不可借";
     
     // Since viewDidLoad will only be called at launching, so refresh books at launching
     if ([UserManager isLogin]) {
-        [_activityIndicator startAnimating];
+        [_activityIndicator startAsynchAnimating];
         [self fetchBooksFromServer];
     }
 }
@@ -190,7 +190,7 @@ static const NSString *kStatusNO = @"暂时不可借";
 
 - (void)deleteBook:(Book *)book atIndexPath:(NSIndexPath *)indexPath
 {
-    [_activityIndicator startAnimating];
+    [_activityIndicator startAsynchAnimating];
 
     NSMutableURLRequest *deleteBookRequest = [RequestBuilder buildDeleteBookRequestWithBookId:book.bookId userId:[[UserManager currentUser] userId] accessToke:[[UserManager currentUser] accessToken]];
     
@@ -208,7 +208,7 @@ static const NSString *kStatusNO = @"暂时不可借";
             [[UserStore sharedStore] decreseBookCountForUser:[[UserManager currentUser] userId]];
         }
         
-        [_activityIndicator stopAnimating];
+        [_activityIndicator stopAsynchAnimating];
         [self.tableView setEditing:NO];
     }];
 
@@ -220,7 +220,7 @@ static const NSString *kStatusNO = @"暂时不可借";
 {
     NSMutableURLRequest *request = [RequestBuilder buildFetchBooksRequestForUserId:[[UserManager currentUser] userId]];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        [_activityIndicator stopAnimating];
+        [_activityIndicator stopAsynchAnimating];
         [_refresh endRefreshing];
 
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {

@@ -199,14 +199,14 @@ static const float LINESPACE = 5;
 - (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
-        [_activityIndicator startAnimating];
+        [_activityIndicator startSynchAnimating];
     }
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) {
-        [_activityIndicator stopAnimating];
+        [_activityIndicator stopSynchAnimating];
         return;
     }
     
@@ -256,7 +256,7 @@ static const float LINESPACE = 5;
     NSMutableURLRequest *addBookRequest = [RequestBuilder buildAddBookRequestWithBook:book available:NO userId:userId accessToke:accessToke];
     NSData *data = [self dataFromSynchronousRequest:addBookRequest];
     
-    [_activityIndicator stopAnimating];
+    [_activityIndicator stopSynchAnimating];
     if (data) {
         _existenceStatus = !_existenceStatus;
         
@@ -272,7 +272,7 @@ static const float LINESPACE = 5;
 {
     NSMutableURLRequest *deleteBookRequest = [RequestBuilder buildDeleteBookRequestWithBookId:bookId userId:userId accessToke:accessToken];
     NSData *data = [self dataFromSynchronousRequest:deleteBookRequest];
-    [_activityIndicator stopAnimating];
+    [_activityIndicator stopSynchAnimating];
     
     if (data) {
         _existenceStatus = !_existenceStatus;
@@ -290,7 +290,7 @@ static const float LINESPACE = 5;
 {
     NSMutableURLRequest *changeAvailabilityRequest = [RequestBuilder buildChangeBookAvailabilityRequestWithBookId:bookId available:availabilityState userId:userId accessToken:accessToken];
     NSData *data = [self dataFromSynchronousRequest:changeAvailabilityRequest];
-    [_activityIndicator stopAnimating];
+    [_activityIndicator stopSynchAnimating];
     
     if (data) {
         _book.availability = !_book.availability;

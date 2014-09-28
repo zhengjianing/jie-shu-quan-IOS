@@ -174,7 +174,7 @@
     
     [self saveAvatarToSandbox];
     [self dismissViewControllerAnimated:YES completion:nil];
-    [_activityIndicator startAnimating];
+    [_activityIndicator startAsynchAnimating];
     [self.navigationItem setHidesBackButton:YES animated:YES];
     
     [self startingUploadAvatar];
@@ -184,7 +184,7 @@
 
 - (void)requestDidReceiveData:(ASIFormDataRequest *)request
 {
-    [_activityIndicator stopAnimating];
+    [_activityIndicator stopAsynchAnimating];
     [self.navigationItem setHidesBackButton:NO animated:YES];
 
     if ([request responseStatusCode] != 200) {
@@ -197,7 +197,7 @@
 
 - (void)requestDidFail:(ASIHTTPRequest *)request
 {
-    [_activityIndicator stopAnimating];
+    [_activityIndicator stopAsynchAnimating];
     [self.navigationItem setHidesBackButton:NO animated:YES];
     [[CustomAlert sharedAlert] showAlertWithMessage:@"上传头像失败"];
 }

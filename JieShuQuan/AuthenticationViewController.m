@@ -35,7 +35,7 @@
     if ([(NSHTTPURLResponse *)response statusCode] != 200) {
         [[CustomAlert sharedAlert] showAlertWithMessage:@"验证失败"];
     }
-    [self.activityIndicator stopAnimating];
+    [self.activityIndicator stopAsynchAnimating];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
@@ -61,7 +61,7 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    [self.activityIndicator stopAnimating];
+    [self.activityIndicator stopAsynchAnimating];
     [[CustomAlert sharedAlert] showAlertWithMessage:@"网络请求失败...\n请检查您的网络连接"];
 }
 

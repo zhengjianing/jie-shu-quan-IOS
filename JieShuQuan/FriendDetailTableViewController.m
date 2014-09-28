@@ -39,7 +39,7 @@
     [self.tableView addSubview:self.messageLabel];
     _messageLabel.hidden = YES;
     _activityIndicator = [CustomActivityIndicator sharedActivityIndicator];
-    [_activityIndicator startAnimating];
+    [_activityIndicator startAsynchAnimating];
     
     [self loadBooksForFriend];
     [self.tableView reloadData];
@@ -85,7 +85,7 @@
     NSMutableURLRequest *request = [RequestBuilder buildFetchBooksRequestForUserId:_friend.friendId];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
-        [_activityIndicator stopAnimating];
+        [_activityIndicator stopAsynchAnimating];
 
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
             [[CustomAlert sharedAlert] showAlertWithMessage:@"更新失败"];

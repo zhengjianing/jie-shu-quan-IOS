@@ -61,7 +61,7 @@
         return;
     }
     
-    [self.activityIndicator startAnimating];
+    [self.activityIndicator startAsynchAnimating];
     [self startingRegisterWithEmail:_email.text password:_password.text];
 }
 

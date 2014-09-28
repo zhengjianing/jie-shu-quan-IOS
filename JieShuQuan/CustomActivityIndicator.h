@@ -13,7 +13,10 @@
 
 + (CustomActivityIndicator *)sharedActivityIndicator;
 
-- (void)startAnimating;
-- (void)stopAnimating;
+- (void)startAsynchAnimating;
+- (void)stopAsynchAnimating;
+
+- (void)startSynchAnimating;
+- (void)stopSynchAnimating;
 
 @end

@@ -57,7 +57,7 @@
     [self setTableFooterView];
     
     if ([UserManager isLogin]) {
-        [_activityIndicator startAnimating];
+        [_activityIndicator startAsynchAnimating];
         [self fetchFriendsFromServer];
     }
     
@@ -171,7 +171,7 @@
     NSMutableURLRequest *request = [RequestBuilder buildFetchFriendsRequestForUserId:[[UserManager currentUser] userId]];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         [_refresh endRefreshing];
-        [_activityIndicator stopAnimating];
+        [_activityIndicator stopAsynchAnimating];
 
         if ([(NSHTTPURLResponse *)response statusCode] == 404) {
             _messageLabel.hidden = NO;

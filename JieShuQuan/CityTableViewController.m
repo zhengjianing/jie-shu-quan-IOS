@@ -39,12 +39,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.activityIndicator startAnimating];
+    [self.activityIndicator startAsynchAnimating];
     [self disableBackButton];
     NSString *city = [_cityArray objectAtIndex:indexPath.row];
     self.changedLocation = [NSString stringWithFormat:@"%@，%@", _province, city];
     if ([self.changedLocation isEqualToString:self.oldLocation]) {
-        [self.activityIndicator stopAnimating];
+        [self.activityIndicator stopAsynchAnimating];
         [self popToControllerWithCountDownIndex:3];
         return;
     }

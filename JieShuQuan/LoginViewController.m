@@ -55,7 +55,7 @@
         return;
     }
     
-    [self.activityIndicator startAnimating];
+    [self.activityIndicator startAsynchAnimating];
     [self startingLoginWithEmail:_email.text password:_password.text];
 }
 

@@ -74,7 +74,7 @@ static const NSString *kDefaultName = @"匿名用户";
         [[CustomAlert sharedAlert] showAlertWithMessage:@"评论内容不能为空"];
         return;
     }
-    [_activityIndicator startAnimating];
+    [_activityIndicator startAsynchAnimating];
     [self postBookCommentWithContent:_commentTextView.text];
 }
 
@@ -95,7 +95,7 @@ static const NSString *kDefaultName = @"匿名用户";
     
     [NSURLConnection sendAsynchronousRequest:postRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
-        [_activityIndicator stopAnimating];
+        [_activityIndicator stopAsynchAnimating];
 
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
             [[CustomAlert sharedAlert] showAlertWithMessage:@"发表评论失败"];

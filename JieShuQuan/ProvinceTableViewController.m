@@ -43,11 +43,11 @@
 
 - (void)setMunicipalityForLocationWithIndexPath:(NSIndexPath *)indexPath
 {
-    [self.activityIndicator startAnimating];
+    [self.activityIndicator startAsynchAnimating];
     [self disableBackButton];
     self.changedLocation = [self.provinceArray objectAtIndex:indexPath.row];
     if ([self.changedLocation isEqualToString:self.oldLocation]) {
-        [self.activityIndicator stopAnimating];
+        [self.activityIndicator stopAsynchAnimating];
         [self popToControllerWithCountDownIndex:2];
         return;
     }

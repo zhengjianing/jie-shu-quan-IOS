@@ -8,6 +8,9 @@
 
 #import "CustomActivityIndicator.h"
 
+#define SPINRECT CGRectMake(150, 230, 20, 20)
+#define SCREENRECT [[UIScreen mainScreen] bounds]
+
 @interface CustomActivityIndicator ()
 
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
@@ -45,12 +48,11 @@
 {
     self = [super initWithFrame:CGRectZero];
     if (self) {
-//        [self setFrame:[[UIScreen mainScreen] bounds]];
+        [self setFrame:SCREENRECT];
         self.windowLevel = UIWindowLevelAlert;
         
-//        [self addSubview:self.freezeLayer];
+        [self addSubview:self.freezeLayer];
         [self addSubview:self.activityIndicator];
-        [self setFrame:CGRectMake(150, 230, 20, 20)];
         self.hidden = YES;
     }
     return self;
@@ -65,8 +67,7 @@
         return _activityIndicator;
     }
     
-//    _activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(150, 230, 20, 20)];
-    _activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:self.window.frame];
+    _activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:SPINRECT];
 
     _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
     _activityIndicator.hidesWhenStopped = YES;
@@ -85,17 +86,44 @@
     return _freezeLayer;
 }
 
-
-- (void)startAnimating
+#pragma mark - Asynchronous -- without gray mask
+- (void)startAsynchAnimating
 {
+    [self setFrame:CGRectMake(150, 230, 20, 20)];
+    [_activityIndicator setFrame:self.window.frame];
+    _freezeLayer.hidden = YES;
+    
     self.hidden = NO;
     [_activityIndicator startAnimating];
 }
 
-- (void)stopAnimating
+- (void)stopAsynchAnimating
 {
     [_activityIndicator stopAnimating];
     self.hidden = YES;
+    _freezeLayer.hidden = NO;
+    
+    [self setFrame:SCREENRECT];
+    [_activityIndicator setFrame:SPINRECT];
 }
+
+#pragma mark - Synchronous -- with gray mask
+
+- (void)startSynchAnimating
+{
+    _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
+    
+    self.hidden = NO;
+    [_activityIndicator startAnimating];
+}
+
+- (void)stopSynchAnimating
+{
+    [_activityIndicator stopAnimating];
+    self.hidden = YES;
+    
+    _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+}
+
 
 @end
