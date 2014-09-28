@@ -105,16 +105,28 @@ static const NSString *kDefaultUserName = @"点击设置用户名";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([indexPath section] == 0 && [indexPath row] == 0) {
+        [MobClick event:@"setUserInfoCellPressed"];
+
         [self showSettingsOrLoginView];
         return;
     }
     
     if ([indexPath section] == 1 && [indexPath row] == 0) {
+        [MobClick event:@"feedbackCellPressed"];
+
         [self sendFeedbackWithMailView];
         return;
     }
     
+    if ([indexPath section] == 1 && [indexPath row] == 1) {
+        [MobClick event:@"aboutCellPressed"];
+        
+        return;
+    }
+    
     if ([indexPath section] == 2 && [indexPath row] == 0) {
+        [MobClick event:@"logoutCellPressed"];
+
         [[ActionSheetHelper actionSheetWithTitle:@"确认退出吗？" delegate:self] showInView:self.view];
         return;
     }

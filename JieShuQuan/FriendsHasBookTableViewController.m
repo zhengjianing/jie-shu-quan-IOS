@@ -239,6 +239,8 @@
 #pragma mark - Borrow from friend
 
 - (IBAction)borrowFromFriend:(id)sender {
+    [MobClick event:@"borrowFromFriendButtonPressed"];
+
     FriendHasBookTableViewCell *selectedCell = (FriendHasBookTableViewCell *)[[[sender superview] superview] superview];
     NSString *toName = selectedCell.friendNameLabel.text;
     NSString *toEmailAddress = selectedCell.friendEmailLabel.text;
@@ -262,6 +264,8 @@
 #pragma mark - segment control
 
 - (IBAction)changeSegmentControl:(id)sender {
+    [MobClick event:@"filterFriendsSegmentControlChanged"];
+
     [self showTableViewWithCorrectData];
 }
 

@@ -83,15 +83,24 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([self didSelectChangeAvatar:indexPath]) {
+    if ([indexPath section] == 0 && [indexPath row] == 0) {
+        [MobClick event:@"changeAvatarCellPressed"];
+
         [self changeUserAvatar];
         return;
     }
-}
-
-- (BOOL)didSelectChangeAvatar:(NSIndexPath *)indexPath
-{
-    return [indexPath section] == 0 && [indexPath row] == 0;
+    
+    if ([indexPath section] == 0 && [indexPath row] == 1) {
+        [MobClick event:@"changeUsernameCellPressed"];
+        
+        return;
+    }
+    
+    if ([indexPath section] == 1 && [indexPath row] == 0) {
+        [MobClick event:@"changeCityCellPressed"];
+        
+        return;
+    }
 }
 
 #pragma mark - Change User Avatar

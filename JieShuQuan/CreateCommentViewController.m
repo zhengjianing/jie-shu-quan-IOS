@@ -81,6 +81,8 @@ static const NSString *kDefaultName = @"匿名用户";
 }
 
 - (IBAction)submitComment:(id)sender {
+    [MobClick event:@"submitCommentButtonPressed"];
+
     [_commentTextView resignFirstResponder];
     if ([_commentTextView.text isEqualToString:@""]) {
         [[CustomAlert sharedAlert] showAlertWithMessage:@"评论内容不能为空"];
@@ -123,6 +125,8 @@ static const NSString *kDefaultName = @"匿名用户";
 }
 
 - (IBAction)switchAnonymity:(id)sender {
+    [MobClick event:@"anonymityCommentButtonPressed"];
+
     BOOL newState = _anonymitySwitch.on;
     if (![UserManager isLogin]) {
         [self setAnonymityLabelAndSwichWithAnonymityState:(!newState)];

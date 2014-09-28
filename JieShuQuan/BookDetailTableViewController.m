@@ -179,6 +179,8 @@ static const float LINESPACE = 5;
 #pragma mark - changed existence and availability
 
 - (IBAction)changeAvailability:(id)sender {
+    [MobClick event:@"changeAvailabilityButtonPressed"];
+
     availabilitySheet = [ActionSheetHelper actionSheetWithTitle:@"确认修改状态吗？" delegate:self];
     [availabilitySheet showInView:self.view];
 }
@@ -187,16 +189,22 @@ static const float LINESPACE = 5;
     
     // In case the user hasn't logged in yet
     if (![UserManager isLogin]) {
+        [MobClick event:@"detailAddButtonPressedWithoutLogin"];
+        
         [_alert showAlertWithMessage:@"您尚未登录，请先登录"];
         return;
     }
     
     if (_existenceStatus == YES) {
+        [MobClick event:@"detailDeleteBookButtonPressed"];
+
         deleteSheet = [ActionSheetHelper actionSheetWithTitle:@"确认删除吗？" delegate:self];
         [deleteSheet showInView:self.view];
         return;
     }
     if (_existenceStatus == NO) {
+        [MobClick event:@"detailAddBookButtonPressed"];
+
         addSheet = [ActionSheetHelper actionSheetWithTitle:@"确认添加吗？" delegate:self];
         [addSheet showInView:self.view];
         return;

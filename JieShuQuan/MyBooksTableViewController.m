@@ -278,6 +278,8 @@ static const NSString *kStatusNO = @"暂时不可借";
     }
 }
 - (IBAction)addBook:(id)sender {
+    [MobClick event:@"addBookButtonPressed"];
+
     UIViewController *searchViewController = [self.tabBarController.viewControllers objectAtIndex:2];
     [self.tabBarController setSelectedViewController:searchViewController];
 }

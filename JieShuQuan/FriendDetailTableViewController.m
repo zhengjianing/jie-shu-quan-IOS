@@ -167,6 +167,8 @@
 #pragma mark - Borrow from friend
 
 - (IBAction)borrowFromFriend:(id)sender {
+    [MobClick event:@"borrowFromFriendButtonPressed"];
+
     FriendBookTableViewCell *selectedCell = (FriendBookTableViewCell *)[[[sender superview] superview] superview];
     NSString *bookName = selectedCell.bookNameLabel.text;
     
