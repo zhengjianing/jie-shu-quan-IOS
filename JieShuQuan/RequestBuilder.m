@@ -39,7 +39,7 @@ static const NSString *kDefaultName = @"匿名用户";
 
 + (NSMutableURLRequest *)buildRegisterRequestWithEmail:(NSString *)email password:(NSString *)password
 {
-    NSDictionary *registerBody = @{@"user_name": @"", @"email": email, @"location": @"", @"password": [self encrypePassword:password]};
+    NSDictionary *registerBody = @{@"email": email, @"password": [self encrypePassword:password]};
     
     return [self buildRequestWithURLString:kRegisterURL bodyDict:registerBody];
 }
