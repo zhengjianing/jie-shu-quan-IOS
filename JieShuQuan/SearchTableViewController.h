@@ -10,7 +10,7 @@
 //#import "ZBarSDK.h"
 
 //@interface SearchTableViewController : UITableViewController <UISearchDisplayDelegate, ZBarReaderDelegate>
-@interface SearchTableViewController : UITableViewController <UISearchDisplayDelegate>
+@interface SearchTableViewController : UITableViewController <UISearchDisplayDelegate, UISearchBarDelegate>
 {
     NSMutableArray *searchResults;
 }

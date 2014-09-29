@@ -129,6 +129,7 @@
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
+    self.tabBarController.tabBar.hidden = YES;
     if (![searchString isEqualToString:@""]) {
         NSString *prefix = [NSString stringWithFormat:@"%@?apikey=%@&count=%@&q=", kSearchURL, kAPIKey, kMaxCount];
         NSString *searchUrl = [prefix stringByAppendingString:searchString];
@@ -136,6 +137,13 @@
         [self searchByDouBanWithUrl:encodedUrl];
     }
     return NO;
+}
+
+#pragma mark - UISearchBarDelegate
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    self.tabBarController.tabBar.hidden = NO;
 }
 
 #pragma mark - Navigation
