@@ -91,6 +91,7 @@
 - (void)startAsynchAnimating
 {
     [_freezeLayer setFrame:SPINRECT];
+    _freezeLayer.layer.cornerRadius = 5.0;
     _freezeLayer.alpha = 0.8;
     
     self.hidden = NO;
@@ -104,6 +105,7 @@
     
     [self setFrame:SCREENRECT];
     [_freezeLayer setFrame:SCREENRECT];
+    _freezeLayer.layer.cornerRadius = 0;
     _freezeLayer.alpha = 0.3;
 
 }

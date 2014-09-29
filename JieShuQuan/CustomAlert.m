@@ -8,12 +8,15 @@
 
 #import "CustomAlert.h"
 
-static const float fontSize = 12;
-static const float maxLabelWidth = 300;
-static const float fixedLabelHeight = 20;
+static const float fontSize = 11;
+//static const float maxLabelWidth = 300;
+static const float fixedLabelHeight = 25;
 static const float yOrigin = 400;
 static const float horizontalMargin = 20;
 
+#define LabelBackgroundColor [UIColor colorWithRed:0 green:0 blue:0 alpha:0.8]
+#define LabelTextColor [UIColor whiteColor]
+#define LabelFont [UIFont boldSystemFontOfSize:fontSize]
 
 @interface CustomAlert ()
 
@@ -65,10 +68,10 @@ static const float horizontalMargin = 20;
         return _textLabel;
     }
     _textLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    _textLabel.backgroundColor = [UIColor blackColor];
-    _textLabel.textColor = [UIColor whiteColor];
-    _textLabel.font = [UIFont systemFontOfSize:fontSize];
-    
+    _textLabel.layer.backgroundColor = LabelBackgroundColor.CGColor;
+    _textLabel.layer.cornerRadius = 5.0;
+    _textLabel.textColor = LabelTextColor;
+    _textLabel.font = LabelFont;
     return _textLabel;
 }
 
@@ -91,7 +94,10 @@ static const float horizontalMargin = 20;
     CGSize textSize = [text sizeWithFont:[UIFont systemFontOfSize:fontSize] constrainedToSize:constrainedSize];
     
     self.frame = CGRectMake((320-textSize.width-2*horizontalMargin)/2, yOrigin, textSize.width+2*horizontalMargin, fixedLabelHeight);
+    NSLog(@"self.frame: %@", NSStringFromCGRect(self.frame));
     _textLabel.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    NSLog(@"_textLabel.frame: %@", NSStringFromCGRect(_textLabel.frame));
+
 }
 
 - (void)dismissAlert
