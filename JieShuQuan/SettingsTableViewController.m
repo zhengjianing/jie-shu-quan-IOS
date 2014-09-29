@@ -19,6 +19,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "CacheManager.h"
 #import "ProvinceTableViewController.h"
+#import "ChangePhoneNumberViewController.h"
 #import "CustomAlert.h"
 #import "MobClick.h"
 
@@ -71,6 +72,7 @@
     [_userAvatarImageView sd_setImageWithURL:_avatarURL placeholderImage:[AvatarManager defaulFriendAvatar]];
     _userNameLabel.text = _currentUser.userName;
     _userLocation.text = _currentUser.location;
+    _userPhoneNumber.text = _currentUser.phoneNumber;
 }
 
 - (void)setTableFooterView
@@ -231,6 +233,9 @@
     }
     if ([segue.destinationViewController isKindOfClass:[ProvinceTableViewController class]]) {
         [segue.destinationViewController setOldLocation:_userLocation.text];
+    }
+    if ([segue.destinationViewController isKindOfClass:[ChangePhoneNumberViewController class]]) {
+        [segue.destinationViewController setNumberString:_userPhoneNumber.text];
     }
 }
 
