@@ -34,7 +34,7 @@
 {
     [super viewDidLoad];
     self.tabBarController.tabBar.hidden = YES;
-    
+    self.navigationItem.title = [_friend.friendName stringByAppendingString:@"的书"];
     [self setTableFooterView];
     [self configureFriendInfoView];
     [self.tableView addSubview:self.messageLabel];
