@@ -18,5 +18,6 @@
 @property (copy, nonatomic) NSString *accessToken;
 @property (copy, nonatomic) NSString *friendCount;
 @property (copy, nonatomic) NSString *location;
+@property (copy, nonatomic) NSString *phoneNumber;
 
 @end

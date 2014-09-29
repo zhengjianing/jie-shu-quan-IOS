@@ -58,6 +58,13 @@ static const NSString *kDefaultName = @"匿名用户";
     return [self buildRequestWithURLString:kChangeUserNameURL bodyDict:bodyDict];
 }
 
++ (NSMutableURLRequest *)buildChangeUserPhoneNumberRequestWithUserId:(NSString *)userId accessToken:(NSString *)accessToken UserPhoneNumber:(NSString *)newNumber
+{
+    NSDictionary *bodyDict = [NSDictionary dictionaryWithObjectsAndKeys:userId, @"user_id", accessToken, @"access_token", newNumber, @"phone_number", nil];
+    
+    return [self buildRequestWithURLString:kChangeUserPhoneNumberURL bodyDict:bodyDict];
+}
+
 + (NSMutableURLRequest *)buildChangeUserLocationRequestWithUserId:(NSString *)userId accessToken:(NSString *)accessToken location:(NSString *)location
 {
     NSDictionary *bodyDict = [NSDictionary dictionaryWithObjectsAndKeys:userId, @"user_id", accessToken, @"access_token", location, @"location", nil];

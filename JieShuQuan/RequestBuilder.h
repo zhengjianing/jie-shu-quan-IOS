@@ -17,6 +17,7 @@
 + (NSMutableURLRequest *)buildLoginRequestWithEmail:(NSString *)email password:(NSString *)password;
 + (NSMutableURLRequest *)buildChangeUserNameRequestWithUserId:(NSString *)userId accessToken:(NSString *)accessToken UserName:(NSString *)newName;
 + (NSMutableURLRequest *)buildChangeUserLocationRequestWithUserId:(NSString *)userId accessToken:(NSString *)accessToken location:(NSString *)location;
++ (NSMutableURLRequest *)buildChangeUserPhoneNumberRequestWithUserId:(NSString *)userId accessToken:(NSString *)accessToken UserPhoneNumber:(NSString *)newNumber;
 
 
 + (NSMutableURLRequest *)buildDeleteBookRequestWithBookId:(NSString *)bookId userId:(NSString *)userId accessToke:(NSString *)accessToken;

@@ -79,6 +79,7 @@
 		9737040F19CB38B0008949FB /* zbar-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 9737040819CB38B0008949FB /* zbar-help.html */; };
 		9737041019CB38B0008949FB /* zbar-helpicons.png in Resources */ = {isa = PBXBuildFile; fileRef = 9737040919CB38B0008949FB /* zbar-helpicons.png */; };
 		9737041119CB38B0008949FB /* zbar-samples.png in Resources */ = {isa = PBXBuildFile; fileRef = 9737040A19CB38B0008949FB /* zbar-samples.png */; };
+		9746071E19D8EE8500F6E03A /* ChangePhoneNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9746071D19D8EE8500F6E03A /* ChangePhoneNumberViewController.m */; };
 		97553C3D19C090DE0034B446 /* AuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97553C3C19C090DE0034B446 /* AuthenticationViewController.m */; };
 		97553C3F19C0A5610034B446 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 97553C3E19C0A5610034B446 /* info.png */; };
 		9758DD5619D4196E003E0A9E /* BookCommentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9758DD5519D4196E003E0A9E /* BookCommentTableViewController.m */; };
@@ -259,6 +260,8 @@
 		9737041419CB38C9008949FB /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		9737041619CB38CF008949FB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9737041819CB38DD008949FB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		9746071C19D8EE8500F6E03A /* ChangePhoneNumberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePhoneNumberViewController.h; sourceTree = "<group>"; };
+		9746071D19D8EE8500F6E03A /* ChangePhoneNumberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePhoneNumberViewController.m; sourceTree = "<group>"; };
 		97553C3B19C090DE0034B446 /* AuthenticationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationViewController.h; sourceTree = "<group>"; };
 		97553C3C19C090DE0034B446 /* AuthenticationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticationViewController.m; sourceTree = "<group>"; };
 		97553C3E19C0A5610034B446 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
@@ -403,6 +406,8 @@
 			children = (
 				94F922B319CFAE0F00F96B09 /* SettingsTableViewController.h */,
 				94F922B419CFAE0F00F96B09 /* SettingsTableViewController.m */,
+				9746071C19D8EE8500F6E03A /* ChangePhoneNumberViewController.h */,
+				9746071D19D8EE8500F6E03A /* ChangePhoneNumberViewController.m */,
 				9765EC3219D06BDE00066289 /* ChangeNameViewController.h */,
 				9765EC3319D06BDE00066289 /* ChangeNameViewController.m */,
 				972F5E5019D39F76008D0DDF /* RegionTableViewController.h */,
@@ -994,6 +999,7 @@
 				94C1711419D01D3000656EDB /* ASIDataDecompressor.m in Sources */,
 				9758DD5619D4196E003E0A9E /* BookCommentTableViewController.m in Sources */,
 				9471DBEF19A5837700F1A291 /* main.m in Sources */,
+				9746071E19D8EE8500F6E03A /* ChangePhoneNumberViewController.m in Sources */,
 				94C1711319D01D3000656EDB /* ASIDataCompressor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

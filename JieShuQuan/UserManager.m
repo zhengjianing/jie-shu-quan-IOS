@@ -35,5 +35,4 @@ static const NSString *kUDCurrentUserId = @"current_user_id";
     return ([self currentUser] == nil) ? NO : YES;
 }
 
-
 @end

@@ -18,6 +18,7 @@
 
 #define kChangeBookStatusURL @"http://jie-shu-quan.herokuapp.com/change_status"
 #define kChangeUserNameURL @"http://jie-shu-quan.herokuapp.com/change_username"
+#define kChangeUserPhoneNumberURL @"http://jie-shu-quan.herokuapp.com/change_phone_number"
 #define kChangeUserLocationURL @"http://jie-shu-quan.herokuapp.com/change_location"
 
 #define kMyFriendsURL @"http://jie-shu-quan.herokuapp.com/friends_by_user/"

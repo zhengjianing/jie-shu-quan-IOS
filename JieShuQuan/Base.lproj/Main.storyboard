@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pdy-qY-d6V">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pdy-qY-d6V">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
     </dependencies>
@@ -363,7 +363,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0oo-50-eRQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="197" y="750"/>
+            <point key="canvasLocation" x="289" y="750"/>
         </scene>
         <!--Settings Table View Controller - 设置-->
         <scene sceneID="pyM-e5-9Um">
@@ -448,6 +448,33 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle=" " id="frD-7N-o78">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="45" id="DbE-KP-k2d">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DbE-KP-k2d" id="lcB-Ef-p7I">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="请设置手机号码" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7O-pl-Chu">
+                                                    <rect key="frame" x="162" y="12" width="125" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="手机" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2iM-FZ-jAA">
+                                                    <rect key="frame" x="20" y="12" width="34" height="21"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="DJf-co-DpY" kind="push" id="2uo-hW-RW6"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="tFp-Uj-6OQ" id="2xb-WT-8hc"/>
@@ -461,11 +488,12 @@
                         <outlet property="userAvatarImageView" destination="ryF-eG-gZf" id="75j-u5-53i"/>
                         <outlet property="userLocation" destination="mMv-bl-Ud9" id="4aP-nn-8nc"/>
                         <outlet property="userNameLabel" destination="L59-Z8-P5w" id="Va1-OC-zV1"/>
+                        <outlet property="userPhoneNumber" destination="V7O-pl-Chu" id="AnP-er-ybR"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P50-ob-JXd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="745" y="732"/>
+            <point key="canvasLocation" x="745" y="1450"/>
         </scene>
         <!--About Table View Controller - 关于借书圈-->
         <scene sceneID="1hv-ab-aPI">
@@ -586,7 +614,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zpQ-WD-oc1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="745" y="1312"/>
+            <point key="canvasLocation" x="745" y="750"/>
         </scene>
         <!--Province Table View Controller - 请选择省/直辖市-->
         <scene sceneID="wHu-Tp-sWL">
@@ -618,7 +646,54 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wkQ-Mx-5o6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1260" y="1010"/>
+            <point key="canvasLocation" x="1442" y="1450"/>
+        </scene>
+        <!--Change Phone Number View Controller - 请修改手机号码-->
+        <scene sceneID="mwH-Ue-Huv">
+            <objects>
+                <viewController id="DJf-co-DpY" customClass="ChangePhoneNumberViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VcY-ky-Hzm"/>
+                        <viewControllerLayoutGuide type="bottom" id="SAo-I1-YHA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bYr-LV-AIT" customClass="UIControl">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VRH-nG-TpK">
+                                <rect key="frame" x="20" y="109" width="280" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <action selector="backgroundViewTouchDown:" destination="DJf-co-DpY" eventType="touchDown" id="9Wp-5J-NC5"/>
+                        </connections>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="请修改手机号码" id="svW-HQ-dGD">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Fuo-TQ-X8p">
+                            <connections>
+                                <action selector="cancelInput:" destination="DJf-co-DpY" id="zQz-0G-P9h"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="nnF-p3-lon">
+                            <connections>
+                                <action selector="saveInput:" destination="DJf-co-DpY" id="636-14-lXK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="numberTextField" destination="VRH-nG-TpK" id="jMy-fq-e5l"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gH1-ro-NSg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1445" y="2108"/>
         </scene>
         <!--Change Name View Controller - 修改名字-->
         <scene sceneID="b0P-uN-fnU">
@@ -664,7 +739,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vhY-oh-OCt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1260" y="470"/>
+            <point key="canvasLocation" x="1442" y="760"/>
         </scene>
         <!--Book Detail Table View Controller - 书的详情-->
         <scene sceneID="lt7-51-IUi">
@@ -1124,7 +1199,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kTw-bl-Bla" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1379" y="-1286"/>
+            <point key="canvasLocation" x="1387" y="-1390"/>
         </scene>
         <!--Friends Table View Controller - 同事们-->
         <scene sceneID="baD-jZ-WMC">
@@ -1414,7 +1489,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6xh-8B-yPm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-281" y="1394"/>
+            <point key="canvasLocation" x="-281" y="1450"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="KQk-2R-RN6">
@@ -1484,7 +1559,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8UL-yS-Nuv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="167" y="1394"/>
+            <point key="canvasLocation" x="167" y="1450"/>
         </scene>
         <!--Navigation Controller - 我的书库-->
         <scene sceneID="F4G-66-AbT">
@@ -1578,7 +1653,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fLO-q3-9zS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1689" y="1010"/>
+            <point key="canvasLocation" x="1939" y="1450"/>
         </scene>
         <!--Create Comment View Controller - 写评论-->
         <scene sceneID="Nu9-lD-T1D">
@@ -1654,7 +1729,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pLf-mk-3Nf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1379" y="-192"/>
+            <point key="canvasLocation" x="1387" y="-231"/>
         </scene>
         <!--Book Comment Table View Controller-->
         <scene sceneID="dur-jC-PIs">
@@ -1685,7 +1760,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hep-lZ-w9Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1379" y="-732"/>
+            <point key="canvasLocation" x="1387" y="-812"/>
         </scene>
     </scenes>
     <resources>

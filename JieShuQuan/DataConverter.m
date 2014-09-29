@@ -72,6 +72,7 @@ static const NSString *kCDBookCount = @"book_count";
 static const NSString *kCDGroupName = @"group_name";
 static const NSString *kCDFriendCount = @"friend_count";
 static const NSString *kCDLocation = @"location";
+static const NSString *kCDPhoneNumber = @"phone_number";
 
 // keys in CoreData for Friend
 static const NSString *kCDFriendName = @"friend_name";
@@ -206,6 +207,7 @@ static const NSString *kFriendLocation = @"friend_location";
     [object setValue:user.accessToken forKey:(NSString *)kCDAccessToken];
     [object setValue:user.friendCount forKey:(NSString *)kCDFriendCount];
     [object setValue:user.location forKey:(NSString *)kCDLocation];
+    [object setValue:user.phoneNumber forKey:(NSString *)kCDPhoneNumber];
 }
 
 #pragma mark - Friend
