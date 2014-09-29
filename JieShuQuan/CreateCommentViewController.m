@@ -92,10 +92,6 @@ static const NSString *kDefaultName = @"匿名用户";
     [self postBookCommentWithContent:_commentTextView.text];
 }
 
-- (IBAction)clearTextView:(id)sender {
-    _commentTextView.text = @"";
-}
-
 - (void)popSelf
 {
     [self.navigationController popViewControllerAnimated:YES];

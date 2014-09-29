@@ -11,7 +11,7 @@
 static const float fontSize = 11;
 //static const float maxLabelWidth = 300;
 static const float fixedLabelHeight = 25;
-static const float yOrigin = 400;
+static const float yOrigin = 420;
 static const float horizontalMargin = 20;
 
 #define LabelBackgroundColor [UIColor colorWithRed:0 green:0 blue:0 alpha:0.8]
