@@ -59,11 +59,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="我的书库" id="YXD-6g-JdC">
                         <barButtonItem key="backBarButtonItem" title=" " id="vQL-tY-OkD"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Btt-pG-Y5s">
-                            <connections>
-                                <action selector="addBook:" destination="n64-PA-4UG" id="M7N-aF-s5u"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="480"/>
@@ -750,6 +745,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <sections>
                             <tableViewSection id="7hM-Xz-Y7H">
@@ -1043,6 +1039,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="vS9-qU-Qdq">
                             <rect key="frame" x="0.0" y="64" width="320" height="183"/>
@@ -1700,6 +1697,7 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <connections>
                             <action selector="backgroundViewTouchDown:" destination="dvp-4c-Bm4" eventType="touchDown" id="YeS-mj-UbY"/>
                         </connections>
@@ -1726,6 +1724,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" rowHeight="57" id="urk-8k-pq1" customClass="BookCommentTableViewCell">
@@ -1760,6 +1759,6 @@
         <image name="user.png" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dZE-Km-CmU"/>
+        <segue reference="UK7-cM-ngP"/>
     </inferredMetricsTieBreakers>
 </document>
