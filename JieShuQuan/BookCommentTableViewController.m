@@ -142,6 +142,8 @@
     Comment *comment = [_CommentCellObject objectAtIndex:indexPath.row];
 
     BookCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:_cellIdentifier];
+    [cell setUserInteractionEnabled:NO];
+    
     [cell setCommentLabelWithText:comment.content];
     [cell setUserNameLabelWithText:comment.user_name];
     [cell setDateLabelWithText:comment.comment_date];
