@@ -168,7 +168,7 @@
             }
             
             for (NSMutableDictionary *friendObject in _allFriendsCellObject) {
-                if ([[friendObject[@"friend"] friendLocation] isEqualToString:[[UserManager currentUser] location]]) {
+                if (![[friendObject[@"friend"] friendLocation] isEqualToString:@""] && [[friendObject[@"friend"] friendLocation] isEqualToString:[[UserManager currentUser] location]]) {
                     [_localFriendsCellObject addObject:friendObject];
                 }
             }
@@ -213,7 +213,7 @@
     [cell.friendAvatarImageView sd_setImageWithURL:avatarURL placeholderImage:[AvatarManager defaulFriendAvatar]];
     [AvatarManager setAvatarStyleForImageView:cell.friendAvatarImageView];
     
-    cell.friendNameLabel.text = friend.friendName;
+    cell.friendNameLabel.text = [friend.friendName isEqualToString:@""] ? friend.friendEmail : friend.friendName;
     cell.locationLabel.text = friend.friendLocation;
 
     // always hide email label, only used when send email, will get email address from the label text

@@ -194,6 +194,7 @@ static const NSString *kFriendLocation = @"friend_location";
     user.accessToken = [storedUser valueForKey:(NSString *)kCDAccessToken];
     user.friendCount = [storedUser valueForKey:(NSString *)kCDFriendCount];
     user.location = [storedUser valueForKey:(NSString *)kCDLocation];
+    user.phoneNumber = [storedUser valueForKey:(NSString *)kCDPhoneNumber];
     return user;
 }
 

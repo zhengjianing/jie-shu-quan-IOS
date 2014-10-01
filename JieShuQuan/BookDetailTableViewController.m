@@ -99,13 +99,10 @@ static const float LINESPACE = 5;
     _authorInfoLabel.text = ([_book.authorInfo isEqualToString:@""]) ? (NSString *)kDefaultLabelText : _book.authorInfo;
 
     _changeAvailabilityButton.layer.cornerRadius = 5.0;
-    _changeAvailabilityButton.layer.borderWidth = 0.5;
     _changeExistenceButton.layer.cornerRadius = 5.0;
-    _changeExistenceButton.layer.borderWidth = 0.5;
     
-    UIColor *buttonColor = [UIColor orangeColor];
-    _changeExistenceButton.layer.borderColor = buttonColor.CGColor;
-    [_changeExistenceButton setTitleColor:buttonColor forState:UIControlStateNormal];
+    _changeExistenceButton.backgroundColor = [UIColor brownColor];
+    [_changeExistenceButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }
 
 - (CGFloat)setLayoutForLabel:(UILabel *)label
@@ -162,18 +159,19 @@ static const float LINESPACE = 5;
 
 - (void)disableAvailabilityArea
 {
-    UIColor *color = [UIColor lightGrayColor];
     [_changeAvailabilityButton setEnabled:NO];
-    _changeAvailabilityButton.layer.borderColor = color.CGColor;
-    [_changeAvailabilityButton setTitleColor:color forState:UIControlStateDisabled];
+    _changeAvailabilityButton.backgroundColor = [UIColor clearColor];
+    _changeAvailabilityButton.layer.borderWidth = 0.5;
+    _changeAvailabilityButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    [_changeAvailabilityButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
 }
 
 - (void)enableAvailabilityArea
 {
-    UIColor *color = [UIColor orangeColor];
     [_changeAvailabilityButton setEnabled:YES];
-    _changeAvailabilityButton.layer.borderColor = color.CGColor;
-    [_changeAvailabilityButton setTitleColor:color forState:UIControlStateNormal];
+    _changeAvailabilityButton.backgroundColor = [UIColor brownColor];
+    _changeAvailabilityButton.layer.borderColor = [UIColor clearColor].CGColor;
+    [_changeAvailabilityButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }
 
 #pragma mark - changed existence and availability

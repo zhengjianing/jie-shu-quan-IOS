@@ -12,7 +12,7 @@
 
 + (UILabel *)createMessageLabelWithMessage:(NSString *)message
 {
-    UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 100, 220, 200.0)];
+    UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 120, 220, 200.0)];
     messageLabel.text = message;
     messageLabel.textColor = [UIColor grayColor];
     messageLabel.textAlignment = UITextAlignmentCenter;

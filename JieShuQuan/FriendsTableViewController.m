@@ -73,6 +73,7 @@
     self.tabBarController.tabBar.hidden = NO;
     if ([UserManager isLogin]) {
         _preLoginView.hidden = YES;
+        _messageLabel.hidden = YES;
         [self loadFriendsFromStore];
         [self showTableViewWithCorrectData];
     } else {
@@ -136,7 +137,7 @@
     
     _allFriends = [[[FriendStore sharedStore] storedFriends] mutableCopy];
     for (Friend *friend in _allFriends) {
-        if ([friend.friendLocation isEqualToString:[[UserManager currentUser] location]] ) {
+        if (![friend.friendLocation isEqualToString:@""] && [friend.friendLocation isEqualToString:[[UserManager currentUser] location]] ) {
             [_localFriends addObject:friend];
         }
     }
@@ -165,7 +166,7 @@
 {
     FriendInfoTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"friendInfoIdentifier"];
     Friend *friend = [_myFriends objectAtIndex:indexPath.row];
-    cell.userNameLabel.text = friend.friendName;
+    cell.userNameLabel.text = [friend.friendName isEqualToString:@""] ? friend.friendEmail : friend.friendName;
     cell.bookCountLabel.text = friend.bookCount;
     cell.locationLabel.text = friend.friendLocation;
     NSURL *avatarURL = [AvatarManager avatarURLForUserId:friend.friendId];

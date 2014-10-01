@@ -34,7 +34,8 @@
 {
     [super viewDidLoad];
     self.tabBarController.tabBar.hidden = YES;
-    self.navigationItem.title = [_friend.friendName stringByAppendingString:@"的书"];
+    NSString *name = [_friend.friendName isEqualToString:@""] ? @"Ta" : _friend.friendName;
+    self.navigationItem.title = [name stringByAppendingString:@"的书"];
     [self setTableFooterView];
     [self configureFriendInfoView];
     [self.tableView addSubview:self.messageLabel];
@@ -79,7 +80,7 @@
     NSURL *avatarURL = [AvatarManager avatarURLForUserId:_friend.friendId];
     [_friendAvatarImageView sd_setImageWithURL:avatarURL placeholderImage:[AvatarManager defaulFriendAvatar]];
     
-    _friendNameLabel.text = _friend.friendName;
+    _friendNameLabel.text = [_friend.friendName isEqualToString:@""] ? _friend.friendEmail : _friend.friendName;
     _friendBookCountLabel.text = _friend.bookCount;
     _friendLocationLabel.text = _friend.friendLocation;
 }
