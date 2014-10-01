@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pdy-qY-d6V">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pdy-qY-d6V">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
     </dependencies>
@@ -1665,26 +1665,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gHy-IV-0nn">
-                                <rect key="frame" x="20" y="83" width="280" height="160"/>
-                                <color key="backgroundColor" red="0.95686274510000002" green="0.94083146959999997" blue="0.90525064529999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="匿名评论" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pMB-by-JoG">
-                                <rect key="frame" x="20" y="274" width="92" height="21"/>
+                                <rect key="frame" x="20" y="309.5" width="92" height="20.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1ne-jv-60n">
-                                <rect key="frame" x="251" y="269" width="51" height="31"/>
+                                <rect key="frame" x="251" y="304" width="51" height="31"/>
                                 <connections>
                                     <action selector="switchAnonymity:" destination="dvp-4c-Bm4" eventType="valueChanged" id="Qbq-0X-2TZ"/>
                                 </connections>
                             </switch>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M6v-Nx-xwH">
+                                <rect key="frame" x="20" y="91" width="280" height="132"/>
+                                <color key="backgroundColor" red="0.95686274510000002" green="0.94083146959999997" blue="0.90525064529999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qrk-tk-GPV">
-                                <rect key="frame" x="98" y="366" width="125" height="36"/>
+                                <rect key="frame" x="20" y="248" width="280" height="36"/>
                                 <color key="backgroundColor" red="0.59999999999999998" green="0.40000000000000002" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <state key="normal" title="提 交">
@@ -1707,7 +1707,7 @@
                     <connections>
                         <outlet property="anonymityLabel" destination="pMB-by-JoG" id="eIK-Xb-3fg"/>
                         <outlet property="anonymitySwitch" destination="1ne-jv-60n" id="gIn-Sd-kvk"/>
-                        <outlet property="commentTextView" destination="gHy-IV-0nn" id="Y0E-kS-lI4"/>
+                        <outlet property="commentTextView" destination="M6v-Nx-xwH" id="hVW-fy-X2H"/>
                         <outlet property="submitButton" destination="qrk-tk-GPV" id="Sn2-83-gKT"/>
                     </connections>
                 </viewController>
