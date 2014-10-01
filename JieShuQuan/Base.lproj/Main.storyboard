@@ -684,6 +684,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="cancelButton" destination="Fuo-TQ-X8p" id="frM-zH-EoK"/>
                         <outlet property="numberTextField" destination="VRH-nG-TpK" id="jMy-fq-e5l"/>
                     </connections>
                 </viewController>

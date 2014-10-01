@@ -13,5 +13,6 @@
 - (BOOL)isValidUserName:(NSString *)userName;
 - (BOOL)isValidEmail:(NSString *)emailAdress;
 - (BOOL)isValidPassword:(NSString *)password;
+- (BOOL)isValidPhoneNumber:(NSString *)phoneNumber;
 
 @end

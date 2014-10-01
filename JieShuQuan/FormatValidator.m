@@ -27,4 +27,11 @@
     return (password.length >= 6 && password.length <= 20);
 }
 
+- (BOOL)isValidPhoneNumber:(NSString *)phoneNumber
+{
+    NSString *validValue = @"[0-9]{11}";
+    NSPredicate *predict = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", validValue];
+    return [predict evaluateWithObject:phoneNumber];
+}
+
 @end

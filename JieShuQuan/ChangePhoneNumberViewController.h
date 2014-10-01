@@ -12,6 +12,7 @@
 
 @property (nonatomic, copy) NSString *numberString;
 @property (strong, nonatomic) IBOutlet UITextField *numberTextField;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
 
 - (IBAction)backgroundViewTouchDown:(id)sender;
 - (IBAction)cancelInput:(id)sender;

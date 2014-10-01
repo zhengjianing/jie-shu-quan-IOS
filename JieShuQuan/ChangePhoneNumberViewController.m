@@ -13,6 +13,7 @@
 #import "User.h"
 #import "CustomActivityIndicator.h"
 #import "CustomAlert.h"
+#import "FormatValidator.h"
 
 @interface ChangePhoneNumberViewController ()
 @property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
@@ -44,9 +45,6 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
-
-
 /*
 #pragma mark - Navigation
 
@@ -58,6 +56,17 @@
 }
 */
 
+
+- (void)disableCancelButton
+{
+    [_cancelButton setEnabled:NO];
+}
+
+- (void)enableCancelButton
+{
+    [_cancelButton setEnabled:YES];
+}
+
 - (IBAction)backgroundViewTouchDown:(id)sender {
     [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
 }
@@ -67,8 +76,16 @@
 }
 
 - (IBAction)saveInput:(id)sender {
-    [_activityIndicator startSynchAnimating];
-    [self changeCurrentUserPhoneNumber];
+    [_numberTextField resignFirstResponder];
+
+    FormatValidator *validator = [[FormatValidator alloc] init];
+    if ([validator isValidPhoneNumber:_numberTextField.text]) {
+        [_activityIndicator startSynchAnimating];
+        [self disableCancelButton];
+        [self changeCurrentUserPhoneNumber];
+    } else {
+        [[CustomAlert sharedAlert] showAlertWithMessage:@"手机号码不合法"];
+    }
 }
 
 - (void)changeCurrentUserPhoneNumber
@@ -78,7 +95,8 @@
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
         [_activityIndicator stopSynchAnimating];
-        
+        [self enableCancelButton];
+
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
             [[CustomAlert sharedAlert] showAlertWithMessage:@"修改手机号码失败"];
             return;
@@ -91,7 +109,6 @@
             [self popSelf];
         }
     }];
-
 }
 
 
