@@ -59,6 +59,7 @@
 
 - (IBAction)saveInput:(id)sender {
     [_activityIndicator startSynchAnimating];
+    [_nameTextField resignFirstResponder];
     [self disableCancelButton];
     [self changeCurrentUserName];
 }
