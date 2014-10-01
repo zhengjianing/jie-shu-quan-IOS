@@ -53,12 +53,12 @@
 
 - (void)disableBackButton
 {
-    [self.navigationItem.backBarButtonItem setEnabled:NO];
+    [self.navigationController.navigationBar setUserInteractionEnabled:NO];
 }
 
 - (void)enableBackButton
 {
-    [self.navigationItem.backBarButtonItem setEnabled:YES];
+    [self.navigationController.navigationBar setUserInteractionEnabled:YES];
 }
 
 - (void)popToControllerWithCountDownIndex:(NSInteger)index
