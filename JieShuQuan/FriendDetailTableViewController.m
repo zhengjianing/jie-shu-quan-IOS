@@ -41,8 +41,7 @@
     [self.tableView addSubview:self.messageLabel];
     _messageLabel.hidden = YES;
     _activityIndicator = [CustomActivityIndicator sharedActivityIndicator];
-    [_activityIndicator startAsynchAnimating];
-    
+
     [self loadBooksForFriend];
     [self.tableView reloadData];
 }
@@ -50,6 +49,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [MobClick beginLogPageView:@"friendDetailPage"];
+    [_activityIndicator startAsynchAnimating];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
