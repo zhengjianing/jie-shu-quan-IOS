@@ -103,7 +103,6 @@
     [_activityIndicator stopAnimating];
     self.hidden = YES;
     
-    [self setFrame:SCREENRECT];
     [_freezeLayer setFrame:SCREENRECT];
     _freezeLayer.layer.cornerRadius = 0;
     _freezeLayer.alpha = 0.3;
