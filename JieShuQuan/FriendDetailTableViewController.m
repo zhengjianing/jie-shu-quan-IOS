@@ -56,6 +56,7 @@
 {
     [super viewWillDisappear:animated];
     [MobClick endLogPageView:@"friendDetailPage"];
+    [_activityIndicator stopAsynchAnimating];
 }
 
 - (UILabel *)messageLabel

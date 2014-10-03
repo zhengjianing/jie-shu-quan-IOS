@@ -87,6 +87,7 @@
 {
     [super viewWillDisappear:animated];
     [MobClick endLogPageView:@"friendsPage"];
+    [_activityIndicator stopAsynchAnimating];
 }
 
 - (void)setTableFooterView

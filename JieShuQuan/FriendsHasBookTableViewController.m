@@ -58,6 +58,7 @@
 {
     [super viewWillDisappear:animated];
     [MobClick endLogPageView:@"whoHasBookPage"];
+    [_activityIndicator stopSynchAnimating];
 }
 
 - (void)showTableView

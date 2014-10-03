@@ -84,6 +84,7 @@ static const NSString *kStatusNO = @"暂时不可借";
 {
     [super viewWillDisappear:animated];
     [MobClick endLogPageView:@"myBooksPage"];
+    [_activityIndicator stopAsynchAnimating];
 }
 
 - (void)showTableView

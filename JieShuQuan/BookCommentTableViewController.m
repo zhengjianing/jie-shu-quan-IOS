@@ -61,6 +61,7 @@
 {
     [super viewWillDisappear:animated];
     [MobClick endLogPageView:@"commentsPage"];
+    [_activityIndicator stopAsynchAnimating];
 }
 
 #pragma mark - initializing tableView accessories

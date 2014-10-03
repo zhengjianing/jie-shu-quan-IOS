@@ -64,6 +64,7 @@ static const NSString *kDefaultName = @"匿名用户";
 {
     [super viewWillDisappear:animated];
     [MobClick endLogPageView:@"createCommentPage"];
+    [_activityIndicator stopSynchAnimating];
 }
 
 - (void)setAnonymityLabelAndSwichWithAnonymityState:(BOOL)isOn
