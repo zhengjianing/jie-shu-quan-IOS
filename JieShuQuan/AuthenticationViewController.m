@@ -77,6 +77,8 @@
         return;
     }
     [rootViewController.tabBarController setSelectedViewController:[self.tabBarController.viewControllers objectAtIndex:3]];
+    // prevent that the register page still exist
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end
