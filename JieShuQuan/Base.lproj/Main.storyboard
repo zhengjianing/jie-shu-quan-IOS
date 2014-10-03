@@ -1717,7 +1717,7 @@
             </objects>
             <point key="canvasLocation" x="1387" y="-231"/>
         </scene>
-        <!--Book Comment Table View Controller - 大家的评论-->
+        <!--Book Comment Table View Controller-->
         <scene sceneID="dur-jC-PIs">
             <objects>
                 <tableViewController id="hJp-X1-xdq" customClass="BookCommentTableViewController" sceneMemberID="viewController">
@@ -1727,22 +1727,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="XjS-qx-gn3">
-                            <rect key="frame" x="0.0" y="64" width="320" height="51"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="7xS-Uz-M2H">
-                                    <rect key="frame" x="14" y="12" width="293" height="29"/>
-                                    <color key="backgroundColor" red="0.95686274510000002" green="0.94083146959999997" blue="0.90525064529999999" alpha="1" colorSpace="calibratedRGB"/>
-                                    <segments>
-                                        <segment title="所有" width="145"/>
-                                        <segment title="同事" width="145"/>
-                                    </segments>
-                                    <color key="tintColor" red="0.60000002379999995" green="0.40000000600000002" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
-                                </segmentedControl>
-                            </subviews>
-                            <color key="backgroundColor" red="0.95686274510000002" green="0.94083146959999997" blue="0.90525064529999999" alpha="1" colorSpace="calibratedRGB"/>
-                        </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" rowHeight="57" id="urk-8k-pq1" customClass="BookCommentTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -1756,7 +1740,7 @@
                             <outlet property="delegate" destination="hJp-X1-xdq" id="ccp-5v-mVK"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="大家的评论" id="jmv-aq-cVx"/>
+                    <navigationItem key="navigationItem" id="jmv-aq-cVx"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="480"/>
                 </tableViewController>
