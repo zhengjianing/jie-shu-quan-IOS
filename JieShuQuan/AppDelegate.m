@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "MobClick.h"
+#import <ShareSDK/ShareSDK.h>
+#import "ShareSDK/Extend/WeChatSDK/WXApi.h"
 
 @implementation AppDelegate
             
@@ -18,6 +20,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [MobClick startWithAppkey:@"5427f7a4fd98c566c80090e6" reportPolicy:BATCH channelId:nil];
+    
+    [ShareSDK registerApp:@"3456b138a03c"];
+    
+    //添加微信应用 注册网址 http://open.weixin.qq.com
+    [ShareSDK connectWeChatWithAppId:@"wx4868b35061f87885"
+                           wechatCls:[WXApi class]];
     
 //   how to get test device id
     

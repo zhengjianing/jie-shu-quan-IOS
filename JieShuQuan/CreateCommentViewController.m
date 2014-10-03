@@ -14,6 +14,7 @@
 #import "CustomActivityIndicator.h"
 #import "CustomAlert.h"
 #import "MobClick.h"
+#import <ShareSDK/ShareSDK.h>
 
 static const NSString *kDefaultName = @"匿名用户";
 
@@ -23,7 +24,6 @@ static const NSString *kDefaultName = @"匿名用户";
 
 @property (weak, nonatomic) IBOutlet UITextView *commentTextView;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
-@property (weak, nonatomic) IBOutlet UIButton *clearButton;
 
 @property (strong, nonatomic) IBOutlet UILabel *anonymityLabel;
 @property (strong, nonatomic) IBOutlet UISwitch *anonymitySwitch;
@@ -43,7 +43,6 @@ static const NSString *kDefaultName = @"匿名用户";
     _commentTextView.layer.borderWidth = 0.5;
     _commentTextView.layer.cornerRadius = 5.0;
     
-    _clearButton.layer.cornerRadius = 5.0;
     _submitButton.layer.cornerRadius = 5.0;
     
     _activityIndicator = [CustomActivityIndicator sharedActivityIndicator];
@@ -115,10 +114,47 @@ static const NSString *kDefaultName = @"匿名用户";
         
         if (data) {
             [[CustomAlert sharedAlert] showAlertWithMessage:@"发表评论成功"];
-            _commentTextView.text = @"";
-            [self popSelf];
+            [self showWeiXinSharing];   // TBD...
         }
     }];
+}
+
+// Wei Xin App stuff -- TBD...
+- (void)showWeiXinSharing
+{
+//     NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"ShareSDK"  ofType:@"jpg"];
+//     
+//     //构造分享内容
+//     id<ISSContent> publishContent = [ShareSDK content:@"分享内容"
+//     defaultContent:@"默认分享内容，没内容时显示"
+//     image:[ShareSDK imageWithPath:imagePath]
+//     title:@"ShareSDK"
+//     url:@"http://www.sharesdk.cn"
+//     description:@"这是一条测试信息"
+//     mediaType:SSPublishContentMediaTypeNews];
+//     
+//     [ShareSDK showShareActionSheet:nil
+//     shareList:nil
+//     content:publishContent
+//     statusBarTips:YES
+//     authOptions:nil
+//     shareOptions: nil
+//     result:^(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
+//     if (state == SSResponseStateSuccess)
+//     {
+//     NSLog(@"分享成功");
+//     
+//     _commentTextView.text = @"";
+//     [self popSelf];
+//     }
+//     else if (state == SSResponseStateFail)
+//     {
+//     NSLog(@"分享失败,错误码:%ld,错误描述:%@", [error errorCode], [error errorDescription]);
+//     
+//     _commentTextView.text = @"";
+//     [self popSelf];
+//     }
+//     }];
 }
 
 - (IBAction)switchAnonymity:(id)sender {
