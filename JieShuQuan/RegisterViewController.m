@@ -11,6 +11,7 @@
 #import "FormatValidator.h"
 #import "RequestBuilder.h"
 #import "CustomAlert.h"
+#import "CustomActivityIndicator.h"
 
 @implementation RegisterViewController
 
@@ -61,7 +62,7 @@
         return;
     }
     
-    [self.activityIndicator startSynchAnimating];
+    [[CustomActivityIndicator sharedActivityIndicator] startSynchAnimating];
     [self startingRegisterWithEmail:_email.text password:_password.text];
 }
 

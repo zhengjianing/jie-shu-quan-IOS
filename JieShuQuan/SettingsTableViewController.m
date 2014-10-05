@@ -29,13 +29,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *userLocation;
 @property (strong, nonatomic) IBOutlet UILabel *userPhoneNumber;
-
 @property (strong, nonatomic) UIImagePickerController *imagePicker;
 @property (strong, nonatomic) UIImage *avatar;
 @property (strong, nonatomic) User *currentUser;
 @property (strong, nonatomic) NSURL *avatarURL;
-
-@property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
 
 @end
 
@@ -45,8 +42,6 @@
 {
     [super viewDidLoad];
     [self setTableFooterView];
-    _activityIndicator = [CustomActivityIndicator sharedActivityIndicator];
-
     [AvatarManager setAvatarStyleForImageView:_userAvatarImageView];
 }
 
@@ -195,7 +190,7 @@
     
     [self saveAvatarToSandbox];
     [self dismissViewControllerAnimated:YES completion:nil];
-    [_activityIndicator startSynchAnimating];
+    [[CustomActivityIndicator sharedActivityIndicator] startSynchAnimating];
     [self.navigationController.navigationBar setUserInteractionEnabled:NO];
     
     [self startingUploadAvatar];
@@ -205,7 +200,7 @@
 
 - (void)requestDidReceiveData:(ASIFormDataRequest *)request
 {
-    [_activityIndicator stopSynchAnimating];
+    [[CustomActivityIndicator sharedActivityIndicator] stopSynchAnimating];
     [self.navigationController.navigationBar setUserInteractionEnabled:YES];
 
     if ([request responseStatusCode] != 200) {
@@ -218,7 +213,7 @@
 
 - (void)requestDidFail:(ASIHTTPRequest *)request
 {
-    [_activityIndicator stopSynchAnimating];
+    [[CustomActivityIndicator sharedActivityIndicator] stopSynchAnimating];
     [self.navigationController.navigationBar setUserInteractionEnabled:YES];
     [[CustomAlert sharedAlert] showAlertWithMessage:@"上传头像失败"];
 }

@@ -37,7 +37,6 @@ static const NSString *kStatusNO = @"暂时不可借";
 @property (assign, nonatomic) NSInteger bookCount;
 
 @property (strong, nonatomic) UIRefreshControl *refresh;
-@property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
 @property (strong, nonatomic) UILabel *messageLabel;
 
 @property (assign, nonatomic) BOOL isFirstLaunch;
@@ -58,13 +57,12 @@ static const NSString *kStatusNO = @"暂时不可借";
     [self.tableView addSubview:self.messageLabel];
     _messageLabel.hidden = YES;
     [self.tableView addSubview:self.preLoginView];
-    _activityIndicator = [CustomActivityIndicator sharedActivityIndicator];
 
     [self setTableFooterView];
     
     // Since viewDidLoad will only be called at launching, so refresh books at launching
     if ([UserManager isLogin]) {
-        [_activityIndicator startAsynchAnimating];
+        [[CustomActivityIndicator sharedActivityIndicator] startAsynchAnimating];
         [self fetchBooksFromServer];
     }
 }
@@ -82,7 +80,7 @@ static const NSString *kStatusNO = @"暂时不可借";
 {
     [super viewWillDisappear:animated];
     [MobClick endLogPageView:@"myBooksPage"];
-    [_activityIndicator stopAsynchAnimating];
+    [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
 }
 
 - (void)showTableView
@@ -198,7 +196,7 @@ static const NSString *kStatusNO = @"暂时不可借";
 
 - (void)deleteBook:(Book *)book atIndexPath:(NSIndexPath *)indexPath
 {
-    [_activityIndicator startAsynchAnimating];
+    [[CustomActivityIndicator sharedActivityIndicator] startAsynchAnimating];
 
     NSMutableURLRequest *deleteBookRequest = [RequestBuilder buildDeleteBookRequestWithBookId:book.bookId userId:[[UserManager currentUser] userId] accessToke:[[UserManager currentUser] accessToken]];
     
@@ -216,7 +214,7 @@ static const NSString *kStatusNO = @"暂时不可借";
             [[UserStore sharedStore] decreseBookCountForUser:[[UserManager currentUser] userId]];
         }
         
-        [_activityIndicator stopAsynchAnimating];
+        [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
         [self.tableView setEditing:NO];
     }];
 
@@ -228,7 +226,7 @@ static const NSString *kStatusNO = @"暂时不可借";
 {
     NSMutableURLRequest *request = [RequestBuilder buildFetchBooksRequestForUserId:[[UserManager currentUser] userId]];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        [_activityIndicator stopAsynchAnimating];
+        [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
         [_refresh endRefreshing];
 
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {

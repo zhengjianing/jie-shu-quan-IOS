@@ -27,7 +27,6 @@
 
 @property (strong, nonatomic) PreLoginView *preLoginView;
 @property (strong, nonatomic) LoginViewController *loginController;
-@property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
 
 @end
 
@@ -40,7 +39,6 @@
     
     [self configureBookInfoView];
     [self setTableFooterView];
-    _activityIndicator = [CustomActivityIndicator sharedActivityIndicator];
     [self.tableView addSubview:self.messageLabel];
     [self.tableView addSubview:self.preLoginView];
 
@@ -58,14 +56,14 @@
 {
     [super viewWillDisappear:animated];
     [MobClick endLogPageView:@"whoHasBookPage"];
-    [_activityIndicator stopSynchAnimating];
+    [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
 }
 
 - (void)showTableView
 {
     if ([UserManager isLogin]) {
         _preLoginView.hidden = YES;
-        [_activityIndicator startAsynchAnimating];
+        [[CustomActivityIndicator sharedActivityIndicator] startAsynchAnimating];
         _messageLabel.hidden = YES;
         [self loadFriendsWithBook];
         [self.tableView reloadData];
@@ -138,7 +136,7 @@
 {
     NSMutableURLRequest *request = [RequestBuilder buildFetchFriendsRequestForUserId:[[UserManager currentUser] userId] bookId:_book.bookId];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        [_activityIndicator stopAsynchAnimating];
+        [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
 
         if ([(NSHTTPURLResponse *)response statusCode] == 404) {
             //没有找到同事

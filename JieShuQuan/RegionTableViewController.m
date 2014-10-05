@@ -13,6 +13,7 @@
 #import "User.h"
 #import "SettingsTableViewController.h"
 #import "CustomAlert.h"
+#import "CustomActivityIndicator.h"
 
 @interface RegionTableViewController ()
 
@@ -25,7 +26,6 @@
     [super viewDidLoad];
     [self setTableFooterView];
     _currentUser = [UserManager currentUser];
-    _activityIndicator = [CustomActivityIndicator sharedActivityIndicator];
     
     [self setRegionData];
 }
@@ -74,7 +74,7 @@
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
-        [_activityIndicator stopSynchAnimating];
+        [[CustomActivityIndicator sharedActivityIndicator] stopSynchAnimating];
         [self enableBackButton];
         
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {

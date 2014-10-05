@@ -13,7 +13,7 @@
 @property (copy, nonatomic) NSString *name;
 @property (copy, nonatomic) NSString *authors;
 @property (copy, nonatomic) NSString *imageHref;
-@property (copy, nonatomic) NSString *description;
+@property (copy, nonatomic) NSString *bookDescription;
 @property (copy, nonatomic) NSString *authorInfo;
 @property (copy, nonatomic) NSString *price;
 @property (copy, nonatomic) NSString *publisher;

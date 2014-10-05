@@ -22,12 +22,6 @@
 #import "CustomAlert.h"
 #import "MobClick.h"
 
-@interface FriendDetailTableViewController ()
-
-@property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
-
-@end
-
 @implementation FriendDetailTableViewController
 
 - (void)viewDidLoad
@@ -40,23 +34,20 @@
     [self configureFriendInfoView];
     [self.tableView addSubview:self.messageLabel];
     _messageLabel.hidden = YES;
-    _activityIndicator = [CustomActivityIndicator sharedActivityIndicator];
-
-    [self loadBooksForFriend];
     [self.tableView reloadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self loadBooksForFriend];
     [MobClick beginLogPageView:@"friendDetailPage"];
-    [_activityIndicator startAsynchAnimating];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [MobClick endLogPageView:@"friendDetailPage"];
-    [_activityIndicator stopAsynchAnimating];
+    [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
 }
 
 - (UILabel *)messageLabel
@@ -96,10 +87,11 @@
 
 - (void)fetchBooksForFriendFromServer
 {
+    [[CustomActivityIndicator sharedActivityIndicator] startAsynchAnimating];
     NSMutableURLRequest *request = [RequestBuilder buildFetchBooksRequestForUserId:_friend.friendId];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
-        [_activityIndicator stopAsynchAnimating];
+        [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
 
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
             [[CustomAlert sharedAlert] showAlertWithMessage:@"更新失败"];

@@ -8,10 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "CustomActivityIndicator.h"
 
 @interface AuthenticationViewController : UIViewController <UIAlertViewDelegate>
-
-@property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
 
 @end

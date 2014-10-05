@@ -17,10 +17,11 @@
 #import "CustomActivityIndicator.h"
 #import "CustomAlert.h"
 #import "MobClick.h"
+#import "CustomActivityIndicator.h"
+#import "ZBarSDK.h"
 
 @interface SearchTableViewController ()
 
-@property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
 - (void)searchByDouBanWithUrl:(NSString *)searchUrl;
 
 @end
@@ -32,9 +33,7 @@
     [super viewDidLoad];
     
     [self registerNotifications];
-    [self setTableFooterView];
-    _activityIndicator = [CustomActivityIndicator sharedActivityIndicator];
-    
+    [self setTableFooterView];    
     [self setExtraCellLineHidden:self.searchDisplayController.searchResultsTableView];
 }
 
@@ -168,64 +167,64 @@
 {
     [MobClick event:@"scan"];
     
-//    ZBarReaderViewController *reader = [ZBarReaderViewController new];
-//    reader.readerDelegate = self;
-//    reader.supportedOrientationsMask = ZBarOrientationMaskAll;
-//    
-//    ZBarImageScanner *scanner = reader.scanner;
-//    // EXAMPLE: disable rarely used I2/5 to improve performance
-//    [scanner setSymbology: ZBAR_I25 config: ZBAR_CFG_ENABLE to: 0];
-//    
-//    [self presentViewController:reader animated:YES completion:nil];
+    ZBarReaderViewController *reader = [ZBarReaderViewController new];
+    reader.readerDelegate = self;
+    reader.supportedOrientationsMask = ZBarOrientationMaskAll;
+    
+    ZBarImageScanner *scanner = reader.scanner;
+    // EXAMPLE: disable rarely used I2/5 to improve performance
+    [scanner setSymbology: ZBAR_I25 config: ZBAR_CFG_ENABLE to: 0];
+    
+    [self presentViewController:reader animated:YES completion:nil];
 }
 
-//- (void) imagePickerController: (UIImagePickerController*) reader didFinishPickingMediaWithInfo: (NSDictionary*) info
-//{
-//    id<NSFastEnumeration> results = [info objectForKey: ZBarReaderControllerResults];
-//    ZBarSymbol *symbol = nil;
-//    for(symbol in results) {
-//        // EXAMPLE: just grab the first barcode
-//        break;
-//    }
-//    
-//    NSString *isbnCode = symbol.data;
-//    if (isbnCode) {
-////        [self startFetchingBookDetailFromDoubanWithIsbnCode:isbnCode];
-//            [_activityIndicator startAnimating];
-//    } else {
-//        [[CustomAlert sharedAlert] showAlertWithMessage:@"获取图书信息失败"];
+- (void) imagePickerController: (UIImagePickerController*) reader didFinishPickingMediaWithInfo: (NSDictionary*) info
+{
+    id<NSFastEnumeration> results = [info objectForKey: ZBarReaderControllerResults];
+    ZBarSymbol *symbol = nil;
+    for(symbol in results) {
+        // EXAMPLE: just grab the first barcode
+        break;
+    }
+    
+    NSString *isbnCode = symbol.data;
+    if (isbnCode) {
+        [self startFetchingBookDetailFromDoubanWithIsbnCode:isbnCode];
+        [[CustomActivityIndicator sharedActivityIndicator] startAsynchAnimating];
+    } else {
+        [[CustomAlert sharedAlert] showAlertWithMessage:@"获取图书信息失败"];
 
-//    }
-//    
-//    [reader dismissViewControllerAnimated:YES completion:nil];
-//}
+    }
+    
+    [reader dismissViewControllerAnimated:YES completion:nil];
+}
 
-//- (void)startFetchingBookDetailFromDoubanWithIsbnCode:(NSString *)isbnCode
-//{
-//    NSString *isbnUrlString = [NSString stringWithFormat:@"%@?apikey=%@", [kSearchIsbnCode stringByAppendingString:isbnCode], kAPIKey];
-//    NSString* encodedUrl = [isbnUrlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//    
-//    [JsonDataFetcher dataFromURL:[NSURL URLWithString:encodedUrl] withCompletion:^(NSData *jsonData) {
-//        [_activityIndicator stopAnimating];
-//
-//        id object = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
-//        if (object) {
-//            Book *book = [DataConverter bookFromDoubanBookObject:object];
-//            [self showBookDetailViewControllerForBook:book];
-//        } else {
-//        [[CustomAlert sharedAlert] showAlertWithMessage:@"获取图书信息失败"];
+- (void)startFetchingBookDetailFromDoubanWithIsbnCode:(NSString *)isbnCode
+{
+    NSString *isbnUrlString = [NSString stringWithFormat:@"%@?apikey=%@", [kSearchIsbnCode stringByAppendingString:isbnCode], kAPIKey];
+    NSString* encodedUrl = [isbnUrlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    [JsonDataFetcher dataFromURL:[NSURL URLWithString:encodedUrl] withCompletion:^(NSData *jsonData) {
+        [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
 
-//        }
-//    }];
-//}
-//
-//- (void)showBookDetailViewControllerForBook:(Book *)book
-//{
-//    UIStoryboard *mainStoryboard = self.storyboard;
-//    BookDetailTableViewController *bookDetailTableViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"BookDetailViewController"];
-//
-//    [bookDetailTableViewController setBook:book];
-//    [self.navigationController pushViewController:bookDetailTableViewController animated:YES];
-//}
+        id object = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
+        if (object) {
+            Book *book = [DataConverter bookFromDoubanBookObject:object];
+            [self showBookDetailViewControllerForBook:book];
+        } else {
+        [[CustomAlert sharedAlert] showAlertWithMessage:@"获取图书信息失败"];
+
+        }
+    }];
+}
+
+- (void)showBookDetailViewControllerForBook:(Book *)book
+{
+    UIStoryboard *mainStoryboard = self.storyboard;
+    BookDetailTableViewController *bookDetailTableViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"BookDetailViewController"];
+
+    [bookDetailTableViewController setBook:book];
+    [self.navigationController pushViewController:bookDetailTableViewController animated:YES];
+}
 
 @end

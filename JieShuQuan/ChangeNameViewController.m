@@ -15,7 +15,6 @@
 #import "CustomAlert.h"
 
 @interface ChangeNameViewController ()
-@property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
 @property (nonatomic, strong) User *currentUser;
 @end
 
@@ -25,7 +24,6 @@
 {
     [super viewDidLoad];
     _currentUser = [UserManager currentUser];
-    _activityIndicator = [CustomActivityIndicator sharedActivityIndicator];
     _nameTextField.text = _nameString;
     _nameTextField.delegate = self;
     [_nameTextField becomeFirstResponder];
@@ -58,7 +56,7 @@
 }
 
 - (IBAction)saveInput:(id)sender {
-    [_activityIndicator startSynchAnimating];
+    [[CustomActivityIndicator sharedActivityIndicator] startSynchAnimating];
     [_nameTextField resignFirstResponder];
     [self disableCancelButton];
     [self changeCurrentUserName];
@@ -74,7 +72,7 @@
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
-        [_activityIndicator stopSynchAnimating];
+        [[CustomActivityIndicator sharedActivityIndicator] stopSynchAnimating];
         [self enableCancelButton];
 
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {

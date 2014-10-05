@@ -8,6 +8,7 @@
 
 #import "CityTableViewController.h"
 #import "SettingsTableViewController.h"
+#import "CustomActivityIndicator.h"
 
 @implementation CityTableViewController
 
@@ -39,12 +40,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.activityIndicator startSynchAnimating];
+    [[CustomActivityIndicator sharedActivityIndicator] startSynchAnimating];
     [self disableBackButton];
     NSString *city = [_cityArray objectAtIndex:indexPath.row];
     self.changedLocation = [NSString stringWithFormat:@"%@，%@", _province, city];
     if ([self.changedLocation isEqualToString:self.oldLocation]) {
-        [self.activityIndicator stopSynchAnimating];
+        [[CustomActivityIndicator sharedActivityIndicator] stopSynchAnimating];
         [self popToControllerWithCountDownIndex:3];
         return;
     }

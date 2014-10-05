@@ -16,7 +16,6 @@
 #import "FormatValidator.h"
 
 @interface ChangePhoneNumberViewController ()
-@property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
 @property (nonatomic, strong) User *currentUser;
 @end
 
@@ -26,7 +25,6 @@
 {
     [super viewDidLoad];
     _currentUser = [UserManager currentUser];
-    _activityIndicator = [CustomActivityIndicator sharedActivityIndicator];
     _numberTextField.text = _numberString;
     _numberTextField.delegate = self;
     [_numberTextField becomeFirstResponder];
@@ -44,18 +42,6 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 
 - (void)disableCancelButton
 {
@@ -80,7 +66,7 @@
 
     FormatValidator *validator = [[FormatValidator alloc] init];
     if ([validator isValidPhoneNumber:_numberTextField.text]) {
-        [_activityIndicator startSynchAnimating];
+        [[CustomActivityIndicator sharedActivityIndicator] startSynchAnimating];
         [self disableCancelButton];
         [self changeCurrentUserPhoneNumber];
     } else {
@@ -94,7 +80,7 @@
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
-        [_activityIndicator stopSynchAnimating];
+        [[CustomActivityIndicator sharedActivityIndicator] stopSynchAnimating];
         [self enableCancelButton];
 
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
@@ -110,26 +96,5 @@
         }
     }];
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @end

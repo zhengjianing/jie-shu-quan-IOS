@@ -11,6 +11,7 @@
 #import "FormatValidator.h"
 #import "RequestBuilder.h"
 #import "CustomAlert.h"
+#import "CustomActivityIndicator.h"
 
 @implementation LoginViewController
 
@@ -55,7 +56,7 @@
         return;
     }
     
-    [self.activityIndicator startSynchAnimating];
+    [[CustomActivityIndicator sharedActivityIndicator] startSynchAnimating];
     [self startingLoginWithEmail:_email.text password:_password.text];
 }
 

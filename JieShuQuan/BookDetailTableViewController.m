@@ -44,7 +44,6 @@ static const float LINESPACE = 5;
     UIActionSheet *deleteSheet;
     UIActionSheet *addSheet;
 }
-@property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
 @property (nonatomic, strong) CustomAlert *alert;
 
 @end
@@ -55,7 +54,6 @@ static const float LINESPACE = 5;
 {
     [super viewDidLoad];
     self.tabBarController.tabBar.hidden = YES;
-    _activityIndicator = [CustomActivityIndicator sharedActivityIndicator];
     _alert = [CustomAlert sharedAlert];
 }
 
@@ -95,7 +93,7 @@ static const float LINESPACE = 5;
     _publisherLabel.text = _book.publisher;
     _publishDateLabel.text = _book.publishDate;
     _priceLabel.text = _book.price;
-    _descriptionLabel.text = ([_book.description isEqualToString:@""]) ? (NSString *)kDefaultLabelText : _book.description;
+    _descriptionLabel.text = ([_book.bookDescription isEqualToString:@""]) ? (NSString *)kDefaultLabelText : _book.bookDescription;
     _authorInfoLabel.text = ([_book.authorInfo isEqualToString:@""]) ? (NSString *)kDefaultLabelText : _book.authorInfo;
 
     _changeAvailabilityButton.layer.cornerRadius = 5.0;
@@ -214,14 +212,14 @@ static const float LINESPACE = 5;
 - (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
-        [_activityIndicator startSynchAnimating];
+        [[CustomActivityIndicator sharedActivityIndicator] startSynchAnimating];
     }
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) {
-        [_activityIndicator stopSynchAnimating];
+        [[CustomActivityIndicator sharedActivityIndicator] stopSynchAnimating];
         return;
     }
     
@@ -271,7 +269,7 @@ static const float LINESPACE = 5;
     NSMutableURLRequest *addBookRequest = [RequestBuilder buildAddBookRequestWithBook:book available:NO userId:userId accessToke:accessToke];
     NSData *data = [self dataFromSynchronousRequest:addBookRequest];
     
-    [_activityIndicator stopSynchAnimating];
+    [[CustomActivityIndicator sharedActivityIndicator] stopSynchAnimating];
     if (data) {
         _existenceStatus = !_existenceStatus;
         
@@ -287,7 +285,7 @@ static const float LINESPACE = 5;
 {
     NSMutableURLRequest *deleteBookRequest = [RequestBuilder buildDeleteBookRequestWithBookId:bookId userId:userId accessToke:accessToken];
     NSData *data = [self dataFromSynchronousRequest:deleteBookRequest];
-    [_activityIndicator stopSynchAnimating];
+    [[CustomActivityIndicator sharedActivityIndicator] stopSynchAnimating];
     
     if (data) {
         _existenceStatus = !_existenceStatus;
@@ -305,7 +303,7 @@ static const float LINESPACE = 5;
 {
     NSMutableURLRequest *changeAvailabilityRequest = [RequestBuilder buildChangeBookAvailabilityRequestWithBookId:bookId available:availabilityState userId:userId accessToken:accessToken];
     NSData *data = [self dataFromSynchronousRequest:changeAvailabilityRequest];
-    [_activityIndicator stopSynchAnimating];
+    [[CustomActivityIndicator sharedActivityIndicator] stopSynchAnimating];
     
     if (data) {
         _book.availability = !_book.availability;

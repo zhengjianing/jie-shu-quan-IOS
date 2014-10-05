@@ -24,7 +24,6 @@
 @interface BookCommentTableViewController ()
 
 @property (strong, nonatomic) NSString *cellIdentifier;
-@property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
 
 @end
 
@@ -46,8 +45,7 @@
     [self.tableView addSubview:self.messageLabel];
     _messageLabel.hidden = YES;
 
-    _activityIndicator = [CustomActivityIndicator sharedActivityIndicator];
-    [_activityIndicator startAsynchAnimating];
+    [[CustomActivityIndicator sharedActivityIndicator] startAsynchAnimating];
     
     [self loadAllBookCommentsFromServer];
 }
@@ -61,7 +59,7 @@
 {
     [super viewWillDisappear:animated];
     [MobClick endLogPageView:@"commentsPage"];
-    [_activityIndicator stopAsynchAnimating];
+    [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
 }
 
 #pragma mark - initializing tableView accessories
@@ -93,7 +91,7 @@
 {
     NSMutableURLRequest *request = [RequestBuilder buildGetBookCommentsRequestWithBookId:_book.bookId];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        [_activityIndicator stopAsynchAnimating];
+        [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
         
         if ([(NSHTTPURLResponse *)response statusCode] == 404) {
             //没有找到评论

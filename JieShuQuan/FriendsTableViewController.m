@@ -28,7 +28,6 @@
 @interface FriendsTableViewController ()
 
 @property (strong, nonatomic) PreLoginView *preLoginView;
-@property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
 @property (strong, nonatomic) UILabel *messageLabel;
 @property (strong, nonatomic) NSMutableArray *allFriends;
 @property (strong, nonatomic) NSMutableArray *localFriends;
@@ -51,14 +50,13 @@
     
     [self.tableView addSubview:self.messageLabel];
     [self.tableView addSubview:self.preLoginView];
-    _activityIndicator = [CustomActivityIndicator sharedActivityIndicator];
     _messageLabel.hidden = YES;
 
     [self addRefreshControll];
     [self setTableFooterView];
     
     if ([UserManager isLogin]) {
-        [_activityIndicator startAsynchAnimating];
+        [[CustomActivityIndicator sharedActivityIndicator] startAsynchAnimating];
         [self fetchFriendsFromServer];
     }
     
@@ -87,7 +85,7 @@
 {
     [super viewWillDisappear:animated];
     [MobClick endLogPageView:@"friendsPage"];
-    [_activityIndicator stopAsynchAnimating];
+    [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
 }
 
 - (void)setTableFooterView
@@ -184,7 +182,7 @@
     NSMutableURLRequest *request = [RequestBuilder buildFetchFriendsRequestForUserId:[[UserManager currentUser] userId]];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         [_refresh endRefreshing];
-        [_activityIndicator stopAsynchAnimating];
+        [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
 
         if ([(NSHTTPURLResponse *)response statusCode] == 404) {
             _messageLabel.hidden = NO;

@@ -20,11 +20,8 @@ static const NSString *kDefaultName = @"匿名用户";
 
 @interface CreateCommentViewController ()
 
-@property (nonatomic, strong) CustomActivityIndicator *activityIndicator;
-
 @property (weak, nonatomic) IBOutlet UITextView *commentTextView;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
-
 @property (strong, nonatomic) IBOutlet UILabel *anonymityLabel;
 @property (strong, nonatomic) IBOutlet UISwitch *anonymitySwitch;
 
@@ -45,7 +42,6 @@ static const NSString *kDefaultName = @"匿名用户";
     
     _submitButton.layer.cornerRadius = 5.0;
     
-    _activityIndicator = [CustomActivityIndicator sharedActivityIndicator];
 
     if (![UserManager isLogin]) {
         [self setAnonymityLabelAndSwichWithAnonymityState:YES];
@@ -63,7 +59,7 @@ static const NSString *kDefaultName = @"匿名用户";
 {
     [super viewWillDisappear:animated];
     [MobClick endLogPageView:@"createCommentPage"];
-    [_activityIndicator stopSynchAnimating];
+    [[CustomActivityIndicator sharedActivityIndicator] stopSynchAnimating];
 }
 
 - (void)setAnonymityLabelAndSwichWithAnonymityState:(BOOL)isOn
@@ -88,7 +84,7 @@ static const NSString *kDefaultName = @"匿名用户";
         [[CustomAlert sharedAlert] showAlertWithMessage:@"评论内容不能为空"];
         return;
     }
-    [_activityIndicator startSynchAnimating];
+    [[CustomActivityIndicator sharedActivityIndicator] startSynchAnimating];
     [self postBookCommentWithContent:_commentTextView.text];
 }
 
@@ -105,7 +101,7 @@ static const NSString *kDefaultName = @"匿名用户";
     
     [NSURLConnection sendAsynchronousRequest:postRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
-        [_activityIndicator stopSynchAnimating];
+        [[CustomActivityIndicator sharedActivityIndicator] stopSynchAnimating];
 
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
             [[CustomAlert sharedAlert] showAlertWithMessage:@"发表评论失败"];

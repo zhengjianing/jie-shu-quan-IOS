@@ -8,6 +8,7 @@
 
 #import "ProvinceTableViewController.h"
 #import "CityTableViewController.h"
+#import "CustomActivityIndicator.h"
 
 @implementation ProvinceTableViewController
 
@@ -43,11 +44,11 @@
 
 - (void)setMunicipalityForLocationWithIndexPath:(NSIndexPath *)indexPath
 {
-    [self.activityIndicator startSynchAnimating];
+    [[CustomActivityIndicator sharedActivityIndicator] startSynchAnimating];
     [self disableBackButton];
     self.changedLocation = [self.provinceArray objectAtIndex:indexPath.row];
     if ([self.changedLocation isEqualToString:self.oldLocation]) {
-        [self.activityIndicator stopSynchAnimating];
+        [[CustomActivityIndicator sharedActivityIndicator] stopSynchAnimating];
         [self popToControllerWithCountDownIndex:2];
         return;
     }
