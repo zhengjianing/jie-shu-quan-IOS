@@ -1,5 +1,7 @@
 PODS:
   - FontAwesomeKit/Core (2.1.8)
+  - FontAwesomeKit/FontAwesome (2.1.8):
+    - FontAwesomeKit/Core
   - FontAwesomeKit/IonIcons (2.1.8):
     - FontAwesomeKit/Core
   - SDWebImage (3.7.1):
@@ -7,6 +9,7 @@ PODS:
   - SDWebImage/Core (3.7.1)
 
 DEPENDENCIES:
+  - FontAwesomeKit/FontAwesome
   - FontAwesomeKit/IonIcons
   - SDWebImage (~> 3.6)
 

@@ -122,18 +122,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="搜索" id="yOs-PC-sR5">
                         <barButtonItem key="backBarButtonItem" title=" " id="KXU-gm-1nr"/>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="9lb-ew-Poj">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="VGL-mm-YDO">
-                                <rect key="frame" x="-23" y="-15" width="71" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="扫描条码">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="startScan:" destination="eKE-Mb-fWN" eventType="touchUpInside" id="TMc-T9-5BE"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
                     </navigationItem>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
@@ -1639,6 +1627,6 @@
         <image name="log-out-user.png" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="UK7-cM-ngP"/>
+        <segue reference="dZE-Km-CmU"/>
     </inferredMetricsTieBreakers>
 </document>

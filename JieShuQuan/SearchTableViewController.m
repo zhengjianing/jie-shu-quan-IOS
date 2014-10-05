@@ -19,6 +19,8 @@
 #import "MobClick.h"
 #import "CustomActivityIndicator.h"
 #import "ZBarSDK.h"
+#import <FontAwesomeKit/FAKFontAwesome.h>
+
 
 @interface SearchTableViewController ()
 
@@ -35,6 +37,41 @@
     [self registerNotifications];
     [self setTableFooterView];    
     [self setExtraCellLineHidden:self.searchDisplayController.searchResultsTableView];
+    
+    [self setISBNButton];
+}
+
+- (void)setISBNButton
+{
+    FAKFontAwesome *icon = [FAKFontAwesome barcodeIconWithSize:20];
+    icon.drawingPositionAdjustment = UIOffsetMake(0, -3);
+    UIImage *image = [icon imageWithSize:CGSizeMake(20, 20)];
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(scanBarCode)];
+    UIColor *isbnColor = self.tabBarController.tabBar.tintColor;
+    item.tintColor = isbnColor;
+    [self.navigationItem setRightBarButtonItem:item];
+    
+    UILabel *barcodeLabel = [[UILabel alloc] initWithFrame:CGRectMake(282, 43, 20, 20)];
+    barcodeLabel.text = @"isbn";
+    barcodeLabel.font = [UIFont systemFontOfSize:10];
+    barcodeLabel.textColor = isbnColor;
+    [self.navigationController.view addSubview:barcodeLabel];
+}
+
+- (void)scanBarCode
+{
+    [MobClick event:@"scan"];
+    
+    ZBarReaderViewController *reader = [ZBarReaderViewController new];
+    reader.readerDelegate = self;
+    reader.supportedOrientationsMask = ZBarOrientationMaskAll;
+    
+    ZBarImageScanner *scanner = reader.scanner;
+    // EXAMPLE: disable rarely used I2/5 to improve performance
+    [scanner setSymbology: ZBAR_I25 config: ZBAR_CFG_ENABLE to: 0];
+    
+    [self presentViewController:reader animated:YES completion:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -162,21 +199,6 @@
 }
 
 #pragma mark - zBar scanner
-
-- (IBAction)startScan:(id)sender
-{
-    [MobClick event:@"scan"];
-    
-    ZBarReaderViewController *reader = [ZBarReaderViewController new];
-    reader.readerDelegate = self;
-    reader.supportedOrientationsMask = ZBarOrientationMaskAll;
-    
-    ZBarImageScanner *scanner = reader.scanner;
-    // EXAMPLE: disable rarely used I2/5 to improve performance
-    [scanner setSymbology: ZBAR_I25 config: ZBAR_CFG_ENABLE to: 0];
-    
-    [self presentViewController:reader animated:YES completion:nil];
-}
 
 - (void) imagePickerController: (UIImagePickerController*) reader didFinishPickingMediaWithInfo: (NSDictionary*) info
 {
