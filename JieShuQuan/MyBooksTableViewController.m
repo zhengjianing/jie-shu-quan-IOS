@@ -25,7 +25,8 @@
 #import "UserStore.h"
 #import "CustomAlert.h"
 #import "MobClick.h"
-
+#import <FontAwesomeKit/FAKIonIcons.h>
+#import "TabBarItemHelper.h"
 
 static const NSString *kStatusYES = @"可借";
 static const NSString *kStatusNO = @"暂时不可借";
@@ -50,6 +51,7 @@ static const NSString *kStatusNO = @"暂时不可借";
 {
     [super viewDidLoad];
     
+    self.tabBarItem = [TabBarItemHelper createTabBarItemWithTitle:@"我的书库" icon:[FAKIonIcons androidBookIconWithSize:16]];;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchBooksFromServer) name:@"RefreshData" object:nil];
     

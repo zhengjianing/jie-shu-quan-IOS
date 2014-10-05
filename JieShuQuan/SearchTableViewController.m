@@ -17,6 +17,8 @@
 #import "CustomActivityIndicator.h"
 #import "CustomAlert.h"
 #import "MobClick.h"
+#import <FontAwesomeKit/FAKIonIcons.h>
+#import "TabBarItemHelper.h"
 
 @interface SearchTableViewController ()
 
@@ -30,6 +32,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.tabBarItem = [TabBarItemHelper createTabBarItemWithTitle:@"搜索" icon:[FAKIonIcons searchIconWithSize:20]];;
+    
     [self registerNotifications];
     [self setTableFooterView];
     _activityIndicator = [CustomActivityIndicator sharedActivityIndicator];

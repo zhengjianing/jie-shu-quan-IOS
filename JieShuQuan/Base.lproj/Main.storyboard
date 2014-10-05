@@ -67,13 +67,11 @@
             </objects>
             <point key="canvasLocation" x="289" y="-498"/>
         </scene>
-        <!--Navigation Controller - 搜索-->
+        <!--Navigation Controller-->
         <scene sceneID="0Yj-n8-58g">
             <objects>
                 <navigationController id="L3p-ye-rvv" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="搜索" image="search.png" id="6Tm-ba-j96">
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-3"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="" id="6Tm-ba-j96"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="480"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="JFz-Nv-fTC">
@@ -746,7 +744,6 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <sections>
                             <tableViewSection id="7hM-Xz-Y7H">
@@ -1040,7 +1037,6 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="vS9-qU-Qdq">
                             <rect key="frame" x="0.0" y="64" width="320" height="183"/>
@@ -1405,13 +1401,11 @@
             </objects>
             <point key="canvasLocation" x="745" y="118"/>
         </scene>
-        <!--Navigation Controller - 同事们-->
+        <!--Navigation Controller-->
         <scene sceneID="Ed7-AR-Cve">
             <objects>
                 <navigationController id="PvB-08-lW6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="同事们" image="friends.png" id="9Z7-ob-mer">
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-3"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="" id="9Z7-ob-mer"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="480"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="5tT-Ns-ILX">
@@ -1560,13 +1554,11 @@
             </objects>
             <point key="canvasLocation" x="167" y="1450"/>
         </scene>
-        <!--Navigation Controller - 我的书库-->
+        <!--Navigation Controller-->
         <scene sceneID="F4G-66-AbT">
             <objects>
                 <navigationController id="UF7-IP-xcK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我的书库" image="myBooks.png" id="SJy-2N-iHZ">
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-3"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="" id="SJy-2N-iHZ"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="480"/>
                     <navigationBar key="navigationBar" alpha="0.0" contentMode="scaleToFill" id="rJe-Wq-7uI">
@@ -1604,13 +1596,11 @@
             </objects>
             <point key="canvasLocation" x="-883" y="-400"/>
         </scene>
-        <!--Navigation Controller - 更多-->
+        <!--Navigation Controller-->
         <scene sceneID="hxT-iH-yHZ">
             <objects>
                 <navigationController id="26p-xW-94S" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="更多" image="user.png" id="0WE-va-L7t">
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-3"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="" id="0WE-va-L7t"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="480"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="IXJ-Hx-FpZ">
@@ -1698,7 +1688,6 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <connections>
                             <action selector="backgroundViewTouchDown:" destination="dvp-4c-Bm4" eventType="touchDown" id="YeS-mj-UbY"/>
                         </connections>
@@ -1725,7 +1714,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" rowHeight="57" id="urk-8k-pq1" customClass="BookCommentTableViewCell">
@@ -1751,15 +1739,11 @@
     </scenes>
     <resources>
         <image name="email.png" width="128" height="128"/>
-        <image name="friends.png" width="20" height="20"/>
         <image name="go.png" width="128" height="128"/>
         <image name="log-in-user.png" width="128" height="128"/>
         <image name="log-out-user.png" width="128" height="128"/>
-        <image name="myBooks.png" width="20" height="20"/>
-        <image name="search.png" width="20" height="20"/>
-        <image name="user.png" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="UK7-cM-ngP"/>
+        <segue reference="dZE-Km-CmU"/>
     </inferredMetricsTieBreakers>
 </document>
