@@ -10,6 +10,12 @@
 #import "MobClick.h"
 #import <ShareSDK/ShareSDK.h>
 #import "ShareSDK/Extend/WeChatSDK/WXApi.h"
+#import "SearchTableViewController.h"
+#import "MyBooksTableViewController.h"
+#import "FriendsTableViewController.h"
+#import "MoreTableViewController.h"
+#import <FontAwesomeKit/FAKIonIcons.h>
+#import "TabBarItemHelper.h"
 
 @implementation AppDelegate
             
@@ -24,11 +30,9 @@
     [ShareSDK registerApp:@"3456b138a03c"];
     
     //添加微信应用 注册网址 http://open.weixin.qq.com
-    [ShareSDK connectWeChatWithAppId:@"wx4868b35061f87885"
-                           wechatCls:[WXApi class]];
+    [ShareSDK connectWeChatWithAppId:@"wx4868b35061f87885" wechatCls:[WXApi class]];
     
-//   how to get test device id
-    
+//   *how to get test device id*
 //    Class cls = NSClassFromString(@"UMANUtil");
 //    SEL deviceIDSelector = @selector(openUDIDString);
 //    NSString *deviceID = nil;
@@ -37,7 +41,32 @@
 //    }
 //    NSLog(@"{\"oid\": \"%@\"}", deviceID);
     
+    UITabBarController *tabBarController = [self createTabBarController];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = tabBarController;
+    [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (UITabBarController *)createTabBarController
+{
+    UINavigationController *searchNavController = [self createNavControllerWithIdentifier:@"searchViewController" tabBarTitle:@"搜索" iconFont:[FAKIonIcons ios7SearchIconWithSize:25]];
+    UINavigationController *myBookNavController = [self createNavControllerWithIdentifier:@"myBooksViewController" tabBarTitle:@"我的书库" iconFont:[FAKIonIcons androidBookIconWithSize:20]];
+    UINavigationController *friendsNavController = [self createNavControllerWithIdentifier:@"friendsTableViewController" tabBarTitle:@"同事们" iconFont:[FAKIonIcons personStalkerIconWithSize:25]];
+    UINavigationController *moreNavController = [self createNavControllerWithIdentifier:@"moreTableViewController" tabBarTitle:@"更多" iconFont:[FAKIonIcons moreIconWithSize:25]];
+    
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    [tabBarController setViewControllers:[NSArray arrayWithObjects:searchNavController, myBookNavController, friendsNavController, moreNavController, nil]];
+    return tabBarController;
+}
+
+- (UINavigationController *)createNavControllerWithIdentifier:(NSString *)identifier tabBarTitle:(NSString *)title iconFont:(FAKIonIcons *)iconFont
+{
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *viewController = [mainStoryboard instantiateViewControllerWithIdentifier:identifier];
+    viewController.tabBarItem = [TabBarItemHelper createTabBarItemWithTitle:title icon:iconFont];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    return navController;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

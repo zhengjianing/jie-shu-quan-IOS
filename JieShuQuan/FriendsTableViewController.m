@@ -24,8 +24,6 @@
 #import "CacheManager.h"
 #import "CustomAlert.h"
 #import "MobClick.h"
-#import <FontAwesomeKit/FAKIonIcons.h>
-#import "TabBarItemHelper.h"
 
 @interface FriendsTableViewController ()
 
@@ -46,9 +44,7 @@
 {
     [super viewDidLoad];
 
-    self.tabBarItem = [TabBarItemHelper createTabBarItemWithTitle:@"同事们" icon:[FAKIonIcons personStalkerIconWithSize:20]];;
-    
-     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchFriendsFromServer) name:@"RefreshData" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchFriendsFromServer) name:@"RefreshData" object:nil];
     
     UIStoryboard *mainStoryboard = self.storyboard;
     _loginController = [mainStoryboard instantiateViewControllerWithIdentifier:@"LoginViewController"];

@@ -17,7 +17,6 @@
 #import "MailManager.h"
 #import "MobClick.h"
 #import <FontAwesomeKit/FAKIonIcons.h>
-#import "TabBarItemHelper.h"
 
 static const NSString *kDefaultCount = @"--";
 static const NSString *kDefaultUserName = @"点击设置用户名";
@@ -27,8 +26,6 @@ static const NSString *kDefaultUserName = @"点击设置用户名";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    self.tabBarItem = [TabBarItemHelper createTabBarItemWithTitle:@"更多" icon:[FAKIonIcons moreIconWithSize:20]];;
     
     UIImage *arrowImage = [[FAKIonIcons chevronRightIconWithSize:10] imageWithSize:CGSizeMake(15, 15)];
     [_arrowIconImageView setImage:arrowImage];
