@@ -211,7 +211,7 @@
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="go.png" translatesAutoresizingMaskIntoConstraints="NO" id="c5p-zj-LT3">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c5p-zj-LT3">
                                                     <rect key="frame" x="287" y="35" width="23" height="23"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="去登录或注册" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yva-hH-9oQ">
@@ -344,6 +344,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="480"/>
                     <connections>
+                        <outlet property="arrowIconImageView" destination="c5p-zj-LT3" id="pBb-16-Kbr"/>
                         <outlet property="bookCountLabel" destination="Aea-p2-YqN" id="qFn-3h-YyL"/>
                         <outlet property="emailLabel" destination="umK-A7-dl4" id="yvS-Av-ANR"/>
                         <outlet property="friendsCountLabel" destination="fby-FT-zHL" id="7VQ-iq-N9C"/>
@@ -1739,7 +1740,6 @@
     </scenes>
     <resources>
         <image name="email.png" width="128" height="128"/>
-        <image name="go.png" width="128" height="128"/>
         <image name="log-in-user.png" width="128" height="128"/>
         <image name="log-out-user.png" width="128" height="128"/>
     </resources>

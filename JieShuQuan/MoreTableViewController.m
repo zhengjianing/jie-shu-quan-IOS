@@ -29,7 +29,10 @@ static const NSString *kDefaultUserName = @"点击设置用户名";
     [super viewDidLoad];
 
     self.tabBarItem = [TabBarItemHelper createTabBarItemWithTitle:@"更多" icon:[FAKIonIcons moreIconWithSize:20]];;
-
+    
+    UIImage *arrowImage = [[FAKIonIcons chevronRightIconWithSize:10] imageWithSize:CGSizeMake(15, 15)];
+    [_arrowIconImageView setImage:arrowImage];
+    
     [AvatarManager setAvatarStyleForImageView:_userIconImageView];
     [self setTableFooterView];
 }
