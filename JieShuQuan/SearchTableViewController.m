@@ -43,20 +43,12 @@
 
 - (void)setISBNButton
 {
-    FAKFontAwesome *icon = [FAKFontAwesome barcodeIconWithSize:20];
-    icon.drawingPositionAdjustment = UIOffsetMake(0, -3);
-    UIImage *image = [icon imageWithSize:CGSizeMake(20, 20)];
+    FAKFontAwesome *icon = [FAKFontAwesome barcodeIconWithSize:25];
+    icon.drawingPositionAdjustment = UIOffsetMake(0, 2);
+    UIImage *image = [icon imageWithSize:CGSizeMake(25, 25)];
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(scanBarCode)];
-    UIColor *isbnColor = self.tabBarController.tabBar.tintColor;
-    item.tintColor = isbnColor;
     [self.navigationItem setRightBarButtonItem:item];
-    
-    UILabel *barcodeLabel = [[UILabel alloc] initWithFrame:CGRectMake(282, 43, 20, 20)];
-    barcodeLabel.text = @"isbn";
-    barcodeLabel.font = [UIFont systemFontOfSize:10];
-    barcodeLabel.textColor = isbnColor;
-    [self.navigationController.view addSubview:barcodeLabel];
 }
 
 - (void)scanBarCode
