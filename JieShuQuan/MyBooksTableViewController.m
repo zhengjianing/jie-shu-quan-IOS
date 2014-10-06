@@ -27,7 +27,7 @@
 #import "MobClick.h"
 
 static const NSString *kStatusYES = @"可借";
-static const NSString *kStatusNO = @"暂时不可借";
+static const NSString *kStatusNO = @"暂不可借";
 
 @interface MyBooksTableViewController ()
 

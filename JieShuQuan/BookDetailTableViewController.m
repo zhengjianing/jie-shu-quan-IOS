@@ -25,11 +25,11 @@
 #import "MobClick.h"
 
 static const NSString *kAvailableNO = @"更改为随时可借";
-static const NSString *kAvailableYES = @"更改为不可借";
-static const NSString *kStatusYES = @"可借";
-static const NSString *kStatusNO = @"暂时不可借";
+static const NSString *kAvailableYES = @"更改为暂不可借";
+static const NSString *kStatusYES = @"随时可借";
+static const NSString *kStatusNO = @"暂不可借";
 static const NSString *kExistYES = @"书库已有";
-static const NSString *kExistNO = @"书库没有";
+static const NSString *kExistNO = @"书库暂时没有";
 static const NSString *kAddToMyBook = @"添加至书库";
 static const NSString *kDeleteFromMyBook = @"从书库移除";
 
@@ -138,9 +138,11 @@ static const float LINESPACE = 5;
     if (existence == YES) {
         _existenceLabel.text = (NSString *)kExistYES;
         [_changeExistenceButton setTitle:(NSString *)kDeleteFromMyBook forState:UIControlStateNormal];
+        _availabilityLabel.textColor = [UIColor blackColor];
     } else {
         _existenceLabel.text = (NSString *)kExistNO;
         [_changeExistenceButton setTitle:(NSString *)kAddToMyBook forState:UIControlStateNormal];
+        _availabilityLabel.textColor = [UIColor lightGrayColor];
     }
 }
 
