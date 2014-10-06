@@ -20,11 +20,13 @@
 #import "CustomActivityIndicator.h"
 #import "ZBarSDK.h"
 #import <FontAwesomeKit/FAKFontAwesome.h>
-
+#import "MessageLabelHelper.h"
 
 @interface SearchTableViewController ()
 
 - (void)searchByDouBanWithUrl:(NSString *)searchUrl;
+
+@property (strong, nonatomic) UILabel *messageLabel;
 
 @end
 
@@ -34,11 +36,22 @@
 {
     [super viewDidLoad];
     
+    [self.tableView addSubview:self.messageLabel];
+
     [self registerNotifications];
     [self setTableFooterView];    
     [self setExtraCellLineHidden:self.searchDisplayController.searchResultsTableView];
     
     [self setISBNButton];
+}
+
+- (UILabel *)messageLabel
+{
+    if (_messageLabel != nil) {
+        return _messageLabel;
+    }
+    _messageLabel = [MessageLabelHelper createMessageLabelWithMessage:@"通过搜索或扫描ISBN码，往您的书库添加图书，或向同事借书"];
+    return _messageLabel;
 }
 
 - (void)setISBNButton
