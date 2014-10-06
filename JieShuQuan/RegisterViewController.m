@@ -66,10 +66,6 @@
     [self startingRegisterWithEmail:_email.text password:_password.text];
 }
 
-- (IBAction)emailHint:(id)sender {
-    [AlertHelper showAlertWithMessage:@"使用企业邮箱，便于我们帮您找到您的朋友们" withAutoDismiss:NO];
-}
-
 - (void)startingRegisterWithEmail:(NSString *)email password:(NSString *)password
 {    
     NSMutableURLRequest *registerRequest = [RequestBuilder buildRegisterRequestWithEmail:email password:password];

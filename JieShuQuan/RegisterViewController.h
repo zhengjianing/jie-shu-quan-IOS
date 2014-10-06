@@ -17,6 +17,5 @@
 - (IBAction)registerViewTouchDown:(id)sender;
 
 - (IBAction)registerUser:(id)sender;
-- (IBAction)emailHint:(id)sender;
 
 @end
