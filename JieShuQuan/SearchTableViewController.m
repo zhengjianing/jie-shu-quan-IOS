@@ -24,9 +24,8 @@
 
 @interface SearchTableViewController ()
 
-- (void)searchByDouBanWithUrl:(NSString *)searchUrl;
-
 @property (strong, nonatomic) UILabel *messageLabel;
+- (void)searchByDouBanWithUrl:(NSString *)searchUrl;
 
 @end
 
@@ -127,6 +126,7 @@
 
 - (void)searchByDouBanWithUrl:(NSString *)searchUrl
 {
+    searchResults = nil;
     [JsonDataFetcher dataFromURL:[NSURL URLWithString:searchUrl] withCompletion:^(NSData *jsonData) {
         searchResults = [DataConverter booksArrayFromDoubanSearchResults:jsonData];
         [self.searchDisplayController.searchResultsTableView reloadData];
@@ -178,7 +178,7 @@
         NSString* encodedUrl = [searchUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         [self searchByDouBanWithUrl:encodedUrl];
     }
-    return NO;
+    return YES;
 }
 
 #pragma mark - UISearchBarDelegate
