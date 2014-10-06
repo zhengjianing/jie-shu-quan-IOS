@@ -52,7 +52,6 @@ static const NSString *kStatusNO = @"暂不可借";
     
     UIStoryboard *mainStoryboard = self.storyboard;
     _loginController = [mainStoryboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-    [self addRefreshControll];
     
     [self.tableView addSubview:self.messageLabel];
     _messageLabel.hidden = YES;
@@ -87,9 +86,11 @@ static const NSString *kStatusNO = @"暂不可借";
 {
     if ([UserManager isLogin]) {
         _preLoginView.hidden = YES;
+        [self addRefreshControll];
         [self refreshData];
     } else {
         _preLoginView.hidden = NO;
+        self.refreshControl = nil;
     }
 }
 

@@ -52,7 +52,6 @@
     [self.tableView addSubview:self.preLoginView];
     _messageLabel.hidden = YES;
 
-    [self addRefreshControll];
     [self setTableFooterView];
     
     if ([UserManager isLogin]) {
@@ -72,10 +71,12 @@
     if ([UserManager isLogin]) {
         _preLoginView.hidden = YES;
         _messageLabel.hidden = YES;
+        [self addRefreshControll];
         [self loadFriendsFromStore];
         [self showTableViewWithCorrectData];
     } else {
         _preLoginView.hidden = NO;
+        self.refreshControl = nil;
     }
     
     [MobClick beginLogPageView:@"friendsPage"];
