@@ -8,7 +8,7 @@
 
 #import "CustomActivityIndicator.h"
 
-#define SPINRECT CGRectMake(140, 290, 40, 40)
+#define SPINRECT CGRectMake(130, 290, 50, 50)
 
 #define SCREENRECT [[UIScreen mainScreen] bounds]
 
