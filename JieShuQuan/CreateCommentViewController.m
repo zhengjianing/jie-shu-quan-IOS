@@ -21,7 +21,7 @@ static const NSString *kDefaultName = @"匿名用户";
 @interface CreateCommentViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextView *commentTextView;
-@property (weak, nonatomic) IBOutlet UIButton *submitButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *submitItem;
 @property (strong, nonatomic) IBOutlet UILabel *anonymityLabel;
 @property (strong, nonatomic) IBOutlet UISwitch *anonymitySwitch;
 
@@ -39,9 +39,6 @@ static const NSString *kDefaultName = @"匿名用户";
     _commentTextView.layer.borderColor = [UIColor blackColor].CGColor;
     _commentTextView.layer.borderWidth = 0.5;
     _commentTextView.layer.cornerRadius = 5.0;
-    
-    _submitButton.layer.cornerRadius = 5.0;
-    
 
     if (![UserManager isLogin]) {
         [self setAnonymityLabelAndSwichWithAnonymityState:YES];
@@ -110,7 +107,10 @@ static const NSString *kDefaultName = @"匿名用户";
         
         if (data) {
             [[CustomAlert sharedAlert] showAlertWithMessage:@"发表评论成功"];
-            [self showWeiXinSharing];   // TBD...
+                 _commentTextView.text = @"";
+                 [self popSelf];
+
+//            [self showWeiXinSharing];   // TBD...
         }
     }];
 }
