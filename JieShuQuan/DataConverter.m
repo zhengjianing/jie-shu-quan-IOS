@@ -158,7 +158,7 @@ static const NSString *kFriendLocation = @"friend_location";
     [managedBook setValue:book.name forKey:(NSString *)kCDName];
     [managedBook setValue:book.authors forKey:(NSString *)kCDAuthors];
     [managedBook setValue:book.imageHref  forKey:(NSString *)kCDImageHref];
-    [managedBook setValue:book.description forKey:(NSString *)kCDDescription];
+    [managedBook setValue:book.bookDescription forKey:(NSString *)kCDDescription];
     [managedBook setValue:book.authorInfo forKey:(NSString *)kCDAuthorInfo];
     [managedBook setValue:book.price forKey:(NSString *)kCDPrice];
     [managedBook setValue:book.publisher forKey:(NSString *)kCDPublisher];
