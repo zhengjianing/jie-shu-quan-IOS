@@ -13,8 +13,8 @@
 static const int kMarginLeftRight = 20;
 static const int kMarginTopBottom = 10;
 static const int kSubTitleHeight = 13;
-static const int kUsernameWidth = 210;
-static const int kDateWidth = 90;
+static const int kUsernameWidth = 180;
+static const int kDateWidth = 120;
 static const float LINESPACE = 5;
 static const float commentFontSize = 13;
 static const float subTitleFontSize = 11;
