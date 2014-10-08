@@ -95,6 +95,8 @@
 		972F5E5519D410DB008D0DDF /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 972F5E5419D410DB008D0DDF /* Comment.m */; };
 		9746071E19D8EE8500F6E03A /* ChangePhoneNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9746071D19D8EE8500F6E03A /* ChangePhoneNumberViewController.m */; };
 		97553C3D19C090DE0034B446 /* AuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97553C3C19C090DE0034B446 /* AuthenticationViewController.m */; };
+		9755FF1319E559660093F90C /* qrcode_for_gh_9435ba066d3c_430.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9755FF1219E559660093F90C /* qrcode_for_gh_9435ba066d3c_430.jpg */; };
+		9755FF1619E559EF0093F90C /* PublicAccountTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9755FF1519E559EF0093F90C /* PublicAccountTableViewController.m */; };
 		9758DD5619D4196E003E0A9E /* BookCommentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9758DD5519D4196E003E0A9E /* BookCommentTableViewController.m */; };
 		9758DD5919D41990003E0A9E /* BookCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9758DD5819D41990003E0A9E /* BookCommentTableViewCell.m */; };
 		9759AFF019C184BD008EFCC2 /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = 9759AFEF19C184BD008EFCC2 /* Friend.m */; };
@@ -297,6 +299,9 @@
 		9746071D19D8EE8500F6E03A /* ChangePhoneNumberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePhoneNumberViewController.m; sourceTree = "<group>"; };
 		97553C3B19C090DE0034B446 /* AuthenticationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationViewController.h; sourceTree = "<group>"; };
 		97553C3C19C090DE0034B446 /* AuthenticationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticationViewController.m; sourceTree = "<group>"; };
+		9755FF1219E559660093F90C /* qrcode_for_gh_9435ba066d3c_430.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = qrcode_for_gh_9435ba066d3c_430.jpg; sourceTree = "<group>"; };
+		9755FF1419E559EF0093F90C /* PublicAccountTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicAccountTableViewController.h; sourceTree = "<group>"; };
+		9755FF1519E559EF0093F90C /* PublicAccountTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicAccountTableViewController.m; sourceTree = "<group>"; };
 		9758DD5419D4196E003E0A9E /* BookCommentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookCommentTableViewController.h; sourceTree = "<group>"; };
 		9758DD5519D4196E003E0A9E /* BookCommentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookCommentTableViewController.m; sourceTree = "<group>"; };
 		9758DD5719D41990003E0A9E /* BookCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookCommentTableViewCell.h; sourceTree = "<group>"; };
@@ -393,6 +398,8 @@
 				94BB409419C283CB005BBD8E /* MoreTableViewController.m */,
 				9471FFC819D6E6B90082C2C7 /* AboutTableViewController.h */,
 				9471FFC919D6E6B90082C2C7 /* AboutTableViewController.m */,
+				9755FF1419E559EF0093F90C /* PublicAccountTableViewController.h */,
+				9755FF1519E559EF0093F90C /* PublicAccountTableViewController.m */,
 				9471D41419D2CEBD00AEBE7D /* Settings */,
 			);
 			name = More;
@@ -519,6 +526,7 @@
 				94E9AB1819E3E28C00184686 /* app-icon-80.png */,
 				94E9AB1919E3E28C00184686 /* app-icon-120.png */,
 				94E9AB1A19E3E28C00184686 /* app-icon-180.png */,
+				9755FF1219E559660093F90C /* qrcode_for_gh_9435ba066d3c_430.jpg */,
 				945E933D19D437D2002EC733 /* email.png */,
 				945E933919D4364E002EC733 /* go.png */,
 				94BB40B619C33770005BBD8E /* log-in-user.png */,
@@ -1001,6 +1009,7 @@
 				9471DBFD19A5837700F1A291 /* Images.xcassets in Resources */,
 				9707910019E1724F0095EB4C /* zbar-help.html in Resources */,
 				9471DC2F19A9895000F1A291 /* PreLoginView.xib in Resources */,
+				9755FF1319E559660093F90C /* qrcode_for_gh_9435ba066d3c_430.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1067,6 +1076,7 @@
 				97F306B219BD45800010E91F /* NSData+AES256.m in Sources */,
 				9471DBF519A5837700F1A291 /* JieShuQuan.xcdatamodeld in Sources */,
 				9471DC2B19A974AB00F1A291 /* PreLoginView.m in Sources */,
+				9755FF1619E559EF0093F90C /* PublicAccountTableViewController.m in Sources */,
 				94C1711919D01D3000656EDB /* ASINetworkQueue.m in Sources */,
 				94F922BB19CFCDA800F96B09 /* AvatarManager.m in Sources */,
 				97553C3D19C090DE0034B446 /* AuthenticationViewController.m in Sources */,

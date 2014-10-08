@@ -80,7 +80,7 @@ static const NSString *kDefaultName = @"匿名用户";
                               book.name, kBookname,
                               book.authors, kBookauthors,
                               book.imageHref, kBookimageHref,
-                              book.description, kBookdescription,
+                              book.bookDescription, kBookdescription,
                               book.authorInfo, kBookauthorInfo,
                               book.price, kBookprice,
                               book.publisher, kBookpublisher,

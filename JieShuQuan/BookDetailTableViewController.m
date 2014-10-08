@@ -191,11 +191,14 @@ static const float LINESPACE = 5;
 - (void)showWeiXinSharing
 {
     //构造分享内容
-    id<ISSContent> publishContent = [ShareSDK content:_book.bookDescription
+    NSString *url = [NSString stringWithFormat:@"%@%@", kShareBookURL, _book.bookId];
+    
+    NSString *content = [NSString stringWithFormat:@"【%@】\n%@", _book.name, _book.bookDescription];
+    id<ISSContent> publishContent = [ShareSDK content:content
                                        defaultContent:@""
-                                                image:[ShareSDK pngImageWithImage:[UIImage imageNamed:@"app-icon-180"]]
-                                                title:[NSString stringWithFormat:@"【%@】", _book.name]
-                                                  url:@"http://192.168.1.102:3000/book/1016617"
+                                                image:[ShareSDK pngImageWithImage:_bookImageView.image]
+                                                title:@"\"借书圈\"好书推荐——"
+                                                  url:url
                                           description:@"这是一条测试信息"
                                             mediaType:SSPublishContentMediaTypeNews];
     

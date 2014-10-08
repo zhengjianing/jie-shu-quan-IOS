@@ -11,8 +11,8 @@
 #define kUploadAvatarURL @"http://jieshuquan.herokuapp.com/upload_avatar"
 #define kAvatarURLPrefix @"http://jieshuquan.herokuapp.com/uploads/userAvatar"
 
-//#define kAddBookURL @"http://jieshuquan.herokuapp.com/add_book"
-#define kAddBookURL @"http://192.168.1.102:3000/add_book"
+#define kAddBookURL @"http://jieshuquan.herokuapp.com/add_book"
+#define kShareBookURL @"http://jieshuquan.herokuapp.com/book/"
 
 #define kDeleteBookURL @"http://jieshuquan.herokuapp.com/remove_book"
 #define kGetBookCommentsURL @"http://jieshuquan.herokuapp.com/comments_for_book/"
