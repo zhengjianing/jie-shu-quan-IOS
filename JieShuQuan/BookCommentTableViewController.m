@@ -38,7 +38,6 @@
     
     self.navigationItem.title = @"大家的评论";
     
-    self.tabBarController.tabBar.hidden = YES;
     _CommentCellObject = [[NSMutableArray alloc] init];
     [self setTableFooterView];
 

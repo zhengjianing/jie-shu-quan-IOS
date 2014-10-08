@@ -27,7 +27,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tabBarController.tabBar.hidden = YES;
     NSString *name = [_friend.friendName isEqualToString:@""] ? @"Ta" : _friend.friendName;
     self.navigationItem.title = [name stringByAppendingString:@"的书"];
     [self setTableFooterView];
@@ -39,6 +38,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.tabBarController.tabBar.hidden = YES;
     [self loadBooksForFriend];
     [MobClick beginLogPageView:@"friendDetailPage"];
 }

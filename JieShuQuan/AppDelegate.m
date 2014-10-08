@@ -16,6 +16,7 @@
 #import "MoreTableViewController.h"
 #import <FontAwesomeKit/FAKIonIcons.h>
 #import "TabBarItemHelper.h"
+#import "WXApi.h"
 
 @implementation AppDelegate
             
@@ -30,7 +31,7 @@
     [ShareSDK registerApp:@"3456b138a03c"];
     
     //添加微信应用 注册网址 http://open.weixin.qq.com
-    [ShareSDK connectWeChatWithAppId:@"wx4868b35061f87885" wechatCls:[WXApi class]];
+    [ShareSDK connectWeChatWithAppId:@"wx6a876af68c7eb3fe" wechatCls:[WXApi class]];
     
 //   *how to get test device id*
 //    Class cls = NSClassFromString(@"UMANUtil");
@@ -46,6 +47,23 @@
     self.window.rootViewController = tabBarController;
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application  handleOpenURL:(NSURL *)url
+{
+    return [ShareSDK handleOpenURL:url
+                        wxDelegate:self];
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    return [ShareSDK handleOpenURL:url
+                 sourceApplication:sourceApplication
+                        annotation:annotation
+                        wxDelegate:self];
 }
 
 - (UITabBarController *)createTabBarController

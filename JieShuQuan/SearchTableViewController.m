@@ -171,7 +171,6 @@
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
-    self.tabBarController.tabBar.hidden = YES;
     if (![searchString isEqualToString:@""]) {
         NSString *prefix = [NSString stringWithFormat:@"%@?apikey=%@&count=%@&q=", kSearchURL, kAPIKey, kMaxCount];
         NSString *searchUrl = [prefix stringByAppendingString:searchString];
@@ -179,13 +178,6 @@
         [self searchByDouBanWithUrl:encodedUrl];
     }
     return YES;
-}
-
-#pragma mark - UISearchBarDelegate
-
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
-{
-    self.tabBarController.tabBar.hidden = NO;
 }
 
 #pragma mark - Navigation
@@ -199,7 +191,6 @@
         selectIndexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
         selectedBook = [searchResults objectAtIndex:[selectIndexPath row]];
         [[segue destinationViewController] setBook:selectedBook];
-//        [[[segue destinationViewController] changeAvailabilityButton] removeFromSuperview];
     }
 }
 
@@ -249,7 +240,7 @@
 {
     UIStoryboard *mainStoryboard = self.storyboard;
     BookDetailTableViewController *bookDetailTableViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"BookDetailViewController"];
-
+    
     [bookDetailTableViewController setBook:book];
     [self.navigationController pushViewController:bookDetailTableViewController animated:YES];
 }

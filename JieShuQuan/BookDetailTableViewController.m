@@ -17,12 +17,13 @@
 #import "UserStore.h"
 #import "ServerHeaders.h"
 #import "MyBooksTableViewController.h"
-#import "SearchTableViewController.h"
 #import "ActionSheetHelper.h"
 #import "RequestBuilder.h"
 #import "CustomActivityIndicator.h"
 #import "CustomAlert.h"
 #import "MobClick.h"
+#import <FontAwesomeKit/FAKIonIcons.h>
+#import <ShareSDK/ShareSDK.h>
 
 static const NSString *kAvailableNO = @"更改为随时可借";
 static const NSString *kAvailableYES = @"更改为暂不可借";
@@ -45,7 +46,6 @@ static const float LINESPACE = 5;
     UIActionSheet *addSheet;
 }
 @property (nonatomic, strong) CustomAlert *alert;
-
 @end
 
 @implementation BookDetailTableViewController
@@ -53,8 +53,14 @@ static const float LINESPACE = 5;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tabBarController.tabBar.hidden = YES;
     _alert = [CustomAlert sharedAlert];
+}
+
+- (UIBarButtonItem *)shareToWeiXinBarButtonItem
+{
+    FAKIonIcons *shareIcon = [FAKIonIcons shareIconWithSize:30];
+    UIImage *shareImage = [shareIcon imageWithSize:CGSizeMake(30, 30)];
+    return [[UIBarButtonItem alloc] initWithImage:shareImage style:UIBarButtonItemStylePlain target:self action:@selector(showWeiXinSharing)];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -139,10 +145,16 @@ static const float LINESPACE = 5;
         _existenceLabel.text = (NSString *)kExistYES;
         [_changeExistenceButton setTitle:(NSString *)kDeleteFromMyBook forState:UIControlStateNormal];
         _availabilityLabel.textColor = [UIColor blackColor];
+        
+        // if book is in MyBooks, then set the "share" function available
+        [self.navigationItem setRightBarButtonItem:[self shareToWeiXinBarButtonItem] animated:YES];
     } else {
         _existenceLabel.text = (NSString *)kExistNO;
         [_changeExistenceButton setTitle:(NSString *)kAddToMyBook forState:UIControlStateNormal];
         _availabilityLabel.textColor = [UIColor lightGrayColor];
+        
+        // if book is not in MyBooks, then set the "share" function unavailable
+        [self.navigationItem setRightBarButtonItem:nil animated:YES];
     }
 }
 
@@ -172,6 +184,37 @@ static const float LINESPACE = 5;
     _changeAvailabilityButton.backgroundColor = [UIColor brownColor];
     _changeAvailabilityButton.layer.borderColor = [UIColor clearColor].CGColor;
     [_changeAvailabilityButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+}
+
+#pragma mark - share through Wei Xin
+
+- (void)showWeiXinSharing
+{
+    //构造分享内容
+    id<ISSContent> publishContent = [ShareSDK content:_book.bookDescription
+                                       defaultContent:@""
+                                                image:[ShareSDK pngImageWithImage:[UIImage imageNamed:@"app-icon-180"]]
+                                                title:[NSString stringWithFormat:@"【%@】", _book.name]
+                                                  url:@"http://192.168.1.102:3000/book/1016617"
+                                          description:@"这是一条测试信息"
+                                            mediaType:SSPublishContentMediaTypeNews];
+    
+    [ShareSDK showShareActionSheet:nil
+                         shareList:nil
+                           content:publishContent
+                     statusBarTips:YES
+                       authOptions:nil
+                      shareOptions: nil
+                            result:^(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
+                                if (state == SSResponseStateSuccess)
+                                {
+                                    NSLog(@"分享成功");                                    
+                                }
+                                else if (state == SSResponseStateFail)
+                                {
+                                    NSLog(@"分享失败,错误码:%ld,错误描述:%@", [error errorCode], [error errorDescription]);
+                                }
+                            }];
 }
 
 #pragma mark - changed existence and availability

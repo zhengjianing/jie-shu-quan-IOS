@@ -34,9 +34,7 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    self.tabBarController.tabBar.hidden = YES;
-    
+    [super viewDidLoad];    
     [self configureBookInfoView];
     [self setTableFooterView];
     [self.tableView addSubview:self.messageLabel];
