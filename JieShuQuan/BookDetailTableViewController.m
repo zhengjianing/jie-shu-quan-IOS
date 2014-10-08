@@ -197,9 +197,9 @@ static const float LINESPACE = 5;
     id<ISSContent> publishContent = [ShareSDK content:content
                                        defaultContent:@""
                                                 image:[ShareSDK pngImageWithImage:_bookImageView.image]
-                                                title:@"\"借书圈\"好书推荐——"
+                                                title:@"\"借书圈\"好书推荐"
                                                   url:url
-                                          description:@"这是一条测试信息"
+                                          description:@""
                                             mediaType:SSPublishContentMediaTypeNews];
     
     [ShareSDK showShareActionSheet:nil
