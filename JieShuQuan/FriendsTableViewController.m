@@ -242,7 +242,7 @@
     if ([[segue destinationViewController] class] == FriendDetailTableViewController.class) {
         NSIndexPath *selectIndexPath = [self.tableView indexPathForSelectedRow];
         Friend *selectedFriend = [_myFriends objectAtIndex:[selectIndexPath row]];
-        [[segue destinationViewController] setFriend:selectedFriend];
+        [[segue destinationViewController] setCurrentFriend:selectedFriend];
     }
 }
 

@@ -210,6 +210,7 @@
     [cell.friendAvatarImageView sd_setImageWithURL:avatarURL placeholderImage:[AvatarManager defaulFriendAvatar]];
     [AvatarManager setAvatarStyleForImageView:cell.friendAvatarImageView];
     
+    cell.friendId = friend.friendId;
     cell.friendNameLabel.text = [friend.friendName isEqualToString:@""] ? friend.friendEmail : friend.friendName;
     cell.locationLabel.text = friend.friendLocation;
 
@@ -238,7 +239,9 @@
 - (IBAction)borrowFromFriend:(id)sender {
     [MobClick event:@"borrowFromFriendButtonPressed"];
 
-    FriendHasBookTableViewCell *selectedCell = (FriendHasBookTableViewCell *)[[[sender superview] superview] superview];
+    FriendHasBookTableViewCell *selectedCell = (FriendHasBookTableViewCell *)[[sender superview] superview];
+    _selectedFriendId = selectedCell.friendId;
+    
     NSString *toName = selectedCell.friendNameLabel.text;
     NSString *toEmailAddress = selectedCell.friendEmailLabel.text;
     
@@ -255,6 +258,11 @@
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
+    if (result == MFMailComposeResultSent) {
+        NSMutableURLRequest *collectBorrowingInfoRequest = [RequestBuilder buildPostCollectBookBorrowingInfoRequestWithBookId:_book.bookId borrowerId:[[UserManager currentUser] userId] lenderId:_selectedFriendId];
+        [NSURLConnection sendAsynchronousRequest:collectBorrowingInfoRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        }];
+    }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

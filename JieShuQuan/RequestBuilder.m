@@ -32,6 +32,8 @@ static const NSString *kBookId = @"douban_book_id";
 static const NSString *kBookAvailable = @"available";
 static const NSString *kCommentContent = @"content";
 static const NSString *kUserName = @"user_name";
+static const NSString *kBorrowerId = @"borrower_id";
+static const NSString *kLenderId = @"lender_id";
 
 static const NSString *kDefaultName = @"匿名用户";
 
@@ -137,6 +139,17 @@ static const NSString *kDefaultName = @"匿名用户";
     return [self buildRequestWithURLString:kPostBookCommentURL bodyDict:bodyDict];
 }
 
+#pragma mark - collect book borrowing info request
+
++ (NSMutableURLRequest *)buildPostCollectBookBorrowingInfoRequestWithBookId:(NSString *)bookId borrowerId:(NSString *)borrowerId lenderId:(NSString *)lenderId
+{
+    NSDictionary *bodyDict = [NSDictionary dictionaryWithObjectsAndKeys:
+                              bookId, kBookId,
+                              borrowerId, kBorrowerId,
+                              lenderId, kLenderId, nil];
+    return [self buildRequestWithURLString:kCollectBorrowingInfoURL bodyDict:bodyDict];
+}
+
 #pragma mark - Friends
 
 + (NSMutableURLRequest *)buildFetchFriendsRequestForUserId:(NSString *)userId
@@ -156,7 +169,7 @@ static const NSString *kDefaultName = @"匿名用户";
 + (NSMutableURLRequest *)buildRequestWithURLString:(NSString *)urlString bodyDict:(NSDictionary *)bodyDict
 {
     NSURL *postURL = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:postURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:5];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:postURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
     
     id object = [NSJSONSerialization dataWithJSONObject:bodyDict options:NSJSONWritingPrettyPrinted error:nil];
     [request setHTTPBody:object];

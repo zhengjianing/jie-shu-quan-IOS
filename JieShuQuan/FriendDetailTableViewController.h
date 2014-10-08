@@ -20,7 +20,9 @@
 
 - (IBAction)borrowFromFriend:(id)sender;
 
-@property (strong, nonatomic) Friend *friend;
+@property (strong, nonatomic) Friend *currentFriend;
+@property (copy, nonatomic) NSString *selectedBookId;
+
 @property (strong, nonatomic) NSMutableArray *books;
 @property (strong, nonatomic) UILabel *messageLabel;
 

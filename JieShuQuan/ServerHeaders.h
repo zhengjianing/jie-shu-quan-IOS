@@ -13,6 +13,7 @@
 
 #define kAddBookURL @"http://jieshuquan.herokuapp.com/add_book"
 #define kShareBookURL @"http://jieshuquan.herokuapp.com/book/"
+#define kCollectBorrowingInfoURL @"http://jieshuquan.herokuapp.com/borrow_book"
 
 #define kDeleteBookURL @"http://jieshuquan.herokuapp.com/remove_book"
 #define kGetBookCommentsURL @"http://jieshuquan.herokuapp.com/comments_for_book/"

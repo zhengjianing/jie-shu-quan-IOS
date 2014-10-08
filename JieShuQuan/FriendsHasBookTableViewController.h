@@ -27,6 +27,7 @@
 - (IBAction)borrowFromFriend:(id)sender;
 
 @property (strong, nonatomic) Book *book;
+@property (copy, nonatomic) NSString *selectedFriendId;
 
 @property (strong, nonatomic) NSMutableArray *friendsCellObject;
 @property (strong, nonatomic) NSMutableArray *allFriendsCellObject;

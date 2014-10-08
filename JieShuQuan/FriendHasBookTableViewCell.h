@@ -18,4 +18,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *borrowButton;
 @property (weak, nonatomic) IBOutlet UIImageView *mailImageView;
 
+@property (copy, nonatomic) NSString *friendId;
+
 @end

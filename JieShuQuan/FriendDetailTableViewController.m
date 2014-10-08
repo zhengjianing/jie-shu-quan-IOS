@@ -27,7 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSString *name = [_friend.friendName isEqualToString:@""] ? @"Ta" : _friend.friendName;
+    NSString *name = [_currentFriend.friendName isEqualToString:@""] ? @"Ta" : _currentFriend.friendName;
     self.navigationItem.title = [name stringByAppendingString:@"的书"];
     [self setTableFooterView];
     [self configureFriendInfoView];
@@ -69,12 +69,12 @@
 - (void)configureFriendInfoView
 {
     [AvatarManager setAvatarStyleForImageView:_friendAvatarImageView];
-    NSURL *avatarURL = [AvatarManager avatarURLForUserId:_friend.friendId];
+    NSURL *avatarURL = [AvatarManager avatarURLForUserId:_currentFriend.friendId];
     [_friendAvatarImageView sd_setImageWithURL:avatarURL placeholderImage:[AvatarManager defaulFriendAvatar]];
     
-    _friendNameLabel.text = [_friend.friendName isEqualToString:@""] ? _friend.friendEmail : _friend.friendName;
-    _friendBookCountLabel.text = _friend.bookCount;
-    _friendLocationLabel.text = _friend.friendLocation;
+    _friendNameLabel.text = [_currentFriend.friendName isEqualToString:@""] ? _currentFriend.friendEmail : _currentFriend.friendName;
+    _friendBookCountLabel.text = _currentFriend.bookCount;
+    _friendLocationLabel.text = _currentFriend.friendLocation;
 }
 
 - (void)loadBooksForFriend
@@ -88,7 +88,7 @@
 - (void)fetchBooksForFriendFromServer
 {
     [[CustomActivityIndicator sharedActivityIndicator] startAsynchAnimating];
-    NSMutableURLRequest *request = [RequestBuilder buildFetchBooksRequestForUserId:_friend.friendId];
+    NSMutableURLRequest *request = [RequestBuilder buildFetchBooksRequestForUserId:_currentFriend.friendId];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
         [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
@@ -141,6 +141,7 @@
     [cell.bookImageView sd_setImageWithURL:[NSURL URLWithString:book.imageHref]];
     cell.bookNameLabel.text = book.name;
     cell.authorsLabel.text = book.authors;
+    cell.bookId = book.bookId;
 
     if (book.availability == NO) {
         cell.availabilityLabel.hidden = NO;
@@ -163,14 +164,15 @@
 - (IBAction)borrowFromFriend:(id)sender {
     [MobClick event:@"borrowFromFriendButtonPressed"];
 
-    FriendBookTableViewCell *selectedCell = (FriendBookTableViewCell *)[[[sender superview] superview] superview];
+    FriendBookTableViewCell *selectedCell = (FriendBookTableViewCell *)[[sender superview] superview];
     NSString *bookName = selectedCell.bookNameLabel.text;
+    _selectedBookId = selectedCell.bookId;
     
     Class mailClass = (NSClassFromString(@"MFMailComposeViewController"));
     if (mailClass != nil && [mailClass canSendMail]) {
-        [MailManager displayComposerSheetToName:_friend.friendName toEmailAddress:_friend.friendEmail forBook:bookName delegate:self];
+        [MailManager displayComposerSheetToName:_currentFriend.friendName toEmailAddress:_currentFriend.friendEmail forBook:bookName delegate:self];
     } else {
-        [MailManager launchMailToName:_friend.friendName toEmailAddress:_friend.friendEmail forBook:bookName];
+        [MailManager launchMailToName:_currentFriend.friendName toEmailAddress:_currentFriend.friendEmail forBook:bookName];
     }
 }
 
@@ -178,6 +180,11 @@
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
+    if (result == MFMailComposeResultSent) {
+        NSMutableURLRequest *collectBorrowingInfoRequest = [RequestBuilder buildPostCollectBookBorrowingInfoRequestWithBookId:_selectedBookId borrowerId:[[UserManager currentUser] userId] lenderId:_currentFriend.friendId];
+        [NSURLConnection sendAsynchronousRequest:collectBorrowingInfoRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        }];
+    }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

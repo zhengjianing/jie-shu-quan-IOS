@@ -33,4 +33,7 @@
 + (NSMutableURLRequest *)buildGetBookCommentsRequestWithBookId:(NSString *)bookId;
 + (NSMutableURLRequest *)buildPostBookCommentRequestWithBookId:(NSString *)bookId userName:(NSString *)userName content:(NSString *)content;
 
+// collect book borrowing info request
++ (NSMutableURLRequest *)buildPostCollectBookBorrowingInfoRequestWithBookId:(NSString *)bookId borrowerId:(NSString *)borrowerId lenderId:(NSString *)lenderId;
+
 @end
