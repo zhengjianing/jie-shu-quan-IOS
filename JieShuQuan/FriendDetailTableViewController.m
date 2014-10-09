@@ -33,13 +33,19 @@
     [self configureFriendInfoView];
     [self.tableView addSubview:self.messageLabel];
     _messageLabel.hidden = YES;
+    _books = [[NSMutableArray alloc] init];
+    _isFromMyFriends = YES;
     [self.tableView reloadData];
+    [self loadBooksForFriend];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    if (_isFromMyFriends) {
+        [[CustomActivityIndicator sharedActivityIndicator] startAsynchAnimating];
+    }
+    
     self.tabBarController.tabBar.hidden = YES;
-    [self loadBooksForFriend];
     [MobClick beginLogPageView:@"friendDetailPage"];
 }
 
@@ -79,7 +85,6 @@
 
 - (void)loadBooksForFriend
 {
-    _books = [[NSMutableArray alloc] init];
     [self fetchBooksForFriendFromServer];
 }
 
@@ -87,7 +92,6 @@
 
 - (void)fetchBooksForFriendFromServer
 {
-    [[CustomActivityIndicator sharedActivityIndicator] startAsynchAnimating];
     NSMutableURLRequest *request = [RequestBuilder buildFetchBooksRequestForUserId:_currentFriend.friendId];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
         
@@ -186,6 +190,7 @@
         }];
     }
     [self dismissViewControllerAnimated:YES completion:nil];
+    _isFromMyFriends = NO;
 }
 
 @end

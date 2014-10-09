@@ -25,5 +25,6 @@
 
 @property (strong, nonatomic) NSMutableArray *books;
 @property (strong, nonatomic) UILabel *messageLabel;
+@property (assign, nonatomic) BOOL isFromMyFriends;
 
 @end

@@ -10,12 +10,12 @@
 
 @interface FriendBookTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *bookImageView;
-@property (weak, nonatomic) IBOutlet UILabel *bookNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *authorsLabel;
-@property (weak, nonatomic) IBOutlet UILabel *availabilityLabel;
-@property (weak, nonatomic) IBOutlet UIButton *borrowButton;
-@property (weak, nonatomic) IBOutlet UIImageView *mailImageView;
+@property (strong, nonatomic) IBOutlet UIImageView *bookImageView;
+@property (strong, nonatomic) IBOutlet UILabel *bookNameLabel;
+@property (strong, nonatomic) IBOutlet UILabel *authorsLabel;
+@property (strong, nonatomic) IBOutlet UILabel *availabilityLabel;
+@property (strong, nonatomic) IBOutlet UIButton *borrowButton;
+@property (strong, nonatomic) IBOutlet UIImageView *mailImageView;
 
 @property (copy, nonatomic) NSString *bookId;
 
