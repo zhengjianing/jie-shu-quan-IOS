@@ -141,7 +141,7 @@
     [request setFile:avatarPath forKey:@"avatar_file"];
     
     [request buildPostBody];
-    [request setTimeOutSeconds:5];
+    [request setTimeOutSeconds:10];
 
     [request setDidReceiveDataSelector:@selector(requestDidReceiveData:)];
     [request setDidFailSelector:@selector(requestDidFail:)];
