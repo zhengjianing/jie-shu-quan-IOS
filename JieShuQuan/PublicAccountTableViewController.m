@@ -13,6 +13,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"微信公众账号";
+    self.tabBarController.tabBar.hidden = YES;
     UIImage *qrCodeImage = [UIImage imageNamed:@"qrcode_for_gh_9435ba066d3c_430.jpg"];
     [_QRCodeImageView setImage:qrCodeImage];
 }

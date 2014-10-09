@@ -18,7 +18,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.tabBarController.tabBar.hidden = YES;
     [self setTableFooterView];
 }
 
