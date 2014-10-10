@@ -68,8 +68,10 @@
     [MobClick event:@"scan"];
     
     ZBarReaderViewController *reader = [ZBarReaderViewController new];
+
     reader.readerDelegate = self;
     reader.supportedOrientationsMask = ZBarOrientationMaskAll;
+    reader.tracksSymbols = YES;
     
     ZBarImageScanner *scanner = reader.scanner;
     // EXAMPLE: disable rarely used I2/5 to improve performance
@@ -196,7 +198,7 @@
 
 #pragma mark - zBar scanner
 
-- (void) imagePickerController: (UIImagePickerController*) reader didFinishPickingMediaWithInfo: (NSDictionary*) info
+- (void)imagePickerController: (UIImagePickerController*)reader didFinishPickingMediaWithInfo: (NSDictionary*)info
 {
     id<NSFastEnumeration> results = [info objectForKey: ZBarReaderControllerResults];
     ZBarSymbol *symbol = nil;
@@ -207,11 +209,10 @@
     
     NSString *isbnCode = symbol.data;
     if (isbnCode) {
-        [self startFetchingBookDetailFromDoubanWithIsbnCode:isbnCode];
         [[CustomActivityIndicator sharedActivityIndicator] startAsynchAnimating];
+        [self startFetchingBookDetailFromDoubanWithIsbnCode:isbnCode];
     } else {
         [[CustomAlert sharedAlert] showAlertWithMessage:@"获取图书信息失败"];
-
     }
     
     [reader dismissViewControllerAnimated:YES completion:nil];
@@ -224,14 +225,15 @@
     
     [JsonDataFetcher dataFromURL:[NSURL URLWithString:encodedUrl] withCompletion:^(NSData *jsonData) {
         [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
-
-        id object = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
-        if (object) {
-            Book *book = [DataConverter bookFromDoubanBookObject:object];
-            [self showBookDetailViewControllerForBook:book];
+        
+        if (jsonData != nil) {
+            id object = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
+            if (object) {
+                Book *book = [DataConverter bookFromDoubanBookObject:object];
+                [self showBookDetailViewControllerForBook:book];
+            }
         } else {
-        [[CustomAlert sharedAlert] showAlertWithMessage:@"获取图书信息失败"];
-
+            [[CustomAlert sharedAlert] showAlertWithMessage:@"请求失败"];
         }
     }];
 }

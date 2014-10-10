@@ -33,7 +33,7 @@
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-        [[CustomAlert sharedAlert] showAlertWithMessage:@"验证失败"];
+        [[CustomAlert sharedAlert] showAlertWithMessage:@"请求失败"];
     }
     [[CustomActivityIndicator sharedActivityIndicator] stopSynchAnimating];
 }
