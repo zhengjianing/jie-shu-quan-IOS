@@ -304,7 +304,7 @@ static const float LINESPACE = 5;
         }
         if ([request.URL.absoluteString isEqualToString:kChangeBookStatusURL])
         {
-            [[CustomAlert sharedAlert] showAlertWithMessage:@"修改图书状态失败"];
+            [[CustomAlert sharedAlert] showAlertWithMessage:@"修改状态失败"];
         }
     }
     return data;
