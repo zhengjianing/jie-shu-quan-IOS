@@ -114,7 +114,7 @@
 
 - (void)webDataFetchFailed
 {
-    [[CustomAlert sharedAlert] showAlertWithMessage:@"数据获取失败...请检查您的网络"];
+    [[CustomAlert sharedAlert] showAlertWithMessage:@"搜索失败"];
 }
 
 -(void)setExtraCellLineHidden:(UITableView *)tableView

@@ -99,7 +99,7 @@
         }
         
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-            [[CustomAlert sharedAlert] showAlertWithMessage:@"获取评论失败"];
+            [[CustomAlert sharedAlert] showAlertWithMessage:@"请求失败"];
             return ;
         }
         

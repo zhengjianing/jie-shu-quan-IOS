@@ -62,7 +62,7 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     [[CustomActivityIndicator sharedActivityIndicator] stopSynchAnimating];
-    [[CustomAlert sharedAlert] showAlertWithMessage:@"网络请求失败...\n请检查您的网络连接"];
+    [[CustomAlert sharedAlert] showAlertWithMessage:@"请求失败"];
 }
 
 #pragma mark - UIAlertViewDelegate methods

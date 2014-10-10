@@ -143,7 +143,7 @@
         }
 
         if ([(NSHTTPURLResponse *)response statusCode] != 200) {
-            [[CustomAlert sharedAlert] showAlertWithMessage:@"更新失败，请稍后重试"];
+            [[CustomAlert sharedAlert] showAlertWithMessage:@"请求失败"];
             return ;
         }
         
