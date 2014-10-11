@@ -34,7 +34,10 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];    
+    [super viewDidLoad];
+    
+    [MobClick event:@"friendsHasBookPageViewed"];
+
     [self configureBookInfoView];
     [self setTableFooterView];
     [self.tableView addSubview:self.messageLabel];

@@ -190,6 +190,7 @@ static const float LINESPACE = 5;
 
 - (void)showWeiXinSharing
 {
+    [MobClick event:@"shareToWeChatClicked"];
     //构造分享内容
     NSString *url = [NSString stringWithFormat:@"%@%@", kShareBookURL, _book.bookId];
     

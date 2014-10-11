@@ -32,6 +32,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [MobClick event:@"bookCommentPageViewed"];
 
     _cellIdentifier = @"bookCommentCellIdentifier";
     [self.tableView registerClass:[BookCommentTableViewCell class] forCellReuseIdentifier:_cellIdentifier];
