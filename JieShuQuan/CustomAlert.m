@@ -94,10 +94,7 @@ static const float horizontalMargin = 20;
     CGSize textSize = [text sizeWithFont:[UIFont systemFontOfSize:fontSize] constrainedToSize:constrainedSize];
     
     self.frame = CGRectMake((320-textSize.width-2*horizontalMargin)/2, yOrigin, textSize.width+2*horizontalMargin, fixedLabelHeight);
-    NSLog(@"self.frame: %@", NSStringFromCGRect(self.frame));
     _textLabel.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-    NSLog(@"_textLabel.frame: %@", NSStringFromCGRect(_textLabel.frame));
-
 }
 
 - (void)dismissAlert
