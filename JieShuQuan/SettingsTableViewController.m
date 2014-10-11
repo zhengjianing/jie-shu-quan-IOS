@@ -100,6 +100,12 @@
         
         return;
     }
+    
+    if ([indexPath section] == 2 && [indexPath row] == 0) {
+        [MobClick event:@"changePhoneNumberPressed"];
+        
+        return;
+    }
 }
 
 #pragma mark - Change User Avatar
