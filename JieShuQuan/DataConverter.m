@@ -12,6 +12,7 @@
 #import "Friend.h"
 #import "Comment.h"
 
+#pragma mark - keys in API
 // keys in Douban API
 static const NSString *kDBTitle = @"title";
 static const NSString *kDBAuthor = @"author";
@@ -32,6 +33,15 @@ static const NSString *kUserEmail = @"user_email";
 static const NSString *kBookCount = @"book_count";
 static const NSString *kFriendCount = @"friend_count";
 static const NSString *kLocation = @"location";
+static const NSString *kAvatarURLString = @"avatar_url";
+
+// keys in Server for Friend
+static const NSString *kFriendName = @"friend_name";
+static const NSString *kFriendEmail = @"friend_email";
+static const NSString *kFriendId = @"friend_id";
+static const NSString *kFriendBookCount = @"book_count";
+static const NSString *kFriendLocation = @"friend_location";
+static const NSString *kFriendAvatarURLString = @"friend_avatar_url";
 
 // keys in Server API for Book
 static const NSString *kBookname = @"name";
@@ -50,6 +60,8 @@ static const NSString *kCommentUserName = @"user_name";
 static const NSString *kCommentContent = @"content";
 static const NSString *kCommentDate = @"comment_date";
 static const NSString *kCommentbookId = @"douban_book_id";
+
+#pragma mark - keys in Core Data
 
 // keys in CoreData for Book
 static const NSString *kCDName = @"name";
@@ -73,6 +85,7 @@ static const NSString *kCDGroupName = @"group_name";
 static const NSString *kCDFriendCount = @"friend_count";
 static const NSString *kCDLocation = @"location";
 static const NSString *kCDPhoneNumber = @"phone_number";
+static const NSString *kCDAvatarURLString = @"avatar_URLString";
 
 // keys in CoreData for Friend
 static const NSString *kCDFriendName = @"friend_name";
@@ -80,17 +93,12 @@ static const NSString *kCDFriendEmail = @"friend_email";
 static const NSString *kCDFriendId = @"friend_id";
 static const NSString *kCDFriendBookCount = @"book_count";
 static const NSString *kCDFriendLocation = @"friend_location";
-
-// keys in server for Friend
-static const NSString *kFriendName = @"friend_name";
-static const NSString *kFriendEmail = @"friend_email";
-static const NSString *kFriendId = @"friend_id";
-static const NSString *kFriendBookCount = @"book_count";
-static const NSString *kFriendLocation = @"friend_location";
-
+static const NSString *kCDFriendAvatarURLString = @"avatar_URLString";
 
 @interface DataConverter ()
+
 + (NSMutableArray *)booksArrayFromUnserializedBooksData:(NSArray *)booksData;
+
 @end
 
 @implementation DataConverter
@@ -180,6 +188,7 @@ static const NSString *kFriendLocation = @"friend_location";
     user.bookCount = [object valueForKey:(NSString *)kBookCount];
     user.friendCount = [object valueForKey:(NSString *)kFriendCount];
     user.location = [object valueForKey:(NSString *)kLocation];
+    user.avatarURLString = [object valueForKey:(NSString *)kAvatarURLString];
     return user;
 }
 
@@ -195,6 +204,7 @@ static const NSString *kFriendLocation = @"friend_location";
     user.friendCount = [storedUser valueForKey:(NSString *)kCDFriendCount];
     user.location = [storedUser valueForKey:(NSString *)kCDLocation];
     user.phoneNumber = [storedUser valueForKey:(NSString *)kCDPhoneNumber];
+    user.avatarURLString = [storedUser valueForKey:(NSString *)kCDAvatarURLString];
     return user;
 }
 
@@ -209,6 +219,7 @@ static const NSString *kFriendLocation = @"friend_location";
     [object setValue:user.friendCount forKey:(NSString *)kCDFriendCount];
     [object setValue:user.location forKey:(NSString *)kCDLocation];
     [object setValue:user.phoneNumber forKey:(NSString *)kCDPhoneNumber];
+    [object setValue:user.avatarURLString forKey:(NSString *)kCDAvatarURLString];
 }
 
 #pragma mark - Friend
@@ -221,6 +232,7 @@ static const NSString *kFriendLocation = @"friend_location";
     friend.friendId = [storedFriend valueForKey:(NSString *)kCDFriendId];
     friend.bookCount = [storedFriend valueForKey:(NSString *)kCDFriendBookCount];
     friend.friendLocation = [storedFriend valueForKey:(NSString *)kCDFriendLocation];
+    friend.avatarURLString = [storedFriend valueForKey:(NSString *)kCDFriendAvatarURLString];
     return friend;
 }
 
@@ -231,6 +243,7 @@ static const NSString *kFriendLocation = @"friend_location";
     [object setValue:friend.friendEmail forKey:(NSString *)kCDFriendEmail];
     [object setValue:friend.bookCount forKey:(NSString *)kCDFriendBookCount];
     [object setValue:friend.friendLocation forKey:(NSString *)kCDFriendLocation];
+    [object setValue:friend.avatarURLString forKey:(NSString *)kCDFriendAvatarURLString];
 }
 
 + (Friend *)friendFromServerFriendObject:(id)object
@@ -242,7 +255,7 @@ static const NSString *kFriendLocation = @"friend_location";
     friend.friendEmail = [object valueForKey:(NSString *)kFriendEmail];
     friend.bookCount = [object valueForKey:(NSString *)kFriendBookCount];
     friend.friendLocation = [object valueForKey:(NSString *)kFriendLocation];
-
+    friend.avatarURLString = [object valueForKey:(NSString *)kFriendAvatarURLString];
     return friend;
 }
 

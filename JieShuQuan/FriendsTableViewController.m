@@ -169,7 +169,8 @@
     cell.userNameLabel.text = [friend.friendName isEqualToString:@""] ? friend.friendEmail : friend.friendName;
     cell.bookCountLabel.text = friend.bookCount;
     cell.locationLabel.text = friend.friendLocation;
-    NSURL *avatarURL = [AvatarManager avatarURLForUserId:friend.friendId];
+    
+    NSURL *avatarURL = [NSURL URLWithString:friend.avatarURLString];
     [cell.iconImageView sd_setImageWithURL:avatarURL placeholderImage:[AvatarManager defaulFriendAvatar]];
     [AvatarManager setAvatarStyleForImageView:cell.iconImageView];
     
@@ -213,11 +214,9 @@
 
 - (void)clearFriendsAvatarCache
 {
-    NSMutableArray *friendIds = [[NSMutableArray alloc] init];
     for (Friend *friend in _myFriends) {
-        [friendIds addObject:friend.friendId];
+        [CacheManager clearAvatarCacheForAvatarURL:friend.avatarURLString];
     }
-    [CacheManager clearAvatarCacheForUserIds:friendIds];
 }
 
 #pragma mark - pull to refresh

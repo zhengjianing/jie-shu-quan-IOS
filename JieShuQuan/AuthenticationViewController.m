@@ -47,7 +47,7 @@
         [UserManager saveUserToUserDefaults:user];
         [[BookStore sharedStore] refreshStoredBooks];
         [[FriendStore sharedStore] refreshStoredFriends];
-        [CacheManager clearAvatarCacheForUserId:user.userId];
+        [CacheManager clearAvatarCacheForAvatarURL:user.avatarURLString];
         
         if ([self isKindOfClass:[RegisterViewController class]]) {
             [AlertHelper showAlertWithMessage:@"\n注册成功，\n请前往“更多”页面完善个人资料" withAutoDismiss:NO delegate:self];

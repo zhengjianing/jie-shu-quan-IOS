@@ -8,6 +8,7 @@
 
 #import "SettingsTableViewController.h"
 #import "UserManager.h"
+#import "UserStore.h"
 #import "User.h"
 #import "ImageHelper.h"
 #import "AvatarManager.h"
@@ -63,8 +64,8 @@
 - (void)initViewWithCurrentUser
 {
     _currentUser = [UserManager currentUser];
-    _avatarURL = [AvatarManager avatarURLForUserId:_currentUser.userId];
-    [_userAvatarImageView sd_setImageWithURL:_avatarURL placeholderImage:[AvatarManager defaulFriendAvatar]];
+    [_userAvatarImageView sd_setImageWithURL:[NSURL URLWithString:_currentUser.avatarURLString] placeholderImage:[AvatarManager defaulFriendAvatar]];
+    
     _userNameLabel.text = _currentUser.userName;
     _userLocation.text = _currentUser.location;
     _userPhoneNumber.text = _currentUser.phoneNumber;
@@ -128,7 +129,7 @@
     [self presentViewController:_imagePicker animated:YES completion:nil];
 }
 
-- (void)startingUploadAvatar
+- (void)startingUploadingAvatar
 {
     NSURL *postURL = [NSURL URLWithString:[kUploadAvatarURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
@@ -136,7 +137,11 @@
 
     [request addPostValue:_currentUser.userId forKey:@"user_id"];
     [request addPostValue:_currentUser.accessToken forKey:@"access_token"];
-
+    
+    // This is where to change the new user avatar url string
+    _avatarURL = [NSURL URLWithString:[AvatarManager updateAvatarURLStringForUserId:_currentUser.userId]];
+    [request addPostValue:_avatarURL.absoluteString forKey:@"avatar_url"];
+    
     NSString *avatarPath = [AvatarManager avatarPathForUserId:_currentUser.userId];
     [request setFile:avatarPath forKey:@"avatar_file"];
     
@@ -152,8 +157,14 @@
 
 - (void)refreshUserAvatar
 {
-    [CacheManager clearAvatarCacheForUserId:_currentUser.userId];
     [_userAvatarImageView sd_setImageWithURL:_avatarURL placeholderImage:_avatar];
+    
+    // clear old url cache
+    [CacheManager clearAvatarCacheForAvatarURL:_currentUser.avatarURLString];
+    
+    // when successfully changed avatar, store the new avatarURL to Core Data
+    _currentUser.avatarURLString = _avatarURL.absoluteString;
+    [[UserStore sharedStore] saveUserToCoreData:_currentUser];
 }
 
 - (void)saveAvatarToSandbox
@@ -193,7 +204,7 @@
     [[CustomActivityIndicator sharedActivityIndicator] startSynchAnimating];
     [self.navigationController.navigationBar setUserInteractionEnabled:NO];
     
-    [self startingUploadAvatar];
+    [self startingUploadingAvatar];
 }
 
 #pragma mark - ASIHTTPRequestDelegate

@@ -75,7 +75,7 @@
 - (void)configureFriendInfoView
 {
     [AvatarManager setAvatarStyleForImageView:_friendAvatarImageView];
-    NSURL *avatarURL = [AvatarManager avatarURLForUserId:_currentFriend.friendId];
+    NSURL *avatarURL = [NSURL URLWithString:_currentFriend.avatarURLString];
     [_friendAvatarImageView sd_setImageWithURL:avatarURL placeholderImage:[AvatarManager defaulFriendAvatar]];
     
     _friendNameLabel.text = [_currentFriend.friendName isEqualToString:@""] ? _currentFriend.friendEmail : _currentFriend.friendName;

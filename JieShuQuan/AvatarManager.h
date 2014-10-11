@@ -19,7 +19,6 @@
 + (void)saveImage:(UIImage *)image withUserId:(NSString *)userId;
 + (NSString *)avatarPathForUserId:(NSString *)userId;
 
-+ (NSURL *)avatarURLForUserId:(NSString *)userId;
-+ (NSString *)avatarURLStringForUserId:(NSString *)userId;
++ (NSString *)updateAvatarURLStringForUserId:(NSString *)userId;
 
 @end

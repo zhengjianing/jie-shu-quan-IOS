@@ -8,6 +8,9 @@
 
 #import "AvatarManager.h"
 #import "ServerHeaders.h"
+#import "DateHelper.h"
+#import "UserStore.h"
+#import "User.h"
 
 @implementation AvatarManager
 
@@ -15,15 +18,9 @@ static const NSString *kUserAvatarImageName = @"userAvatar";
 static const NSString *kDefautLoginImageName = @"log-in-user.png";
 static const NSString *kDefautLogoutImageName = @"log-out-user.png";
 
-+ (NSURL *)avatarURLForUserId:(NSString *)userId
++ (NSString *)updateAvatarURLStringForUserId:(NSString *)userId
 {
-    NSString *friendAvatarUrl = [NSString stringWithFormat:@"%@-%@.png", kAvatarURLPrefix, userId];
-    return [NSURL URLWithString:friendAvatarUrl];
-}
-
-+ (NSString *)avatarURLStringForUserId:(NSString *)userId
-{
-    return [NSString stringWithFormat:@"%@-%@.png", kAvatarURLPrefix, userId];
+    return [NSString stringWithFormat:@"%@-%@.png?v=%@", kAvatarURLPrefix, userId, [DateHelper currentDateString]];
 }
 
 + (UIImage *)logoutAvatar

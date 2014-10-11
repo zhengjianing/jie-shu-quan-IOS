@@ -7,21 +7,13 @@
 //
 
 #import "CacheManager.h"
-#import "AvatarManager.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation CacheManager
 
-+ (void)clearAvatarCacheForUserIds:(NSMutableArray *)userIds
++ (void)clearAvatarCacheForAvatarURL:(NSString *)url
 {
-    for (NSString *userId in userIds) {
-        [self clearAvatarCacheForUserId:userId];
-    }
-}
-
-+ (void)clearAvatarCacheForUserId:(NSString *)userId
-{
-    [[SDImageCache sharedImageCache] removeImageForKey:[AvatarManager avatarURLStringForUserId:userId]];
+    [[SDImageCache sharedImageCache] removeImageForKey:url];
 }
 
 @end

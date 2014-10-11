@@ -68,9 +68,9 @@ static const NSString *kDefaultUserName = @"点击设置用户名";
 - (void)updateViewForLogin
 {
     User *currentUser = [UserManager currentUser];
-    NSURL *avatarURL = [AvatarManager avatarURLForUserId:currentUser.userId];
+    NSURL *avatarURL = [NSURL URLWithString:currentUser.avatarURLString];
     [_userIconImageView sd_setImageWithURL:avatarURL placeholderImage:[AvatarManager defaulFriendAvatar]];
-    
+
     [_pleaseLoginLabel setHidden:YES];
     [_userNameLabel setHidden:NO];
     [_emailLabel setHidden:NO];

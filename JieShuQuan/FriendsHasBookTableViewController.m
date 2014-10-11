@@ -205,8 +205,8 @@
     NSDictionary *friendCellObject = [_friendsCellObject objectAtIndex:indexPath.row];
     Friend *friend = friendCellObject[@"friend"];
     NSInteger availability = [friendCellObject[@"availability"] integerValue];
-    
-    NSURL *avatarURL = [AvatarManager avatarURLForUserId:friend.friendId];
+        
+    NSURL *avatarURL = [NSURL URLWithString:friend.avatarURLString];
     [cell.friendAvatarImageView sd_setImageWithURL:avatarURL placeholderImage:[AvatarManager defaulFriendAvatar]];
     [AvatarManager setAvatarStyleForImageView:cell.friendAvatarImageView];
     

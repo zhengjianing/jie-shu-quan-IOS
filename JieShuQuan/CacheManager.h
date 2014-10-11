@@ -10,7 +10,6 @@
 
 @interface CacheManager : NSObject
 
-+ (void)clearAvatarCacheForUserId:(NSString *)userId;
-+ (void)clearAvatarCacheForUserIds:(NSMutableArray *)userIds;
++ (void)clearAvatarCacheForAvatarURL:(NSString *)url;
 
 @end

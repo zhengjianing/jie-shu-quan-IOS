@@ -15,5 +15,6 @@
 @property (copy, nonatomic) NSString *friendEmail;
 @property (copy, nonatomic) NSString *friendLocation;
 @property (copy, nonatomic) NSString *bookCount;
+@property (copy, nonatomic) NSString *avatarURLString;
 
 @end

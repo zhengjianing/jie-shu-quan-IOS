@@ -101,6 +101,7 @@
 		9766FC9B19BF30980089C89B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9766FC9A19BF30980089C89B /* LoginViewController.m */; };
 		9770923819C583CD001A3ED6 /* ActionSheetHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9770923719C583CD001A3ED6 /* ActionSheetHelper.m */; };
 		977FEDB619CEA102000E0154 /* CustomActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 977FEDB519CEA102000E0154 /* CustomActivityIndicator.m */; };
+		9797378219E91A0B00CBDF29 /* DateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9797378119E91A0B00CBDF29 /* DateHelper.m */; };
 		97B59F3A19D2560D0063CFA8 /* CityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97B59F3919D2560D0063CFA8 /* CityTableViewController.m */; };
 		97C528A119BC34B600388375 /* AlertHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C528A019BC34B600388375 /* AlertHelper.m */; };
 		97C528A419BC761000388375 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C528A319BC761000388375 /* RegisterViewController.m */; };
@@ -310,6 +311,8 @@
 		9770923719C583CD001A3ED6 /* ActionSheetHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetHelper.m; sourceTree = "<group>"; };
 		977FEDB419CEA102000E0154 /* CustomActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomActivityIndicator.h; sourceTree = "<group>"; };
 		977FEDB519CEA102000E0154 /* CustomActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomActivityIndicator.m; sourceTree = "<group>"; };
+		9797378019E91A0B00CBDF29 /* DateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateHelper.h; sourceTree = "<group>"; };
+		9797378119E91A0B00CBDF29 /* DateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateHelper.m; sourceTree = "<group>"; };
 		97B59F3819D2560D0063CFA8 /* CityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityTableViewController.h; sourceTree = "<group>"; };
 		97B59F3919D2560D0063CFA8 /* CityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityTableViewController.m; sourceTree = "<group>"; };
 		97C5289F19BC34B600388375 /* AlertHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertHelper.h; sourceTree = "<group>"; };
@@ -555,6 +558,8 @@
 				9476057819C06AC700FA8E74 /* FormatValidator.m */,
 				94F922B619CFC28700F96B09 /* ImageHelper.h */,
 				94F922B719CFC28700F96B09 /* ImageHelper.m */,
+				9797378019E91A0B00CBDF29 /* DateHelper.h */,
+				9797378119E91A0B00CBDF29 /* DateHelper.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -1101,6 +1106,7 @@
 				94BB408819C17378005BBD8E /* FriendInfoTableViewCell.m in Sources */,
 				94C1711419D01D3000656EDB /* ASIDataDecompressor.m in Sources */,
 				9758DD5619D4196E003E0A9E /* BookCommentTableViewController.m in Sources */,
+				9797378219E91A0B00CBDF29 /* DateHelper.m in Sources */,
 				9471DBEF19A5837700F1A291 /* main.m in Sources */,
 				9746071E19D8EE8500F6E03A /* ChangePhoneNumberViewController.m in Sources */,
 				94C1711319D01D3000656EDB /* ASIDataCompressor.m in Sources */,
