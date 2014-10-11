@@ -27,7 +27,10 @@ static const NSString *kDefaultUserName = @"点击设置用户名";
 {
     [super viewDidLoad];
     
-    UIImage *arrowImage = [[FAKIonIcons chevronRightIconWithSize:10] imageWithSize:CGSizeMake(15, 15)];
+    FAKIcon *icon = [FAKIonIcons chevronRightIconWithSize:10];
+    [icon addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
+    
+    UIImage *arrowImage = [icon imageWithSize:CGSizeMake(15, 15)];
     [_arrowIconImageView setImage:arrowImage];
     
     [AvatarManager setAvatarStyleForImageView:_userIconImageView];
@@ -76,11 +79,11 @@ static const NSString *kDefaultUserName = @"点击设置用户名";
     [_emailLabel setHidden:NO];
     [_locationLabel setHidden:NO];
     _userNameLabel.text = currentUser.userName;
-    _userNameLabel.textColor = [UIColor blackColor];
+    _userNameLabel.textColor = [UIColor whiteColor];
 
     if ([_userNameLabel.text isEqualToString:@""]) {
         _userNameLabel.text = (NSString *)kDefaultUserName;
-        _userNameLabel.textColor = [UIColor orangeColor];
+        _userNameLabel.textColor = [UIColor colorWithRed:242/255.0 green:87/255.0 blue:45/255.0 alpha:1];
     }
     _emailLabel.text = currentUser.userEmail;
     _locationLabel.text = currentUser.location;

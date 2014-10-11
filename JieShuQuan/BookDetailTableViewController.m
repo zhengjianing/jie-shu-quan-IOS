@@ -105,7 +105,7 @@ static const float LINESPACE = 5;
     _changeAvailabilityButton.layer.cornerRadius = 5.0;
     _changeExistenceButton.layer.cornerRadius = 5.0;
     
-    _changeExistenceButton.backgroundColor = [UIColor brownColor];
+    _changeExistenceButton.backgroundColor = [UIColor colorWithRed:242/255.0 green:87/255.0 blue:45/255.0 alpha:1];
     [_changeExistenceButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }
 
@@ -181,7 +181,7 @@ static const float LINESPACE = 5;
 - (void)enableAvailabilityArea
 {
     [_changeAvailabilityButton setEnabled:YES];
-    _changeAvailabilityButton.backgroundColor = [UIColor brownColor];
+    _changeAvailabilityButton.backgroundColor = [UIColor colorWithRed:242/255.0 green:87/255.0 blue:45/255.0 alpha:1];
     _changeAvailabilityButton.layer.borderColor = [UIColor clearColor].CGColor;
     [_changeAvailabilityButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }

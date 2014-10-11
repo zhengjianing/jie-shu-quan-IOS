@@ -25,7 +25,7 @@ static const float subTitleFontSize = 11;
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         UIColor *commentColor = [UIColor darkGrayColor];
-        UIColor *subTitleColor = [UIColor brownColor];
+        UIColor *subTitleColor = [UIColor colorWithRed:0 green:137/255.0 blue:114/255.0 alpha:1];
 
         _bookCommentLabel = [[UILabel alloc] init];
         _bookCommentLabel.font = [UIFont systemFontOfSize:commentFontSize];

@@ -182,6 +182,14 @@
     return YES;
 }
 
+#pragma mark - UISearchBarDelegate
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    searchResults = nil;
+    [self.tableView reloadData];
+}
+
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

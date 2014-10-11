@@ -22,6 +22,7 @@
 #import "AvatarManager.h"
 #import "CustomAlert.h"
 #import "MobClick.h"
+#import <FontAwesomeKit/FAKIonIcons.h>
 
 @interface FriendsHasBookTableViewController ()
 
@@ -221,6 +222,10 @@
     cell.friendEmailLabel.text = friend.friendEmail;
     cell.friendEmailLabel.hidden = YES;
     
+    FAKIonIcons *icon = [FAKIonIcons ios7EmailOutlineIconWithSize:20];
+    [icon addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:242/255.0 green:87/255.0 blue:45/255.0 alpha:1]];
+    [cell.mailImageView setImage:[icon imageWithSize:CGSizeMake(20, 20)]];
+    
     if (availability == 0) {
         cell.borrowButton.hidden = YES;
         cell.mailImageView.hidden = YES;
@@ -228,7 +233,7 @@
     } else {
         cell.borrowButton.layer.cornerRadius = 5.0;
         cell.borrowButton.layer.borderWidth = 0.5;
-        cell.borrowButton.layer.borderColor = [UIColor orangeColor].CGColor;
+        cell.borrowButton.layer.borderColor = [UIColor colorWithRed:242/255.0 green:87/255.0 blue:45/255.0 alpha:1].CGColor;
         cell.borrowButton.hidden = NO;
         cell.mailImageView.hidden = NO;
         cell.friendBookAvailibilityLabel.hidden = YES;
