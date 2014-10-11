@@ -78,7 +78,6 @@ static const NSString *kDefaultUserName = @"点击设置用户名";
 
     if ([_userNameLabel.text isEqualToString:@""]) {
         _userNameLabel.text = (NSString *)kDefaultUserName;
-        _userNameLabel.textColor = [UIColor colorWithRed:242/255.0 green:87/255.0 blue:45/255.0 alpha:1];
     }
     _emailLabel.text = currentUser.userEmail;
     _locationLabel.text = currentUser.location;

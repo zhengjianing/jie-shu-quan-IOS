@@ -34,7 +34,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self setCustomSearchBar];
     [self.tableView addSubview:self.messageLabel];
 
     [self registerNotifications];
@@ -42,6 +42,25 @@
     [self setExtraCellLineHidden:self.searchDisplayController.searchResultsTableView];
     
     [self setISBNButton];
+}
+
+- (void)setCustomSearchBar
+{
+    [self.searchDisplayController.searchBar setBackgroundColor:[UIColor colorWithRed:0 green:137/255.0 blue:114/255.0 alpha:1]];
+    for (id item in [self.searchDisplayController.searchBar subviews]) {
+        if ([item isKindOfClass:[UIView class]]) {
+            NSArray *subviews = [item subviews];
+            [[subviews objectAtIndex:0] removeFromSuperview];
+            [[subviews objectAtIndex:2] setTextColor:[UIColor clearColor]];
+            
+            UILabel *newLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, 320, 20)];
+            newLabel.text = @"从豆瓣搜索";
+            newLabel.font = [UIFont systemFontOfSize:14];
+            newLabel.textColor = [UIColor whiteColor];
+            newLabel.textAlignment = UITextAlignmentCenter;
+            [item addSubview:newLabel];
+        }
+    }
 }
 
 - (UILabel *)messageLabel

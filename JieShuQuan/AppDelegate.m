@@ -59,13 +59,16 @@
 
 - (UITabBarController *)createTabBarController
 {
-    UINavigationController *searchNavController = [self createNavControllerWithIdentifier:@"searchViewController" tabBarTitle:@"搜索" iconFont:[FAKIonIcons ios7SearchIconWithSize:25]];
-    UINavigationController *myBookNavController = [self createNavControllerWithIdentifier:@"myBooksViewController" tabBarTitle:@"我的书库" iconFont:[FAKIonIcons androidBookIconWithSize:20]];
-    UINavigationController *friendsNavController = [self createNavControllerWithIdentifier:@"friendsTableViewController" tabBarTitle:@"同事们" iconFont:[FAKIonIcons personStalkerIconWithSize:25]];
-    UINavigationController *moreNavController = [self createNavControllerWithIdentifier:@"moreTableViewController" tabBarTitle:@"更多" iconFont:[FAKIonIcons moreIconWithSize:25]];
-    
+    UINavigationController *searchNavController = [self createNavControllerWithIdentifier:@"searchViewController" tabBarTitle:@"搜索" iconFont:[FAKIonIcons androidSearchIconWithSize:19]];
+    UINavigationController *myBookNavController = [self createNavControllerWithIdentifier:@"myBooksViewController" tabBarTitle:@"我的书库" iconFont:[FAKIonIcons androidBookIconWithSize:19]];
+    UINavigationController *friendsNavController = [self createNavControllerWithIdentifier:@"friendsTableViewController" tabBarTitle:@"同事们" iconFont:[FAKIonIcons ios7PeopleIconWithSize:31]];
+    UINavigationController *moreNavController = [self createNavControllerWithIdentifier:@"moreTableViewController" tabBarTitle:@"更多" iconFont:[FAKIonIcons moreIconWithSize:28]];
+
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     [tabBarController setViewControllers:[NSArray arrayWithObjects:searchNavController, myBookNavController, friendsNavController, moreNavController, nil]];
+    [tabBarController.tabBar setTintColor:[UIColor whiteColor]];
+    [tabBarController.tabBar setSelectedImageTintColor:[UIColor colorWithRed:0 green:137/255.0 blue:114/255.0 alpha:1]];
+
     return tabBarController;
 }
 

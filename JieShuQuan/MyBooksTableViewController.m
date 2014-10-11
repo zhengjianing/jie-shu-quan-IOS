@@ -25,6 +25,7 @@
 #import "UserStore.h"
 #import "CustomAlert.h"
 #import "MobClick.h"
+#import <FontAwesomeKit/FAKIonIcons.h>
 
 static const NSString *kStatusYES = @"可借";
 static const NSString *kStatusNO = @"暂不可借";

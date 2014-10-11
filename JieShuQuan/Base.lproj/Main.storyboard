@@ -75,11 +75,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" prompt="从豆瓣搜索" placeholder="书名，作者" translucent="NO" id="Ujt-OJ-pxn">
-                            <rect key="frame" x="0.0" y="64" width="320" height="75"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="prominent" prompt="从豆瓣搜索" placeholder="书名，作者" translucent="NO" id="Ujt-OJ-pxn">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.95686274510000002" green="0.94083146959999997" blue="0.90525064529999999" alpha="1" colorSpace="calibratedRGB"/>
-                            <color key="barTintColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="barTintColor" red="0.0" green="0.53725490200000003" blue="0.44705882349999998" alpha="1" colorSpace="calibratedRGB"/>
                             <textInputTraits key="textInputTraits"/>
                             <connections>
                                 <outlet property="delegate" destination="eKE-Mb-fWN" id="kzM-5d-3N9"/>
@@ -584,12 +585,10 @@
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="借书圈 1.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5y9-Hv-wSP">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.0" green="0.53725490196078429" blue="0.44705882352941173" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -1191,7 +1190,7 @@
                                         <segment title="所有" width="145"/>
                                         <segment title="同城" width="145"/>
                                     </segments>
-                                    <color key="tintColor" red="0.94901960780000005" green="0.3411764706" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="tintColor" red="0.0" green="0.53725490200000003" blue="0.44705882349999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <connections>
                                         <action selector="changeSegmentControl:" destination="hqg-H5-Ndq" eventType="valueChanged" id="AcF-WZ-AhQ"/>
                                     </connections>
@@ -1303,7 +1302,7 @@
                                         <segment title="所有" width="145"/>
                                         <segment title="同城" width="145"/>
                                     </segments>
-                                    <color key="tintColor" red="0.94901960780000005" green="0.3411764706" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="tintColor" red="0.0" green="0.53725490200000003" blue="0.44705882349999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <connections>
                                         <action selector="changeSegment:" destination="9Ry-Aw-nmg" eventType="valueChanged" id="Kid-cP-Atg"/>
                                     </connections>
