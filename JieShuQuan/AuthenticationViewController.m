@@ -50,7 +50,7 @@
         [CacheManager clearAvatarCacheForUserId:user.userId];
         
         if ([self isKindOfClass:[RegisterViewController class]]) {
-            [AlertHelper showAlertWithMessage:@"注册成功，\n请前往“更多”页面完善个人资料" withAutoDismiss:NO delegate:self];
+            [AlertHelper showAlertWithMessage:@"\n注册成功，\n请前往“更多”页面完善个人资料" withAutoDismiss:NO delegate:self];
         } else {
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
