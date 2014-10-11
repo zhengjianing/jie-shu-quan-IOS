@@ -105,6 +105,7 @@
 		97C528A419BC761000388375 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C528A319BC761000388375 /* RegisterViewController.m */; };
 		97CE0A0419D6F0260071B414 /* CustomAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 97CE0A0319D6F0260071B414 /* CustomAlert.m */; };
 		97DDA8DF19AF7F430055C7E5 /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97DDA8DE19AF7F430055C7E5 /* SearchTableViewController.m */; };
+		97F2647919E97984009346EB /* IconHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F2647819E97984009346EB /* IconHelper.m */; };
 		97F306B219BD45800010E91F /* NSData+AES256.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F306B119BD45800010E91F /* NSData+AES256.m */; };
 		97F306B519BD47D10010E91F /* NSString+AES256.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F306B419BD47D10010E91F /* NSString+AES256.m */; };
 		97F65AC219AE0A7D00B9DC93 /* JsonDataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F65AC119AE0A7D00B9DC93 /* JsonDataFetcher.m */; };
@@ -320,6 +321,8 @@
 		97CE0A0319D6F0260071B414 /* CustomAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAlert.m; sourceTree = "<group>"; };
 		97DDA8DD19AF7F430055C7E5 /* SearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewController.h; sourceTree = "<group>"; };
 		97DDA8DE19AF7F430055C7E5 /* SearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewController.m; sourceTree = "<group>"; };
+		97F2647719E97984009346EB /* IconHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconHelper.h; sourceTree = "<group>"; };
+		97F2647819E97984009346EB /* IconHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconHelper.m; sourceTree = "<group>"; };
 		97F306B019BD45800010E91F /* NSData+AES256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AES256.h"; sourceTree = "<group>"; };
 		97F306B119BD45800010E91F /* NSData+AES256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AES256.m"; sourceTree = "<group>"; };
 		97F306B319BD47D10010E91F /* NSString+AES256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+AES256.h"; sourceTree = "<group>"; };
@@ -831,6 +834,8 @@
 				97CE0A0319D6F0260071B414 /* CustomAlert.m */,
 				9478A82519E0F840004E5806 /* TabBarItemHelper.h */,
 				9478A82619E0F840004E5806 /* TabBarItemHelper.m */,
+				97F2647719E97984009346EB /* IconHelper.h */,
+				97F2647819E97984009346EB /* IconHelper.m */,
 			);
 			name = ViewHelper;
 			sourceTree = "<group>";
@@ -1077,6 +1082,7 @@
 				9766FC9B19BF30980089C89B /* LoginViewController.m in Sources */,
 				94F922B519CFAE0F00F96B09 /* SettingsTableViewController.m in Sources */,
 				945E933019D42065002EC733 /* CreateCommentViewController.m in Sources */,
+				97F2647919E97984009346EB /* IconHelper.m in Sources */,
 				94B23BAE19C3F61B009896BE /* BookDetailTableViewController.m in Sources */,
 				94E980A519CC74E100C7C1ED /* MessageLabelHelper.m in Sources */,
 				97F65AC219AE0A7D00B9DC93 /* JsonDataFetcher.m in Sources */,

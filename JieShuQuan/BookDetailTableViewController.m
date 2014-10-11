@@ -22,7 +22,7 @@
 #import "CustomActivityIndicator.h"
 #import "CustomAlert.h"
 #import "MobClick.h"
-#import <FontAwesomeKit/FAKIonIcons.h>
+#import "IconHelper.h"
 #import <ShareSDK/ShareSDK.h>
 
 static const NSString *kAvailableNO = @"更改为随时可借";
@@ -58,9 +58,7 @@ static const float LINESPACE = 5;
 
 - (UIBarButtonItem *)shareToWeiXinBarButtonItem
 {
-    FAKIonIcons *shareIcon = [FAKIonIcons shareIconWithSize:30];
-    UIImage *shareImage = [shareIcon imageWithSize:CGSizeMake(30, 30)];
-    return [[UIBarButtonItem alloc] initWithImage:shareImage style:UIBarButtonItemStylePlain target:self action:@selector(showWeiXinSharing)];
+    return [[UIBarButtonItem alloc] initWithImage:[IconHelper shareIcon] style:UIBarButtonItemStylePlain target:self action:@selector(showWeiXinSharing)];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

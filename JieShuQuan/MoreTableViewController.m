@@ -16,7 +16,7 @@
 #import "SettingsTableViewController.h"
 #import "MailManager.h"
 #import "MobClick.h"
-#import <FontAwesomeKit/FAKIonIcons.h>
+#import "IconHelper.h"
 
 static const NSString *kDefaultCount = @"--";
 static const NSString *kDefaultUserName = @"点击设置用户名";
@@ -26,12 +26,7 @@ static const NSString *kDefaultUserName = @"点击设置用户名";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    FAKIcon *icon = [FAKIonIcons chevronRightIconWithSize:10];
-    [icon addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor]];
-    
-    UIImage *arrowImage = [icon imageWithSize:CGSizeMake(15, 15)];
-    [_arrowIconImageView setImage:arrowImage];
+    [_arrowIconImageView setImage:[IconHelper arrowIcon]];
     
     [AvatarManager setAvatarStyleForImageView:_userIconImageView];
     [self setTableFooterView];
