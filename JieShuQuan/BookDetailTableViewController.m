@@ -24,6 +24,7 @@
 #import "MobClick.h"
 #import "IconHelper.h"
 #import <ShareSDK/ShareSDK.h>
+#import "CustomColor.h"
 
 static const NSString *kAvailableNO = @"更改为随时可借";
 static const NSString *kAvailableYES = @"更改为暂不可借";
@@ -103,7 +104,7 @@ static const float LINESPACE = 5;
     _changeAvailabilityButton.layer.cornerRadius = 5.0;
     _changeExistenceButton.layer.cornerRadius = 5.0;
     
-    _changeExistenceButton.backgroundColor = [UIColor colorWithRed:242/255.0 green:87/255.0 blue:45/255.0 alpha:1];
+    _changeExistenceButton.backgroundColor = [CustomColor mainRedColor];
     [_changeExistenceButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }
 
@@ -179,7 +180,7 @@ static const float LINESPACE = 5;
 - (void)enableAvailabilityArea
 {
     [_changeAvailabilityButton setEnabled:YES];
-    _changeAvailabilityButton.backgroundColor = [UIColor colorWithRed:242/255.0 green:87/255.0 blue:45/255.0 alpha:1];
+    _changeAvailabilityButton.backgroundColor = [CustomColor mainRedColor];
     _changeAvailabilityButton.layer.borderColor = [UIColor clearColor].CGColor;
     [_changeAvailabilityButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }

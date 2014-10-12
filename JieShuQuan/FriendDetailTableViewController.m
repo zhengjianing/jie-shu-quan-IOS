@@ -22,6 +22,7 @@
 #import "CustomAlert.h"
 #import "MobClick.h"
 #import "IconHelper.h"
+#import "CustomColor.h"
 
 @implementation FriendDetailTableViewController
 
@@ -156,7 +157,7 @@
         cell.mailImageView.hidden = YES;
     } else {
         cell.availabilityLabel.hidden = YES;
-        cell.borrowButton.layer.borderColor = [UIColor colorWithRed:242/255.0 green:87/255.0 blue:45/255.0 alpha:1].CGColor;
+        cell.borrowButton.layer.borderColor = [CustomColor mainRedColor].CGColor;
         cell.borrowButton.layer.cornerRadius = 5.0;
         cell.borrowButton.layer.borderWidth = 0.5;
         cell.borrowButton.hidden = NO;

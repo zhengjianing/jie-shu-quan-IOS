@@ -11,6 +11,7 @@
 		9412E2FB19AA0D82008D243C /* BookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412E2FA19AA0D82008D243C /* BookTableViewCell.m */; };
 		945E933019D42065002EC733 /* CreateCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 945E932F19D42065002EC733 /* CreateCommentViewController.m */; };
 		9466BD7319EA291D00409767 /* 180.png in Resources */ = {isa = PBXBuildFile; fileRef = 9466BD7219EA291D00409767 /* 180.png */; };
+		9466BD7619EA3A6500409767 /* CustomColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9466BD7519EA3A6500409767 /* CustomColor.m */; };
 		9471D41119D2C3DD00AEBE7D /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471D41019D2C3DD00AEBE7D /* CacheManager.m */; };
 		9471DBEF19A5837700F1A291 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471DBEE19A5837700F1A291 /* main.m */; };
 		9471DBF219A5837700F1A291 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471DBF119A5837700F1A291 /* AppDelegate.m */; };
@@ -136,6 +137,8 @@
 		945E932E19D42065002EC733 /* CreateCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateCommentViewController.h; sourceTree = "<group>"; };
 		945E932F19D42065002EC733 /* CreateCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateCommentViewController.m; sourceTree = "<group>"; };
 		9466BD7219EA291D00409767 /* 180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 180.png; sourceTree = "<group>"; };
+		9466BD7419EA3A6500409767 /* CustomColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomColor.h; sourceTree = "<group>"; };
+		9466BD7519EA3A6500409767 /* CustomColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomColor.m; sourceTree = "<group>"; };
 		9471D40F19D2C3DD00AEBE7D /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
 		9471D41019D2C3DD00AEBE7D /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
 		9471DBE919A5837700F1A291 /* JieShuQuan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JieShuQuan.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -839,6 +842,8 @@
 				9478A82619E0F840004E5806 /* TabBarItemHelper.m */,
 				97F2647719E97984009346EB /* IconHelper.h */,
 				97F2647819E97984009346EB /* IconHelper.m */,
+				9466BD7419EA3A6500409767 /* CustomColor.h */,
+				9466BD7519EA3A6500409767 /* CustomColor.m */,
 			);
 			name = ViewHelper;
 			sourceTree = "<group>";
@@ -1097,6 +1102,7 @@
 				94C1711519D01D3000656EDB /* ASIDownloadCache.m in Sources */,
 				94E3EA3919C6EBF500C38FEB /* FriendsHasBookTableViewController.m in Sources */,
 				9412E2FB19AA0D82008D243C /* BookTableViewCell.m in Sources */,
+				9466BD7619EA3A6500409767 /* CustomColor.m in Sources */,
 				97CE0A0419D6F0260071B414 /* CustomAlert.m in Sources */,
 				97FF912919D13475006944BD /* ProvinceTableViewController.m in Sources */,
 				94BB408D19C183E1005BBD8E /* FriendDetailTableViewController.m in Sources */,

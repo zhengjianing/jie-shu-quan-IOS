@@ -17,6 +17,7 @@
 #import <FontAwesomeKit/FAKIonIcons.h>
 #import "TabBarItemHelper.h"
 #import "WXApi.h"
+#import "CustomColor.h"
 
 @implementation AppDelegate
             
@@ -67,7 +68,7 @@
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     [tabBarController setViewControllers:[NSArray arrayWithObjects:searchNavController, myBookNavController, friendsNavController, moreNavController, nil]];
     [tabBarController.tabBar setTintColor:[UIColor whiteColor]];
-    [tabBarController.tabBar setSelectedImageTintColor:[UIColor colorWithRed:0 green:137/255.0 blue:114/255.0 alpha:1]];
+    [tabBarController.tabBar setSelectedImageTintColor:[CustomColor mainGreenColor]];
 
     return tabBarController;
 }

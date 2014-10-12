@@ -9,13 +9,14 @@
 #import "IconHelper.h"
 #import <UIKit/UIKit.h>
 #import <FontAwesomeKit/FAKIonIcons.h>
+#import "CustomColor.h"
 
 @implementation IconHelper
 
 + (UIImage *)emailIcon
 {
     FAKIonIcons *icon = [FAKIonIcons ios7EmailOutlineIconWithSize:20];
-    [icon addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:242/255.0 green:87/255.0 blue:45/255.0 alpha:1]];
+    [icon addAttribute:NSForegroundColorAttributeName value:[CustomColor mainRedColor]];
     return [icon imageWithSize:CGSizeMake(20, 20)];
 }
 

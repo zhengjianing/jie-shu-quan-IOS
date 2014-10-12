@@ -21,6 +21,7 @@
 #import "ZBarSDK.h"
 #import <FontAwesomeKit/FAKFontAwesome.h>
 #import "MessageLabelHelper.h"
+#import "CustomColor.h"
 
 @interface SearchTableViewController ()
 
@@ -46,7 +47,7 @@
 
 - (void)setCustomSearchBar
 {
-    [self.searchDisplayController.searchBar setBackgroundColor:[UIColor colorWithRed:0 green:137/255.0 blue:114/255.0 alpha:1]];
+    [self.searchDisplayController.searchBar setBackgroundColor:[CustomColor mainGreenColor]];
     for (id item in [self.searchDisplayController.searchBar subviews]) {
         if ([item isKindOfClass:[UIView class]]) {
             NSArray *subviews = [item subviews];
@@ -59,6 +60,10 @@
             newLabel.textColor = [UIColor whiteColor];
             newLabel.textAlignment = UITextAlignmentCenter;
             [item addSubview:newLabel];
+            
+            UIView *banner = [[UILabel alloc] initWithFrame:CGRectMake(0, -20, 320, 20)];
+            [banner setBackgroundColor:[CustomColor mainGreenColor]];
+            [item addSubview:banner];
         }
     }
 }
@@ -185,7 +190,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 105.0;
+    return 85;
 }
 
 #pragma mark - UISearchDisplayDelegate
