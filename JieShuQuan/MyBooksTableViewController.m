@@ -142,6 +142,8 @@ static const NSString *kStatusNO = @"暂不可借";
 - (void)loadBooksFromStore
 {
     _myBooks = [[[BookStore sharedStore] storedBooks] mutableCopy];
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"availability" ascending:YES];
+    [_myBooks sortUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
 }
 
 #pragma mark - PreLoginView Delegate
