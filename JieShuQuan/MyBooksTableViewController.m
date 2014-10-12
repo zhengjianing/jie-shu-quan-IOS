@@ -26,12 +26,15 @@
 #import "CustomAlert.h"
 #import "MobClick.h"
 #import <FontAwesomeKit/FAKIonIcons.h>
+#import "CustomColor.h"
 
 static const NSString *kStatusYES = @"可借";
-static const NSString *kStatusNO = @"暂不可借";
+static const NSString *kStatusNO = @"不可借";
 
 @interface MyBooksTableViewController ()
-
+{
+    NSMutableArray *searchResults;
+}
 @property (strong, nonatomic) PreLoginView *preLoginView;
 @property (strong, nonatomic) NSMutableArray *myBooks;
 @property (strong, nonatomic) LoginViewController *loginController;
@@ -48,7 +51,8 @@ static const NSString *kStatusNO = @"暂不可借";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self setCustomSearchBar];
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchBooksFromServer) name:@"RefreshData" object:nil];
     
     UIStoryboard *mainStoryboard = self.storyboard;
@@ -57,14 +61,45 @@ static const NSString *kStatusNO = @"暂不可借";
     [self.tableView addSubview:self.messageLabel];
     _messageLabel.hidden = YES;
     [self.tableView addSubview:self.preLoginView];
-
+    
     [self setTableFooterView];
+    [self setExtraCellLineHidden:self.searchDisplayController.searchResultsTableView];
     
     // Since viewDidLoad will only be called at launching, so refresh books at launching
     if ([UserManager isLogin]) {
         [[CustomActivityIndicator sharedActivityIndicator] startAsynchAnimating];
         [self fetchBooksFromServer];
     }
+}
+
+- (void)setCustomSearchBar
+{
+    [self.searchDisplayController.searchBar setBackgroundColor:[CustomColor mainGreenColor]];
+    for (id item in [self.searchDisplayController.searchBar subviews]) {
+        if ([item isKindOfClass:[UIView class]]) {
+            NSArray *subviews = [item subviews];
+            [[subviews objectAtIndex:0] removeFromSuperview];
+            [[subviews objectAtIndex:2] setTextColor:[UIColor clearColor]];
+            
+            UILabel *newLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, 320, 20)];
+            newLabel.text = @"从书库搜索";
+            newLabel.font = [UIFont systemFontOfSize:14];
+            newLabel.textColor = [UIColor whiteColor];
+            newLabel.textAlignment = UITextAlignmentCenter;
+            [item addSubview:newLabel];
+            
+            UIView *banner = [[UILabel alloc] initWithFrame:CGRectMake(0, -20, 320, 20)];
+            [banner setBackgroundColor:[CustomColor mainGreenColor]];
+            [item addSubview:banner];
+        }
+    }
+}
+
+-(void)setExtraCellLineHidden:(UITableView *)tableView
+{
+    UIView *view = [UIView new];
+    view.backgroundColor = [UIColor clearColor];
+    [tableView setTableFooterView:view];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -79,6 +114,9 @@ static const NSString *kStatusNO = @"暂不可借";
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    searchResults = nil;
+    [self.searchDisplayController setActive:NO animated:YES];
+    
     [MobClick endLogPageView:@"myBooksPage"];
     [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
 }
@@ -146,6 +184,22 @@ static const NSString *kStatusNO = @"暂不可借";
     [_myBooks sortUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
 }
 
+- (void)searchMyBooksWithKeyWords:(NSString *)keyWords
+{
+    searchResults = [[NSMutableArray alloc] init];
+    for (Book *book in _myBooks) {
+        if ([book.name rangeOfString:keyWords options:NSCaseInsensitiveSearch].length != 0) {
+            [searchResults addObject:book];
+            continue;
+        }
+        if ([book.authors rangeOfString:keyWords options:NSCaseInsensitiveSearch].length != 0) {
+            [searchResults addObject:book];
+            continue;
+        }
+    }
+    [self.searchDisplayController.searchResultsTableView reloadData];
+}
+
 #pragma mark - PreLoginView Delegate
 
 - (void)login
@@ -162,19 +216,45 @@ static const NSString *kStatusNO = @"暂不可借";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return searchResults.count;
+    }
     return _myBooks.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BookTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bookIdentifier" forIndexPath:indexPath];
-
-    Book *book = [_myBooks objectAtIndex:indexPath.row];
+    BookTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"bookIdentifier" forIndexPath:indexPath];
+    Book *book;
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        book = [searchResults objectAtIndex:indexPath.row];
+    } else {
+        book = [_myBooks objectAtIndex:indexPath.row];
+    }
     cell.nameLabel.text = book.name;
     cell.authorsLabel.text = book.authors;
     [cell.bookImageView sd_setImageWithURL:[NSURL URLWithString:book.imageHref]];
     cell.availabilityLabel.text = (book.availability == YES) ? (NSString *)kStatusYES : (NSString *)kStatusNO;
     return cell;
+}
+
+#pragma mark - UISearchDisplayDelegate
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    if (![searchString isEqualToString:@""]) {
+        
+        [self searchMyBooksWithKeyWords:searchString];
+    }
+    return YES;
+}
+
+#pragma mark - UISearchBarDelegate
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    searchResults = nil;
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view delegate
@@ -191,15 +271,24 @@ static const NSString *kStatusNO = @"暂不可借";
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        if (indexPath.row < _myBooks.count) {
-            [self deleteBook:[_myBooks objectAtIndex:indexPath.row] atIndexPath:indexPath];
+        if (tableView == self.searchDisplayController.searchResultsTableView) {
+            [self deleteBook:[searchResults objectAtIndex:indexPath.row] fromTableView:tableView atIndexPath:indexPath];
+            return;
         }
+        [self deleteBook:[_myBooks objectAtIndex:indexPath.row] fromTableView:tableView atIndexPath:indexPath];
     }
+}
+
+#pragma mark - Table view delegate
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 90;
 }
 
 #pragma mark - delete book
 
-- (void)deleteBook:(Book *)book atIndexPath:(NSIndexPath *)indexPath
+- (void)deleteBook:(Book *)book fromTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath
 {
     [[CustomActivityIndicator sharedActivityIndicator] startAsynchAnimating];
 
@@ -212,8 +301,13 @@ static const NSString *kStatusNO = @"暂不可借";
         }
         
         if (data) {
-            [_myBooks removeObjectAtIndex:indexPath.row];
-            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+            
+            if (tableView == self.searchDisplayController.searchResultsTableView) {
+                [searchResults removeObject:book];
+            }
+            [_myBooks removeObject:book];
+            
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
             
             [[BookStore sharedStore] deleteBookFromStore:book];
             [[UserStore sharedStore] decreseBookCountForUser:[[UserManager currentUser] userId]];
@@ -279,9 +373,16 @@ static const NSString *kStatusNO = @"暂不可借";
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    Book *selectedBook;
+    NSIndexPath *selectIndexPath;
     if ([[segue destinationViewController] class] == BookDetailTableViewController.class) {
-        NSIndexPath *selectIndexPath = [self.tableView indexPathForSelectedRow];
-        Book *selectedBook = [_myBooks objectAtIndex:[selectIndexPath row]];
+        if ([[sender superview] superview]== self.searchDisplayController.searchResultsTableView) {
+            selectIndexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+            selectedBook = [searchResults objectAtIndex:[selectIndexPath row]];
+        } else {
+            selectIndexPath = [self.tableView indexPathForSelectedRow];
+            selectedBook = [_myBooks objectAtIndex:[selectIndexPath row]];
+        }
         [[segue destinationViewController] setBook:selectedBook];
     }
 }

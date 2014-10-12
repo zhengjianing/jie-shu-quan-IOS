@@ -24,7 +24,9 @@
 #import "CustomColor.h"
 
 @interface SearchTableViewController ()
-
+{
+    NSMutableArray *searchResults;
+}
 @property (strong, nonatomic) UILabel *messageLabel;
 - (void)searchByDouBanWithUrl:(NSString *)searchUrl;
 

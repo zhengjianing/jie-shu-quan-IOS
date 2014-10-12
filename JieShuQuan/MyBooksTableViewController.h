@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "PreLoginView.h"
 
-@interface MyBooksTableViewController : UITableViewController <PreLoginDelegate, NSURLConnectionDataDelegate>
+@interface MyBooksTableViewController : UITableViewController <PreLoginDelegate, NSURLConnectionDataDelegate, UISearchDisplayDelegate, UISearchBarDelegate>
 
 @end
