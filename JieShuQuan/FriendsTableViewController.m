@@ -141,6 +141,17 @@
             [_localFriends addObject:friend];
         }
     }
+    
+    NSString *segTitle0 = [NSString stringWithFormat:@"所有 (%lu)", (unsigned long)_allFriends.count];
+    NSString *segTitle1 = [NSString stringWithFormat:@"同城 (%lu)", (unsigned long)_localFriends.count];
+    
+    [self setTitle:segTitle0 forSegmentedIndex:0];
+    [self setTitle:segTitle1 forSegmentedIndex:1];
+}
+
+- (void)setTitle:(NSString *)title forSegmentedIndex:(NSUInteger)index
+{
+    [_segmentedControll setTitle:title forSegmentAtIndex:index];
 }
 
 #pragma mark - PreLoginView
