@@ -98,6 +98,7 @@ static const NSString *kStatusNO = @"暂不可借";
 - (void)refreshData
 {
     [self loadBooksFromStore];
+    [self updateNavItem];
     if (_myBooks.count > 0) {
         _messageLabel.hidden = YES;
     } else {
@@ -214,12 +215,18 @@ static const NSString *kStatusNO = @"暂不可借";
             
             [[BookStore sharedStore] deleteBookFromStore:book];
             [[UserStore sharedStore] decreseBookCountForUser:[[UserManager currentUser] userId]];
+            [self updateNavItem];
         }
         
         [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
         [self.tableView setEditing:NO];
     }];
 
+}
+
+- (void)updateNavItem
+{
+    self.navigationItem.title = [NSString stringWithFormat:@"我的书库 (%lu)", (unsigned long)_myBooks.count];
 }
 
 #pragma mark - fetch books from server
