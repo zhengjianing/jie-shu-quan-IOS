@@ -10,6 +10,7 @@
 		9412E2F519A9FAC7008D243C /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412E2F419A9FAC7008D243C /* Book.m */; };
 		9412E2FB19AA0D82008D243C /* BookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412E2FA19AA0D82008D243C /* BookTableViewCell.m */; };
 		945E933019D42065002EC733 /* CreateCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 945E932F19D42065002EC733 /* CreateCommentViewController.m */; };
+		9466BD7319EA291D00409767 /* 180.png in Resources */ = {isa = PBXBuildFile; fileRef = 9466BD7219EA291D00409767 /* 180.png */; };
 		9471D41119D2C3DD00AEBE7D /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471D41019D2C3DD00AEBE7D /* CacheManager.m */; };
 		9471DBEF19A5837700F1A291 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471DBEE19A5837700F1A291 /* main.m */; };
 		9471DBF219A5837700F1A291 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9471DBF119A5837700F1A291 /* AppDelegate.m */; };
@@ -134,6 +135,7 @@
 		9412E2FA19AA0D82008D243C /* BookTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookTableViewCell.m; sourceTree = "<group>"; };
 		945E932E19D42065002EC733 /* CreateCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateCommentViewController.h; sourceTree = "<group>"; };
 		945E932F19D42065002EC733 /* CreateCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateCommentViewController.m; sourceTree = "<group>"; };
+		9466BD7219EA291D00409767 /* 180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 180.png; sourceTree = "<group>"; };
 		9471D40F19D2C3DD00AEBE7D /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
 		9471D41019D2C3DD00AEBE7D /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
 		9471DBE919A5837700F1A291 /* JieShuQuan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JieShuQuan.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -513,6 +515,7 @@
 		9471DBEC19A5837700F1A291 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9466BD7219EA291D00409767 /* 180.png */,
 				9755FF1219E559660093F90C /* qrcode_for_gh_9435ba066d3c_430.jpg */,
 				94BB40B619C33770005BBD8E /* log-in-user.png */,
 				94BB40B719C33770005BBD8E /* log-out-user.png */,
@@ -978,6 +981,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9466BD7319EA291D00409767 /* 180.png in Resources */,
 				970790FF19E1724F0095EB4C /* zbar-back.png in Resources */,
 				9471DBFB19A5837700F1A291 /* Main.storyboard in Resources */,
 				94E1A14E19DEBA4C004BB148 /* Resource.bundle in Resources */,

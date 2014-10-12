@@ -10,6 +10,7 @@
 #import "MobClick.h"
 
 @interface AboutTableViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *appIconImageView;
 
 @end
 
@@ -20,6 +21,8 @@
     [super viewDidLoad];
     self.tabBarController.tabBar.hidden = YES;
     [self setTableFooterView];
+    _appIconImageView.layer.masksToBounds = YES;
+    _appIconImageView.layer.cornerRadius = 5.0;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
