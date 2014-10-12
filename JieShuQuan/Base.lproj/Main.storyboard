@@ -31,7 +31,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x8X-zM-WtI">
-                                            <rect key="frame" x="86" y="15" width="216" height="20"/>
+                                            <rect key="frame" x="86" y="15" width="226" height="20"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -1139,7 +1139,7 @@
         <scene sceneID="DEU-IL-1uh">
             <objects>
                 <tableViewController id="hqg-H5-Ndq" customClass="FriendsHasBookTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="89" sectionHeaderHeight="22" sectionFooterHeight="22" id="grl-oj-q6j">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" id="grl-oj-q6j">
                         <rect key="frame" x="0.0" y="64" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1226,28 +1226,33 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="bookDetailCell" rowHeight="89" id="kGi-Bj-ECC" customClass="FriendHasBookTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="bookDetailCell" rowHeight="70" id="kGi-Bj-ECC" customClass="FriendHasBookTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kGi-Bj-ECC" id="FU2-MU-d3P">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="log-in-user.png" translatesAutoresizingMaskIntoConstraints="NO" id="zVm-ee-5gJ">
-                                            <rect key="frame" x="20" y="13" width="60" height="60"/>
-                                        </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="email@email.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="spf-pQ-ivs">
-                                            <rect key="frame" x="220" y="32" width="100" height="21"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="陕西，西安" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ye7-Uu-ki9">
+                                            <rect key="frame" x="83" y="41" width="129" height="20"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9OT-vy-i6f">
+                                            <rect key="frame" x="83" y="11" width="221" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="log-in-user.png" translatesAutoresizingMaskIntoConstraints="NO" id="zVm-ee-5gJ">
+                                            <rect key="frame" x="14" y="6" width="55" height="55"/>
+                                        </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="不可借" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XhX-Gg-UMQ">
-                                            <rect key="frame" x="253" y="56" width="50" height="20"/>
+                                            <rect key="frame" x="253" y="41" width="50" height="20"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KjO-oL-PxE">
-                                            <rect key="frame" x="220" y="52" width="92" height="27"/>
+                                            <rect key="frame" x="220" y="37" width="92" height="27"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <state key="normal" title="      向他借书">
                                                 <color key="titleColor" red="0.94901960780000005" green="0.3411764706" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -1257,19 +1262,8 @@
                                                 <action selector="borrowFromFriend:" destination="hqg-H5-Ndq" eventType="touchUpInside" id="xSz-4T-O25"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="陕西，西安" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ye7-Uu-ki9">
-                                            <rect key="frame" x="100" y="52" width="88" height="20"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9OT-vy-i6f">
-                                            <rect key="frame" x="100" y="20" width="200" height="20"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UGz-jf-SK2">
-                                            <rect key="frame" x="227" y="55" width="20" height="20"/>
+                                            <rect key="frame" x="227" y="40" width="20" height="20"/>
                                         </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
@@ -1277,7 +1271,6 @@
                                     <outlet property="borrowButton" destination="KjO-oL-PxE" id="TKx-kb-rb3"/>
                                     <outlet property="friendAvatarImageView" destination="zVm-ee-5gJ" id="FZC-Wy-W0s"/>
                                     <outlet property="friendBookAvailibilityLabel" destination="XhX-Gg-UMQ" id="LEz-cX-1vY"/>
-                                    <outlet property="friendEmailLabel" destination="spf-pQ-ivs" id="W6a-6N-4yP"/>
                                     <outlet property="friendNameLabel" destination="9OT-vy-i6f" id="R3G-a4-VKe"/>
                                     <outlet property="locationLabel" destination="ye7-Uu-ki9" id="7S7-QH-880"/>
                                     <outlet property="mailImageView" destination="UGz-jf-SK2" id="egX-du-JAw"/>
@@ -1364,7 +1357,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="陕西，西安" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="88o-Vn-FgO">
-                                            <rect key="frame" x="238" y="41" width="66" height="21"/>
+                                            <rect key="frame" x="166" y="41" width="138" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -1402,7 +1395,7 @@
         <scene sceneID="EzS-xm-C17">
             <objects>
                 <tableViewController id="NGy-vG-aIx" customClass="FriendDetailTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="105" sectionHeaderHeight="22" sectionFooterHeight="22" id="NqY-a7-avj">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="22" sectionFooterHeight="22" id="NqY-a7-avj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1433,7 +1426,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="陕西，西安" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y2f-kg-2uG">
-                                    <rect key="frame" x="231" y="41" width="68" height="21"/>
+                                    <rect key="frame" x="168" y="41" width="131" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -1443,27 +1436,27 @@
                             <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="friendBookIdentifier" rowHeight="105" id="Kmw-cX-9Kd" customClass="FriendBookTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="friendBookIdentifier" rowHeight="90" id="Kmw-cX-9Kd" customClass="FriendBookTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kmw-cX-9Kd" id="e0W-xg-coE">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gwe-qD-1M8">
-                                            <rect key="frame" x="93" y="13" width="207" height="21"/>
+                                            <rect key="frame" x="86" y="15" width="226" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="authors" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8dk-Bk-GYh">
-                                            <rect key="frame" x="93" y="39" width="207" height="21"/>
+                                            <rect key="frame" x="86" y="55" width="135" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nDv-zb-EeB">
-                                            <rect key="frame" x="20" y="13" width="55" height="80"/>
+                                            <rect key="frame" x="16" y="10" width="52" height="69"/>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pyi-mO-WNJ">
-                                            <rect key="frame" x="217" y="69" width="92" height="27"/>
+                                            <rect key="frame" x="220" y="55" width="92" height="27"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <state key="normal" title="      向他借书">
                                                 <color key="titleColor" red="0.94901960780000005" green="0.3411764706" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -1474,10 +1467,10 @@
                                             </connections>
                                         </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dWm-un-Dlz">
-                                            <rect key="frame" x="226" y="72" width="17" height="20"/>
+                                            <rect key="frame" x="229" y="58" width="17" height="20"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="不可借" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0c-sP-DTp">
-                                            <rect key="frame" x="232" y="72" width="68" height="21"/>
+                                            <rect key="frame" x="235" y="58" width="68" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>

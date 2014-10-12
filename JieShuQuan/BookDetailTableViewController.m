@@ -296,15 +296,29 @@ static const float LINESPACE = 5;
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     if ([response statusCode] != 200) {
         if ([request.URL.absoluteString isEqualToString:kAddBookURL]) {
-            [[CustomAlert sharedAlert] showAlertWithMessage:@"添加图书失败"];
+            [[CustomAlert sharedAlert] showAlertWithMessage:@"添加失败"];
         }
         if ([request.URL.absoluteString isEqualToString:kDeleteBookURL])
         {
-            [[CustomAlert sharedAlert] showAlertWithMessage:@"删除图书失败"];
+            [[CustomAlert sharedAlert] showAlertWithMessage:@"删除失败"];
         }
         if ([request.URL.absoluteString isEqualToString:kChangeBookStatusURL])
         {
-            [[CustomAlert sharedAlert] showAlertWithMessage:@"修改状态失败"];
+            [[CustomAlert sharedAlert] showAlertWithMessage:@"修改失败"];
+        }
+    }
+    
+    if ([response statusCode] == 200) {
+        if ([request.URL.absoluteString isEqualToString:kAddBookURL]) {
+            [[CustomAlert sharedAlert] showAlertWithMessage:@"添加成功"];
+        }
+        if ([request.URL.absoluteString isEqualToString:kDeleteBookURL])
+        {
+            [[CustomAlert sharedAlert] showAlertWithMessage:@"删除成功"];
+        }
+        if ([request.URL.absoluteString isEqualToString:kChangeBookStatusURL])
+        {
+            [[CustomAlert sharedAlert] showAlertWithMessage:@"修改成功"];
         }
     }
     return data;

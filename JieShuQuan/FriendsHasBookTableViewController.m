@@ -220,8 +220,7 @@
     cell.locationLabel.text = friend.friendLocation;
 
     // always hide email label, only used when send email, will get email address from the label text
-    cell.friendEmailLabel.text = friend.friendEmail;
-    cell.friendEmailLabel.hidden = YES;
+    cell.friendEmail = friend.friendEmail;
     
     [cell.mailImageView setImage:[IconHelper emailIcon]];
     
@@ -250,7 +249,7 @@
     _selectedFriendId = selectedCell.friendId;
     
     NSString *toName = selectedCell.friendNameLabel.text;
-    NSString *toEmailAddress = selectedCell.friendEmailLabel.text;
+    NSString *toEmailAddress = selectedCell.friendEmail;
     
     Class mailClass = (NSClassFromString(@"MFMailComposeViewController"));
     

@@ -9,7 +9,6 @@
 #import "CustomAlert.h"
 
 static const float fontSize = 14;
-//static const float maxLabelWidth = 300;
 static const float fixedLabelHeight = 45;
 static const float yOrigin = 420;
 static const float horizontalMargin = 20;
