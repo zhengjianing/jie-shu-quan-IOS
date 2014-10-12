@@ -142,6 +142,10 @@
         }
     }
     
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"bookCount" ascending:NO];
+    [_allFriends sortUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    [_localFriends sortUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    
     NSString *segTitle0 = [NSString stringWithFormat:@"所有 (%lu)", (unsigned long)_allFriends.count];
     NSString *segTitle1 = [NSString stringWithFormat:@"同城 (%lu)", (unsigned long)_localFriends.count];
     
