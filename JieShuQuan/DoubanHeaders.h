@@ -10,4 +10,4 @@
 #define kSearchURL @"https://api.douban.com/v2/book/search"
 #define kSearchBookId @"https://api.douban.com/v2/book/"
 #define kSearchIsbnCode @"https://api.douban.com/v2/book/isbn/"
-#define kMaxCount @10
+#define kMaxCount @15
