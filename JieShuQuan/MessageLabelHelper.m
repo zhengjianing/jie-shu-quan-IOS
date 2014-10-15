@@ -15,7 +15,7 @@
     UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 150, 220, 200.0)];
     messageLabel.text = message;
     messageLabel.textColor = [UIColor grayColor];
-    messageLabel.textAlignment = UITextAlignmentCenter;
+    messageLabel.textAlignment = NSTextAlignmentCenter;
     messageLabel.numberOfLines = 0;
     messageLabel.font = [UIFont fontWithName:@"Arial" size:13.0f];
     return messageLabel;

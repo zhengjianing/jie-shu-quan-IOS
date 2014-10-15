@@ -85,7 +85,7 @@ static const NSString *kStatusNO = @"不可借";
             newLabel.text = @"从书库搜索";
             newLabel.font = [UIFont systemFontOfSize:14];
             newLabel.textColor = [UIColor whiteColor];
-            newLabel.textAlignment = UITextAlignmentCenter;
+            newLabel.textAlignment = NSTextAlignmentCenter;
             [item addSubview:newLabel];
             
             UIView *banner = [[UILabel alloc] initWithFrame:CGRectMake(0, -20, 320, 20)];
