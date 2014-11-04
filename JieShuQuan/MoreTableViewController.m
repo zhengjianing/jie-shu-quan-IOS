@@ -160,7 +160,7 @@ static const NSString *kDefaultUserName = @"点击设置用户名";
     
     Class mailClass = (NSClassFromString(@"MFMailComposeViewController"));
     
-    if (mailClass != nil) {
+    if (mailClass != nil && [mailClass canSendMail]) {
         [MailManager displayComposerSheetToEmailAddress:toEmailAddress delegate:self];
     } else {
         [MailManager launchMailToEmailAddress:toEmailAddress];

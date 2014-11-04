@@ -10,10 +10,10 @@
 
 @interface MailManager : NSObject
 
-+ (void)displayComposerSheetToName:(NSString *)toName toEmailAddress:(NSString *)toEmailAddress forBook:(NSString *)book delegate:(id)delegate;
-+ (void)launchMailToName:(NSString *)toName toEmailAddress:(NSString *)toEmailAddress forBook:(NSString *)bookName;
++ (void)displayComposerSheetToName:(NSString *)toName toEmailAddress:(NSString *)emailAddress forBook:(NSString *)book delegate:(id)delegate;
++ (void)launchMailToName:(NSString *)toName toEmailAddress:(NSString *)emailAddress forBook:(NSString *)bookName;
 
-+ (void)displayComposerSheetToEmailAddress:(NSString *)toEmailAddress delegate:(id)delegate;
-+ (void)launchMailToEmailAddress:(NSString *)toEmailAddress;
++ (void)displayComposerSheetToEmailAddress:(NSString *)emailAddress delegate:(id)delegate;
++ (void)launchMailToEmailAddress:(NSString *)emailAddress;
 
 @end
