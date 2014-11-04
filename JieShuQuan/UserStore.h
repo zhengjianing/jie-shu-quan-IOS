@@ -18,6 +18,6 @@
 - (User *)userWithUserId:(NSString *)userId;
 - (void)increseBookCountForUser:(NSString *)userId;
 - (void)decreseBookCountForUser:(NSString *)userId;
-
+- (void)setFriendsCount:(NSUInteger)friendCount forUser:(NSString *)userId;
 
 @end

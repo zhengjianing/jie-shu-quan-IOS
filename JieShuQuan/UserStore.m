@@ -70,6 +70,16 @@ static const NSString *kEntityName = @"User";
     [self refreshBookCountForUser:userId withCount:-1];
 }
 
+- (void)setFriendsCount:(NSUInteger)friendCount forUser:(NSString *)userId
+{
+    if ([[self storedUsersWithUserId:userId] count] == 0) {
+        return;
+    }
+    NSManagedObject *storedUser = [[self storedUsersWithUserId:userId] objectAtIndex:0];
+    [storedUser setValue:[NSString stringWithFormat:@"%ld", (long)friendCount] forKey:@"friend_count"];
+    [self saveContext];
+}
+
 - (void)refreshBookCountForUser:(NSString *)userId withCount:(NSInteger)count
 {
     if ([[self storedUsersWithUserId:userId] count] == 0) {
@@ -77,8 +87,8 @@ static const NSString *kEntityName = @"User";
     }
     NSManagedObject *storedUser = [[self storedUsersWithUserId:userId] objectAtIndex:0];
     int previousCount = [[storedUser valueForKey:@"book_count"] intValue];
-    int currentCount = previousCount + count;
-    [storedUser setValue:[NSString stringWithFormat:@"%d", currentCount] forKey:@"book_count"];
+    NSInteger currentCount = previousCount + count;
+    [storedUser setValue:[NSString stringWithFormat:@"%ld", (long)currentCount] forKey:@"book_count"];
     [self saveContext];
 }
 

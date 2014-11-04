@@ -24,6 +24,7 @@
 #import "CacheManager.h"
 #import "CustomAlert.h"
 #import "MobClick.h"
+#import "UserStore.h"
 
 @interface FriendsTableViewController ()
 
@@ -221,6 +222,7 @@
                 Friend *friend = [DataConverter friendFromServerFriendObject:item];
                 [[FriendStore sharedStore] addFriendToStore:friend];
             }
+            [[UserStore sharedStore] setFriendsCount:friendsArray.count forUser:[[UserManager currentUser] userId]];
             [self loadFriendsFromStore];
             [self showTableViewWithCorrectData];
         }
