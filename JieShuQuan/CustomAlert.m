@@ -86,7 +86,7 @@ static const float horizontalMargin = 20;
 - (void)setAlertWithText:(NSString*)text {
     _textLabel.text = text;
     _textLabel.numberOfLines = 0;
-    _textLabel.textAlignment = UITextAlignmentCenter;
+    _textLabel.textAlignment = NSTextAlignmentCenter;
     
     CGSize constrainedSize = CGSizeMake(MAXFLOAT, fixedLabelHeight);
     

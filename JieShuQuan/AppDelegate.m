@@ -27,13 +27,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    //添加友盟统计分析 http://www.umeng.com/
     [MobClick startWithAppkey:@"5427f7a4fd98c566c80090e6" reportPolicy:BATCH channelId:nil];
     
+    //添加ShareSDK支持 http://dashboard.mob.com/
     [ShareSDK registerApp:@"3456b138a03c"];
     
     //添加微信应用 注册网址 http://open.weixin.qq.com
     [ShareSDK connectWeChatWithAppId:@"wx6a876af68c7eb3fe" wechatCls:[WXApi class]];
     
+    //初始化页面
+    _mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UITabBarController *tabBarController = [self createTabBarController];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = tabBarController;
@@ -41,21 +45,14 @@
     return YES;
 }
 
-- (BOOL)application:(UIApplication *)application  handleOpenURL:(NSURL *)url
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
-    return [ShareSDK handleOpenURL:url
-                        wxDelegate:self];
+    return [ShareSDK handleOpenURL:url wxDelegate:self];
 }
 
-- (BOOL)application:(UIApplication *)application
-            openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    return [ShareSDK handleOpenURL:url
-                 sourceApplication:sourceApplication
-                        annotation:annotation
-                        wxDelegate:self];
+    return [ShareSDK handleOpenURL:url sourceApplication:sourceApplication annotation:annotation wxDelegate:self];
 }
 
 - (UITabBarController *)createTabBarController
@@ -75,11 +72,9 @@
 
 - (UINavigationController *)createNavControllerWithIdentifier:(NSString *)identifier tabBarTitle:(NSString *)title iconFont:(FAKIonIcons *)iconFont
 {
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *viewController = [mainStoryboard instantiateViewControllerWithIdentifier:identifier];
+    UIViewController *viewController = [_mainStoryboard instantiateViewControllerWithIdentifier:identifier];
     viewController.tabBarItem = [TabBarItemHelper createTabBarItemWithTitle:title icon:iconFont];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewController];
-    return navController;
+    return [[UINavigationController alloc] initWithRootViewController:viewController];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
