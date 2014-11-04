@@ -91,9 +91,6 @@ static const NSString *kCDFriendBookCount = @"book_count";
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:(NSString *)kEntityName];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"user.user_id == %@", [[UserManager currentUser] userId]];
     [request setPredicate:predicate];
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:(NSString *)kCDFriendBookCount ascending:YES];
-    [request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
-    
     return [[self managedObjectContext] executeFetchRequest:request error:nil];
 }
 

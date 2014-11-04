@@ -143,7 +143,16 @@
         }
     }
     
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"bookCount" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"bookCount" ascending:NO comparator:^NSComparisonResult(id obj1, id obj2) {
+        if ([obj1 integerValue] > [obj2 integerValue]) {
+            return (NSComparisonResult)NSOrderedDescending;
+        }
+        
+        if ([obj1 integerValue] < [obj2 integerValue]) {
+            return (NSComparisonResult)NSOrderedAscending;
+        }
+        return (NSComparisonResult)NSOrderedSame;
+    }];
     [_allFriends sortUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     [_localFriends sortUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     
