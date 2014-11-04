@@ -156,7 +156,7 @@ static const NSString *kDefaultUserName = @"点击设置用户名";
 
 - (void)sendFeedbackWithMailView
 {
-    NSString *toEmailAddress = @"jieshuquan@test.com";
+    NSString *toEmailAddress = @"jieshuquan@yeah.net";
     
     Class mailClass = (NSClassFromString(@"MFMailComposeViewController"));
     
