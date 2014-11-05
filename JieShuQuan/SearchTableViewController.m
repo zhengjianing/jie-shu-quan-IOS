@@ -18,7 +18,7 @@
 #import "CustomAlert.h"
 #import "MobClick.h"
 #import "CustomActivityIndicator.h"
-//#import "ZBarSDK.h"
+#import "ZBarSDK.h"
 #import <FontAwesomeKit/FAKFontAwesome.h>
 #import "MessageLabelHelper.h"
 #import "CustomColor.h"
@@ -44,7 +44,7 @@
     [self setTableFooterView];    
     [self setExtraCellLineHidden:self.searchDisplayController.searchResultsTableView];
     
-//    [self setISBNButton];
+    [self setISBNButton];
 }
 
 - (void)setCustomSearchBar
@@ -79,32 +79,32 @@
     return _messageLabel;
 }
 
-//- (void)setISBNButton
-//{
-//    FAKFontAwesome *icon = [FAKFontAwesome barcodeIconWithSize:25];
-//    icon.drawingPositionAdjustment = UIOffsetMake(0, 2);
-//    UIImage *image = [icon imageWithSize:CGSizeMake(25, 25)];
-//    
-//    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(scanBarCode)];
-//    [self.navigationItem setRightBarButtonItem:item];
-//}
+- (void)setISBNButton
+{
+    FAKFontAwesome *icon = [FAKFontAwesome barcodeIconWithSize:25];
+    icon.drawingPositionAdjustment = UIOffsetMake(0, 2);
+    UIImage *image = [icon imageWithSize:CGSizeMake(25, 25)];
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(scanBarCode)];
+    [self.navigationItem setRightBarButtonItem:item];
+}
 
-//- (void)scanBarCode
-//{
-//    [MobClick event:@"scan"];
-//    
-//    ZBarReaderViewController *reader = [ZBarReaderViewController new];
-//
-//    reader.readerDelegate = self;
-//    reader.supportedOrientationsMask = ZBarOrientationMaskAll;
-//    reader.tracksSymbols = YES;
-//    
-//    ZBarImageScanner *scanner = reader.scanner;
-//    // EXAMPLE: disable rarely used I2/5 to improve performance
-//    [scanner setSymbology: ZBAR_I25 config: ZBAR_CFG_ENABLE to: 0];
-//    
-//    [self presentViewController:reader animated:YES completion:nil];
-//}
+- (void)scanBarCode
+{
+    [MobClick event:@"scan"];
+    
+    ZBarReaderViewController *reader = [ZBarReaderViewController new];
+
+    reader.readerDelegate = self;
+    reader.supportedOrientationsMask = ZBarOrientationMaskAll;
+    reader.tracksSymbols = YES;
+    
+    ZBarImageScanner *scanner = reader.scanner;
+    // EXAMPLE: disable rarely used I2/5 to improve performance
+    [scanner setSymbology: ZBAR_I25 config: ZBAR_CFG_ENABLE to: 0];
+    
+    [self presentViewController:reader animated:YES completion:nil];
+}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -232,25 +232,25 @@
 
 #pragma mark - zBar scanner
 
-//- (void)imagePickerController: (UIImagePickerController*)reader didFinishPickingMediaWithInfo: (NSDictionary*)info
-//{
-//    id<NSFastEnumeration> results = [info objectForKey: ZBarReaderControllerResults];
-//    ZBarSymbol *symbol = nil;
-//    for(symbol in results) {
-//        // EXAMPLE: just grab the first barcode
-//        break;
-//    }
-//    
-//    NSString *isbnCode = symbol.data;
-//    if (isbnCode) {
-//        [[CustomActivityIndicator sharedActivityIndicator] startAsynchAnimating];
-//        [self startFetchingBookDetailFromDoubanWithIsbnCode:isbnCode];
-//    } else {
-//        [[CustomAlert sharedAlert] showAlertWithMessage:@"获取图书信息失败"];
-//    }
-//    
-//    [reader dismissViewControllerAnimated:YES completion:nil];
-//}
+- (void)imagePickerController: (UIImagePickerController*)reader didFinishPickingMediaWithInfo: (NSDictionary*)info
+{
+    id<NSFastEnumeration> results = [info objectForKey: ZBarReaderControllerResults];
+    ZBarSymbol *symbol = nil;
+    for(symbol in results) {
+        // EXAMPLE: just grab the first barcode
+        break;
+    }
+    
+    NSString *isbnCode = symbol.data;
+    if (isbnCode) {
+        [[CustomActivityIndicator sharedActivityIndicator] startAsynchAnimating];
+        [self startFetchingBookDetailFromDoubanWithIsbnCode:isbnCode];
+    } else {
+        [[CustomAlert sharedAlert] showAlertWithMessage:@"获取图书信息失败"];
+    }
+    
+    [reader dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (void)startFetchingBookDetailFromDoubanWithIsbnCode:(NSString *)isbnCode
 {

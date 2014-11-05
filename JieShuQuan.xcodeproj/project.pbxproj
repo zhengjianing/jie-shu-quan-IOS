@@ -81,6 +81,7 @@
 		94F922B519CFAE0F00F96B09 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F922B419CFAE0F00F96B09 /* SettingsTableViewController.m */; };
 		94F922B819CFC28700F96B09 /* ImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F922B719CFC28700F96B09 /* ImageHelper.m */; };
 		94F922BB19CFCDA800F96B09 /* AvatarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F922BA19CFCDA800F96B09 /* AvatarManager.m */; };
+		970790FE19E1724F0095EB4C /* libzbar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 970790F819E1724F0095EB4C /* libzbar.a */; };
 		970790FF19E1724F0095EB4C /* zbar-back.png in Resources */ = {isa = PBXBuildFile; fileRef = 970790FA19E1724F0095EB4C /* zbar-back.png */; };
 		9707910019E1724F0095EB4C /* zbar-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 970790FB19E1724F0095EB4C /* zbar-help.html */; };
 		9707910119E1724F0095EB4C /* zbar-helpicons.png in Resources */ = {isa = PBXBuildFile; fileRef = 970790FC19E1724F0095EB4C /* zbar-helpicons.png */; };
@@ -348,6 +349,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				970790FE19E1724F0095EB4C /* libzbar.a in Frameworks */,
 				94E1A15119DEBA4C004BB148 /* ShareSDK.framework in Frameworks */,
 				94E1A15C19DEBAA9004BB148 /* Security.framework in Frameworks */,
 				94E1A15A19DEBAA2004BB148 /* libz.1.2.5.dylib in Frameworks */,

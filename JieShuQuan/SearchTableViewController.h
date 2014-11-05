@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import "ZBarSDK.h"
+#import "ZBarSDK.h"
 
-//@interface SearchTableViewController : UITableViewController <UISearchDisplayDelegate, UISearchBarDelegate, ZBarReaderDelegate>
-@interface SearchTableViewController : UITableViewController <UISearchDisplayDelegate, UISearchBarDelegate>
+@interface SearchTableViewController : UITableViewController <UISearchDisplayDelegate, UISearchBarDelegate, ZBarReaderDelegate>
+
 @end
