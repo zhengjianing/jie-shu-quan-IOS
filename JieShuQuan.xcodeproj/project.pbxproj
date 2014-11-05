@@ -81,13 +81,13 @@
 		94F922B519CFAE0F00F96B09 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F922B419CFAE0F00F96B09 /* SettingsTableViewController.m */; };
 		94F922B819CFC28700F96B09 /* ImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F922B719CFC28700F96B09 /* ImageHelper.m */; };
 		94F922BB19CFCDA800F96B09 /* AvatarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F922BA19CFCDA800F96B09 /* AvatarManager.m */; };
-		970790FE19E1724F0095EB4C /* libzbar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 970790F819E1724F0095EB4C /* libzbar.a */; };
 		970790FF19E1724F0095EB4C /* zbar-back.png in Resources */ = {isa = PBXBuildFile; fileRef = 970790FA19E1724F0095EB4C /* zbar-back.png */; };
 		9707910019E1724F0095EB4C /* zbar-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 970790FB19E1724F0095EB4C /* zbar-help.html */; };
 		9707910119E1724F0095EB4C /* zbar-helpicons.png in Resources */ = {isa = PBXBuildFile; fileRef = 970790FC19E1724F0095EB4C /* zbar-helpicons.png */; };
 		9707910219E1724F0095EB4C /* zbar-samples.png in Resources */ = {isa = PBXBuildFile; fileRef = 970790FD19E1724F0095EB4C /* zbar-samples.png */; };
 		972F5E5219D39F76008D0DDF /* RegionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 972F5E5119D39F76008D0DDF /* RegionTableViewController.m */; };
 		972F5E5519D410DB008D0DDF /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 972F5E5419D410DB008D0DDF /* Comment.m */; };
+		9745B3031A0A712C00A0572F /* libzbar-sim.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9745B3021A0A712C00A0572F /* libzbar-sim.a */; };
 		9746071E19D8EE8500F6E03A /* ChangePhoneNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9746071D19D8EE8500F6E03A /* ChangePhoneNumberViewController.m */; };
 		97553C3D19C090DE0034B446 /* AuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97553C3C19C090DE0034B446 /* AuthenticationViewController.m */; };
 		9755FF1319E559660093F90C /* qrcode_for_gh_9435ba066d3c_430.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9755FF1219E559660093F90C /* qrcode_for_gh_9435ba066d3c_430.jpg */; };
@@ -288,6 +288,9 @@
 		9737041419CB38C9008949FB /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		9737041619CB38CF008949FB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9737041819CB38DD008949FB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		9745B2FE1A0A6F0800A0572F /* libzbar-sim.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libzbar-sim.a"; path = "../../../../Downloads/LibzBar/libzbar-sim.a"; sourceTree = "<group>"; };
+		9745B3001A0A702300A0572F /* libzbar.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libzbar.a; path = ../../../../libzbar.a; sourceTree = "<group>"; };
+		9745B3021A0A712C00A0572F /* libzbar-sim.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libzbar-sim.a"; sourceTree = "<group>"; };
 		9746071C19D8EE8500F6E03A /* ChangePhoneNumberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePhoneNumberViewController.h; sourceTree = "<group>"; };
 		9746071D19D8EE8500F6E03A /* ChangePhoneNumberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePhoneNumberViewController.m; sourceTree = "<group>"; };
 		97553C3B19C090DE0034B446 /* AuthenticationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationViewController.h; sourceTree = "<group>"; };
@@ -349,7 +352,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				970790FE19E1724F0095EB4C /* libzbar.a in Frameworks */,
+				9745B3031A0A712C00A0572F /* libzbar-sim.a in Frameworks */,
 				94E1A15119DEBA4C004BB148 /* ShareSDK.framework in Frameworks */,
 				94E1A15C19DEBAA9004BB148 /* Security.framework in Frameworks */,
 				94E1A15A19DEBAA2004BB148 /* libz.1.2.5.dylib in Frameworks */,
@@ -727,6 +730,7 @@
 			children = (
 				970790E119E1724F0095EB4C /* Headers */,
 				970790F819E1724F0095EB4C /* libzbar.a */,
+				9745B3021A0A712C00A0572F /* libzbar-sim.a */,
 				970790F919E1724F0095EB4C /* Resources */,
 			);
 			path = LibzBar;
@@ -878,6 +882,8 @@
 		A7AB360B7F99499680B8DBAC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9745B3001A0A702300A0572F /* libzbar.a */,
+				9745B2FE1A0A6F0800A0572F /* libzbar-sim.a */,
 				94E1A15F19DEBBA5004BB148 /* libsqlite3.dylib */,
 				94E1A15D19DEBB98004BB148 /* libstdc++.dylib */,
 				94E1A15B19DEBAA9004BB148 /* Security.framework */,
@@ -1268,6 +1274,8 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/JieShuQuan/ShareSDK/Extend/WeChatSDK",
 					"$(PROJECT_DIR)/JieShuQuan/LibzBar",
+					/Users/yangxiaozhu/Downloads/LibzBar,
+					/Users/yangxiaozhu,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1307,6 +1315,8 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/JieShuQuan/ShareSDK/Extend/WeChatSDK",
 					"$(PROJECT_DIR)/JieShuQuan/LibzBar",
+					/Users/yangxiaozhu/Downloads/LibzBar,
+					/Users/yangxiaozhu,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
