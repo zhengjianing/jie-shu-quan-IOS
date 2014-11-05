@@ -87,7 +87,7 @@
 		9707910219E1724F0095EB4C /* zbar-samples.png in Resources */ = {isa = PBXBuildFile; fileRef = 970790FD19E1724F0095EB4C /* zbar-samples.png */; };
 		972F5E5219D39F76008D0DDF /* RegionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 972F5E5119D39F76008D0DDF /* RegionTableViewController.m */; };
 		972F5E5519D410DB008D0DDF /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 972F5E5419D410DB008D0DDF /* Comment.m */; };
-		9745B3031A0A712C00A0572F /* libzbar-sim.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9745B3021A0A712C00A0572F /* libzbar-sim.a */; };
+		9745B3051A0A77D300A0572F /* libzbar-universal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9745B3041A0A77D300A0572F /* libzbar-universal.a */; };
 		9746071E19D8EE8500F6E03A /* ChangePhoneNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9746071D19D8EE8500F6E03A /* ChangePhoneNumberViewController.m */; };
 		97553C3D19C090DE0034B446 /* AuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97553C3C19C090DE0034B446 /* AuthenticationViewController.m */; };
 		9755FF1319E559660093F90C /* qrcode_for_gh_9435ba066d3c_430.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9755FF1219E559660093F90C /* qrcode_for_gh_9435ba066d3c_430.jpg */; };
@@ -291,6 +291,7 @@
 		9745B2FE1A0A6F0800A0572F /* libzbar-sim.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libzbar-sim.a"; path = "../../../../Downloads/LibzBar/libzbar-sim.a"; sourceTree = "<group>"; };
 		9745B3001A0A702300A0572F /* libzbar.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libzbar.a; path = ../../../../libzbar.a; sourceTree = "<group>"; };
 		9745B3021A0A712C00A0572F /* libzbar-sim.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libzbar-sim.a"; sourceTree = "<group>"; };
+		9745B3041A0A77D300A0572F /* libzbar-universal.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libzbar-universal.a"; sourceTree = "<group>"; };
 		9746071C19D8EE8500F6E03A /* ChangePhoneNumberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePhoneNumberViewController.h; sourceTree = "<group>"; };
 		9746071D19D8EE8500F6E03A /* ChangePhoneNumberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePhoneNumberViewController.m; sourceTree = "<group>"; };
 		97553C3B19C090DE0034B446 /* AuthenticationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationViewController.h; sourceTree = "<group>"; };
@@ -352,7 +353,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9745B3031A0A712C00A0572F /* libzbar-sim.a in Frameworks */,
+				9745B3051A0A77D300A0572F /* libzbar-universal.a in Frameworks */,
 				94E1A15119DEBA4C004BB148 /* ShareSDK.framework in Frameworks */,
 				94E1A15C19DEBAA9004BB148 /* Security.framework in Frameworks */,
 				94E1A15A19DEBAA2004BB148 /* libz.1.2.5.dylib in Frameworks */,
@@ -731,6 +732,7 @@
 				970790E119E1724F0095EB4C /* Headers */,
 				970790F819E1724F0095EB4C /* libzbar.a */,
 				9745B3021A0A712C00A0572F /* libzbar-sim.a */,
+				9745B3041A0A77D300A0572F /* libzbar-universal.a */,
 				970790F919E1724F0095EB4C /* Resources */,
 			);
 			path = LibzBar;
