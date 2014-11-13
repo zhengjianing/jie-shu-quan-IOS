@@ -245,9 +245,23 @@
 - (IBAction)borrowFromFriend:(id)sender {
     [MobClick event:@"borrowFromFriendButtonPressed"];
 
-    FriendHasBookTableViewCell *selectedCell = (FriendHasBookTableViewCell *)[[sender superview] superview];
+    FriendHasBookTableViewCell *selectedCell;
+    id superView1 = [sender superview];
+    if ([superView1 isKindOfClass:[FriendHasBookTableViewCell class]]) {
+        selectedCell = (FriendHasBookTableViewCell *)superView1;
+    } else {
+        id superView2 = [superView1 superview];
+        if ([superView2 isKindOfClass:[FriendHasBookTableViewCell class]]) {
+            selectedCell = (FriendHasBookTableViewCell *)superView2;
+        } else {
+            id superView3 = [superView2 superview];
+            if ([superView3 isKindOfClass:[FriendHasBookTableViewCell class]]) {
+                selectedCell = (FriendHasBookTableViewCell *)superView3;
+            } else return;
+        }
+    }
+
     _selectedFriendId = selectedCell.friendId;
-    
     NSString *toName = selectedCell.friendNameLabel.text;
     NSString *toEmailAddress = selectedCell.friendEmail;
     

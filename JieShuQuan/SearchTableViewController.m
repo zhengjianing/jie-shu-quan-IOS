@@ -156,8 +156,10 @@
 {
     searchResults = nil;
     [JsonDataFetcher dataFromURL:[NSURL URLWithString:searchUrl] withCompletion:^(NSData *jsonData) {
-        searchResults = [DataConverter booksArrayFromDoubanSearchResults:jsonData];
-        [self.searchDisplayController.searchResultsTableView reloadData];
+        if (jsonData != nil) {
+            searchResults = [DataConverter booksArrayFromDoubanSearchResults:jsonData];
+            [self.searchDisplayController.searchResultsTableView reloadData];
+        }
     }];
 }
 

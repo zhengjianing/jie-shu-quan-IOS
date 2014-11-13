@@ -169,7 +169,7 @@ static const NSString *kDefaultName = @"匿名用户";
 + (NSMutableURLRequest *)buildRequestWithURLString:(NSString *)urlString bodyDict:(NSDictionary *)bodyDict
 {
     NSURL *postURL = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:postURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:postURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:15];
     
     id object = [NSJSONSerialization dataWithJSONObject:bodyDict options:NSJSONWritingPrettyPrinted error:nil];
     [request setHTTPBody:object];
@@ -187,7 +187,7 @@ static const NSString *kDefaultName = @"匿名用户";
 + (NSMutableURLRequest *)buildRequestWithURLString:(NSString *)requestString bodyDictionary:(NSDictionary *)bodyDictionary HTTPMethod:(NSString *)HTTPMethod
 {
     NSURL *postURL = [NSURL URLWithString:[requestString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:postURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:5];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:postURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:15];
     id object = [NSJSONSerialization dataWithJSONObject:bodyDictionary options:NSJSONWritingPrettyPrinted error:nil];
     [request setHTTPBody:object];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -198,7 +198,7 @@ static const NSString *kDefaultName = @"匿名用户";
 + (NSMutableURLRequest *)buildGetRequestWithRULString:(NSString *)requestString
 {
     NSURL *getURL = [NSURL URLWithString:[requestString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:getURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:5];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:getURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:15];
     
     [request setHTTPBody:[NSData data]];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];

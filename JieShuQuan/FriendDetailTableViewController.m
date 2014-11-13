@@ -46,7 +46,6 @@
     if (_isFromMyFriends) {
         [[CustomActivityIndicator sharedActivityIndicator] startAsynchAnimating];
     }
-    
     self.tabBarController.tabBar.hidden = YES;
     [MobClick beginLogPageView:@"friendDetailPage"];
 }
@@ -172,7 +171,22 @@
 - (IBAction)borrowFromFriend:(id)sender {
     [MobClick event:@"borrowFromFriendButtonPressed"];
 
-    FriendBookTableViewCell *selectedCell = (FriendBookTableViewCell *)[[sender superview] superview];
+    FriendBookTableViewCell *selectedCell;
+    id superView1 = [sender superview];
+    if ([superView1 isKindOfClass:[FriendBookTableViewCell class]]) {
+        selectedCell = (FriendBookTableViewCell *)superView1;
+    } else {
+        id superView2 = [superView1 superview];
+        if ([superView2 isKindOfClass:[FriendBookTableViewCell class]]) {
+            selectedCell = (FriendBookTableViewCell *)superView2;
+        } else {
+            id superView3 = [superView2 superview];
+            if ([superView3 isKindOfClass:[FriendBookTableViewCell class]]) {
+                selectedCell = (FriendBookTableViewCell *)superView3;
+            } else return;
+        }
+    }
+
     NSString *bookName = selectedCell.bookNameLabel.text;
     _selectedBookId = selectedCell.bookId;
     
