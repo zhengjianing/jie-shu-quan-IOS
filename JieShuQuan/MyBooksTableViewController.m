@@ -279,9 +279,7 @@ static const NSString *kStatusNO = @"不可借";
     }
 }
 
-#pragma mark - Table view delegate
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 90;
 }
