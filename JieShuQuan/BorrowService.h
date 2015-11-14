@@ -13,6 +13,31 @@
 typedef void(^CreateBorrowRecordSuccessBlock)();
 typedef void(^CreateBorrowRecordFailureBlock)();
 
+typedef void(^ApproveBorrowRecordSuccessBlock)();
+typedef void(^ApproveBorrowRecordFailureBlock)();
+
+typedef void(^DeclineBorrowRecordSuccessBlock)();
+typedef void(^DeclineBorrowRecordFailureBlock)();
+
+typedef void(^ReturnBorrowRecordSuccessBlock)();
+typedef void(^ReturnBorrowRecordFailureBlock)();
+
+typedef void(^GetBorrowerRecordsSuccessBlock)();
+typedef void(^GetBorrowerRecordsFailureBlock)();
+
+typedef void(^GetLenderRecordsSuccessBlock)();
+typedef void(^GetLenderRecordsFailureBlock)();
+
 - (void)createBorrowRecordWithBookId:(NSString *)bookId borrowerId:(NSString *)borrowerId lenderId:(NSString *)lenderId success:(CreateBorrowRecordSuccessBlock)successBlock failure:(CreateBorrowRecordFailureBlock)failureBlock;
+
+- (void)approveBorrowRecordWithBookId:(NSString *)bookId borrowerId:(NSString *)borrowerId lenderId:(NSString *)lenderId success:(ApproveBorrowRecordSuccessBlock)successBlock failure:(ApproveBorrowRecordFailureBlock)failureBlock;
+
+- (void)declineBorrowRecordWithBookId:(NSString *)bookId borrowerId:(NSString *)borrowerId lenderId:(NSString *)lenderId success:(DeclineBorrowRecordSuccessBlock)successBlock failure:(DeclineBorrowRecordFailureBlock)failureBlock;
+
+- (void)returnBorrowRecordWithBookId:(NSString *)bookId borrowerId:(NSString *)borrowerId lenderId:(NSString *)lenderId success:(ReturnBorrowRecordSuccessBlock)successBlock failure:(ReturnBorrowRecordFailureBlock)failureBlock;
+
+- (void)getBorrowerRecordsWithBorrowerId:(NSString *)borrowerId success:(GetBorrowerRecordsSuccessBlock)successBlock failure:(GetBorrowerRecordsFailureBlock)failureBlock;
+
+- (void)getLenderRecordsWithLenderId:(NSString *)lenderId success:(GetLenderRecordsSuccessBlock)successBlock failure:(GetLenderRecordsFailureBlock)failureBlock;
 
 @end
