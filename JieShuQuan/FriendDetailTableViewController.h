@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
+#import "BorrowService.h"
 @class Friend;
 
 @interface FriendDetailTableViewController : UITableViewController <MFMailComposeViewControllerDelegate>

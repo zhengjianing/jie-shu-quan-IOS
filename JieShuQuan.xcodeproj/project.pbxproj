@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		9412E2F519A9FAC7008D243C /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412E2F419A9FAC7008D243C /* Book.m */; };
 		9412E2FB19AA0D82008D243C /* BookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412E2FA19AA0D82008D243C /* BookTableViewCell.m */; };
+		945964A31BF70D77005AC33A /* BorrowService.m in Sources */ = {isa = PBXBuildFile; fileRef = 945964A21BF70D77005AC33A /* BorrowService.m */; };
+		945964A61BF70DF8005AC33A /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 945964A51BF70DF8005AC33A /* NSString+Extension.m */; };
 		945E933019D42065002EC733 /* CreateCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 945E932F19D42065002EC733 /* CreateCommentViewController.m */; };
 		9466BD7319EA291D00409767 /* 180.png in Resources */ = {isa = PBXBuildFile; fileRef = 9466BD7219EA291D00409767 /* 180.png */; };
 		9466BD7619EA3A6500409767 /* CustomColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9466BD7519EA3A6500409767 /* CustomColor.m */; };
@@ -135,6 +137,10 @@
 		9412E2F419A9FAC7008D243C /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
 		9412E2F919AA0D82008D243C /* BookTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookTableViewCell.h; sourceTree = "<group>"; };
 		9412E2FA19AA0D82008D243C /* BookTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookTableViewCell.m; sourceTree = "<group>"; };
+		945964A11BF70D77005AC33A /* BorrowService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorrowService.h; sourceTree = "<group>"; };
+		945964A21BF70D77005AC33A /* BorrowService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorrowService.m; sourceTree = "<group>"; };
+		945964A41BF70DF8005AC33A /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
+		945964A51BF70DF8005AC33A /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
 		945E932E19D42065002EC733 /* CreateCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateCommentViewController.h; sourceTree = "<group>"; };
 		945E932F19D42065002EC733 /* CreateCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateCommentViewController.m; sourceTree = "<group>"; };
 		9466BD7219EA291D00409767 /* 180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 180.png; sourceTree = "<group>"; };
@@ -443,6 +449,15 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
+		945964A01BF70D4E005AC33A /* Borrow */ = {
+			isa = PBXGroup;
+			children = (
+				945964A11BF70D77005AC33A /* BorrowService.h */,
+				945964A21BF70D77005AC33A /* BorrowService.m */,
+			);
+			name = Borrow;
+			sourceTree = "<group>";
+		};
 		9471D41219D2CE4D00AEBE7D /* All_books */ = {
 			isa = PBXGroup;
 			children = (
@@ -518,6 +533,7 @@
 				94BB408219C172E4005BBD8E /* Friends */,
 				97F65ABF19AE03E200B9DC93 /* Search */,
 				9412E2F019A9E4C5008D243C /* More */,
+				945964A01BF70D4E005AC33A /* Borrow */,
 				9471DBFC19A5837700F1A291 /* Images.xcassets */,
 				9471DBF319A5837700F1A291 /* JieShuQuan.xcdatamodeld */,
 				970790E019E1724F0095EB4C /* LibzBar */,
@@ -577,6 +593,8 @@
 				94F922B719CFC28700F96B09 /* ImageHelper.m */,
 				9797378019E91A0B00CBDF29 /* DateHelper.h */,
 				9797378119E91A0B00CBDF29 /* DateHelper.m */,
+				945964A41BF70DF8005AC33A /* NSString+Extension.h */,
+				945964A51BF70DF8005AC33A /* NSString+Extension.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -1082,6 +1100,7 @@
 				9759AFFA19C19976008EFCC2 /* UserManager.m in Sources */,
 				9770923819C583CD001A3ED6 /* ActionSheetHelper.m in Sources */,
 				94BB409519C283CB005BBD8E /* MoreTableViewController.m in Sources */,
+				945964A61BF70DF8005AC33A /* NSString+Extension.m in Sources */,
 				97F306B219BD45800010E91F /* NSData+AES256.m in Sources */,
 				9471DBF519A5837700F1A291 /* JieShuQuan.xcdatamodeld in Sources */,
 				9471DC2B19A974AB00F1A291 /* PreLoginView.m in Sources */,
@@ -1107,6 +1126,7 @@
 				94F922B819CFC28700F96B09 /* ImageHelper.m in Sources */,
 				94E3EA3C19C7069F00C38FEB /* FriendStore.m in Sources */,
 				9766FC9B19BF30980089C89B /* LoginViewController.m in Sources */,
+				945964A31BF70D77005AC33A /* BorrowService.m in Sources */,
 				94F922B519CFAE0F00F96B09 /* SettingsTableViewController.m in Sources */,
 				945E933019D42065002EC733 /* CreateCommentViewController.m in Sources */,
 				97F2647919E97984009346EB /* IconHelper.m in Sources */,

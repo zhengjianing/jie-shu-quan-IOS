@@ -23,6 +23,13 @@
 #import "MobClick.h"
 #import "IconHelper.h"
 #import "CustomColor.h"
+#import "BorrowService.h"
+#import "ActionSheetHelper.h"
+@interface FriendDetailTableViewController ()
+{
+    UIActionSheet *borrowActionSheet;
+}
+@end
 
 @implementation FriendDetailTableViewController
 
@@ -190,12 +197,18 @@
     NSString *bookName = selectedCell.bookNameLabel.text;
     _selectedBookId = selectedCell.bookId;
     
-    Class mailClass = (NSClassFromString(@"MFMailComposeViewController"));
-    if (mailClass != nil && [mailClass canSendMail]) {
-        [MailManager displayComposerSheetToName:_currentFriend.friendName toEmailAddress:_currentFriend.friendEmail forBook:bookName delegate:self];
-    } else {
-        [MailManager launchMailToName:_currentFriend.friendName toEmailAddress:_currentFriend.friendEmail forBook:bookName];
-    }
+//    发邮件
+//    Class mailClass = (NSClassFromString(@"MFMailComposeViewController"));
+//    if (mailClass != nil && [mailClass canSendMail]) {
+//        [MailManager displayComposerSheetToName:_currentFriend.friendName toEmailAddress:_currentFriend.friendEmail forBook:bookName delegate:self];
+//    } else {
+//        [MailManager launchMailToName:_currentFriend.friendName toEmailAddress:_currentFriend.friendEmail forBook:bookName];
+//    }
+    
+    
+//    发送借书申请
+    borrowActionSheet = [ActionSheetHelper actionSheetWithTitle:@"将向他发送借书通知" delegate:self];
+    [borrowActionSheet showInView:self.view];
 }
 
 #pragma mark - MFMailComposeViewControllerDelegate
@@ -209,6 +222,28 @@
     }
     [self dismissViewControllerAnimated:YES completion:nil];
     _isFromMyFriends = NO;
+}
+
+#pragma mark - UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        [[CustomActivityIndicator sharedActivityIndicator] startSynchAnimating];
+
+        BorrowService *borrowService = [[BorrowService alloc] init];
+        [borrowService createBorrowRecordWithBookId:_selectedBookId borrowerId:[[UserManager currentUser] userId] lenderId:_currentFriend.friendId success:^{
+            {
+                [[CustomActivityIndicator sharedActivityIndicator] stopSynchAnimating];
+                [[CustomAlert sharedAlert] showAlertWithMessage:@"借书申请发送成功"];
+            }
+        } failure:^{
+            {
+                [[CustomActivityIndicator sharedActivityIndicator] stopSynchAnimating];
+                [[CustomAlert sharedAlert] showAlertWithMessage:@"借书申请发送失败"];
+            }
+        }];
+    }
 }
 
 @end
