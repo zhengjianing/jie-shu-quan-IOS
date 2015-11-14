@@ -1,20 +1,43 @@
 PODS:
+  - AFNetworking (2.6.3):
+    - AFNetworking/NSURLConnection (= 2.6.3)
+    - AFNetworking/NSURLSession (= 2.6.3)
+    - AFNetworking/Reachability (= 2.6.3)
+    - AFNetworking/Security (= 2.6.3)
+    - AFNetworking/Serialization (= 2.6.3)
+    - AFNetworking/UIKit (= 2.6.3)
+  - AFNetworking/NSURLConnection (2.6.3):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.6.3):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.6.3)
+  - AFNetworking/Security (2.6.3)
+  - AFNetworking/Serialization (2.6.3)
+  - AFNetworking/UIKit (2.6.3):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
   - FontAwesomeKit/Core (2.1.8)
   - FontAwesomeKit/FontAwesome (2.1.8):
     - FontAwesomeKit/Core
   - FontAwesomeKit/IonIcons (2.1.8):
     - FontAwesomeKit/Core
   - SDWebImage (3.7.1):
-    - SDWebImage/Core
+    - SDWebImage/Core (= 3.7.1)
   - SDWebImage/Core (3.7.1)
 
 DEPENDENCIES:
+  - AFNetworking (~> 2.0)
   - FontAwesomeKit/FontAwesome
   - FontAwesomeKit/IonIcons
   - SDWebImage (~> 3.6)
 
 SPEC CHECKSUMS:
-  FontAwesomeKit: a2edea3111dab107b4cc43b85881b404eb063385
-  SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
+  AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  FontAwesomeKit: 64759fb28b5d2e74a1bd81553d7c11ca10e32179
+  SDWebImage: ed3095af2ff88b436426037444979b917f6c5575
 
-COCOAPODS: 0.33.1
+COCOAPODS: 0.36.4
