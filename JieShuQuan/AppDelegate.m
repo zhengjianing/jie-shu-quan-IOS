@@ -18,6 +18,7 @@
 #import "TabBarItemHelper.h"
 #import "WXApi.h"
 #import "CustomColor.h"
+#import <AVOSCloud/AVOSCloud.h>
 
 @implementation AppDelegate
             
@@ -36,6 +37,21 @@
     //添加微信应用 注册网址 http://open.weixin.qq.com
     [ShareSDK connectWeChatWithAppId:@"wx6a876af68c7eb3fe" wechatCls:[WXApi class]];
     
+    //Register for push notifications
+    if ([[UIDevice currentDevice].systemVersion doubleValue] < 8.0) {
+        [application registerForRemoteNotificationTypes:
+         UIRemoteNotificationTypeBadge |
+         UIRemoteNotificationTypeAlert |
+         UIRemoteNotificationTypeSound];
+    }else {
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert
+                                                | UIUserNotificationTypeBadge
+                                                | UIUserNotificationTypeSound
+                                                                                 categories:nil];
+        [application registerUserNotificationSettings:settings];
+        [application registerForRemoteNotifications];
+    }
+
     //初始化页面
     _mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UITabBarController *tabBarController = [self createTabBarController];
@@ -43,6 +59,13 @@
     self.window.rootViewController = tabBarController;
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+// save deviceToken for notification push
+- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    AVInstallation *currentInstallation = [AVInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    [currentInstallation saveInBackground];
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url

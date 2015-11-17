@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - AVOSCloud (3.1.6.2)
   - FontAwesomeKit/Core (2.1.8)
   - FontAwesomeKit/FontAwesome (2.1.8):
     - FontAwesomeKit/Core
@@ -31,12 +32,14 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
+  - AVOSCloud
   - FontAwesomeKit/FontAwesome
   - FontAwesomeKit/IonIcons
   - SDWebImage (~> 3.6)
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  AVOSCloud: a3cd4fd18e2eba50de63c490cbd59fd8892fddee
   FontAwesomeKit: 64759fb28b5d2e74a1bd81553d7c11ca10e32179
   SDWebImage: ed3095af2ff88b436426037444979b917f6c5575
 
