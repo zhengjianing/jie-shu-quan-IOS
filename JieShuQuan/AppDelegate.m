@@ -38,6 +38,8 @@
     [ShareSDK connectWeChatWithAppId:@"wx6a876af68c7eb3fe" wechatCls:[WXApi class]];
     
     //Register for push notifications
+    [AVOSCloud setApplicationId:@"VJXTx1PjXywVf4AT7OqDduz1" clientKey:@"nXfNzNXBnANQEuvUOaQRdwLr"];
+
     if ([[UIDevice currentDevice].systemVersion doubleValue] < 8.0) {
         [application registerForRemoteNotificationTypes:
          UIRemoteNotificationTypeBadge |
@@ -52,6 +54,8 @@
         [application registerForRemoteNotifications];
     }
 
+    [AVPush setProductionMode:NO];
+    
     //初始化页面
     _mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UITabBarController *tabBarController = [self createTabBarController];
@@ -66,6 +70,10 @@
     AVInstallation *currentInstallation = [AVInstallation currentInstallation];
     [currentInstallation setDeviceTokenFromData:deviceToken];
     [currentInstallation saveInBackground];
+}
+
+-(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
+    NSLog(@"注册通知失败信息 %@",error);
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
@@ -174,6 +182,18 @@
     
     NSLog(@"%@", [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject]);
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+// Clean badge number when use open the app
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    NSInteger num=application.applicationIconBadgeNumber;
+    if(num!=0){
+        AVInstallation *currentInstallation = [AVInstallation currentInstallation];
+        [currentInstallation setBadge:0];
+        [currentInstallation saveEventually];
+        application.applicationIconBadgeNumber=0;
+    }
+    [application cancelAllLocalNotifications];
 }
 
 @end

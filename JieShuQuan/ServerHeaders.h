@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 JNXZ. All rights reserved.
 //
 
-//#define kHost @"http://jieshuquan.herokuapp.com"
-#define kHost @"http://localhost:3000"
+#define kHost @"http://jieshuquan.herokuapp.com"
+//#define kHost @"http://localhost:3000"
 
 #define kRegisterURL @"http://jieshuquan.herokuapp.com/register"
 #define kLoginURL @"http://jieshuquan.herokuapp.com/login"

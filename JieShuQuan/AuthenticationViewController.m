@@ -20,6 +20,7 @@
 #import "AlertHelper.h"
 #import "CustomAlert.h"
 #import "CustomActivityIndicator.h"
+#import <AVOSCloud/AVOSCloud.h>
 
 @implementation AuthenticationViewController
 
@@ -44,6 +45,11 @@
     if (userObject) {
         User *user = [DataConverter userFromHTTPResponse:userObject];
         [[UserStore sharedStore] saveUserToCoreData:user];
+        
+        AVInstallation *installation = [AVInstallation currentInstallation];
+        [installation setObject:user.userId forKey:@"owner"];
+        [installation saveInBackground];
+        
         [UserManager saveUserToUserDefaults:user];
         [[BookStore sharedStore] refreshStoredBooks];
         [[FriendStore sharedStore] refreshStoredFriends];

@@ -25,6 +25,8 @@
 #import "CustomColor.h"
 #import "BorrowService.h"
 #import "ActionSheetHelper.h"
+#import <AVOSCloud/AVOSCloud.h>
+
 @interface FriendDetailTableViewController ()
 {
     UIActionSheet *borrowActionSheet;
@@ -205,6 +207,22 @@
 //        [MailManager launchMailToName:_currentFriend.friendName toEmailAddress:_currentFriend.friendEmail forBook:bookName];
 //    }
     
+    AVQuery *pushQuery = [AVInstallation query];
+    [pushQuery whereKey:@"owner" equalTo:_currentFriend.friendId];
+ 
+    NSString *loginUserName = [[UserManager currentUser].userName length] == 0 ? @"有人" : [UserManager currentUser].userName;
+
+    AVPush *push = [[AVPush alloc] init];
+    [push setQuery:pushQuery];
+
+    NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
+                          [NSString stringWithFormat:@"%@想借你的%@书，快点击查看吧",loginUserName,selectedCell.bookNameLabel.text], @"alert",
+                          @"Increment", @"badge",
+                          @"cheering.caf", @"sound",
+                          nil];
+
+    [push setData:data];
+    [push sendPushInBackground];
     
 //    发送借书申请
     borrowActionSheet = [ActionSheetHelper actionSheetWithTitle:@"将向他发送借书通知" delegate:self];
