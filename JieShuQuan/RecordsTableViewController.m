@@ -24,7 +24,6 @@ static NSString *kBookStatusTextKey = @"text";
 static NSString *kBookStatusColorKey = @"color";
 static NSString *kRequestFailErrorText = @"请求失败，请稍后重试";
 
-
 @interface RecordsTableViewController ()<PreLoginDelegate>
 
 @property (nonatomic, strong) NSMutableArray *lenderRecords;
@@ -118,15 +117,15 @@ static NSString *kRequestFailErrorText = @"请求失败，请稍后重试";
 
 - (PreLoginView *)preLoginView
 {
-    if (self.preLoginView != nil) {
-        return self.preLoginView;
+    if (_preLoginView) {
+        return _preLoginView;
     }
     NSArray *topLevelObjs = [[NSBundle mainBundle] loadNibNamed:@"PreLoginView" owner:self options:nil];
     if ([topLevelObjs count] > 0) {
-        self.preLoginView = [topLevelObjs lastObject];
-        self.preLoginView.delegate = self;
+        _preLoginView = [topLevelObjs lastObject];
+        _preLoginView.delegate = self;
     }
-    return self.preLoginView;
+    return _preLoginView;
 }
 
 - (void)didReceiveMemoryWarning {
