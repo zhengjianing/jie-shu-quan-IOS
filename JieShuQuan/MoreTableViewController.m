@@ -115,26 +115,26 @@ static const NSString *kDefaultUserName = @"点击设置用户名";
         return;
     }
     
-    if ([indexPath section] == 1 && [indexPath row] == 0) {
+    if ([indexPath section] == 2 && [indexPath row] == 0) {
         [MobClick event:@"weChatCellPressed"];
         
         return;
     }
     
-    if ([indexPath section] == 1 && [indexPath row] == 1) {
+    if ([indexPath section] == 2 && [indexPath row] == 1) {
         [MobClick event:@"aboutCellPressed"];
         
         return;
     }
     
-    if ([indexPath section] == 1 && [indexPath row] == 2) {
+    if ([indexPath section] == 2 && [indexPath row] == 2) {
         [MobClick event:@"feedbackCellPressed"];
 
         [self sendFeedbackWithMailView];
         return;
     }
     
-    if ([indexPath section] == 2 && [indexPath row] == 0) {
+    if ([indexPath section] == 3 && [indexPath row] == 0) {
         [MobClick event:@"logoutCellPressed"];
 
         [[ActionSheetHelper actionSheetWithTitle:@"确认退出吗？" delegate:self] showInView:self.view];

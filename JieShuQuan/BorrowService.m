@@ -55,7 +55,9 @@
     [manager GET:[NSString stringWithFormat:@"%@%@", kHost, kLenderRecords]
       parameters:params
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-             successBlock();
+             if ([responseObject isKindOfClass:[NSArray class]]) {
+                successBlock((NSArray *) responseObject);
+             }
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              failureBlock();

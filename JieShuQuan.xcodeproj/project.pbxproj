@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1313C8C71BFF1D3A00D99862 /* RecordsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1313C8C61BFF1D3A00D99862 /* RecordsTableViewController.m */; };
+		1337AD721C040776002F4F18 /* LenderRecordsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1337AD711C040776002F4F18 /* LenderRecordsCell.m */; };
+		13577B361C055EE7000E019B /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = 13577B351C055EE7000E019B /* Record.m */; };
+		13577B391C059067000E019B /* RecordsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 13577B381C059067000E019B /* RecordsViewModel.m */; };
 		9412E2F519A9FAC7008D243C /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412E2F419A9FAC7008D243C /* Book.m */; };
 		9412E2FB19AA0D82008D243C /* BookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412E2FA19AA0D82008D243C /* BookTableViewCell.m */; };
 		945964A31BF70D77005AC33A /* BorrowService.m in Sources */ = {isa = PBXBuildFile; fileRef = 945964A21BF70D77005AC33A /* BorrowService.m */; };
@@ -132,6 +136,14 @@
 
 /* Begin PBXFileReference section */
 		05D1F52224A5F7B29F39FADB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		1313C8C51BFF1D3A00D99862 /* RecordsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordsTableViewController.h; sourceTree = "<group>"; };
+		1313C8C61BFF1D3A00D99862 /* RecordsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordsTableViewController.m; sourceTree = "<group>"; };
+		1337AD701C040776002F4F18 /* LenderRecordsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LenderRecordsCell.h; sourceTree = "<group>"; };
+		1337AD711C040776002F4F18 /* LenderRecordsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LenderRecordsCell.m; sourceTree = "<group>"; };
+		13577B341C055EE7000E019B /* Record.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Record.h; sourceTree = "<group>"; };
+		13577B351C055EE7000E019B /* Record.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Record.m; sourceTree = "<group>"; };
+		13577B371C059067000E019B /* RecordsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordsViewModel.h; sourceTree = "<group>"; };
+		13577B381C059067000E019B /* RecordsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordsViewModel.m; sourceTree = "<group>"; };
 		67679F8B19FD679B00F17B69 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		9412E2F319A9FAC7008D243C /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
 		9412E2F419A9FAC7008D243C /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
@@ -399,6 +411,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		138270C61C05A116003C2837 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1337AD701C040776002F4F18 /* LenderRecordsCell.h */,
+				1337AD711C040776002F4F18 /* LenderRecordsCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		138270C71C05A13F003C2837 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				13577B371C059067000E019B /* RecordsViewModel.h */,
+				13577B381C059067000E019B /* RecordsViewModel.m */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		138270C81C05A14D003C2837 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				94BB409319C283CB005BBD8E /* MoreTableViewController.h */,
+				94BB409419C283CB005BBD8E /* MoreTableViewController.m */,
+				1313C8C51BFF1D3A00D99862 /* RecordsTableViewController.h */,
+				1313C8C61BFF1D3A00D99862 /* RecordsTableViewController.m */,
+				9471FFC819D6E6B90082C2C7 /* AboutTableViewController.h */,
+				9471FFC919D6E6B90082C2C7 /* AboutTableViewController.m */,
+				9755FF1419E559EF0093F90C /* PublicAccountTableViewController.h */,
+				9755FF1519E559EF0093F90C /* PublicAccountTableViewController.m */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
 		880FB543F159CEC00F08BFF4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -411,12 +456,9 @@
 		9412E2F019A9E4C5008D243C /* More */ = {
 			isa = PBXGroup;
 			children = (
-				94BB409319C283CB005BBD8E /* MoreTableViewController.h */,
-				94BB409419C283CB005BBD8E /* MoreTableViewController.m */,
-				9471FFC819D6E6B90082C2C7 /* AboutTableViewController.h */,
-				9471FFC919D6E6B90082C2C7 /* AboutTableViewController.m */,
-				9755FF1419E559EF0093F90C /* PublicAccountTableViewController.h */,
-				9755FF1519E559EF0093F90C /* PublicAccountTableViewController.m */,
+				138270C81C05A14D003C2837 /* ViewController */,
+				138270C71C05A13F003C2837 /* ViewModel */,
+				138270C61C05A116003C2837 /* View */,
 				9471D41419D2CEBD00AEBE7D /* Settings */,
 			);
 			name = More;
@@ -904,6 +946,8 @@
 				9759AFEF19C184BD008EFCC2 /* Friend.m */,
 				972F5E5319D410DB008D0DDF /* Comment.h */,
 				972F5E5419D410DB008D0DDF /* Comment.m */,
+				13577B341C055EE7000E019B /* Record.h */,
+				13577B351C055EE7000E019B /* Record.m */,
 				94E5039519BAF998004CEBC6 /* DataStore */,
 			);
 			name = Model;
@@ -1104,6 +1148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				972F5E5219D39F76008D0DDF /* RegionTableViewController.m in Sources */,
+				13577B391C059067000E019B /* RecordsViewModel.m in Sources */,
 				97C528A119BC34B600388375 /* AlertHelper.m in Sources */,
 				94C1711619D01D3000656EDB /* ASIFormDataRequest.m in Sources */,
 				94BB408519C172FE005BBD8E /* FriendsTableViewController.m in Sources */,
@@ -1113,6 +1158,7 @@
 				9765EC3419D06BDE00066289 /* ChangeNameViewController.m in Sources */,
 				9471FFCA19D6E6B90082C2C7 /* AboutTableViewController.m in Sources */,
 				94C1712919D02B5D00656EDB /* Reachability.m in Sources */,
+				13577B361C055EE7000E019B /* Record.m in Sources */,
 				9759AFFA19C19976008EFCC2 /* UserManager.m in Sources */,
 				9770923819C583CD001A3ED6 /* ActionSheetHelper.m in Sources */,
 				94BB409519C283CB005BBD8E /* MoreTableViewController.m in Sources */,
@@ -1123,6 +1169,7 @@
 				9755FF1619E559EF0093F90C /* PublicAccountTableViewController.m in Sources */,
 				94C1711919D01D3000656EDB /* ASINetworkQueue.m in Sources */,
 				94F922BB19CFCDA800F96B09 /* AvatarManager.m in Sources */,
+				1337AD721C040776002F4F18 /* LenderRecordsCell.m in Sources */,
 				97553C3D19C090DE0034B446 /* AuthenticationViewController.m in Sources */,
 				97B59F3A19D2560D0063CFA8 /* CityTableViewController.m in Sources */,
 				97F306B519BD47D10010E91F /* NSString+AES256.m in Sources */,
@@ -1155,6 +1202,7 @@
 				94BB409019C184EC005BBD8E /* FriendBookTableViewCell.m in Sources */,
 				94C1711519D01D3000656EDB /* ASIDownloadCache.m in Sources */,
 				94E3EA3919C6EBF500C38FEB /* FriendsHasBookTableViewController.m in Sources */,
+				1313C8C71BFF1D3A00D99862 /* RecordsTableViewController.m in Sources */,
 				9412E2FB19AA0D82008D243C /* BookTableViewCell.m in Sources */,
 				9466BD7619EA3A6500409767 /* CustomColor.m in Sources */,
 				97CE0A0419D6F0260071B414 /* CustomAlert.m in Sources */,
