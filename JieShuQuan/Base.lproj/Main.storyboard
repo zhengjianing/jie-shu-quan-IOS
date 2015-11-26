@@ -798,10 +798,10 @@
             </objects>
             <point key="canvasLocation" x="745" y="696"/>
         </scene>
-        <!--Records Table View Controller-->
+        <!--Lender Records Table View Controller-->
         <scene sceneID="ghc-cu-mnx">
             <objects>
-                <tableViewController id="NrU-pX-tXS" customClass="RecordsTableViewController" sceneMemberID="viewController">
+                <tableViewController id="NrU-pX-tXS" customClass="LenderRecordsTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="bpO-U6-HQl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -829,25 +829,30 @@
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="--" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eCm-bh-CYh">
-                                            <rect key="frame" x="223" y="60" width="81" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <color key="textColor" red="0.0" green="0.53725490196078429" blue="0.44705882352941173" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CnX-8L-1H5">
                                             <rect key="frame" x="86" y="60" width="100" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rkJ-k3-efd">
+                                            <rect key="frame" x="235" y="51" width="69" height="30"/>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                            <state key="normal" title="Button">
+                                                <color key="titleColor" red="0.0" green="0.51684054260000001" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="handleBorrowBookRequest:" destination="NrU-pX-tXS" eventType="touchUpInside" id="Xwu-UK-IJa"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="applicationTimeLabel" destination="CnX-8L-1H5" id="wuk-Cm-Njo"/>
                                     <outlet property="bookImageView" destination="pJ0-gg-x4y" id="TCa-fK-zCv"/>
                                     <outlet property="bookNameLabel" destination="Lnd-dO-EOB" id="e2b-Ef-PvZ"/>
-                                    <outlet property="bookStatusLabel" destination="eCm-bh-CYh" id="Waz-99-DXO"/>
+                                    <outlet property="bookStatusButton" destination="rkJ-k3-efd" id="hIh-uc-U5k"/>
                                     <outlet property="borrowerNameLabel" destination="9QB-5J-csq" id="2Vs-Nq-AfH"/>
                                 </connections>
                             </tableViewCell>

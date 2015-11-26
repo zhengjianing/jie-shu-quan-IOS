@@ -14,6 +14,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *bookNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *borrowerNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *applicationTimeLabel;
-@property (strong, nonatomic) IBOutlet UILabel *bookStatusLabel;
+@property (strong, nonatomic) IBOutlet UIButton *bookStatusButton;
 
 @end

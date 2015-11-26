@@ -1,5 +1,5 @@
 //
-//  RecordsTableViewController.h
+//  LenderRecordsTableViewController.h
 //  JieShuQuan
 //
 //  Created by Yanzi Li on 11/20/15.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RecordsTableViewController : UITableViewController
+@interface LenderRecordsTableViewController : UITableViewController
 
 @end

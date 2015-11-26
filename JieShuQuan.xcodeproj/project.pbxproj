@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1313C8C71BFF1D3A00D99862 /* RecordsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1313C8C61BFF1D3A00D99862 /* RecordsTableViewController.m */; };
+		1313C8C71BFF1D3A00D99862 /* LenderRecordsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1313C8C61BFF1D3A00D99862 /* LenderRecordsTableViewController.m */; };
 		1337AD721C040776002F4F18 /* LenderRecordsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1337AD711C040776002F4F18 /* LenderRecordsCell.m */; };
 		13577B361C055EE7000E019B /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = 13577B351C055EE7000E019B /* Record.m */; };
 		13577B391C059067000E019B /* RecordsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 13577B381C059067000E019B /* RecordsViewModel.m */; };
@@ -136,8 +136,8 @@
 
 /* Begin PBXFileReference section */
 		05D1F52224A5F7B29F39FADB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		1313C8C51BFF1D3A00D99862 /* RecordsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordsTableViewController.h; sourceTree = "<group>"; };
-		1313C8C61BFF1D3A00D99862 /* RecordsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordsTableViewController.m; sourceTree = "<group>"; };
+		1313C8C51BFF1D3A00D99862 /* LenderRecordsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LenderRecordsTableViewController.h; sourceTree = "<group>"; };
+		1313C8C61BFF1D3A00D99862 /* LenderRecordsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LenderRecordsTableViewController.m; sourceTree = "<group>"; };
 		1337AD701C040776002F4F18 /* LenderRecordsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LenderRecordsCell.h; sourceTree = "<group>"; };
 		1337AD711C040776002F4F18 /* LenderRecordsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LenderRecordsCell.m; sourceTree = "<group>"; };
 		13577B341C055EE7000E019B /* Record.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Record.h; sourceTree = "<group>"; };
@@ -434,8 +434,8 @@
 			children = (
 				94BB409319C283CB005BBD8E /* MoreTableViewController.h */,
 				94BB409419C283CB005BBD8E /* MoreTableViewController.m */,
-				1313C8C51BFF1D3A00D99862 /* RecordsTableViewController.h */,
-				1313C8C61BFF1D3A00D99862 /* RecordsTableViewController.m */,
+				1313C8C51BFF1D3A00D99862 /* LenderRecordsTableViewController.h */,
+				1313C8C61BFF1D3A00D99862 /* LenderRecordsTableViewController.m */,
 				9471FFC819D6E6B90082C2C7 /* AboutTableViewController.h */,
 				9471FFC919D6E6B90082C2C7 /* AboutTableViewController.m */,
 				9755FF1419E559EF0093F90C /* PublicAccountTableViewController.h */,
@@ -1202,7 +1202,7 @@
 				94BB409019C184EC005BBD8E /* FriendBookTableViewCell.m in Sources */,
 				94C1711519D01D3000656EDB /* ASIDownloadCache.m in Sources */,
 				94E3EA3919C6EBF500C38FEB /* FriendsHasBookTableViewController.m in Sources */,
-				1313C8C71BFF1D3A00D99862 /* RecordsTableViewController.m in Sources */,
+				1313C8C71BFF1D3A00D99862 /* LenderRecordsTableViewController.m in Sources */,
 				9412E2FB19AA0D82008D243C /* BookTableViewCell.m in Sources */,
 				9466BD7619EA3A6500409767 /* CustomColor.m in Sources */,
 				97CE0A0419D6F0260071B414 /* CustomAlert.m in Sources */,

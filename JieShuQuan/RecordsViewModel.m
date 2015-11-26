@@ -14,8 +14,7 @@
 
 @implementation RecordsViewModel
 
-- (instancetype) init
-{
+- (instancetype)init {
     self = [super init];
     if (self) {
         [self initBookStatusDic];
@@ -26,39 +25,55 @@
 
 - (void)initBookStatusDic
 {
-    self.bookStatusDic = @{@"pending":@{@"text":@"未处理",
-                                        @"color":UIColorFromRGB(0xFF6666)},
-                           @"approved":@{@"text":@"已同意借阅",
-                                         @"color":UIColorFromRGB(0x99CC99)},
-                           @"declined":@{@"text":@"已拒绝借阅",
-                                         @"color":UIColorFromRGB(0xCCCCCC)},
+    self.bookStatusDic = @{@"pending":@{@"text":@"申请中",
+                                        @"color":UIColorFromRGB(0xFF6666),
+                                        @"time":@"applicationTime"},
+                           @"approved":@{@"text":@"已同意",
+                                         @"color":UIColorFromRGB(0x99CC99),
+                                         @"time":@"borrowTime"},
+                           @"declined":@{@"text":@"已拒绝",
+                                         @"color":UIColorFromRGB(0xCCCCCC),
+                                         @"time":@"applicationTime"},
                            @"returned":@{@"text":@"已归还",
-                                         @"color":UIColorFromRGB(0x99CCCC)}};
+                                         @"color":UIColorFromRGB(0x99CCCC),
+                                         @"time":@"returnTime"}};
 };
 
-- (void)fetchLenderRecordsWithUserId:(NSString *) userId success:(GetLenderRecordsSuccessBlock) success failure:(GetLenderRecordsFailureBlock) failure
-{
++ (void)fetchLenderRecordsWithUserId:(NSString *)userId success:(GetLenderRecordsSuccessBlock)success failure:(GetLenderRecordsFailureBlock)failure {
     BorrowService *borrowService = [BorrowService new];
     
     [borrowService getLenderRecordsWithLenderId:userId success:^(NSArray *lenderRecordsArray) {
         success([RecordsViewModel convertToRecordsArrayFromArray:lenderRecordsArray]);
-    } failure:^{
+    }                                   failure:^{
         failure();
     }];
 }
 
-+ (NSArray *)convertToRecordsArrayFromArray:(NSArray *) array
-{
++ (NSArray *)convertToRecordsArrayFromArray:(NSArray *)array {
     NSMutableArray *lenderRecords = [NSMutableArray new];
-    
+
     if (array) {
         for (NSDictionary *dic in array) {
             Record *record = [[Record alloc] initWithDic:dic];
             [lenderRecords addObject:record];
         }
     }
-    
+
     return lenderRecords;
+}
+
++ (void)approveBorrowRecordWithBookId:(NSString *)bookId borrowerId:(NSString *)borrowerId lenderId:(NSString *)lenderId success:(ApproveBorrowRecordSuccessBlock)successBlock failure:(ApproveBorrowRecordFailureBlock)failureBlock {
+    BorrowService *borrowerService = [BorrowService new];
+    [borrowerService approveBorrowRecordWithBookId:bookId borrowerId:borrowerId lenderId:lenderId success:^{
+        successBlock();
+    }                                      failure:^{
+        failureBlock();
+    }];
+}
+
++ (void)declineBorrowRecordWithBookId:(NSString *)bookId borrowerId:(NSString *)borrowerId lenderId:(NSString *)lenderId success:(DeclineBorrowRecordSuccessBlock)successBlock failure:(DeclineBorrowRecordFailureBlock)failureBlock {
+    BorrowService *borrowService = [BorrowService new];
+    [borrowService declineBorrowRecordWithBookId:bookId borrowerId:borrowerId lenderId:lenderId success:successBlock failure:failureBlock];
 }
 
 @end

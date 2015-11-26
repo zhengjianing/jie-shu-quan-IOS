@@ -11,9 +11,14 @@
 
 @interface RecordsViewModel : NSObject
 
-@property (nonatomic, strong) NSDictionary *bookStatusDic;
+@property(nonatomic, strong) NSDictionary *bookStatusDic;
 
-- (void)fetchLenderRecordsWithUserId:(NSString *) userId success:(GetLenderRecordsSuccessBlock) success failure:(GetLenderRecordsFailureBlock) failure;
-+ (NSArray *)convertToRecordsArrayFromArray:(NSArray *) array;
++ (void)fetchLenderRecordsWithUserId:(NSString *)userId success:(GetLenderRecordsSuccessBlock)success failure:(GetLenderRecordsFailureBlock)failure;
+
++ (NSArray *)convertToRecordsArrayFromArray:(NSArray *)array;
+
++ (void)approveBorrowRecordWithBookId:(NSString *)bookId borrowerId:(NSString *)borrowerId lenderId:(NSString *)lenderId success:(ApproveBorrowRecordSuccessBlock)successBlock failure:(ApproveBorrowRecordFailureBlock)failureBlock;
+
++ (void)declineBorrowRecordWithBookId:(NSString *)bookId borrowerId:(NSString *)borrowerId lenderId:(NSString *)lenderId success:(DeclineBorrowRecordSuccessBlock)successBlock failure:(DeclineBorrowRecordFailureBlock)failureBlock;
 
 @end
