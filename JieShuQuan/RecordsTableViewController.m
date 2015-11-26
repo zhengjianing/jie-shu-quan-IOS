@@ -23,6 +23,7 @@ static NSString *kReuseIdenrifier = @"lenderRecordsCell";
 static NSString *kBookStatusTextKey = @"text";
 static NSString *kBookStatusColorKey = @"color";
 static NSString *kRequestFailErrorText = @"请求失败，请稍后重试";
+static NSString *kDefaultString = @"--";
 
 @interface RecordsTableViewController ()<PreLoginDelegate>
 
@@ -93,11 +94,13 @@ static NSString *kRequestFailErrorText = @"请求失败，请稍后重试";
     LenderRecordsCell *cell = [self.tableView dequeueReusableCellWithIdentifier:kReuseIdenrifier forIndexPath:indexPath];
     
     Record *record = self.lenderRecords[indexPath.row];
-    [cell.bookImageView sd_setImageWithURL:[NSURL URLWithString:record.bookImageURL]];
-    cell.bookNameLabel.text = record.bookName;
-    cell.borrowerNameLabel.text = [NSString stringWithFormat:@"借给%@的书",record.borrowerName];
-    cell.applicationTimeLabel.text = record.applicationTime;
-    cell.bookStatusLabel.text = self.viewModel.bookStatusDic[record.bookStatus][kBookStatusTextKey];
+    if (![record.bookImageURL isEqual:[NSNull null]]) {
+        [cell.bookImageView sd_setImageWithURL:[NSURL URLWithString:record.bookImageURL]];
+    }
+    cell.bookNameLabel.text = [record.bookName isEqual:[NSNull null]] ? kDefaultString : record.bookName;
+    cell.borrowerNameLabel.text = [record.borrowerName isEqual:[NSNull null]] ? kDefaultString : [NSString stringWithFormat:@"借给%@的书",record.borrowerName];
+    cell.applicationTimeLabel.text = [record.applicationTime isEqual:[NSNull null]] ? kDefaultString : record.applicationTime ;
+    cell.bookStatusLabel.text = [record.bookStatus isEqual:[NSNull null]] ? kDefaultString : self.viewModel.bookStatusDic[record.bookStatus][kBookStatusTextKey];
     cell.bookStatusLabel.textColor = self.viewModel.bookStatusDic[record.bookStatus][kBookStatusColorKey];
     
     return cell;
