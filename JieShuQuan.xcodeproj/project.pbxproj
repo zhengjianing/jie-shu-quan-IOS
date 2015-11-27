@@ -11,6 +11,9 @@
 		1337AD721C040776002F4F18 /* LenderRecordsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1337AD711C040776002F4F18 /* LenderRecordsCell.m */; };
 		13577B361C055EE7000E019B /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = 13577B351C055EE7000E019B /* Record.m */; };
 		13577B391C059067000E019B /* RecordsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 13577B381C059067000E019B /* RecordsViewModel.m */; };
+		13F059871C0847950093B554 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13F059851C0847950093B554 /* More.storyboard */; };
+		13F0598A1C0848590093B554 /* LoginAndRigister.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13F059881C0848590093B554 /* LoginAndRigister.storyboard */; };
+		13F0598D1C0848E10093B554 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13F0598B1C0848E10093B554 /* Setting.storyboard */; };
 		38D853C70087FCFF0E955548 /* BorrowingRecordsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38D85D80EB1A2D9F638CBF27 /* BorrowingRecordsTableViewController.m */; };
 		9412E2F519A9FAC7008D243C /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412E2F419A9FAC7008D243C /* Book.m */; };
 		9412E2FB19AA0D82008D243C /* BookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412E2FA19AA0D82008D243C /* BookTableViewCell.m */; };
@@ -145,6 +148,9 @@
 		13577B351C055EE7000E019B /* Record.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Record.m; sourceTree = "<group>"; };
 		13577B371C059067000E019B /* RecordsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordsViewModel.h; sourceTree = "<group>"; };
 		13577B381C059067000E019B /* RecordsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordsViewModel.m; sourceTree = "<group>"; };
+		13F059861C0847950093B554 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/More.storyboard; sourceTree = "<group>"; };
+		13F059891C0848590093B554 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LoginAndRigister.storyboard; sourceTree = "<group>"; };
+		13F0598C1C0848E10093B554 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Setting.storyboard; sourceTree = "<group>"; };
 		38D859AF1E02080F0E19399A /* BorrowingRecordsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BorrowingRecordsTableViewController.h; sourceTree = "<group>"; };
 		38D85D80EB1A2D9F638CBF27 /* BorrowingRecordsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BorrowingRecordsTableViewController.m; sourceTree = "<group>"; };
 		67679F8B19FD679B00F17B69 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -570,6 +576,9 @@
 				9471DBF019A5837700F1A291 /* AppDelegate.h */,
 				9471DBF119A5837700F1A291 /* AppDelegate.m */,
 				9471DBF919A5837700F1A291 /* Main.storyboard */,
+				13F0598B1C0848E10093B554 /* Setting.storyboard */,
+				13F059881C0848590093B554 /* LoginAndRigister.storyboard */,
+				13F059851C0847950093B554 /* More.storyboard */,
 				9759AFFB19C1997D008EFCC2 /* Manager */,
 				9770923919C5842C001A3ED6 /* ViewHelper */,
 				9759AFF419C19012008EFCC2 /* Network */,
@@ -1075,12 +1084,15 @@
 				9466BD7319EA291D00409767 /* 180.png in Resources */,
 				970790FF19E1724F0095EB4C /* zbar-back.png in Resources */,
 				9471DBFB19A5837700F1A291 /* Main.storyboard in Resources */,
+				13F0598A1C0848590093B554 /* LoginAndRigister.storyboard in Resources */,
 				94E1A14E19DEBA4C004BB148 /* Resource.bundle in Resources */,
+				13F0598D1C0848E10093B554 /* Setting.storyboard in Resources */,
 				94BB40B919C33770005BBD8E /* log-out-user.png in Resources */,
 				9707910219E1724F0095EB4C /* zbar-samples.png in Resources */,
 				9707910119E1724F0095EB4C /* zbar-helpicons.png in Resources */,
 				94E1A14D19DEBA4C004BB148 /* ShareSDKLocalizable.strings in Resources */,
 				97FF912219D11EA7006944BD /* city.plist in Resources */,
+				13F059871C0847950093B554 /* More.storyboard in Resources */,
 				94E1A15219DEBA4C004BB148 /* ShareSDKFlatShareViewUI.bundle in Resources */,
 				94BB40B819C33770005BBD8E /* log-in-user.png in Resources */,
 				9471DBFD19A5837700F1A291 /* Images.xcassets in Resources */,
@@ -1248,6 +1260,30 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		13F059851C0847950093B554 /* More.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				13F059861C0847950093B554 /* Base */,
+			);
+			name = More.storyboard;
+			sourceTree = "<group>";
+		};
+		13F059881C0848590093B554 /* LoginAndRigister.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				13F059891C0848590093B554 /* Base */,
+			);
+			name = LoginAndRigister.storyboard;
+			sourceTree = "<group>";
+		};
+		13F0598B1C0848E10093B554 /* Setting.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				13F0598C1C0848E10093B554 /* Base */,
+			);
+			name = Setting.storyboard;
+			sourceTree = "<group>";
+		};
 		9471DBF919A5837700F1A291 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1370,7 +1406,7 @@
 					"${SDK_DIR}/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = JieShuQuan/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1412,7 +1448,7 @@
 					"${SDK_DIR}/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = JieShuQuan/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
