@@ -1,5 +1,5 @@
 //
-//  LenderRecordsCell.h
+//  RecordsCell.h
 //  JieShuQuan
 //
 //  Created by Yanzi Li on 11/24/15.
@@ -8,12 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LenderRecordsCell : UITableViewCell
+@protocol RecordsCellDelegate <NSObject>
+
+@required
+- (void) bookStatusButtonClicked:(id)sender;
+
+@end
+
+@interface RecordsCell : UITableViewCell
 
 @property (strong, nonatomic) IBOutlet UIImageView *bookImageView;
 @property (strong, nonatomic) IBOutlet UILabel *bookNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *borrowerNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *applicationTimeLabel;
 @property (strong, nonatomic) IBOutlet UIButton *bookStatusButton;
+@property (strong, nonatomic) id <RecordsCellDelegate> delegate;
 
 @end

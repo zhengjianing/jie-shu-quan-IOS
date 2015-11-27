@@ -6,7 +6,7 @@
 //  Copyright © 2015 JNXZ. All rights reserved.
 //
 #import "LendingRecordsTableViewController.h"
-#import "LenderRecordsCell.h"
+#import "RecordsCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "LoginViewController.h"
 #import "RecordsViewModel.h"
@@ -14,26 +14,25 @@
 #import "UserManager.h"
 #import "User.h"
 #import "Record.h"
-#import "RecordsViewModel.h"
 #import "CustomActivityIndicator.h"
 #import "CustomAlert.h"
 
 static NSString *kRecordsViewControllerTitle = @"借出记录";
-static NSString *kReuseIdentifier = @"lenderRecordsCell";
+static NSString *kReuseIdentifier = @"recordsCell";
 static NSString *kBookStatusTextKey = @"text";
 static NSString *kBookStatusColorKey = @"color";
 static NSString *kBookStatusRequestTimeKey = @"time";
 static NSString *kRequestFailErrorText = @"请求失败，请稍后重试";
 static NSString *kDefaultString = @"--";
 
-@interface LendingRecordsTableViewController () <PreLoginDelegate, UIActionSheetDelegate>
+@interface LendingRecordsTableViewController () <PreLoginDelegate, UIActionSheetDelegate, RecordsCellDelegate>
 
 @property(nonatomic, strong) NSMutableArray *lenderRecords;
 @property(nonatomic, strong) PreLoginView *preLoginView;
 @property(nonatomic, strong) LoginViewController *loginViewController;
 @property(nonatomic, strong) RecordsViewModel *viewModel;
 @property(nonatomic, strong) Record *pressedRecord;
-@property(nonatomic, strong) LenderRecordsCell *cellOfPressedRecord;
+@property(nonatomic, strong) RecordsCell *cellOfPressedRecord;
 
 @end
 
@@ -54,6 +53,8 @@ static NSString *kDefaultString = @"--";
 - (void)initView {
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.navigationItem.title = kRecordsViewControllerTitle;
+    [self.tableView registerNib:[UINib nibWithNibName:@"RecordsCell"bundle:[NSBundle mainBundle]]
+         forCellReuseIdentifier:@"recordsCell"];
 }
 
 - (void)initData {
@@ -65,11 +66,11 @@ static NSString *kDefaultString = @"--";
 - (void)fetchLenderRecords {
     [[CustomActivityIndicator sharedActivityIndicator] startAsynchAnimating];
     [RecordsViewModel fetchLenderRecordsWithUserId:[UserManager currentUser].userId success:^(NSArray *lenderRecordsArray) {
-
+        
         self.lenderRecords = [lenderRecordsArray mutableCopy];
         [self.tableView reloadData];
         [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
-
+        
     }                                      failure:^{
         [[CustomAlert sharedAlert] showAlertWithMessage:kRequestFailErrorText];
         [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
@@ -77,16 +78,17 @@ static NSString *kDefaultString = @"--";
     }];
 }
 
-#pragma mark - buttons actions
+#pragma mark - RecordsCell delegate
 
-- (IBAction)handleBorrowBookRequest:(id)sender {
+-(void)bookStatusButtonClicked:(id)sender
+{
     UIButton *pressedButton = sender;
-    self.cellOfPressedRecord = (LenderRecordsCell *) pressedButton.superview.superview;
-
+    self.cellOfPressedRecord = (RecordsCell *) pressedButton.superview.superview;
+    
     CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
     self.pressedRecord = self.lenderRecords[(NSUInteger) indexPath.row];
-
+    
     UIActionSheet *handleBorrowBookRequestActionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"同意借阅", @"拒绝借阅", nil];
     [handleBorrowBookRequestActionSheet showInView:self.view];
 }
@@ -102,19 +104,19 @@ static NSString *kDefaultString = @"--";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    LenderRecordsCell *cell = (LenderRecordsCell *) [self.tableView dequeueReusableCellWithIdentifier:kReuseIdentifier forIndexPath:indexPath];
-
+    RecordsCell *cell = (RecordsCell *) [self.tableView dequeueReusableCellWithIdentifier:kReuseIdentifier forIndexPath:indexPath];
+    cell.delegate = self;
     Record *record = self.lenderRecords[(NSUInteger) indexPath.row];
     if (![record.bookImageURL isEqual:[NSNull null]]) {
         [cell.bookImageView sd_setImageWithURL:[NSURL URLWithString:record.bookImageURL]];
     }
     cell.bookNameLabel.text = [record.bookName isEqual:[NSNull null]] ? kDefaultString : record.bookName;
     cell.borrowerNameLabel.text = [record.borrowerName isEqual:[NSNull null]] ? kDefaultString : [NSString stringWithFormat:@"借给：%@", record.borrowerName];
-
+    
     if (![record.bookStatus isEqual:[NSNull null]]) {
         [cell.bookStatusButton setTitle:self.viewModel.bookStatusDic[record.bookStatus][kBookStatusTextKey] forState:UIControlStateNormal];
         NSString *timeText = [record valueForKey:self.viewModel.bookStatusDic[record.bookStatus][kBookStatusRequestTimeKey]];
-
+        
         if (![timeText isEqual:[NSNull null]]) {
             cell.applicationTimeLabel.text = [timeText substringToIndex:10];
         }
@@ -160,7 +162,6 @@ static NSString *kDefaultString = @"--";
 #pragma mark - private methods
 
 - (void)approveABorrowRequest {
-    NSLog(@"同意");
     Record *record = self.pressedRecord;
     [RecordsViewModel approveBorrowRecordWithBookId:record.bookId borrowerId:self.pressedRecord.borrowerId lenderId:record.lenderId success:^{
         [[CustomAlert sharedAlert] showAlertWithMessage:@"同意该借书请求成功"];
@@ -173,7 +174,6 @@ static NSString *kDefaultString = @"--";
 }
 
 - (void)declineABorrowRequest {
-    NSLog(@"拒绝");
     Record *record = self.pressedRecord;
     [RecordsViewModel declineBorrowRecordWithBookId:record.bookId borrowerId:record.borrowerId lenderId:record.lenderId success:^{
         [[CustomAlert sharedAlert] showAlertWithMessage:@"拒绝该借书请求成功"];

@@ -974,14 +974,6 @@
             </objects>
             <point key="canvasLocation" x="234" y="567"/>
         </scene>
-        <!--RegisterViewController-->
-        <scene sceneID="SRL-rc-z0m">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="RegisterViewController" storyboardName="LoginAndRigister" referencedIdentifier="RegisterViewController" id="5ys-D3-Abl" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ofD-ct-j8i" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="476.5" y="654"/>
-        </scene>
         <!--LoginViewController-->
         <scene sceneID="zzq-RM-Apd">
             <objects>

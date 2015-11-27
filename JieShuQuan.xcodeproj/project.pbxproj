@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		1313C8C71BFF1D3A00D99862 /* LendingRecordsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1313C8C61BFF1D3A00D99862 /* LendingRecordsTableViewController.m */; };
-		1337AD721C040776002F4F18 /* LenderRecordsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1337AD711C040776002F4F18 /* LenderRecordsCell.m */; };
+		1337AD721C040776002F4F18 /* RecordsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1337AD711C040776002F4F18 /* RecordsCell.m */; };
 		13577B361C055EE7000E019B /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = 13577B351C055EE7000E019B /* Record.m */; };
 		13577B391C059067000E019B /* RecordsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 13577B381C059067000E019B /* RecordsViewModel.m */; };
+		13D6F36A1C084BF10023C1C4 /* RecordsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13D6F3691C084BF10023C1C4 /* RecordsCell.xib */; };
 		13F059871C0847950093B554 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13F059851C0847950093B554 /* More.storyboard */; };
 		13F0598A1C0848590093B554 /* LoginAndRigister.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13F059881C0848590093B554 /* LoginAndRigister.storyboard */; };
 		13F0598D1C0848E10093B554 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13F0598B1C0848E10093B554 /* Setting.storyboard */; };
@@ -142,12 +143,13 @@
 		05D1F52224A5F7B29F39FADB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		1313C8C51BFF1D3A00D99862 /* LendingRecordsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LendingRecordsTableViewController.h; sourceTree = "<group>"; };
 		1313C8C61BFF1D3A00D99862 /* LendingRecordsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LendingRecordsTableViewController.m; sourceTree = "<group>"; };
-		1337AD701C040776002F4F18 /* LenderRecordsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LenderRecordsCell.h; sourceTree = "<group>"; };
-		1337AD711C040776002F4F18 /* LenderRecordsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LenderRecordsCell.m; sourceTree = "<group>"; };
+		1337AD701C040776002F4F18 /* RecordsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordsCell.h; sourceTree = "<group>"; };
+		1337AD711C040776002F4F18 /* RecordsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordsCell.m; sourceTree = "<group>"; };
 		13577B341C055EE7000E019B /* Record.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Record.h; sourceTree = "<group>"; };
 		13577B351C055EE7000E019B /* Record.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Record.m; sourceTree = "<group>"; };
 		13577B371C059067000E019B /* RecordsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordsViewModel.h; sourceTree = "<group>"; };
 		13577B381C059067000E019B /* RecordsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordsViewModel.m; sourceTree = "<group>"; };
+		13D6F3691C084BF10023C1C4 /* RecordsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordsCell.xib; sourceTree = "<group>"; };
 		13F059861C0847950093B554 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/More.storyboard; sourceTree = "<group>"; };
 		13F059891C0848590093B554 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LoginAndRigister.storyboard; sourceTree = "<group>"; };
 		13F0598C1C0848E10093B554 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Setting.storyboard; sourceTree = "<group>"; };
@@ -423,8 +425,9 @@
 		138270C61C05A116003C2837 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1337AD701C040776002F4F18 /* LenderRecordsCell.h */,
-				1337AD711C040776002F4F18 /* LenderRecordsCell.m */,
+				1337AD701C040776002F4F18 /* RecordsCell.h */,
+				1337AD711C040776002F4F18 /* RecordsCell.m */,
+				13D6F3691C084BF10023C1C4 /* RecordsCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -453,6 +456,17 @@
 				38D85D80EB1A2D9F638CBF27 /* BorrowingRecordsTableViewController.m */,
 			);
 			name = ViewController;
+			sourceTree = "<group>";
+		};
+		13F0598E1C084A500093B554 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				9471DBF919A5837700F1A291 /* Main.storyboard */,
+				13F0598B1C0848E10093B554 /* Setting.storyboard */,
+				13F059881C0848590093B554 /* LoginAndRigister.storyboard */,
+				13F059851C0847950093B554 /* More.storyboard */,
+			);
+			name = Storyboards;
 			sourceTree = "<group>";
 		};
 		880FB543F159CEC00F08BFF4 /* Pods */ = {
@@ -575,10 +589,7 @@
 			children = (
 				9471DBF019A5837700F1A291 /* AppDelegate.h */,
 				9471DBF119A5837700F1A291 /* AppDelegate.m */,
-				9471DBF919A5837700F1A291 /* Main.storyboard */,
-				13F0598B1C0848E10093B554 /* Setting.storyboard */,
-				13F059881C0848590093B554 /* LoginAndRigister.storyboard */,
-				13F059851C0847950093B554 /* More.storyboard */,
+				13F0598E1C084A500093B554 /* Storyboards */,
 				9759AFFB19C1997D008EFCC2 /* Manager */,
 				9770923919C5842C001A3ED6 /* ViewHelper */,
 				9759AFF419C19012008EFCC2 /* Network */,
@@ -1092,6 +1103,7 @@
 				9707910119E1724F0095EB4C /* zbar-helpicons.png in Resources */,
 				94E1A14D19DEBA4C004BB148 /* ShareSDKLocalizable.strings in Resources */,
 				97FF912219D11EA7006944BD /* city.plist in Resources */,
+				13D6F36A1C084BF10023C1C4 /* RecordsCell.xib in Resources */,
 				13F059871C0847950093B554 /* More.storyboard in Resources */,
 				94E1A15219DEBA4C004BB148 /* ShareSDKFlatShareViewUI.bundle in Resources */,
 				94BB40B819C33770005BBD8E /* log-in-user.png in Resources */,
@@ -1186,7 +1198,7 @@
 				9755FF1619E559EF0093F90C /* PublicAccountTableViewController.m in Sources */,
 				94C1711919D01D3000656EDB /* ASINetworkQueue.m in Sources */,
 				94F922BB19CFCDA800F96B09 /* AvatarManager.m in Sources */,
-				1337AD721C040776002F4F18 /* LenderRecordsCell.m in Sources */,
+				1337AD721C040776002F4F18 /* RecordsCell.m in Sources */,
 				97553C3D19C090DE0034B446 /* AuthenticationViewController.m in Sources */,
 				97B59F3A19D2560D0063CFA8 /* CityTableViewController.m in Sources */,
 				97F306B519BD47D10010E91F /* NSString+AES256.m in Sources */,
