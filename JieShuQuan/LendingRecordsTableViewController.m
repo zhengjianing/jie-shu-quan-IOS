@@ -1,14 +1,15 @@
 //
-//  LenderRecordsTableViewController.m
+//  LendingRecordsTableViewController.m
 //  JieShuQuan
 //
 //  Created by Yanzi Li on 11/20/15.
 //  Copyright © 2015 JNXZ. All rights reserved.
 //
-#import "LenderRecordsTableViewController.h"
+#import "LendingRecordsTableViewController.h"
 #import "LenderRecordsCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "LoginViewController.h"
+#import "RecordsViewModel.h"
 #import "PreLoginView.h"
 #import "UserManager.h"
 #import "User.h"
@@ -25,7 +26,7 @@ static NSString *kBookStatusRequestTimeKey = @"time";
 static NSString *kRequestFailErrorText = @"请求失败，请稍后重试";
 static NSString *kDefaultString = @"--";
 
-@interface LenderRecordsTableViewController () <PreLoginDelegate, UIActionSheetDelegate>
+@interface LendingRecordsTableViewController () <PreLoginDelegate, UIActionSheetDelegate>
 
 @property(nonatomic, strong) NSMutableArray *lenderRecords;
 @property(nonatomic, strong) PreLoginView *preLoginView;
@@ -36,7 +37,7 @@ static NSString *kDefaultString = @"--";
 
 @end
 
-@implementation LenderRecordsTableViewController
+@implementation LendingRecordsTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

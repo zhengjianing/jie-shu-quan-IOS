@@ -282,7 +282,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle=" " id="Bzo-0A-XuL">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="loginLogoutCell" textLabel="FDW-ha-TUT" rowHeight="45" style="IBUITableViewCellStyleDefault" id="r3Y-wk-q1F" userLabel="Records cell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="borrowingRecordsCell" textLabel="FDW-ha-TUT" rowHeight="45" style="IBUITableViewCellStyleDefault" id="r3Y-wk-q1F" userLabel="Records cell">
                                         <rect key="frame" x="0.0" y="161" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="r3Y-wk-q1F" id="Be8-MQ-9iR">
@@ -297,8 +297,11 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="fzk-5u-493" kind="show" id="HbC-Vf-aHR"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="loginLogoutCell" textLabel="1hv-gK-XC4" rowHeight="45" style="IBUITableViewCellStyleDefault" id="nWf-x4-KxX" userLabel="Records cell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="lendingRecordsCell" textLabel="1hv-gK-XC4" rowHeight="45" style="IBUITableViewCellStyleDefault" id="nWf-x4-KxX" userLabel="Records cell">
                                         <rect key="frame" x="0.0" y="206" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nWf-x4-KxX" id="jBY-ff-mDD">
@@ -521,6 +524,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rnD-cz-bw0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="745" y="1361"/>
+        </scene>
+        <!--Borrowing Records Table View Controller-->
+        <scene sceneID="1LH-gJ-Ezf">
+            <objects>
+                <tableViewController id="fzk-5u-493" customClass="BorrowingRecordsTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="SM0-jU-Gbu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ynE-8A-738">
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ynE-8A-738" id="iUx-un-hUI">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="fzk-5u-493" id="WrH-yn-fbB"/>
+                            <outlet property="delegate" destination="fzk-5u-493" id="hH7-LS-Zkg"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u4I-3z-p6n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1187" y="1361"/>
         </scene>
         <!--设置-->
         <scene sceneID="pyM-e5-9Um">
@@ -798,10 +829,10 @@
             </objects>
             <point key="canvasLocation" x="745" y="696"/>
         </scene>
-        <!--Lender Records Table View Controller-->
+        <!--Lending Records Table View Controller-->
         <scene sceneID="ghc-cu-mnx">
             <objects>
-                <tableViewController id="NrU-pX-tXS" customClass="LenderRecordsTableViewController" sceneMemberID="viewController">
+                <tableViewController id="NrU-pX-tXS" customClass="LendingRecordsTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="bpO-U6-HQl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -865,7 +896,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="16J-rn-W0A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1187" y="625"/>
+            <point key="canvasLocation" x="1187" y="696"/>
         </scene>
         <!--请选择省/直辖市-->
         <scene sceneID="wHu-Tp-sWL">
