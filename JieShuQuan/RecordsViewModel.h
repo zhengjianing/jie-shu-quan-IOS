@@ -15,7 +15,7 @@
 @property(nonatomic, strong) NSMutableArray *lendingRecordsArray;
 @property(nonatomic, strong) NSMutableArray *borrowingRecordsArray;
 
-+ (void)fetchLendingRecordsWithUserId:(NSString *)userId success:(GetLenderRecordsSuccessBlock)success failure:(GetLenderRecordsFailureBlock)failure;
+- (void)fetchLendingRecordsWithUserId:(NSString *)userId success:(GetLenderRecordsSuccessBlock)success failure:(GetLenderRecordsFailureBlock)failure;
 
 + (NSArray *)convertToRecordsArrayFromArray:(NSArray *)array;
 

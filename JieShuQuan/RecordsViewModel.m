@@ -21,7 +21,6 @@
         self.borrowingRecordsArray = [NSMutableArray new];
         self.lendingRecordsArray = [NSMutableArray new];
     }
-
     return self;
 };
 
@@ -40,11 +39,12 @@
                     @"time" : @"returnTime"}};
 };
 
-+ (void)fetchLendingRecordsWithUserId:(NSString *)userId success:(GetLenderRecordsSuccessBlock)success failure:(GetLenderRecordsFailureBlock)failure {
+- (void)fetchLendingRecordsWithUserId:(NSString *)userId success:(GetLenderRecordsSuccessBlock)success failure:(GetLenderRecordsFailureBlock)failure {
     BorrowService *borrowService = [BorrowService new];
-    
+
     [borrowService getLenderRecordsWithLenderId:userId success:^(NSArray *lenderRecordsArray) {
-        success([RecordsViewModel convertToRecordsArrayFromArray:lenderRecordsArray]);
+        self.lendingRecordsArray = [[RecordsViewModel convertToRecordsArrayFromArray:lenderRecordsArray] mutableCopy];
+        success(self.lendingRecordsArray);
     }                                   failure:^{
         failure();
     }];
@@ -52,14 +52,12 @@
 
 + (NSArray *)convertToRecordsArrayFromArray:(NSArray *)array {
     NSMutableArray *lenderRecords = [NSMutableArray new];
-
     if (array) {
         for (NSDictionary *dic in array) {
             Record *record = [[Record alloc] initWithDic:dic];
             [lenderRecords addObject:record];
         }
     }
-
     return lenderRecords;
 }
 
@@ -82,7 +80,7 @@
 
     [borrowService getBorrowerRecordsWithBorrowerId:userId success:^(NSArray *borrowingRecordsArray) {
         self.borrowingRecordsArray = [[RecordsViewModel convertToRecordsArrayFromArray:borrowingRecordsArray] mutableCopy];
-        success([RecordsViewModel convertToRecordsArrayFromArray:borrowingRecordsArray]);
+        success(self.borrowingRecordsArray);
     }                                       failure:^{
         failure();
     }];

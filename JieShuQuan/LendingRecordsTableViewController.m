@@ -27,7 +27,6 @@ static NSString *kDefaultString = @"--";
 
 @interface LendingRecordsTableViewController () <PreLoginDelegate, UIActionSheetDelegate, RecordsCellDelegate>
 
-@property(nonatomic, strong) NSMutableArray *lenderRecords;
 @property(nonatomic, strong) PreLoginView *preLoginView;
 @property(nonatomic, strong) LoginViewController *loginViewController;
 @property(nonatomic, strong) RecordsViewModel *viewModel;
@@ -38,9 +37,16 @@ static NSString *kDefaultString = @"--";
 
 @implementation LendingRecordsTableViewController
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        self.viewModel = [RecordsViewModel new];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initData];
     [self initView];
 
     if ([UserManager isLogin]) {
@@ -53,25 +59,19 @@ static NSString *kDefaultString = @"--";
 - (void)initView {
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.navigationItem.title = kRecordsViewControllerTitle;
-    [self.tableView registerNib:[UINib nibWithNibName:@"RecordsCell"bundle:[NSBundle mainBundle]]
+    [self.tableView registerNib:[UINib nibWithNibName:@"RecordsCell" bundle:[NSBundle mainBundle]]
          forCellReuseIdentifier:@"recordsCell"];
-}
-
-- (void)initData {
-    self.viewModel = [RecordsViewModel new];
-    self.lenderRecords = [NSMutableArray new];
     self.loginViewController = (LoginViewController *) [self.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
 }
 
 - (void)fetchLenderRecords {
     [[CustomActivityIndicator sharedActivityIndicator] startAsynchAnimating];
-    [RecordsViewModel fetchLendingRecordsWithUserId:[UserManager currentUser].userId success:^(NSArray *lenderRecordsArray) {
+    [self.viewModel fetchLendingRecordsWithUserId:[UserManager currentUser].userId success:^(NSArray *lenderRecordsArray) {
 
-        self.lenderRecords = [lenderRecordsArray mutableCopy];
         [self.tableView reloadData];
         [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
 
-    }                                       failure:^{
+    }                                     failure:^{
         [[CustomAlert sharedAlert] showAlertWithMessage:kRequestFailErrorText];
         [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
         [self.navigationController popViewControllerAnimated:YES];
@@ -80,15 +80,14 @@ static NSString *kDefaultString = @"--";
 
 #pragma mark - RecordsCell delegate
 
--(void)bookStatusButtonClicked:(id)sender
-{
+- (void)bookStatusButtonClicked:(id)sender {
     UIButton *pressedButton = sender;
     self.cellOfPressedRecord = (RecordsCell *) pressedButton.superview.superview;
     
     CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
-    self.pressedRecord = self.lenderRecords[(NSUInteger) indexPath.row];
-    
+    self.pressedRecord = self.viewModel.lendingRecordsArray[(NSUInteger) indexPath.row];
+
     UIActionSheet *handleBorrowBookRequestActionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"同意借阅", @"拒绝借阅", nil];
     [handleBorrowBookRequestActionSheet showInView:self.view];
 }
@@ -100,23 +99,23 @@ static NSString *kDefaultString = @"--";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.lenderRecords.count;
+    return self.viewModel.lendingRecordsArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     RecordsCell *cell = (RecordsCell *) [self.tableView dequeueReusableCellWithIdentifier:kReuseIdentifier forIndexPath:indexPath];
     cell.delegate = self;
-    Record *record = self.lenderRecords[(NSUInteger) indexPath.row];
+    Record *record = self.viewModel.lendingRecordsArray[(NSUInteger) indexPath.row];
     if (![record.bookImageURL isEqual:[NSNull null]]) {
         [cell.bookImageView sd_setImageWithURL:[NSURL URLWithString:record.bookImageURL]];
     }
     cell.bookNameLabel.text = [record.bookName isEqual:[NSNull null]] ? kDefaultString : record.bookName;
     cell.borrowerNameLabel.text = [record.borrowerName isEqual:[NSNull null]] ? kDefaultString : [NSString stringWithFormat:@"借给：%@", record.borrowerName];
-    
+
     if (![record.bookStatus isEqual:[NSNull null]]) {
         [cell.bookStatusButton setTitle:self.viewModel.bookStatusDic[record.bookStatus][kBookStatusTextKey] forState:UIControlStateNormal];
         NSString *timeText = [record valueForKey:self.viewModel.bookStatusDic[record.bookStatus][kBookStatusRequestTimeKey]];
-        
+
         if (![timeText isEqual:[NSNull null]]) {
             cell.applicationTimeLabel.text = [timeText substringToIndex:10];
         }
