@@ -22,10 +22,10 @@ typedef void(^DeclineBorrowRecordFailureBlock)();
 typedef void(^ReturnBorrowRecordSuccessBlock)();
 typedef void(^ReturnBorrowRecordFailureBlock)();
 
-typedef void(^GetBorrowerRecordsSuccessBlock)();
+typedef void(^GetBorrowerRecordsSuccessBlock)(NSArray *borrowingRecordsArray);
 typedef void(^GetBorrowerRecordsFailureBlock)();
 
-typedef void(^GetLenderRecordsSuccessBlock)(NSArray *lenderRecordsArray);
+typedef void(^GetLenderRecordsSuccessBlock)(NSArray *lendingRecordsArray);
 typedef void(^GetLenderRecordsFailureBlock)();
 
 - (void)createBorrowRecordWithBookId:(NSString *)bookId borrowerId:(NSString *)borrowerId lenderId:(NSString *)lenderId success:(CreateBorrowRecordSuccessBlock)successBlock failure:(CreateBorrowRecordFailureBlock)failureBlock;

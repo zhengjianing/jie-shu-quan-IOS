@@ -65,13 +65,13 @@ static NSString *kDefaultString = @"--";
 
 - (void)fetchLenderRecords {
     [[CustomActivityIndicator sharedActivityIndicator] startAsynchAnimating];
-    [RecordsViewModel fetchLenderRecordsWithUserId:[UserManager currentUser].userId success:^(NSArray *lenderRecordsArray) {
-        
+    [RecordsViewModel fetchLendingRecordsWithUserId:[UserManager currentUser].userId success:^(NSArray *lenderRecordsArray) {
+
         self.lenderRecords = [lenderRecordsArray mutableCopy];
         [self.tableView reloadData];
         [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
-        
-    }                                      failure:^{
+
+    }                                       failure:^{
         [[CustomAlert sharedAlert] showAlertWithMessage:kRequestFailErrorText];
         [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
         [self.navigationController popViewControllerAnimated:YES];
