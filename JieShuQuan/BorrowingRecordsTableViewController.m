@@ -14,6 +14,7 @@
 #import "CustomAlert.h"
 #import "LoginViewController.h"
 #import "PreLoginView.h"
+#import "CustomColor.h"
 
 static NSString *kReuseIdentifier = @"recordsCell";
 static NSString *kBorrowingRecordsViewControllerTitle = @"借入记录";
@@ -72,18 +73,9 @@ static NSString *kDefaultString = @"--";
         [cell.bookImageView sd_setImageWithURL:[NSURL URLWithString:record.bookImageURL]];
     }
     cell.bookNameLabel.text = [record.bookName isEqual:[NSNull null]] ? kDefaultString : record.bookName;
-    cell.borrowerNameLabel.text = [record.borrowerName isEqual:[NSNull null]] ? kDefaultString : [NSString stringWithFormat:@"借给：%@", record.borrowerName];
+    cell.borrowerNameLabel.text = [record.borrowerName isEqual:[NSNull null]] ? kDefaultString : [NSString stringWithFormat:@"借%@的书", record.borrowerName];
 
-    if (![record.bookStatus isEqual:[NSNull null]]) {
-        [cell.bookStatusButton setTitle:self.viewModel.borrowingBookStatusDic[record.bookStatus][kBookStatusTextKey] forState:UIControlStateNormal];
-        NSString *timeText = [record valueForKey:self.viewModel.borrowingBookStatusDic[record.bookStatus][kBookStatusRequestTimeKey]];
-
-        if (![timeText isEqual:[NSNull null]]) {
-            cell.applicationTimeLabel.text = [timeText substringToIndex:10];
-        }
-    }
-    [cell.bookStatusButton setEnabled:[record.bookStatus isEqual:@"approved"]];
-    [cell.bookStatusButton setTitleColor:self.viewModel.borrowingBookStatusDic[record.bookStatus][kBookStatusColorKey] forState:UIControlStateNormal];
+    [self setCellBookStatusForCell:cell withRecord:record];
     return cell;
 }
 
@@ -144,6 +136,29 @@ static NSString *kDefaultString = @"--";
     }];
 }
 
+- (void)setCellBookStatusForCell:(RecordsCell *)cell withRecord:(Record *)record {
+    if (![record.bookStatus isEqual:[NSNull null]]) {
+        [cell.bookStatusButton setTitle:self.viewModel.borrowingBookStatusDic[record.bookStatus][kBookStatusTextKey] forState:UIControlStateNormal];
+        NSString *timeText = [record valueForKey:self.viewModel.lendingBookStatusDic[record.bookStatus][kBookStatusRequestTimeKey]];
+
+        if (![timeText isEqual:[NSNull null]]) {
+            cell.applicationTimeLabel.text = [timeText substringToIndex:10];
+        }
+    }
+
+    if ([record.bookStatus isEqual:@"approved"]) {
+        [cell.bookStatusButton setEnabled:YES];
+        cell.bookStatusButton.layer.borderColor = [CustomColor mainRedColor].CGColor;
+        cell.bookStatusButton.layer.cornerRadius = 5.0;
+        cell.bookStatusButton.layer.borderWidth = 0.5;
+        cell.bookStatusButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    } else {
+        [cell.bookStatusButton setEnabled:NO];
+    }
+
+    [cell.bookStatusButton setTitleColor:self.viewModel.lendingBookStatusDic[record.bookStatus][kBookStatusColorKey] forState:UIControlStateNormal];
+}
+
 - (void)returnABook {
     [[CustomActivityIndicator sharedActivityIndicator] startAsynchAnimating];
     Record *record = self.pressedRecord;
@@ -151,12 +166,18 @@ static NSString *kDefaultString = @"--";
         [[CustomAlert sharedAlert] showAlertWithMessage:@"还书成功"];
         [self.cellOfPressedRecord.bookStatusButton setTitle:self.viewModel.borrowingBookStatusDic[@"returned"][kBookStatusTextKey] forState:UIControlStateNormal];
         [self.cellOfPressedRecord.bookStatusButton setTitleColor:self.viewModel.borrowingBookStatusDic[@"returned"][kBookStatusColorKey] forState:UIControlStateNormal];
-        [self.cellOfPressedRecord.bookStatusButton setEnabled:NO];
+        [self setButtonToDisableState:self.cellOfPressedRecord.bookStatusButton];
         [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
     }                                      failure:^{
         [[CustomAlert sharedAlert] showAlertWithMessage:kRequestFailErrorText];
         [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
     }];
+}
+
+- (void)setButtonToDisableState:(UIButton *)button {
+    [button setEnabled:NO];
+    button.layer.borderWidth = 0;
+    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
 }
 
 @end

@@ -16,6 +16,7 @@
 #import "Record.h"
 #import "CustomActivityIndicator.h"
 #import "CustomAlert.h"
+#import "CustomColor.h"
 
 static NSString *kRecordsViewControllerTitle = @"借出记录";
 static NSString *kReuseIdentifier = @"recordsCell";
@@ -112,16 +113,7 @@ static NSString *kDefaultString = @"--";
     cell.bookNameLabel.text = [record.bookName isEqual:[NSNull null]] ? kDefaultString : record.bookName;
     cell.borrowerNameLabel.text = [record.borrowerName isEqual:[NSNull null]] ? kDefaultString : [NSString stringWithFormat:@"借给：%@", record.borrowerName];
 
-    if (![record.bookStatus isEqual:[NSNull null]]) {
-        [cell.bookStatusButton setTitle:self.viewModel.lendingBookStatusDic[record.bookStatus][kBookStatusTextKey] forState:UIControlStateNormal];
-        NSString *timeText = [record valueForKey:self.viewModel.lendingBookStatusDic[record.bookStatus][kBookStatusRequestTimeKey]];
-
-        if (![timeText isEqual:[NSNull null]]) {
-            cell.applicationTimeLabel.text = [timeText substringToIndex:10];
-        }
-    }
-    [cell.bookStatusButton setEnabled:[record.bookStatus isEqual:@"pending"]];
-    [cell.bookStatusButton setTitleColor:self.viewModel.lendingBookStatusDic[record.bookStatus][kBookStatusColorKey] forState:UIControlStateNormal];
+    [self setCellBookStatusForCell:cell withRecord:record];
 
     return cell;
 }
@@ -160,6 +152,29 @@ static NSString *kDefaultString = @"--";
 
 #pragma mark - private methods
 
+- (void)setCellBookStatusForCell:(RecordsCell *)cell withRecord:(Record *)record {
+    if (![record.bookStatus isEqual:[NSNull null]]) {
+        [cell.bookStatusButton setTitle:self.viewModel.lendingBookStatusDic[record.bookStatus][kBookStatusTextKey] forState:UIControlStateNormal];
+        NSString *timeText = [record valueForKey:self.viewModel.lendingBookStatusDic[record.bookStatus][kBookStatusRequestTimeKey]];
+
+        if (![timeText isEqual:[NSNull null]]) {
+            cell.applicationTimeLabel.text = [timeText substringToIndex:10];
+        }
+    }
+
+    if ([record.bookStatus isEqual:@"pending"]) {
+        [cell.bookStatusButton setEnabled:YES];
+        cell.bookStatusButton.layer.borderColor = [CustomColor mainRedColor].CGColor;
+        cell.bookStatusButton.layer.cornerRadius = 5.0;
+        cell.bookStatusButton.layer.borderWidth = 0.5;
+        cell.bookStatusButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    } else {
+        [cell.bookStatusButton setEnabled:NO];
+    }
+
+    [cell.bookStatusButton setTitleColor:self.viewModel.lendingBookStatusDic[record.bookStatus][kBookStatusColorKey] forState:UIControlStateNormal];
+}
+
 - (void)approveABorrowRequest {
     Record *record = self.pressedRecord;
     [[CustomActivityIndicator sharedActivityIndicator] startAsynchAnimating];
@@ -167,7 +182,7 @@ static NSString *kDefaultString = @"--";
         [[CustomAlert sharedAlert] showAlertWithMessage:@"同意该借书请求成功"];
         [self.cellOfPressedRecord.bookStatusButton setTitle:self.viewModel.lendingBookStatusDic[@"approved"][kBookStatusTextKey] forState:UIControlStateNormal];
         [self.cellOfPressedRecord.bookStatusButton setTitleColor:self.viewModel.lendingBookStatusDic[@"approved"][kBookStatusColorKey] forState:UIControlStateNormal];
-        [self.cellOfPressedRecord.bookStatusButton setEnabled:NO];
+        [self setButtonToDisableState:self.cellOfPressedRecord.bookStatusButton];
         [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
     }                                       failure:^{
         [[CustomAlert sharedAlert] showAlertWithMessage:kRequestFailErrorText];
@@ -182,12 +197,18 @@ static NSString *kDefaultString = @"--";
         [[CustomAlert sharedAlert] showAlertWithMessage:@"拒绝该借书请求成功"];
         [self.cellOfPressedRecord.bookStatusButton setTitle:self.viewModel.lendingBookStatusDic[@"declined"][kBookStatusTextKey] forState:UIControlStateNormal];
         [self.cellOfPressedRecord.bookStatusButton setTitleColor:self.viewModel.lendingBookStatusDic[@"declined"][kBookStatusColorKey] forState:UIControlStateNormal];
-        [self.cellOfPressedRecord.bookStatusButton setEnabled:NO];
+        [self setButtonToDisableState:self.cellOfPressedRecord.bookStatusButton];
         [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
     }                                       failure:^{
         [[CustomAlert sharedAlert] showAlertWithMessage:kRequestFailErrorText];
         [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
     }];
+}
+
+- (void)setButtonToDisableState:(UIButton *)button {
+    [button setEnabled:NO];
+    button.layer.borderWidth = 0;
+    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
 }
 
 - (void)didReceiveMemoryWarning {
