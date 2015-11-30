@@ -17,31 +17,46 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        [self initBookStatusDic];
+        [self initLendingBookStatusDic];
+        [self initBorrowingBookStatusDic];
         self.borrowingRecordsArray = [NSMutableArray new];
         self.lendingRecordsArray = [NSMutableArray new];
     }
     return self;
 };
 
-- (void)initBookStatusDic {
-    self.bookStatusDic = @{@"pending" : @{@"text" : @"申请中",
-            @"color" : UIColorFromRGB(0xFF6666),
-            @"time" : @"applicationTime"},
-            @"approved" : @{@"text" : @"已同意",
-                    @"color" : UIColorFromRGB(0x99CC99),
-                    @"time" : @"borrowTime"},
-            @"declined" : @{@"text" : @"已拒绝",
-                    @"color" : UIColorFromRGB(0xCCCCCC),
-                    @"time" : @"applicationTime"},
-            @"returned" : @{@"text" : @"已归还",
-                    @"color" : UIColorFromRGB(0x99CCCC),
-                    @"time" : @"returnTime"}};
+- (void)initLendingBookStatusDic {
+    self.lendingBookStatusDic = @{@"pending" : @{@"text" : @"申请中",
+                                                 @"color" : UIColorFromRGB(0xFF6666),
+                                                 @"time" : @"applicationTime"},
+                                  @"approved" : @{@"text" : @"已同意",
+                                                  @"color" : UIColorFromRGB(0x99CC99),
+                                                  @"time" : @"borrowTime"},
+                                  @"declined" : @{@"text" : @"已拒绝",
+                                                  @"color" : UIColorFromRGB(0xCCCCCC),
+                                                  @"time" : @"applicationTime"},
+                                  @"returned" : @{@"text" : @"已归还",
+                                                  @"color" : UIColorFromRGB(0x99CCCC),
+                                                  @"time" : @"returnTime"}};
+};
+
+- (void)initBorrowingBookStatusDic {
+    self.borrowingBookStatusDic = @{@"pending" : @{@"text" : @"申请中",
+                                                   @"color" : UIColorFromRGB(0xFF6666),
+                                                   @"time" : @"applicationTime"},
+                                    @"approved" : @{@"text" : @"归还",
+                                                    @"color" : UIColorFromRGB(0x99CC99),
+                                                    @"time" : @"borrowTime"},
+                                    @"declined" : @{@"text" : @"已拒绝",
+                                                    @"color" : UIColorFromRGB(0xCCCCCC),
+                                                    @"time" : @"applicationTime"},
+                                    @"returned" : @{@"text" : @"已归还",
+                                                    @"color" : UIColorFromRGB(0x99CCCC),
+                                                    @"time" : @"returnTime"}};
 };
 
 - (void)fetchLendingRecordsWithUserId:(NSString *)userId success:(GetLenderRecordsSuccessBlock)success failure:(GetLenderRecordsFailureBlock)failure {
     BorrowService *borrowService = [BorrowService new];
-
     [borrowService getLenderRecordsWithLenderId:userId success:^(NSArray *lenderRecordsArray) {
         self.lendingRecordsArray = [[RecordsViewModel convertToRecordsArrayFromArray:lenderRecordsArray] mutableCopy];
         success(self.lendingRecordsArray);
@@ -77,13 +92,17 @@
 
 - (void)fetchBorrowingRecordsWithUserId:(NSString *)userId success:(GetBorrowerRecordsSuccessBlock)success failure:(GetBorrowerRecordsFailureBlock)failure {
     BorrowService *borrowService = [BorrowService new];
-
     [borrowService getBorrowerRecordsWithBorrowerId:userId success:^(NSArray *borrowingRecordsArray) {
         self.borrowingRecordsArray = [[RecordsViewModel convertToRecordsArrayFromArray:borrowingRecordsArray] mutableCopy];
         success(self.borrowingRecordsArray);
     }                                       failure:^{
         failure();
     }];
+}
+
++ (void)returnBorrowRecordWithBookId:(NSString *)bookId borrowerId:(NSString *)borrowerId lenderId:(NSString *)lenderId success:(ReturnBorrowRecordSuccessBlock)successBlock failure:(ReturnBorrowRecordFailureBlock)failureBlock {
+    BorrowService *borrowService = [BorrowService new];
+    [borrowService returnBorrowRecordWithBookId:bookId borrowerId:borrowerId lenderId:lenderId success:successBlock failure:failureBlock];
 }
 
 @end

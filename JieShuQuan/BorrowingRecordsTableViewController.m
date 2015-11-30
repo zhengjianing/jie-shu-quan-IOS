@@ -28,6 +28,8 @@ static NSString *kDefaultString = @"--";
 @property(nonatomic, strong) RecordsViewModel *viewModel;
 @property(nonatomic, strong) PreLoginView *preLoginView;
 @property(nonatomic, strong) LoginViewController *loginViewController;
+@property(nonatomic, strong) Record *pressedRecord;
+@property(nonatomic, strong) RecordsCell *cellOfPressedRecord;
 
 @end
 
@@ -73,13 +75,15 @@ static NSString *kDefaultString = @"--";
     cell.borrowerNameLabel.text = [record.borrowerName isEqual:[NSNull null]] ? kDefaultString : [NSString stringWithFormat:@"借给：%@", record.borrowerName];
 
     if (![record.bookStatus isEqual:[NSNull null]]) {
-        [cell.bookStatusButton setTitle:self.viewModel.bookStatusDic[record.bookStatus][kBookStatusTextKey] forState:UIControlStateNormal];
-        NSString *timeText = [record valueForKey:self.viewModel.bookStatusDic[record.bookStatus][kBookStatusRequestTimeKey]];
+        [cell.bookStatusButton setTitle:self.viewModel.borrowingBookStatusDic[record.bookStatus][kBookStatusTextKey] forState:UIControlStateNormal];
+        NSString *timeText = [record valueForKey:self.viewModel.borrowingBookStatusDic[record.bookStatus][kBookStatusRequestTimeKey]];
 
         if (![timeText isEqual:[NSNull null]]) {
             cell.applicationTimeLabel.text = [timeText substringToIndex:10];
         }
     }
+    [cell.bookStatusButton setEnabled:[record.bookStatus isEqual:@"approved"]];
+    [cell.bookStatusButton setTitleColor:self.viewModel.borrowingBookStatusDic[record.bookStatus][kBookStatusColorKey] forState:UIControlStateNormal];
     return cell;
 }
 
@@ -90,7 +94,13 @@ static NSString *kDefaultString = @"--";
 #pragma - mark RecordsCellDelegate
 
 - (void)bookStatusButtonClicked:(id)sender {
+    UIButton *pressedButton = sender;
+    self.cellOfPressedRecord = (RecordsCell *) pressedButton.superview.superview;
 
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+    self.pressedRecord = self.viewModel.borrowingRecordsArray[(NSUInteger) indexPath.row];
+    [self returnABook];
 }
 
 #pragma - mark PreLoginDelegate
@@ -131,6 +141,21 @@ static NSString *kDefaultString = @"--";
         [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
         [[CustomAlert sharedAlert] showAlertWithMessage:kRequestFailErrorText];
         [self.navigationController popViewControllerAnimated:YES];
+    }];
+}
+
+- (void)returnABook {
+    [[CustomActivityIndicator sharedActivityIndicator] startAsynchAnimating];
+    Record *record = self.pressedRecord;
+    [RecordsViewModel returnBorrowRecordWithBookId:record.bookId borrowerId:self.pressedRecord.borrowerId lenderId:record.lenderId success:^{
+        [[CustomAlert sharedAlert] showAlertWithMessage:@"还书成功"];
+        [self.cellOfPressedRecord.bookStatusButton setTitle:self.viewModel.borrowingBookStatusDic[@"returned"][kBookStatusTextKey] forState:UIControlStateNormal];
+        [self.cellOfPressedRecord.bookStatusButton setTitleColor:self.viewModel.borrowingBookStatusDic[@"returned"][kBookStatusColorKey] forState:UIControlStateNormal];
+        [self.cellOfPressedRecord.bookStatusButton setEnabled:NO];
+        [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
+    }                                      failure:^{
+        [[CustomAlert sharedAlert] showAlertWithMessage:kRequestFailErrorText];
+        [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
     }];
 }
 

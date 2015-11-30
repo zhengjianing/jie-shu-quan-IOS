@@ -113,15 +113,15 @@ static NSString *kDefaultString = @"--";
     cell.borrowerNameLabel.text = [record.borrowerName isEqual:[NSNull null]] ? kDefaultString : [NSString stringWithFormat:@"借给：%@", record.borrowerName];
 
     if (![record.bookStatus isEqual:[NSNull null]]) {
-        [cell.bookStatusButton setTitle:self.viewModel.bookStatusDic[record.bookStatus][kBookStatusTextKey] forState:UIControlStateNormal];
-        NSString *timeText = [record valueForKey:self.viewModel.bookStatusDic[record.bookStatus][kBookStatusRequestTimeKey]];
+        [cell.bookStatusButton setTitle:self.viewModel.lendingBookStatusDic[record.bookStatus][kBookStatusTextKey] forState:UIControlStateNormal];
+        NSString *timeText = [record valueForKey:self.viewModel.lendingBookStatusDic[record.bookStatus][kBookStatusRequestTimeKey]];
 
         if (![timeText isEqual:[NSNull null]]) {
             cell.applicationTimeLabel.text = [timeText substringToIndex:10];
         }
     }
-    [cell.bookStatusButton setEnabled:[record.bookStatus isEqual:@"pending"]];;
-    [cell.bookStatusButton setTitleColor:self.viewModel.bookStatusDic[record.bookStatus][kBookStatusColorKey] forState:UIControlStateNormal];
+    [cell.bookStatusButton setEnabled:[record.bookStatus isEqual:@"pending"]];
+    [cell.bookStatusButton setTitleColor:self.viewModel.lendingBookStatusDic[record.bookStatus][kBookStatusColorKey] forState:UIControlStateNormal];
 
     return cell;
 }
@@ -162,25 +162,31 @@ static NSString *kDefaultString = @"--";
 
 - (void)approveABorrowRequest {
     Record *record = self.pressedRecord;
+    [[CustomActivityIndicator sharedActivityIndicator] startAsynchAnimating];
     [RecordsViewModel approveBorrowRecordWithBookId:record.bookId borrowerId:self.pressedRecord.borrowerId lenderId:record.lenderId success:^{
         [[CustomAlert sharedAlert] showAlertWithMessage:@"同意该借书请求成功"];
-        [self.cellOfPressedRecord.bookStatusButton setTitle:self.viewModel.bookStatusDic[@"approved"][kBookStatusTextKey] forState:UIControlStateNormal];
-        [self.cellOfPressedRecord.bookStatusButton setTitleColor:self.viewModel.bookStatusDic[@"approved"][kBookStatusColorKey] forState:UIControlStateNormal];
+        [self.cellOfPressedRecord.bookStatusButton setTitle:self.viewModel.lendingBookStatusDic[@"approved"][kBookStatusTextKey] forState:UIControlStateNormal];
+        [self.cellOfPressedRecord.bookStatusButton setTitleColor:self.viewModel.lendingBookStatusDic[@"approved"][kBookStatusColorKey] forState:UIControlStateNormal];
         [self.cellOfPressedRecord.bookStatusButton setEnabled:NO];
+        [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
     }                                       failure:^{
         [[CustomAlert sharedAlert] showAlertWithMessage:kRequestFailErrorText];
+        [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
     }];
 }
 
 - (void)declineABorrowRequest {
     Record *record = self.pressedRecord;
+    [[CustomActivityIndicator sharedActivityIndicator] startAsynchAnimating];
     [RecordsViewModel declineBorrowRecordWithBookId:record.bookId borrowerId:record.borrowerId lenderId:record.lenderId success:^{
         [[CustomAlert sharedAlert] showAlertWithMessage:@"拒绝该借书请求成功"];
-        [self.cellOfPressedRecord.bookStatusButton setTitle:self.viewModel.bookStatusDic[@"declined"][kBookStatusTextKey] forState:UIControlStateNormal];
-        [self.cellOfPressedRecord.bookStatusButton setTitleColor:self.viewModel.bookStatusDic[@"declined"][kBookStatusColorKey] forState:UIControlStateNormal];
+        [self.cellOfPressedRecord.bookStatusButton setTitle:self.viewModel.lendingBookStatusDic[@"declined"][kBookStatusTextKey] forState:UIControlStateNormal];
+        [self.cellOfPressedRecord.bookStatusButton setTitleColor:self.viewModel.lendingBookStatusDic[@"declined"][kBookStatusColorKey] forState:UIControlStateNormal];
         [self.cellOfPressedRecord.bookStatusButton setEnabled:NO];
+        [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
     }                                       failure:^{
         [[CustomAlert sharedAlert] showAlertWithMessage:kRequestFailErrorText];
+        [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
     }];
 }
 
