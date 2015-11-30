@@ -12,6 +12,8 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "CustomActivityIndicator.h"
 #import "CustomAlert.h"
+#import "LoginViewController.h"
+#import "PreLoginView.h"
 
 static NSString *kReuseIdentifier = @"recordsCell";
 static NSString *kBorrowingRecordsViewControllerTitle = @"借入记录";
@@ -21,9 +23,11 @@ static NSString *kBookStatusRequestTimeKey = @"time";
 static NSString *kRequestFailErrorText = @"请求失败，请稍后重试";
 static NSString *kDefaultString = @"--";
 
-@interface BorrowingRecordsTableViewController () <RecordsCellDelegate>
+@interface BorrowingRecordsTableViewController () <RecordsCellDelegate, PreLoginDelegate>
 
 @property(nonatomic, strong) RecordsViewModel *viewModel;
+@property(nonatomic, strong) PreLoginView *preLoginView;
+@property(nonatomic, strong) LoginViewController *loginViewController;
 
 @end
 
@@ -40,7 +44,12 @@ static NSString *kDefaultString = @"--";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initView];
-    [self initData];
+
+    if ([UserManager isLogin]) {
+        [self fetchBorrowingRecords];
+    } else {
+        [self.view addSubview:self.preLoginView];
+    }
 }
 
 #pragma mark - Table view data source
@@ -84,17 +93,35 @@ static NSString *kDefaultString = @"--";
 
 }
 
+#pragma - mark PreLoginDelegate
+
+- (void)login {
+    [self.navigationController pushViewController:self.loginViewController animated:YES];
+}
+
+- (PreLoginView *)preLoginView {
+    if (_preLoginView) {
+        return _preLoginView;
+    }
+    NSArray *topLevelObjs = [[NSBundle mainBundle] loadNibNamed:@"PreLoginView" owner:self options:nil];
+    if ([topLevelObjs count] > 0) {
+        _preLoginView = [topLevelObjs lastObject];
+        _preLoginView.delegate = self;
+    }
+    return _preLoginView;
+}
+
 #pragma - mark private methods
 
 - (void)initView {
     self.title = kBorrowingRecordsViewControllerTitle;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-
     [self.tableView registerNib:[UINib nibWithNibName:@"RecordsCell" bundle:[NSBundle mainBundle]]
          forCellReuseIdentifier:kReuseIdentifier];
+    self.loginViewController = (LoginViewController *) [self.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
 }
 
-- (void)initData {
+- (void)fetchBorrowingRecords {
     [[CustomActivityIndicator sharedActivityIndicator] startAsynchAnimating];
     [self.viewModel fetchBorrowingRecordsWithUserId:[UserManager currentUser].userId success:^(NSArray *borrowingRecordsArray) {
 
