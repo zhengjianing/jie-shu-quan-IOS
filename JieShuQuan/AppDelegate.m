@@ -39,22 +39,13 @@
     
     //Register for push notifications
     [AVOSCloud setApplicationId:@"VJXTx1PjXywVf4AT7OqDduz1" clientKey:@"nXfNzNXBnANQEuvUOaQRdwLr"];
-
-    if ([[UIDevice currentDevice].systemVersion doubleValue] < 8.0) {
-        [application registerForRemoteNotificationTypes:
-         UIRemoteNotificationTypeBadge |
-         UIRemoteNotificationTypeAlert |
-         UIRemoteNotificationTypeSound];
-    }else {
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert
-                                                | UIUserNotificationTypeBadge
-                                                | UIUserNotificationTypeSound
-                                                                                 categories:nil];
-        [application registerUserNotificationSettings:settings];
-        [application registerForRemoteNotifications];
-    }
-
-    [AVPush setProductionMode:NO];
+    
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert
+                                            | UIUserNotificationTypeBadge
+                                            | UIUserNotificationTypeSound
+                                                                             categories:nil];
+    [application registerUserNotificationSettings:settings];
+    [application registerForRemoteNotifications];
     
     //初始化页面
     _mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -96,8 +87,8 @@
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     [tabBarController setViewControllers:[NSArray arrayWithObjects:searchNavController, myBookNavController, friendsNavController, moreNavController, nil]];
     [tabBarController.tabBar setTintColor:[UIColor whiteColor]];
-    [tabBarController.tabBar setSelectedImageTintColor:[CustomColor mainGreenColor]];
-
+    [tabBarController.tabBar setTintColor:[CustomColor mainGreenColor]];
+    
     return tabBarController;
 }
 

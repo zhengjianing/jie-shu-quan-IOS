@@ -24,7 +24,8 @@
 #import "IconHelper.h"
 #import "CustomColor.h"
 #import "BorrowService.h"
-#import "ActionSheetHelper.h"#import "AVQuery.h"
+#import "ActionSheetHelper.h"
+#import "AVQuery.h"
 #import <AVOSCloud/AVOSCloud.h>
 
 @interface FriendDetailTableViewController () {
