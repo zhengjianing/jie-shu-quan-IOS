@@ -23,7 +23,7 @@
 
 @property (strong, nonatomic) Friend *currentFriend;
 @property (copy, nonatomic) NSString *selectedBookId;
-
+@property (copy, nonatomic) NSString *selectedBookName;
 @property (strong, nonatomic) NSMutableArray *books;
 @property (strong, nonatomic) UILabel *messageLabel;
 @property (assign, nonatomic) BOOL isFromMyFriends;

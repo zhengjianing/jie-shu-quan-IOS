@@ -24,19 +24,17 @@
 #import "IconHelper.h"
 #import "CustomColor.h"
 #import "BorrowService.h"
-#import "ActionSheetHelper.h"
+#import "ActionSheetHelper.h"#import "AVQuery.h"
 #import <AVOSCloud/AVOSCloud.h>
 
-@interface FriendDetailTableViewController ()
-{
+@interface FriendDetailTableViewController () {
     UIActionSheet *borrowActionSheet;
 }
 @end
 
 @implementation FriendDetailTableViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     NSString *name = [_currentFriend.friendName isEqualToString:@""] ? @"Ta" : _currentFriend.friendName;
     self.navigationItem.title = [name stringByAppendingString:@"的书"];
@@ -59,15 +57,13 @@
     [MobClick beginLogPageView:@"friendDetailPage"];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
+- (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [MobClick endLogPageView:@"friendDetailPage"];
     [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
 }
 
-- (UILabel *)messageLabel
-{
+- (UILabel *)messageLabel {
     if (_messageLabel != nil) {
         return _messageLabel;
     }
@@ -75,15 +71,13 @@
     return _messageLabel;
 }
 
-- (void)setTableFooterView
-{
+- (void)setTableFooterView {
     UIView *view = [UIView new];
     view.backgroundColor = [UIColor clearColor];
     [self.tableView setTableFooterView:view];
 }
 
-- (void)configureFriendInfoView
-{
+- (void)configureFriendInfoView {
     [AvatarManager setAvatarStyleForImageView:_friendAvatarImageView];
     NSURL *avatarURL = [NSURL URLWithString:_currentFriend.avatarURLString];
     [_friendAvatarImageView sd_setImageWithURL:avatarURL placeholderImage:[AvatarManager defaulFriendAvatar]];
@@ -93,23 +87,21 @@
     _friendLocationLabel.text = _currentFriend.friendLocation;
 }
 
-- (void)loadBooksForFriend
-{
+- (void)loadBooksForFriend {
     [self fetchBooksForFriendFromServer];
 }
 
 #pragma mark - fetch books for friend from server
 
-- (void)fetchBooksForFriendFromServer
-{
+- (void)fetchBooksForFriendFromServer {
     NSMutableURLRequest *request = [RequestBuilder buildFetchBooksRequestForUserId:_currentFriend.friendId];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        
+
         [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
 
-        if ([(NSHTTPURLResponse *)response statusCode] != 200) {
+        if ([(NSHTTPURLResponse *) response statusCode] != 200) {
             [[CustomAlert sharedAlert] showAlertWithMessage:@"请求失败"];
-            return ;
+            return;
         }
         
         id responseObject = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
@@ -136,18 +128,15 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _books.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     FriendBookTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"friendBookIdentifier" forIndexPath:indexPath];
        
     Book *book = [_books objectAtIndex:indexPath.row];
@@ -183,20 +172,20 @@
     FriendBookTableViewCell *selectedCell;
     id superView1 = [sender superview];
     if ([superView1 isKindOfClass:[FriendBookTableViewCell class]]) {
-        selectedCell = (FriendBookTableViewCell *)superView1;
+        selectedCell = (FriendBookTableViewCell *) superView1;
     } else {
         id superView2 = [superView1 superview];
         if ([superView2 isKindOfClass:[FriendBookTableViewCell class]]) {
-            selectedCell = (FriendBookTableViewCell *)superView2;
+            selectedCell = (FriendBookTableViewCell *) superView2;
         } else {
             id superView3 = [superView2 superview];
             if ([superView3 isKindOfClass:[FriendBookTableViewCell class]]) {
-                selectedCell = (FriendBookTableViewCell *)superView3;
+                selectedCell = (FriendBookTableViewCell *) superView3;
             } else return;
         }
     }
 
-    NSString *bookName = selectedCell.bookNameLabel.text;
+    self.selectedBookName = selectedCell.bookNameLabel.text;
     _selectedBookId = selectedCell.bookId;
     
 //    发邮件
@@ -206,33 +195,15 @@
 //    } else {
 //        [MailManager launchMailToName:_currentFriend.friendName toEmailAddress:_currentFriend.friendEmail forBook:bookName];
 //    }
-    
-    AVQuery *pushQuery = [AVInstallation query];
-    [pushQuery whereKey:@"owner" equalTo:_currentFriend.friendId];
- 
-    NSString *loginUserName = [[UserManager currentUser].userName length] == 0 ? @"有人" : [UserManager currentUser].userName;
 
-    AVPush *push = [[AVPush alloc] init];
-    [push setQuery:pushQuery];
-
-    NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
-                          [NSString stringWithFormat:@"%@想借你的%@书，快点击查看吧",loginUserName,selectedCell.bookNameLabel.text], @"alert",
-                          @"Increment", @"badge",
-                          @"cheering.caf", @"sound",
-                          nil];
-
-    [push setData:data];
-    [push sendPushInBackground];
-    
-//    发送借书申请
+    //    发送借书申请
     borrowActionSheet = [ActionSheetHelper actionSheetWithTitle:@"将向他发送借书通知" delegate:self];
     [borrowActionSheet showInView:self.view];
 }
 
 #pragma mark - MFMailComposeViewControllerDelegate
 
-- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
-{
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
     if (result == MFMailComposeResultSent) {
         NSMutableURLRequest *collectBorrowingInfoRequest = [RequestBuilder buildPostCollectBookBorrowingInfoRequestWithBookId:_selectedBookId borrowerId:[[UserManager currentUser] userId] lenderId:_currentFriend.friendId];
         [NSURLConnection sendAsynchronousRequest:collectBorrowingInfoRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
@@ -244,8 +215,7 @@
 
 #pragma mark - UIActionSheetDelegate
 
-- (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex
-{
+- (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
         [[CustomActivityIndicator sharedActivityIndicator] startSynchAnimating];
 
@@ -254,14 +224,33 @@
             {
                 [[CustomActivityIndicator sharedActivityIndicator] stopSynchAnimating];
                 [[CustomAlert sharedAlert] showAlertWithMessage:@"借书申请发送成功"];
+                [self pushBorrowingBookNotification];
             }
-        } failure:^{
+        }                                   failure:^(NSString *errorMessage){
             {
                 [[CustomActivityIndicator sharedActivityIndicator] stopSynchAnimating];
-                [[CustomAlert sharedAlert] showAlertWithMessage:@"借书申请发送失败"];
+                [[CustomAlert sharedAlert] showAlertWithMessage:errorMessage];
             }
         }];
     }
+}
+
+#pragma mark - private methods
+
+- (void)pushBorrowingBookNotification {
+    AVQuery *pushQuery = [AVInstallation query];
+    [pushQuery whereKey:@"owner" equalTo:_currentFriend.friendId];
+
+    NSString *loginUserName = [[UserManager currentUser].userName length] == 0 ? @"有人" : [UserManager currentUser].userName;
+
+    AVPush *push = [[AVPush alloc] init];
+    [push setQuery:pushQuery];
+
+    NSDictionary *data = @{@"alert" : [NSString stringWithFormat:@"%@想借你的%@书，快点击查看吧", loginUserName, self.selectedBookName],
+                           @"badge" : @"Increment",
+                           @"sound" : @"cheering.caf"};
+    [push setData:data];
+    [push sendPushInBackground];
 }
 
 @end

@@ -11,22 +11,22 @@
 @interface BorrowService : NSObject
 
 typedef void(^CreateBorrowRecordSuccessBlock)();
-typedef void(^CreateBorrowRecordFailureBlock)();
+typedef void(^CreateBorrowRecordFailureBlock)(NSString *errorMessage);
 
 typedef void(^ApproveBorrowRecordSuccessBlock)();
-typedef void(^ApproveBorrowRecordFailureBlock)();
+typedef void(^ApproveBorrowRecordFailureBlock)(NSString *errorMessage);
 
 typedef void(^DeclineBorrowRecordSuccessBlock)();
-typedef void(^DeclineBorrowRecordFailureBlock)();
+typedef void(^DeclineBorrowRecordFailureBlock)(NSString *errorMessage);
 
 typedef void(^ReturnBorrowRecordSuccessBlock)();
-typedef void(^ReturnBorrowRecordFailureBlock)();
+typedef void(^ReturnBorrowRecordFailureBlock)(NSString *errorMessage);
 
 typedef void(^GetBorrowerRecordsSuccessBlock)(NSArray *borrowingRecordsArray);
-typedef void(^GetBorrowerRecordsFailureBlock)();
+typedef void(^GetBorrowerRecordsFailureBlock)(NSString *errorMessage);
 
 typedef void(^GetLenderRecordsSuccessBlock)(NSArray *lendingRecordsArray);
-typedef void(^GetLenderRecordsFailureBlock)();
+typedef void(^GetLenderRecordsFailureBlock)(NSString *errorMessage);
 
 - (void)createBorrowRecordWithBookId:(NSString *)bookId borrowerId:(NSString *)borrowerId lenderId:(NSString *)lenderId success:(CreateBorrowRecordSuccessBlock)successBlock failure:(CreateBorrowRecordFailureBlock)failureBlock;
 

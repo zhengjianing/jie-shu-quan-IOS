@@ -8,8 +8,9 @@
 
 #import "BorrowService.h"
 #import <AFNetworking/AFHTTPRequestOperationManager.h>
-#import "NSString+Extension.h"
 #import "ServerHeaders.h"
+
+static NSString *kRequestFailErrorText = @"请求失败，请稍后重试";
 
 @implementation BorrowService
 
@@ -31,42 +32,44 @@
 
 - (void)getBorrowerRecordsWithBorrowerId:(NSString *)borrowerId success:(GetBorrowerRecordsSuccessBlock)successBlock failure:(GetBorrowerRecordsFailureBlock)failureBlock {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    
+
     NSDictionary *params = @{@"borrower_id" : borrowerId};
     manager.requestSerializer.timeoutInterval = 10;
-    
+
     [manager GET:[NSString stringWithFormat:@"%@%@", kHost, kBorrowerRecords]
-       parameters:params
-          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-              if ([responseObject isKindOfClass:[NSArray class]]) {
-                  successBlock((NSArray *) responseObject);
-              }
-          }
-          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-              failureBlock();
-          }
-     ];
+      parameters:params
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             if ([responseObject isKindOfClass:[NSArray class]]) {
+                 successBlock((NSArray *) responseObject);
+             }
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             NSString *errorMessage = operation.responseObject[@"error"] ? operation.responseObject[@"error"] : kRequestFailErrorText;
+             failureBlock(errorMessage);
+         }
+    ];
 }
 
 - (void)getLenderRecordsWithLenderId:(NSString *)lenderId success:(GetLenderRecordsSuccessBlock)successBlock failure:(GetLenderRecordsFailureBlock)failureBlock {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    
+
     NSDictionary *params = @{@"lender_id" : lenderId};
     manager.requestSerializer.timeoutInterval = 10;
-    
+
     [manager GET:[NSString stringWithFormat:@"%@%@", kHost, kLenderRecords]
       parameters:params
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              if ([responseObject isKindOfClass:[NSArray class]]) {
-                successBlock((NSArray *) responseObject);
+                 successBlock((NSArray *) responseObject);
              }
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-             failureBlock();
+             BOOL isErrorMessageExist = operation.responseObject[@"error"] && [operation.responseObject[@"error"] length] != 0;
+             NSString *errorMessage = isErrorMessageExist ? operation.responseObject[@"error"] : kRequestFailErrorText;
+             failureBlock(errorMessage);
          }
-     ];
+    ];
 }
-
 
 // private
 
@@ -82,9 +85,10 @@
               successBlock();
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-              failureBlock();
+              NSString *errorMessage = operation.responseObject[@"error"] ? operation.responseObject[@"error"] : kRequestFailErrorText;
+              failureBlock(errorMessage);
           }
-     ];
+    ];
 }
 
 @end

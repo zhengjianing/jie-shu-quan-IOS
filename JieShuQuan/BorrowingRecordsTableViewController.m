@@ -21,7 +21,6 @@ static NSString *kBorrowingRecordsViewControllerTitle = @"借入记录";
 static NSString *kBookStatusTextKey = @"text";
 static NSString *kBookStatusColorKey = @"color";
 static NSString *kBookStatusRequestTimeKey = @"time";
-static NSString *kRequestFailErrorText = @"请求失败，请稍后重试";
 static NSString *kDefaultString = @"--";
 
 @interface BorrowingRecordsTableViewController () <RecordsCellDelegate, PreLoginDelegate>
@@ -73,7 +72,7 @@ static NSString *kDefaultString = @"--";
         [cell.bookImageView sd_setImageWithURL:[NSURL URLWithString:record.bookImageURL]];
     }
     cell.bookNameLabel.text = [record.bookName isEqual:[NSNull null]] ? kDefaultString : record.bookName;
-    cell.borrowerNameLabel.text = [record.borrowerName isEqual:[NSNull null]] ? kDefaultString : [NSString stringWithFormat:@"借%@的书", record.borrowerName];
+    cell.borrowerNameLabel.text = [record.lenderName length] == 0 ? kDefaultString : [NSString stringWithFormat:@"借%@的书", record.lenderName];
 
     [self setCellBookStatusForCell:cell withRecord:record];
     return cell;
@@ -129,9 +128,9 @@ static NSString *kDefaultString = @"--";
 
         [self.tableView reloadData];
         [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
-    }                                       failure:^{
+    }                                       failure:^(NSString *errorMessage) {
         [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
-        [[CustomAlert sharedAlert] showAlertWithMessage:kRequestFailErrorText];
+        [[CustomAlert sharedAlert] showAlertWithMessage:errorMessage];
         [self.navigationController popViewControllerAnimated:YES];
     }];
 }
@@ -168,8 +167,8 @@ static NSString *kDefaultString = @"--";
         [self.cellOfPressedRecord.bookStatusButton setTitleColor:self.viewModel.borrowingBookStatusDic[@"returned"][kBookStatusColorKey] forState:UIControlStateNormal];
         [self setButtonToDisableState:self.cellOfPressedRecord.bookStatusButton];
         [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
-    }                                      failure:^{
-        [[CustomAlert sharedAlert] showAlertWithMessage:kRequestFailErrorText];
+    }                                      failure:^(NSString *errorMessage) {
+        [[CustomAlert sharedAlert] showAlertWithMessage:errorMessage];
         [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
     }];
 }

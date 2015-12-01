@@ -60,8 +60,8 @@
     [borrowService getLenderRecordsWithLenderId:userId success:^(NSArray *lenderRecordsArray) {
         self.lendingRecordsArray = [[RecordsViewModel convertToRecordsArrayFromArray:lenderRecordsArray] mutableCopy];
         success(self.lendingRecordsArray);
-    }                                   failure:^{
-        failure();
+    }                                   failure:^(NSString *errorMessage) {
+        failure(errorMessage);
     }];
 }
 
@@ -80,8 +80,8 @@
     BorrowService *borrowerService = [BorrowService new];
     [borrowerService approveBorrowRecordWithBookId:bookId borrowerId:borrowerId lenderId:lenderId success:^{
         successBlock();
-    }                                      failure:^{
-        failureBlock();
+    }                                      failure:^(NSString *errorMessage) {
+        failureBlock(errorMessage);
     }];
 }
 
@@ -95,8 +95,8 @@
     [borrowService getBorrowerRecordsWithBorrowerId:userId success:^(NSArray *borrowingRecordsArray) {
         self.borrowingRecordsArray = [[RecordsViewModel convertToRecordsArrayFromArray:borrowingRecordsArray] mutableCopy];
         success(self.borrowingRecordsArray);
-    }                                       failure:^{
-        failure();
+    }                                       failure:^(NSString *errorMessage) {
+        failure(errorMessage);
     }];
 }
 

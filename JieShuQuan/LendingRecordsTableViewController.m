@@ -23,7 +23,6 @@ static NSString *kReuseIdentifier = @"recordsCell";
 static NSString *kBookStatusTextKey = @"text";
 static NSString *kBookStatusColorKey = @"color";
 static NSString *kBookStatusRequestTimeKey = @"time";
-static NSString *kRequestFailErrorText = @"请求失败，请稍后重试";
 static NSString *kDefaultString = @"--";
 
 @interface LendingRecordsTableViewController () <PreLoginDelegate, UIActionSheetDelegate, RecordsCellDelegate>
@@ -72,8 +71,8 @@ static NSString *kDefaultString = @"--";
         [self.tableView reloadData];
         [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
 
-    }                                     failure:^{
-        [[CustomAlert sharedAlert] showAlertWithMessage:kRequestFailErrorText];
+    }                                     failure:^(NSString *errorMessage) {
+        [[CustomAlert sharedAlert] showAlertWithMessage:errorMessage];
         [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
         [self.navigationController popViewControllerAnimated:YES];
     }];
@@ -184,8 +183,8 @@ static NSString *kDefaultString = @"--";
         [self.cellOfPressedRecord.bookStatusButton setTitleColor:self.viewModel.lendingBookStatusDic[@"approved"][kBookStatusColorKey] forState:UIControlStateNormal];
         [self setButtonToDisableState:self.cellOfPressedRecord.bookStatusButton];
         [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
-    }                                       failure:^{
-        [[CustomAlert sharedAlert] showAlertWithMessage:kRequestFailErrorText];
+    }                                       failure:^(NSString *errorMessage) {
+        [[CustomAlert sharedAlert] showAlertWithMessage:errorMessage];
         [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
     }];
 }
@@ -199,8 +198,8 @@ static NSString *kDefaultString = @"--";
         [self.cellOfPressedRecord.bookStatusButton setTitleColor:self.viewModel.lendingBookStatusDic[@"declined"][kBookStatusColorKey] forState:UIControlStateNormal];
         [self setButtonToDisableState:self.cellOfPressedRecord.bookStatusButton];
         [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
-    }                                       failure:^{
-        [[CustomAlert sharedAlert] showAlertWithMessage:kRequestFailErrorText];
+    }                                       failure:^(NSString *errorMessage) {
+        [[CustomAlert sharedAlert] showAlertWithMessage:errorMessage];
         [[CustomActivityIndicator sharedActivityIndicator] stopAsynchAnimating];
     }];
 }
