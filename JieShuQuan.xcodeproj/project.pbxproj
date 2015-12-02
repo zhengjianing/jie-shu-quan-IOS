@@ -12,6 +12,7 @@
 		13577B361C055EE7000E019B /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = 13577B351C055EE7000E019B /* Record.m */; };
 		13577B391C059067000E019B /* RecordsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 13577B381C059067000E019B /* RecordsViewModel.m */; };
 		135F243D1C0D8C6100D49E67 /* Friends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 135F243B1C0D8C6100D49E67 /* Friends.storyboard */; };
+		135F24421C0E88D100D49E67 /* NotificationPushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 135F24411C0E88D100D49E67 /* NotificationPushManager.m */; };
 		13D6F36A1C084BF10023C1C4 /* RecordsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13D6F3691C084BF10023C1C4 /* RecordsCell.xib */; };
 		13F059871C0847950093B554 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13F059851C0847950093B554 /* More.storyboard */; };
 		13F0598A1C0848590093B554 /* LoginAndRigister.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13F059881C0848590093B554 /* LoginAndRigister.storyboard */; };
@@ -151,6 +152,8 @@
 		13577B371C059067000E019B /* RecordsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordsViewModel.h; sourceTree = "<group>"; };
 		13577B381C059067000E019B /* RecordsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordsViewModel.m; sourceTree = "<group>"; };
 		135F243C1C0D8C6100D49E67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Friends.storyboard; sourceTree = "<group>"; };
+		135F24401C0E88D100D49E67 /* NotificationPushManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationPushManager.h; sourceTree = "<group>"; };
+		135F24411C0E88D100D49E67 /* NotificationPushManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationPushManager.m; sourceTree = "<group>"; };
 		13D6F3691C084BF10023C1C4 /* RecordsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordsCell.xib; sourceTree = "<group>"; };
 		13F059861C0847950093B554 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/More.storyboard; sourceTree = "<group>"; };
 		13F059891C0848590093B554 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LoginAndRigister.storyboard; sourceTree = "<group>"; };
@@ -925,6 +928,8 @@
 				94F922BA19CFCDA800F96B09 /* AvatarManager.m */,
 				9471D40F19D2C3DD00AEBE7D /* CacheManager.h */,
 				9471D41019D2C3DD00AEBE7D /* CacheManager.m */,
+				135F24401C0E88D100D49E67 /* NotificationPushManager.h */,
+				135F24411C0E88D100D49E67 /* NotificationPushManager.m */,
 			);
 			name = Manager;
 			sourceTree = "<group>";
@@ -1191,6 +1196,7 @@
 				9765EC3419D06BDE00066289 /* ChangeNameViewController.m in Sources */,
 				9471FFCA19D6E6B90082C2C7 /* AboutTableViewController.m in Sources */,
 				94C1712919D02B5D00656EDB /* Reachability.m in Sources */,
+				135F24421C0E88D100D49E67 /* NotificationPushManager.m in Sources */,
 				13577B361C055EE7000E019B /* Record.m in Sources */,
 				9759AFFA19C19976008EFCC2 /* UserManager.m in Sources */,
 				9770923819C583CD001A3ED6 /* ActionSheetHelper.m in Sources */,

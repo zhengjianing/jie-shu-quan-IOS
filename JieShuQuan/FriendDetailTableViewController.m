@@ -23,10 +23,8 @@
 #import "MobClick.h"
 #import "IconHelper.h"
 #import "CustomColor.h"
-#import "BorrowService.h"
 #import "ActionSheetHelper.h"
-#import "AVQuery.h"
-#import <AVOSCloud/AVOSCloud.h>
+#import "NotificationPushManager.h"
 
 @interface FriendDetailTableViewController () {
     UIActionSheet *borrowActionSheet;
@@ -225,7 +223,7 @@
             {
                 [[CustomActivityIndicator sharedActivityIndicator] stopSynchAnimating];
                 [[CustomAlert sharedAlert] showAlertWithMessage:@"借书申请发送成功"];
-                [self pushBorrowingBookNotification];
+                [NotificationPushManager pushNotificationForBorrowingBook:self.selectedBookName toFriend:self.currentFriend];
             }
         }                                   failure:^(NSString *errorMessage){
             {
@@ -234,24 +232,6 @@
             }
         }];
     }
-}
-
-#pragma mark - private methods
-
-- (void)pushBorrowingBookNotification {
-    AVQuery *pushQuery = [AVInstallation query];
-    [pushQuery whereKey:@"owner" equalTo:_currentFriend.friendId];
-
-    NSString *loginUserName = [[UserManager currentUser].userName length] == 0 ? @"有人" : [UserManager currentUser].userName;
-
-    AVPush *push = [[AVPush alloc] init];
-    [push setQuery:pushQuery];
-
-    NSDictionary *data = @{@"alert" : [NSString stringWithFormat:@"%@想借你的%@书，快点击查看吧", loginUserName, self.selectedBookName],
-                           @"badge" : @"Increment",
-                           @"sound" : @"cheering.caf"};
-    [push setData:data];
-    [push sendPushInBackground];
 }
 
 @end
