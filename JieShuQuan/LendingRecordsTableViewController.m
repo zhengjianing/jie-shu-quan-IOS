@@ -83,9 +83,8 @@ static NSString *kDefaultString = @"--";
 - (void)bookStatusButtonClicked:(id)sender {
     UIButton *pressedButton = sender;
     self.cellOfPressedRecord = (RecordsCell *) pressedButton.superview.superview;
-    
-    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
-    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+
+    NSIndexPath *indexPath = [self.tableView indexPathForCell: self.cellOfPressedRecord];
     self.pressedRecord = self.viewModel.lendingRecordsArray[(NSUInteger) indexPath.row];
 
     UIActionSheet *handleBorrowBookRequestActionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"同意借阅", @"拒绝借阅", nil];
