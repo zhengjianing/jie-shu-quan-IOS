@@ -8,6 +8,8 @@
 
 #import "Record.h"
 
+static NSString *kDefaultString = @"--";
+
 @implementation Record
 
 - (instancetype)initWithDic:(NSDictionary *)dic {
@@ -29,5 +31,33 @@
    
     return self;
 };
+
+- (NSString *)bookName {
+    return [self isStringEmpty:_bookName] ? kDefaultString : _bookName;
+}
+
+- (NSString *)borrowerName {
+    return [self isStringEmpty:_borrowerName] ? kDefaultString : _borrowerName;
+}
+
+- (NSString *)lenderName {
+    return [self isStringEmpty:_lenderName] ? kDefaultString : _lenderName;
+}
+
+- (NSString *)applicationTime {
+    return [self isStringEmpty:_applicationTime] ? kDefaultString : [_applicationTime substringToIndex:10];
+}
+
+- (NSString *)borrowTime {
+    return [self isStringEmpty:_borrowTime] ? kDefaultString : [_borrowTime substringToIndex:10];
+}
+
+- (NSString *)returnTime {
+    return [self isStringEmpty:_returnTime] ? kDefaultString : [_returnTime substringToIndex:10];
+}
+
+- (BOOL)isStringEmpty:(NSString *)string {
+    return [string isEqual:[NSNull null]] || [string length] == 0;
+}
 
 @end

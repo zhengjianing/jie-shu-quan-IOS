@@ -23,7 +23,6 @@ static NSString *kReuseIdentifier = @"recordsCell";
 static NSString *kBookStatusTextKey = @"text";
 static NSString *kBookStatusColorKey = @"color";
 static NSString *kBookStatusRequestTimeKey = @"time";
-static NSString *kDefaultString = @"--";
 
 @interface LendingRecordsTableViewController () <PreLoginDelegate, UIActionSheetDelegate, RecordsCellDelegate>
 
@@ -108,8 +107,8 @@ static NSString *kDefaultString = @"--";
     if (![record.bookImageURL isEqual:[NSNull null]]) {
         [cell.bookImageView sd_setImageWithURL:[NSURL URLWithString:record.bookImageURL]];
     }
-    cell.bookNameLabel.text = [record.bookName isEqual:[NSNull null]] ? kDefaultString : record.bookName;
-    cell.borrowerNameLabel.text = [record.borrowerName isEqual:[NSNull null]] ? kDefaultString : [NSString stringWithFormat:@"借给：%@", record.borrowerName];
+    cell.bookNameLabel.text = record.bookName;
+    cell.borrowerNameLabel.text = [NSString stringWithFormat:@"借给：%@", record.borrowerName];
 
     [self setCellBookStatusForCell:cell withRecord:record];
 
@@ -153,11 +152,7 @@ static NSString *kDefaultString = @"--";
 - (void)setCellBookStatusForCell:(RecordsCell *)cell withRecord:(Record *)record {
     if (![record.bookStatus isEqual:[NSNull null]]) {
         [cell.bookStatusButton setTitle:self.viewModel.lendingBookStatusDic[record.bookStatus][kBookStatusTextKey] forState:UIControlStateNormal];
-        NSString *timeText = [record valueForKey:self.viewModel.lendingBookStatusDic[record.bookStatus][kBookStatusRequestTimeKey]];
-
-        if (![timeText isEqual:[NSNull null]]) {
-            cell.applicationTimeLabel.text = [timeText substringToIndex:10];
-        }
+        cell.applicationTimeLabel.text = [record valueForKey:self.viewModel.lendingBookStatusDic[record.bookStatus][kBookStatusRequestTimeKey]];
     }
 
     if ([record.bookStatus isEqual:@"pending"]) {

@@ -21,7 +21,6 @@ static NSString *kBorrowingRecordsViewControllerTitle = @"借入记录";
 static NSString *kBookStatusTextKey = @"text";
 static NSString *kBookStatusColorKey = @"color";
 static NSString *kBookStatusRequestTimeKey = @"time";
-static NSString *kDefaultString = @"--";
 
 @interface BorrowingRecordsTableViewController () <RecordsCellDelegate, PreLoginDelegate>
 
@@ -71,8 +70,8 @@ static NSString *kDefaultString = @"--";
     if (![record.bookImageURL isEqual:[NSNull null]]) {
         [cell.bookImageView sd_setImageWithURL:[NSURL URLWithString:record.bookImageURL]];
     }
-    cell.bookNameLabel.text = [record.bookName isEqual:[NSNull null]] ? kDefaultString : record.bookName;
-    cell.borrowerNameLabel.text = [record.lenderName length] == 0 ? kDefaultString : [NSString stringWithFormat:@"借%@的书", record.lenderName];
+    cell.bookNameLabel.text = record.bookName;
+    cell.borrowerNameLabel.text = [NSString stringWithFormat:@"借%@的书", record.lenderName];
 
     [self setCellBookStatusForCell:cell withRecord:record];
     return cell;
@@ -137,11 +136,7 @@ static NSString *kDefaultString = @"--";
 - (void)setCellBookStatusForCell:(RecordsCell *)cell withRecord:(Record *)record {
     if (![record.bookStatus isEqual:[NSNull null]]) {
         [cell.bookStatusButton setTitle:self.viewModel.borrowingBookStatusDic[record.bookStatus][kBookStatusTextKey] forState:UIControlStateNormal];
-        NSString *timeText = [record valueForKey:self.viewModel.lendingBookStatusDic[record.bookStatus][kBookStatusRequestTimeKey]];
-
-        if (![timeText isEqual:[NSNull null]]) {
-            cell.applicationTimeLabel.text = [timeText substringToIndex:10];
-        }
+        cell.applicationTimeLabel.text = [record valueForKey:self.viewModel.lendingBookStatusDic[record.bookStatus][kBookStatusRequestTimeKey]];
     }
 
     if ([record.bookStatus isEqual:@"approved"]) {
