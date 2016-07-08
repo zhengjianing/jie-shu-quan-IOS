@@ -19,7 +19,7 @@
 #import "MessageLabelHelper.h"
 #import "CustomActivityIndicator.h"
 #import "CustomAlert.h"
-#import "MobClick.h"
+#import <UMMobClick/MobClick.h>
 
 @interface BookCommentTableViewController ()
 

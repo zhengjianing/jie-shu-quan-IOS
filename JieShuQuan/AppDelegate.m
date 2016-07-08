@@ -7,16 +7,14 @@
 //
 
 #import "AppDelegate.h"
-#import "MobClick.h"
-#import <ShareSDK/ShareSDK.h>
-#import "ShareSDK/Extend/WeChatSDK/WXApi.h"
+#import <UMMobClick/MobClick.h>
+
 #import "SearchTableViewController.h"
 #import "MyBooksTableViewController.h"
 #import "FriendsTableViewController.h"
 #import "MoreTableViewController.h"
 #import <FontAwesomeKit/FAKIonIcons.h>
 #import "TabBarItemHelper.h"
-#import "WXApi.h"
 #import "CustomColor.h"
 
 @implementation AppDelegate
@@ -28,13 +26,36 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     //添加友盟统计分析 http://www.umeng.com/
-    [MobClick startWithAppkey:@"5427f7a4fd98c566c80090e6" reportPolicy:BATCH channelId:nil];
+ 
+    UMAnalyticsConfig *umConfig = [[UMAnalyticsConfig alloc] init];
+    umConfig.appKey = @"5427f7a4fd98c566c80090e6";
+    umConfig.ePolicy = BATCH;
+    [MobClick startWithConfigure:umConfig];
     
     //添加ShareSDK支持 http://dashboard.mob.com/
-    [ShareSDK registerApp:@"3456b138a03c"];
-    
-    //添加微信应用 注册网址 http://open.weixin.qq.com
-    [ShareSDK connectWeChatWithAppId:@"wx6a876af68c7eb3fe" wechatCls:[WXApi class]];
+    [ShareSDK registerApp:@"3456b138a03c"activePlatforms:@[@(SSDKPlatformTypeWechat)] onImport:^(SSDKPlatformType platformType) {
+        switch (platformType)
+        {
+            case SSDKPlatformTypeWechat:
+                [ShareSDKConnector connectWeChat:[WXApi class]];
+                break;
+            default:
+                break;
+        }
+        
+    } onConfiguration:^(SSDKPlatformType platformType, NSMutableDictionary *appInfo) {
+        switch (platformType)
+        {
+                // TODO: secret key not right
+            case SSDKPlatformTypeWechat:
+                [appInfo SSDKSetupWeChatByAppId:@"wx6a876af68c7eb3fe"
+                                      appSecret:@"af38675e7e99508aeced67d0711ed2e5"];
+                break;
+
+            default:
+                break;
+        }
+    }];
     
     //初始化页面
     _mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -47,13 +68,13 @@
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
-    return [ShareSDK handleOpenURL:url wxDelegate:self];
+    return [WXApi handleOpenURL:url delegate:self];
 }
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-{
-    return [ShareSDK handleOpenURL:url sourceApplication:sourceApplication annotation:annotation wxDelegate:self];
-}
+//- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+//{
+//    return [ShareSDK handleOpenURL:url sourceApplication:sourceApplication annotation:annotation wxDelegate:self];
+//}
 
 - (UITabBarController *)createTabBarController
 {

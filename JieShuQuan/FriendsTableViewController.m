@@ -23,7 +23,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "CacheManager.h"
 #import "CustomAlert.h"
-#import "MobClick.h"
+#import <UMMobClick/MobClick.h>
 #import "UserStore.h"
 
 @interface FriendsTableViewController ()

@@ -16,7 +16,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "CustomActivityIndicator.h"
 #import "CustomAlert.h"
-#import "MobClick.h"
+#import <UMMobClick/MobClick.h>
 #import "CustomActivityIndicator.h"
 #import "ZBarSDK.h"
 #import <FontAwesomeKit/FAKFontAwesome.h>

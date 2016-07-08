@@ -21,7 +21,7 @@
 #import "CustomActivityIndicator.h"
 #import "AvatarManager.h"
 #import "CustomAlert.h"
-#import "MobClick.h"
+#import <UMMobClick/MobClick.h>
 #import "IconHelper.h"
 #import "CustomColor.h"
 

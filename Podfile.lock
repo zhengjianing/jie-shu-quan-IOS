@@ -20,24 +20,57 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - ASIHTTPRequest (1.8.2):
+    - ASIHTTPRequest/ASIWebPageRequest (= 1.8.2)
+    - ASIHTTPRequest/CloudFiles (= 1.8.2)
+    - ASIHTTPRequest/Core (= 1.8.2)
+    - ASIHTTPRequest/S3 (= 1.8.2)
+  - ASIHTTPRequest/ASIWebPageRequest (1.8.2):
+    - ASIHTTPRequest/Core
+  - ASIHTTPRequest/CloudFiles (1.8.2):
+    - ASIHTTPRequest/Core
+  - ASIHTTPRequest/Core (1.8.2):
+    - Reachability
+  - ASIHTTPRequest/S3 (1.8.2):
+    - ASIHTTPRequest/Core
   - FontAwesomeKit/Core (2.1.8)
   - FontAwesomeKit/FontAwesome (2.1.8):
     - FontAwesomeKit/Core
   - FontAwesomeKit/IonIcons (2.1.8):
     - FontAwesomeKit/Core
+  - MOBFoundation (2.0.4)
+  - Reachability (3.2)
   - SDWebImage (3.7.1):
     - SDWebImage/Core (= 3.7.1)
   - SDWebImage/Core (3.7.1)
+  - ShareSDK3 (3.3.2):
+    - ShareSDK3/ShareSDK (= 3.3.2)
+  - ShareSDK3/ShareSDK (3.3.2)
+  - ShareSDK3/ShareSDKPlatforms/WeChat (3.3.2)
+  - UMengAnalytics-NO-IDFA (4.0.5)
+  - ZBarSDK (1.3.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
+  - ASIHTTPRequest
   - FontAwesomeKit/FontAwesome
   - FontAwesomeKit/IonIcons
+  - MOBFoundation
   - SDWebImage (~> 3.6)
+  - ShareSDK3
+  - ShareSDK3/ShareSDKPlatforms/WeChat
+  - UMengAnalytics-NO-IDFA
+  - ZBarSDK
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  ASIHTTPRequest: ec013992946676b7978dcbde6396d57312d21db4
   FontAwesomeKit: 64759fb28b5d2e74a1bd81553d7c11ca10e32179
+  MOBFoundation: e1f2d00e82a20fdc55c61baac4e15c9b9dd361e5
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SDWebImage: ed3095af2ff88b436426037444979b917f6c5575
+  ShareSDK3: c76cb96eb38e079952b8157071486d945faa2df2
+  UMengAnalytics-NO-IDFA: 965a219b05475ff2a4c09a164139a27bbaa0e25b
+  ZBarSDK: 4c1b5daeb7d6cc67dc9355e690af0230a661f6ec
 
-COCOAPODS: 0.36.4
+COCOAPODS: 0.39.0

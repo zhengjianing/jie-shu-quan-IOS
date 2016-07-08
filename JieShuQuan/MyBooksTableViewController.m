@@ -24,7 +24,7 @@
 #import "CustomActivityIndicator.h"
 #import "UserStore.h"
 #import "CustomAlert.h"
-#import "MobClick.h"
+#import <UMMobClick/MobClick.h>
 #import <FontAwesomeKit/FAKIonIcons.h>
 #import "CustomColor.h"
 
