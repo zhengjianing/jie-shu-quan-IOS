@@ -22,6 +22,7 @@
 #import <FontAwesomeKit/FAKFontAwesome.h>
 #import "MessageLabelHelper.h"
 #import "CustomColor.h"
+#import "ViewFrameHelper.h"
 
 @interface SearchTableViewController ()
 {
@@ -56,14 +57,14 @@
             [[subviews objectAtIndex:0] removeFromSuperview];
             [[subviews objectAtIndex:2] setTextColor:[UIColor clearColor]];
             
-            UILabel *newLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, 320, 20)];
+            UILabel *newLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, Screen_Width, 20)];
             newLabel.text = @"从豆瓣搜索";
             newLabel.font = [UIFont systemFontOfSize:14];
             newLabel.textColor = [UIColor whiteColor];
             newLabel.textAlignment = NSTextAlignmentCenter;
             [item addSubview:newLabel];
             
-            UIView *banner = [[UILabel alloc] initWithFrame:CGRectMake(0, -20, 320, 20)];
+            UIView *banner = [[UILabel alloc] initWithFrame:CGRectMake(0, -20, Screen_Width, 20)];
             [banner setBackgroundColor:[CustomColor mainGreenColor]];
             [item addSubview:banner];
         }

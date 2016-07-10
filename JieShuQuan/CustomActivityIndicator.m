@@ -7,10 +7,8 @@
 //
 
 #import "CustomActivityIndicator.h"
+#import "ViewFrameHelper.h"
 
-#define SPINRECT CGRectMake(135, 290, 50, 50)
-
-#define SCREENRECT [[UIScreen mainScreen] bounds]
 
 
 @interface CustomActivityIndicator ()

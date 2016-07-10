@@ -108,6 +108,7 @@
 /* Begin PBXFileReference section */
 		05D1F52224A5F7B29F39FADB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		1A5E04231D2FB2BD001D50BD /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		1AC470801D325DA500D44F46 /* ViewFrameHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewFrameHelper.h; sourceTree = "<group>"; };
 		67679F8B19FD679B00F17B69 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		9412E2F319A9FAC7008D243C /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
 		9412E2F419A9FAC7008D243C /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
@@ -596,6 +597,7 @@
 		9770923919C5842C001A3ED6 /* ViewHelper */ = {
 			isa = PBXGroup;
 			children = (
+				1AC470801D325DA500D44F46 /* ViewFrameHelper.h */,
 				97C5289F19BC34B600388375 /* AlertHelper.h */,
 				97C528A019BC34B600388375 /* AlertHelper.m */,
 				9770923619C583CD001A3ED6 /* ActionSheetHelper.h */,

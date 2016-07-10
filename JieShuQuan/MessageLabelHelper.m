@@ -7,17 +7,17 @@
 //
 
 #import "MessageLabelHelper.h"
-
+#import "ViewFrameHelper.h"
 @implementation MessageLabelHelper
 
 + (UILabel *)createMessageLabelWithMessage:(NSString *)message
 {
-    UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 150, 220, 200.0)];
+    UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 150,Screen_Width - 50*2, 200.0)];
     messageLabel.text = message;
     messageLabel.textColor = [UIColor grayColor];
     messageLabel.textAlignment = NSTextAlignmentCenter;
     messageLabel.numberOfLines = 0;
-    messageLabel.font = [UIFont fontWithName:@"Arial" size:13.0f];
+    messageLabel.font = [UIFont fontWithName:@"Arial" size:15.0f];
     return messageLabel;
 }
 

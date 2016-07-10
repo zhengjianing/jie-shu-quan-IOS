@@ -7,7 +7,7 @@
 //
 
 #import "CustomAlert.h"
-
+#import "ViewFrameHelper.h"
 static const float fontSize = 14;
 static const float fixedLabelHeight = 45;
 static const float yOrigin = 200;
@@ -16,7 +16,6 @@ static const float horizontalMargin = 20;
 #define LabelBackgroundColor [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7]
 #define LabelTextColor [UIColor whiteColor]
 #define LabelFont [UIFont boldSystemFontOfSize:fontSize]
-#define Screen_Width    [ UIScreen mainScreen ].bounds.size.width
 
 @interface CustomAlert ()
 
