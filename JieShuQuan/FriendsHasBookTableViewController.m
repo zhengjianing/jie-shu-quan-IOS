@@ -112,6 +112,7 @@
     if ([topLevelObjs count] > 0)
     {
         _preLoginView = [topLevelObjs lastObject];
+        _preLoginView.frame = self.tableView.bounds;
         _preLoginView.delegate = self;
     }
     return _preLoginView;
