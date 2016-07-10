@@ -121,21 +121,41 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13B-r4-0M7">
-                                            <rect key="frame" x="86" y="15" width="218" height="21"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13B-r4-0M7">
+                                            <rect key="frame" x="86" y="15" width="218" height="17.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="17.5" id="uFs-SS-vVe"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="authors" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EjC-nk-7If">
-                                            <rect key="frame" x="86" y="55" width="218" height="21"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="authors" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EjC-nk-7If">
+                                            <rect key="frame" x="86" y="40.5" width="218" height="35.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Dh-vv-LLs">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Dh-vv-LLs">
                                             <rect key="frame" x="16" y="10" width="52" height="69"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="52" id="d1h-nA-aY4"/>
+                                                <constraint firstAttribute="height" constant="69" id="yvO-my-Qim"/>
+                                            </constraints>
                                         </imageView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="13B-r4-0M7" firstAttribute="top" secondItem="8U1-qY-kmA" secondAttribute="topMargin" constant="7" id="1F4-bw-H0g"/>
+                                        <constraint firstItem="9Dh-vv-LLs" firstAttribute="top" secondItem="8U1-qY-kmA" secondAttribute="topMargin" constant="2" id="7gI-Eb-oXJ"/>
+                                        <constraint firstItem="EjC-nk-7If" firstAttribute="top" secondItem="13B-r4-0M7" secondAttribute="bottom" constant="8" id="HFf-Nt-qEM"/>
+                                        <constraint firstItem="13B-r4-0M7" firstAttribute="leading" secondItem="9Dh-vv-LLs" secondAttribute="trailing" constant="18" id="M0v-gJ-4Wu"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="13B-r4-0M7" secondAttribute="trailing" constant="8" id="Rmz-a8-bQZ"/>
+                                        <constraint firstItem="EjC-nk-7If" firstAttribute="leading" secondItem="13B-r4-0M7" secondAttribute="leading" id="X7B-8M-iUo"/>
+                                        <constraint firstItem="9Dh-vv-LLs" firstAttribute="leading" secondItem="8U1-qY-kmA" secondAttribute="leadingMargin" constant="8" id="adv-8o-kvB"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="EjC-nk-7If" secondAttribute="trailing" constant="8" id="h4c-Az-woA"/>
+                                        <constraint firstItem="9Dh-vv-LLs" firstAttribute="centerY" secondItem="8U1-qY-kmA" secondAttribute="centerY" id="nQd-9A-itc"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="EjC-nk-7If" secondAttribute="bottom" constant="6" id="ple-XO-aUb"/>
+                                        <constraint firstItem="EjC-nk-7If" firstAttribute="trailing" secondItem="13B-r4-0M7" secondAttribute="trailing" id="upn-W6-JxJ"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="authorsLabel" destination="EjC-nk-7If" id="Q6Z-Fd-SaX"/>
