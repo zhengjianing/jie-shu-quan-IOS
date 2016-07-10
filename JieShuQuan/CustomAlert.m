@@ -10,12 +10,13 @@
 
 static const float fontSize = 14;
 static const float fixedLabelHeight = 45;
-static const float yOrigin = 420;
+static const float yOrigin = 200;
 static const float horizontalMargin = 20;
 
 #define LabelBackgroundColor [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7]
 #define LabelTextColor [UIColor whiteColor]
 #define LabelFont [UIFont boldSystemFontOfSize:fontSize]
+#define Screen_Width    [ UIScreen mainScreen ].bounds.size.width
 
 @interface CustomAlert ()
 
@@ -91,8 +92,7 @@ static const float horizontalMargin = 20;
     CGSize constrainedSize = CGSizeMake(MAXFLOAT, fixedLabelHeight);
     
     CGSize textSize = [text sizeWithFont:[UIFont systemFontOfSize:fontSize] constrainedToSize:constrainedSize];
-    
-    self.frame = CGRectMake((320-textSize.width-2*horizontalMargin)/2, yOrigin, textSize.width+2*horizontalMargin, fixedLabelHeight);
+    self.frame = CGRectMake((Screen_Width-textSize.width-2*horizontalMargin)/2, yOrigin, textSize.width+2*horizontalMargin, fixedLabelHeight);
     _textLabel.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
 }
 
