@@ -7,7 +7,7 @@
 //
 
 #import "AboutTableViewController.h"
-#import "MobClick.h"
+#import <UMMobClick/MobClick.h>
 
 @interface AboutTableViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *appIconImageView;

@@ -22,7 +22,7 @@
 #import "ProvinceTableViewController.h"
 #import "ChangePhoneNumberViewController.h"
 #import "CustomAlert.h"
-#import "MobClick.h"
+#import <UMMobClick/MobClick.h>
 
 @interface SettingsTableViewController ()
 

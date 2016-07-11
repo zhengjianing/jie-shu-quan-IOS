@@ -24,10 +24,10 @@
 #import "CustomActivityIndicator.h"
 #import "UserStore.h"
 #import "CustomAlert.h"
-#import "MobClick.h"
+#import <UMMobClick/MobClick.h>
 #import <FontAwesomeKit/FAKIonIcons.h>
 #import "CustomColor.h"
-
+#import "ViewFrameHelper.h"
 static const NSString *kStatusYES = @"可借";
 static const NSString *kStatusNO = @"不可借";
 
@@ -81,14 +81,14 @@ static const NSString *kStatusNO = @"不可借";
             [[subviews objectAtIndex:0] removeFromSuperview];
             [[subviews objectAtIndex:2] setTextColor:[UIColor clearColor]];
             
-            UILabel *newLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, 320, 20)];
+            UILabel *newLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, Screen_Width, 20)];
             newLabel.text = @"从书库搜索";
             newLabel.font = [UIFont systemFontOfSize:14];
             newLabel.textColor = [UIColor whiteColor];
             newLabel.textAlignment = NSTextAlignmentCenter;
             [item addSubview:newLabel];
             
-            UIView *banner = [[UILabel alloc] initWithFrame:CGRectMake(0, -20, 320, 20)];
+            UIView *banner = [[UILabel alloc] initWithFrame:CGRectMake(0, -20, Screen_Width, 20)];
             [banner setBackgroundColor:[CustomColor mainGreenColor]];
             [item addSubview:banner];
         }
@@ -164,8 +164,9 @@ static const NSString *kStatusNO = @"不可借";
     NSArray *topLevelObjs = [[NSBundle mainBundle] loadNibNamed:@"PreLoginView" owner:self options:nil];
     if ([topLevelObjs count] > 0)
     {
-            _preLoginView = [topLevelObjs lastObject];
-            _preLoginView.delegate = self;
+        _preLoginView = [topLevelObjs lastObject];
+        _preLoginView.delegate = self;
+        _preLoginView.frame = self.tableView.bounds;
     }
     return _preLoginView;
 }

@@ -21,7 +21,7 @@
 #import "CustomActivityIndicator.h"
 #import "AvatarManager.h"
 #import "CustomAlert.h"
-#import "MobClick.h"
+#import <UMMobClick/MobClick.h>
 #import "IconHelper.h"
 #import "CustomColor.h"
 
@@ -112,6 +112,7 @@
     if ([topLevelObjs count] > 0)
     {
         _preLoginView = [topLevelObjs lastObject];
+        _preLoginView.frame = self.tableView.bounds;
         _preLoginView.delegate = self;
     }
     return _preLoginView;

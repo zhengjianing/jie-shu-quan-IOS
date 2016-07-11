@@ -1,41 +1,60 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6154.17" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PreLoginView">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="若您没有借书圈账号，推荐使用企业邮箱注册，系统会自动为您找到您的同事们" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="274" translatesAutoresizingMaskIntoConstraints="NO" id="cAW-bO-z9w">
-                    <rect key="frame" x="26" y="121" width="274" height="61"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="您尚未登录" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="42v-I5-7dg">
-                    <rect key="frame" x="26" y="63" width="85" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u3p-g7-oSQ">
-                    <rect key="frame" x="198" y="245" width="102" height="36"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                    <state key="normal" title="去登录或注册">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="login:" destination="iN0-l3-epB" eventType="touchUpInside" id="31s-c8-uOV"/>
-                    </connections>
-                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y4A-GD-Yed">
+                    <rect key="frame" x="0.0" y="43" width="375" height="193"/>
+                    <subviews>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您尚未登录" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="42v-I5-7dg">
+                            <rect key="frame" x="20" y="20" width="75" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="若您没有借书圈账号，推荐使用企业邮箱注册，系统会自动为您找到您的同事们" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="274" translatesAutoresizingMaskIntoConstraints="NO" id="cAW-bO-z9w">
+                            <rect key="frame" x="52" y="79" width="270" height="36"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u3p-g7-oSQ">
+                            <rect key="frame" x="253" y="151" width="96" height="32"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <state key="normal" title="去登录或注册">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="login:" destination="iN0-l3-epB" eventType="touchUpInside" id="31s-c8-uOV"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="u3p-g7-oSQ" secondAttribute="trailing" constant="26" id="0uT-WC-blk"/>
+                        <constraint firstItem="42v-I5-7dg" firstAttribute="top" secondItem="y4A-GD-Yed" secondAttribute="top" constant="20" id="Kqj-ks-9df"/>
+                        <constraint firstItem="42v-I5-7dg" firstAttribute="leading" secondItem="y4A-GD-Yed" secondAttribute="leading" constant="20" id="Sf0-wZ-tqc"/>
+                        <constraint firstItem="cAW-bO-z9w" firstAttribute="centerX" secondItem="y4A-GD-Yed" secondAttribute="centerX" id="YOV-gI-3ZE"/>
+                        <constraint firstItem="cAW-bO-z9w" firstAttribute="centerY" secondItem="y4A-GD-Yed" secondAttribute="centerY" id="lz9-LQ-Jgd"/>
+                        <constraint firstAttribute="height" constant="193" id="sTy-o0-cZf"/>
+                        <constraint firstAttribute="bottom" secondItem="u3p-g7-oSQ" secondAttribute="bottom" constant="10" id="zgj-DP-pYW"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="0.95686274510000002" green="0.94083146959999997" blue="0.90525064529999999" alpha="1" colorSpace="calibratedRGB"/>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <constraints>
+                <constraint firstItem="y4A-GD-Yed" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="43" id="TWW-xM-IFp"/>
+                <constraint firstItem="y4A-GD-Yed" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ZvK-EG-kos"/>
+                <constraint firstAttribute="trailing" secondItem="y4A-GD-Yed" secondAttribute="trailing" id="wtZ-qw-TQn"/>
+            </constraints>
             <point key="canvasLocation" x="-335" y="171"/>
         </view>
     </objects>

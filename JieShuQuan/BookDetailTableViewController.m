@@ -21,7 +21,7 @@
 #import "RequestBuilder.h"
 #import "CustomActivityIndicator.h"
 #import "CustomAlert.h"
-#import "MobClick.h"
+#import <UMMobClick/MobClick.h>
 #import "IconHelper.h"
 #import <ShareSDK/ShareSDK.h>
 #import "CustomColor.h"
@@ -194,30 +194,47 @@ static const float LINESPACE = 5;
     NSString *url = [NSString stringWithFormat:@"%@%@", kShareBookURL, _book.bookId];
     
     NSString *content = [NSString stringWithFormat:@"【%@】\n%@", _book.name, _book.bookDescription];
-    id<ISSContent> publishContent = [ShareSDK content:content
-                                       defaultContent:@""
-                                                image:[ShareSDK pngImageWithImage:_bookImageView.image]
-                                                title:@"\"借书圈\"好书推荐"
-                                                  url:url
-                                          description:@""
-                                            mediaType:SSPublishContentMediaTypeNews];
     
-    [ShareSDK showShareActionSheet:nil
-                         shareList:nil
-                           content:publishContent
-                     statusBarTips:NO
-                       authOptions:nil
-                      shareOptions: nil
-                            result:^(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
-                                if (state == SSResponseStateSuccess)
-                                {
-                                    NSLog(@"分享成功");                                    
-                                }
-                                else if (state == SSResponseStateFail)
-                                {
-                                    NSLog(@"分享失败,错误码:%ld,错误描述:%@", [error errorCode], [error errorDescription]);
-                                }
-                            }];
+    
+    NSArray* imageArray = @[_bookImageView.image];
+    if (imageArray) {
+        
+        NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+        [shareParams SSDKSetupShareParamsByText:content
+                                         images:imageArray
+                                            url:[NSURL URLWithString:url]
+                                          title:@"\"借书圈\"好书推荐"
+                                           type:SSDKContentTypeAuto];
+        
+        
+        [ShareSDK share:SSDKPlatformSubTypeWechatTimeline parameters:shareParams onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
+            switch (state) {
+                case SSDKResponseStateSuccess:
+                {
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享成功"
+                                                                        message:nil
+                                                                       delegate:nil
+                                                              cancelButtonTitle:@"确定"
+                                                              otherButtonTitles:nil];
+                    [alertView show];
+                    break;
+                }
+                case SSDKResponseStateFail:
+                {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
+                                                                    message:[NSString stringWithFormat:@"%@",error]
+                                                                   delegate:nil
+                                                          cancelButtonTitle:@"OK"
+                                                          otherButtonTitles:nil, nil];
+                    [alert show];
+                    break;
+                }
+                default:
+                    break;
+            }
+            
+        }];
+    }
 }
 
 #pragma mark - changed existence and availability

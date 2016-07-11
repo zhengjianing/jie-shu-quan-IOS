@@ -15,7 +15,7 @@
 #import "LoginViewController.h"
 #import "SettingsTableViewController.h"
 #import "MailManager.h"
-#import "MobClick.h"
+#import <UMMobClick/MobClick.h>
 #import "IconHelper.h"
 
 static const NSString *kDefaultCount = @"--";

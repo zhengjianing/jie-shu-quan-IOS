@@ -20,7 +20,7 @@
 #import "CustomActivityIndicator.h"
 #import "AvatarManager.h"
 #import "CustomAlert.h"
-#import "MobClick.h"
+#import <UMMobClick/MobClick.h>
 #import "IconHelper.h"
 #import "CustomColor.h"
 #import "BorrowService.h"
@@ -198,17 +198,17 @@
     _selectedBookId = selectedCell.bookId;
     
 //    发邮件
-//    Class mailClass = (NSClassFromString(@"MFMailComposeViewController"));
-//    if (mailClass != nil && [mailClass canSendMail]) {
-//        [MailManager displayComposerSheetToName:_currentFriend.friendName toEmailAddress:_currentFriend.friendEmail forBook:bookName delegate:self];
-//    } else {
-//        [MailManager launchMailToName:_currentFriend.friendName toEmailAddress:_currentFriend.friendEmail forBook:bookName];
-//    }
+    Class mailClass = (NSClassFromString(@"MFMailComposeViewController"));
+    if (mailClass != nil && [mailClass canSendMail]) {
+        [MailManager displayComposerSheetToName:_currentFriend.friendName toEmailAddress:_currentFriend.friendEmail forBook:bookName delegate:self];
+    } else {
+        [MailManager launchMailToName:_currentFriend.friendName toEmailAddress:_currentFriend.friendEmail forBook:bookName];
+    }
     
     
 //    发送借书申请
-    borrowActionSheet = [ActionSheetHelper actionSheetWithTitle:@"将向他发送借书通知" delegate:self];
-    [borrowActionSheet showInView:self.view];
+//    borrowActionSheet = [ActionSheetHelper actionSheetWithTitle:@"将向他发送借书通知" delegate:self];
+//    [borrowActionSheet showInView:self.view];
 }
 
 #pragma mark - MFMailComposeViewControllerDelegate

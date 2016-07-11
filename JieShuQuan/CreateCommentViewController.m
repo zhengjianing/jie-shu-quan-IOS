@@ -13,7 +13,7 @@
 #import "Book.h"
 #import "CustomActivityIndicator.h"
 #import "CustomAlert.h"
-#import "MobClick.h"
+#import <UMMobClick/MobClick.h>
 
 static const NSString *kDefaultName = @"匿名用户";
 
