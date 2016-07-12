@@ -1,16 +1,18 @@
 platform :ios, '7.0'
 
-pod "AFNetworking", "~> 2.0"
-pod "SDWebImage", "~>3.6"
-pod "FontAwesomeKit/IonIcons"
-pod "FontAwesomeKit/FontAwesome"
+target 'JieShuQuan' do
+	pod "AFNetworking", "~> 2.0"
+	pod "SDWebImage", "~>3.6"
+	pod "FontAwesomeKit/IonIcons"
+	pod "FontAwesomeKit/FontAwesome"
 
-pod "ZBarSDK"
+	pod "ZBarSDK"
 
-pod "ShareSDK3"
-pod "MOBFoundation"
-pod 'ShareSDK3/ShareSDKPlatforms/WeChat'
+	pod "ShareSDK3"
+ 	pod "MOBFoundation"
+	pod 'ShareSDK3/ShareSDKPlatforms/WeChat'
 
-pod "UMengAnalytics-NO-IDFA"
+	pod "UMengAnalytics-NO-IDFA"
 
-pod "ASIHTTPRequest"
+	pod "ASIHTTPRequest"
+end

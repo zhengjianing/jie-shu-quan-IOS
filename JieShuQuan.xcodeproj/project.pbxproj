@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1A5E04241D2FB2BD001D50BD /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A5E04231D2FB2BD001D50BD /* Launch Screen.storyboard */; };
+		8381B20D3BA5901C54E43D5A /* libPods-JieShuQuan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 067C62F1A7A95BF4FBEEF2C3 /* libPods-JieShuQuan.a */; };
 		9412E2F519A9FAC7008D243C /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412E2F419A9FAC7008D243C /* Book.m */; };
 		9412E2FB19AA0D82008D243C /* BookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9412E2FA19AA0D82008D243C /* BookTableViewCell.m */; };
 		945964A31BF70D77005AC33A /* BorrowService.m in Sources */ = {isa = PBXBuildFile; fileRef = 945964A21BF70D77005AC33A /* BorrowService.m */; };
@@ -92,7 +93,6 @@
 		97F973C619B5FBF4007AAD47 /* BookStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F973C519B5FBF4007AAD47 /* BookStore.m */; };
 		97FF912219D11EA7006944BD /* city.plist in Resources */ = {isa = PBXBuildFile; fileRef = 97FF912019D11EA7006944BD /* city.plist */; };
 		97FF912919D13475006944BD /* ProvinceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FF912819D13475006944BD /* ProvinceTableViewController.m */; };
-		CC37A0125E5B473B82F68B12 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFAC14665174BE691ED257B /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,10 +106,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		05D1F52224A5F7B29F39FADB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		067C62F1A7A95BF4FBEEF2C3 /* libPods-JieShuQuan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JieShuQuan.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A5E04231D2FB2BD001D50BD /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		1AC470801D325DA500D44F46 /* ViewFrameHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewFrameHelper.h; sourceTree = "<group>"; };
-		67679F8B19FD679B00F17B69 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		9412E2F319A9FAC7008D243C /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
 		9412E2F419A9FAC7008D243C /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
 		9412E2F919AA0D82008D243C /* BookTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookTableViewCell.h; sourceTree = "<group>"; };
@@ -264,7 +263,8 @@
 		97FF912019D11EA7006944BD /* city.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = city.plist; sourceTree = "<group>"; };
 		97FF912719D13475006944BD /* ProvinceTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProvinceTableViewController.h; sourceTree = "<group>"; };
 		97FF912819D13475006944BD /* ProvinceTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProvinceTableViewController.m; sourceTree = "<group>"; };
-		9FFAC14665174BE691ED257B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2C1BF415165332FF43D6780 /* Pods-JieShuQuan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JieShuQuan.release.xcconfig"; path = "Pods/Target Support Files/Pods-JieShuQuan/Pods-JieShuQuan.release.xcconfig"; sourceTree = "<group>"; };
+		F3FE232A3A56B8A75C3842A1 /* Pods-JieShuQuan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JieShuQuan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JieShuQuan/Pods-JieShuQuan.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -287,7 +287,7 @@
 				9483F1C319CB481D00316CED /* CoreVideo.framework in Frameworks */,
 				9483F1C219CB481600316CED /* CoreMedia.framework in Frameworks */,
 				9483F1C119CB480F00316CED /* AVFoundation.framework in Frameworks */,
-				CC37A0125E5B473B82F68B12 /* libPods.a in Frameworks */,
+				8381B20D3BA5901C54E43D5A /* libPods-JieShuQuan.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,11 +301,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		880FB543F159CEC00F08BFF4 /* Pods */ = {
+		02E4D7F3FB8AE85D0616ADBB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				67679F8B19FD679B00F17B69 /* Pods.debug.xcconfig */,
-				05D1F52224A5F7B29F39FADB /* Pods.release.xcconfig */,
+				F3FE232A3A56B8A75C3842A1 /* Pods-JieShuQuan.debug.xcconfig */,
+				F2C1BF415165332FF43D6780 /* Pods-JieShuQuan.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -406,7 +406,7 @@
 				9471DC0519A5837700F1A291 /* JieShuQuanTests */,
 				9471DBEA19A5837700F1A291 /* Products */,
 				A7AB360B7F99499680B8DBAC /* Frameworks */,
-				880FB543F159CEC00F08BFF4 /* Pods */,
+				02E4D7F3FB8AE85D0616ADBB /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -669,7 +669,7 @@
 				9737041419CB38C9008949FB /* CoreVideo.framework */,
 				9737041219CB38C2008949FB /* CoreMedia.framework */,
 				94805C4719CADDB900CD762A /* libiconv.dylib */,
-				9FFAC14665174BE691ED257B /* libPods.a */,
+				067C62F1A7A95BF4FBEEF2C3 /* libPods-JieShuQuan.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -681,12 +681,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9471DC0C19A5837700F1A291 /* Build configuration list for PBXNativeTarget "JieShuQuan" */;
 			buildPhases = (
-				5B5B73C6427442A28A6E98EE /* Check Pods Manifest.lock */,
+				7AD708ECF9029CC8D5BBF1E6 /* 📦 Check Pods Manifest.lock */,
 				9471DBE519A5837700F1A291 /* Sources */,
 				9471DBE619A5837700F1A291 /* Frameworks */,
 				9471DBE719A5837700F1A291 /* Resources */,
-				17AFB6565CE44F5695AC6BE0 /* Copy Pods Resources */,
-				09B2B1E343EBD53A29299D05 /* Embed Pods Frameworks */,
+				510ED9E0AD616E009A86FD78 /* 📦 Embed Pods Frameworks */,
+				4DEBC460CA0B55A5B1E99004 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -782,44 +782,44 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		09B2B1E343EBD53A29299D05 /* Embed Pods Frameworks */ = {
+		4DEBC460CA0B55A5B1E99004 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JieShuQuan/Pods-JieShuQuan-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		17AFB6565CE44F5695AC6BE0 /* Copy Pods Resources */ = {
+		510ED9E0AD616E009A86FD78 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JieShuQuan/Pods-JieShuQuan-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5B5B73C6427442A28A6E98EE /* Check Pods Manifest.lock */ = {
+		7AD708ECF9029CC8D5BBF1E6 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1005,7 +1005,7 @@
 		};
 		9471DC0D19A5837700F1A291 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 67679F8B19FD679B00F17B69 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = F3FE232A3A56B8A75C3842A1 /* Pods-JieShuQuan.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1046,7 +1046,7 @@
 		};
 		9471DC0E19A5837700F1A291 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 05D1F52224A5F7B29F39FADB /* Pods.release.xcconfig */;
+			baseConfigurationReference = F2C1BF415165332FF43D6780 /* Pods-JieShuQuan.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
