@@ -79,8 +79,8 @@
 - (UITabBarController *)createTabBarController
 {
     UINavigationController *searchNavController = [self createNavControllerWithIdentifier:@"searchViewController" tabBarTitle:@"搜索" iconFont:[FAKIonIcons androidSearchIconWithSize:19]];
-    UINavigationController *myBookNavController = [self createNavControllerWithIdentifier:@"myBooksViewController" tabBarTitle:@"我的书库" iconFont:[FAKIonIcons androidBookIconWithSize:19]];
-    UINavigationController *friendsNavController = [self createNavControllerWithIdentifier:@"friendsTableViewController" tabBarTitle:@"同事们" iconFont:[FAKIonIcons ios7PeopleIconWithSize:31]];
+    UINavigationController *myBookNavController = [self createNavControllerWithIdentifier:@"myBooksViewController" tabBarTitle:@"我的书库" iconFont:[FAKIonIcons iosBookIconWithSize:19]];
+    UINavigationController *friendsNavController = [self createNavControllerWithIdentifier:@"friendsTableViewController" tabBarTitle:@"同事们" iconFont:[FAKIonIcons iosPeopleIconWithSize:31]];
     UINavigationController *moreNavController = [self createNavControllerWithIdentifier:@"moreTableViewController" tabBarTitle:@"更多" iconFont:[FAKIonIcons moreIconWithSize:28]];
 
     UITabBarController *tabBarController = [[UITabBarController alloc] init];

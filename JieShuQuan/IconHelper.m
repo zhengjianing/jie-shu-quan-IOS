@@ -15,7 +15,7 @@
 
 + (UIImage *)emailIcon
 {
-    FAKIonIcons *icon = [FAKIonIcons ios7EmailOutlineIconWithSize:20];
+    FAKIonIcons *icon = [FAKIonIcons iosEmailOutlineIconWithSize:20];
     [icon addAttribute:NSForegroundColorAttributeName value:[CustomColor mainRedColor]];
     return [icon imageWithSize:CGSizeMake(20, 20)];
 }

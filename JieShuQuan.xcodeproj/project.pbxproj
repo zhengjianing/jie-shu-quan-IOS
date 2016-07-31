@@ -681,12 +681,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9471DC0C19A5837700F1A291 /* Build configuration list for PBXNativeTarget "JieShuQuan" */;
 			buildPhases = (
-				7AD708ECF9029CC8D5BBF1E6 /* 📦 Check Pods Manifest.lock */,
+				7AD708ECF9029CC8D5BBF1E6 /* [CP] Check Pods Manifest.lock */,
 				9471DBE519A5837700F1A291 /* Sources */,
 				9471DBE619A5837700F1A291 /* Frameworks */,
 				9471DBE719A5837700F1A291 /* Resources */,
-				510ED9E0AD616E009A86FD78 /* 📦 Embed Pods Frameworks */,
-				4DEBC460CA0B55A5B1E99004 /* 📦 Copy Pods Resources */,
+				510ED9E0AD616E009A86FD78 /* [CP] Embed Pods Frameworks */,
+				4DEBC460CA0B55A5B1E99004 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -726,7 +726,7 @@
 				TargetAttributes = {
 					9471DBE819A5837700F1A291 = {
 						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = BPRT8L8NAK;
+						DevelopmentTeam = P7DQ9D7MW9;
 						DevelopmentTeamName = "lei huang";
 					};
 					9471DC0119A5837700F1A291 = {
@@ -782,14 +782,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4DEBC460CA0B55A5B1E99004 /* 📦 Copy Pods Resources */ = {
+		4DEBC460CA0B55A5B1E99004 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -797,14 +797,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JieShuQuan/Pods-JieShuQuan-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		510ED9E0AD616E009A86FD78 /* 📦 Embed Pods Frameworks */ = {
+		510ED9E0AD616E009A86FD78 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -812,14 +812,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JieShuQuan/Pods-JieShuQuan-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7AD708ECF9029CC8D5BBF1E6 /* 📦 Check Pods Manifest.lock */ = {
+		7AD708ECF9029CC8D5BBF1E6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1038,9 +1038,9 @@
 					"$(PROJECT_DIR)/JieShuQuan/LibzBar",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "6d7abda1-03ac-4455-83d9-3f59576d36de";
 				SDKROOT = iphoneos8.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1050,8 +1050,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: jianing zheng (P7DQ9D7MW9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: jianing zheng (P7DQ9D7MW9)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/JieShuQuan/ShareSDK/Connection",
@@ -1079,9 +1079,9 @@
 					"$(PROJECT_DIR)/JieShuQuan/LibzBar",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "6d7abda1-03ac-4455-83d9-3f59576d36de";
 				SDKROOT = iphoneos8.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
